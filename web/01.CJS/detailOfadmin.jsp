@@ -77,7 +77,7 @@ margin-left: 190px;
 <title>Insert title here</title>
 </head>
 <body>
-<%@include file="/header.jsp" %>
+<%@include file="/header_1.jsp" %>
 
 <div class="container" >
 	<div class="row" >
@@ -275,6 +275,6 @@ margin-left: 190px;
          
 
 
-<%@include file="/footer.jsp" %>
+
 </body>
 </html>

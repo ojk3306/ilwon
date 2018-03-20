@@ -3,12 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript" src="/prototype/resources/js/jquery-3.3.1.min.js"></script>
+<!-- <script type="text/javascript" src="/prototype/resources/js/jquery-3.3.1.min.js"></script>
 <script src="/prototype/resources/vendor/jquery/jquery.min.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link href="/prototype/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<script src="/prototype/resources/vendor/jquery/jquery.min.js"></script>
-    <script src="/prototype/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/prototype/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript">
 
@@ -204,7 +204,7 @@ border-radius: 35px;
 </head>
 <body>
 <!-- 헤더 시작-->
-<%@ include file="/header.jsp" %>
+<%@ include file="/header_1.jsp" %>
 <!-- 헤더 종료-->
 
 <!--내용물-->
@@ -457,7 +457,7 @@ var map = new daum.maps.Map(mapContainer, mapOption);
 <!--내용 끝-->
 
  <!-- 바닥 -->
-  <%@include file="/footer.jsp" %>
+
 <!--바닥종료-->
 
 
