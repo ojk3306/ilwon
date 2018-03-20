@@ -3,12 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- <script type="text/javascript" src="/prototype/resources/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/prototype/resources/js/jquery-3.3.1.min.js"></script>
 <script src="/prototype/resources/vendor/jquery/jquery.min.js"></script>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link href="/prototype/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<script src="/prototype/resources/vendor/jquery/jquery.min.js"></script>
-    <script src="/prototype/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+	
+ <script src="/prototype/resources/vendor/jquery/jquery.min.js"></script>
+    <script src="/prototype/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
+    <!-- -->
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript">
 
@@ -186,7 +186,7 @@ min-height:200px;
 border:1px solid; #000000;
 }
 .in3{
-padding: 10px;
+padding: 20px;
 }
 .item{
 }
@@ -284,7 +284,7 @@ border-radius: 35px;
 	<nav class="howteach" style="padding-top:10px;"><!--커리큘럼란-->
 <div class="container" >
     <div class="col-md-6" Style="margin-left:150px; margin-top: 15px;">
-        <div class="panel with-nav-tabs panel-info" Style="width:700px;">
+        <div class="panel with-nav-tabs panel-info" Style="width:800px;">
             <div class="panel-heading">
                 <ul class="nav nav-tabs">
                     <li class="active">
@@ -328,7 +328,7 @@ border-radius: 35px;
                     </div>
                     
                     
-                    <div class="tab-pane fade" id="tab3info" Style="padding-left: 50px;">
+                    <div class="tab-pane fade" id="tab3info">
                    <div class="in3" >
 		<div class="container1" >
         <div id="main_area">
