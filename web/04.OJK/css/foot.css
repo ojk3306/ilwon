@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+
+.foot { 
+	right:0px;
+	left:0px;
+	background-color: #f2f2f2;
+	padding: 15px;
+	text-align: center;
+}

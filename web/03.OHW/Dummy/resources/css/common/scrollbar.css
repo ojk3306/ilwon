@@ -1,0 +1,218 @@
+/*************** SCROLLBAR BASE CSS ***************/
+.scroll-wrapper {
+overflow: hidden !important;
+padding: 0 !important;
+position: relative;
+}
+.scroll-wrapper > .scroll-content {
+border: none !important;
+box-sizing: content-box !important;
+height: auto;
+left: 0;
+margin: 0;
+max-height: none;
+max-width: none !important;
+overflow: scroll !important;
+padding: 0;
+position: relative !important;
+top: 0;
+width: auto !important;
+}
+/*************** SCROLLBAR BASE CSS ***************/
+.scroll-wrapper {
+overflow: hidden !important;
+padding: 0 !important;
+position: relative;
+}
+.scroll-wrapper > .scroll-content {
+border: none !important;
+box-sizing: content-box !important;
+height: auto;
+left: 0;
+margin: 0;
+max-height: none;
+max-width: none !important;
+overflow: scroll !important;
+padding: 0;
+position: relative !important;
+top: 0;
+width: auto !important;
+}
+.scroll-wrapper > .scroll-content::-webkit-scrollbar {
+height: 0;
+width: 0;
+}
+.scroll-element {
+display: none;
+}
+.scroll-element, .scroll-element div {
+box-sizing: content-box;
+}
+.scroll-element.scroll-x.scroll-scrollx_visible,
+.scroll-element.scroll-y.scroll-scrolly_visible {
+display: block;
+}
+.scroll-element .scroll-bar,
+.scroll-element .scroll-arrow {
+cursor: default;
+}
+.scroll-textarea {
+border-style:solid;
+border-width:1px;
+border-color:#e5e5e5;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+}
+.scroll-textarea > .scroll-content {
+overflow: hidden !important;
+}
+.scroll-textarea > .scroll-content > textarea {
+border: none !important;
+box-sizing: border-box;
+height: 100% !important;
+margin: 0;
+max-height: none !important;
+max-width: none !important;
+overflow: scroll !important;
+outline: none;
+padding: 20px;
+position: relative !important;
+top: 0;
+width: 100% !important;
+color:#c4c4c4;
+}
+.scroll-textarea > .scroll-content > textarea::-webkit-scrollbar {
+height: 0;
+width: 0;
+}
+
+/*************** SIMPLE OUTER SCROLLBAR ***************/
+.scrollbar_outer > .scroll-element,
+.scrollbar_outer > .scroll-element div
+{
+border: none;
+margin: 0;
+padding: 0;
+position: absolute;
+z-index: 10;
+}
+.scrollbar_outer > .scroll-element {
+background-color: #ffffff;
+}
+.scrollbar_outer > .scroll-element div {
+display: block;
+height: 100%;
+left: 0;
+top: 0;
+width: 100%;
+}
+.scrollbar_outer > .scroll-element.scroll-x {
+bottom: 0;
+height: 12px;
+left: 0;
+width: 100%;
+}
+.scrollbar_outer > .scroll-element.scroll-y {
+height: 100%;
+right: 0px;
+top: 0;
+width: 12px;
+}
+.scrollbar_outer > .scroll-element.scroll-x .scroll-element_outer { height: 8px; top: 2px; }
+.scrollbar_outer > .scroll-element.scroll-y .scroll-element_outer { left:2px; width: 6px; }
+
+.scrollbar_outer > .scroll-element .scroll-element_outer { overflow: hidden; }
+.scrollbar_outer > .scroll-element .scroll-element_track { background-color: #eeeeee; }
+
+.scrollbar_outer > .scroll-element .scroll-element_outer,
+.scrollbar_outer > .scroll-element .scroll-element_track,
+.scrollbar_outer > .scroll-element .scroll-bar {
+-webkit-border-radius: 8px;
+-moz-border-radius: 8px;
+border-radius: 8px;
+}
+.scrollbar_outer > .scroll-element .scroll-bar { background-color: #b2b2b2; }
+.scrollbar_outer > .scroll-element .scroll-bar:hover { background-color: #db4c3f; }
+.scrollbar_outer > .scroll-element.scroll-draggable .scroll-bar { background-color: #33cccc; }
+/* scrollbar height/width & offset from container borders */
+.scrollbar_outer > .scroll-content.scroll-scrolly_visible { left: -12px; margin-left: 12px; }
+.scrollbar_outer > .scroll-content.scroll-scrollx_visible { top:  -12px; margin-top:  12px; }
+.scrollbar_outer > .scroll-element.scroll-x .scroll-bar { min-width: 10px; }
+.scrollbar_outer > .scroll-element.scroll-y .scroll-bar { min-height: 10px; }
+/* update scrollbar offset if both scrolls are visible */
+.scrollbar_outer > .scroll-element.scroll-x.scroll-scrolly_visible .scroll-element_track { left: -14px; }
+.scrollbar_outer > .scroll-element.scroll-y.scroll-scrollx_visible .scroll-element_track { top: -14px; }
+.scrollbar_outer > .scroll-element.scroll-x.scroll-scrolly_visible .scroll-element_size { left: -14px; }
+.scrollbar_outer > .scroll-element.scroll-y.scroll-scrollx_visible .scroll-element_size { top: -14px; }
+
+
+/*************** textarea STYLES ***************/
+/*�낅젰�꾨즺(class)*/
+.scrollbar_outer.done{ 
+	border-color:#c4c4c4;
+}
+.scrollbar_outer.done textarea {
+	color:#6b6771; 
+}
+/*�낅젰以�(properties)*/
+.scrollbar_outer.focus { 
+	border-color:#33cccc;
+}
+.scrollbar_outer.focus textarea {
+	color:#6b6771; 
+}
+/*�곸뿭*/
+.ta_scrb_300_140 {
+    width: 300px;
+	height:140px;
+}
+.ta_scrb_300_198 {
+    width: 300px;
+	height:198px;
+}
+.ta_scrb_300_280 {
+    width: 300px;
+	height:280px;
+}
+.ta_scrb_380_100 {
+    width: 380px;
+	height:100px;
+}
+.ta_scrb_380_140 {
+    width: 380px;
+	height:140px;
+}
+.ta_scrb_398_140 {
+    width: 398px;
+	height:140px;
+}
+.ta_scrb_380_280 {
+    width: 380px;
+	height:280px;
+}
+.ta_scrb_380_340 {
+    width: 380px;
+	height:340px;
+}
+.ta_scrb_400_100 {
+    width: 400px;
+	height:100px;
+}
+.ta_scrb_400_200 {
+    width: 400px;
+	height:200px;
+}
+.ta_scrb_500_200 {
+    width: 500px;
+	height:200px;
+}
+.ta_scrb_540_680 {
+    width: 540px;
+	height:680px;
+}
+
+.ta_scrb_900_200 {
+    width: 900px;
+      height:200px;
+}

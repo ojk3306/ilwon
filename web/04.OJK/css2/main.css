@@ -1,0 +1,294 @@
+@charset "UTF-8";
+html,body{
+	height:100%;	
+}
+body{
+	display: table;
+	width:100%;
+}
+/* header 시작 */
+header{
+	border-bottom:solid 1px #ccc;
+	display:table-row;	
+	height:80px;	
+}
+#top{
+	width:1000px;
+	margin:0 auto;
+}
+#top > img {
+	margin-top:10px;	
+}
+
+.top_right{
+	float:right;
+	width:224px;
+	height:80px;
+	line-height:80px;
+}
+.ad_box{
+	width:730px;
+	height:208px;
+	background:#3b64af;
+	float:left;
+}
+.box_search{	
+    padding: 6px 8px 6px 14px;
+    border-radius: 30px;
+    border: 1px solid #c5cdd7;
+    height:34px;    
+    display: inline;  
+    position:relative;
+}
+.tf_search{
+    width: 200px;
+    height: 20px;
+    padding: 0;
+    margin: 0;
+    border: 0 none;
+    font-size: 14px;
+    line-height: 18px;
+    color: #666;
+    outline: 0;
+}
+.btn_search{
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    top: 5px;
+    right: 5px;  
+    border: 0 none;
+    background-color: transparent;   
+    cursor:pointer;      
+}
+.ico_search{
+	display: inline-block;	
+    overflow: hidden;
+    width: 20px;
+    height: 20px;
+    font-size: 0;
+    line-height: 0;
+    background: url(../images/search.png) no-repeat 0 0;
+    vertical-align:top;   
+}
+
+
+/* section 시작 */
+
+section{
+	background:#f3f3f3;
+	display:table-row;
+	width:100%;
+}
+#wrap{
+	width:1000px;
+	margin:0 auto;
+	height:100%;
+	overflow:hidden;
+	padding:10px 0px;	
+}
+#left_box{
+	float:left;	
+	width:730px;
+}
+#right_box{
+	float:right;
+}
+#notice_box{
+	background:#fff;
+	height:208px;
+	width:453px;
+	padding:20px;
+	float:right;
+}
+#left_box > img{
+	height:208px;
+	width:277px;
+}
+#notice_box > p{
+	margin-bottom:20px;
+	font-size:18px;
+	font-color:#555;
+}
+#notice_box .notice_date{
+	float:right;
+}
+#notice_box > ul > li{
+	line-height:24px;
+	font-size:14px;
+	margin-left:5px;
+}
+.btn_more{
+	float:right;
+	line-height:20px;
+}
+.btn_more > a{
+	text-decoration: none;
+	font-size:16px;
+	color:#777;	
+}
+
+/* login */
+
+#login_box{
+	width:260px;
+	height:208px;
+	background:#fff;
+	padding:28px 18px;
+	font-size:14px;
+}
+#userid, #userpwd{
+	width:222px;
+	height:32px;
+	padding:8px 12px;
+	font-size:14px;
+}
+#userid{
+	margin-bottom:5px;
+	
+}
+.join{
+	font-size:13px;
+	margin-top:8px;
+}
+.join a{
+	color:#777;
+	font-weight:bold;
+}
+.join > div{
+	float:right;
+	font-size:13px;
+}
+#login_btn{
+	width:224px;
+	height:38px;
+	background:#3b64af;
+	color:white;
+	font-size:16px;
+	border:none;
+	cursor:pointer;
+	margin-top:12px;
+}
+
+#alarm_box{
+	width:260px;
+	height:500px;
+	background:#ccc;
+	margin-top:10px;
+	padding:20px;
+}
+
+
+
+/* best class */
+
+#best_class{
+	width:100%;
+	margin:10px 0px;
+	background:#fff;
+	overflow:hidden;
+	padding:10px 20px;
+}
+
+.card-img-top{	
+    /* object-fit:contain; */
+    text-align:center;    
+} 
+.card-img-top img{
+	width:100px;
+	height:100px;
+}
+#best_class .card .circle{ 
+	-webkit-clip-path: circle(50% at 50% 50%);
+	clip-path: circle(50% at 50% 50%);
+}
+.card{
+	border:none;
+}
+.card-title{
+	font-weight:600;
+	font-size:18px;
+	color:#777;
+}
+.card-text{
+	font-size:14px;
+}
+.card-group .last_card{
+	margin-right:none;
+}
+/* my class */
+#my_class{
+	background:#fff;
+	width:100%;
+	height:224px;
+	margin-top:10px;
+	padding:10px 20px;	
+	position: relative;	
+}
+#my_class #ul_mc{
+	height:160px;
+	margin:auto;
+}
+#my_class #ul_mc li{
+	width:116px;
+	float:left;
+	text-align:center;	
+	padding:10px 0;	
+	margin:0px 16px;
+	color:#ccc;
+}
+#my_class #ul_mc .class_img_top{	
+	border:dotted 2px #ccc;	
+	border-radius:20px;
+	height:100px;
+	width:100px;
+	margin:auto;
+}
+
+#my_class #ul_mc .class_img_top a{
+	color:#ccc;	
+	line-height:100px;
+}
+#my_class #ul_mc .class_img_top img{
+	border-radius:20px;
+}
+#my_class #ul_mc .item p{
+	color:#333;
+	font-size:14px;
+	margin-top:10px;
+}
+.owl-nav .btn-prev{
+	position:absolute;
+	left:5px;
+	color:#999;
+	top:40px;
+	font-size:26px;
+}
+.owl-nav .btn-next{
+	position:absolute;
+	right:5px;
+	color:#999;
+	top:40px;
+	font-size:26px;
+}
+
+
+/* footer */
+
+footer{
+	width:100%;
+	height:80px;
+	background:#4d4d4d;
+	display:table-row;
+}
+.footer{
+	padding:20px 0;
+	width:1000px;
+	margin:0 auto;
+	color:#b7b7b7;
+	font-size:13px;
+}
+.footer a{
+	text-decoration: none;
+	color:#b7b7b7;
+}

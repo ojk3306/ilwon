@@ -1,0 +1,172 @@
+@charset "utf-8";
+
+/* conects lnb 영역 (공통) */
+.nav-2depth .tit-01 {padding-bottom:5px;font-size:13px;text-align:center}
+.nav-2depth .tit-01 strong {display:block;font-size:14px;color:#333}
+.nav-2depth .tit-01 strong > span {color:#33cccc}
+.nav-2depth .tit-02 {color:#33cccc !important}
+.nav-relationship {margin:35px 0 0 0}
+[conects-redirect] {cursor:pointer}
+
+/* 카테고리 아이콘 */
+.ico-type-category {overflow:hidden;display:inline-block;*display:block;width:36px;height:36px;margin-left:5px;text-indent:-9999px;vertical-align:top}
+.ico-type-category:first-child {margin-left:0}
+.ico-type-category[color-type="colors"] {background:url(/img/conects_main/ico/ico-category-colors.png) no-repeat}
+.ico-type-category[color-type="monochrome"] {background:url(/img/conects_main/ico/ico-category-monochrome.png) no-repeat}
+.ico-type-category[data-category-type="korean"],
+.ico-type-category[data-category-type="SBJT001"] {background-position:0 0}
+.ico-type-category[data-category-type="foreign"],
+.ico-type-category[data-category-type="SBJT007"] {background-position:-50px 0}
+.ico-type-category[data-category-type="art"],
+.ico-type-category[data-category-type="SBJT009"] {background-position:-100px 0}
+.ico-type-category[data-category-type="exam"],
+.ico-type-category[data-category-type="SBJT006"] {background-position:-150px 0}
+.ico-type-category[data-category-type="it"],
+.ico-type-category[data-category-type="SBJT010"] {background-position:-200px 0}
+.ico-type-category[data-category-type="hobby"],
+.ico-type-category[data-category-type="SBJT008"] {background-position:-250px 0}
+.ico-type-category[data-category-type="school"],
+.ico-type-category[data-category-type="school"] {background-position:-300px 0}
+.ico-type-category[data-category-type="math"],
+.ico-type-category[data-category-type="SBJT003"] {background-position:-350px 0}
+.ico-type-category[data-category-type="english"],
+.ico-type-category[data-category-type="SBJT002"] {background-position:-400px 0}
+.ico-type-category[data-category-type="social"],
+.ico-type-category[data-category-type="SBJT004"] {background-position:-450px 0}
+.ico-type-category[data-category-type="science"],
+.ico-type-category[data-category-type="SBJT005"] {background-position:-500px 0}
+
+/* 프로필 */
+.conects-profile {display:inline-block;*display:block;padding:5px 0 0 0;text-align:center}
+.conects-profile[tutor-confirm="true"] {position:relative;border-radius:50%}
+.conects-profile[tutor-confirm="true"]:before {display:block;position:absolute;bottom:-4px;right:-4px;width:12px;height:12px;background:url(/img/class_info/bg-mask-thumb.gif) 0 0 no-repeat;background-size:contain;content:'';}
+.conects-profile .img-profile {overflow:hidden;display:block;width:50px;height:50px;border-radius:50%}
+.conects-profile .img-profile {border:2px solid #33cccc}
+
+/* 별점 */
+.star-score {zoom:1}
+.star-score:after {content:'';display:block;clear:both}
+.star-score .bg-star {display:block;float:left;width:102px;height:17px;margin-top:7px;background:url(/img/conects_main/ico/ico-star-score.png) 0 -30px no-repeat}
+.star-score .bg-star .star-grade {display:block;float:left;max-width:102px;height:17px;background:url(/img/conects_main/ico/ico-star-score.png) 0 0 no-repeat}
+.star-score .txt-score {display:block;float:left;margin-left:5px;font-size:24px;font-weight:700;color:#33cccc;line-height:1}
+
+/* 카드 (가로형) */
+.common-card {*zoom:1;width:100%;font-size:12px;background:#fff;-webkit-box-shadow: 0 3px 1px rgba(0, 0, 0, 0.1);box-shadow:0 3px 1px rgba(0,0,0,0.1)}
+.common-card:before, .common-card:after {display:table;content:''}
+.common-card:after {clear:both}
+.common-card .card-contents {*zoom:1;float:left;width:668px;border-right:1px solid #ebebeb;	padding:20px}
+.common-card .card-contents:before, .common-card .card-contents:after {display:table;content:''}
+.common-card .card-contents:after {clear:both}
+.common-card .card-contents .info-img {position:relative;float:left;margin-right:20px;width:198px;height:198px;border: 1px solid #ccc;}
+.common-card .card-contents .info-img img {width:200px;height:200px}
+.common-card .card-contents .info-img img.empty {
+    border: 1px solid #eee;
+    width: 198px; height: 198px;
+}
+.common-card .card-contents .info-icon-type {position:absolute;top:10px;left:10px;width:35px;height:35px;font-weight:700;font-size:16px;color:#fff;text-align:center;line-height:35px;background:#32cacb;border-radius:17px;z-index:1}
+.common-card .card-contents .info-contents {float:left;width:448px}
+.common-card .card-contents .info-contents strong {display:block;width:445px;font-size:24px;font-weight:700;letter-spacing:-1px;line-height:1.4;white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+.common-card .card-contents .card-hashtag {*zoom:1}
+.common-card .card-contents .card-hashtag:before, .common-card .card-contents .card-hashtag:after {display:table;content:''}
+.common-card .card-contents .card-hashtag:after {clear:both}
+.common-card .card-contents .card-hashtag li {float:left;margin:10px 15px 0 0;font-weight:700;font-size:14px;color:#29b6f6;letter-spacing:-1px;line-height:1}
+.common-card .card-contents .card-hashtag li:first-child {margin-left:0}
+.common-card .card-contents .card-summary {margin:35px 0 0 0;font-size:15px;line-height:1.8}
+.common-card .card-contents .card-summary dt {font-weight:700;letter-spacing:-1px}
+.common-card .card-contents .card-summary dd {color:#666;letter-spacing:-1px}
+
+.common-card .card-aside {float:right;position:relative;left:-1px;width:200px;padding:20px;border-left:1px solid #ebebeb}
+.common-card .card-aside-header {*zoom: 1;position:relative}
+.common-card .card-aside-header:before, .common-card .card-aside-header:after {display:table;content:''}
+.common-card .card-aside-header:after {clear:both}
+.common-card .card-aside-header .profile-view-btn {*zoom:1;display:inline-block;*display:inline;position:absolute;top:0;right:0;height:22px;padding:0 6px;font-size:12px;line-height:22px;color:#fff;letter-spacing:-1px;background:#29b6f6;border-radius:3px}
+.common-card .card-aside-header .conects-profile {float:left;width:40px;height:40px;margin:-5px 0 0 0;border-radius:50%}
+.common-card .card-aside-header .conects-profile .img-profile {width:40px;height:40px}
+.common-card .card-aside-header .conects-profile .img-profile.man{background:url(/img/common/unit/img_thumb_photo_man.png) 0 0 no-repeat;background-position:100%;background-size:100%;vertical-align:middle;}
+.common-card .card-aside-header .conects-profile .img-profile.woman{background:url(/img/common/unit/img_thumb_photo_woman.png) 0 0 no-repeat;background-position:100%;background-size:100%;vertical-align:middle;}
+
+
+.common-card .card-aside-header .conects-profile .img-profile > img {display:block;width:40px;height:40px}
+.common-card .card-aside-header .writer {float:right;width:150px}
+.common-card .card-aside-header .writer strong {display:block;max-width:85px;margin:0 0 5px;font-weight:700;font-size:16px;letter-spacing:-1px;line-height:20px}
+.common-card .card-aside-header .writer .category {display:inline-block;width:150px;font-size:13px;color:#333;line-height:18px;letter-spacing:-0.5px;white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+
+.common-card .card-aside-body {margin:10px 0 0 0}
+.common-card .card-aside-body .career-list {min-height:95px;color:#666}
+.common-card .card-aside-body .career-list li {font-size:13px;letter-spacing:-0.5px;line-height:1.8}
+.common-card .card-aside-body .career-list .price {display:block;margin:5px 0 0 0;font-weight:700;font-size:20px;color:#000;letter-spacing:-1px}
+.common-card .card-aside-body .card-aside-btn ul {*zoom: 1;margin:15px 0 0 0}
+.common-card .card-aside-body .card-aside-btn ul:before, .common-card .card-aside-body .card-aside-btn ul:after {display:table;content:''}
+.common-card .card-aside-body .card-aside-btn ul:after {clear:both}
+.common-card .card-aside-body .card-aside-btn li {float:left;margin-left:10px}
+.common-card .card-aside-body .card-aside-btn li:first-child {margin-left:0}
+.common-card .card-aside-body .card-aside-btn button {width:95px;height:30px;padding-left:19px;font-weight:bold;font-size:14px;color:#29b6f6;line-height:28px;border:1px solid #29b6f6;border-radius:3px}
+.common-card .card-aside-body .card-aside-btn .interest-btn {background:#fff url(//s3.ap-northeast-2.amazonaws.com/st.conects/myconects/img/icon_heart_sm.png) 12px center no-repeat}
+.common-card .card-aside-body .card-aside-btn .interest-btn.active {color:#fff;background: #29b6f6  url(//s3.ap-northeast-2.amazonaws.com/st.conects/myconects/img/icon_heart_like_sm.png) 12px center no-repeat}
+.common-card .card-aside-body .card-aside-btn .share-btn {background:#fff url(//s3.ap-northeast-2.amazonaws.com/st.conects/myconects/img/icon_share_sm.png) 12px center no-repeat}
+.common-card .card-footer {*zoom:1;clear:both;padding:15px 20px;font-weight:700;font-size:13px;color:#333;border-top:1px solid #ebebeb}
+
+.common-card .card-footer:before, .common-card .card-footer:after {display:table;content:''}
+.common-card .card-footer:after {clear:both}
+.common-card .card-footer .conector-viewer {float:left;max-width:620px;padding-left:26px;background:#fff url("//s3.ap-northeast-2.amazonaws.com/st.conects/myconects/img/icon_conector_sm.gif") 0 center no-repeat}
+.common-card .card-footer .conector-viewer span {color:#29b6f6}
+.common-card .card-footer .conector-info {float:right}
+.common-card .card-footer .conector-info li {float:left;margin-left:18px;font-size:13px;text-align:center;letter-spacing:-1px}
+.common-card .card-footer .conector-info li:first-child {margin-left:0}
+
+/* 카드 (프로필 사용 ○) */
+.card-use-profile {overflow:hidden}
+.card-use-profile > li {overflow:hidden;float:left;width:308px;border:1px solid #d2d2d2;border-radius:5px}
+.card-use-profile  > li.empty-slide {height:396px;border:0;background:transparent}
+.card-use-profile > li a {display:block}
+.card-use-profile > li .bg-card {height:210px}
+.card-use-profile > li .bg-card .bg-card-dim {position:relative;width:100%;height:100%;background:url(/img/conects_main/bg-card-dim.png) repeat}
+.card-use-profile > li .bg-card .bg-card-dim .ico-category-area {overflow:hidden;position:absolute;top:20px;right:20px}
+.card-use-profile > li .bg-card .bg-card-dim .ico-category-area .ico-type-category {float:left}
+.card-use-profile > li .conects-profile {position:absolute;top:80px;left:50%;margin-left:-25px}
+.card-use-profile > li .conects-profile .img-profile {border:1px solid #999}
+.card-use-profile > li .conects-profile .img-profile > img {display:block;width:100%;min-height:50px}
+.card-use-profile > li .conects-profile[tutor-confirm="true"] .img-profile {border:1px solid #33cccc}
+.card-use-profile > li .conects-profile .writer-name {font-weight:700;font-size:16px;color:#fff;line-height:20px;letter-spacing:-1px}
+.card-use-profile > li .card-info {padding:15px 20px;background:#fff}
+.card-use-profile > li .card-info .tit-card {display:block;height:60px;font-weight:300;font-size:22px;color:#000;letter-spacing:-2px;line-height:30px;word-break:keep-all}
+.card-use-profile > li .card-info .star-score {margin:30px 0 0 0}
+.card-use-profile > li .card-info .hash-box {margin:15px 0 0 -3px}
+.card-use-profile > li .card-info .hash-box .ico-type-hash {display:inline-block;*display:block;padding:0 5px;margin:5px 0 0 3px;font-size:14px;color:#666;letter-spacing:-1px;background:#f2f2f2;border-radius:4px}
+
+/* 카드 (프로필 사용 X, 배경 딤 처리) */
+.card-no-profile {overflow:hidden}
+.card-no-profile > li {overflow:hidden;float:left;width:308px;border:1px solid #d2d2d2;border-radius:5px}
+.card-no-profile > li.empty-slide {height:396px;border:0;background:transparent}
+.card-no-profile > li a {display:block}
+.card-no-profile > li .bg-card {position:relative;height:210px}
+.card-no-profile > li .bg-card .ico-category-area {overflow:hidden;position:absolute;top:20px;right:20px}
+.card-no-profile > li .bg-card .ico-category-area .ico-type-category {float:left}
+.card-no-profile > li .conects-profile {position:absolute;top:80px;left:50%;margin-left:-25px}
+.card-no-profile > li .conects-profile .img-profile {border:1px solid #999}
+.card-no-profile > li .conects-profile[tutor-confirm="true"] .img-profile {border:1px solid #33cccc}
+.card-no-profile > li .conects-profile .img-profile
+.card-no-profile > li .conects-profile .writer-name {font-weight:700;font-size:16px;color:#fff;line-height:20px;letter-spacing:-1px}
+.card-no-profile > li .card-info {padding:15px 20px;background:#fff}
+.card-no-profile > li .card-info .tit-card {overflow:hidden;display:block;height:60px;font-weight:700;font-size:22px;color:#000;letter-spacing:-2px;line-height:30px;word-break:keep-all}
+.card-no-profile > li .card-info .txt-card-info {margin:20px 0 0 0;font-size:12px;color:#666}
+.card-no-profile > li .card-info .star-score {margin:10px 0 0 0}
+
+/* 학생카드 */
+.card-student {overflow:hidden}
+.card-student > li {overflow:hidden;float:left;width:308px;border:1px solid #d2d2d2;border-radius:5px;background:#daf5f5}
+.card-student > li.empty-slide {height:359px;border:0;background:transparent}
+.card-student > li a {display:block;position:relative;padding:94px 0 0 0}
+.card-student > li .ico-category-area {overflow:hidden;position:absolute;top:20px;right:20px}
+.card-student > li .ico-category-area .ico-type-category {float:left}
+.card-student > li .conects-profile {position:absolute;top:65px;left:50%;margin-left:-25px}
+.card-student > li .conects-profile .img-profile {border:1px solid #999}
+.card-student > li .conects-profile[tutor-confirm="true"] .img-profile {border:1px solid #33cccc}
+.card-student > li .conects-profile .writer-name {font-weight:700;font-size:16px;color:#000;line-height:20px;letter-spacing:-1px}
+.card-student > li .conects-profile .writer-name .ico-new {display:inline-block;width:16px;height:16px;margin:0 0 0 3px;font-weight:700;font-size:12px;color:#fff;text-align:center;line-height:16px;background:#33cccc;border-radius:50%}
+.card-student > li .card-info {padding:70px 20px 15px;background:#fff}
+.card-student > li .card-info .tit-card {overflow:hidden;display:block;height:60px;font-weight:300;font-size:22px;color:#000;letter-spacing:-2px;line-height:30px;word-break:keep-all}
+.card-student > li .card-info .address {display:block;font-size:13px;min-height:20px;margin:10px 0 0 0;line-height:20px;letter-spacing:-1px}
+.card-student > li .card-info .student-grade {display:block;margin:15px 0 0 0;font-weight:700;font-size:22px;color:#33cccc;letter-spacing:-1px}
+.card-student > li .card-info .hash-box {min-height:25px;margin:15px 0 0 -3px}
+.card-student > li .card-info .hash-box .ico-type-hash {display:inline-block;*display:block;padding:0 5px;margin:5px 0 0 3px;font-size:14px;color:#666;letter-spacing:-1px;background:#f2f2f2;border-radius:4px}

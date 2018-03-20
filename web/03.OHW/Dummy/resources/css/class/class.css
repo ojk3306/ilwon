@@ -1,0 +1,53 @@
+@charset "utf-8";
+
+/* 레이아웃 */
+.wrap_search_list .wrap_class_list	{width:960px; margin:0 auto 100px;}
+.wrap_search_list .wrap_teacher_list	{}
+
+/* 수업 리스트 */
+.wrap_class_list	{}
+.wrap_class_list .search_words{padding-top:65px;color:#888;font-size:18px;}
+.wrap_class_list .wrap_search_util	{position: relative;padding:65px 0 35px;}
+.wrap_class_list .wrap_btn	{margin-top:40px; text-align:center;}
+.wrap_class_list .wrap_btn .btn_txt_gt.type_line_01	{font-weight:bold;}
+.list_class .list	{*zoom:1; margin:0 0 0 -20px;}
+.list_class .list:after	{content:''; display:block; clear:both; height:0; visibility:hidden;}
+.list_class  li	{float:left;position:relative;width:220px;margin:0 0 40px 20px;}
+.list_class li li{float:none;margin:0;margin-bottom:10px;width:auto;}
+
+.list_class li a {display: block;
+transition:transform 0.4s ease-out;
+-webkit-transition:transform 0.4s ease-out; /* Safari */
+-moz-transition:transform 0.4s ease-out; /* Firefox */
+transform-origin: 0px 0px;}
+.list_class li a.motion { position:absolute;left:0px;top:0px;
+transform: matrix(1,-0.2,-0.2,1,0,0) translate(0px,0px);
+}
+.list_class dt,
+.list_class dd	{display:block; float:left; margin:0 0 40px 20px;}
+
+/* 튜터 리스트 */
+.wrap_teacher_list	{background-color:#e1ddd4;}
+.wrap_teacher_list .inner	{width:940px; margin:0 auto; padding:0 0 100px;}
+.wrap_teacher_list .wrap_search_util	{padding:65px 0 75px;}
+
+.list_theacher .list	{*zoom:1; margin:0 0 0 -20px;}
+.list_theacher .list:after	{content:''; display:block; clear:both; height:0; visibility:hidden;}
+.list_theacher li	{float:left; width:220px; height:275px; margin:0 0 40px 20px;}
+.list_theacher .wrap_btn	{margin-top:40px; text-align:center;}
+.list_theacher .wrap_btn .btn_txt_gt.type_line_01	{font-weight:bold;}
+
+/* 튜터 cotents */
+.box_teacher_cont	{display:block; text-align:center;}
+.box_teacher_cont .name	{display:block; margin-top:15px; overflow:hidden; color:#000; font-size:16px; line-height:20px; font-weight:bold; white-space:nowrap; text-overflow:ellipsis;}
+.box_teacher_cont .job	{display:block; margin-top:3px; overflow:hidden; color:#000; font-size:14px; line-height:18px; font-weight:bold; white-space:nowrap; text-overflow:ellipsis;}
+.box_teacher_cont .location	{display:block; margin-top:3px; overflow:hidden; color:#888; font-size:14px; line-height:18px; white-space:nowrap; text-overflow:ellipsis;}
+.box_teacher_cont .wrap_subject	{margin-top:15px;}
+.box_teacher_cont .subject	{display:inline-block; height:22px; padding:0 6px; background-color:#ababab; border-radius:4px; color:#fff; font-size:12px; line-height:22px; font-weight:bold;}
+
+
+
+
+
+
+
