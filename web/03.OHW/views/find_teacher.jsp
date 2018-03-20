@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset=UTF-8>
-<title>은밀한 결과</title>
+<title>은밀한 선생</title>
 <script type="text/javascript" src="/prototype/03.OHW/resources/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	
-	function changeLocation(value){		
+	function changeLocation(value){	
 		switch(value) {
 		
 		case "000" : $('#location_do').hide(); break;
@@ -49,6 +50,25 @@
 		$("#search_table").hide();
 		
 	}
+	
+	$(document).ready(function selectCategory() {
+		
+		<% String cate = request.getParameter("id"); %>
+		
+		var cate = "<%= cate %>";
+		 		
+		switch(cate) {
+		
+		case "cate_game" : $(".tclass").hide(); $("#tgame").show(); break; 
+		case "cate_sport" : $(".tclass").hide(); $("#tsport").show(); break; 
+		case "cate_music" : $(".tclass").hide(); $("#tmusic").show(); break; 
+		case "cate_dance" : $(".tclass").hide(); $("#tdance").show(); break; 
+		case "cate_etc" : $(".tclass").hide(); $("#tetc").show(); break; 
+		
+		}		
+	});
+	
+	 
 	
 </script>
 
@@ -184,7 +204,7 @@
 			</div>
 			
 			<div class="tclass" id="tetc">
-				<input type="checkbox" value="">쪼갬
+				<input type="checkbox" value="">웃음
 			</div>
 		</p>						
 	</section>
