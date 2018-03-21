@@ -15,8 +15,7 @@
   	}
   </script>
 </head>
-<body>
-
+<body >
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -57,11 +56,5 @@
     </div>
   </div>
 </nav>
-</body>
-</html>
-
-</head>
-<body>
-
 </body>
 </html>

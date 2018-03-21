@@ -5,7 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<style type="text/css">.bar {
+<style type="text/css">
+.bar {
   height: 9px;
   margin: 8px 0;
   overflow: hidden;
@@ -82,40 +83,84 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<div class="container">
-    <div class="row">
-        <div class="col s4">
-        	<div class="rating-block center-align"><h4 class="fs30">Calificación</h4><h2 class="fs40">4.3 <small>/ 5</small></h2>
-        		<div class="row pl2-5">
-        		<div class="col s2 amber white-text center-align block-star"><i class="material-icons">star</i></div>
-        	<div class="col s2 amber white-text center-align block-star"><i class="material-icons">star</i></div>
-        	<div class="col s2 amber white-text center-align block-star"><i class="material-icons">star</i></div>
-        	<div class="col s2 amber white-text center-align block-star"><i class="material-icons">star</i></div>
-        	<div class="col s2 blue-grey lighten-4 blue-grey-text text-lighten-3 center-align block-star"><i class="material-icons">star</i></div></div></div><h4 class="fs20 center-align">Estadísticas</h4>
-        	<div class="left">
-        		<div class="left block-text">
-        			<div class="fs16">Eficiencia</div>
-        		</div>
-        		<div class="left block-bar">
-        		<div class="bar">
-        		<div style="width: 1000%" class="progress-bar cyan accent-4"></div></div></div>
-        	</div>
-        	<div class="left">
-        		<div class="left block-text">
-        		<div class="fs16">Calidad</div></div>
-        	<div class="left block-bar">
-        		<div class="bar">
-        		<div style="width: 80%" class="progress-bar green darken-3"></div></div></div></div>
-        	<div class="left">
-        		<div class="left block-text">
-        		<div class="fs16">Costo</div></div>
-        	<div class="left block-bar">
-        		<div class="bar">
-        		<div style="width: 60%" class="progress-bar orange accent-4"></div></div>
-        	</div>
-        	</div>
-        </div>
-    </div>
-</div>
+<div class="row">
+			<div class="col-sm-3">
+				<h4>Rating breakdown</h4>
+				<div class="pull-left">
+					<div class="pull-left" style="width:35px; line-height:1;">
+						<div style="height:9px; margin:5px 0;">5 <span class="glyphicon glyphicon-star"></span></div>
+					</div>
+					<div class="pull-left" style="width:180px;">
+						<div class="progress" style="height:9px; margin:8px 0;">
+						  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5" style="width: 1000%">
+							<span class="sr-only">80% Complete (danger)</span>
+						  </div>
+						</div>
+					</div>
+					<div class="pull-right" style="margin-left:10px;">1</div>
+				</div>
+				<div class="pull-left">
+					<div class="pull-left" style="width:35px; line-height:1;">
+						<div style="height:9px; margin:5px 0;">4 <span class="glyphicon glyphicon-star"></span></div>
+					</div>
+					<div class="pull-left" style="width:180px;">
+						<div class="progress" style="height:9px; margin:8px 0;">
+						  <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="5" style="width: 80%">
+							<span class="sr-only">80% Complete (danger)</span>
+						  </div>
+						</div>
+					</div>
+					<div class="pull-right" style="margin-left:10px;">1</div>
+				</div>
+				<div class="pull-left">
+					<div class="pull-left" style="width:35px; line-height:1;">
+						<div style="height:9px; margin:5px 0;">3 <span class="glyphicon glyphicon-star"></span></div>
+					</div>
+					<div class="pull-left" style="width:180px;">
+						<div class="progress" style="height:9px; margin:8px 0;">
+						  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="5" style="width: 60%">
+							<span class="sr-only">80% Complete (danger)</span>
+						  </div>
+						</div>
+					</div>
+					<div class="pull-right" style="margin-left:10px;">0</div>
+				</div>
+				<div class="pull-left">
+					<div class="pull-left" style="width:35px; line-height:1;">
+						<div style="height:9px; margin:5px 0;">2 <span class="glyphicon glyphicon-star"></span></div>
+					</div>
+					<div class="pull-left" style="width:180px;">
+						<div class="progress" style="height:9px; margin:8px 0;">
+						  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="5" style="width: 40%">
+							<span class="sr-only">80% Complete (danger)</span>
+						  </div>
+						</div>
+					</div>
+					<div class="pull-right" style="margin-left:10px;">0</div>
+				</div>
+				<div class="pull-left">
+					<div class="pull-left" style="width:35px; line-height:1;">
+						<div style="height:9px; margin:5px 0;">1 <span class="glyphicon glyphicon-star"></span></div>
+					</div>
+					<div class="pull-left" style="width:180px;">
+						<div class="progress" style="height:9px; margin:8px 0;">
+						  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5" style="width: 20%">
+							<span class="sr-only">80% Complete (danger)</span>
+						  </div>
+						</div>
+					</div>
+					<div class="pull-right" style="margin-left:10px;">0</div>
+				</div>
+			</div>			
+		</div>	
+		
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>
