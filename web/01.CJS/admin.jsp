@@ -72,7 +72,7 @@ min-height: 440px;
 </head>
 <body>
 
-<%@ include file="/header.jsp" %>
+<%@ include file="/common/navbar.jsp" %>
 <div class="main">
 <div class="container">
     <div class="row">
@@ -143,6 +143,6 @@ min-height: 440px;
 </div></div></div>
 
 </div>
-<%@ include file="/footer.jsp" %>
+<%@ include file="/common/footer.jsp" %>
 </body>
 </html>

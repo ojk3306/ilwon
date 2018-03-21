@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%@ include file="/header.jsp"%>
+	<%@ include file="/common/navbar.jsp"%>
 	<!-- 헤더 -->
 
 	<!-- 바디 -->

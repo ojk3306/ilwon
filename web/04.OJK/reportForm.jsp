@@ -204,7 +204,7 @@ $(function() {
 </style>
 </head>
 <body>
-<%@ include file="/header.jsp" %>
+<%@ include file="/common/navbar.jsp" %>
 
 <div class="container">
 <div class="row">

@@ -7,7 +7,7 @@
 <title>건의게시판</title>
 </head>
 <body>
-<%@ include file="/header.jsp" %>
+<%@ include file="/common/navbar.jsp" %>
 <nav class="contents">
 	<br>
 	<h1 align="center">건의게시판</h1>
