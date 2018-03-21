@@ -100,7 +100,7 @@
 </style>
 </head>
 
-<body style="min-width : 1000px; overflow : auto; display : absolute;">
+<body style="min-width : 800px; overflow : auto; display : absolute;">
 	<nav><%@ include file = "parts/navbar.jsp" %></nav>
 	<div id = "left_bar">왼쪽 구역</div>
 	<div id = "right_bar">오른쪽 구역</div>
