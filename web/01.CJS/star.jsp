@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <script src="/prototype/resources/js/jquery-3.3.1.min.js"></script>
 <script src="/prototype/resources/js/jquery-ui.min.js"></script>
-<link href='star.css'>
+<link href='./css/star.css'>
 
 <style>
 @charset "UTF-8";.star-input>.input,
