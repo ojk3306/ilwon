@@ -204,7 +204,7 @@ border-radius: 35px;
 </head>
 <body>
 <!-- 헤더 시작-->
-<%@ include file="/header_1.jsp" %>
+<%@ include file="/common\navbar.jsp" %>
 <!-- 헤더 종료-->
 
 <!--내용물-->
