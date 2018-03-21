@@ -35,7 +35,7 @@
             <li><a href="#">카테고리3</a></li>
           </ul>
         </li>
-        <li><a href="#">신고하기</a></li>
+        <li><a href="/prototype/04.OJK/report.jsp">신고하기</a></li>
         <li><a href="#">건의하기</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
