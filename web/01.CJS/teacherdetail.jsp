@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript" src="/prototype/resources/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/prototype/common/resources/js/jquery-3.3.1.min.js"></script>
 
 
 
@@ -21,52 +21,50 @@
 /* 스타 별점 */
 
 /*스타별점 */
-html {
-height: 100%;
-}
+
 body {
 margin: 0;
 height: 100%;
+background:#eeeeee;
 }
 .contents{
-min-height: 100%;
-margin-top:90px;
-padding-bottom:20px;
+
+margin-top:-20px;
+padding-top:90px;
+
+background:#eeeeee;
 }
 .container{
 overflow: hidden;
 position: absolute;
-}
-.panel-heading{
-width:100%;
-}
-.panel-body{
-width:100%;
-}
+} 
+
 
 .topbend{
 background:#00ffff;
 margin:0px auto;
-width:1100px;
+width:900px;
 height:50px;
 text-align: center;
 padding:12px;
 border: 1px solid #00ffff;
+border-radius:5px 5px 0px 0px;
 }
 
 .topdetail{
-background:#ffffff;
 margin:0 auto;
-width:1100px;
-height:310px;
+width:900px;
+height:280px;
 border: 1px solid #ffffff;
+background:#ffffff;
+border-radius: 0 0 5px 5px;
 }
 
 .topdiv{
 float: left;
 list-style:none;
 margin-left:10px;
-background:#ffffff
+
 }
 
 .topdiv[name=img]{
@@ -75,16 +73,14 @@ height:300px;
 }
 
 .topdiv[name=title]{
-width:600px;
+width:400px;
 height:300px;
 }
 
 .topdiv[name=option]{
-width:180px;
+width:90px;
 height:300px;
-background:#000000;
-margin-left:10px; 
-padding:45px;
+
 }
 .imticon{
 margin-top:110px;
@@ -111,17 +107,18 @@ text-align: center;
 margin-left: 15px;
 }
 .review{/*리뷰의 가장상위 영역*/
-background:#cc66ff;
+
 margin:0 auto;
 margin-top:3px;
-width:1100px;
+width:900px;
 min-height:250px;
+background:#ffffff;
+border-radius: 5px;
 }
 .howteach{/*커리큘럼의 가장 상위영역*/
-background:#cc66ff;
 margin:0 auto;
-margin-top:3px;
-width:1100px;
+margin-top:3px; 
+width:900px;
 height:600px;
 
 }
@@ -133,18 +130,16 @@ padding-top:5px;
 padding-top:30px;
 }
 .school{/*학력*/
-background:#cc66ff;
+background:#ffffff;
 margin:0 auto;
 margin-top:3px;
-width:1100px;
+width:900px;
 height:200px;
 border: 1px solid #ffffff;
+border-radius: 5px;
+padding: 20px;
 }
-.divOfreviewdetail{/*리뷰 내용이 들어감(nav) */
-background:red;
-width:930px;
-height:130px;
-}
+
 .schoolofdetail{
 list-style:none;
 margin-top:10px;
@@ -154,7 +149,7 @@ margin-right:10px;
 .schoolOfdetailIOfli{
 float:left;
 width:225px;
-background:#66cccc;
+background:#ffffff;
 margin: 20px;
 height:140px;
 padding:20px;
@@ -162,14 +157,6 @@ padding:20px;
 .howteachofbtn{
 
 
-}
-.howteachOfchange{
-background:#ff6666;
-margin-top:30px;
-padding-top:10px;
-width:1000px;
-min-height:100px;
-max-height:500px;
 }
 .info1Oftop{
 width:100%;
@@ -251,7 +238,7 @@ border-radius: 35px;
 	</ul>
 	</nav>
     <nav class="review"><!-- 리뷰란 -->
-	<table border="1" style="width:100%">
+	<table style="width:100%">
 	
 	<tr>
 	<td rowspan="2" style="width:35%;">
@@ -384,33 +371,28 @@ border-radius: 35px;
 	</nav><!-- 리뷰란 종료 -->
 
 	<nav class="school"><!--학력란-->
-	
-	<ul class="schoolofdetail">
-		<li class="schoolOfdetailIOfli">고등학교나옴!</li>	
-		<li class="schoolOfdetailIOfli">공부 쫌 잘함.!</li>	
-		<li class="schoolOfdetailIOfli">집은 님근처로 이사감</li>
-		<li class="schoolOfdetailIOfli">월 30만원! 20회수업!</li>
-	</ul>
-	
+	<table width="100%">
+	<tr>
+	<th>고등학교나옴! schoolOfdetailIOfli</th>
+	<th>공부 쫌 잘함.!</th>
+	<th>집은 님근처로 이사감</th>
+	<th>월 30만원! 20회수업!</th>
+	</tr>
+	</table>
 	</nav>
 
 
-	<nav class="howteach" style="padding-top:10px;"><!--커리큘럼란-->
+	<nav class="howteach"><!--커리큘럼란-->
 	
 <div class="container" >
-
-    <div class="col-md-6" Style="margin-left:150px; margin-top: 15px;">
-   
-        <div class="panel with-nav-tabs panel-info" Style="width:800px;">
+    <div class="col-md-6" Style="margin-left:-25px; padding:10px; border-radius:6px;">
+        <div class="panel with-nav-tabs panel-info" Style="width:900px;  border-radius:10px;">
             <div class="panel-heading">
-                <ul class="nav nav-tabs">
+                <ul class="nav nav-tabs"> 
                     <li class="active">
                     <a href="#tab1info" data-toggle="tab">위치와 반경</a></li>
                     <li><a href="#tab2info" data-toggle="tab">수업방식</a></li>
                     <li><a href="#tab3info" data-toggle="tab">포트폴리오</a></li>
-
-            
-        
                 </ul>
             </div>
             
@@ -421,14 +403,11 @@ border-radius: 35px;
             <div class="tab-content">
                     
                     <div class="tab-pane fade in active" id="tab1info">
-                      <div style="padding: 10px">
+          <div style="padding: 10px;">
           
           
-           <%@ include file="/01.CJS/map.jsp" %>
-          
-          
-          
-           
+      <div id="map" style="width:650px;height:350px; margin:0 auto;"></div>
+     
            </div>
                     
           
@@ -450,7 +429,7 @@ border-radius: 35px;
 			<!-- 수업경력과 포부 -->
 			내가 해온거야!
 			</nav>
-   
+  			 </nav>
 	     
 		 
                     </div>
