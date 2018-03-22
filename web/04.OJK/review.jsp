@@ -7,7 +7,7 @@
 <title>리뷰작성</title>
 </head>
 <body>
-<%@include file="/header.jsp" %>
+<%@include file="/common/navbar.jsp" %>
 
 <nav class="contents">
 	<div align="center">

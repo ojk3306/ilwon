@@ -7,7 +7,7 @@
 <title>선생님으로 가입하기</title>
 </head>
 <body>
-<%@ include file="/header.jsp" %>
+<%@ include file="/common/navbar.jsp" %>
 <nav class="contents">
 		<br>
 		<h1 align="center">선생님으로 가입하기</h1>
@@ -72,6 +72,6 @@
 
 	</nav>
 
-<%@ include file="/footer2.jsp" %>
+<%@ include file="/common/footer.jsp" %>
 </body>
 </html>

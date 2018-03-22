@@ -89,7 +89,11 @@
 			height="0" width="0" style="display: none; visibility: hidden"></iframe>
 	</noscript>
 	<!-- End Google Tag Manager (noscript) -->
+<<<<<<< HEAD
 	<%@ include file="/header.jsp"%>
+=======
+<%@ include file="/common/navbar.jsp" %>
+>>>>>>> branch 'master' of https://github.com/ojk3306/ilwon.git
 
 
 	<div id="wrapper" style="width: 700px">
@@ -135,5 +139,19 @@
 
 
 
+<<<<<<< HEAD
+=======
+	<script type="text/javascript">
+		// 로그인 버튼 이벤트 핸들러
+		var $form = $('.body--login form');
+
+		$form.submit(function(e) {
+			e.preventDefault();
+			$('.form-holder').addClass('validate-error');
+		});
+	</script>
+  <%@include file="/common/footer.jsp" %>
+	
+>>>>>>> branch 'master' of https://github.com/ojk3306/ilwon.git
 </body>
 </html>

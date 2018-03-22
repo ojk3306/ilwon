@@ -5,7 +5,6 @@
 <head>
 <meta charset=UTF-8>
 <title>은밀한 결과</title>
-<script type="text/javascript" src="/prototype/03.OHW/resources/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	
 	function changeLocation(value){		
@@ -101,7 +100,7 @@
 </style>
 </head>
 
-<body style="overflow : auto;">
+<body style="min-width : 800px; overflow : auto; display : absolute;">
 	<nav><%@ include file = "parts/navbar.jsp" %></nav>
 	<div id = "left_bar">왼쪽 구역</div>
 	<div id = "right_bar">오른쪽 구역</div>
