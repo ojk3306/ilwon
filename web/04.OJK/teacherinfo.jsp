@@ -10,12 +10,12 @@
 <%@include file="/header.jsp" %>
 
 <nav class="contents">
-
+ 
 	<h1 align="center">선생 정보 보기</h1>
 	<hr>
 
 	<div id="wrapper">
-		<center>
+		<div align="center">
 			<div id="info"
 				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px;">
 				<div style="width: 100%; height: 230px; background: #f2f2f2;">
@@ -48,7 +48,7 @@
 			<hr>
 			<div id="info"
 				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px;">
-				<div class="container">
+				<div style="width:100%;">
 					<table class="table table-hover" >
 						<thead>
 							<tr>
@@ -91,12 +91,9 @@
 						</tbody>
 					</table>
 				</div>
-				<div style="width: 1100px; height: 70px; padding: 10px; margin-left: 510px;">
-					<button type="button" class="btn">강의 등록</button>
-					
-
-				</div>
-				
+			</div>
+			<div style="width: 1100px; height: 70px; padding: 10px; margin-left: 716px;">
+				<button type="button" class="btn">강의 등록</button>
 			</div>
 			<br> <br> <br> <br><br>
 			<h1>학생 신청 내역</h1>
@@ -104,7 +101,7 @@
 
 			<div id="info"
 				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px;">
-				<div class="container">
+				<div style="width:100%;">
 					<table class="table table-hover">
 						<thead>
 							<tr>
@@ -148,8 +145,8 @@
 					</table>
 				</div>
 			</div>
-		</center>
-	</div>
+		</div>
+	</div>   
 
 
 

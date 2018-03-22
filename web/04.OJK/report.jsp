@@ -14,7 +14,7 @@
 	<hr>
 	<section>
 <div id="wrapper">
-	<center>
+	<div align="center">
 	<div style="width: 1100px; height: 1200px;">
 		 	<div style="padding: 10px; padding-right: 0px; float:right;">
 		 		<button type="button" class="btn" onclick="location.href='/prototype/04.OJK/reportForm.jsp'">글쓰기</button>
@@ -130,7 +130,7 @@
 	
 	
 	</section>	
-</center>
+</div>
 
 </nav>
 

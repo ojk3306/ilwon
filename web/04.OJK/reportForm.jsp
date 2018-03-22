@@ -253,10 +253,10 @@ $(function() {
            <br>
            <br>
            <br>
-           <center>
-            <button type="submit" class="btn btn-primary">Submit</button>
-            <button type="reset" class="btn btn-primary">Reset</button>
-            </center>
+           <div align="center">
+	            <button type="submit" class="btn btn-primary">Submit</button>
+	            <button type="reset" class="btn btn-primary">Reset</button>
+            </div>
         </fieldset>
     </form>
     

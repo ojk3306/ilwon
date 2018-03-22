@@ -103,7 +103,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
 		<hr>
 		
 		<div class="modal-body" style="width: 1100px;">
-			<div class="tab-content">
+			<div class="tab-content" style="margin-left:35%;">
 				<div role="tabpanel" id="basic" class="tab-pane active">
 					<form id="id_form_basic" method="post">
 						<h3>내 정보 변경하기</h3>
@@ -150,7 +150,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
 						</div>
 						<div class="form-group">
 							<label for="id_addr2">강의내용</label><br> 
-							<textarea rows="20" cols="150pt"></textarea>
+							<textarea style="width:100%;" rows="20" cols="150pt"></textarea>
 						</div>
 							<div class="form-group">
 							<label for="id_addr2">이미지</label>
@@ -171,18 +171,6 @@ a.btn.disabled, fieldset[disabled] a.btn {
 		</div>
 		
 	</nav>
-
-
-
-
-
-
-
-
-
-
-
-
 
 	<!--내용 끝-->
 

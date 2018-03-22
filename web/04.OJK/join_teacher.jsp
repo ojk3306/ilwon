@@ -14,10 +14,10 @@
 		<hr>
 
 		<div id="wrapper">
-			<center>
+			<div align="center">
 				<div style="width: 1100px; height: 1200px;">
 					<div style="margin-top: 50px;">
-						<div style="width: 400px;">
+						<div style="width: 530px;">
 							<hr>
 							<form class="form-horizontal" action="/action_page.php">
 								<div class="form-group">
@@ -66,7 +66,7 @@
 						</div>
 					</div>
 				</div>
-			</center>
+			</div>
 		</div>
 
 

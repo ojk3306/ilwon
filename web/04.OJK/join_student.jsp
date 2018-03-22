@@ -15,7 +15,7 @@
 		<hr>
 
 		<div id="wrapper">
-			<center>
+			<div align="center">
 				<div style="width: 1100px; height: 1200px;">
 					<div style="margin-top: 50px;">
 						<div style="width: 530px;">
@@ -67,7 +67,7 @@
 						</div>
 					</div>
 				</div>
-			</center>
+			</div>
 		</div>
 
 

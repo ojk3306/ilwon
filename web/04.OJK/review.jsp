@@ -3,14 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
 <title>리뷰작성</title>
 </head>
 <body>
 <%@include file="/header.jsp" %>
 
 <nav class="contents">
-	<center>
+	<div align="center">
 		<div id="wrapper" style="width: 1100px; height: 1000px;">
 		
 			<h1 align="center">리뷰작성하기</h1>
@@ -34,7 +34,7 @@
 
 				<div style="width: 1100px;">
 
-					<div class="container">
+					<div>
 						<br>
 						
 						<br>
@@ -50,7 +50,7 @@
 				<div><button type="button" class="btn">등록하기</button></div>
 			</div>
 			</div>
-	</center>
+	</div>
 
 
 
