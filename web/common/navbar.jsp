@@ -31,16 +31,8 @@
         <li class="active"><a href="#">은밀한 과외란...</a></li>
         <li><a href="/prototype/03.OHW/views/find_teacher.jsp">선생 찾기</a></li>
         <li><a href="/prototype/03.OHW/views/find_stu.jsp">학생 찾기</a></li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">카테고리로 찾기<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a id = "cate_game" onclick="movePage(this.id)">게임</a></li>
-            <li><a id = "cate_sport" onclick="movePage(this.id)">스포츠</a></li>
-            <li><a id = "cate_music" onclick="movePage(this.id)">음악</a></li>
-            <li><a id = "cate_dance" onclick="movePage(this.id)">댄스</a></li>
-            <li><a id = "cate_etc" onclick="movePage(this.id)">기타</a></li>
-          </ul>
-        </li>
+        <li><a href="/prototype/01.CJS/semina.jsp">세미나  찾기</a></li>
+       
         <li><a href="/prototype/01.CJS/report.jsp">신고하기</a></li>
         <li><a href="/prototype/04.OJK/report.jsp">건의하기</a></li>
       </ul>

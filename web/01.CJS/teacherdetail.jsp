@@ -3,15 +3,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
 <script type="text/javascript" src="/prototype/resources/js/jquery-3.3.1.min.js"></script>
-=======
+
 
 
 <script type="text/javascript" src="/prototype/common/resources/js/jquery-3.3.1.min.js"></script>
 
-    <!-- -->
->>>>>>> branch 'master' of https://github.com/ojk3306/ilwon.git
+
 
 <script type="text/javascript">
 
