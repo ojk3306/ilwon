@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>건의게시판</title>
 </head>
-<body>
+<body> 
 <%@ include file="/common/navbar.jsp" %>
 <nav class="contents">
 	<br>
