@@ -14,7 +14,11 @@ local.properties
 .settings
 .loadpath
 .recommenders
+.classpath
+.project
 
+
+출처: http://redgolems.tistory.com/29 [레드골렘즈 콤비의 개발이야기]
 # External tool builders
 .externalToolBuilders/
 
