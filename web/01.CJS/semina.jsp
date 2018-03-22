@@ -192,7 +192,7 @@
 				<form role="Form" method="GET" action="" accept-charset="UTF-8">
 					<div class="form-group">
 						<div class="input-group">
-							<input class="form-control" type="text" name="search" placeholder="Search..." required/>
+							<input class="form-control" type="text" name="search" placeholder="seach for semina" required/>
 							<span class="input-group-btn">
 								<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
 							</span>

@@ -410,11 +410,8 @@ border-radius: 35px;
                     <a href="#tab1info" data-toggle="tab">위치와 반경</a></li>
                     <li><a href="#tab2info" data-toggle="tab">수업방식</a></li>
                     <li><a href="#tab3info" data-toggle="tab">포트폴리오</a></li>
-<<<<<<< HEAD
-                    <li><a href="#tab4info" data-toggle="tab" id="tab4" onclick="dd();">위치및 반경</a></li>
-=======
-                    <li><a href="#tab4info" data-toggle="tab">수업정보</a></li>
->>>>>>> branch 'master' of https://github.com/ojk3306/ilwon.git
+
+            
         
                 </ul>
             </div>
@@ -440,9 +437,24 @@ border-radius: 35px;
                     </div>
                     
                     <div class="tab-pane fade" id="tab2info">
-                   
-                   수업 방식.
-                    
+                   <nav class="in1">
+			<nav class="info1Oftop">
+			<!-- 간단한소개 -->
+			나는 말이야!!
+			
+			</nav>
+			<nav class="info1Oftop" id="info10">
+			<!--  진행방식-->
+			수업은 이렇게 할거야!
+			
+			</nav>
+			<nav class="info1Oftop">
+			<!-- 수업경력과 포부 -->
+			내가 해온거야!
+			</nav>
+   
+	     
+		 
                     </div>
                     
                     
@@ -491,46 +503,14 @@ border-radius: 35px;
 	</div>
 </div>
 </div>
-           <div id="tab4info" class="tab-pane fade">
-<<<<<<< HEAD
-           <div style="padding: 10px">
-           <div id="map" style="width:100%;" >
-           </div>
+         
+           
 <!-- 포트번호 8889 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=120b01867e29e09658100681cf1d0604&libraries=services"></script>
 <script>
-
-	 $(document).ready(function(){
-		  window.resizeTo(620, 690);
-		 });
-
 //주소-좌표 변환 객체를 생성합니다
-
 var geocoder = new daum.maps.services.Geocoder();
-=======
-                     
-            <nav class="in1">
-			<nav class="info1Oftop">
-			<!-- 간단한소개 -->
-			나는 말이야!!
-			
-			</nav>
-			<nav class="info1Oftop" id="info10">
-			<!--  진행방식-->
-			수업은 이렇게 할거야!
-			
-			</nav>
-			<nav class="info1Oftop">
-			<!-- 수업경력과 포부 -->
-			내가 해온거야!
-			</nav>
-		</nav>
-         
->>>>>>> branch 'master' of https://github.com/ojk3306/ilwon.git
-
-<<<<<<< HEAD
 // 주소로 좌표를 검색합니다
-
 geocoder.addressSearch('경기도 의왕시 삼동 부곡복지관길 41', function(result, status) {
     // 정상적으로 검색이 완료됐으면 
      if (status === daum.maps.services.Status.OK) {
@@ -589,9 +569,7 @@ function relayout() {
     map.relayout();
 }
 </script>
-=======
->>>>>>> branch 'master' of https://github.com/ojk3306/ilwon.git
-           </div>
+          </div>
            
            
            
@@ -606,21 +584,12 @@ function relayout() {
         </div>
     
     </div>
-</div>
+
 
 	</nav>
 
 	<!--커리큘럼란 종료-->
 </nav>
-
-
-
-
-
-
-
-
-
 
 
 <!--내용 끝-->
