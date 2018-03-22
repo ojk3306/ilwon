@@ -99,7 +99,7 @@ th {
 
 <nav class="contents">
 	<br>
-	<h1 align="center">신고 계시판</h1>
+	<h1 align="center">신고 계시판 게시판 형식은 어드민이 보는것, 누르면 바로 작성 폼으로 이동한다.</h1>
 	<hr>
 	<section>
 <div id="wrapper">
