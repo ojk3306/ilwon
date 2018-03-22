@@ -3,14 +3,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript" src="/prototype/resources/js/jquery-3.3.1.min.js"></script>
-<script src="/prototype/resources/vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/prototype/common/resources/js/jquery-3.3.1.min.js"></script>
+
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
-<link href="./button.css" rel='stylesheet' type='text/css'>
 
 <style>
+body {
+background:#eeeeee;
+}
+.container{
+
+}
 .TriSea-technologies-Switch > input[type="checkbox"] {
     display: none;   
 }
@@ -56,7 +61,7 @@
     left: 20px;
 }
 .col-md-7{
-margin-top: 150px;
+margin-top: 50px;
 margin-left: 190px;
 }
 
@@ -76,7 +81,7 @@ margin-left: 190px;
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body style="background:#eeeeee;">
 <%@include file="/common/navbar.jsp" %>
 
 <div class="container" >
@@ -85,7 +90,7 @@ margin-left: 190px;
        <div class="col-md-7">
 
 <div class="panel panel-default">
-  <div class="panel-heading">  <h4 >~~의 프로필</h4></div>
+  <div class="panel-heading" style="background:#00ffff;">  <h4 >~~의 프로필</h4></div>
    <div class="panel-body">
        
     <div class="box box-info">
@@ -105,8 +110,8 @@ margin-left: 190px;
             </div>
             <div class="col-sm-6">
 
-<h4 style="color:#00b1b1;">Prasad Shankar Huddedar </h4></span>
-<span><p>Aspirant</p></span>            
+<h4 style="color:#00b1b1;">Prasad Shankar Huddedar </h4>
+<span>Aspirant</span>            
             </div>
 <div class="clearfix"></div>
 <hr style="margin:5px 0 5px 0;">
@@ -185,9 +190,7 @@ margin-left: 190px;
 
 
 
-    <div class="row" >
-        <div class="col-xs-12 col-sm-6 col-md-4 col-sm-offset-3 col-md-offset-4" Style="margin-left:30px;">
-            <div class="panel panel-default" Style="width:300px; overflow: visible;">
+
                 <!-- Default panel contents -->
                 <h2 class="panel-heading" style="text-align:center;">권한 설정</h2>
       
@@ -235,9 +238,6 @@ margin-left: 190px;
                         </div>
                     </li>
                 </ul>
-            </div>            
-        </div>
-    </div>
 
 <center><input type="reset"></center>
 </form>
