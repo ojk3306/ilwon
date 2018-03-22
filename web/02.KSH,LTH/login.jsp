@@ -57,7 +57,7 @@
 		<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KV9PR8H" height="0" width="0" style="display: none; visibility: hidden"></iframe>
 	</noscript>
 	<!-- End Google Tag Manager (noscript) -->
-<%@ include file="/header.jsp" %>
+<%@ include file="/common/navbar.jsp" %>
 
 	<header>
 		<h1>
@@ -131,7 +131,7 @@
 			$('.form-holder').addClass('validate-error');
 		});
 	</script>
-  <%@include file="/footer.jsp" %>
+  <%@include file="/common/footer.jsp" %>
 	
 </body>
 </html>

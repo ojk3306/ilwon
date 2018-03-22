@@ -93,7 +93,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
 </head>
 <body>
 	<!-- 헤더 시작-->
-	<%@ include file="/header.jsp"%>
+	<%@ include file="/common/navbar.jsp"%>
 	<!-- 헤더 종료-->
 	<!-- 내용 시작 -->
 

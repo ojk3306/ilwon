@@ -93,7 +93,7 @@ th {
 </head>
 <body>
 <!-- 헤더 시작-->
-<%@ include file="/header.jsp" %>
+<%@ include file="/common\navbar.jsp" %>
 <!-- 헤더 종료-->
 <!-- 내용 시작 -->
 
@@ -238,7 +238,6 @@ th {
 <!--내용 끝-->
 
  <!-- 바닥 -->
-  <%@include file="/footer.jsp" %>
 <!--바닥종료-->
 
 

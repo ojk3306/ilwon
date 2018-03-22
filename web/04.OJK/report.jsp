@@ -7,7 +7,7 @@
 <title>건의게시판</title>
 </head>
 <body>
-<%@ include file="/header.jsp" %>
+<%@ include file="/common/navbar.jsp" %>
 <nav class="contents">
 	<br>
 	<h1 align="center">건의게시판</h1>
@@ -17,7 +17,7 @@
 	<center>
 	<div style="width: 1100px; height: 1200px;">
 		 	<div style="padding: 10px; padding-right: 0px; float:right;">
-		 		<button type="button" class="btn" >글쓰기</button>
+		 		<button type="button" class="btn" onclick="location.href='/prototype/04.OJK/reportForm.jsp'">글쓰기</button>
 		 		
 		 	</div>
 		 	 <!-- 게시판 몸통 -->	

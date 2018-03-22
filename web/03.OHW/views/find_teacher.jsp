@@ -6,7 +6,6 @@
 <head>
 <meta charset=UTF-8>
 <title>은밀한 선생</title>
-<script type="text/javascript" src="/prototype/03.OHW/resources/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	
 	function changeLocation(value){	
@@ -116,8 +115,8 @@
 </style>
 </head>
 
-<body style="overflow:auto;">
-	<nav><%@ include file = "parts/navbar.jsp" %></nav>
+<body style="min-width : 800px; overflow : auto; display : absolute;">
+	<nav><%@ include file = "../../common/navbar.jsp" %></nav>
 	<div id = "left_bar">왼쪽 구역</div>
 	<div id = "right_bar">오른쪽 구역</div>
 	<header style="text-align : center;"><h3 class="header_text">선생님 찾기</h3></header>
@@ -330,10 +329,12 @@
 	<hr>
 	
 	<section class="button_section">
-		<div style="width : 200px; margin-left:45%; overflow:hidden; margin-top : 30px; margin-bottom : 30px;">
+	<center>
+		<div style="width : 40%; overflow:hidden; margin-top : 30px; margin-bottom : 30px;">
 			<button type="submit" class="btn btn-info" onclick="searchView();">검색하기</button>
 			<button type="reset" class="btn btn-info" onclick="hideView();">초기화하기</button>		
-		</div>		
+		</div>
+	</center>	
 	</section>
 	
 	<section id="search_table">

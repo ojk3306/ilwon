@@ -3,7 +3,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
 <script type="text/javascript" src="/prototype/resources/js/jquery-3.3.1.min.js"></script>
+=======
+
+
+<script type="text/javascript" src="/prototype/common/resources/js/jquery-3.3.1.min.js"></script>
+
+    <!-- -->
+>>>>>>> branch 'master' of https://github.com/ojk3306/ilwon.git
 
 <script type="text/javascript">
 
@@ -105,12 +113,11 @@ text-align: center;
 margin-left: 15px;
 }
 .review{/*리뷰의 가장상위 영역*/
-
 background:#cc66ff;
 margin:0 auto;
 margin-top:3px;
 width:1100px;
-height:250px;
+min-height:250px;
 }
 .howteach{/*커리큘럼의 가장 상위영역*/
 background:#cc66ff;
@@ -122,7 +129,7 @@ height:600px;
 }
 .reviewtop{/*리뷰의 상위*/
 list-style:none;
-padding-top:30px;
+padding-top:5px;
 }
 .reviewdetail{/*리뷰의 내용이 들어감. (li)*/
 padding-top:30px;
@@ -199,10 +206,11 @@ border-radius: 35px;
 </head>
 <body>
 <!-- 헤더 시작-->
-<%@ include file="/header_1.jsp" %>
+<%@ include file="/common\navbar.jsp" %>
 <!-- 헤더 종료-->
 
 <!--내용물-->
+       
 <nav class="contents">
 	<nav class="topbend"> <!--최상단 띠.-->
 	이사람은 이사람은이사람은 이사람은이사람은 이사람은
@@ -213,7 +221,7 @@ border-radius: 35px;
 		<ul>
 		<li>
 		
-		<img src="/prototype/resources/img/tech.jpg"> <!--추후에 마스크 추가하기.-->
+		<img src="./img/tech.jpg">
 		</li>
 		
 		<li class="underpic">
@@ -224,44 +232,157 @@ border-radius: 35px;
 	</ul>	
 	</li>
 		<li class="topdiv" name="title">
-		<ul>
+		<ul style="list-style: none;">
 			<li class="">타이틀넣기</li>
 			<li class=""> 태그넣기</li>
 			<li class=""> 점수내용</li>
 			<li class=""> 점수넣기</li>
 		</ul>
 		</li>
+		
+		
 		<li class="topdiv" name="option">
 		조회수?<br>
 		등록일?<br>
-		<nav class="imticon">
-		<%@include file="./imticon.jsp" %>
-		</nav>
+		<div class="imticon">
+		<%@ include file="/01.CJS\imticon.jsp" %>
+		</div>>
 		</li>
+		
+		
 	</ul>
 	</nav>
     <nav class="review"><!-- 리뷰란 -->
+	<table border="1" style="width:100%">
 	
-	<ul class="reviewtop">
-		<li class="reviewtitle"> 회원정보   &nbsp;    &nbsp;    &nbsp;    &nbsp; 
-        <%@ include file="../01.CJS/Fixedstar.jsp" %>
-		
-		</li>
-		
-		<li class="reviewdetail">
-			<nav class="divOfreviewdetail">
-			실질적인 리뷰가 들어감
-			<br>	<br>	<br>	<br>4줄
-			</nav>
-		</li>
+	<tr>
+	<td rowspan="2" style="width:35%;">
 	
-	<li Style="text-align:right; margin-right:10px">
-	다른 후기들보기-하이퍼링크 추가하기 혹은 버튼
-	</li>
-	</ul>
+			<h3 align="center">평점 :3/5</h3>
+			 <hr style="clear:both;">
+			<div class="col-xs-12 col-md-6" style="width:95%">
+                        <div class="row rating-desc">
+    
+                            <div class="col-xs-3 col-md-3 text-right">
+                                <span class="glyphicon glyphicon-star"></span>
+                                	성실성
+                            </div>
+                            <div class="col-xs-8 col-md-9" >
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20"
+                                        aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                        <span class="sr-only">2.5</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr style="clear:both;">
+                            <!-- end 3 -->
+                            <div class="col-xs-3 col-md-3 text-right">
+                                <span class="glyphicon glyphicon-star"></span>준비성
+                            </div>
+                            <div class="col-xs-8 col-md-9">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20"
+                                        aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                        <span class="sr-only">20%</span>
+                                    </div>
+                                </div>
+                            </div>
+                             <hr style="clear:both;">
+                            <!-- end 2 -->
+                            <div class="col-xs-3 col-md-3 text-right">
+                                <span class="glyphicon glyphicon-star"></span>지식전달력
+                            </div>
+                            <div class="col-xs-8 col-md-9">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80"
+                                        aria-valuemin="0" aria-valuemax="100" style="width: 15%">
+                                        <span class="sr-only">15%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end 1 -->
+                        </div>
+                        <!-- end row -->
+                    </div>
+	
 
-
-
+	</td>
+	
+	<td style="padding: 10px;">
+	<div class="row">
+						<div class="col-sm-3">
+							<img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
+							<div class="review-block-name"><a href="#">리뷰남긴사람 이름.</a></div>
+							<div class="review-block-date">년도, 월<br/>시각</div>
+						</div>
+						<div class="col-sm-9">
+							<div class="review-block-rate">
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+							</div>
+							<div class="review-block-title">제목</div>
+							<div class="review-block-description">
+							여기에 리뷰 를 넣는다. 
+							일단,버튼의 클래스로 점수를 나눌수있다.
+							</div>
+						</div>
+					</div>
+	
+	</td>
+	
+	</tr>
+	
+	<tr>
+	<td style="padding: 10px;">
+	<div class="row">
+						<div class="col-sm-3">
+							<img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
+							<div class="review-block-name"><a href="#">리뷰남긴사람 이름.</a></div>
+							<div class="review-block-date">년도, 월<br/>시각</div>
+						</div>
+						<div class="col-sm-9">
+							<div class="review-block-rate">
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+							</div>
+							<div class="review-block-title">제목</div>
+							<div class="review-block-description">
+							여기에 리뷰 를 넣는다. 
+							일단,버튼의 클래스로 점수를 나눌수있다.
+							</div>
+						</div>
+					</div>
+	
+	</td>
+	</tr>
+	</table>
 	</nav><!-- 리뷰란 종료 -->
 
 	<nav class="school"><!--학력란-->
@@ -277,16 +398,23 @@ border-radius: 35px;
 
 
 	<nav class="howteach" style="padding-top:10px;"><!--커리큘럼란-->
+	
 <div class="container" >
+
     <div class="col-md-6" Style="margin-left:150px; margin-top: 15px;">
+   
         <div class="panel with-nav-tabs panel-info" Style="width:800px;">
             <div class="panel-heading">
                 <ul class="nav nav-tabs">
                     <li class="active">
-                    <a href="#tab1info" data-toggle="tab">수업정보</a></li>
+                    <a href="#tab1info" data-toggle="tab">위치와 반경</a></li>
                     <li><a href="#tab2info" data-toggle="tab">수업방식</a></li>
                     <li><a href="#tab3info" data-toggle="tab">포트폴리오</a></li>
+<<<<<<< HEAD
                     <li><a href="#tab4info" data-toggle="tab" id="tab4" onclick="dd();">위치및 반경</a></li>
+=======
+                    <li><a href="#tab4info" data-toggle="tab">수업정보</a></li>
+>>>>>>> branch 'master' of https://github.com/ojk3306/ilwon.git
         
                 </ul>
             </div>
@@ -298,22 +426,17 @@ border-radius: 35px;
             <div class="tab-content">
                     
                     <div class="tab-pane fade in active" id="tab1info">
-            <nav class="in1">
-			<nav class="info1Oftop">
-			<!-- 간단한소개 -->
-			나는 말이야!!
-			
-			</nav>
-			<nav class="info1Oftop" id="info10">
-			<!--  진행방식-->
-			수업은 이렇게 할거야!
-			
-			</nav>
-			<nav class="info1Oftop">
-			<!-- 수업경력과 포부 -->
-			내가 해온거야!
-			</nav>
-		</nav>
+                      <div style="padding: 10px">
+          
+          
+           <%@ include file="/01.CJS/map.jsp" %>
+          
+          
+          
+           
+           </div>
+                    
+          
                     </div>
                     
                     <div class="tab-pane fade" id="tab2info">
@@ -338,22 +461,22 @@ border-radius: 35px;
                                     <div class="carousel-inner"> 
                                     <!-- 이미지 받기 -->
                                         <div class="active item" data-slide-number="0">
-                                        <img src="/prototype/resources/img/bg-masthead.jpg"></div>
+                                        <img src="./img/bg-masthead.jpg"></div>
 
                                         <div class="item" data-slide-number="1">
-                                        <img src="/prototype/resources/img/bg-masthead2.jpg"></div>
+                                        <img src="./img/bg-masthead2.jpg"></div>
 
                                         <div class="item" data-slide-number="2">
-                                        <img src="/prototype/resources/img/bg-showcase-1.jpg"></div>
+                                        <img src="./img/bg-showcase-1.jpg"></div>
 
                                         <div class="item" data-slide-number="3">
-                                        <img src="/prototype/resources/img/bg-showcase-2.jpg"></div>
+                                        <img src="./img/bg-showcase-2.jpg"></div>
 
                                         <div class="item" data-slide-number="4">
-                                        <img src="/prototype/resources/img/bg-showcase-3.jpg"></div>
+                                        <img src="./img/bg-showcase-3.jpg"></div>
 
                                         <div class="item" data-slide-number="5">
-                                        <img src="/prototype/resources/img/tech.jpg"></div>
+                                        <img src="./img/tech.jpg"></div>
                                     
                                     </div><!-- Carousel nav -->
                                     <a class="carousel-control left" data-slide="prev" href="#myCarousel">‹</a> <a class="carousel-control right" data-slide="next" href="#myCarousel">›</a>
@@ -369,6 +492,7 @@ border-radius: 35px;
 </div>
 </div>
            <div id="tab4info" class="tab-pane fade">
+<<<<<<< HEAD
            <div style="padding: 10px">
            <div id="map" style="width:100%;" >
            </div>
@@ -383,7 +507,28 @@ border-radius: 35px;
 //주소-좌표 변환 객체를 생성합니다
 
 var geocoder = new daum.maps.services.Geocoder();
+=======
+                     
+            <nav class="in1">
+			<nav class="info1Oftop">
+			<!-- 간단한소개 -->
+			나는 말이야!!
+			
+			</nav>
+			<nav class="info1Oftop" id="info10">
+			<!--  진행방식-->
+			수업은 이렇게 할거야!
+			
+			</nav>
+			<nav class="info1Oftop">
+			<!-- 수업경력과 포부 -->
+			내가 해온거야!
+			</nav>
+		</nav>
+         
+>>>>>>> branch 'master' of https://github.com/ojk3306/ilwon.git
 
+<<<<<<< HEAD
 // 주소로 좌표를 검색합니다
 
 geocoder.addressSearch('경기도 의왕시 삼동 부곡복지관길 41', function(result, status) {
@@ -444,7 +589,16 @@ function relayout() {
     map.relayout();
 }
 </script>
+=======
+>>>>>>> branch 'master' of https://github.com/ojk3306/ilwon.git
            </div>
+           
+           
+           
+           
+           
+           
+           
                  
                   </div>          
                
@@ -453,18 +607,10 @@ function relayout() {
     
     </div>
 </div>
-</div>
 
 	</nav>
-	
+
 	<!--커리큘럼란 종료-->
-
-
-
-
-
-
-
 </nav>
 
 
@@ -480,7 +626,7 @@ function relayout() {
 <!--내용 끝-->
 
  <!-- 바닥 -->
-
+<%@ include file="/common/footer.jsp" %>
 <!--바닥종료-->
 
 

@@ -7,7 +7,7 @@
 <title>학생으로 가입하기</title>
 </head>
 <body>
-<%@ include file="/header.jsp" %>
+<%@ include file="/common/navbar.jsp" %>
 
 <nav class="contents">
 		<br>
