@@ -14,6 +14,7 @@
 .async-hide {
 	opacity: 0 !important
 }
+
 </style>
 <script>
 	(function(a, s, y, n, c, h, i, d, e) {
@@ -75,9 +76,8 @@
 	content="hwNUdh1EhTXdejGDTteI5VbSAXC8apOKQBPbtOe-HQ4" />
 
 <title>Jober</title>
-<link rel="stylesheet" type="text/css"
-	href="../resources/css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="../resources/css/main.css">
+<link rel="stylesheet" type="text/css" href="/prototype/common/resources/css/bootstrap.css">
+
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 </head>
@@ -89,14 +89,12 @@
 			height="0" width="0" style="display: none; visibility: hidden"></iframe>
 	</noscript>
 	<!-- End Google Tag Manager (noscript) -->
-<<<<<<< HEAD
-	<%@ include file="/header.jsp"%>
-=======
+
+
 <%@ include file="/common/navbar.jsp" %>
->>>>>>> branch 'master' of https://github.com/ojk3306/ilwon.git
 
 
-	<div id="wrapper" style="width: 700px">
+	<div id="wrapper" style="width: 300px; margin: 0 auto">
 
 		<form novalidate>
 			<div class="row">
@@ -139,8 +137,6 @@
 
 
 
-<<<<<<< HEAD
-=======
 	<script type="text/javascript">
 		// 로그인 버튼 이벤트 핸들러
 		var $form = $('.body--login form');
@@ -152,6 +148,5 @@
 	</script>
   <%@include file="/common/footer.jsp" %>
 	
->>>>>>> branch 'master' of https://github.com/ojk3306/ilwon.git
 </body>
 </html>

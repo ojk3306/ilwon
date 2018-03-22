@@ -101,7 +101,7 @@
 </head>
 
 <body style="min-width : 800px; overflow : auto; display : absolute;">
-	<nav><%@ include file = "parts/navbar.jsp" %></nav>
+	<nav><%@ include file = "/common/navbar.jsp" %></nav>
 	<div id = "left_bar">왼쪽 구역</div>
 	<div id = "right_bar">오른쪽 구역</div>
 	<header style="text-align : center;"><h3 class="header_text">학생 찾기</h3></header>
