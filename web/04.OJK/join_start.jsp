@@ -13,11 +13,8 @@
 <title>은밀한 과외 가입하기</title>
 </head>
 <body>
-<<<<<<< HEAD
-	<%@ include file="/header.jsp" %>
-=======
+
 <%@ include file="/common/navbar.jsp" %>
->>>>>>> branch 'master' of https://github.com/ojk3306/ilwon.git
 
 	<nav class="contents">
 		<div id="wrapper">	

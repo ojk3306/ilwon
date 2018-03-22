@@ -35,6 +35,7 @@
        
         <li><a href="/prototype/01.CJS/report.jsp">신고하기</a></li>
         <li><a href="/prototype/04.OJK/report.jsp">건의하기</a></li>
+        <li><a href="/prototype/01.CJS/adminpage.jsp">관리자</a></li>
       </ul>
      
       <ul class="nav navbar-nav navbar-right" style = "overflow : hidden;">
