@@ -4,12 +4,7 @@
 <html>
 <head>
 <script type="text/javascript" src="/prototype/resources/js/jquery-3.3.1.min.js"></script>
-<script src="/prototype/resources/vendor/jquery/jquery.min.js"></script>
-	
- <script src="/prototype/resources/vendor/jquery/jquery.min.js"></script>
-    <script src="/prototype/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
-    <!-- -->
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
 <script type="text/javascript">
 
 
@@ -291,7 +286,7 @@ border-radius: 35px;
                     <a href="#tab1info" data-toggle="tab">수업정보</a></li>
                     <li><a href="#tab2info" data-toggle="tab">수업방식</a></li>
                     <li><a href="#tab3info" data-toggle="tab">포트폴리오</a></li>
-                    <li><a href="#tab4info" data-toggle="tab">위치및 반경</a></li>
+                    <li><a href="#tab4info" data-toggle="tab" id="tab4" onclick="dd();">위치및 반경</a></li>
         
                 </ul>
             </div>
@@ -375,16 +370,23 @@ border-radius: 35px;
 </div>
            <div id="tab4info" class="tab-pane fade">
            <div style="padding: 10px">
-           <div id="map" style="width:650px; height:350px;" ></div>
+           <div id="map" style="width:100%;" >
+           </div>
 <!-- 포트번호 8889 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=120b01867e29e09658100681cf1d0604&libraries=services"></script>
 <script>
+
+	 $(document).ready(function(){
+		  window.resizeTo(620, 690);
+		 });
+
 //주소-좌표 변환 객체를 생성합니다
+
 var geocoder = new daum.maps.services.Geocoder();
 
 // 주소로 좌표를 검색합니다
-geocoder.addressSearch('경기도 의왕시 삼동 부곡복지관길 41', function(result, status) {
 
+geocoder.addressSearch('경기도 의왕시 삼동 부곡복지관길 41', function(result, status) {
     // 정상적으로 검색이 완료됐으면 
      if (status === daum.maps.services.Status.OK) {
 
@@ -408,18 +410,39 @@ geocoder.addressSearch('경기도 의왕시 삼동 부곡복지관길 41', funct
             
         // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
         map.setCenter( new daum.maps.LatLng(result[0].y, result[0].x) );
+    
+        var mapContainer = document.getElementById('map');
+        mapContainer.style.width = '650px';
+        mapContainer.style.height = '300px'; 
     } 
-});    
+    
+});
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
         center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
         level: 4 // 지도의 확대 레벨
+        
     };  
 
 // 지도를 생성합니다    
 var map = new daum.maps.Map(mapContainer, mapOption); 
+resizeMap();
 
+function resizeMap() {
+    var mapContainer = document.getElementById('map');
+    mapContainer.style.width = '650px';
+    mapContainer.style.height = '300px'; 
+    relayout();
+}
+
+function relayout() {    
+
+    // 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
+    // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다 
+    // window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
+    map.relayout();
+}
 </script>
            </div>
                  
