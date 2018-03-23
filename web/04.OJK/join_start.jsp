@@ -13,7 +13,6 @@
 <title>은밀한 과외 가입하기</title>
 </head>
 <body>
-
 <%@ include file="/common/navbar.jsp" %>
 
 	<nav class="contents">
