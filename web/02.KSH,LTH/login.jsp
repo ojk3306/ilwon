@@ -127,7 +127,7 @@
 		<div class="actions-wrapper">
 			<div class="actions list-group" role="button">
 				<a class="actions__item list-group-item list-group-item-action"
-					href="#"> <span>혹시 계정이 없으신가요?</span> <span class="action-name">회원
+					href="/prototype/04.OJK/join_start.jsp"> <span>혹시 계정이 없으신가요?</span> <span class="action-name">회원
 						가입 &#xe001;</span>
 				</a>
 			</div>

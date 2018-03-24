@@ -70,12 +70,12 @@ map.relayout();
 		<hr>
 
 		<div id="wrapper">
-			<div align="center">
-				<div style="width: 1100px; height: 1200px;">
+			<div align="center"> 
+				<div style="width: 900px; height: 900px;">
 					<div style="margin-top: 50px;">
 						<div style="width: 530px;">
 							<hr>
-							<form class="form-horizontal" action="/action_page.php">
+							<form class="form-horizontal" method="post" action="/prototype/01.CJS/afterjoin.jsp">
 								<div class="form-group">
 									<label class="control-label col-sm-2" for="email">Email:</label>
 									<div class="col-sm-10">
