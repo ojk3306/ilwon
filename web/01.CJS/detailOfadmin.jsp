@@ -86,9 +86,7 @@ margin-left: 190px;
 
 <div class="container" >
 	<div class="row" >
-
        <div class="col-md-7">
-
 <div class="panel panel-default">
   <div class="panel-heading" style="background:#00ffff;">  <h4 >~~의 프로필</h4></div>
    <div class="panel-body">

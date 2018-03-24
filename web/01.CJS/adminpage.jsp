@@ -32,7 +32,8 @@
       </a>
       <a href="pages.html" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pages<span class="badge">25</span></a>
       <a href="posts.html" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Posts<span class="badge">126</span></a>
-      <a href="users.html" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users <span class="badge">12</span></a>
+      <a href="./adminSeachUser.jsp" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 유저검색
+       <span class="badge">12</span></a>
     </div>
 
   
@@ -111,7 +112,8 @@
 
 <div class="panel panel-default">
   <div class="panel-heading"style="background-color:  #095f59;">
-    <h3 class="panel-title" style="color:#ffffff">최신 ~</h3>
+    <h3 class="panel-title" style="color:#ffffff">최신 유저
+    </h3>
   </div>
   <div class="panel-body">
     <table class="table table-striped table-hover">
