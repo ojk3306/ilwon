@@ -1,15 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+    String loc=(String)request.getParameter("loc");
+%>
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript">
+function resizeWindow(win)    {
+	var wid = win.document.body.offsetWidth -600;
+	var hei = win.document.body.offsetHeight + 100;        //30 과 40은 넉넉하게 하려는 임의의 값임
+	win.resizeTo(wid,hei);
+	}
+</script>
     <meta charset="utf-8">
     <title>주소로 장소 표시하기</title>
     
 </head>
-<body>
-<div id="map" style="width:700px; height:400px;"></div>
-
+<body onload='resizeWindow(this)' onclick="self.close();">
+<div id="map" style="width:600px; height:350px;"></div>
+<%=loc%>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=120b01867e29e09658100681cf1d0604&libraries=services"></script>
 <script>
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -21,11 +31,11 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 // 지도를 생성합니다    
 var map = new daum.maps.Map(mapContainer, mapOption); 
 
+
 // 주소-좌표 변환 객체를 생성합니다
 var geocoder = new daum.maps.services.Geocoder();
-
 // 주소로 좌표를 검색합니다
-geocoder.addressSearch('경기도 광명시 도덕공원로 75', function(result, status) {
+geocoder.addressSearch('<%=loc%>', function(result, status) {
 
     // 정상적으로 검색이 완료됐으면 
      if (status === daum.maps.services.Status.OK) {

@@ -173,37 +173,38 @@ padding-top:30px;
 	</ul>
 	</nav>
     <nav class="review"><!-- 리뷰란 -->
-	<table style="width:100%">
+	<table style="width:100%; margin-bottom: 30px;">
+	<tr>   
 	
-	<tr>
-	<td rowspan="3" style="width:35%; border-right: 1px solid #eeeeee;">
 	 
-			<h3 align="center">평점 :3/5</h3>
-			 <hr style="clear:both; border: 0;">
+	
+	<th style="border-bottom: 1px solid #eeeeee;">
+	  <h3 align="center">평점 :<>/5</h3>	
+			<p align="center">총 리뷰어:<>명</p>
+			<hr style="clear:both; border: 0;">
 			<div class="col-xs-12 col-md-6" style="width:95%">
                         <div class="row rating-desc">
-
                             <div class="col-xs-3 col-md-3 text-right">
-                            <span class="glyphicon glyphicon-star"></span>성실
+                            <span class="glyphicon glyphicon-star"></span>성실성
                             </div>
                             <div class="col-xs-8 col-md-9" >
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20"
                                         aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                        <span class="sr-only">2.5</span>
+                                        <span class="sr-only"></span> 여기에 점수
                                     </div>
                                 </div>
                             </div>
                             <hr style="clear:both; border: 0;">
                             <!-- end 3 -->
                             <div class="col-xs-3 col-md-3 text-right">
-                                <span class="glyphicon glyphicon-star"></span>준비
+                                <span class="glyphicon glyphicon-star"></span>준비성
                             </div>
                             <div class="col-xs-8 col-md-9">
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20"
                                         aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                                        <span class="sr-only">20%</span>
+                                        <span class="sr-only">20%</span>  여기에 점수
                                     </div>
                                 </div>
                             </div>
@@ -216,7 +217,7 @@ padding-top:30px;
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80"
                                         aria-valuemin="0" aria-valuemax="100" style="width: 15%">
-                                        <span class="sr-only">15%</span>
+                                        <span class="sr-only">15%</span> 여기에 점수
                                     </div>
                                 </div>
                             </div>
@@ -224,19 +225,123 @@ padding-top:30px;
                         </div>
                         <!-- end row -->
                     </div>
-	
-
-	</td>
-	
-	<td style="padding: 10px; height: 45%;">
-	<div class="row">
+                    </th>
+</tr>	
+ 
+	<tr>  <!--  여기서부터 바로 아래의 tr까지 for문으로 리뷰 출력 -->
+		    <th style="padding: 10px; border-bottom: 1px solid #eeeeee;">
 						<div class="col-sm-3">
 							<img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
 							<div class="review-block-name"><a href="#">리뷰남긴사람 이름.</a></div>
 							<div class="review-block-date">년도, 월<br/>시각</div>
 						</div>
 						<div class="col-sm-9">
-							<div class="review-block-rate">
+							<div class="review-block-rate"><!-- 성실성 -->
+								성실성 
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								&nbsp;준비성
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								&nbsp; 지식전달능력
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+							</div>
+							<div class="review-block-title">제목</div>
+							<div class="review-block-description">
+							여기에 리뷰 를 넣는다. 
+							일단,버튼의 클래스로 점수를 나눌수있다.
+							사기꾼사기꾼사기꾼사기꾼사기꾼사사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼사기꾼
+							</div>
+						</div>
+					
+					</th>
+	</tr>
+	<tr>  <!--  여기서부터 바로 아래의 tr까지 for문으로 리뷰 출력 -->
+		    <th style="padding: 10px;">
+						<div class="col-sm-3">
+							<img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
+							<div class="review-block-name"><a href="#">리뷰남긴사람 이름.</a></div>
+							<div class="review-block-date">년도, 월<br/>시각</div>
+						</div>
+						<div class="col-sm-9">
+							<div class="review-block-rate"><!-- 성실성 -->
+								성실성 
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								&nbsp;준비성
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								&nbsp; 지식전달능력
 								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
 								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 								</button>
@@ -259,57 +364,87 @@ padding-top:30px;
 							일단,버튼의 클래스로 점수를 나눌수있다.
 							</div>
 						</div>
-					</div>
-	
-	</td>
-	
+					
+					</th>
+	</tr>
+	<tr>  <!--  여기서부터 바로 아래의 tr까지 for문으로 리뷰 출력 -->
+		    <th style="padding: 10px; border-bottom:1px solid #eeeeee;">
+						<div class="col-sm-3">
+							<img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
+							<div class="review-block-name"><a href="#">리뷰남긴사람 이름.</a></div>
+							<div class="review-block-date">년도, 월<br/>시각</div>
+						</div>
+						<div class="col-sm-9">
+							<div class="review-block-rate"><!-- 성실성 -->
+								성실성 
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								&nbsp;준비성
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								&nbsp; 지식전달능력
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+							</div>
+							<div class="review-block-title">제목</div>
+							<div class="review-block-description">
+							여기에 리뷰 를 넣는다. 
+							일단,버튼의 클래스로 점수를 나눌수있다.
+							</div>
+						</div>
+					
+					</th>
 	</tr>
 	
 	<tr>
-	<td style="padding: 10px; height: 45%;">
-	<div class="row">
-						<div class="col-sm-3">
-							<img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
-							<div class="review-block-name"><a href="#">리뷰남긴사람 이름.</a></div>
-							<div class="review-block-date">년도, 월<br/>시각</div>
-						</div>
-						<div class="col-sm-9">
-							<div class="review-block-rate">
-								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-								</button>
-								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-								</button>
-								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-								</button>
-								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-								</button>
-								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-								</button>
-							</div>
-							<div class="review-block-title">제목</div>
-							<div class="review-block-description">
-							여기에 리뷰 를 넣는다. 
-							일단,버튼의 클래스로 점수를 나눌수있다.
-							</div>
-						</div>
-					</div>
-	
+	<td align="right">
+	<button onclick="history.go(-1)">뒤로 가즈아</button>
+	<button onclick="history.go(-2)">검색 목록으로 가즈아</button>
 	</td>
-	
 	</tr>
-	
-	<TR>
-	
-	<TD  align="right"  style=" height:5%;"> 
-	</TD>
-	
-	</TR>
 	</table>
+	
 	</nav><!-- 리뷰란 종료 -->
 
 
