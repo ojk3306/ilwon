@@ -14,7 +14,6 @@
 .async-hide {
 	opacity: 0 !important
 }
-
 </style>
 <script>
 	(function(a, s, y, n, c, h, i, d, e) {

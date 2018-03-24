@@ -22,8 +22,8 @@ height: 90%;
 background:#eeeeee;
 }
 .contents{
-
-margin-top:-20px;
+  
+margin-top:-650px;
 padding-top:90px;
 
 background:#eeeeee;
@@ -187,6 +187,7 @@ border-radius: 35px;
 <body>
 <!-- 헤더 시작-->
 <%@ include file="/common\navbar.jsp" %>
+<%@ include file="/01.CJS\sidebar.jsp" %>
 <!-- 헤더 종료-->
 
 <!--내용물-->
@@ -575,7 +576,7 @@ function relayout() {
 
 
 <!--내용 끝-->
- 
+
  <!-- 바닥 -->
  <div style="margin-top: -60px;"><%@ include file="/common/footer.jsp" %></div>
 
