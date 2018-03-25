@@ -70,4 +70,7 @@ target/
 
 
 # End of https://www.gitignore.io/api/eclipse,java-web
+<<<<<<< HEAD
 /build/
+=======
+>>>>>>> branch 'master' of https://github.com/ojk3306/ilwon.git
