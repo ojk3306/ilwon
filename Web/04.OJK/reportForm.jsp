@@ -3,12 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript" src="/prototype/resources/js/jquery-3.3.1.min.js"></script>
+<!-- <script type="text/javascript" src="/prototype/resources/js/jquery-3.3.1.min.js"></script>
 <script src="/prototype/resources/vendor/jquery/jquery.min.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link href="/prototype/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <script src="/prototype/resources/vendor/jquery/jquery.min.js"></script>
-<script src="/prototype/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/prototype/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <title>Insert title here</title>
@@ -253,10 +253,10 @@ $(function() {
            <br>
            <br>
            <br>
-           <center>
-            <button type="submit" class="btn btn-primary">Submit</button>
-            <button type="reset" class="btn btn-primary">Reset</button>
-            </center>
+           <div align="center">
+	            <button type="submit" class="btn btn-primary">Submit</button>
+	            <button type="reset" class="btn btn-primary">Reset</button>
+            </div>
         </fieldset>
     </form>
     
@@ -269,7 +269,7 @@ $(function() {
 
 </div>
 
-  <%@include file="/common/footer.jsp" %>
+  
 
 </body>
 </html>

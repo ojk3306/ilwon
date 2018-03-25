@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>학생정보보기</title>
+<title>Insert title here</title>
 </head>
 <body>
 <%@include file="/common/navbar.jsp" %>
@@ -37,8 +37,6 @@
 					<button type="button" class="btn">프로필 사진 수정</button>
 					&nbsp;
 					<button type="button" class="btn">메세지 보기</button>
-					&nbsp;
-					<button type="button" class="btn">건의/신고 내역보기</button>
 
 
 				</div>
@@ -50,7 +48,7 @@
 			<hr>
 			<div id="info"
 				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px;">
-				<div align="center">
+				<div class="container">
 					<table class="table table-hover">
 						<thead>
 							<tr>
@@ -100,7 +98,7 @@
 
 			<div id="info"
 				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px;">
-				<div>
+				<div class="container">
 					<table class="table table-hover">
 						<thead>
 							<tr>

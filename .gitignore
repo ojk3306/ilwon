@@ -17,8 +17,6 @@ local.properties
 .classpath
 .project
 
-
-출처: http://redgolems.tistory.com/29 [레드골렘즈 콤비의 개발이야기]
 # External tool builders
 .externalToolBuilders/
 
@@ -70,7 +68,5 @@ target/
 
 
 # End of https://www.gitignore.io/api/eclipse,java-web
-<<<<<<< HEAD
+
 /build/
-=======
->>>>>>> branch 'master' of https://github.com/ojk3306/ilwon.git
