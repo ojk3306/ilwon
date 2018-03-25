@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+#mainPhoto {
+	background-image: url("/food/resources/images/festival_image10.jpg");
+	background-size: cover;
+	background-position: center;
+	width: 100%;
+	height: 350px;
+}
+
+#mainPhoto>div {
+	font-size: 100px;
+	text-align: center;
+	color: white;
+	opacity: 0.8;
+}
+
+#festival_subtitle {
+	text-align: center;
+	font-size: 30px;
+	padding: 10px;
+	background: rgb(34, 34, 34);
+	color: white;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#festival_info {
+	background: rgb(34, 34, 34);
+}
+
+#festival_info>div {
+	text-align: center;
+}
+
+#festival_text {
+	background: rgb(34, 34, 34);
+	color: white;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#festival_text table {
+	font-size: 20px;
+	text-align: left;
+}

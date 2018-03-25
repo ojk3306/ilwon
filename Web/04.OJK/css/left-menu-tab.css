@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+.tab-content{
+  display: none;
+  background: #ededed;
+  padding: 15px;
+}
+ 
+.tab-content.current{
+  display: inherit;
+}

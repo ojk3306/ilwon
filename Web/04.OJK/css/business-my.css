@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+#tab-1div {
+	margin-left: 15%;
+	margin-right: 50%;
+	margin-top: 3%;
+	min-width: 300px;
+}
+
+.container {
+	margin-left: 15%;
+	margin-right: 15%;
+	margin-top: 3%;
+}
+
+.page-item {
+	min-width: 36px;
+}
+
+.page-item4-1 {
+	margin-top: 20px;
+	position: absolute;
+	right: 20%
+}
+
+.page-item4-2 {
+	margin-top: 30px;
+	position: absolute;
+	right: 16%
+}
+
+.end-page-item {
+	position: absolute;
+	right: 16%;
+}

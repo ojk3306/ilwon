@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: 'Glyphicons Halflings';
+	src: url(../fonts/glyphicons-halflings-regular.eot);
+	src: url(../fonts/glyphicons-halflings-regular.eot?#iefix)
+		format('embedded-opentype'),
+		url(../fonts/glyphicons-halflings-regular.woff2) format('woff2'),
+		url(../fonts/glyphicons-halflings-regular.woff) format('woff'),
+		url(../fonts/glyphicons-halflings-regular.ttf) format('truetype'),
+		url(../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular)
+		format('svg')
+}
+
+.glyphicon {
+	position: relative;
+	top: 1px;
+	display: inline-block;
+	font-family: 'Glyphicons Halflings';
+	font-style: normal;
+	font-weight: 400;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale
+}
+
+.glyphicon-search:before {
+	content: "\e003"
+}
+
+/* 메인사진 */
+#mainPhoto {
+	background-image: url("/food/resources/images/taco.jpg");
+	background-size: cover;
+	background-position: center;
+	width: 100%;
+	height: 230px;
+	text-align:center;
+}
+
+/* 구글맵 사이즈 */
+#googlemap {
+	position: relative;
+	width: 100%;
+	height: 400px;
+	background: gray;
+}
+
+#mainPhoto > #mp-text {
+	font-size: 100px;
+
+	width:100%;
+	text-align: center;
+	color: white;;
+	opacity: 0.8;
+}
+
+#mt-h3 {
+	text-align:center;
+	background: black;
+	width: 70%;
+	color: white;;
+	margin-top: 10px;
+	font-size: 15pt;
+}
+
+#googlemap {
+	width: 1000px;
+	height: 400px;
+}

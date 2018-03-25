@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<link href="/prototype/04.OJK/css2/reset.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link href="/prototype/04.OJK/css2/main.css" rel="stylesheet" type="text/css">
+<link href="/prototype/04.OJK/css2/board.css" rel="stylesheet" type="text/css">
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/jquery.lbslider.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+<title>Class King</title>
+</head>
+<body>
+
+	<header>
+		<div id="top">
+			<img src=images/logo01.png>
+			<div class="top_right">
+				<div class="box_search">
+					<input type="text" name="tf_search" class="tf_search" placeholder="검색어 입력"/>	
+					<button type="submit" class="btn_search">
+						<span class="ico_search">검색</span>
+					</button>
+				</div> 				
+			</div>
+		</div>		
+	</header>
+	
+	<section>
+	<div id="wrap">
+	
+	   
+	    
+		<div id="right_box">
+			<!-- 로그인박스 시작 -->
+			<div id="login_box">
+				<input type="text" name="userid" id="userid" placeholder="아이디" class="form-control">
+				<input type="password" name="userpwd" id="userpwd" placeholder="비밀번호" class="form-control">
+				<div class="join">
+					<label><a href="#">회원가입</a></label>
+					<div><label><a href="#">아이디 / </a></label><label><a href="#">비밀번호</a></label></div>			
+				</div>
+				<input type="submit" name="login_btn" id="login_btn" class="btn btn-primary" value="로그인">		
+			</div>	
+			<!-- 로그인박스 끝 -->
+			
+			<!-- 알람박스 시작 -->
+			<div id="alarm_box">
+			알람!	
+			</div>				
+		    <!-- 알람박스 끝 -->
+		</div>	
+	 	<div id="left_box">
+		 	<div class="board_title">
+		 		<div class="title"><i class="fas fa-bullhorn"></i> 공지사항</div>	
+		 		<button type="button" class="btn btn-secondary" style="float:right"><i class="far fa-file-alt"></i> 새글쓰기</button>
+		 	</div>
+		 		 	
+		 	<div id="notice_table" class="board_table">
+		 	<table class="table">
+		 		<tr>
+		 			<th>번호</th>
+		 			<th>제목</th>
+		 			<th>작성일</th>
+		 			<th>조회수</th>
+		 		</tr>
+		 		<tr>
+		 			<td>10</td>
+		 			<td><a href="#">클래스킹 업데이트에 따른 시스템 점검 안내</a></td>
+		 			<td>2018-02-05</td>
+		 			<td>32</td>
+		 		</tr>
+		 		<tr>
+		 			<td>10</td>
+		 			<td><a href="#">클래스킹 업데이트에 따른 시스템 점검 안내</a></td>
+		 			<td>2018-02-05</td>
+		 			<td>32</td>
+		 		</tr>
+		 		<tr>
+		 			<td>10</td>
+		 			<td><a href="#">클래스킹 업데이트에 따른 시스템 점검 안내</a></td>
+		 			<td>2018-02-05</td>
+		 			<td>32</td>
+		 		</tr>
+		 		<tr>
+		 			<td>10</td>
+		 			<td><a href="#">클래스킹 업데이트에 따른 시스템 점검 안내</a></td>
+		 			<td>2018-02-05</td>
+		 			<td>32</td>
+		 		</tr>
+		 		<tr>
+		 			<td>10</td>
+		 			<td><a href="#">클래스킹 업데이트에 따른 시스템 점검 안내</a></td>
+		 			<td>2018-02-05</td>
+		 			<td>32</td>
+		 		</tr>
+		 		<tr>
+		 			<td>10</td>
+		 			<td><a href="#">클래스킹 업데이트에 따른 시스템 점검 안내</a></td>
+		 			<td>2018-02-05</td>
+		 			<td>32</td>
+		 		</tr>
+		 		<tr>
+		 			<td>10</td>
+		 			<td><a href="#">클래스킹 업데이트에 따른 시스템 점검 안내</a></td>
+		 			<td>2018-02-05</td>
+		 			<td>32</td>
+		 		</tr>
+		 		<tr>
+		 			<td>10</td>
+		 			<td><a href="#">클래스킹 업데이트에 따른 시스템 점검 안내</a></td>
+		 			<td>2018-02-05</td>
+		 			<td>32</td>
+		 		</tr>
+		 		<tr>
+		 			<td>10</td>
+		 			<td><a href="#">클래스킹 업데이트에 따른 시스템 점검 안내</a></td>
+		 			<td>2018-02-05</td>
+		 			<td>32</td>
+		 		</tr>
+		 		<tr>
+		 			<td>10</td>
+		 			<td><a href="#">클래스킹 업데이트에 따른 시스템 점검 안내</a></td>
+		 			<td>2018-02-05</td>
+		 			<td>32</td>
+		 		</tr>
+		 		<tr>
+		 			<td>10</td>
+		 			<td><a href="#">클래스킹 업데이트에 따른 시스템 점검 안내</a></td>
+		 			<td>2018-02-05</td>
+		 			<td>32</td>
+		 		</tr>
+		 		<tr>
+		 			<td>10</td>
+		 			<td><a href="#">클래스킹 업데이트에 따른 시스템 점검 안내</a></td>
+		 			<td>2018-02-05</td>
+		 			<td>32</td>
+		 		</tr>
+		 	</table>
+		 	
+		 	</div>
+	 		<div id="board_searchbox">
+	 			<select class="form-control notice_select">
+				  <option>제목</option>
+				  <option>내용</option>
+				</select>
+	 			<input type="text" name="notice_search" class="notice_search form-control">	 
+	 			<input type="submit" name="search_submit" class="btn btn-dark" value="검색">	
+	 		</div>
+	 		<div id="board_page">
+		 		<ul class="pagination">
+				  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+				  <li class="page-item"><a class="page-link" href="#">1</a></li>
+				  <li class="page-item"><a class="page-link" href="#">2</a></li>
+				  <li class="page-item"><a class="page-link" href="#">3</a></li>
+				  <li class="page-item"><a class="page-link" href="#">4</a></li>
+				  <li class="page-item"><a class="page-link" href="#">5</a></li>
+				  <li class="page-item"><a class="page-link" href="#">Next</a></li>
+				</ul>	 		
+	 		</div> 	
+	 	</div>	 
+	</div>
+	
+	
+	</section>	
+	<footer>
+		<div class="footer">
+			<a href="notice.html">공지사항 ㅣ</a>
+			<a href="notice.html">Q&A </a><br>
+			COPYRIGHT(C) 2018 CLASS KING. ALL RIGHTS RESERVED.
+		
+		</div>
+	
+	</footer>
+	
+	</footer>
+	
+</body>
+</html>
