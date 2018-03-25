@@ -25,7 +25,7 @@
 		 	<div style="margin-top: 30px;">
 		 	<table class="table table-hover">
 		 		<tr>
-		 			<th>번호</th>
+		 			<th>번호</th>        
 		 			<th>제목</th>
 		 			<th>작성일</th>
 		 			<th>조회수</th>
