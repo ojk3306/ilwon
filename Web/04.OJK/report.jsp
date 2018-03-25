@@ -1,22 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
-<title>건의게시판</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>신고게시판</title>
 </head>
-<body> 
+<body>
 <%@ include file="/common/navbar.jsp" %>
 <nav class="contents">
 	<br>
-	<h1 align="center">건의게시판</h1>
+	<h1 align="center">신고게시판</h1>
 	<hr>
 	<section>
 <div id="wrapper">
 	<div align="center">
 	<div style="width: 1100px; height: 1200px;">
 		 	<div style="padding: 10px; padding-right: 0px; float:right;">
+		 	<!-- admin일떄만 글쓰기 보이도록 할것 -->
 		 		<button type="button" class="btn" onclick="location.href='/prototype/04.OJK/reportForm.jsp'">글쓰기</button>
 		 		
 		 	</div>
@@ -24,7 +25,7 @@
 		 	 
 		 	<div style="margin-top: 30px;">
 		 	<table class="table table-hover">
-		 		<tr>
+		 		<tr style="background: gray;">
 		 			<th>번호</th>
 		 			<th>제목</th>
 		 			<th>작성일</th>
@@ -128,13 +129,11 @@
 	 	</div>	 
 	</div>
 	
-	
+	</div>
 	</section>	
-</div>
+
 
 </nav>
-
-
 
 </body>
 </html>
