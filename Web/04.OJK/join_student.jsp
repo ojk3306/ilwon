@@ -36,10 +36,10 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="control-label col-sm-2" for="pwd-2">비밀번호재입력:</label>
+									<label class="control-label col-sm-2" for="pwd-2">이름:</label>
 									<div class="col-sm-10">
-										<input type="password" class="form-control"
-											placeholder="Enter password" name="pwd-2" id="pwd-2">
+										<input type="text" class="form-control"
+											placeholder="Enter name" name="pwd-2" id="pwd-2">
 									</div>
 								</div>
 								<div class="form-group">

@@ -48,7 +48,7 @@
 			<hr>
 			<div id="info"
 				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px;">
-				<div class="container">
+				<div style="width:100%;">
 					<table class="table table-hover">
 						<thead>
 							<tr>
@@ -98,7 +98,7 @@
 
 			<div id="info"
 				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px;">
-				<div class="container">
+				<div style="width:100%;">
 					<table class="table table-hover">
 						<thead>
 							<tr>

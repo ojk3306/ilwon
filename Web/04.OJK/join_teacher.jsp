@@ -64,41 +64,43 @@ map.relayout();
 </head>
 <body>
 <%@ include file="/common/navbar.jsp"%>
-<nav class="contents">
+	
+	
+	<nav class="contents">
 		<br>
 		<h1 align="center">선생님으로 가입하기</h1>
 		<hr>
 
 		<div id="wrapper">
-			<div align="center"> 
-				<div style="width: 900px; height: 900px;">
+			<div align="center">
+				<div style="width: 1100px; height: 1200px;">
 					<div style="margin-top: 50px;">
-						<div style="width: 530px;">
+						<div style="width: 600px;">
 							<hr>
-							<form class="form-horizontal" method="post" action="/prototype/01.CJS/afterjoin.jsp">
+							<form class="form-horizontal" action="/action_page.php">
 								<div class="form-group">
-									<label class="control-label col-sm-2" for="email">Email:</label>
+									<label class="control-label col-sm-2" for="email">이메일:</label>
 									<div class="col-sm-10">
 										<input type="email" class="form-control" id="email"
 											placeholder="Enter email" name="email">
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="control-label col-sm-2" for="pwd-1">Password:</label>
+									<label class="control-label col-sm-2" for="pwd-1">비밀번호:</label>
 									<div class="col-sm-10">
 										<input type="password" class="form-control"
 											placeholder="Enter password" id="pwd-1" name="pwd-1">
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="control-label col-sm-2" for="pwd-2">Password:</label>
+									<label class="control-label col-sm-2" for="pwd-2">이름:</label>
 									<div class="col-sm-10">
-										<input type="password" class="form-control"
-											placeholder="Enter password" name="pwd-2" id="pwd-2">
+										<input type="text" class="form-control"
+											placeholder="Enter name" name="pwd-2" id="pwd-2">
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="control-label col-sm-2" for="phone">phone:</label>
+									<label class="control-label col-sm-2" for="phone">전화번호:</label>
 									<div class="col-sm-10">
 										<input type="text" class="form-control"
 											placeholder="Enter phone" name="phone" id="phone">
@@ -106,43 +108,33 @@ map.relayout();
 								</div>
 
 								<div class="form-group">
-									<label class="control-label col-sm-2" for="gender">gender:</label>
+									<label class="control-label col-sm-2" for="gender">성별:</label>
 									<div class="col-sm-10">
 										남&nbsp;&nbsp;<input type="radio" name="gender" id="gender">
-										여&nbsp;&nbsp;<input type="radio" name="gender" id="gender1">
+										여&nbsp;&nbsp;<input type="radio" name="gender" id="gender">
 									</div>
 								</div>
-								
-								<!--맵을 넣자. -->
 								<div class="form-group">
 								<label class="control-label col-sm-2" for="loc">주소:</label>
 								<div class="col-sm-10">
-								<input type="text" name="loc" id="loc">
+								<input type="text" name="loc" id="loc" class="form-control">
 								</div>
 								</div>
-								<div class="form-group">
-								<label class="control-label col-sm-2" for="rad">희망 반경(M):</label>
-								<input type="number" name="loc" id="rad" min="0">
 								
-								<button type="button" onclick="mapshow()">확인하기</button>
-								</div>
 
 								<div id="map" style="width:600px; height:350px; display: none;" ></div>
 								<div class="form-group">
-								<label class="control-label col-sm-2" for="key">희망 키워드:</label>
-								<div id="keyword" class="col-sm-10">
-								<input type="text" name="loc" id="key">&nbsp;
-								
-								</div><button type="button" onclick="addkey()">추가하기</button>
+								<label class="control-label col-sm-2" for="key">희망키워드:</label>
+								<div id="keyword" class="col-sm-10" >
+								<input type="text" name="loc" id="key" class="form-control" style="width: 100px; margin-bottom: 10px;">
+								<button type="button"  class="btn" onclick="addkey()">추가하기</button>
+								</div>
 								<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=120b01867e29e09658100681cf1d0604&libraries=services"></script>
 								</div>
-							
-								
 								<hr>
 								<div class="form-group">
 									<div class="col-sm-offset-2 col-sm-10">
-										<button type="submit" class="btn">가입하기</button>
-										<button type="reset" class="btn">초기화</button>
+										<button type="submit" class="btn">확인</button>
 									</div>
 								</div>
 							</form>
@@ -154,7 +146,7 @@ map.relayout();
 
 
 	</nav>
-
+	
 <%@ include file="/common/footer.jsp" %>
 </body>
 </html>

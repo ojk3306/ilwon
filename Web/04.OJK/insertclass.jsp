@@ -162,9 +162,12 @@ a.btn.disabled, fieldset[disabled] a.btn {
 						</div>
 						<div class="form-group">
 							<label for="id_addr2">지도</label><br>
-							
 						</div>
-						
+						<div class="form-group">
+								<label for="rad">희망 반경(M)</label>
+								<input type="number" name="loc" id="rad" min="0" class="form-control" style="width: 100px; margin-bottom: 10px;">
+								<button type="button" class="btn" onclick="mapshow()">확인하기</button>
+								</div>
 					</form>
 				</div>
 			</div>
