@@ -187,11 +187,14 @@ border-radius: 35px;
 <body>
 <!-- 헤더 시작-->
 <%@ include file="/common\navbar.jsp" %>
-<%@ include file="/01.CJS\sidebar.jsp" %>
+
+
 <!-- 헤더 종료-->
 
 <!--내용물-->
        
+<%@ include file="/01.CJS\sidebar.jsp" %>
+ <div>
 <nav class="contents">
 	<nav class="topbend"> <!--최상단 띠.-->
 	이사람은 이사람은이사람은 이사람은이사람은 이사람은

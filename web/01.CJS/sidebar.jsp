@@ -147,7 +147,7 @@
 </head>
 
 <body>
-<div style="min-height: 600px; max-height: 600px;">
+<div style="min-height: 600px; max-height: 600px; min-width:200px; max-width:200px; ">
 <div class="float_sidebar" style="width:200px; overflow:hidden;
         height:auto;   left:20px; border: 1px solid #00ffff; border-radius:7px; padding:10px;">
  <p align="center">이 선생은 어떄요?	</p>
