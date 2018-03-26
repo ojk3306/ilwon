@@ -23,7 +23,7 @@ background:#eeeeee;
 }
 .contents{
 
-margin-top:-20px;
+margin-top:-620px;
 padding-top:90px;
 
 background:#eeeeee;
@@ -128,6 +128,7 @@ padding-top:30px;
 <!-- 헤더 시작-->
 <%@ include file="/common\navbar.jsp" %>
 <!-- 헤더 종료-->
+<%@ include file="/01.CJS\sidebar.jsp" %>
 
 <!--내용물-->
        
@@ -145,7 +146,7 @@ padding-top:30px;
 		</li>
 		
 		<li class="underpic">
-		나이 이름
+		나이 이름dfdf
 		<br>
 		완료함.!
 		</li>
@@ -446,7 +447,7 @@ padding-top:30px;
 	</table>
 	
 	</nav><!-- 리뷰란 종료 -->
-
+</nav>
 
  <div style="margin-top: -60px;"><%@ include file="/common/footer.jsp" %></div>
 
