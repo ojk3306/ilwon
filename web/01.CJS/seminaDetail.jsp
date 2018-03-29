@@ -6,7 +6,8 @@
 <script type="text/javascript" src="/prototype/common/resources/js/jquery-3.3.1.min.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link href="/prototype/common/resources/css/bootstrap-theme.min.css" rel="stylesheet">
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<link href="/prototype/01.CJS\js\jquery.stepProgressBar.css" rel="stylesheet" type="text/css">
 <style type="text/css">
 
 
@@ -97,15 +98,10 @@ margin-top: -900px;
 	text-align: center;
 	margin-left: 15px;
 	}
-	/**********************
-/***** Services *******
-/*********************/
-@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 section{
 margin-top:660px;
 	padding: 60px 0;
 	margin-left: auto; 
-	
 	margin-right: auto;
 	top: 110px;
 	bottom: 0;
@@ -124,6 +120,8 @@ section .section-title{
 #what-we-do .card{
 	padding: 1rem!important;
 	border: none;
+	width:260px;
+	
 	margin-bottom:1rem;
 	-webkit-transition: .5s all ease;
 	-moz-transition: .5s all ease;
@@ -135,7 +133,7 @@ section .section-title{
 	box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
 }
 #what-we-do .card .card-block{
-	padding-left: 50px;
+	padding-left: 20px;
     position: relative;
 }
 #what-we-do .card .card-block a{
@@ -186,7 +184,25 @@ section .section-title{
 	-moz-transition: .5s all ease;
 	transition: .5s all ease;
 }
-	
+	$(document).ready(function () {
+	$('#deleteProductModal').on('show.bs.modal', function (event) { // id of the modal with event
+	  var button = $(event.relatedTarget) // Button that triggered the modal
+	  var productid = button.data('productid') // Extract info from data-* attributes
+	  var productname = button.data('productname')
+	  
+	  var title = 'Confirm Delete #' + productid
+	  var content = 'Are you sure want to delete ' + productname + '?'
+	  var content1 = '<label for="message-text" class="form-control-label">Work Order:</label><textarea class="form-control" id="message-text"></textarea>';
+	  
+	  // Update the modal's content.
+	  var modal = $(this)
+	  modal.find('.modal-title').text(title)
+	  modal.find('.modal-body').html(content1)	  
+	  
+	  // And if you wish to pass the productid to modal's 'Yes' button for further processing
+	  modal.find('button.btn-danger').val(productid)
+	})
+})
 </style>
 <script type="text/javascript">
 
@@ -247,43 +263,90 @@ section .section-title{
 				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
 					<div class="card">
 						<div class="card-block block-2">
-							<h3 class="card-title">Special title</h3>
+							<h3 class="card-title">3 </h3>
 							<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-							<a href="javascript:void();" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
-						</div>
+							</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+					<div class="card">
+						<div class="card-block block-2">
+							<h3 class="card-title">333333333</h3>
+							<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+						
+							</div>
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
 					<div class="card">
 						<div class="card-block block-3">
-							<h3 class="card-title">Special title</h3>
+							<h3 class="card-title">2</h3>
 							<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-							<a href="javascript:void();" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
-						</div>
+							</div>
 					</div>
 				</div>
 			</div>
+			
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
 					<div class="card">
 						<div class="card-block block-4">
 							<h3 class="card-title">Special title</h3>
 							<p class="card-text">With supporting text below as a natural lead-in .</p>
-							<a href="javascript:void();" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
-						</div>
+							</div>
 					</div>
 				</div>
-				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
-					<div class="card">
-						<div class="card-block block-5">
-							<h3 class="card-title">Special title</h3>
-							<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-							<a href="javascript:void();" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
-						</div>
-					</div>
-				</div>
-			<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
 			
+			
+			<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">	
+		    
+			<div id="myGoal"></div>
+			
+			
+		    <script src="http://code.jquery.com/jquery-1.12.2.min.js"></script>
+<script src="/prototype/01.CJS\js\jquery.stepProgressBar.js"></script>
+<script>
+$('#myGoal').stepProgressBar({
+  currentValue: 0,
+  steps: [
+    { 
+    	topLabel: '1',
+        value: 1,
+        bottomLabel: '1'
+    	},
+    {
+    	 topLabel: 'min',
+         value: 5,
+         bottomLabel: '5'
+    },
+    {  
+    	 topLabel: 'max',
+         value: 10,
+         bottomLabel: '10'
+    }
+  ],
+  unit: '$'
+});
+
+        
+</script>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+		    
+			</div>
 			
 			
 			</div>
@@ -293,4 +356,5 @@ section .section-title{
 </div>
 <%@include file="/common/footer.jsp" %>
 </body>
+
 </html>
