@@ -167,11 +167,12 @@ a.btn.disabled, fieldset[disabled] a.btn {
 	<!-- 내용 시작 -->
 	<nav class="contents">
 		<br>
-		<h1 align="center">강의등록하기</h1>
+		<h2 align="center">강의등록하기</h2>
 		<hr>
 		
-		<div class="modal-body" style="width: 1100px;">
-			<div class="tab-content" style="margin-left:35%;">
+		<div class="modal-body">
+		
+			<div class="tab-content" style="margin-left:500px; margin-right:500px;">
 				<div role="tabpanel" id="basic" class="tab-pane active">
 					<form id="id_form_basic" method="post">
 						<h3>내 정보 변경하기</h3>
@@ -229,9 +230,12 @@ a.btn.disabled, fieldset[disabled] a.btn {
 							<textarea style="width:100%;" rows="10" cols="150pt"></textarea>
 						</div>
 						<div class="form-group">
-							<label for="id_addr2">수업료</label><br> 
-							<input type="number">
-						
+							<label for="id_addr2">수업료(단위/만)</label><br> 
+							<input type="number" min="0">
+						</div>
+						<div class="form-group">
+							<label for="id_addr2">수업횟수</label><br> 
+							<input type="number" min="0">
 						</div>
 							<div class="form-group">
 							<label for="id_addr2">이미지</label>
