@@ -13,7 +13,8 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<script 
+	src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 
 <script type="text/javascript">
@@ -67,6 +68,21 @@ function mapshow(){
 
 	map.relayout();
 	}
+	
+	//주소검색 api
+	
+	
+	function juso(){  
+new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+            console.log(data.roadAddress);
+            
+        }
+    }).open();
+};
+	
 	
 </script>
 
@@ -185,7 +201,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
 								<input type="text" id="id_zip" name="zip" placeholder=""
 									value="06359" disabled="disabled" class="form-control input-lg">
 								<span class="input-group-btn"><button type="button"
-										onclick="getDaumPostcode();return false;"
+										onclick="juso();"
 										class="btn btn-default btn-border input-lg">우편번호 찾기</button></span>
 							</div>
 						</div>
@@ -202,7 +218,20 @@ a.btn.disabled, fieldset[disabled] a.btn {
 						</div>
 						<div class="form-group">
 							<label for="id_addr2">강의내용</label><br> 
-							<textarea style="width:100%;" rows="20" cols="150pt"></textarea>
+							<textarea style="width:100%;" rows="10" cols="150pt"></textarea>
+						</div>
+						<div class="form-group">
+							<label for="id_addr2">강의내용</label><br> 
+							<textarea style="width:100%;" rows="10" cols="150pt"></textarea>
+						</div>
+						<div class="form-group">
+							<label for="id_addr2">강의내용</label><br> 
+							<textarea style="width:100%;" rows="10" cols="150pt"></textarea>
+						</div>
+						<div class="form-group">
+							<label for="id_addr2">수업료</label><br> 
+							<input type="number">
+						
 						</div>
 							<div class="form-group">
 							<label for="id_addr2">이미지</label>

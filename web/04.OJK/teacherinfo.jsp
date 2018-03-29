@@ -58,7 +58,7 @@
 								<th>과목</th>
 								<th>상세보기</th>
 								<th>수정하기</th>
-								<th>삭제하기</th>
+								<th>종료하기</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -94,11 +94,11 @@
 					</table>
 				</div>
 			</div>
-			<div style="width: 1100px; height: 70px; padding: 10px; margin-left: 716px;">
-				<button type="button" class="btn" onclick="location.href = 'insertclass.jsp' ">강의 등록</button>
+			<div style="width: 1100px; height: 70px; padding: 10px; margin-left: 909px;">
+				<button type="button" class="btn btn-info" onclick="location.href = 'insertclass.jsp' ">강의 등록</button>
 			</div>
 			<br> <br>
-			<h1>이전 강의 내역</h1>
+			<h1>강의 내역</h1>
 			<hr>
 			<div id="info"
 				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px;">
@@ -109,6 +109,7 @@
 								<th>강의명</th>
 								<th>과목</th>
 								<th>상세보기</th>
+								<th>리뷰보기</th>
 								<th>삭제하기</th>
 							</tr>
 						</thead>
@@ -118,24 +119,28 @@
 								<td>Doe</td>
 								<td><button type="button" class="btn">Basic</button></td>
 								<td><button type="button" class="btn">Basic</button></td>
+								<td><button type="button" class="btn btn-danger">삭제</button></td>
 							</tr>
 							<tr>
 								<td>Mary</td>
 								<td>Moe</td>
 								<td><button type="button" class="btn">후기작성</button></td>
 								<td><button type="button" class="btn">Basic</button></td>
+								<td><button type="button" class="btn btn-danger">삭제</button></td>
 							</tr>
 							<tr>
 								<td>July</td>
 								<td>Dooley</td>
 								<td><button type="button" class="btn">Basic</button></td>
 								<td><button type="button" class="btn">후기작성</button></td>
+								<td><button type="button" class="btn btn-danger">삭제</button></td>
 							</tr>
 							<tr>
 								<td>July</td>
 								<td>Dooley</td>
 								<td><button type="button" class="btn">Basic</button></td>
 								<td><button type="button" class="btn">후기작성</button></td>
+								<td><button type="button" class="btn btn-danger">삭제</button></td>
 							</tr>
 						</tbody>
 					</table>
