@@ -9,7 +9,23 @@
 
 <link href="/prototype/01.CJS\js\jquery.stepProgressBar.css" rel="stylesheet" type="text/css">
 <style type="text/css">
+.btn-primary,
+.btn-warning
+{
+    -webkit-box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow:    0px 3px 0px rgba(0, 0, 0, 0.3);
+    box-shadow:         0px 3px 0px rgba(0, 0, 0, 0.3);
+}
 
+.btn-default:active,
+.btn-primary:active,
+.btn-success:active,
+.btn-info:active,
+.btn-warning:active,
+.btn-danger:active {
+    margin-top: 3px;
+    margin-bottom: -3px;
+}
 
 .contentbody{
 background:#eeeeee;
@@ -330,7 +346,6 @@ $('#myGoal').stepProgressBar({
 
         
 </script>
-
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -347,7 +362,14 @@ $('#myGoal').stepProgressBar({
 </script>
 		    
 			</div>
-			
+			<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+				 
+		    <button type="button" class="btn btn-primary">세미나 신청하기!</button>
+
+            <button type="button" class="btn btn-warning">이미 신청된 상태입니다</button>
+				
+				
+				</div>
 			
 			</div>
 		</div>	
