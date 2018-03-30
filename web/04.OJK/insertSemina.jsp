@@ -62,7 +62,7 @@ $(document).ready(function(){
 		if($(this).val()==''){
     		$(this).css("border-color", "#FF0000");
     			$('#submit').attr('disabled',true);
-    			 $("#error_name").text("* You have to enter your first name!");
+    			 $("#error_name").text("*강의 타이틀을 입력해주세요...");
     	}
     	else
     	{
@@ -82,14 +82,14 @@ $(document).ready(function(){
     	{
     		$(this).css("border-color", "#2eb82e");
     		$('#submit').attr('disabled',false);
-    		$("#error_lastname").text("");
+    		$("#error_lastname").text("* 입력해주세요...");
     	}
    });
     $("#dob").focusout(function(){
 		if($(this).val()==''){
     		$(this).css("border-color", "#FF0000");
     			$('#submit').attr('disabled',true);
-    			$("#error_dob").text("* You have to enter your Date of Birth!");
+    			$("#error_dob").text("*강의일을 설정해주세요...");
     	}
     	else
     	{
@@ -112,7 +112,7 @@ $(document).ready(function(){
     	{
     		$(this).css({"border-color":"#2eb82e"});
     		$('#submit').attr('disabled',false);
-    		$("#error_age").text("");
+    		$("#error_age").text("ㅇㅇㅇ");
 
     	}
     	});
@@ -121,13 +121,13 @@ $(document).ready(function(){
 		if($(this).val()==''){
     		$(this).css("border-color", "#FF0000");
     			$('#submit').attr('disabled',true);
-    			$("#error_phone").text("* You have to enter your Phone Number!");
+    			$("#error_phone").text("");
     	}
     	else if ($pho.length!=10)
     	{   
                 $(this).css("border-color", "#FF0000");
     			$('#submit').attr('disabled',true);
-    			$("#error_phone").text("* Lenght of Phone Number Should Be Ten");
+    			$("#error_phone").text("* 제목을 입력해주세요...");
     	}
     	else if(!$.isNumeric($pho))
     	{
@@ -138,7 +138,7 @@ $(document).ready(function(){
     	else{
     		$(this).css({"border-color":"#2eb82e"});
     		$('#submit').attr('disabled',false);
-    		$("#error_phone").text("");
+    		$("#error_phone").text("11");
     	}
 
 	});
@@ -160,7 +160,7 @@ $(document).ready(function(){
 			{
     		$("#dob").css("border-color", "#FF0000");
     			$('#submit').attr('disabled',true);
-    			 $("#error_dob").text("* You have to enter your Date of Birth!");
+    			 $("#error_dob").text("* Y22");
     	}
 			if($("#age" ).val()=='')
 			{
@@ -172,7 +172,7 @@ $(document).ready(function(){
 			{
     		$("#phone").css("border-color", "#FF0000");
     			$('#submit').attr('disabled',true);
-    			 $("#error_phone").text("* You have to enter your Phone Number!");
+    			 $("#error_phone").text("");
     	}
 		});
 });
@@ -231,13 +231,10 @@ $(document).ready(function(){
 					
 					<div class="form-group">
 						<label for="phone">강의 지역</label>
-						<input type="text" id="loc" name="loc" class="form-control" onclick="juso()">
+						<input type="text" id="loc" name="loc" class="form-control" onclick="juso()" readonly="readonly" placeholder="클릭 해서 지역을 선택해주세요!">
 						<span id="error_phone" class="text-danger"></span>
 					</div>
-					
-					
-					
-					
+
 					<div id="detail">
 					<div class="form-group">
 						
