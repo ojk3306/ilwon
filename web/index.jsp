@@ -24,17 +24,18 @@
 	.ohw_div_con {
 		float:left;
 		width:33.33%;
-		height:500px;
+		height:350px;
 		margin-bottom:0px;
+		border:1px solid black;
 	}
 	.ohw_footer {
-	background:olive;
-	height:100px;
-	width:100%;
-	min-width:800px;
-	text-align:center;
-	margin-top:0px;
-	padding:0px;
+		background:olive;
+		height:100px;
+		width:100%;
+		min-width:800px;
+		text-align:center;
+		margin-top:0px;
+		padding:0px;
 	}
 	
 </style>
@@ -56,10 +57,38 @@
 	</form>
 	</div>	
 </div>
-	<div  style="width:100%; height:480px; background:yellow; magin-bottom:0px;">
-	<div class="ohw_div_con" style="background:red;"></div>
-	<div class="ohw_div_con" style="background:green;"></div>
-	<div class="ohw_div_con" style="background:blue;"></div>
+
+	<div  style="width:100%; height:330px; magin-bottom:0px;">
+	<div class="ohw_div_con" align="center">
+	<ul class="nav nav-tabs">
+		<li class="active"><a data-toggle="tab" href="#home">공지사항</a></li>
+		<li><a data-toggle="tab" href="#menu1">배우고 싶어요</a></li>
+		<li><a data-toggle="tab" href="#menu2">여긴 뭘까요</a></li>
+	</ul>
+
+	<div class="tab-content">
+	<div id="home" class="tab-pane fade in active">
+	<h3>HOME</h3>
+	<p>Some content.</p>
+	</div>
+	
+	<div id="menu1" class="tab-pane fade">
+	<h3>Menu 1</h3>
+	<p>Some content in menu 1.</p>
+	</div>
+	
+	<div id="menu2" class="tab-pane fade">
+	<h3>Menu 2</h3>
+	<p>Some content in menu 2.</p>
+	</div>
+	</div>
+	</div>
+	
+	<div class="ohw_div_con" align="center">
+		<h3>여기는 세미나겠지.</h3>
+		<a><img alt="" src="common/resources/img/Main.jpg" width="80%" height="auto"></a>
+	</div>
+	<div class="ohw_div_con"></div>
 	</div>
 
 <div class="ohw_footer">
