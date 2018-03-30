@@ -198,16 +198,38 @@ $(document).ready(function(){
 						<span id="error_phone" class="text-danger"></span>
 					</div>
 					<div class="form-group">
-						<label for="disc">Discription</label>
+						
+						<label for="disc" style="padding:auto; width:100px;">상세정보 제목</label>
+						<div style="width: 99%;">
+						<input type="text" id="phone" name="phone" class="form-control" style="width:150px; float:left">
+						
+						<input type="button" class="btn btn-primary center" value="정보 추가하기" style="margin-left:140px;">						
+						</div>
+						
+						<label for="disc" style="margin-top:5px; width:100px; margin-left: -150px;  ">상세정보</label>
 						<textarea class="form-control" rows="3"></textarea>
 					</div>
+					<!-- 이후 정보 추가시, 이것을 추가해서 넣는다. 
+					<div class="form-group">
+						
+						<label for="disc" style="padding:auto; width:100px;">상세정보 제목</label>
+						<div style="width: 99%;">
+						<input type="text" id="phone" name="phone" class="form-control" style="width:150px; float:left">
+						
+						<input type="button" class="btn btn-primary center" value="정보 추가하기" style="margin-left:10px;">
+						<input type="button" class="btn btn-primary center" value="정보 추가하기" style="margin-left:10px;">
 					
+						</div>
+						
+						<label for="disc" style="margin-top:5px; width:100px; margin-left: -150px;  ">상세정보</label>
+						<textarea class="form-control" rows="3"></textarea>
+					</div>
+					  -->
 					
+					<input type="submit" value="강의생성" class="btn btn-primary center">
+					<input type="reset" value="초기화" class="btn btn-primary center">
+					<input type="button" onclick="history.back()" value="뒤로가기" class="btn btn-primary center">
 					
-					
-					
-					<button id="submit" type="submit" value="submit" class="btn btn-primary center">Submit</button>
-			
 				</form>
 
 			</div>
