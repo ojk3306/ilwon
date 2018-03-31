@@ -1,10 +1,8 @@
 package common;
 
-import java.io.FileReader;
 import java.sql.*;
 import java.util.Properties;
 
-import javax.naming.*;
 import javax.sql.*;
 
 public class JDBCTemplate {
