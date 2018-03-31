@@ -53,20 +53,23 @@ public class JDBCTemplate {
 		Properties prop=new Properties();
 		String fileName=JDBCTemplate.class.getResource("/dbresources/drive.propertices").getPath();
 		System.out.println("fileName="+fileName);
-		System.out.println("url="+JDBCTemplate.class.getResource("/dbresources/drive.propertices"));
+		System.out.println("url="+JDBCTemplate.class.getResource("/dbresources/drive.propertices")
+				);
 		try {
 			prop.load(new FileReader(fileName));
 			Class.forName(prop.getProperty("driver"));
 			con=DriverManager.getConnection(
-					prop.getProperty("url"),
-					prop.getProperty("user"),
-					prop.getProperty("passwd")				
-					);
-					
-			
-			
+			prop.getProperty("url"),
+			prop.getProperty("user"),
+			prop.getProperty("passwd"));
 		} catch (Exception e) {
-			// TODO: handle exception
+		
+		}
+		try {
+			System.out.println(con.isClosed());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return con;
 	}
