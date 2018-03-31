@@ -20,9 +20,9 @@ usertype_no number,
 user_type varchar2(10) NOT NULL,
 CONSTRAINT PK_USERS_type PRIMARY KEY(usertype_no)
 );
-insert into user_type values('1001','切积');
-insert into user_type values('1002','急积');
-insert into user_type values('1003','包府磊');
+insert into user_type values('1001','student');
+insert into user_type values('1002','teacher');
+insert into user_type values('1003','admin');
 commit;
 
 CREATE TABLE USERS
