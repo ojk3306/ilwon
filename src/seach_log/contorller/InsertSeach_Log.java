@@ -38,15 +38,16 @@ public class InsertSeach_Log extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		System.out.println("서치서블릿옴");
 		Seach_log sl = new Seach_log();
-		
-		sl.setSEACH_CONTENT(request.getParameter("seachcontent"));
+		String keyword=request.getParameter("seachcontent");
+		sl.setSEACH_CONTENT(keyword);
 		sl.setUSER_NO(null);
 		
 		
 		int result=new Seach_logService().insertlog(sl);
-		
+		response.setContentType("text/html; charset=utf-8");
 		if(result>0) {
 			System.out.println("삽입완료");
+			response.sendRedirect("/prototype/tlist?word="+keyword);
 		}else {
 			System.out.println("삽입실패");
 		}
