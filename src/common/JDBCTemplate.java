@@ -9,7 +9,7 @@ import javax.sql.*;
 
 public class JDBCTemplate {
 	
-	/*public static Connection getConnection() {
+	public static Connection getConnection() {
 		
 		Connection con = null;		
 		
@@ -17,8 +17,8 @@ public class JDBCTemplate {
 			
 			String driver = "oracle.jdbc.driver.OracleDriver";
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
-			String user = "student";
-			String pwd = "student";
+			String user = "aaaa";
+			String pwd = "1234";
 			
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, user, pwd);
@@ -28,7 +28,7 @@ public class JDBCTemplate {
 			e.printStackTrace();
 		}		
 		return con;		
-	}*/
+	}
 	
 	//DB Connection Pooling 기법을 이용
 //	public static Connection getConnection() {
@@ -48,31 +48,31 @@ public class JDBCTemplate {
 //		
 //		return con;
 //	}
-	public static Connection getConnection() {
-		Connection con=null;
-		Properties prop=new Properties();
-		String fileName=JDBCTemplate.class.getResource("/dbresources/drive.propertices").getPath();
-		System.out.println("fileName="+fileName);
-		System.out.println("url="+JDBCTemplate.class.getResource("/dbresources/drive.propertices")
-				);
-		try {
-			prop.load(new FileReader(fileName));
-			Class.forName(prop.getProperty("driver"));
-			con=DriverManager.getConnection(
-			prop.getProperty("url"),
-			prop.getProperty("user"),
-			prop.getProperty("passwd"));
-		} catch (Exception e) {
-		
-		}
-		try {
-			System.out.println(con.isClosed());
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return con;
-	}
+//	public static Connection getConnection() {
+//		Connection con=null;
+//		Properties prop=new Properties();
+//		String fileName=JDBCTemplate.class.getResource("/dbresources/drive.propertices").getPath();
+//		System.out.println("fileName="+fileName);
+//		System.out.println("url="+JDBCTemplate.class.getResource("/dbresources/drive.propertices")
+//				);
+//		try {
+//			prop.load(new FileReader(fileName));
+//			Class.forName(prop.getProperty("driver"));
+//			con=DriverManager.getConnection(
+//			prop.getProperty("url"),
+//			prop.getProperty("user"),
+//			prop.getProperty("passwd"));
+//		} catch (Exception e) {
+//		
+//		}
+//		try {
+//			System.out.println(con.isClosed());
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return con;
+//	}
 	
 	public static void commit (Connection con) {
 		
