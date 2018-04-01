@@ -1,6 +1,7 @@
 package users.model.vo;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 public class User implements Serializable {	
 	
@@ -11,23 +12,23 @@ public class User implements Serializable {
 	private String userPassword;
 	private String userName;
 	private String userGender;
-	private String userAge;
+	private int userAge;
 	private String userPhone;
 	private String userOriginalPhoto;
 	private String userRenamePhoto;
 	private int userKeywordCount;
 	private String userLoginable;
 	private String userExeable;
-	private String userClassmax;
-	private String userEnrollDate;
+	private int userClassmax;
+	private Date userEnrollDate;
 	
 	public User() {
 		
 	}
 
 	public User(int userNo, int userTypeNo, String userEmail, String userPassword, String userName, String userGender,
-			String userAge, String userPhone, String userOriginalPhoto, String userRenamePhoto, int userKeywordCount,
-			String userLoginable, String userExeable, String userClassmax, String userEnrollDate) {
+			int userAge, String userPhone, String userOriginalPhoto, String userRenamePhoto, int userKeywordCount,
+			String userLoginable, String userExeable, int userClassmax, Date userEnrollDate) {
 		super();
 		this.userNo = userNo;
 		this.userTypeNo = userTypeNo;
@@ -94,11 +95,11 @@ public class User implements Serializable {
 		this.userGender = userGender;
 	}
 
-	public String getUserAge() {
+	public int getUserAge() {
 		return userAge;
 	}
 
-	public void setUserAge(String userAge) {
+	public void setUserAge(int userAge) {
 		this.userAge = userAge;
 	}
 
@@ -150,19 +151,19 @@ public class User implements Serializable {
 		this.userExeable = userExeable;
 	}
 
-	public String getUserClassmax() {
+	public int getUserClassmax() {
 		return userClassmax;
 	}
 
-	public void setUserClassmax(String userClassmax) {
+	public void setUserClassmax(int userClassmax) {
 		this.userClassmax = userClassmax;
 	}
 
-	public String getUserEnrollDate() {
+	public Date getUserEnrollDate() {
 		return userEnrollDate;
 	}
 
-	public void setUserEnrollDate(String userEnrollDate) {
+	public void setUserEnrollDate(Date userEnrollDate) {
 		this.userEnrollDate = userEnrollDate;
 	}
 
