@@ -4,9 +4,19 @@
 <html>
 <head>
 <script src="/prototype/common\resources\js\jquery-3.3.1.min.js"></script>
-
+<script 
+	src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
-	
+function juso(){  
+	new daum.Postcode({
+	        oncomplete: function(data) {
+	            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+	            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+	            console.log(data.roadAddress);
+	            $("#loc").val(data.roadAddress);
+	        }
+	    }).open();
+	};	
 function mapshow(){
 
 loc=$("#loc").val();
@@ -77,7 +87,7 @@ map.relayout();
 					<div style="margin-top: 50px;">
 						<div style="width: 600px;">
 							<hr>
-							<form class="form-horizontal" action="/action_page.php">
+							<form class="form-horizontal" action="<%=request.getContextPath()%>/Insertuser" method="post">
 								<div class="form-group">
 									<label class="control-label col-sm-2" for="email">이메일:</label>
 									<div class="col-sm-10">
@@ -89,7 +99,14 @@ map.relayout();
 									<label class="control-label col-sm-2" for="pwd-1">비밀번호:</label>
 									<div class="col-sm-10">
 										<input type="password" class="form-control"
-											placeholder="Enter password" id="pwd-1" name="pwd-1">
+											placeholder="Enter password" id="pwd" name="pwd">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-sm-2" for="pwd-1">비밀번호<br>재확인:</label>
+									<div class="col-sm-10">
+										<input type="password" class="form-control"
+											placeholder="Enter password" id="repwd">
 									</div>
 								</div>
 								<div class="form-group">
@@ -110,31 +127,33 @@ map.relayout();
 								<div class="form-group">
 									<label class="control-label col-sm-2" for="gender">성별:</label>
 									<div class="col-sm-10">
-										남&nbsp;&nbsp;<input type="radio" name="gender" id="gender">
-										여&nbsp;&nbsp;<input type="radio" name="gender" id="gender">
+										남&nbsp;&nbsp;<input type="radio" name="gender">
+										여&nbsp;&nbsp;<input type="radio" name="gender">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-sm-2" >나이:</label>
+									<div class="col-sm-10">
+					<input type="number" name="age" class="form-control">
+									
 									</div>
 								</div>
 								<div class="form-group">
 								<label class="control-label col-sm-2" for="loc">주소:</label>
 								<div class="col-sm-10">
-								<input type="text" name="loc" id="loc" class="form-control">
+								<input type="text" name="loc" placeholder="이곳을 클릭해서 주소를 검색해주세요" id="loc" class="form-control" onclick="juso()" readonly="readonly">
 								</div>
 								</div>
 								
 
-								<div id="map" style="width:600px; height:350px; display: none;" ></div>
-								<div class="form-group">
-								<label class="control-label col-sm-2" for="key">희망키워드:</label>
-								<div id="keyword" class="col-sm-10" >
-								<input type="text" name="loc" id="key" class="form-control" style="width: 100px; margin-bottom: 10px;">
-								<button type="button"  class="btn" onclick="addkey()">추가하기</button>
-								</div>
-								<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=120b01867e29e09658100681cf1d0604&libraries=services"></script>
-								</div>
+							
 								<hr>
 								<div class="form-group">
 									<div class="col-sm-offset-2 col-sm-10">
-										<button type="submit" class="btn">확인</button>
+					<input type="submit" class="btn" value="확인">
+					<input type="reset" class="btn" value="초기화">
+					<input type="hidden" name="user_type" value="102">
+					
 									</div>
 								</div>
 							</form>

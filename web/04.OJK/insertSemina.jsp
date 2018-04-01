@@ -4,7 +4,9 @@
 <html>
 <head>
 <script type="text/javascript"
-	src="/prototype/common\resources\js\jquery-3.3.1.min.js"></script>
+	src="/prototype/common/resources/js/jquery-3.3.1.min.js"></script>
+	<script 
+	src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <style type="text/css">
 	.palel-primary
 	{
@@ -21,13 +23,46 @@
 	}
 </style>
 <script type="text/javascript">
+function juso(){ 
+
+	new daum.Postcode({
+	        oncomplete: function(data) {
+	            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+	            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+	            console.log(data.roadAddress);
+	            $("#loc").val(data.roadAddress)	
+	        }
+	    }).open();
+
+	
+	};
+
+var detailCount=1;
+var detailmax=5;
+function addDetail(){
+if(detailmax>detailCount){
+$("#detail").append("<div id='"+detailCount+"'class='form-group'><label for='disc' style='padding:auto; width:100px;'>상세정보 제목</label>	<div style='width: 99%;'><input type='text' id='phone' name='phone' class='form-control' style='width:150px; float:left'><input type='button' onclick='removeDetail(this)' id='"+detailCount+"' class='btn btn-primary center' value='정보삭제하기' style='margin-left:10px;'><input type='button' onclick='addDetail()' class='btn btn-primary center' value='정보 추가하기' style='margin-left:10px;'></div><label for='disc' style='margin-top:5px; width:100px; margin-left: -150px;'>상세정보</label><textarea class='form-control' rows='3'></textarea></div>");
+ detailCount++;
+ console.log(detailCount);
+	}else{
+		alert("너무 많습니다! 삭제해주세요");
+		
+	}
+	
+}
+function removeDetail(a){
+	$("#"+a.id).remove();
+	detailCount--;
+	console.log(detailCount);
+}
+
 $(document).ready(function(){
 	$flag=1;
 	$("#myName").focusout(function(){
 		if($(this).val()==''){
     		$(this).css("border-color", "#FF0000");
     			$('#submit').attr('disabled',true);
-    			 $("#error_name").text("* You have to enter your first name!");
+    			 $("#error_name").text("*강의 타이틀을 입력해주세요...");
     	}
     	else
     	{
@@ -47,14 +82,14 @@ $(document).ready(function(){
     	{
     		$(this).css("border-color", "#2eb82e");
     		$('#submit').attr('disabled',false);
-    		$("#error_lastname").text("");
+    		$("#error_lastname").text("* 입력해주세요...");
     	}
    });
     $("#dob").focusout(function(){
 		if($(this).val()==''){
     		$(this).css("border-color", "#FF0000");
     			$('#submit').attr('disabled',true);
-    			$("#error_dob").text("* You have to enter your Date of Birth!");
+    			$("#error_dob").text("*강의일을 설정해주세요...");
     	}
     	else
     	{
@@ -71,13 +106,13 @@ $(document).ready(function(){
 		if($(this).val()==''){
     		$(this).css("border-color", "#FF0000");
     			$('#submit').attr('disabled',true);
-    			$("#error_age").text("* You have to enter your Age!");
+    			$("#error_age").text("필수!");
     	}
     	else
     	{
     		$(this).css({"border-color":"#2eb82e"});
     		$('#submit').attr('disabled',false);
-    		$("#error_age").text("");
+    		$("#error_age").text("ㅇㅇㅇ");
 
     	}
     	});
@@ -86,13 +121,13 @@ $(document).ready(function(){
 		if($(this).val()==''){
     		$(this).css("border-color", "#FF0000");
     			$('#submit').attr('disabled',true);
-    			$("#error_phone").text("* You have to enter your Phone Number!");
+    			$("#error_phone").text("");
     	}
     	else if ($pho.length!=10)
     	{   
                 $(this).css("border-color", "#FF0000");
     			$('#submit').attr('disabled',true);
-    			$("#error_phone").text("* Lenght of Phone Number Should Be Ten");
+    			$("#error_phone").text("* 제목을 입력해주세요...");
     	}
     	else if(!$.isNumeric($pho))
     	{
@@ -103,7 +138,7 @@ $(document).ready(function(){
     	else{
     		$(this).css({"border-color":"#2eb82e"});
     		$('#submit').attr('disabled',false);
-    		$("#error_phone").text("");
+    		$("#error_phone").text("11");
     	}
 
 	});
@@ -125,7 +160,7 @@ $(document).ready(function(){
 			{
     		$("#dob").css("border-color", "#FF0000");
     			$('#submit').attr('disabled',true);
-    			 $("#error_dob").text("* You have to enter your Date of Birth!");
+    			 $("#error_dob").text("* Y22");
     	}
 			if($("#age" ).val()=='')
 			{
@@ -137,7 +172,7 @@ $(document).ready(function(){
 			{
     		$("#phone").css("border-color", "#FF0000");
     			$('#submit').attr('disabled',true);
-    			 $("#error_phone").text("* You have to enter your Phone Number!");
+    			 $("#error_phone").text("");
     	}
 		});
 });
@@ -192,22 +227,49 @@ $(document).ready(function(){
 						<input type="number" class="form-control" min="0">
 					<span id="error_gender" class="text-danger"></span>
 					</div>
+					
+					
 					<div class="form-group">
 						<label for="phone">강의 지역</label>
-						<input type="text" id="phone" name="phone" class="form-control" >
+						<input type="text" id="loc" name="loc" class="form-control" onclick="juso()" readonly="readonly" placeholder="클릭 해서 지역을 선택해주세요!">
 						<span id="error_phone" class="text-danger"></span>
 					</div>
+
+					<div id="detail">
 					<div class="form-group">
-						<label for="disc">Discription</label>
+						
+						<label for="disc" style="padding:auto; width:100px;">상세정보 제목</label>
+						<div style="width: 99%;">
+						<input type="text" id="phone" name="phone" class="form-control" style="width:150px; float:left">
+						
+						<input type="button" onclick="addDetail()" class="btn btn-primary center" value="정보 추가하기" style="margin-left:140px;">						
+						</div>
+						
+						<label for="disc" style="margin-top:5px; width:100px; margin-left: -150px;">상세정보</label>
 						<textarea class="form-control" rows="3"></textarea>
 					</div>
+					</div>
 					
+					<!-- 	이후 정보 추가시, 이것을 추가해서 넣는다. 
+					<div class="form-group">
+						<label for="disc" style="padding:auto; width:100px;">상세정보 제목</label>
+						<div style="width: 99%;">
+						<input type="text" id="phone" name="phone" class="form-control" style="width:150px; float:left">
+						
+						<input type="button" onclick="removeDetail()" class="btn btn-primary center" value="정보 삭제하기" style="margin-left:10px;">
+						<input type="button" onclick="addDetail()" class="btn btn-primary center" value="정보 추가하기" style="margin-left:10px;">
 					
+						</div>
+						
+						<label for="disc" style="margin-top:5px; width:100px; margin-left: -150px;  ">상세정보</label>
+						<textarea class="form-control" rows="3"></textarea>
+					</div>
+					  -->
 					
+					<input type="submit" value="강의생성" class="btn btn-primary center">
+					<input type="reset" value="초기화" class="btn btn-primary center">
+					<input type="button" onclick="history.back()" value="뒤로가기" class="btn btn-primary center">
 					
-					
-					<button id="submit" type="submit" value="submit" class="btn btn-primary center">Submit</button>
-			
 				</form>
 
 			</div>
