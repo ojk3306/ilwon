@@ -27,9 +27,10 @@
 		height:350px;
 		margin-bottom:0px;
 		border:1px solid black;
+		background:gray;
 	}
 	.ohw_footer {
-		background:olive;
+		background:gray;
 		height:100px;
 		width:100%;
 		min-width:800px;
@@ -88,7 +89,9 @@
 		<h3>여기는 세미나겠지.</h3>
 		<a><img alt="" src="common/resources/img/Main.jpg" width="80%" height="auto"></a>
 	</div>
-	<div class="ohw_div_con"></div>
+	<div class="ohw_div_con" align="center">
+	<h3>제휴 사이트 바로 가기</h3>	
+	</div>		
 	</div>
 
 <div class="ohw_footer">
