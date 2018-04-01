@@ -40,8 +40,8 @@
      
       <ul class="nav navbar-nav navbar-right" style = "overflow : hidden;">
         <li><a href="/prototype/02.KSH,LTH/login.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
-      	<li><form class="form-inline mt-2 mt-md-0">
-         <input class="form-control mr-sm-2" type="text" placeholder="Search Tag" aria-label="Search" style="margin-top:7px;">
+      	<li><form class="form-inline mt-2 mt-md-0" action="<%=request.getContextPath()%>/Insertlog" method="post">
+         <input class="form-control mr-sm-2" type="text" name="seachcontent" placeholder="Search Tag" aria-label="Search" style="margin-top:7px;">
 		 <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin-top:7px;">Search</button>
           </form>
          </li>

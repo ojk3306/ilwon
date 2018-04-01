@@ -1,4 +1,4 @@
-package seach_log.contorller;
+package seach_log.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
