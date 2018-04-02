@@ -145,7 +145,10 @@
 			$('.form-holder').addClass('validate-error');
 		});
 	</script>
-  <%@include file="/common/footer.jsp" %>
+	
+	<div>
+		<%@include file="/common/footer.jsp" %>	
+	</div>
 	
 </body>
 </html>
