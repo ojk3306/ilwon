@@ -25,26 +25,15 @@
  
     <script src="/prototype/common\resources\js/select2.js"></script>
    
-
-    <script>
-    function search(){ 
-    	
-    	location.href="/prototype/insertlog?seachcontent="+$('#select2-chosen-1').text();
-        	
-    	//후에 섹션의 로그인유저의 번호까지 넣기.
-    }    
-
     <script type="text/javascript">
+    
     function search(){
     location.href="/prototype/insertlog?seachcontent="+$('#select2-chosen-1').text();
     
 	//후에 섹션의 로그인유저의 번호까지 넣기.
     }
     
-
-    
      $(document).ready(function () {
-
             
         	$("#ee").select2();        	
         	
@@ -62,7 +51,7 @@
 					//문자열을 다시 변경
 					//json 객체로 파싱함. 
 					var json= JSON.parse(jsonStr);	
->>>>>>> branch 'master' of https://github.com/ojk3306/ilwon.git
+
 					
 					for(var i in json.list){
 						
@@ -79,7 +68,8 @@
 				$("#select2-chosen-1").html($("#s2id_autogen1_search").val());
 				//select2-results에 li로 나열.
 			}
-		})	
+		});
+		
     	 $("#ee").select2();
 
             $("#s2id_autogen1_search").keyup(function(){
@@ -109,30 +99,23 @@
 				     complete: function(){
 					$("#select2-chosen-1").html($("#s2id_autogen1_search").val());
 					//select2-results에 li로 나열.
-<<<<<<< HEAD
+
 		    	
 				}
 			});        	
 		});       
 	});
-=======
-				}
-			})	
-		
-           
-           
-          
-		        });
-            	
-    })
->>>>>>> branch 'master' of https://github.com/ojk3306/ilwon.git
-        
+
+			}
+		})
+	});
+     
     </script>
   <script type="text/javascript">
   	function movePage(id) {  		
   		location.href = "/prototype/03.OHW/views/find_teacher.jsp?id=" + id; 		
   	}
-<<<<<<< HEAD
+
   </script>
   
   <style type="text/css">
@@ -141,11 +124,8 @@
   		padding:0px;
   		height:40px;
   	}
-  </style>
-=======
+  </style>   
 
-    </script>
->>>>>>> branch 'master' of https://github.com/ojk3306/ilwon.git
 </head>
 <body >
 <nav class="navbar navbar-inverse">
