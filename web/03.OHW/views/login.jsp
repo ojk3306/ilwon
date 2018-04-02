@@ -127,14 +127,14 @@
 </div>
 
 <div class = "container">
-	<form class = "form-signin" action = "login">
+	<form class = "form-signin" action = "login.sm">
 		<h2 class="form-signin-heading">로그인</h2>
 		
 		<label for="inputEmail" class="sr-only">ID</label>
-		<input type="email" id="inputEmail" class="form-control" placeholder="ID" required autofocus>
+		<input type="email" id="inputEmail" name = "id" class="form-control" placeholder="ID" required autofocus>
 		
 		<label for="inputPassword" class="sr-only">Password</label>
-		<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+		<input type="password" id="inputPassword" name = "pwd" class="form-control" placeholder="Password" required>
 		
 		<div class="checkbox">		
 		<label>

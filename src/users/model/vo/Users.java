@@ -3,7 +3,7 @@ package users.model.vo;
 import java.io.Serializable;
 import java.sql.Date;
 
-public class User implements Serializable {	
+public class Users implements Serializable {	
 	
 	private static final long serialVersionUID = 1000L;
 	private int userNo;
@@ -23,11 +23,11 @@ public class User implements Serializable {
 	private int userLessonmax;
 	private Date userEnrollDate;
 	
-	public User() {
+	public Users() {
 		
 	}
 	
-	public User(int userNo, int userTypeNo, String userEmail, String userPassword, String userName, String userGender,
+	public Users(int userNo, int userTypeNo, String userEmail, String userPassword, String userName, String userGender,
 			int userAge, String userLoc, String userPhone, String userOriginalPhoto, String userRenamePhoto,
 			int userKeywordCount, String userLoginable, String userExeable, int userLessonmax, Date userEnrollDate) {
 		

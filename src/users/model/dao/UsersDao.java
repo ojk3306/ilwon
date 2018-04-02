@@ -4,12 +4,19 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import static common.JDBCTemplate.*;
-import users.model.vo.User;
+import users.model.vo.Users;
 
 public class UsersDao {
 	
 	
-	public UsersDao() {}
+	public UsersDao() {
+		
+	}
+	
+	public Users loginCheck(Connection con, String userId, String userPwd) {
+		
+		return null;
+	}
 
 	public int checkEmail(Connection con, String email) {
 		int result = 0;
@@ -33,7 +40,7 @@ public class UsersDao {
 		return result;
 	}
 
-	public int insertUsers(Connection con, User user) {
+	public int insertUsers(Connection con, Users user) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String sql = "insert into users values((SELECT max(user_no) from users)+1,?,?,?,?,?,?,?,?,'','','5','Y','Y','3',sysdate)";
@@ -62,6 +69,8 @@ public class UsersDao {
 		
 		
 	}
+
+	
 	
 	
 	
