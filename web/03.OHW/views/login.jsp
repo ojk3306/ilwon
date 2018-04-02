@@ -127,7 +127,7 @@
 </div>
 
 <div class = "container">
-	<form class = "form-signin" action = "login.sm">
+	<form class = "form-signin" action = "../../login.sm">
 		<h2 class="form-signin-heading">로그인</h2>
 		
 		<label for="inputEmail" class="sr-only">ID</label>
