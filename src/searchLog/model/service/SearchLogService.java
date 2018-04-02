@@ -29,7 +29,6 @@ public class SearchLogService {
 		Connection con = getConnection();
 		ArrayList<String> al = new SearchLogDao().Seachlog(con,sl);
 		close(con);
-		
 		return al;
 	}
 

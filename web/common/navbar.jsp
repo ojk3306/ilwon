@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%
-    
-    %>
+    pageEncoding="UTF-8" %>
+ <%@ page import="users.model.vo.Users"  %>   
+    <% Users loginUser = (Users)session.getAttribute("loginUser"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +21,7 @@
  
     <script src="/prototype/common\resources\js/select2.js"></script>
    
-    <script>
+    <script type="text/javascript">
     function search(){
     location.href="/prototype/insertlog?seachcontent="+$('#select2-chosen-1').text();
     
@@ -31,21 +30,44 @@
     
     
      $(document).ready(function () {
+    	 $.ajax({
+				url:"<%=request.getContextPath()%>/seach",
+				data:{word:$("a").val()},//추가로 유저 번호도 보낸다.
+				type:"get",
+				dataType:"json",
+				success: function(data){
+					$("#ee").html("");
+					var jsonStr=JSON.stringify(data);
+					//문자열을 다시 변경
+					//json 객체로 파싱함. 
+					var json= JSON.parse(jsonStr);	
+					
+					for(var i in json.list){
+						
+					console.log(json.list[i]);
+				    
+					$("#ee").html($("#ee").html()+'<option>'+json.list[i]+'</option>')
+					
+					};
+				},error:function(a,b,c){
+					
+					console.log(b+c)
+				},
+			     complete: function(){
+				$("#select2-chosen-1").html($("#s2id_autogen1_search").val());
+				//select2-results에 li로 나열.
+			}
+		})	
     	 $("#ee").select2();
 
             $("#s2id_autogen1_search").keyup(function(){
-            	
-        	
-			         $.ajax({
-					
+                    $.ajax({
 					url:"<%=request.getContextPath()%>/seach",
-					
 					data:{word:$("#s2id_autogen1_search").val()},//추가로 유저 번호도 보낸다.
 					type:"get",
 					dataType:"json",
 					success: function(data){
 						$("#ee").html("");
-						
 						var jsonStr=JSON.stringify(data);
 						//문자열을 다시 변경
 						//json 객체로 파싱함. 
@@ -58,24 +80,22 @@
 						$("#ee").html($("#ee").html()+'<option>'+json.list[i]+'</option>')
 						
 						};
-						
-						
-					
 					},error:function(a,b,c){
 						
 						console.log(b+c)
-						
 					},
-				
-					complete: function(){
+				     complete: function(){
 					$("#select2-chosen-1").html($("#s2id_autogen1_search").val());
 					//select2-results에 li로 나열.
-					
-					}
+				}
 			})	
-})
-       
-        });
+		
+           
+           
+          
+		        });
+            	
+    })
         
     </script>
   <script type="text/javascript">
@@ -83,34 +103,7 @@
   		location.href = "/prototype/03.OHW/views/find_teacher.jsp?id=" + id; 		
   	}
 
- $(function(){
-	 $("#seachcontent").on("keyup", "#sch_stx", function(){
-			var stx = $(this).val(); /* 입력한 검색어 */
-			$(this).autocomplete({
-				source:function(request, response) {
-					$.getJSON(g5_url+"/_search_popular.php", {
-						/* _search_popular.php 파일로 넘길 변수값을 이곳에 작성하시면 됩니다. GET 으로 넘어갑니다. */
-						/* 콤마로 구분하시면 되요 ex) sfl:"wr_subject", stx:stx, ........ */
-						stx : stx
-					}, response);
-				},
-				
-				
-				minLength:2, /*최소 검색 글자수*/
-				delay: 150,  /* 검색어 입력후 표시되는 시간 - 숫자가 클수록 느리게 출력 */
-				focus:function(event, ui) {
-					/* 검색을 통하여 넘어온 값을 여기서 처리 */
-					console.log(ui.item.value); /* 콘솔 확인용이므로 삭제하거나 주석처리 하여도 됩니다. */
-				},
-				close:function(event, ui) {
-
-				}
-			})
-		});
-		// 오토컴플리트 종료
- });
-
-  </script>
+    </script>
 </head>
 <body >
 <nav class="navbar navbar-inverse">
