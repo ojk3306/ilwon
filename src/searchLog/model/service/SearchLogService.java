@@ -25,6 +25,14 @@ public class SearchLogService {
 		return result;
 	}
 
+	public ArrayList<String> Seachlog(SearchLog sl) {
+		Connection con = getConnection();
+		ArrayList<String> al = new SearchLogDao().Seachlog(con,sl);
+		close(con);
+		
+		return al;
+	}
+
 }
 
 
