@@ -35,7 +35,7 @@ public class InsertSeach_Log extends HttpServlet {
 		request.setCharacterEncoding("utf-8");		
 		SearchLog sl = new SearchLog();
 		String keyword=request.getParameter("seachcontent");
-		sl.setSearchContent("keyword="+keyword);
+		sl.setSearchContent(keyword);
 		
 		
 		int result=new SearchLogService().insertlog(sl);

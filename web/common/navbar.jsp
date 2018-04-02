@@ -25,10 +25,9 @@
     <script>
     function search(){
     
-    	console.log($('.select2-chosen').val());
-    	console.log($('#select2-chosen-1').val())
+    
     	
-    	//location.href="/prototype/insertlog?seachcontent="+$('#select2-chosen-1').val();
+    	location.href="/prototype/insertlog?seachcontent="+$('#select2-chosen-1').text();
     
     	
     	//후에 섹션의 로그인유저의 번호까지 넣기.
@@ -49,12 +48,15 @@
 					type:"get",
 					dataType:"json",
 					success: function(data){
-						$("#p6").html($("#p6").text()+"<Br>"+data.userid+","+data.userpwd+","+decodeURIComponent(data.username)+","+data.age+","+data.email+","+data.phone)
-				},
-				complete: function(){
+					$("#p6").html($("#p6").text()+"<Br>"+data.userid+","+data.userpwd+","+decodeURIComponent(data.username)+","+data.age+","+data.email+","+data.phone)
+				
+					},
+				
+					complete: function(){
 					$("#select2-chosen-1").html($("#s2id_autogen1_search").val());
 					//select2-results에 li로 나열.
-		    	}
+		    	
+					}
 			})		
 				
 				
