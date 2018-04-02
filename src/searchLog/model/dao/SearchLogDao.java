@@ -52,9 +52,9 @@ public class SearchLogDao {
 		String query="";
 		
 		if(sl.getUserNo() == null) {
-			query="select SEACH_CONTENT , count(SEACH_CONTENT) from SEARCH_LOG where SEACH_CONTENT like ? group by SEACH_CONTENT";
+		query="select SEACH_CONTENT , count(SEACH_CONTENT) from SEARCH_LOG where SEACH_CONTENT like ? group by SEACH_CONTENT order by count(SEACH_CONTENT) desc";
 		}else {
-		//	query="select SEACH_CONTENT , count(SEACH_CONTENT) from SEARCH_LOG where SEACH_CONTENT like '%a%' and user_no = 3 group by SEACH_CONTENT";
+		//query="select SEACH_CONTENT , count(SEACH_CONTENT) from SEARCH_LOG where SEACH_CONTENT like '%a%' and user_no = 3 group by SEACH_CONTENT order by count(SEACH_CONTENT) desc";
 		}
 		try {
 		pstmt=con.prepareStatement(query);

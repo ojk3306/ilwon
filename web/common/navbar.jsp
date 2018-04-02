@@ -24,45 +24,55 @@
    
     <script>
     function search(){
+    location.href="/prototype/insertlog?seachcontent="+$('#select2-chosen-1').text();
     
-    
-    	
-    	location.href="/prototype/insertlog?seachcontent="+$('#select2-chosen-1').text();
-    
-    	
-    	//후에 섹션의 로그인유저의 번호까지 넣기.
+	//후에 섹션의 로그인유저의 번호까지 넣기.
     }
     
     
      $(document).ready(function () {
-            
-        	$("#ee").select2();
-         	
+    	 $("#ee").select2();
+
+            $("#s2id_autogen1_search").keyup(function(){
+            	
         	
-        	
-        	$("#s2id_autogen1_search").keyup(function(){
-			$.ajax({
+			         $.ajax({
 					
 					url:"<%=request.getContextPath()%>/seach",
+					
 					data:{word:$("#s2id_autogen1_search").val()},//추가로 유저 번호도 보낸다.
 					type:"get",
 					dataType:"json",
 					success: function(data){
-					$("#p6").html($("#p6").text()+"<Br>"+data.userid+","+data.userpwd+","+decodeURIComponent(data.username)+","+data.age+","+data.email+","+data.phone)
-				
+						$("#ee").html("");
+						
+						var jsonStr=JSON.stringify(data);
+						//문자열을 다시 변경
+						//json 객체로 파싱함. 
+						var json= JSON.parse(jsonStr);	
+						
+						for(var i in json.list){
+							
+						console.log(json.list[i]);
+					    
+						$("#ee").html($("#ee").html()+'<option>'+json.list[i]+'</option>')
+						
+						};
+						
+						
+					
+					},error:function(a,b,c){
+						
+						console.log(b+c)
+						
 					},
 				
 					complete: function(){
 					$("#select2-chosen-1").html($("#s2id_autogen1_search").val());
 					//select2-results에 li로 나열.
-		    	
+					
 					}
-			})		
-				
-				
-			
-				
-         	
+			})	
 })
        
         });
