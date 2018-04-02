@@ -100,7 +100,7 @@ function juso(){
 					<div style="margin-top: 50px;">
 						<div style="width: 600px;">
 							<hr>
-							<form class="form-horizontal" name="insertuser" action="/prototype/Insertuser" method="post">
+							<form class="form-horizontal" name="insertuser" action="/prototype/Insertuser.sm" method="post">
 								<div class="form-group">
 									<label class="control-label col-sm-2" for="email">이메일:</label>
 									<div class="col-sm-10">

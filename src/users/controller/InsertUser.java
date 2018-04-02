@@ -15,7 +15,7 @@ import users.model.vo.User;
 /**
  * Servlet implementation class InsertUserInfo
  */
-@WebServlet("/Insertuser")
+@WebServlet("/Insertuser.sm")
 public class InsertUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
