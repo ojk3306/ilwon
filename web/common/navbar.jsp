@@ -1,34 +1,54 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+    
+    %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>MenuBar</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/prototype/common/resources/css/bootstrap.css">
-  <script src="/prototype/common/resources/js/jquery-3.3.1.min.js"></script>
-  <script src="/prototype/common/resources/js/bootstrap.js"></script>
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="http://code.jquery.com/jquery.min.js"></script>
  
+ <link rel="stylesheet" href="/prototype/common/resources/css/bootstrap.css">
+ 
+ <script src="/prototype/common/resources/js/jquery-3.3.1.min.js"></script>
+ 
+ <script src="/prototype/common/resources/js/bootstrap.js"></script>
+ 
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
  <link href="/prototype/common\resources\css/select2.css" rel="stylesheet"/>
  
     <script src="/prototype/common\resources\js/select2.js"></script>
-    
-    
-    
+   
     <script>
     
         $(document).ready(function () {
             
         	$("#ee").select2();
          	$("#s2id_autogen1_search").keyup(function(){
-         	alert("dd");	
-         		
-         	})
+				$.ajax({
+					
+					url:"<%=request.getContextPath()%>/seach",
+					data:{word:$("#s2id_autogen1_search").val()},//추가로 유저 번호도 보낸다.
+					type:"get",
+					dataType:"json",
+					success: function(data){
+						$("#p6").html($("#p6").text()+"<Br>"+data.userid+","+data.userpwd+","+decodeURIComponent(data.username)+","+data.age+","+data.email+","+data.phone)
+					
+					
+					}
+					
+					
+				})		
+				
+				
+			
+				$("#ee").html("<option value='#'>테스트1</option><option value='#'>테스트2</option><option value='#'>테스트3</option>" )
+         	
+         	
+})
        
         });
         
@@ -54,7 +74,7 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">은밀한 과외란...</a></li>
         <li><a href="/prototype/03.OHW/views/find_teacher.jsp">선생 찾기</a></li>
-        <li><a href="/prototype/03.OHW/views/find_stu.jsp">배우고 싶어요</a></li>
+        <li><a href="/prototype/03.OHW/views/find_stu.jsp">학생 찾기</a></li>
         <li><a href="/prototype/01.CJS/semina.jsp">세미나  찾기</a></li>
         <li><a href="/prototype/01.CJS/reportForm.jsp">신고하기</a></li>
         <li><a href="/prototype/04.OJK/report.jsp">건의하기</a></li>
@@ -68,9 +88,12 @@
          
       
 <select id="ee" name="seachcontent" aria-label="Search" style="margin-top:7px;">
-  
-    <option value="">양현석</option>
-    <option value="">이주노</option>
+ 	
+ 	
+ 	
+
+    <option value="#">여기에 값을 입력하세요</option>
+ 
     
     
 </select>		 
