@@ -13,8 +13,6 @@ import users.model.service.UsersService;
 
 import users.model.vo.Users;
 
-import users.model.vo.Users;
-
 /**
  * Servlet implementation class InsertUserInfo
  */
