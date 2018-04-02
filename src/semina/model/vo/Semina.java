@@ -8,39 +8,41 @@ public class Semina  implements Serializable {
 	private static final long serialVersionUID = 3000L;
 	private int seminaNo;
 	private int categoryNo;
-	private int userNo;
-	private int userTypeNo;
+	private int userNo;	
 	private String seminaTitle;
 	private String seminaLocation;
 	private int seminaPrice;
 	private int seminaLevel;
 	private Date seminaStartDate;
-	private String seminaContop;
-	private String seminaConbot;
+	private String seminaContent1;
+	private String seminaContent2;
+	private String seminaContent3;
+	private String seminaContent4;	
 	private Date seminaEndDate;
 	private int seminaMin;
 	private int seminaNow;
 	private int seminaMax;
 	
 	public Semina() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
-	public Semina(int seminaNo, int categoryNo, int userNo, int userTypeNo, String seminaTitle, String seminaLocation,
-			int seminaPrice, int seminaLevel, Date seminaStartDate, String seminaContop, String seminaConbot,
-			Date seminaEndDate, int seminaMin, int seminaNow, int seminaMax) {
+	public Semina(int seminaNo, int categoryNo, int userNo, String seminaTitle, String seminaLocation, int seminaPrice,
+			int seminaLevel, Date seminaStartDate, String seminaContent1, String seminaContent2, String seminaContent3,
+			String seminaContent4, Date seminaEndDate, int seminaMin, int seminaNow, int seminaMax) {
 		super();
 		this.seminaNo = seminaNo;
 		this.categoryNo = categoryNo;
 		this.userNo = userNo;
-		this.userTypeNo = userTypeNo;
 		this.seminaTitle = seminaTitle;
 		this.seminaLocation = seminaLocation;
 		this.seminaPrice = seminaPrice;
 		this.seminaLevel = seminaLevel;
 		this.seminaStartDate = seminaStartDate;
-		this.seminaContop = seminaContop;
-		this.seminaConbot = seminaConbot;
+		this.seminaContent1 = seminaContent1;
+		this.seminaContent2 = seminaContent2;
+		this.seminaContent3 = seminaContent3;
+		this.seminaContent4 = seminaContent4;
 		this.seminaEndDate = seminaEndDate;
 		this.seminaMin = seminaMin;
 		this.seminaNow = seminaNow;
@@ -69,14 +71,6 @@ public class Semina  implements Serializable {
 
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
-	}
-
-	public int getUserTypeNo() {
-		return userTypeNo;
-	}
-
-	public void setUserTypeNo(int userTypeNo) {
-		this.userTypeNo = userTypeNo;
 	}
 
 	public String getSeminaTitle() {
@@ -119,20 +113,36 @@ public class Semina  implements Serializable {
 		this.seminaStartDate = seminaStartDate;
 	}
 
-	public String getSeminaContop() {
-		return seminaContop;
+	public String getSeminaContent1() {
+		return seminaContent1;
 	}
 
-	public void setSeminaContop(String seminaContop) {
-		this.seminaContop = seminaContop;
+	public void setSeminaContent1(String seminaContent1) {
+		this.seminaContent1 = seminaContent1;
 	}
 
-	public String getSeminaConbot() {
-		return seminaConbot;
+	public String getSeminaContent2() {
+		return seminaContent2;
 	}
 
-	public void setSeminaConbot(String seminaConbot) {
-		this.seminaConbot = seminaConbot;
+	public void setSeminaContent2(String seminaContent2) {
+		this.seminaContent2 = seminaContent2;
+	}
+
+	public String getSeminaContent3() {
+		return seminaContent3;
+	}
+
+	public void setSeminaContent3(String seminaContent3) {
+		this.seminaContent3 = seminaContent3;
+	}
+
+	public String getSeminaContent4() {
+		return seminaContent4;
+	}
+
+	public void setSeminaContent4(String seminaContent4) {
+		this.seminaContent4 = seminaContent4;
 	}
 
 	public Date getSeminaEndDate() {
@@ -170,27 +180,14 @@ public class Semina  implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+
 	@Override
 	public String toString() {
-		
-		return 
-		this.seminaNo + ", " + 
-		this.categoryNo + ", " + 
-		this.userNo + ", " + 
-		this.userTypeNo + ", " + 
-		this.seminaTitle + ", " + 
-		this.seminaLocation + ", " + 
-		this.seminaPrice + ", " + 
-		this.seminaLevel + ", " + 
-		this.seminaStartDate + ", " + 
-		this.seminaContop + ", " + 
-		this.seminaConbot + ", " + 
-		this.seminaEndDate + ", " + 
-		this.seminaMin + ", " + 
-		this.seminaNow + ", " + 
-		this.seminaMax;
-		
+		return "Semina [seminaNo=" + seminaNo + ", categoryNo=" + categoryNo + ", userNo=" + userNo + ", seminaTitle="
+				+ seminaTitle + ", seminaLocation=" + seminaLocation + ", seminaPrice=" + seminaPrice + ", seminaLevel="
+				+ seminaLevel + ", seminaStartDate=" + seminaStartDate + ", seminaContent1=" + seminaContent1
+				+ ", seminaContent2=" + seminaContent2 + ", seminaContent3=" + seminaContent3 + ", seminaContent4="
+				+ seminaContent4 + ", seminaEndDate=" + seminaEndDate + ", seminaMin=" + seminaMin + ", seminaNow="
+				+ seminaNow + ", seminaMax=" + seminaMax + "]";
 	}
-
 }

@@ -13,22 +13,24 @@ public class User implements Serializable {
 	private String userName;
 	private String userGender;
 	private int userAge;
+	private String userLoc;
 	private String userPhone;
 	private String userOriginalPhoto;
 	private String userRenamePhoto;
 	private int userKeywordCount;
 	private String userLoginable;
 	private String userExeable;
-	private int userClassmax;
+	private int userLessonmax;
 	private Date userEnrollDate;
 	
 	public User() {
 		
 	}
-
+	
 	public User(int userNo, int userTypeNo, String userEmail, String userPassword, String userName, String userGender,
-			int userAge, String userPhone, String userOriginalPhoto, String userRenamePhoto, int userKeywordCount,
-			String userLoginable, String userExeable, int userClassmax, Date userEnrollDate) {
+			int userAge, String userLoc, String userPhone, String userOriginalPhoto, String userRenamePhoto,
+			int userKeywordCount, String userLoginable, String userExeable, int userLessonmax, Date userEnrollDate) {
+		
 		super();
 		this.userNo = userNo;
 		this.userTypeNo = userTypeNo;
@@ -37,14 +39,16 @@ public class User implements Serializable {
 		this.userName = userName;
 		this.userGender = userGender;
 		this.userAge = userAge;
+		this.userLoc = userLoc;
 		this.userPhone = userPhone;
 		this.userOriginalPhoto = userOriginalPhoto;
 		this.userRenamePhoto = userRenamePhoto;
 		this.userKeywordCount = userKeywordCount;
 		this.userLoginable = userLoginable;
 		this.userExeable = userExeable;
-		this.userClassmax = userClassmax;
+		this.userLessonmax = userLessonmax;
 		this.userEnrollDate = userEnrollDate;
+		
 	}
 
 	public int getUserNo() {
@@ -101,6 +105,14 @@ public class User implements Serializable {
 
 	public void setUserAge(int userAge) {
 		this.userAge = userAge;
+	}	
+
+	public String getUserLoc() {
+		return userLoc;
+	}
+
+	public void setUserLoc(String userLoc) {
+		this.userLoc = userLoc;
 	}
 
 	public String getUserPhone() {
@@ -151,12 +163,12 @@ public class User implements Serializable {
 		this.userExeable = userExeable;
 	}
 
-	public int getUserClassmax() {
-		return userClassmax;
+	public int getUserLessonmax() {
+		return userLessonmax;
 	}
 
-	public void setUserClassmax(int userClassmax) {
-		this.userClassmax = userClassmax;
+	public void setUserLessonmax(int userLessonmax) {
+		this.userLessonmax = userLessonmax;
 	}
 
 	public Date getUserEnrollDate() {
@@ -170,26 +182,15 @@ public class User implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+
 	@Override
 	public String toString() {
-		
-		return 
-		this.userNo + ", " + 
-		this.userTypeNo + ", " + 
-		this.userEmail + ", " + 
-		this.userPassword + ", " + 
-		this.userName + ", " + 
-		this.userGender + ", " + 
-		this.userAge + ", " + 
-		this.userPhone + ", " + 
-		this.userOriginalPhoto + ", " + 
-		this.userRenamePhoto + ", " + 
-		this.userKeywordCount + ", " + 
-		this.userLoginable + ", " + 
-		this.userExeable + ", " + 
-		this.userClassmax + ", " + 
-		this.userEnrollDate;
-		
-	}
+		return "User [userNo=" + userNo + ", userTypeNo=" + userTypeNo + ", userEmail=" + userEmail + ", userPassword="
+				+ userPassword + ", userName=" + userName + ", userGender=" + userGender + ", userAge=" + userAge
+				+ ", userLoc=" + userLoc + ", userPhone=" + userPhone + ", userOriginalPhoto=" + userOriginalPhoto
+				+ ", userRenamePhoto=" + userRenamePhoto + ", userKeywordCount=" + userKeywordCount + ", userLoginable="
+				+ userLoginable + ", userExeable=" + userExeable + ", userLessonmax=" + userLessonmax
+				+ ", userEnrollDate=" + userEnrollDate + "]";
+	}	
+	
 }

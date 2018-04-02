@@ -10,8 +10,8 @@ public class Lesson implements Serializable {
 	private int levelNo;
 	private int stateNo;
 	private int categoryNo;
-	private int userNo;
-	private int userTypeNo;
+	private int userNo1;
+	private int userNo2;
 	private String lessonTitle;
 	private String lessonLocation;
 	private int lessonRadius;
@@ -22,21 +22,23 @@ public class Lesson implements Serializable {
 	private String lessonConmid;
 	private String lessonConbot;
 	private String lessonKeyword;
+	private String lessonType;
+	
 	
 	public Lesson() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
-	public Lesson(int lessonNo, int levelNo, int stateNo, int categoryNo, int userNo, int userTypeNo,
-			String lessonTitle, String lessonLocation, int lessonRadius, int lessonPrice, int lessonCount,
-			Date lessonDate, String lessonContop, String lessonConmid, String lessonConbot, String lessonKeyword) {
+	public Lesson(int lessonNo, int levelNo, int stateNo, int categoryNo, int userNo1, int userNo2, String lessonTitle,
+			String lessonLocation, int lessonRadius, int lessonPrice, int lessonCount, Date lessonDate,
+			String lessonContop, String lessonConmid, String lessonConbot, String lessonKeyword, String lessonType) {
 		super();
 		this.lessonNo = lessonNo;
 		this.levelNo = levelNo;
 		this.stateNo = stateNo;
 		this.categoryNo = categoryNo;
-		this.userNo = userNo;
-		this.userTypeNo = userTypeNo;
+		this.userNo1 = userNo1;
+		this.userNo2 = userNo2;
 		this.lessonTitle = lessonTitle;
 		this.lessonLocation = lessonLocation;
 		this.lessonRadius = lessonRadius;
@@ -47,6 +49,7 @@ public class Lesson implements Serializable {
 		this.lessonConmid = lessonConmid;
 		this.lessonConbot = lessonConbot;
 		this.lessonKeyword = lessonKeyword;
+		this.lessonType = lessonType;
 	}
 
 	public int getLessonNo() {
@@ -81,20 +84,20 @@ public class Lesson implements Serializable {
 		this.categoryNo = categoryNo;
 	}
 
-	public int getUserNo() {
-		return userNo;
+	public int getUserNo1() {
+		return userNo1;
 	}
 
-	public void setUserNo(int userNo) {
-		this.userNo = userNo;
+	public void setUserNo1(int userNo1) {
+		this.userNo1 = userNo1;
 	}
 
-	public int getUserTypeNo() {
-		return userTypeNo;
+	public int getUserNo2() {
+		return userNo2;
 	}
 
-	public void setUserTypeNo(int userTypeNo) {
-		this.userTypeNo = userTypeNo;
+	public void setUserNo2(int userNo2) {
+		this.userNo2 = userNo2;
 	}
 
 	public String getLessonTitle() {
@@ -177,30 +180,25 @@ public class Lesson implements Serializable {
 		this.lessonKeyword = lessonKeyword;
 	}
 
+	public String getLessonType() {
+		return lessonType;
+	}
+
+	public void setLessonType(String lessonType) {
+		this.lessonType = lessonType;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+
 	@Override
 	public String toString() {
-		
-		return 
-		this.lessonNo + ", " + 
-		this.levelNo + ", " + 
-		this.stateNo + ", " + 
-		this.categoryNo + ", " + 
-		this.userNo + ", " + 
-		this.userTypeNo + ", " + 
-		this.lessonTitle + ", " + 
-		this.lessonLocation + ", " + 
-		this.lessonRadius + ", " + 
-		this.lessonPrice + ", " + 
-		this.lessonCount + ", " + 
-		this.lessonDate + ", " + 
-		this.lessonContop + ", " + 
-		this.lessonConmid + ", " + 
-		this.lessonConbot + ", " + 
-		this.lessonKeyword;
-	}
-	
+		return "Lesson [lessonNo=" + lessonNo + ", levelNo=" + levelNo + ", stateNo=" + stateNo + ", categoryNo="
+				+ categoryNo + ", userNo1=" + userNo1 + ", userNo2=" + userNo2 + ", lessonTitle=" + lessonTitle
+				+ ", lessonLocation=" + lessonLocation + ", lessonRadius=" + lessonRadius + ", lessonPrice="
+				+ lessonPrice + ", lessonCount=" + lessonCount + ", lessonDate=" + lessonDate + ", lessonContop="
+				+ lessonContop + ", lessonConmid=" + lessonConmid + ", lessonConbot=" + lessonConbot
+				+ ", lessonKeyword=" + lessonKeyword + ", lessonType=" + lessonType + "]";
+	}	
 }

@@ -6,21 +6,19 @@ import java.sql.Date;
 public class SearchLog implements Serializable {
 	private static final long serialVersionUID = 4000L;
 	private int searchNo;
-	private int userNo;
-	private int userTypeNo;
+	private int userNo;	
 	private String searchContent;
 	private int searchCount;
 	private Date searchDate;
 	
 	public SearchLog() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
-	public SearchLog(int searchNo, int userNo, int userTypeNo, String searchContent, int searchCount, Date searchDate) {
+	public SearchLog(int searchNo, int userNo, String searchContent, int searchCount, Date searchDate) {
 		super();
 		this.searchNo = searchNo;
-		this.userNo = userNo;
-		this.userTypeNo = userTypeNo;
+		this.userNo = userNo;		
 		this.searchContent = searchContent;
 		this.searchCount = searchCount;
 		this.searchDate = searchDate;
@@ -40,15 +38,7 @@ public class SearchLog implements Serializable {
 
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
-	}
-
-	public int getUserTypeNo() {
-		return userTypeNo;
-	}
-
-	public void setUserTypeNo(int userTypeNo) {
-		this.userTypeNo = userTypeNo;
-	}
+	}	
 
 	public String getSearchContent() {
 		return searchContent;
@@ -77,17 +67,10 @@ public class SearchLog implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+
 	@Override
 	public String toString() {
-		
-		return 
-		this.searchNo + ", " + 
-		this.userNo + ", " + 
-		this.userTypeNo + ", " + 
-		this.searchContent + ", " + 
-		this.searchCount + ", " + 
-		this.searchDate;
-		
+		return "SearchLog [searchNo=" + searchNo + ", userNo=" + userNo + ", searchContent=" + searchContent
+				+ ", searchCount=" + searchCount + ", searchDate=" + searchDate + "]";
 	}	
 }

@@ -7,8 +7,7 @@ public class Report implements Serializable {
 
 	private static final long serialVersionUID = 7000L;
 	private int reportNo;
-	private int userNo;
-	private int userTypeNo;
+	private int userNo;	
 	private String reportTitle;
 	private Date reportDate;
 	private String reportContent;
@@ -19,12 +18,11 @@ public class Report implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Report(int reportNo, int userNo, int userTypeNo, String reportTitle, Date reportDate, String reportContent,
+	public Report(int reportNo, int userNo, String reportTitle, Date reportDate, String reportContent,
 			String reportOriginalFileName, String reportRenameFileName) {
 		super();
 		this.reportNo = reportNo;
-		this.userNo = userNo;
-		this.userTypeNo = userTypeNo;
+		this.userNo = userNo;		
 		this.reportTitle = reportTitle;
 		this.reportDate = reportDate;
 		this.reportContent = reportContent;
@@ -46,15 +44,7 @@ public class Report implements Serializable {
 
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
-	}
-
-	public int getUserTypeNo() {
-		return userTypeNo;
-	}
-
-	public void setUserTypeNo(int userTypeNo) {
-		this.userTypeNo = userTypeNo;
-	}
+	}	
 
 	public String getReportTitle() {
 		return reportTitle;
@@ -102,7 +92,7 @@ public class Report implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Report [reportNo=" + reportNo + ", userNo=" + userNo + ", userTypeNo=" + userTypeNo + ", reportTitle="
+		return "Report [reportNo=" + reportNo + ", userNo=" + userNo + ", reportTitle="
 				+ reportTitle + ", reportDate=" + reportDate + ", reportContent=" + reportContent
 				+ ", reportOriginalFileName=" + reportOriginalFileName + ", reportRenameFileName="
 				+ reportRenameFileName + "]";

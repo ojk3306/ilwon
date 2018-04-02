@@ -7,8 +7,7 @@ public class Notice implements Serializable {
 	
 	private static final long serialVersionUID = 5000L;
 	private int noticeNo;
-	private int userNo;
-	private int userTypeNo;
+	private int userNo;	
 	private String noticeTitle;
 	private Date noticeDate;
 	private String noticeContent;
@@ -17,11 +16,11 @@ public class Notice implements Serializable {
 		
 	}
 
-	public Notice(int noticeNo, int userNo, int userTypeNo, String noticeTitle, Date noticeDate, String noticeContent) {
+	public Notice(int noticeNo, int userNo, String noticeTitle, Date noticeDate, String noticeContent) {
 		super();
 		this.noticeNo = noticeNo;
 		this.userNo = userNo;
-		this.userTypeNo = userTypeNo;
+		
 		this.noticeTitle = noticeTitle;
 		this.noticeDate = noticeDate;
 		this.noticeContent = noticeContent;
@@ -41,15 +40,7 @@ public class Notice implements Serializable {
 
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
-	}
-
-	public int getUserTypeNo() {
-		return userTypeNo;
-	}
-
-	public void setUserTypeNo(int userTypeNo) {
-		this.userTypeNo = userTypeNo;
-	}
+	}	
 
 	public String getNoticeTitle() {
 		return noticeTitle;
@@ -81,7 +72,7 @@ public class Notice implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Notice [noticeNo=" + noticeNo + ", userNo=" + userNo + ", userTypeNo=" + userTypeNo + ", noticeTitle="
+		return "Notice [noticeNo=" + noticeNo + ", userNo=" + userNo + ", noticeTitle="
 				+ noticeTitle + ", noticeDate=" + noticeDate + ", noticeContent=" + noticeContent + "]";
 	}	
 	
