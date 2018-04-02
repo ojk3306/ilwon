@@ -45,7 +45,6 @@ public class SearchLogDao {
 	}
 
 	public ArrayList<String> Seachlog(Connection con, SearchLog sl) {
-		int result =0;
 		ArrayList<String> al=new ArrayList<String>();
 		PreparedStatement pstmt = null;		
 		ResultSet rset=null;
@@ -58,26 +57,27 @@ public class SearchLogDao {
 		}
 		try {
 		pstmt=con.prepareStatement(query);
-		
 		pstmt.setString(1,"%"+sl.getSearchContent()+"%");
 		rset=pstmt.executeQuery();
-		while(rset.next())
-		{
-		al.add(rset.getString("SEACH_CONTENT"));		
+		int i=0;
+		
+		while(i<5)
+		{rset.next();
+		al.add(rset.getString("SEACH_CONTENT"));
+		i++;
 		};
 		
-		}catch(Exception e){
+		}catch(java.sql.SQLException e){
 		
-		e.printStackTrace();
-		
+		System.out.println("본에러는 무시해도됨.");
+		}catch(Exception e1) {
+			e1.printStackTrace();
 		}finally {
 			
 		close(rset);
 			
 		close(pstmt);
-			
 		}
-	
 		return al;
 	}	
 }
