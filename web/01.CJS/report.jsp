@@ -95,6 +95,7 @@ th {
 <!-- 헤더 시작-->
 <%@ include file="/common\navbar.jsp" %>
 <!-- 헤더 종료-->
+
 <!-- 내용 시작 -->
 
 <nav class="contents">

@@ -23,10 +23,9 @@
 
  <link href="/prototype/common\resources\css/select2.css" rel="stylesheet"/>
  
-  <script src="/prototype/common\resources\js/select2.js"></script>
+ <script src="/prototype/common/resources/js/select2.js"></script>
    
-
-      <script type="text/javascript">
+<script type="text/javascript">
   
 
 
@@ -74,7 +73,7 @@
 })	
 
             
-        	$("#ee").select2();        	
+        	$("#ee").select2();
         	
         	$("#s2id_autogen1_search").keyup(function(){
 			$.ajax({

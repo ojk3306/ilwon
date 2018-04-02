@@ -4,10 +4,10 @@
 <html>
 <head>
 <script type="text/javascript" src="/prototype/common/resources/js/jquery-3.3.1.min.js"></script>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link href="/prototype/common/resources/css/bootstrap-theme.min.css" rel="stylesheet">
-
 <link href="/prototype/01.CJS\js\jquery.stepProgressBar.css" rel="stylesheet" type="text/css">
+ <script src="/prototype/common/resources/js/select2.js"></script>
+ 
 <style type="text/css">
 .btn-primary,
 .btn-warning
@@ -303,7 +303,7 @@ section .section-title{
 				</div>
 			</div>
 			
-			<div class="row">
+			<div class="row" >
 				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
 					<div class="card">
 						<div class="card-block block-4">
@@ -319,7 +319,7 @@ section .section-title{
 			<div id="myGoal"></div>
 			
 			
-		    <script src="http://code.jquery.com/jquery-1.12.2.min.js"></script>
+			
 <script src="/prototype/01.CJS\js\jquery.stepProgressBar.js"></script>
 <script>
 $('#myGoal').stepProgressBar({

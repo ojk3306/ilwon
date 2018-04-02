@@ -3,12 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript" src="/prototype/resources/js/jquery-3.3.1.min.js"></script>
-<script src="/prototype/resources/vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/prototype/common\resources\js\jquery-3.3.1.min.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<link href="/prototype/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<script src="/prototype/resources/vendor/jquery/jquery.min.js"></script>
-<script src="/prototype/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<link href="/prototype/common\resources\css\bootstrap.min.css" rel="stylesheet">
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <title>Insert title here</title>
@@ -205,7 +203,7 @@ $(function() {
 </head>
 <body>
 <%@ include file="/common/navbar.jsp" %>
-
+<%@include file="/01.CJS\sidebar.jsp" %>
 <div class="container">
 <div class="row">
 <div class="col-md-6 col-md-offset-3">
