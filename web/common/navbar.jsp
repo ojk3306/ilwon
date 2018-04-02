@@ -30,6 +30,7 @@
     
     
      $(document).ready(function () {
+    console.log('<%= loginUser.getUserNo()%>');
     	 $.ajax({
 				url:"<%=request.getContextPath()%>/seach",
 				data:{word:$("a").val()},//추가로 유저 번호도 보낸다.
@@ -61,9 +62,10 @@
     	 $("#ee").select2();
 
             $("#s2id_autogen1_search").keyup(function(){
-                    $.ajax({
-					url:"<%=request.getContextPath()%>/seach",
-					data:{word:$("#s2id_autogen1_search").val()},//추가로 유저 번호도 보낸다.
+                    
+            	$.ajax({
+					url:"<%=request.getContextPath()%>/seach" ,
+					data:{word : $("#s2id_autogen1_search").val()},//추가로 유저 번호도 보낸다.
 					type:"get",
 					dataType:"json",
 					success: function(data){
@@ -89,11 +91,7 @@
 					//select2-results에 li로 나열.
 				}
 			})	
-		
-           
-           
-          
-		        });
+		});
             	
     })
         
@@ -106,6 +104,7 @@
     </script>
 </head>
 <body >
+
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -128,7 +127,7 @@
       </ul>
      
       <ul class="nav navbar-nav navbar-right" style = "overflow : hidden;">
-        <li><a href="/prototype/02.KSH,LTH/login.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+        <li><a href="/prototype/03.OHW\views\login2.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
     <li>
     
     <form class="form-inline mt-2 mt-md-0" action="#" method="post">

@@ -35,6 +35,7 @@ public class UsersDao {
 				loginUser.setUserEmail(rset.getString("user_email"));
 				loginUser.setUserPassword(rset.getString("user_pwd"));
 				loginUser.setUserName(rset.getString("user_name"));
+				loginUser.setUserNo(rset.getInt("USER_NO"));
 			}			
 			
 		} catch (Exception e) {
