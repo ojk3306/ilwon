@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ page import="users.model.vo.Users, java.util.*, java.sql.*" %>
+<%@ page import="users.model.vo.Users, java.util.*, java.sql.*" %>
     
-    <%
+<%
     Users loginUser = (Users)session.getAttribute("loginUser");    
-    %>
+%>    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +25,7 @@
  
     <script src="/prototype/common\resources\js/select2.js"></script>
    
+
     <script>
     function search(){ 
     	
@@ -31,37 +33,106 @@
         	
     	//후에 섹션의 로그인유저의 번호까지 넣기.
     }    
+
+    <script type="text/javascript">
+    function search(){
+    location.href="/prototype/insertlog?seachcontent="+$('#select2-chosen-1').text();
+    
+	//후에 섹션의 로그인유저의 번호까지 넣기.
+    }
+    
+
     
      $(document).ready(function () {
+
             
         	$("#ee").select2();        	
         	
         	$("#s2id_autogen1_search").keyup(function(){
 			$.ajax({
+
+    	 $.ajax({
+				url:"<%=request.getContextPath()%>/seach",
+				data:{word:$("a").val()},//추가로 유저 번호도 보낸다.
+				type:"get",
+				dataType:"json",
+				success: function(data){
+					$("#ee").html("");
+					var jsonStr=JSON.stringify(data);
+					//문자열을 다시 변경
+					//json 객체로 파싱함. 
+					var json= JSON.parse(jsonStr);	
+>>>>>>> branch 'master' of https://github.com/ojk3306/ilwon.git
 					
+					for(var i in json.list){
+						
+					console.log(json.list[i]);
+				    
+					$("#ee").html($("#ee").html()+'<option>'+json.list[i]+'</option>')
+					
+					};
+				},error:function(a,b,c){
+					
+					console.log(b+c)
+				},
+			     complete: function(){
+				$("#select2-chosen-1").html($("#s2id_autogen1_search").val());
+				//select2-results에 li로 나열.
+			}
+		})	
+    	 $("#ee").select2();
+
+            $("#s2id_autogen1_search").keyup(function(){
+                    $.ajax({
 					url:"<%=request.getContextPath()%>/seach",
 					data:{word:$("#s2id_autogen1_search").val()},//추가로 유저 번호도 보낸다.
 					type:"get",
 					dataType:"json",
 					success: function(data){
-					$("#p6").html($("#p6").text()+"<Br>"+data.userid+","+data.userpwd+","+decodeURIComponent(data.username)+","+data.age+","+data.email+","+data.phone)
-				
+						$("#ee").html("");
+						var jsonStr=JSON.stringify(data);
+						//문자열을 다시 변경
+						//json 객체로 파싱함. 
+						var json= JSON.parse(jsonStr);	
+						
+						for(var i in json.list){
+							
+						console.log(json.list[i]);
+					    
+						$("#ee").html($("#ee").html()+'<option>'+json.list[i]+'</option>')
+						
+						};
+					},error:function(a,b,c){
+						
+						console.log(b+c)
 					},
-				
-					complete: function(){
+				     complete: function(){
 					$("#select2-chosen-1").html($("#s2id_autogen1_search").val());
 					//select2-results에 li로 나열.
+<<<<<<< HEAD
 		    	
 				}
 			});        	
 		});       
 	});
+=======
+				}
+			})	
+		
+           
+           
+          
+		        });
+            	
+    })
+>>>>>>> branch 'master' of https://github.com/ojk3306/ilwon.git
         
     </script>
   <script type="text/javascript">
   	function movePage(id) {  		
   		location.href = "/prototype/03.OHW/views/find_teacher.jsp?id=" + id; 		
   	}
+<<<<<<< HEAD
   </script>
   
   <style type="text/css">
@@ -71,6 +142,10 @@
   		height:40px;
   	}
   </style>
+=======
+
+    </script>
+>>>>>>> branch 'master' of https://github.com/ojk3306/ilwon.git
 </head>
 <body >
 <nav class="navbar navbar-inverse">
@@ -99,9 +174,14 @@
 			<li><a href="/prototype/03.OHW/views/login.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>		
 		<% } else { %>
 			<li> <a><%= loginUser.getUserName() %>님</a> </li>
-			<li class = "ohw-li"> <a><input type = "button" class = "btn btn-success" value = "My Info"></a></li>
-			<li class = "ohw-li"> <a><input type = "button" class = "btn btn-success" value = "LogOut"></a></li>
-			
+			<li class = "ohw-li">
+				<table>
+					<tr>
+						<td><a><input type = "button" class = "btn btn-success" value = "My Info"></a></td>
+						<td><a><input type = "button" class = "btn btn-success" value = "LogOut"></a></td>
+					</tr>
+				</table>
+			</li>			
 		<% } %>
 		<li> <!-- 검색바 -->
 		<form class="form-inline mt-2 mt-md-0 input-group" action="#" method="post">      
