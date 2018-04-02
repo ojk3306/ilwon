@@ -38,13 +38,15 @@ public class SeachLog extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	SearchLog sl=new SearchLog();
 	sl.setSearchContent(request.getParameter("word"));
-	/*if()
-	세션을 확인해서 잇을시에 회원 번호를 sl 객체에 set한다.
-	sl.setUserNo(request);
-*/
-	
+	//sl.setUserNo(Integer.parseInt(request.getParameter("user")));
+
+
 	ArrayList<String> result=new SearchLogService().Seachlog(sl);
 	response.setContentType("text/html; charset=utf-8");
+	System.out.println("result.size()"+result.size());
+	if(result.size()!=0) {
+	
+		
 	for(String i: result)
 	System.out.println("가져온값"+i);
 	//최종 전송용 json 객체 생성함
@@ -77,7 +79,7 @@ public class SeachLog extends HttpServlet {
 		out.print(json.toJSONString());
 		out.flush();
 		out.close();
-	
+	}
 	
 	}
 

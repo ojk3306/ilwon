@@ -21,20 +21,20 @@ public class SearchLogDao {
 		query="insert into SEARCH_LOG values( (SELECT max(search_no) from SEARCH_LOG)+1 , ? , ? , sysdate)";
 		} else {
 		query="insert into SEARCH_LOG values( (SELECT max(search_no) from SEARCH_LOG)+1 , null , ? ,sysdate)";
-		System.out.println("유저의 정보가없음");
-		System.out.println(sl.getSearchContent());
 		}
-	
+	System.out.println(sl.toString());
 	try {
 		pstmt=con.prepareStatement(query);	
+		
 		if(sl.getUserNo() != null) {
 			pstmt.setInt(1,sl.getUserNo());
 			pstmt.setString(2,sl.getSearchContent());
 		}else {
-			pstmt.setString(1,sl.getSearchContent());	
+			pstmt.setString(1,sl.getSearchContent());
 		}
 
 		result=pstmt.executeUpdate(); 
+		
 		System.out.println(result);
 	} catch (Exception e) {
 		e.printStackTrace();
@@ -58,7 +58,7 @@ public class SearchLogDao {
 		}
 		try {
 		pstmt=con.prepareStatement(query);
-		System.out.println("sl.getSearchContent()"+sl.getSearchContent());
+		
 		pstmt.setString(1,"%"+sl.getSearchContent()+"%");
 		rset=pstmt.executeQuery();
 		while(rset.next())
