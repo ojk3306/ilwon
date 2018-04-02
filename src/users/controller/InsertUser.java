@@ -43,7 +43,7 @@ public class InsertUser extends HttpServlet {
 	user.setUserPhone(request.getParameter("phone"));
 	user.setUserLoc(request.getParameter("loc"));
 	user.setUserTypeNo(Integer.parseInt(request.getParameter("user_type")));
-	
+	System.out.println(user);
 	int result = new UsersService().insertUsers(user);
 	
 	response.setContentType("text/html; charset=utf-8"); 
