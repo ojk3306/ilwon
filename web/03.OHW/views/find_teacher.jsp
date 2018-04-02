@@ -81,14 +81,14 @@
 			
 		background : rgba(50, 50, 50, .5);
 		width : 100px;
-		height : 1100px;
-		float : left;	
+		height : 680px;
+		float : left;
 	}
 	
 	#right_bar {
 		background : rgba(50, 50, 50, .5);
 		width : 100px;
-		height : 1100px;
+		height : 680px;
 		float : right;		
 	}
 		
@@ -369,6 +369,9 @@
   </table>
 	</section>
 	
-	<footer style="overflow : auto;"><%@ include file = "parts/footer.jsp" %></footer>
+	<div>
+		<%@ include file = "../../common/footer.jsp" %>
+	</div>
+	
 </body>
 </html>

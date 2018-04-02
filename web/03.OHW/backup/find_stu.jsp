@@ -389,6 +389,6 @@
   </table>
 	</section>
 	
-	<footer><%@ include file = "parts/footer.jsp" %></footer>
+<!--   <footer><%@ include file = "parts/footer.jsp" %></footer>-->
 </body>
 </html>
