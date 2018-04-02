@@ -144,7 +144,13 @@
 		
 		<button class="btn btn-lg btn-primary btn-block" type="submit">LogIn</button>
 	</form>
-</div> 
+</div>
+
+<div class = "form-signin">
+	<a href = "../../04.OJK/join_start.jsp">
+		<input type = "button" class = "btn btn-lg btn-success btn-block" value = "아직 회원이 아니시라면?">
+	</a>
+</div>
 
 <div style="margin-top:30%">
 	<%@ include file = "../../common/footer.jsp" %>
