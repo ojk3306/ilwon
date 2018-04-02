@@ -23,10 +23,10 @@
 
  <link href="/prototype/common\resources\css/select2.css" rel="stylesheet"/>
  
-    <script src="/prototype/common\resources\js/select2.js"></script>
+  <script src="/prototype/common\resources\js/select2.js"></script>
    
 
-    <script>
+      <script type="text/javascript">
     function search(){ 
     	
     	location.href="/prototype/insertlog?seachcontent="+$('#select2-chosen-1').text();
@@ -34,7 +34,8 @@
     	//후에 섹션의 로그인유저의 번호까지 넣기.
     }    
 
-    <script type="text/javascript">
+
+    
     function search(){
     location.href="/prototype/insertlog?seachcontent="+$('#select2-chosen-1').text();
     
@@ -45,8 +46,37 @@
     
      $(document).ready(function (){
 
-    console.log('<%= loginUser.getUserNo()%>');
+    console.log('<%=loginUser.getUserNo()%>');
+    $.ajax({
 
+    	
+		url:"<%=request.getContextPath()%>/seach",
+		data:{word:$("a").val()},//추가로 유저 번호도 보낸다.
+		type:"get",
+		dataType:"json",
+		success: function(data){
+			$("#ee").html("");
+			var jsonStr=JSON.stringify(data);
+			//문자열을 다시 변경
+			//json 객체로 파싱함. 
+			var json= JSON.parse(jsonStr);	
+
+			for(var i in json.list){
+				
+			console.log(json.list[i]);
+		    
+			$("#ee").html($("#ee").html()+'<option>'+json.list[i]+'</option>')
+			
+			};
+		},error:function(a,b,c){
+			
+			console.log(b+c)
+		},
+	     complete: function(){
+		$("#select2-chosen-1").html($("#s2id_autogen1_search").val());
+		//select2-results에 li로 나열.
+	}
+})	
 
             
         	$("#ee").select2();        	
@@ -54,7 +84,7 @@
         	$("#s2id_autogen1_search").keyup(function(){
 			$.ajax({
 
-    	 $.ajax({
+    	
 				url:"<%=request.getContextPath()%>/seach",
 				data:{word:$("a").val()},//추가로 유저 번호도 보낸다.
 				type:"get",
@@ -87,16 +117,12 @@
 				
 			})	
 		});
-            	
-    })
-       
-    </script>
-  <script type="text/javascript">
-  	function movePage(id) {  		
+
+    function movePage(id) {  		
   		location.href = "/prototype/03.OHW/views/find_teacher.jsp?id=" + id; 		
   	}
-
-  </script>
+   </script>
+  
   
   <style type="text/css">
   	.ohw-li {
@@ -107,7 +133,7 @@
   </style>
 
 
-    </script>
+
 </head>
 <body >
 
@@ -133,27 +159,16 @@
 	</ul>
      
 
-      <ul class="nav navbar-nav navbar-right" style = "overflow : hidden;">
-        <li><a href="/prototype/03.OHW\views\login2.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
-    <li>
-    
-    <form class="form-inline mt-2 mt-md-0" action="#" method="post">
-         
-         
-      
-<select id="ee" name="seachcontent" aria-label="Search" style="margin-top:7px;">
-    
-    <option value="#">여기에 값을 입력하세요</option>
-	
-</select>		 
-	
-		 <button class="btn btn-outline-success my-2 my-sm-0" type="button" style="margin-top:7px;" onclick="search();">Search</button>
-          </form>
-         </li>
+
 
 	<ul class="nav navbar-nav navbar-right" style = "overflow : hidden;"> <!-- 메뉴바 오른쪽 -->
 		<% if(loginUser == null) { %>
-			<li><a href="/prototype/03.OHW/views/login.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>		
+	<li>
+	<a href="/prototype/03.OHW/views/login.jsp">
+	<span class="glyphicon glyphicon-log-in">
+	</span>Login
+	</a>
+	</li>		
 		<% } else { %>
 			<li> <a><%= loginUser.getUserName() %>님</a> </li>
 			<li class = "ohw-li">
@@ -175,7 +190,6 @@
 		</li>
 
       </ul>      
-      <div id="hd"> </div>
     </div>
   </div>
 </nav>
