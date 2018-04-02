@@ -32,16 +32,17 @@ public class SeachLog extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	System.out.println(request.getParameter("word"));
 	SearchLog sl=new SearchLog();
+	sl.setSearchContent(request.getParameter("word"));
 	/*if()
 	세션을 확인해서 잇을시에 회원 번호를 sl 객체에 set한다.
 	sl.setUserNo(request);
 */
+	
 	ArrayList<String> result=new SearchLogService().Seachlog(sl);
 	response.setContentType("text/html; charset=utf-8");
 	for(String i: result)
-	System.out.println(i);
+	System.out.println("가져온값"+i);
 	
 	
 	

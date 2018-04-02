@@ -46,7 +46,7 @@ public class SearchLogDao {
 
 	public ArrayList<String> Seachlog(Connection con, SearchLog sl) {
 		int result =0;
-		ArrayList<String> al=null;
+		ArrayList<String> al=new ArrayList<String>();
 		PreparedStatement pstmt = null;		
 		ResultSet rset=null;
 		String query="";
@@ -58,21 +58,26 @@ public class SearchLogDao {
 		}
 		try {
 		pstmt=con.prepareStatement(query);
+		System.out.println("sl.getSearchContent()"+sl.getSearchContent());
 		pstmt.setString(1,"%"+sl.getSearchContent()+"%");
 		rset=pstmt.executeQuery();
 		while(rset.next())
 		{
-			al=new ArrayList<String>();
-			al.add(rset.getString("SEACH_CONTENT"));	
-			
-		};		
+		al.add(rset.getString("SEACH_CONTENT"));		
+		};
 		
-		} catch (Exception e) {
+		}catch(Exception e){
+		
 		e.printStackTrace();
+		
 		}finally {
-			close(rset);
-			close(pstmt);
+			
+		close(rset);
+			
+		close(pstmt);
+			
 		}
+	
 		return al;
 	}	
 }
