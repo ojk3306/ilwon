@@ -41,7 +41,7 @@ var detailCount=1;
 var detailmax=5;
 function addDetail(){
 if(detailmax>detailCount){
-$("#detail").append("<div id='"+detailCount+"'class='form-group'><label for='disc' style='padding:auto; width:100px;'>상세정보 제목</label>	<div style='width: 99%;'><input type='text' id='phone' name='phone' class='form-control' style='width:150px; float:left'><input type='button' onclick='removeDetail(this)' id='"+detailCount+"' class='btn btn-primary center' value='정보삭제하기' style='margin-left:10px;'><input type='button' onclick='addDetail()' class='btn btn-primary center' value='정보 추가하기' style='margin-left:10px;'></div><label for='disc' style='margin-top:5px; width:100px; margin-left: -150px;'>상세정보</label><textarea class='form-control' rows='3'></textarea></div>");
+$("#detail").append("<div id='"+detailCount+"'class='form-group'><label for='disc' style='padding:auto; width:100px;'>정보 제목</label>	<div style='width: 99%;'><input type='text' id='phone' name='phone' class='form-control' style='width:150px; float:left'><input type='button' onclick='removeDetail(this)' id='"+detailCount+"' class='btn btn-primary center' value='정보삭제하기' style='margin-left:10px;'><input type='button' onclick='addDetail()' class='btn btn-primary center' value='정보 추가하기' style='margin-left:10px;'></div><label for='disc' style='margin-top:5px; width:100px;'>상세정보</label><textarea class='form-control' rows='3'></textarea></div>");
  detailCount++;
  console.log(detailCount);
 	}else{
@@ -238,14 +238,14 @@ $(document).ready(function(){
 					<div id="detail">
 					<div class="form-group">
 						
-						<label for="disc" style="padding:auto; width:100px;">상세정보 제목</label>
+						<label for="disc" style="padding:auto; width:100px;">정보 제목</label>
 						<div style="width: 99%;">
 						<input type="text" id="phone" name="phone" class="form-control" style="width:150px; float:left">
 						
 						<input type="button" onclick="addDetail()" class="btn btn-primary center" value="정보 추가하기" style="margin-left:140px;">						
 						</div>
 						
-						<label for="disc" style="margin-top:5px; width:100px; margin-left: -150px;">상세정보</label>
+						<label for="disc" style="margin-top:5px; width:100px;">상세정보</label>
 						<textarea class="form-control" rows="3"></textarea>
 					</div>
 					</div>
