@@ -104,7 +104,7 @@
 	<nav><%@ include file = "/common/navbar.jsp" %></nav>
 	<div id = "left_bar">왼쪽 구역</div>
 	<div id = "right_bar">오른쪽 구역</div>
-	<header style="text-align : center;"><h3 class="header_text">학생 찾기</h3></header>
+	<header style="text-align : center;"><h3 class="header_text">배우고 싶어요</h3></header>
 	
 	<hr>
 	
@@ -389,6 +389,6 @@
   </table>
 	</section>
 	
-	<footer><%@ include file = "parts/footer.jsp" %></footer>
+	<footer style = "margin-left:25%;"><%@ include file = "parts/footer.jsp" %></footer>
 </body>
 </html>

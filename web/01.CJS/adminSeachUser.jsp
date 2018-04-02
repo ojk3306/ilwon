@@ -10,7 +10,7 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
 
-<title>Insert title here</title>
+<title>관리자의 검색창</title>
 <style type="text/css">
 .panel-table .panel-body{
   padding:0;
@@ -77,21 +77,31 @@ min-height: 440px;
 <div class="container">
     <div class="row">
     
-  		
-  		<h2>해당 페이지는 관리자 페이지 회원 삭제하거나, 회원의 권한을 설정할수있다. 옆에 필터로 검색.</h2>
-  	
+ 
         <div class="col-md-10 col-md-offset-1">
 
             <div class="panel panel-default panel-table">
               <div class="panel-heading">
                 <div class="row">
-                
-                  <div class="col col-xs-6 text-right">
+                <div class="col col-xs-6 text-right">
+                  
+                  <select >
+                  	 <option>학생</option>
+                  	  <option>선생</option>
+                  	   <option>관리자</option>
+                  	    <option>무관</option>
+                  	 </select>
                   	<select>
-                  	 <option>뭘로 검색?</option>
+                  	 <option>이름으로검색</option>
+                  	 <option>이메일로검색</option>
+                  	 <option>현상태로검색</option>
+                  	 <option>전체검색</option>
                   	 </select>
                   	<input type="text" placeholder="입력">
+                  	
                     <button type="button" class="btn btn-sm btn-primary btn-create">검색!</button>
+                    
+                    
                   </div>
                 </div>
               </div>
@@ -100,9 +110,10 @@ min-height: 440px;
                   <thead>
                     <tr>
                         <th><em class="fa fa-cog"></em></th>
-                        <th class="hidden-xs">ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
+                        <th class="hidden-xs">유저 분류</th>
+                        <th>이름</th>
+                        <th>메일</th>
+                        <th>현 상태</th>
                     </tr> 
                   </thead>
                   <tbody>
@@ -111,9 +122,10 @@ min-height: 440px;
                               <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
                               <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
                             </td>
-                            <td class="hidden-xs">1</td>
+                            <td class="hidden-xs">선생인지, 학생인지</td>
                             <td>John Doe</td>
                             <td>johndoe@example.com</td>
+                              <td>정상인지,차단인지</td>
                           </tr>
                         </tbody>
                 </table>
@@ -121,15 +133,18 @@ min-height: 440px;
               </div>
               <div class="panel-footer">
                 <div class="row">
-                  <div class="col col-xs-4">Page 1 of 5
-                  </div>
                   <div class="col col-xs-8">
                     <ul class="pagination hidden-xs pull-right">
+                       <li><a href="#">«</a></li>
+                        <li><a href="#"><</a></li>
                       <li><a href="#">1</a></li>
                       <li><a href="#">2</a></li>
                       <li><a href="#">3</a></li>
                       <li><a href="#">4</a></li>
                       <li><a href="#">5</a></li>
+                      
+                     <li><a href="#">></a></li>
+                     <li><a href="#">»</a></li>
                     </ul>
                     <ul class="pagination visible-xs pull-right">
                         <li><a href="#">«</a></li>

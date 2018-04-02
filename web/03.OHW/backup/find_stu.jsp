@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset=UTF-8>
-<title>은밀한 선생</title>
+<title>은밀한 결과</title>
 <script type="text/javascript">
 	
-	function changeLocation(value){	
+	function changeLocation(value){		
 		switch(value) {
 		
 		case "000" : $('#location_do').hide(); break;
@@ -50,25 +49,6 @@
 		
 	}
 	
-	<%-- $(document).ready(function selectCategory() {
-		
-		<% String cate = request.getParameter("id"); %>
-		
-		var cate = "<%= cate %>";
-		 		
-		switch(cate) {
-		
-		case "cate_game" : $(".tclass").hide(); $("#tgame").show(); break; 
-		case "cate_sport" : $(".tclass").hide(); $("#tsport").show(); break; 
-		case "cate_music" : $(".tclass").hide(); $("#tmusic").show(); break; 
-		case "cate_dance" : $(".tclass").hide(); $("#tdance").show(); break; 
-		case "cate_etc" : $(".tclass").hide(); $("#tetc").show(); break; 
-		
-		}		
-	}); --%>
-	
-	 
-	
 </script>
 
 <style type="text/css">
@@ -79,16 +59,16 @@
 	
 	#left_bar {	
 			
-		background : rgba(50, 50, 50, .5);
+		background : rgba(50, 50, 50, 0);
 		width : 100px;
-		height : 680px;
-		float : left;
+		height : 1100px;
+		float : left;	
 	}
 	
 	#right_bar {
-		background : rgba(50, 50, 50, .5);
+		background : rgba(50, 50, 50, 0);
 		width : 100px;
-		height : 680px;
+		height : 1100px;
 		float : right;		
 	}
 		
@@ -106,20 +86,25 @@
 	
 	}
 	
+	.teacher_location {		
+		
+	}
+	
 	.teacher_class a {
 		
 		overflow : auto;
-		margin-left : 20px;		
+		margin-left : 20px;
+		
 	}	
 	
 </style>
 </head>
 
 <body style="min-width : 800px; overflow : auto; display : absolute;">
-	<nav><%@ include file = "../../common/navbar.jsp" %></nav>
+	<nav><%@ include file = "/common/navbar.jsp" %></nav>
 	<div id = "left_bar">왼쪽 구역</div>
 	<div id = "right_bar">오른쪽 구역</div>
-	<header style="text-align : center;"><h3 class="header_text">선생님 찾기</h3></header>
+	<header style="text-align : center;"><h3 class="header_text">학생 찾기</h3></header>
 	
 	<hr>
 	
@@ -203,7 +188,7 @@
 			</div>
 			
 			<div class="tclass" id="tetc">
-				<input type="checkbox" value="">웃음
+				<input type="checkbox" value="">쪼갬
 			</div>
 		</p>						
 	</section>
@@ -217,20 +202,20 @@
 				<h3 class="header_text">기본정보</h3>
 				</td>
 				<td style="padding-top : 10px; width : 300px;">
-				<a onclick="infoView(this.id);" id="ti"><h5>선생님의 기본 정보로 검색해보세요.</h5></a>
+				<a onclick="infoView(this.id);" id="ti"><h5>학생의 기본 정보로 검색해보세요.</h5></a>
 				</td>
 			</tr>
 		</table>
 			<div id = "person_info">					
 				<div>
-					<label>선생님 성별</label>
+					<label>학생 성별</label>
 					<input type="radio" name="gender">남  &nbsp;
 					<input type="radio" name="gender">여  &nbsp;
 					<input type="radio" name="gender">무관
 				</div>
 					
 				<div>
-					<label>선생님 연령대</label>
+					<label>학생 연령대</label>
 					<select>
 						<option>선택</option>
 						<option>20대</option>
@@ -249,9 +234,24 @@
 				</div>
 					
 				<div>
-				<label>경력사항</label>
-				<input type="checkbox">프로 게이머 출신 &nbsp;
-				<input type="checkbox">대회 입상 &nbsp;
+				<label>학생 실력</label>
+				<select>
+						<option>선택</option>
+						<option>하위권</option>
+						<option>중위권</option>
+						<option>상위권</option>
+						<option>최상위권</option>
+					</select> ~
+				
+					<select>
+						<option>선택</option>
+						<option>하위권</option>
+						<option>중위권</option>
+						<option>상위권</option>
+						<option>최상위권</option>
+					</select>
+				
+				
 				</div>	
 					
 				<div>
@@ -270,7 +270,7 @@
 					<h3 class="header_text">수업정보</h3>
 				</td>
 				<td style="padding-top : 10px; width : 300px;">
-					<a onclick="infoView(this.id);" id="ci"><h5>원하는 수업만 받고 싶으신가요?</h5></a>
+					<a onclick="infoView(this.id);" id="ci"><h5>원하는 조건에 맞는 학생을 보고 싶으신가요?</h5></a>
 				</td>
 			</tr>
 		</table>
@@ -298,13 +298,17 @@
 			<div>			
 			<table>
 				<tr>
-					<td><label>수업레벨</label></td>
+					<td><label>원하는 경력</label></td>
 					<td>
 					<select>
 						<option>선택</option>
-						<option>초보과정</option>
-						<option>중급과정</option>
-						<option>고급과정</option>						
+						<option>1년</option>
+						<option>2년</option>
+						<option>3년</option>
+						<option>4년</option>
+						<option>5년</option>
+						<option>6년</option>
+						<option>7년 이상</option>					
 					</select>
 					</td>
 				</tr>				
@@ -312,15 +316,33 @@
 			</div>
 			
 			<div>
-			<label>수업 횟수</label>
-			<table>
-				<tr>
-					<td>
-						
-					</td>
-				</tr>				
-			</table>
-			</div>		
+			<label>원하는 선생님 나이</label>
+				<select>
+						<option>선택</option>
+						<option>20대</option>
+						<option>30대</option>
+						<option>40대</option>
+						<option>50대</option>
+					</select> ~
+				
+					<select>
+						<option>선택</option>
+						<option>20대</option>
+						<option>30대</option>
+						<option>40대</option>
+						<option>50대</option>
+					</select>
+			</div>
+			
+			<div>
+			<label>원하는 선생님 성별</label>
+				<select>
+						<option>선택</option>
+						<option>남</option>
+						<option>여</option>
+						<option>무관</option>
+					</select>					
+			</div>	
 			
 		</div>
 		
@@ -329,12 +351,10 @@
 	<hr>
 	
 	<section class="button_section">
-	<center>
-		<div style="width : 40%; overflow:hidden; margin-top : 30px; margin-bottom : 30px;">
+		<div style="width : 200px; margin-left:45%; overflow:hidden; margin-top : 30px; margin-bottom : 30px;">
 			<button type="submit" class="btn btn-info" onclick="searchView();">검색하기</button>
-			<button type="reset" class="btn btn-info" onclick="hideView();">초기화하기</button>		
-		</div>
-	</center>	
+			<button type="reset" class="btn btn-info" onclick="hideView();">초기화하기</button>			
+		</div>		
 	</section>
 	
 	<section id="search_table">
@@ -369,9 +389,6 @@
   </table>
 	</section>
 	
-	<div>
-		<%@ include file = "../../common/footer.jsp" %>
-	</div>
-	
+<!--   <footer><%@ include file = "parts/footer.jsp" %></footer>-->
 </body>
 </html>

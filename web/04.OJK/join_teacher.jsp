@@ -4,59 +4,82 @@
 <html>
 <head>
 <script src="/prototype/common\resources\js\jquery-3.3.1.min.js"></script>
-
+<script 
+	src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
+function juso(){  
+	new daum.Postcode({
+	        oncomplete: function(data) {
+	            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+	            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+	            console.log(data.roadAddress);
+	            $("#loc").val(data.roadAddress);
+	        }
+	    }).open();
+	};	
+
+	//비밀번호 체크
+	 $(function() {
+	$('#repwd').keyup(function(pwdcheck){
+		if($('#repwd').val() != $('#pwd').val()) {
+			$('#la_pwd').html("비밀번호가 일치하지 않습니다")
+		}else {
+			
+			$('#la_pwd').html("비밀번호가 일치합니다")
+		}	
 	
-function mapshow(){
-
-loc=$("#loc").val();
-rad=$("#rad").val();
-
-$("#map").show();
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-mapOption = {
-    center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-    level: 4 // 지도의 확대 레벨
-};  
-
-//지도를 생성합니다    
-var map = new daum.maps.Map(mapContainer, mapOption); 
-
-
-//주소-좌표 변환 객체를 생성합니다
-var geocoder = new daum.maps.services.Geocoder();
-//주소로 좌표를 검색합니다
-
-geocoder.addressSearch(loc, function(result, status) {
-// 정상적으로 검색이 완료됐으면 
- if (status === daum.maps.services.Status.OK) {
-
-    var coords = new daum.maps.LatLng(result[0].y, result[0].x);
-
-    // 결과값으로 받은 위치를 마커로 표시합니다
-   var circle = new daum.maps.Circle({
-            center : coords,  // 원의 중심좌표 입니다 
-            radius: rad, // 미터 단위의 원의 반지름입니다 
-            strokeWeight: 1, // 선의 두께입니다 
-            strokeColor: '#75B8FA', // 선의 색깔입니다
-            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-            strokeStyle: 'dashed', // 선의 스타일 입니다
-            fillColor: '#CFE7FF', // 채우기 색깔입니다
-            fillOpacity: 0.8  // 채우기 불투명도 입니다   
-        }); 
-
-        // 지도에 원을 표시합니다 
-        circle.setMap(map); 
-  
-        
-    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-    map.setCenter(coords);
-} 
-});    
-
-
-map.relayout();
-}
+	
+	
+		});
+	
+	});  
+	
+	$(function() {
+		$('#pwd').keyup(function(pwdcheck){
+			
+			var userpwd = $('#pwd').val();
+			
+			console.log(userpwd.length);
+			if(userpwd.length<4) {
+				$('#la_pwd').html("비밀번호는 4~16자리로 입력해주세요");
+			}else{
+			if($('#repwd').val() != $('#pwd').val()) {
+				$('#la_pwd').html("비밀번호가 일치하지 않습니다");
+			}else {
+				
+				$('#la_pwd').html("비밀번호가 일치합니다");
+			}	
+		
+			}
+		
+			});
+		
+		});
+	
+	//이메일 중복 체크
+	
+	$(function(){
+		$('#email').keyup(function(emailcheck){
+			
+			var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			var useremail = $('#email').val();
+			if (useremail == '' || !re.test(useremail)) {
+				$('#la_email').html("올바른 email 형식으로 입력해주세요");
+				
+			}else{
+			
+				$.ajax({
+					url: "/prototype/emailcheck",
+					data: {email: $('#email').val()},
+					type: "get",
+					success: function(data){
+						$('#la_email').html(data);
+					}
+				
+				});			
+			}
+		});
+	});
 
 </script>
 <meta charset="UTF-8">
@@ -77,64 +100,75 @@ map.relayout();
 					<div style="margin-top: 50px;">
 						<div style="width: 600px;">
 							<hr>
-							<form class="form-horizontal" action="/action_page.php">
+							<form class="form-horizontal" name="insertuser" action="/prototype/Insertuser.sm" method="post">
 								<div class="form-group">
 									<label class="control-label col-sm-2" for="email">이메일:</label>
 									<div class="col-sm-10">
 										<input type="email" class="form-control" id="email"
-											placeholder="Enter email" name="email">
+											placeholder="Enter email" name="email" required>
+												<label id="la_email" name="la_email" style="color:#e65c00;"></label>
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="control-label col-sm-2" for="pwd-1">비밀번호:</label>
+									<label class="control-label col-sm-2" for="pwd-1" >비밀번호:</label>
 									<div class="col-sm-10">
 										<input type="password" class="form-control"
-											placeholder="Enter password" id="pwd-1" name="pwd-1">
+											placeholder="Enter password" id="pwd" name="pwd" maxlength="16" required>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-sm-2" for="pwd-1">비밀번호<br>재확인:</label>
+									<div class="col-sm-10">
+										<input type="password" class="form-control"
+											placeholder="Enter password" id="repwd" name="repwd"  maxlength="16" required>
+												<label id="la_pwd" name="la_pwd" style="color:#e65c00;"></label>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="control-label col-sm-2" for="pwd-2">이름:</label>
 									<div class="col-sm-10">
 										<input type="text" class="form-control"
-											placeholder="Enter name" name="pwd-2" id="pwd-2">
+											placeholder="Enter name" name="name" id="name" required>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="control-label col-sm-2" for="phone">전화번호:</label>
 									<div class="col-sm-10">
 										<input type="text" class="form-control"
-											placeholder="Enter phone" name="phone" id="phone">
+											placeholder="Enter phone" name="phone" id="phone" required>
 									</div>
 								</div>
 
 								<div class="form-group">
 									<label class="control-label col-sm-2" for="gender">성별:</label>
 									<div class="col-sm-10">
-										남&nbsp;&nbsp;<input type="radio" name="gender" id="gender">
-										여&nbsp;&nbsp;<input type="radio" name="gender" id="gender">
+										남&nbsp;&nbsp;<input type="radio" name="gender" value="M">
+										여&nbsp;&nbsp;<input type="radio" name="gender" value="F">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-sm-2" >나이:</label>
+									<div class="col-sm-10">
+					<input type="number" name="age" class="form-control" min="0" max="100" required>
+									
 									</div>
 								</div>
 								<div class="form-group">
 								<label class="control-label col-sm-2" for="loc">주소:</label>
 								<div class="col-sm-10">
-								<input type="text" name="loc" id="loc" class="form-control">
+								<input type="text" name="loc" placeholder="이곳을 클릭해서 주소를 검색해주세요" id="loc" class="form-control" onclick="juso()" readonly="readonly" required>
 								</div>
 								</div>
 								
 
-								<div id="map" style="width:600px; height:350px; display: none;" ></div>
-								<div class="form-group">
-								<label class="control-label col-sm-2" for="key">희망키워드:</label>
-								<div id="keyword" class="col-sm-10" >
-								<input type="text" name="loc" id="key" class="form-control" style="width: 100px; margin-bottom: 10px;">
-								<button type="button"  class="btn" onclick="addkey()">추가하기</button>
-								</div>
-								<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=120b01867e29e09658100681cf1d0604&libraries=services"></script>
-								</div>
+							
 								<hr>
 								<div class="form-group">
 									<div class="col-sm-offset-2 col-sm-10">
-										<button type="submit" class="btn">확인</button>
+					<input type="submit" class="btn" value="확인">
+					<input type="reset" class="btn" value="초기화">
+					<input type="hidden" name="user_type" value="1002">
+					
 									</div>
 								</div>
 							</form>
