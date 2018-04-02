@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
 import org.json.simple.JSONArray;
@@ -38,8 +39,12 @@ public class SeachLog extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	SearchLog sl=new SearchLog();
 	sl.setSearchContent(request.getParameter("word"));
-	//sl.setUserNo(Integer.parseInt(request.getParameter("user")));
+	try {
+		sl.setUserNo(Integer.parseInt(request.getParameter("user")));
 
+	} catch (NumberFormatException e) {
+		// TODO: handle exception
+	}
 
 	ArrayList<String> result=new SearchLogService().Seachlog(sl);
 	response.setContentType("text/html; charset=utf-8");

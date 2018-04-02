@@ -36,8 +36,12 @@ public class InsertSeach_Log extends HttpServlet {
 		SearchLog sl = new SearchLog();
 		String keyword=request.getParameter("seachcontent");
 		sl.setSearchContent(keyword);
+		try {
+		sl.setUserNo(Integer.parseInt(request.getParameter("user")));
 		
-		
+		}catch (NumberFormatException e) {
+			
+		}
 		int result=new SearchLogService().insertlog(sl);
 		response.setContentType("text/html; charset=utf-8");
 		if(result>0) {

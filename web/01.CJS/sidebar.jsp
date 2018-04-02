@@ -3,10 +3,15 @@
 <!DOCTYPE html >
 <html>
 <head>
-<script type="text/javascript" src="/prototype/common\resources\js\jquery-3.3.1.min.js"></script>
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+ 
+ <link rel="stylesheet" href="/prototype/common/resources/css/bootstrap.css">
+ 
+
+ <script src="/prototype/common/resources/js/bootstrap.js"></script>
+ 
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
 <script type="text/javascript">
  $(function(){ 
 	 var $win = $(window);

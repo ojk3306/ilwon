@@ -23,26 +23,74 @@
 
  <link href="/prototype/common\resources\css/select2.css" rel="stylesheet"/>
  
+<<<<<<< HEAD
     <script src="/prototype/common\resources\js/select2.js"></script>
    
     <script type="text/javascript">
+=======
+	<script src="/prototype/common/resources/js/select2.js"></script>
+   
+	<script type="text/javascript">
+  
+
+
+>>>>>>> branch 'master' of https://github.com/ojk3306/ilwon.git
     
     function search(){
-    location.href="/prototype/insertlog?seachcontent="+$('#select2-chosen-1').text();
+    location.href="/prototype/insertlog?seachcontent="+$('#select2-chosen-1').text()+"&user="+$("#userno").val();
     
 	//후에 섹션의 로그인유저의 번호까지 넣기.
     }
     
+<<<<<<< HEAD
      $(document).ready(function () {
+=======
+
+    
+     $(document).ready(function (){
+
+    //console.log($("#userno").val());
+    $.ajax({
+
+    	
+		url:"<%=request.getContextPath()%>/seach",
+		data:{word:$("a").val(),user:$("#userno").val()},//추가로 유저 번호도 보낸다.
+		type:"get",
+		dataType:"json",
+		success: function(data){
+			$("#ee").html("");
+			var jsonStr=JSON.stringify(data);
+			//문자열을 다시 변경
+			//json 객체로 파싱함. 
+			var json= JSON.parse(jsonStr);	
+
+			for(var i in json.list){
+				
+			console.log(json.list[i]);
+		    
+			$("#ee").html($("#ee").html()+'<option>'+json.list[i]+'</option>')
+			
+			};
+		},error:function(a,b,c){
+			
+			console.log(b+c)
+		},
+	     complete: function(){
+		$("#select2-chosen-1").html($("#s2id_autogen1_search").val());
+		//select2-results에 li로 나열.
+	}
+})	
+
+>>>>>>> branch 'master' of https://github.com/ojk3306/ilwon.git
             
-        	$("#ee").select2();        	
+        	$("#ee").select2();
         	
         	$("#s2id_autogen1_search").keyup(function(){
 			$.ajax({
 
-    	 $.ajax({
+    	
 				url:"<%=request.getContextPath()%>/seach",
-				data:{word:$("a").val()},//추가로 유저 번호도 보낸다.
+				data:{word:$("a").val(),user:$("#userno").val()},//추가로 유저 번호도 보낸다.
 				type:"get",
 				dataType:"json",
 				success: function(data){
@@ -51,8 +99,12 @@
 					//문자열을 다시 변경
 					//json 객체로 파싱함. 
 					var json= JSON.parse(jsonStr);	
+<<<<<<< HEAD
 
 					
+=======
+
+>>>>>>> branch 'master' of https://github.com/ojk3306/ilwon.git
 					for(var i in json.list){
 						
 					console.log(json.list[i]);
@@ -68,6 +120,7 @@
 				$("#select2-chosen-1").html($("#s2id_autogen1_search").val());
 				//select2-results에 li로 나열.
 			}
+<<<<<<< HEAD
 		});
 		
     	 $("#ee").select2();
@@ -114,9 +167,25 @@
   <script type="text/javascript">
   	function movePage(id) {  		
   		location.href = "/prototype/03.OHW/views/find_teacher.jsp?id=" + id; 		
+=======
+		})	
+    	
+
+				
+			})	
+		});
+
+    function movePage(id) {  		
+  		location.href = "/prototype/03.OHW/views/find_teacher.jsp?id=" + id; 		
+>>>>>>> branch 'master' of https://github.com/ojk3306/ilwon.git
   	}
+<<<<<<< HEAD
 
   </script>
+=======
+   </script>
+  
+>>>>>>> branch 'master' of https://github.com/ojk3306/ilwon.git
   
   <style type="text/css">
   	.ohw-li {
@@ -124,10 +193,18 @@
   		padding:0px;
   		height:40px;
   	}
+<<<<<<< HEAD
   </style>   
 
+=======
+  </style>
+
+
+
+>>>>>>> branch 'master' of https://github.com/ojk3306/ilwon.git
 </head>
 <body >
+
 <nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -149,16 +226,25 @@
 		<li><a href="/prototype/01.CJS/adminpage.jsp">관리자</a></li>
 	</ul>
      
+
+
+
 	<ul class="nav navbar-nav navbar-right" style = "overflow : hidden;"> <!-- 메뉴바 오른쪽 -->
 		<% if(loginUser == null) { %>
-			<li><a href="/prototype/03.OHW/views/login.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>		
+	<li>
+	<a href="/prototype/03.OHW/views/login.jsp">
+	<span class="glyphicon glyphicon-log-in">
+	</span>Login
+	</a>
+	</li>		
 		<% } else { %>
+		<input type="hidden" id="userno" value="<%=loginUser.getUserNo()%>">
 			<li> <a><%= loginUser.getUserName() %>님</a> </li>
 			<li class = "ohw-li">
 				<table>
 					<tr>
 						<td><a><input type = "button" class = "btn btn-success" value = "My Info"></a></td>
-						<td><a><input type = "button" class = "btn btn-success" value = "LogOut"></a></td>
+						<td><a><input type = "button" onclick="location.href='/prototype/logout'" class = "btn btn-success" value = "LogOut"></a></td>
 					</tr>
 				</table>
 			</li>			
@@ -166,13 +252,13 @@
 		<li> <!-- 검색바 -->
 		<form class="form-inline mt-2 mt-md-0 input-group" action="#" method="post">      
 		<select id="ee" name="seachcontent" aria-label="Search" style="margin-top:7px;">    
-			<option value="#">여기에 값을 입력하세요</option>
+		<option value="#">여기에 값을 입력하세요</option>
 		</select>		
 		<button class="btn btn-success" type="button" style="margin-top:7px;" onclick="search();">Search</button>
 		</form>
 		</li>
+
       </ul>      
-      <div id="hd"> </div>
     </div>
   </div>
 </nav>
