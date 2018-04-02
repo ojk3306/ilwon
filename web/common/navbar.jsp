@@ -95,15 +95,10 @@
       </ul>
      
       <ul class="nav navbar-nav navbar-right" style = "overflow : hidden;">
-
         <li><a href="/prototype/02.KSH,LTH/login.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
     <li>
     
     <form class="form-inline mt-2 mt-md-0" action="#" method="post">
-
-        <li><a href="/prototype/03.OHW/views/login.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
-    <li><form class="form-inline mt-2 mt-md-0" action="<%=request.getContextPath()%>/Insertlog" method="post">
-
          
          
       
