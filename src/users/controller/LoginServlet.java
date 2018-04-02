@@ -30,8 +30,8 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userId = request.getParameter("userid");
-        String userPwd = request.getParameter("userpwd");
+		String userId = request.getParameter("id");
+        String userPwd = request.getParameter("pwd");
         System.out.println("아이디 : " + userId + "\n암호 : " + userPwd);
         
         //3. 비즈니스 로직을 처리할 서비스 모델 클래스의

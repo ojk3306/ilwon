@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import users.model.service.UsersService;
-import users.model.vo.User;
+import users.model.vo.Users;
 
 /**
  * Servlet implementation class InsertUserInfo
@@ -34,7 +34,7 @@ public class InsertUser extends HttpServlet {
 		
 	System.out.println(request.getParameter("user_type"));//101이면 학생 102면 선생
 	request.setCharacterEncoding("utf-8");
-	User user = new User();
+	Users user = new Users();
 	user.setUserEmail(request.getParameter("email"));
 	user.setUserPassword(request.getParameter("pwd"));
 	user.setUserName(request.getParameter("name"));
