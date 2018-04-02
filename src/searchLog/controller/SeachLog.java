@@ -39,8 +39,12 @@ public class SeachLog extends HttpServlet {
 	sl.setUserNo(request);
 */
 	ArrayList<String> result=new SearchLogService().Seachlog(sl);
-	
 	response.setContentType("text/html; charset=utf-8");
+	for(String i: result)
+	System.out.println(i);
+	
+	
+	
 	}
 
 	/**
