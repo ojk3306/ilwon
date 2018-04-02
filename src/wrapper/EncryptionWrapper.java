@@ -20,9 +20,9 @@ public class EncryptionWrapper extends HttpServletRequestWrapper {
 	public String getParameter(String name) {
 		System.out.println("EncryptionWrpper Run");
 		String result = null;
-		if(name != null && name.equals("userpwd")) {
+		if(name != null && name.equals("pwd")) {
 			//패스워드 암호화 처리
-			result = getSha512(super.getParameter("userpwd"));
+			result = getSha512(super.getParameter("pwd"));
 		} else {
 			result = super.getParameter(name);
 		}

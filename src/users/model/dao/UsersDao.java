@@ -4,12 +4,48 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import static common.JDBCTemplate.*;
-import users.model.vo.User;
+
+import users.model.vo.Users;
 
 public class UsersDao {
 	
 	
-	public UsersDao() {}
+	public UsersDao() {
+		
+	}
+	
+	public Users loginCheck(Connection con, String userId, String userPwd) {
+		Users loginUser = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "select * from users where user_email= ? "
+				+ "and user_pwd = ?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, userId);
+			pstmt.setString(2, userPwd);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				loginUser = new Users();
+				
+				loginUser.setUserEmail(rset.getString("user_email"));
+				loginUser.setUserPassword(rset.getString("user_pwd"));
+				loginUser.setUserName(rset.getString("user_name"));
+			}			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return loginUser;		
+	}
 
 	public int checkEmail(Connection con, String email) {
 		int result = 0;
@@ -33,7 +69,7 @@ public class UsersDao {
 		return result;
 	}
 
-	public int insertUsers(Connection con, User user) {
+	public int insertUsers(Connection con, Users user) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String sql = "insert into users values((SELECT max(user_no) from users)+1,?,?,?,?,?,?,?,?,'','','5','Y','Y','3',sysdate)";
@@ -62,6 +98,8 @@ public class UsersDao {
 		
 		
 	}
+
+	
 	
 	
 	
