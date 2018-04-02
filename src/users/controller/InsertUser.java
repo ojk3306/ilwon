@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import users.model.service.UsersService;
+
+import users.model.vo.Users;
+
 import users.model.vo.Users;
 
 /**
