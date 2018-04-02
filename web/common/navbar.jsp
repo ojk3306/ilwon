@@ -23,12 +23,26 @@
     <script src="/prototype/common\resources\js/select2.js"></script>
    
     <script>
+    function search(){
     
-        $(document).ready(function () {
+    	console.log($('.select2-chosen').val());
+    	console.log($('#select2-chosen-1').val())
+    	
+    	//location.href="/prototype/insertlog?seachcontent="+$('#select2-chosen-1').val();
+    
+    	
+    	//후에 섹션의 로그인유저의 번호까지 넣기.
+    }
+    
+    
+     $(document).ready(function () {
             
         	$("#ee").select2();
-         	$("#s2id_autogen1_search").keyup(function(){
-				$.ajax({
+         	
+        	
+        	
+        	$("#s2id_autogen1_search").keyup(function(){
+			$.ajax({
 					
 					url:"<%=request.getContextPath()%>/seach",
 					data:{word:$("#s2id_autogen1_search").val()},//추가로 유저 번호도 보낸다.
@@ -36,17 +50,16 @@
 					dataType:"json",
 					success: function(data){
 						$("#p6").html($("#p6").text()+"<Br>"+data.userid+","+data.userpwd+","+decodeURIComponent(data.username)+","+data.age+","+data.email+","+data.phone)
-					
-					
-					}
-					
-					
-				})		
+				},
+				complete: function(){
+					$("#select2-chosen-1").html($("#s2id_autogen1_search").val());
+					//select2-results에 li로 나열.
+		    	}
+			})		
 				
 				
 			
-				$("#ee").html("<option value='#'>테스트1</option><option value='#'>테스트2</option><option value='#'>테스트3</option>" )
-         	
+				
          	
 })
        
@@ -83,22 +96,19 @@
      
       <ul class="nav navbar-nav navbar-right" style = "overflow : hidden;">
         <li><a href="/prototype/02.KSH,LTH/login.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
-    <li><form class="form-inline mt-2 mt-md-0" action="<%=request.getContextPath()%>/Insertlog" method="post">
+    <li>
+    
+    <form class="form-inline mt-2 mt-md-0" action="#" method="post">
          
          
       
 <select id="ee" name="seachcontent" aria-label="Search" style="margin-top:7px;">
- 	
- 	
- 	
-
+    
     <option value="#">여기에 값을 입력하세요</option>
- 
-    
-    
+	
 </select>		 
-	 
-		 <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin-top:7px;">Search</button>
+	
+		 <button class="btn btn-outline-success my-2 my-sm-0" type="button" style="margin-top:7px;" onclick="search();">Search</button>
           </form>
          </li>
       </ul>      
