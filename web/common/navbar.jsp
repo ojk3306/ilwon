@@ -17,7 +17,7 @@
   		location.href = "/prototype/03.OHW/views/find_teacher.jsp?id=" + id; 		
   	}
  $(function(){
-	 $("#hd").on("keyup", "#sch_stx", function(){
+	 $("#seachcontent").on("keyup", "#sch_stx", function(){
 			var stx = $(this).val(); /* 입력한 검색어 */
 			$(this).autocomplete({
 				source:function(request, response) {
@@ -27,6 +27,8 @@
 						stx : stx
 					}, response);
 				},
+				
+				
 				minLength:2, /*최소 검색 글자수*/
 				delay: 150,  /* 검색어 입력후 표시되는 시간 - 숫자가 클수록 느리게 출력 */
 				focus:function(event, ui) {
