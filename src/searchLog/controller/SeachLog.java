@@ -39,17 +39,13 @@ public class SeachLog extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	SearchLog sl=new SearchLog();
 	sl.setSearchContent(request.getParameter("word"));
-	
-	
-	
-	//sl.setUserNo(Integer.parseInt(request.getParameter("user")));
-	
-	//SearchLog session = (SearchLog)request.getSession().getAttribute("loginUser");
+	try {
+		sl.setUserNo(Integer.parseInt(request.getParameter("user")));
 
-	//SearchLog log = (SearchLog)session.getAttribute("loginUser");
+	} catch (NumberFormatException e) {
+		// TODO: handle exception
+	}
 
-	//System.out.println(log.toString());
-	
 	ArrayList<String> result=new SearchLogService().Seachlog(sl);
 	response.setContentType("text/html; charset=utf-8");
 	System.out.println("result.size()"+result.size());

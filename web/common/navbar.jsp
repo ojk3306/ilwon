@@ -27,17 +27,12 @@
    
 
       <script type="text/javascript">
-    function search(){ 
-    	
-    	location.href="/prototype/insertlog?seachcontent="+$('#select2-chosen-1').text();
-        	
-    	//후에 섹션의 로그인유저의 번호까지 넣기.
-    }    
+  
 
 
     
     function search(){
-    location.href="/prototype/insertlog?seachcontent="+$('#select2-chosen-1').text();
+    location.href="/prototype/insertlog?seachcontent="+$('#select2-chosen-1').text()+"&user="+$("#userno").val();
     
 	//후에 섹션의 로그인유저의 번호까지 넣기.
     }
@@ -46,12 +41,12 @@
     
      $(document).ready(function (){
 
-    console.log('<%=loginUser.getUserNo()%>');
+    //console.log($("#userno").val());
     $.ajax({
 
     	
 		url:"<%=request.getContextPath()%>/seach",
-		data:{word:$("a").val()},//추가로 유저 번호도 보낸다.
+		data:{word:$("a").val(),user:$("#userno").val()},//추가로 유저 번호도 보낸다.
 		type:"get",
 		dataType:"json",
 		success: function(data){
@@ -86,7 +81,7 @@
 
     	
 				url:"<%=request.getContextPath()%>/seach",
-				data:{word:$("a").val()},//추가로 유저 번호도 보낸다.
+				data:{word:$("a").val(),user:$("#userno").val()},//추가로 유저 번호도 보낸다.
 				type:"get",
 				dataType:"json",
 				success: function(data){
@@ -170,12 +165,13 @@
 	</a>
 	</li>		
 		<% } else { %>
+		<input type="hidden" id="userno" value="<%=loginUser.getUserNo()%>">
 			<li> <a><%= loginUser.getUserName() %>님</a> </li>
 			<li class = "ohw-li">
 				<table>
 					<tr>
 						<td><a><input type = "button" class = "btn btn-success" value = "My Info"></a></td>
-						<td><a><input type = "button" class = "btn btn-success" value = "LogOut"></a></td>
+						<td><a><input type = "button" onclick="location.href='/prototype/logout'" class = "btn btn-success" value = "LogOut"></a></td>
 					</tr>
 				</table>
 			</li>			
@@ -183,7 +179,7 @@
 		<li> <!-- 검색바 -->
 		<form class="form-inline mt-2 mt-md-0 input-group" action="#" method="post">      
 		<select id="ee" name="seachcontent" aria-label="Search" style="margin-top:7px;">    
-			<option value="#">여기에 값을 입력하세요</option>
+		<option value="#">여기에 값을 입력하세요</option>
 		</select>		
 		<button class="btn btn-success" type="button" style="margin-top:7px;" onclick="search();">Search</button>
 		</form>
