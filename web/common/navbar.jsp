@@ -82,7 +82,7 @@
   	function movePage(id) {  		
   		location.href = "/prototype/03.OHW/views/find_teacher.jsp?id=" + id; 		
   	}
-<<<<<<< HEAD
+
  $(function(){
 	 $("#seachcontent").on("keyup", "#sch_stx", function(){
 			var stx = $(this).val(); /* 입력한 검색어 */
@@ -109,8 +109,7 @@
 		});
 		// 오토컴플리트 종료
  });
-=======
->>>>>>> branch 'master' of https://github.com/ojk3306/ilwon.git
+
   </script>
 </head>
 <body >
