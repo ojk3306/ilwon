@@ -118,21 +118,10 @@ public class UsersDao {
 	public ArrayList<Users> seachUserByAdmin(Connection con, Users user, String seach, int seachOption) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		ArrayList<Users> al=null;
+		ArrayList<Users> al=new ArrayList<Users>();
 		String query="";
 		System.out.println("seach="+seach+"\tseachOption="+seachOption);
-		/*
-		 * <option value="1">모든설정으로검색(무관)</option>
-                  	 <option value="2">이름으로검색</option>
-                  	 <option value="3">이메일로검색</option>
-                  	 <option value="4">현상태로검색</option>
-                  	 <option value="5">나이로 검색 (오차한계 2살) </option>
-                  	 <option value="6">성별로검색</option>
-                  	 <option value="7">주소로검색</option>
-                  	 <option value="8">전화번호로검색</option>
-		 * 
-		 * 
-		 * */
+	
 		if(seachOption==1) {
 			//모든 설정으로 검색.
 			query="select * from users where user_type like ? and (USER_EMAIL like ? or USER_NAME like ? or USER_GENDER like ? or USER_AGE like ? or USER_LOC like ? or USER_PHONE  like ?) ";
@@ -195,18 +184,122 @@ public class UsersDao {
 			
 			rset=pstmt.executeQuery();
 			while(rset.next()) {
-				
+			user=new Users();
+			user.setUserNo(rset.getInt("USER_NO"));
+			user.setUserTypeNo(rset.getInt("USER_TYPE"));
+			user.setUserEmail(rset.getString("USER_EMAIL"));
+			user.setUserName(rset.getString("USER_NAME"));
+			user.setUserGender(rset.getString("USER_GENDER"));
+			user.setUserAge(rset.getInt("USER_AGE"));
+			user.setUserLoc(rset.getString("USER_LOC"));
+			user.setUserPhone(rset.getString("USER_PHONE"));
+			user.setUserKeywordCount(rset.getInt("USER_KEYWORD_COUNT"));
+			user.setUserLoginable(rset.getString("USER_LOGINABLE"));
+			user.setUserExeable(rset.getString("USER_EXEABLE"));
+			user.setUserLessonmax(rset.getInt("USER_LESSONMAX"));
+			user.setUserEnrollDate(rset.getDate("USER_ENROLLDATE"));
+			if(rset.getString("USER_ORIGINAL_PHOTO")!=null) {
+				user.setUserOriginalPhoto(rset.getString("USER_ORIGINAL_PHOTO"));	
 			}
+			if(rset.getString("USER_RENAME_PHOTO")!=null) {
+				user.setUserRenamePhoto(rset.getString("USER_RENAME_PHOTO"));	
+			}
+			al.add(user);	
+			System.out.println(user.toString());
+}
 			
 			
 		}catch (Exception e) {
 		e.printStackTrace();
 		
 		}finally {
-			
+			close(rset);
+			close(pstmt);
 		}		
 		
 		return al;
+	}
+
+	public int getListCount(Connection con, Users user, String seach, int seachOption) {
+	int result=0;
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+	String query="";
+	if(seachOption==1) {
+		//모든 설정으로 검색.
+		query="select count(*) from user_type like ? and (USER_EMAIL like ? or USER_NAME like ? or USER_GENDER like ? or USER_AGE like ? or USER_LOC like ? or USER_PHONE  like ?) ";
+	}else if(seachOption==2) {
+		//이름으로 검색
+		query="";
+	}else if(seachOption==3) {
+		//이메일로 검색.
+		query="";
+	}else if(seachOption==4) {
+		//현재 정상인지,차단인지로 검색.
+		query="";
+	}else if(seachOption==5) {
+		//나이로 검색 (오차한계 2살)
+		query="";
+	}else if(seachOption==6) {
+		//성별로검색
+		query="";
+	}else if(seachOption==7) {
+		//주소로검색
+		query="";
+	}else if(seachOption==8) {
+		//전화번호로검색
+		query="";
+	}
+		
+	try {
+		if(seachOption==1) {
+		pstmt=con.prepareStatement(query);
+		pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
+		pstmt.setString(2,"%"+seach+"%");
+		pstmt.setString(3,"%"+seach+"%");
+		pstmt.setString(4,"%"+seach+"%");
+		pstmt.setString(5,"%"+seach+"%");
+		pstmt.setString(6,"%"+seach+"%");
+		pstmt.setString(7,"%"+seach+"%");
+		}else if(seachOption==2) {
+			//이름으로 검색
+			query="";
+		}else if(seachOption==3) {
+			//이메일로 검색.
+			query="";
+		}else if(seachOption==4) {
+			//현재 정상인지,차단인지로 검색.
+			query="";
+		}else if(seachOption==5) {
+			//나이로 검색 (오차한계 2살)
+			query="";
+		}else if(seachOption==6) {
+			//성별로검색
+			query="";
+		}else if(seachOption==7) {
+			//주소로검색
+			query="";
+		}else if(seachOption==8) {
+			//전화번호로검색
+			query="";
+		}
+		
+		
+		rset=pstmt.executeQuery();
+		if(rset.next()) {
+			
+			result=rset.getInt(1);
+		}
+		
+		
+	}catch (Exception e) {
+	e.printStackTrace();
+	
+	}finally {
+		close(rset);
+		close(pstmt);
+	}		
+	return result;
 	}
 
 	

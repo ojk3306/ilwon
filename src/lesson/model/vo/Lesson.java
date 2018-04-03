@@ -3,202 +3,243 @@ package lesson.model.vo;
 import java.io.Serializable;
 import java.sql.Date;
 
-public class Lesson implements Serializable {	
+public class Lesson implements Serializable{
 	
-	private static final long serialVersionUID = 2000L;
-	private int lessonNo;
-	private int levelNo;
-	private int stateNo;
-	private int categoryNo;
-	private int userNo1;
-	private int userNo2;
-	private String lessonTitle;
-	private String lessonLocation;
-	private int lessonRadius;
-	private int lessonPrice;
-	private int lessonCount;
-	private Date lessonDate;
-	private String lessonContop;
-	private String lessonConmid;
-	private String lessonConbot;
-	private String lessonKeyword;
-	private String lessonType;
+	private static final long serialVersionUID = 1000L;
+	private int lesson_no;
+	private int level_no;
+	private int state_no;
+	private int category_no;
+	private int user_no1;
+	private int user_no2;
+	private String lesson_title;
+	private String lesson_loc;
+	private int lesson_rad;
+	private int lesson_price;
+	private int lesson_count;
+	private Date lesson_date;
+	private String lesson_contop;
+	private String lesson_conmid;
+	private String lesson_conbot;
+	private String lesson_keyword;
+	private int lesson_type;
 	
 	
-	public Lesson() {
-		
-	}
+	public Lesson() {}
 
-	public Lesson(int lessonNo, int levelNo, int stateNo, int categoryNo, int userNo1, int userNo2, String lessonTitle,
-			String lessonLocation, int lessonRadius, int lessonPrice, int lessonCount, Date lessonDate,
-			String lessonContop, String lessonConmid, String lessonConbot, String lessonKeyword, String lessonType) {
+
+	public Lesson(int lesson_no, int level_no, int state_no, int category_no, int user_no1, int user_no2,
+			String lesson_title, String lesson_loc, int lesson_rad, int lesson_price, int lesson_count, Date lesson_date,
+			String lesson_contop, String lesson_conmid, String lesson_conbot, String lesson_keyword, int lesson_type) {
 		super();
-		this.lessonNo = lessonNo;
-		this.levelNo = levelNo;
-		this.stateNo = stateNo;
-		this.categoryNo = categoryNo;
-		this.userNo1 = userNo1;
-		this.userNo2 = userNo2;
-		this.lessonTitle = lessonTitle;
-		this.lessonLocation = lessonLocation;
-		this.lessonRadius = lessonRadius;
-		this.lessonPrice = lessonPrice;
-		this.lessonCount = lessonCount;
-		this.lessonDate = lessonDate;
-		this.lessonContop = lessonContop;
-		this.lessonConmid = lessonConmid;
-		this.lessonConbot = lessonConbot;
-		this.lessonKeyword = lessonKeyword;
-		this.lessonType = lessonType;
+		this.lesson_no = lesson_no;
+		this.level_no = level_no;
+		this.state_no = state_no;
+		this.category_no = category_no;
+		this.user_no1 = user_no1;
+		this.user_no2 = user_no2;
+		this.lesson_title = lesson_title;
+		this.lesson_loc = lesson_loc;
+		this.lesson_rad = lesson_rad;
+		this.lesson_price = lesson_price;
+		this.lesson_count = lesson_count;
+		this.lesson_date = lesson_date;
+		this.lesson_contop = lesson_contop;
+		this.lesson_conmid = lesson_conmid;
+		this.lesson_conbot = lesson_conbot;
+		this.lesson_keyword = lesson_keyword;
+		this.lesson_type = lesson_type;
 	}
 
-	public int getLessonNo() {
-		return lessonNo;
+
+	public int getlesson_no() {
+		return lesson_no;
 	}
 
-	public void setLessonNo(int lessonNo) {
-		this.lessonNo = lessonNo;
+
+	public void setlesson_no(int lesson_no) {
+		this.lesson_no = lesson_no;
 	}
 
-	public int getLevelNo() {
-		return levelNo;
+
+	public int getLevel_no() {
+		return level_no;
 	}
 
-	public void setLevelNo(int levelNo) {
-		this.levelNo = levelNo;
+
+	public void setLevel_no(int level_no) {
+		this.level_no = level_no;
 	}
 
-	public int getStateNo() {
-		return stateNo;
+
+	public int getState_no() {
+		return state_no;
 	}
 
-	public void setStateNo(int stateNo) {
-		this.stateNo = stateNo;
+
+	public void setState_no(int state_no) {
+		this.state_no = state_no;
 	}
 
-	public int getCategoryNo() {
-		return categoryNo;
+
+	public int getCategory_no() {
+		return category_no;
 	}
 
-	public void setCategoryNo(int categoryNo) {
-		this.categoryNo = categoryNo;
+
+	public void setCategory_no(int category_no) {
+		this.category_no = category_no;
 	}
 
-	public int getUserNo1() {
-		return userNo1;
+
+	public int getUser_no1() {
+		return user_no1;
 	}
 
-	public void setUserNo1(int userNo1) {
-		this.userNo1 = userNo1;
+
+	public void setUser_no1(int user_no1) {
+		this.user_no1 = user_no1;
 	}
 
-	public int getUserNo2() {
-		return userNo2;
+
+	public int getUser_no2() {
+		return user_no2;
 	}
 
-	public void setUserNo2(int userNo2) {
-		this.userNo2 = userNo2;
+
+	public void setUser_no2(int user_no2) {
+		this.user_no2 = user_no2;
 	}
 
-	public String getLessonTitle() {
-		return lessonTitle;
+
+	public String getlesson_title() {
+		return lesson_title;
 	}
 
-	public void setLessonTitle(String lessonTitle) {
-		this.lessonTitle = lessonTitle;
+
+	public void setlesson_title(String lesson_title) {
+		this.lesson_title = lesson_title;
 	}
 
-	public String getLessonLocation() {
-		return lessonLocation;
+
+	public String getlesson_loc() {
+		return lesson_loc;
 	}
 
-	public void setLessonLocation(String lessonLocation) {
-		this.lessonLocation = lessonLocation;
+
+	public void setlesson_loc(String lesson_loc) {
+		this.lesson_loc = lesson_loc;
 	}
 
-	public int getLessonRadius() {
-		return lessonRadius;
+
+	public int getlesson_rad() {
+		return lesson_rad;
 	}
 
-	public void setLessonRadius(int lessonRadius) {
-		this.lessonRadius = lessonRadius;
+
+	public void setlesson_rad(int lesson_rad) {
+		this.lesson_rad = lesson_rad;
 	}
 
-	public int getLessonPrice() {
-		return lessonPrice;
+
+	public int getlesson_price() {
+		return lesson_price;
 	}
 
-	public void setLessonPrice(int lessonPrice) {
-		this.lessonPrice = lessonPrice;
+
+	public void setlesson_price(int lesson_price) {
+		this.lesson_price = lesson_price;
 	}
 
-	public int getLessonCount() {
-		return lessonCount;
+
+	public int getlesson_count() {
+		return lesson_count;
 	}
 
-	public void setLessonCount(int lessonCount) {
-		this.lessonCount = lessonCount;
+
+	public void setlesson_count(int lesson_count) {
+		this.lesson_count = lesson_count;
 	}
 
-	public Date getLessonDate() {
-		return lessonDate;
+
+	public Date getlesson_date() {
+		return lesson_date;
 	}
 
-	public void setLessonDate(Date lessonDate) {
-		this.lessonDate = lessonDate;
+
+	public void setlesson_date(Date lesson_date) {
+		this.lesson_date = lesson_date;
 	}
 
-	public String getLessonContop() {
-		return lessonContop;
+
+	public String getlesson_contop() {
+		return lesson_contop;
 	}
 
-	public void setLessonContop(String lessonContop) {
-		this.lessonContop = lessonContop;
+
+	public void setlesson_contop(String lesson_contop) {
+		this.lesson_contop = lesson_contop;
 	}
 
-	public String getLessonConmid() {
-		return lessonConmid;
+
+	public String getlesson_conmid() {
+		return lesson_conmid;
 	}
 
-	public void setLessonConmid(String lessonConmid) {
-		this.lessonConmid = lessonConmid;
+
+	public void setlesson_conmid(String lesson_conmid) {
+		this.lesson_conmid = lesson_conmid;
 	}
 
-	public String getLessonConbot() {
-		return lessonConbot;
+
+	public String getlesson_conbot() {
+		return lesson_conbot;
 	}
 
-	public void setLessonConbot(String lessonConbot) {
-		this.lessonConbot = lessonConbot;
+
+	public void setlesson_conbot(String lesson_conbot) {
+		this.lesson_conbot = lesson_conbot;
 	}
 
-	public String getLessonKeyword() {
-		return lessonKeyword;
+
+	public String getlesson_keyword() {
+		return lesson_keyword;
 	}
 
-	public void setLessonKeyword(String lessonKeyword) {
-		this.lessonKeyword = lessonKeyword;
+
+	public void setlesson_keyword(String lesson_keyword) {
+		this.lesson_keyword = lesson_keyword;
 	}
 
-	public String getLessonType() {
-		return lessonType;
+
+	public int getlesson_type() {
+		return lesson_type;
 	}
 
-	public void setLessonType(String lessonType) {
-		this.lessonType = lessonType;
+
+	public void setlesson_type(int lesson_type) {
+		this.lesson_type = lesson_type;
 	}
+
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
+
 	@Override
 	public String toString() {
-		return "Lesson [lessonNo=" + lessonNo + ", levelNo=" + levelNo + ", stateNo=" + stateNo + ", categoryNo="
-				+ categoryNo + ", userNo1=" + userNo1 + ", userNo2=" + userNo2 + ", lessonTitle=" + lessonTitle
-				+ ", lessonLocation=" + lessonLocation + ", lessonRadius=" + lessonRadius + ", lessonPrice="
-				+ lessonPrice + ", lessonCount=" + lessonCount + ", lessonDate=" + lessonDate + ", lessonContop="
-				+ lessonContop + ", lessonConmid=" + lessonConmid + ", lessonConbot=" + lessonConbot
-				+ ", lessonKeyword=" + lessonKeyword + ", lessonType=" + lessonType + "]";
-	}	
+		return "lessones [lesson_no=" + lesson_no + ", level_no=" + level_no + ", state_no=" + state_no + ", category_no="
+				+ category_no + ", user_no1=" + user_no1 + ", user_no2=" + user_no2 + ", lesson_title=" + lesson_title
+				+ ", lesson_loc=" + lesson_loc + ", lesson_rad=" + lesson_rad + ", lesson_price=" + lesson_price
+				+ ", lesson_count=" + lesson_count + ", lesson_date=" + lesson_date + ", lesson_contop=" + lesson_contop
+				+ ", lesson_conmid=" + lesson_conmid + ", lesson_conbot=" + lesson_conbot + ", lesson_keyword="
+				+ lesson_keyword + ", lesson_type=" + lesson_type + "]";
+	}
+	
+	
+	
+	
+	
+	
 }
