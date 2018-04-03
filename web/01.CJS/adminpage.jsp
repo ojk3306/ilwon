@@ -37,6 +37,10 @@
       <a href="./adminSeachUser.jsp" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 유저검색
        <span class="badge">12</span></a>
     </div>
+    
+ <div class="list-group" style="background: red">
+여기다 구현연습.
+ </div>
 
   
       </div>
