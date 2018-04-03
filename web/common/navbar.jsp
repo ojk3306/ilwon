@@ -145,7 +145,7 @@
 		
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">은밀한 과외란...</a></li>
+				<li class="active"><a href="#">은밀한 공지</a></li>
 				<li><a href="/prototype/03.OHW/views/find_teacher.jsp">선생 찾기</a></li>
 				<li><a href="/prototype/03.OHW/views/find_learn_list.jsp">학생 찾기</a></li>
 				<li><a href="/prototype/01.CJS/semina.jsp">세미나  찾기</a></li>
