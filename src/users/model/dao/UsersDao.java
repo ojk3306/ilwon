@@ -115,7 +115,7 @@ public class UsersDao {
 		
 	}
 
-	public ArrayList<Users> seachUserByAdmin(Connection con, Users user, String seach, int seachOption) {
+	public ArrayList<Users> seachUserByAdmin(Connection con, Users user, String seach, int seachOption, int limit) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Users> al=new ArrayList<Users>();
@@ -124,65 +124,78 @@ public class UsersDao {
 	
 		if(seachOption==1) {
 			//모든 설정으로 검색.
-			query="select * from users where user_type like ? and (USER_EMAIL like ? or USER_NAME like ? or USER_GENDER like ? or USER_AGE like ? or USER_LOC like ? or USER_PHONE  like ?) ";
+			query="select * from users where user_type like ? and (USER_EMAIL like ? or USER_NAME like ? or USER_GENDER like ? or USER_AGE like ? or USER_LOC like ? or USER_PHONE like ? ) ";
 		}else if(seachOption==2) {
 			//이름으로 검색
-			query="";
+			query="select * from users where user_type like ? and USER_NAME like ? ";
 		}else if(seachOption==3) {
 			//이메일로 검색.
-			query="";
+			query="select * from users where user_type like ? and USER_email like ?";
 		}else if(seachOption==4) {
 			//현재 정상인지,차단인지로 검색.
-			query="";
+			query="select * from users where user_type like ? and USER_EXEABLE like ? or USER_LOGINABLE like ?";
 		}else if(seachOption==5) {
 			//나이로 검색 (오차한계 2살)
-			query="";
+			query="select * from users where user_type like ? and USER_age like ?";
 		}else if(seachOption==6) {
 			//성별로검색
-			query="";
+			query="select * from users where user_type like ? and USER_gender like ?";
 		}else if(seachOption==7) {
 			//주소로검색
-			query="";
+			query="select * from users where user_type like ? and USER_loc like ?";
 		}else if(seachOption==8) {
 			//전화번호로검색
-			query="";
+			query="select * from users where user_type like ? and USER_phone like ?";
 		}
 			
 		try {
-			if(seachOption==1) {
 			pstmt=con.prepareStatement(query);
-			pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
-			pstmt.setString(2,"%"+seach+"%");
-			pstmt.setString(3,"%"+seach+"%");
-			pstmt.setString(4,"%"+seach+"%");
-			pstmt.setString(5,"%"+seach+"%");
-			pstmt.setString(6,"%"+seach+"%");
-			pstmt.setString(7,"%"+seach+"%");
-			}else if(seachOption==2) {
-				//이름으로 검색
-				query="";
-			}else if(seachOption==3) {
-				//이메일로 검색.
-				query="";
-			}else if(seachOption==4) {
-				//현재 정상인지,차단인지로 검색.
-				query="";
-			}else if(seachOption==5) {
-				//나이로 검색 (오차한계 2살)
-				query="";
-			}else if(seachOption==6) {
-				//성별로검색
-				query="";
-			}else if(seachOption==7) {
-				//주소로검색
-				query="";
-			}else if(seachOption==8) {
-				//전화번호로검색
-				query="";
-			}
+			if(seachOption==1) {
+			
+				pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
+				pstmt.setString(2,"%"+seach+"%");
+				pstmt.setString(3,"%"+seach+"%");
+				pstmt.setString(4,"%"+seach+"%");
+				pstmt.setString(5,"%"+seach+"%");
+				pstmt.setString(6,"%"+seach+"%");
+				pstmt.setString(7,"%"+seach+"%");
+				}else if(seachOption==2) {
+					//이름으로 검색
+					
+					pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
+					pstmt.setString(2,"%"+seach+"%");
+				}else if(seachOption==3) {
+					//이메일로 검색.
+								
+					pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
+					pstmt.setString(2,"%"+seach+"%");
+				}else if(seachOption==4) {
+					//현재 정상인지,차단인지로 검색.
+					pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
+					pstmt.setString(2,"%"+seach+"%");
+					pstmt.setString(3,"%"+seach+"%");
+					
+				}else if(seachOption==5) {
+					//나이로 검색 (오차한계 2살)
+					pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
+					pstmt.setString(2,"%"+seach+"%");
+				}else if(seachOption==6) {
+					//성별로검색
+					pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
+					pstmt.setString(2,"%"+seach+"%");
+				}else if(seachOption==7) {
+					//주소로검색
+					pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
+					pstmt.setString(2,"%"+seach+"%");
+				}else if(seachOption==8) {
+					//전화번호로검색
+					pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
+					pstmt.setString(2,"%"+seach+"%");
+				}
 			
 			
 			rset=pstmt.executeQuery();
+			int i=0;
 			while(rset.next()) {
 			user=new Users();
 			user.setUserNo(rset.getInt("USER_NO"));
@@ -205,8 +218,10 @@ public class UsersDao {
 				user.setUserRenamePhoto(rset.getString("USER_RENAME_PHOTO"));	
 			}
 			al.add(user);	
-			System.out.println(user.toString());
-}
+			i++;
+			if(i>=10)
+				break;
+			}
 			
 			
 		}catch (Exception e) {
@@ -230,30 +245,32 @@ public class UsersDao {
 		query="select count(USER_NO) from users where user_type like ? and (USER_EMAIL like ? or USER_NAME like ? or USER_GENDER like ? or USER_AGE like ? or USER_LOC like ? or USER_PHONE like ? ) ";
 	}else if(seachOption==2) {
 		//이름으로 검색
-		query="";
+		query="select count(USER_NO) from users where user_type like ? and USER_NAME like ? ";
 	}else if(seachOption==3) {
 		//이메일로 검색.
-		query="";
+		query="select count(USER_NO) from users where user_type like ? and USER_email like ?";
 	}else if(seachOption==4) {
 		//현재 정상인지,차단인지로 검색.
-		query="";
+		query="select count(USER_NO) from users where user_type like ? and USER_EXEABLE like ? or USER_LOGINABLE like ?";
 	}else if(seachOption==5) {
 		//나이로 검색 (오차한계 2살)
-		query="";
+		query="select count(USER_NO) from users where user_type like ? and USER_age like ?";
 	}else if(seachOption==6) {
 		//성별로검색
-		query="";
+		query="select count(USER_NO) from users where user_type like ? and USER_gender like ?";
 	}else if(seachOption==7) {
 		//주소로검색
-		query="";
+		query="select count(USER_NO) from users where user_type like ? and USER_loc like ?";
 	}else if(seachOption==8) {
 		//전화번호로검색
-		query="";
+		query="select count(USER_NO) from users where user_type like ? and USER_phone like ?";
 	}
 		
 	try {
-		if(seachOption==1) {
 		pstmt=con.prepareStatement(query);
+		
+		if(seachOption==1) {
+		
 		pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
 		pstmt.setString(2,"%"+seach+"%");
 		pstmt.setString(3,"%"+seach+"%");
@@ -263,25 +280,36 @@ public class UsersDao {
 		pstmt.setString(7,"%"+seach+"%");
 		}else if(seachOption==2) {
 			//이름으로 검색
-			query="";
+			
+			pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
+			pstmt.setString(2,"%"+seach+"%");
 		}else if(seachOption==3) {
 			//이메일로 검색.
-			query="";
+						
+			pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
+			pstmt.setString(2,"%"+seach+"%");
 		}else if(seachOption==4) {
 			//현재 정상인지,차단인지로 검색.
-			query="";
+			pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
+			pstmt.setString(2,"%"+seach+"%");
+			pstmt.setString(3,"%"+seach+"%");
+			
 		}else if(seachOption==5) {
 			//나이로 검색 (오차한계 2살)
-			query="";
+			pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
+			pstmt.setString(2,"%"+seach+"%");
 		}else if(seachOption==6) {
 			//성별로검색
-			query="";
+			pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
+			pstmt.setString(2,"%"+seach+"%");
 		}else if(seachOption==7) {
 			//주소로검색
-			query="";
+			pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
+			pstmt.setString(2,"%"+seach+"%");
 		}else if(seachOption==8) {
 			//전화번호로검색
-			query="";
+			pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
+			pstmt.setString(2,"%"+seach+"%");
 		}
 		
 		

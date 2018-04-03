@@ -41,10 +41,10 @@ public class UsersService {
 		return result;
 	}
 
-	public ArrayList<Users> seachUserByAdmin(Users user, String seach, int seachOption) {
+	public ArrayList<Users> seachUserByAdmin(Users user, String seach, int seachOption,int limit) {
 		
 		Connection con = getConnection();
-		 ArrayList<Users> al=new UsersDao().seachUserByAdmin(con,user,seach,seachOption);
+		 ArrayList<Users> al=new UsersDao().seachUserByAdmin(con,user,seach,seachOption,limit);
 		 close(con);
 		return al;
 	}

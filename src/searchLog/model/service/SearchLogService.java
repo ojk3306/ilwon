@@ -29,13 +29,13 @@ public class SearchLogService {
 		Connection con = getConnection();
 		ArrayList<String> al = new SearchLogDao().Seachlog(con,sl);
 		close(con);
-		if(al.size()<5) {
-			Connection con1 = getConnection();
-		    ArrayList<String> al1=new SearchLogDao().Seachlog2(con1,al,sl);
-			close(con);
-			
-			return al1;
-		}
+//		if(al.size()<5) {
+//			Connection con1 = getConnection();
+//		    ArrayList<String> al1=new SearchLogDao().Seachlog2(con1,al,sl);
+//			close(con);
+//			
+//			return al1;
+//		}
 		return al;
 	}
 

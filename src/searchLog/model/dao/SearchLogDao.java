@@ -82,24 +82,16 @@ public class SearchLogDao {
 				int j=0;
 				while(j<5)
 				{
-					if(rset.next()) {
+				if(rset.next()) 
+				{
 					al.add(rset.getString("SEACH_CONTENT"));
 					System.out.println("al.size()="+al.size());
 					row++;
-					}
+				}
 				j++;
 			
 				};
-				
-				
-			
-				
 			}	
-			
-			
-
-		
-		
 		}catch(java.sql.SQLException e1) {
 			System.out.println("써치로그의 값을 모두 불렀습니다. 걱정ㄴㄴ");
 		}catch(Exception e)
@@ -136,12 +128,13 @@ public class SearchLogDao {
 				
 				al.add(rset.getString("SEACH_CONTENT"));
 				
-				System.out.println("여기까지?");
 			};
 		
 	
 		} catch (java.sql.SQLException e) {
+		
 			System.out.println("써치로그의 값을 모두 불렀습니다. 걱정ㄴㄴ");
+		
 		}catch(Exception e1)
 		{
 			e1.printStackTrace();
