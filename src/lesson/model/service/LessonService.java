@@ -3,6 +3,7 @@ package lesson.model.service;
 import static common.JDBCTemplate.*;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import lesson.model.dao.LessonDao;
 import lesson.model.vo.Lesson;
@@ -25,5 +26,17 @@ public class LessonService {
 		
 		return result;
 	}
+
+	public ArrayList<Lesson> onlesson(String user) {
+		Connection conn = getConnection();
+		
+		ArrayList<Lesson> onlesson = new LessonDao().onlesson(conn, user);
+		
+		close(conn);
+		
+		return onlesson;
+	}
+
+	
 	
 }
