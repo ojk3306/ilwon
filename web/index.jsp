@@ -5,7 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>은밀한 과외</title>
+
 <style type="text/css">
+
 	body {
 		width:100%;
 		min-width:800px;

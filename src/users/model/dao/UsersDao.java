@@ -37,7 +37,20 @@ public class UsersDao {
 				loginUser.setUserEmail(rset.getString("user_email"));
 				loginUser.setUserPassword(rset.getString("user_pwd"));
 				loginUser.setUserName(rset.getString("user_name"));
-				loginUser.setUserNo(rset.getInt("USER_NO"));
+				loginUser.setUserNo(rset.getInt("user_no"));
+				loginUser.setUserTypeNo(rset.getInt("user_type"));
+				loginUser.setUserGender(rset.getString("user_gender"));
+				loginUser.setUserAge(rset.getInt("user_age"));
+				loginUser.setUserLoc(rset.getString("user_loc"));
+				loginUser.setUserPhone(rset.getString("user_phone"));
+				loginUser.setUserOriginalPhoto(rset.getString("user_original_photo"));
+				loginUser.setUserRenamePhoto(rset.getString("user_rename_photo"));
+				loginUser.setUserKeywordCount(rset.getInt("user_keyword_count"));
+				loginUser.setUserLoginable(rset.getString("user_loginable"));
+				loginUser.setUserExeable(rset.getString("user_exeable"));
+				loginUser.setUserLessonmax(rset.getInt("user_lessonmax"));
+				loginUser.setUserEnrollDate(rset.getDate("user_enrolldate"));
+				
 			}			
 			
 		} catch (Exception e) {

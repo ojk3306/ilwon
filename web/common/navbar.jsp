@@ -157,7 +157,7 @@
 				
 				<li>
 					<a href="/prototype/03.OHW/views/login.jsp">
-					<span class="glyphicon glyphicon-log-in"></span>Login
+						<span class="glyphicon glyphicon-log-in"></span>Login
 					</a>
 				</li> 
 				     
@@ -168,13 +168,17 @@
 					<table>
             			<tr>
                 			<td>
-                				<!-- <a><input type = "button" class = "btn btn-success" value = "My Info"></a> -->
-                				<a href="#">
-									<span class="glyphicon glyphicon-user ohw-btn"></span>My Info
-								</a>              			
+                				<% if( loginUser.getUserTypeNo() == 1002 ) { %>
+                					<a href="<%= request.getContextPath() %>/04.OJK/teacherinfo.jsp">
+										<span class="glyphicon glyphicon-user ohw-btn"></span>My Info
+									</a> 
+                				<% } else { %>
+                					<a href="<%= request.getContextPath() %>/04.OJK/studentinfo.jsp">
+										<span class="glyphicon glyphicon-user ohw-btn"></span>My Info
+									</a> 
+                				<% } %>                				                				             			
                 			</td>
-                			<td>
-                			<!-- <a><input type = "button" onclick="location.href='/prototype/logout'" class = "btn btn-success" value = "LogOut"></a> -->
+                			<td>                			
                 				<a href="<%= request.getContextPath() %>/logout">
 									<span class="glyphicon glyphicon-log-out ohw-btn"></span>LogOut
 								</a>
