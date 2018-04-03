@@ -1,8 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%
-    
-    %>
+    <%@ page import="java.util.ArrayList, java.sql.Date" %> 
+<%
+ArrayList<Users> list=null;
+	if((ArrayList<Users>)request.getAttribute("list")!=null){
+	list = (ArrayList<Users>)request.getAttribute("list");
+	int listCount = ((Integer)request.getAttribute("listCount")).intValue();
+	int startPage = ((Integer)request.getAttribute("startPage")).intValue();
+	int endPage = ((Integer)request.getAttribute("endPage")).intValue();
+	int maxPage = ((Integer)request.getAttribute("maxPage")).intValue();			
+	int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
+    }
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,8 +85,11 @@ min-height: 440px;
 </style>
 </head>
 <body>
+<%@include file="/common\navbar.jsp"%>
 
-<%@ include file="/common/navbar.jsp" %>
+<%if(loginUser.getUserTypeNo()==1003){ %>
+<!-- 관리자가 아닐시에 팅기게하는 문장 만들기. -->
+
 <div class="main">
 <div class="container">
     <div class="row">
@@ -120,25 +133,48 @@ min-height: 440px;
                 <table class="table table-striped table-bordered table-list">
                   <thead>
                     <tr>
-                        <th><em class="fa fa-cog"></em></th>
+                  <th><em class="fa fa-cog">수정</em></th>
                         <th class="hidden-xs">유저 분류</th>
                         <th>이름</th>
                         <th>메일</th>
-                        <th>현 상태</th>
-                    </tr> 
+                        <th>전화번호</th>
+                        <th>성별</th>
+                        <th>제한 상태</th>
+					 </tr> 
                   </thead>
                   <tbody>
-                          <tr>
+                  	<% if(list!=null){for(Users i: list){ %>
+                  
+                  <tr>
                             <td align="center">
-                              <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
-                              <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
-                            </td>
+                            <a class="btn btn-default" onclick="location.href="><em class="fa fa-pencil"></em></a>
+                  			</td>
                             <td class="hidden-xs">선생인지, 학생인지</td>
                             <td>John Doe</td>
                             <td>johndoe@example.com</td>
                             <td>정상인지,차단인지</td>
-                          </tr>
-                        </tbody>
+                          
+                          
+                   </tr>
+                        
+                        
+                        
+                        <%}%> 
+                  	<%}else{%> 
+                  		
+                  	
+                  	 <tr><th colspan="7" align="center">값을입력하세요</th></tr>
+                  	
+                  	
+                  	
+                  <%}%>
+                   
+                   
+                   
+                   
+                   
+                   
+                    </tbody>
                 </table>
             
               </div>
@@ -169,6 +205,7 @@ min-height: 440px;
 </div></div></div>
 
 </div>
+<%} %>
 <%@ include file="/common/footer.jsp" %>
 </body>
 </html>

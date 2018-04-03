@@ -48,7 +48,7 @@
   <div class="panel-body">
    <div class="col-md-3">
      <div class="well dash-box">
-       <h2><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 12</h2>
+       <h2><span class="glyphicon glyphicon-user" aria-hidden="true"></span>13</h2>
        <h4>Users</h4>
      </div>
    </div>
