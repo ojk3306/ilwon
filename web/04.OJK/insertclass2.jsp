@@ -22,6 +22,9 @@
 	{
 		background-color: #EDEDED;
 	}
+	.col-md-6 col-sm-12 col-lg-6 col-md-offset-3{
+		width:1000px;
+	}
 </style>
 
 <script>
@@ -49,7 +52,7 @@ function mapshow(){
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	mapOption = {
 	    center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-	    level: 4 // 지도의 확대 레벨
+	    level: 6 // 지도의 확대 레벨
 	};  
 
 	//지도를 생성합니다    
@@ -60,7 +63,7 @@ function mapshow(){
 	var geocoder = new daum.maps.services.Geocoder();
 	//주소로 좌표를 검색합니다
 
-	geocoder.addressSearch("경기도 광명시 도덕공원로75-28", function(result, status) {
+	geocoder.addressSearch(loc , function(result, status) {
 	// 정상적으로 검색이 완료됐으면 
 	 if (status === daum.maps.services.Status.OK) {
 
@@ -91,14 +94,14 @@ function mapshow(){
 	map.relayout();
 	}
 var detailCount=1;
-var detailmax=5;
+var detailmax=3;
 function addDetail(){
 if(detailmax>detailCount){
-$("#detail").append("<div id='"+detailCount+"'class='form-group'><label for='disc' style='padding:auto; width:100px;'>키워드</label>	<div style='width: 99%;'><input type='text' id='phone' name='phone' class='form-control' style='width:150px; float:left'><input type='button' onclick='removeDetail(this)' id='"+detailCount+"' class='btn btn-primary center' value='정보삭제하기' style='margin-left:10px;'><input type='button' onclick='addDetail()' class='btn btn-primary center' value='키워드 추가' style='margin-left:10px;'></div></div>");
+$("#detail").append("<div id='"+detailCount+"'class='form-group'><label for='keyword' style='padding:auto; width:100px;'>키워드</label>	<div style='width: 99%;'><input type='text' name='keyword' class='form-control' style='width:150px; float:left'><input type='button' onclick='removeDetail(this)' id='"+detailCount+"' class='btn btn-primary center' value='정보삭제하기' style='margin-left:10px;'><input type='button' onclick='addDetail()' class='btn btn-primary center' value='키워드 추가' style='margin-left:10px;'></div></div>");
  detailCount++;
  console.log(detailCount);
 	}else{
-		alert("너무 많습니다! 삭제해주세요");
+		alert("기본 키워드 개수는 3개입니다");
 		
 	}
 	
@@ -122,25 +125,45 @@ function removeDetail(a){
 			<div class="panel-heading">강의를 등록합니다.
 			</div>
 			<div class="panel-body">
-				<form>
+				<form action="/prototype/insertlesson.sm" method="post">
 					<div class="form-group">
-						<label for="myName">강의 타이틀</label>
-						<input id="myName" name="myName" class="form-control" type="text" data-validation="required">
+						<label for="title">강의 타이틀</label>
+						<input id="title" name="title" class="form-control" type="text" data-validation="required">
 						<span id="error_name" class="text-danger"></span>
 					</div>
 					<div class="form-group">
-						<label for="lastname">수업료(단위/만)</label>
-						<input id="lastname" name="lastname" class="form-control" type="text" data-validation="email">
+						<label for="category">카테고리</label><br>	
+						<label>대분류 : </label>&nbsp;<select name="category1">
+							<option value="음악">음악</option>
+							<option value="운동">운동</option>
+							<option value="게임">게임</option>
+						</select>&nbsp;
+						
+						<label>소분류 : </label>&nbsp;<select name="category2">
+							<option value="피아노">피아노</option>
+							<option value="테니스">테니스</option>
+							<option value="리그오브레전드">리그오브레전드</option>
+						</select>
 						<span id="error_lastname" class="text-danger"></span>
 					</div>
 					<div class="form-group">
-						<label for="age">수업료/횟수</label>
+						<label for="level">강의 수준</label><br>
+						<select name="level">
+							<option value="1">초급</option>
+							<option value="2">중급</option>
+							<option value="3">고급</option>
+						
+						</select>
+						<span id="error_name" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<label>수업료/횟수</label>
 						
 						<div style="width:95%; background: red">
-						<label for="age" style="width: 17%; float:left;">수업료(단위/만):</label>
-						<input id="age" name="age"  class="form-control" type="number" min="1" style="width: 15%; float:left">
-						 <label for="age" style="margin-left:30px;    width: 7%; float:left" >횟수:</label>
-						<input id="age" name="age"  class="form-control" type="number" min="1" style="width: 15%; float:left">
+						<label for="price" style="width: 17%; float:left;">수업료(단위/만):</label>
+						<input id="price" name="price"  class="form-control" type="number" min="1" style="width: 15%; float:left">
+						 <label for="count" style="margin-left:30px;    width: 7%; float:left" >횟수:</label>
+						<input id="count" name="count"  class="form-control" type="number" min="1" style="width: 15%; float:left">
 					 	
 						</div>
 						
@@ -151,69 +174,69 @@ function removeDetail(a){
 						<hr style="clear:both; border: 0">
 					
 					<div class="form-group">
-						<label for="phone">강의 내용1</label>
-						<textarea rows="10" cols="67pt"></textarea>
+						<label for="contop">강의 내용1</label>
+						<textarea name="contop" id="contop" rows="10" cols="68pt"></textarea>
 						<span id="error_phone" class="text-danger"></span>
 					</div>
 					
 					<div class="form-group">
-						<label for="phone">강의 내용2</label>
-						<textarea rows="10" cols="67pt"></textarea>
+						<label for="conmid">강의 내용2</label>
+						<textarea rows="10" cols="68pt" name="conmid" id="conmid"></textarea>
 						<span id="error_phone" class="text-danger"></span>
 					</div>
 					
 					<div class="form-group">
-						<label for="phone">강의 내용3</label>
-						<textarea rows="10" cols="67pt"></textarea>
+						<label for="conbot">강의 내용3</label>
+						<textarea rows="10" cols="68pt" name="conbot" id="conbot"></textarea>
 						<span id="error_phone" class="text-danger"></span>
 					</div>
 					
 					<div class="form-group">
-						<label for="phone">사진</label>
-						<input type="file">
+						<label for="img">사진</label>
+						<input type="file" name="img" id="img">
 						<span id="error_phone" class="text-danger"></span>
 					</div>
 					
 					<div class="form-group">
-						<label for="phone">강의 지역</label>
+						<label for="loc">강의 지역</label>
 						<input type="text" id="loc" name="loc" class="form-control" onclick="juso()" readonly="readonly" placeholder="클릭 해서 지역을 선택해주세요!">
 						<span id="error_phone" class="text-danger"></span>
 					</div>
 					
 					<div class="form-group">
-						<label for="phone">가능 반경</label>
-						<input type="number" name="loc" id="rad" min="1000" class="form-control" style="width: 100px; margin-bottom: 10px;">
+						<label for="rad">가능 반경(단위/미터)</label>
+						<input type="number" name="rad" id="rad" min="1000" class="form-control" placeholder="1000" style="width: 100px; margin-bottom: 10px;">
 								<button type="button" class="btn" onclick="mapshow()">확인하기</button>
 								</div> 
-									<div id="map" style="width:600px; height:350px; display: none;" ></div>
+									<div id="map" style="width:500px; height:350px; display: none;" ></div>
 							
 						<span id="error_phone" class="text-danger"></span>
 					
 					<div id="detail">
 					<div class="form-group">
 						
-						<label for="disc" style="padding:auto; width:100px;">키워드</label>
+						<label for="keyword" style="padding:auto; width:100px;">키워드</label>
 						<div style="width: 99%;">
-						<input type="text" id="phone" name="phone" class="form-control" style="width:150px; float:left">
+						<input type="text" name="keyword" class="form-control" style="width:150px; float:left">
 						
 						<input type="button" onclick="addDetail()" class="btn btn-primary center" value="키워드 추가" style="margin-left:140px;">						
 						</div>
 						
 					</div>
 					</div>
-					
+					<input type="hidden" name="userno" value="<%= loginUser.getUserNo() %>">
 					<input type="submit" value="강의생성" class="btn btn-primary center">
 					<input type="reset" value="초기화" class="btn btn-primary center">
 					<input type="button" onclick="history.back()" value="뒤로가기" class="btn btn-primary center">
 					
 					</div>
 					
+					</form>
 					
 					
 					
 					
-					
-				</form>
+				
 
 			</div>
 		</div>

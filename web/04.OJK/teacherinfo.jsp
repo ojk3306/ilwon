@@ -26,7 +26,7 @@
 							height="200px">
 					</div>
 					<div style="float: left; margin-top: 20px;">
-						<span style="font-weight: bold; font-size: 15pt;">userid 님</span>
+						<span style="font-weight: bold; font-size: 25pt;"><%= loginUser.getUserName() %> 님</span>
 					</div>
 
 
@@ -95,7 +95,7 @@
 				</div>
 			</div>
 			<div style="width: 1100px; height: 70px; padding: 10px; margin-left: 909px;">
-				<button type="button" class="btn btn-info" onclick="location.href = 'insertclass.jsp' ">강의 등록</button>
+				<button type="button" class="btn btn-info" onclick="location.href = 'insertclass2.jsp' ">강의 등록</button>
 			</div>
 			<br> <br>
 			<h1>강의 내역</h1>

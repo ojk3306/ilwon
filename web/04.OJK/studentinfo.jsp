@@ -21,12 +21,12 @@
 				<div style="width: 100%; height: 230px; background: #f2f2f2;">
 					<div
 						style="width: 250px; height: 230px; float: left; margin-top: 10px; padding: 5px;">
-						<img src="/prototype/resources/img/testimonials-1.jpg"
+						<img src="/prototype/04.OJK\images\rakoon.jpg"
 							class="img-circle" alt="Cinque Terre" width="200px"
 							height="200px">
 					</div>
 					<div style="float: left; margin-top: 20px;">
-						<span style="font-weight: bold; font-size: 15pt;">userid 님</span>
+						<span style="font-weight: bold; font-size: 25pt;"><%= loginUser.getUserName() %> 님</span>
 					</div>
 
 
