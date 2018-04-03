@@ -3,14 +3,48 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript"
+	src="/prototype/common/resources/js/jquery-3.3.1.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>선생정보보기</title>
+<script>
+	$.ajax({
+		var user = $('#userno').val();
+		url: "/prototype/onlesson",
+		data: {user : user},
+		type: "get",
+		dataType: "json",
+		succes: function(data) {
+			
+			console.log(data);
+			var jsonStr = JSON.stringify(data);
+			var json = JSON.parse(jsonStr);
+			
+			var values = $('#ongoing_table').html() + "<br>";
+			for(var i in json.onlesson) {
+				
+				values += "<tr><td>"+json.onlesson[i].lesson_title"</td></tr>"
+				
+				
+				
+			}
+		}
+		
+		
+		
+		
+		
+		
+	});
+
+</script>
 </head>
+
 <body>
 <%@include file="/common/navbar.jsp" %>
 
 <nav class="contents">
- 
+ 	<intput type="hidden" value="<%= loginUser.getUserNo() %>" name="userno" id="userno">
 	<h1 align="center">선생 정보 보기</h1>
 	<hr>
 
@@ -51,7 +85,7 @@
 			<div id="info"
 				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px;">
 				<div style="width:100%;">
-					<table class="table table-hover" >
+					<table class="table table-hover" name="ongoing_table" id="ongoing_table">
 						<thead>
 							<tr>
 								<th>강의명</th>

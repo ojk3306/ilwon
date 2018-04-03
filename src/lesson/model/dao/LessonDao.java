@@ -4,6 +4,8 @@ import static common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import lesson.model.vo.Lesson;
 
@@ -43,6 +45,15 @@ public class LessonDao {
 		}
 		
 		return result;
+	}
+
+	public ArrayList<Lesson> onlesson(Connection conn, String user) {
+		ArrayList<Lesson> onlesson = new ArrayList<Lesson>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = "select * from lesson where user_no2 = ? order by lesson_no desc ";
+		
+		return null;
 	}
 	
 }
