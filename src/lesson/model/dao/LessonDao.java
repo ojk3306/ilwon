@@ -17,10 +17,11 @@ public class LessonDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = "insert into lesson values((SELECT max(lesson_no) from lesson)+1"
-				+ ",?,1,1,null,?,?,?,?,?,?,sysdate,?,?,?,?,7000)";
+				+ ",?,1,5513,null,?,?,?,?,?,?,sysdate,?,?,?,?,7000)";
 		//분류번호 등 추가할 것
 		
 		try {
+		System.out.println("lesson.getUser_no2()"+lesson.getUser_no2());
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, lesson.getLevel_no());
 			pstmt.setInt(2, lesson.getUser_no2());

@@ -149,9 +149,10 @@ function removeDetail(a){
 					<div class="form-group">
 						<label for="level">강의 수준</label><br>
 						<select name="level">
-							<option value="1">초급</option>
-							<option value="2">중급</option>
-							<option value="3">고급</option>
+							<option value="11130">초급</option>
+							<option value="11131">중급</option>
+							<option value="11132">고급</option>
+							<option value="11133">취미</option>
 						
 						</select>
 						<span id="error_name" class="text-danger"></span>
