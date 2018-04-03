@@ -10,88 +10,124 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
 <title>MenuBar</title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
  
-<link rel="stylesheet" href="/prototype/common/resources/css/bootstrap.css">
+ <link rel="stylesheet" href="/prototype/common/resources/css/bootstrap.css">
  
-<script src="/prototype/common/resources/js/jquery-3.3.1.min.js"></script>
+ <script src="/prototype/common/resources/js/jquery-3.3.1.min.js"></script>
  
-<script src="/prototype/common/resources/js/bootstrap.js"></script>
+ <script src="/prototype/common/resources/js/bootstrap.js"></script>
  
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-<link href="/prototype/common\resources\css/select2.css" rel="stylesheet"/>
+ <link href="/prototype/common\resources\css/select2.css" rel="stylesheet"/>
  
-<script src="/prototype/common/resources/js/select2.js"></script>
+ <script src="/prototype/common/resources/js/select2.js"></script>
    
 <script type="text/javascript">
+  
 
+
+    
     function search(){
     location.href="/prototype/insertlog?seachcontent="+$('#select2-chosen-1').text()+"&user="+$("#userno").val();
     
-	//후에 섹션의 로그인유저의 번호까지 넣기.
+   //후에 섹션의 로그인유저의 번호까지 넣기.
     }
     
-	$(document).ready(function (){
+
+    
+     $(document).ready(function (){
 
     //console.log($("#userno").val());
     $.ajax({
+
        
       url:"<%=request.getContextPath()%>/seach",
       data:{word:$("a").val(),user:$("#userno").val()},//추가로 유저 번호도 보낸다.
       type:"get",
       dataType:"json",
       success: function(data){
-    	 
          $("#ee").html("");
          var jsonStr=JSON.stringify(data);
          //문자열을 다시 변경
          //json 객체로 파싱함. 
          var json= JSON.parse(jsonStr);   
 
-         for(var i in json.list) {
+         for(var i in json.list){
             
          console.log(json.list[i]);
           
          $("#ee").html($("#ee").html()+'<option>'+json.list[i]+'</option>')
          
          };
+      },error:function(a,b,c){
          
-      }, error:function(a,b,c) {         
          console.log(b+c)
-      }, complete: function() {
-    	  
+      },
+        complete: function(){
       $("#select2-chosen-1").html($("#s2id_autogen1_search").val());
-      
       //select2-results에 li로 나열.
-      
-			}
-		})     
-	});
+   }
+})   
+
+            
+           $("#ee").select2();
+           
+           $("#s2id_autogen1_search").keyup(function(){
+         $.ajax({
+
+       
+            url:"<%=request.getContextPath()%>/seach",
+            data:{word:$("a").val(),user:$("#userno").val()},//추가로 유저 번호도 보낸다.
+            type:"get",
+            dataType:"json",
+            success: function(data){
+               $("#ee").html("");
+               var jsonStr=JSON.stringify(data);
+               //문자열을 다시 변경
+               //json 객체로 파싱함. 
+               var json= JSON.parse(jsonStr);   
+
+               for(var i in json.list){
+                  
+               console.log(json.list[i]);
+                
+               $("#ee").html($("#ee").html()+'<option>'+json.list[i]+'</option>')
+               
+               };
+            },error:function(a,b,c){
+               
+               console.log(b+c)
+            },
+              complete: function(){
+            $("#select2-chosen-1").html($("#s2id_autogen1_search").val());
+            //select2-results에 li로 나열.
+         }
+      })   
+       
+
+            
+         })   
+      });
 
     function movePage(id) {        
         location.href = "/prototype/03.OHW/views/find_teacher.jsp?id=" + id;       
-    }
-    
-</script>
+     }
+   </script>
   
   
-<style type="text/css">
-
-	.ohw-li {
-        margin-top:7px;
-        margin-right:5px;
+  <style type="text/css">
+     .ohw-li {
+        margin:0px;
         padding:0px;
         height:40px;
-	}	
-	
-</style>
+     }
+  </style>
 </head>
-
 <body >
+
 <nav class="navbar navbar-inverse">
    <div class="container-fluid">
       <div class="navbar-header">
@@ -112,7 +148,10 @@
       <li><a href="/prototype/04.OJK/report.jsp">건의하기</a></li>
       <li><a href="/prototype/01.CJS/adminpage.jsp">관리자</a></li>
    </ul>
-   
+     
+
+
+
    <ul class="nav navbar-nav navbar-right" style = "overflow : hidden;"> <!-- 메뉴바 오른쪽 -->
       <% if(loginUser == null) { %>
    <li>
@@ -121,7 +160,8 @@
    </span>Login
    </a>
    </li>      
-      <% } else { %>     
+      <% } else { %>
+      <input type="hidden" id="userno" value="<%=loginUser.getUserNo()%>">
          <li> <a><%= loginUser.getUserName() %>님</a> </li>
          <li class = "ohw-li">
             <table>
