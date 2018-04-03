@@ -49,6 +49,13 @@ public class UsersService {
 		return al;
 	}
 
+	public int getListCount(Users user, String seach, int seachOption) {
+		Connection con = getConnection();
+		int listCount = new UsersDao().getListCount(con,user,seach,seachOption);
+		close(con);
+		return listCount;
+	}
+
 	
 	
 	
