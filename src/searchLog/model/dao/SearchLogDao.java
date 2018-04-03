@@ -100,9 +100,13 @@ public class SearchLogDao {
 
 		
 		
-		}catch(Exception e1) {
-			e1.printStackTrace();
-		}finally {
+		}catch(java.sql.SQLException e1) {
+			System.out.println("써치로그의 값을 모두 불렀습니다. 걱정ㄴㄴ");
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally {
 			
 		close(rset);
 			
@@ -136,9 +140,13 @@ public class SearchLogDao {
 			};
 		
 	
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
+		} catch (java.sql.SQLException e) {
+			System.out.println("써치로그의 값을 모두 불렀습니다. 걱정ㄴㄴ");
+		}catch(Exception e1)
+		{
+			e1.printStackTrace();
+		}
+		finally {
 			close(rset);
 			close(pstmt);
 		}

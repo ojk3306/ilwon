@@ -3,6 +3,7 @@ package users.model.service;
 import static common.JDBCTemplate.*;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import users.model.*;
 import users.model.dao.UsersDao;
@@ -38,6 +39,14 @@ public class UsersService {
 		}
 		close(con);
 		return result;
+	}
+
+	public ArrayList<Users> seachUserByAdmin(Users user, String seach, int seachOption) {
+		
+		Connection con = getConnection();
+		 ArrayList<Users> al=new UsersDao().seachUserByAdmin(con,user,seach,seachOption);
+		 close(con);
+		return al;
 	}
 
 	

@@ -3,6 +3,8 @@ package users.model.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+
 import static common.JDBCTemplate.*;
 
 import users.model.vo.Users;
@@ -98,6 +100,100 @@ public class UsersDao {
 		
 		
 		
+	}
+
+	public ArrayList<Users> seachUserByAdmin(Connection con, Users user, String seach, int seachOption) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Users> al=null;
+		String query="";
+		System.out.println("seach="+seach+"\tseachOption="+seachOption);
+		/*
+		 * <option value="1">모든설정으로검색(무관)</option>
+                  	 <option value="2">이름으로검색</option>
+                  	 <option value="3">이메일로검색</option>
+                  	 <option value="4">현상태로검색</option>
+                  	 <option value="5">나이로 검색 (오차한계 2살) </option>
+                  	 <option value="6">성별로검색</option>
+                  	 <option value="7">주소로검색</option>
+                  	 <option value="8">전화번호로검색</option>
+		 * 
+		 * 
+		 * */
+		if(seachOption==1) {
+			//모든 설정으로 검색.
+			query="select * from users where user_type like ? and (USER_EMAIL like ? or USER_NAME like ? or USER_GENDER like ? or USER_AGE like ? or USER_LOC like ? or USER_PHONE  like ?) ";
+		}else if(seachOption==2) {
+			//이름으로 검색
+			query="";
+		}else if(seachOption==3) {
+			//이메일로 검색.
+			query="";
+		}else if(seachOption==4) {
+			//현재 정상인지,차단인지로 검색.
+			query="";
+		}else if(seachOption==5) {
+			//나이로 검색 (오차한계 2살)
+			query="";
+		}else if(seachOption==6) {
+			//성별로검색
+			query="";
+		}else if(seachOption==7) {
+			//주소로검색
+			query="";
+		}else if(seachOption==8) {
+			//전화번호로검색
+			query="";
+		}
+			
+		try {
+			if(seachOption==1) {
+			pstmt=con.prepareStatement(query);
+			pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
+			pstmt.setString(2,"%"+seach+"%");
+			pstmt.setString(3,"%"+seach+"%");
+			pstmt.setString(4,"%"+seach+"%");
+			pstmt.setString(5,"%"+seach+"%");
+			pstmt.setString(6,"%"+seach+"%");
+			pstmt.setString(7,"%"+seach+"%");
+			}else if(seachOption==2) {
+				//이름으로 검색
+				query="";
+			}else if(seachOption==3) {
+				//이메일로 검색.
+				query="";
+			}else if(seachOption==4) {
+				//현재 정상인지,차단인지로 검색.
+				query="";
+			}else if(seachOption==5) {
+				//나이로 검색 (오차한계 2살)
+				query="";
+			}else if(seachOption==6) {
+				//성별로검색
+				query="";
+			}else if(seachOption==7) {
+				//주소로검색
+				query="";
+			}else if(seachOption==8) {
+				//전화번호로검색
+				query="";
+			}
+			
+			
+			rset=pstmt.executeQuery();
+			while(rset.next()) {
+				
+			}
+			
+			
+		}catch (Exception e) {
+		e.printStackTrace();
+		
+		}finally {
+			
+		}		
+		
+		return al;
 	}
 
 	

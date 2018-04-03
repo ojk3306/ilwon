@@ -1,13 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+    
+    %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript" src="/prototype/resources/js/jquery-3.3.1.min.js"></script>
-<script src="/prototype/resources/vendor/jquery/jquery.min.js"></script>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script type="text/javascript" src="/prototype/common\resources\js\jquery-3.3.1.min.js"></script>
+
+
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
 
 <title>관리자의 검색창</title>
@@ -76,34 +80,41 @@ min-height: 440px;
 <div class="main">
 <div class="container">
     <div class="row">
-    
- 
-        <div class="col-md-10 col-md-offset-1">
+       <div class="col-md-10 col-md-offset-1">
 
             <div class="panel panel-default panel-table">
               <div class="panel-heading">
+                
                 <div class="row">
-                <div class="col col-xs-6 text-right">
-                  
-                  <select >
-                  	 <option>학생</option>
-                  	  <option>선생</option>
-                  	   <option>관리자</option>
-                  	    <option>무관</option>
+                <div class="col col-xs-6 text-right" style="width: 100%;">
+                  <form action="/prototype/adminseachuser" method="post">
+                    <select style="height: 28px; margin-top:5px; bottom: 0;" name="type">
+                 	 <option value="100">학생+선생+관리자(무관)</option>	
+                  	 <option value="1001">학생</option>
+                  	 <option value="1002">선생</option>
+                  	 <option value="1003">관리자</option>
                   	 </select>
-                  	<select>
-                  	 <option>이름으로검색</option>
-                  	 <option>이메일로검색</option>
-                  	 <option>현상태로검색</option>
-                  	 <option>전체검색</option>
+                  	 
+                  	<select style="height: 28px; margin-top:5px" name="option">
+                  	 <option value="1">모든설정으로검색(무관)</option>
+                  	 <option value="2">이름으로검색</option>
+                  	 <option value="3">이메일로검색</option>
+                  	 <option value="4">현상태로검색</option>
+                  	 <option value="5">나이로 검색 (오차한계 2살) </option>
+                  	 <option value="6">성별로검색</option>
+                  	 <option value="7">주소로검색</option>
+                  	 <option value="8">전화번호로검색</option>
+                  	 
                   	 </select>
-                  	<input type="text" placeholder="입력">
+                  	<input type="text" placeholder="입력" style="height: 28px" name="seach">
                   	
-                    <button type="button" class="btn btn-sm btn-primary btn-create">검색!</button>
-                    
-                    
+                    <button type="submit" class="btn btn-sm btn-primary btn-create">검색!</button>
+                    </form>
                   </div>
                 </div>
+                
+                
+                
               </div>
               <div class="panel-body">
                 <table class="table table-striped table-bordered table-list">
@@ -125,7 +136,7 @@ min-height: 440px;
                             <td class="hidden-xs">선생인지, 학생인지</td>
                             <td>John Doe</td>
                             <td>johndoe@example.com</td>
-                              <td>정상인지,차단인지</td>
+                            <td>정상인지,차단인지</td>
                           </tr>
                         </tbody>
                 </table>
