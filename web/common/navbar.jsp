@@ -15,7 +15,7 @@
 
 <title>MenuBar</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> 반응형 메뉴 옵션-->
 
 <link rel="stylesheet" href="/prototype/common/resources/css/bootstrap.css">
  
@@ -99,9 +99,12 @@
 </script>  
   
 <style type="text/css">
+
 	body {
+		width:1516px;		
+		position:absolute;
 		overflow:auto;
-	}
+	}	
 	
     .ohw-li {
         margin-top:13px;
@@ -121,7 +124,7 @@
      
     .ohw-btn-ul {
     	margin-top:5px;
-    	text-align:center;   	
+    	   	
     }     
 </style>
 
@@ -189,7 +192,7 @@
 				        
 				<% } %>
 				
-				<li> <!-- 검색바 -->
+				 <li>
 					<form class="form-inline mt-2 mt-md-0 input-group" action="#" method="post">
 						<select id="ee" name="seachcontent" aria-label="Search" style="margin-top:7px;">    
 							<option value="#">여기에 값을 입력하세요</option>

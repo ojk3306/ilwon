@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+	
+	    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,27 +44,101 @@
 		padding:0px;
 	}
 	
+	.ohw-main-notice {
+		margin-top:20px;
+	}
+		
+	.ohw-main-notice-cont {
+		width:15%;
+		text-align:center;
+		padding-top:5px;
+		padding-bottom:5px;
+	}
+	
+	.ohw-main-notice-conw {
+		width:5%;
+		text-align:center;
+		padding-top:5px;
+		padding-bottom:5px;
+	}
+	
+	.ohw-main-notice-cond {
+		width:8.33%;
+		text-align:center;
+		padding-top:5px;
+		padding-bottom:5px;
+	}	
+	
 </style>
+
 </head>
 
 <body>
 <div style="height:52px">
 <%@ include file = "common/navbar.jsp" %>
 </div>
+
+<script type="text/javascript">
+	
+	$(function () {
+	
+	$.ajax({
+		url:"mainnotice",			
+		dataType:"json",
+		success:function(data) {
+			
+			//json 객체 하나(data)를 문자열 형태로 바꿈
+			var jsonStr = JSON.stringify(data);
+			//문자열을 다시 자바스크립트가 사용할 수 있는
+			//json 객체로 파싱함
+			var json = JSON.parse(jsonStr);		 
+			
+			console.log(data);
+			
+			for(var i in json.list) {
+				
+				$('.ohw-main-notice').append(
+						
+				<% if(loginUser != null) { %>
+				
+				<%-- "<tr class = 'ohw-main-notice-tr'><td class = 'ohw-main-notice-cont'><a href = '"+<%= request.getContextPath() %>+"/ndetail?no=" + json.list[i].noticeNo + "&page=1'>" + json.list[i].noticeTitle + "</a></td>" --%>
+				"<tr class = 'ohw-main-notice-tr'><td class = 'ohw-main-notice-cont'>" + json.list[i].noticeTitle + "</td>"
+				
+				<% } else { %>
+				
+				"<tr class = 'ohw-main-notice-tr'><td class = 'ohw-main-notice-cont'>" + json.list[i].noticeTitle + "</td>"
+			
+				<% } %>	+					 
+				
+				"<td class = 'ohw-main-notice-conw'>" + json.list[i].userName + "</td>" +					 
+				"<td class = 'ohw-main-notice-cond'>" + json.list[i].noticeDate + "</td></tr>"
+				
+				);
+				
+			}
+			
+		}
+	
+	});
+	
+});	
+	
+</script>
+
 <div class="ohw_img_header">
 	<div class="text-center">   
 	<form class="form-inline" action="/prototype/Insertlog" method="post">
-		<div class="input-group"  style="margin-top:10%;">
+		<!-- <div class="input-group"  style="margin-top:10%;">
 	<input type="text" class="form-control" name="seachcontent" size="50" placeholder="태그를 검색해주세요">
 	<div class="input-group-btn">
     <input type="submit" class="btn" value="Search">
 		</div>
-		</div>
+		</div> -->
 	</form>
 	</div>	
 </div>
 
-	<div  style="width:100%; height:330px; magin-bottom:0px;">
+	<div style="width:100%; height:330px; magin-bottom:0px;">
 	<div class="ohw_div_con" align="center">
 	<ul class="nav nav-tabs">
 		<li class="active"><a data-toggle="tab" href="#home">공지사항</a></li>
@@ -70,9 +147,16 @@
 	</ul>
 
 	<div class="tab-content">
-	<div id="home" class="tab-pane fade in active">
-	<h3>HOME</h3>
-	<p>Some content.</p>
+	<div id="home" class="tab-pane fade in active">	
+	<div>
+		<table class = "ohw-main-notice">
+			<tr class = "ohw-main-notice-tr">
+				<th class = "ohw-main-notice-cont">제목</th>
+				<th class = "ohw-main-notice-conw">작성자</th>
+				<th class = "ohw-main-notice-cond">날짜</th>
+			</tr>
+		</table>
+	</div>
 	</div>
 	
 	<div id="menu1" class="tab-pane fade">
