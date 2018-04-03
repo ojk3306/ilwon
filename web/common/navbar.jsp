@@ -104,14 +104,17 @@
 	}
 	
     .ohw-li {
-        margin-top:7px;
-        margin-right:7px;
-        padding:0px;
-        height:27px;
-        position:fixed;
+        margin-top:13px;
+        margin-right:15px;
+        padding-left:15px;
+        height:27px;        
     }
      
-    .btn-success {
+    .ohw-btn {
+    	padding-left:15px;
+    }
+    
+    .btn-primary {
     	height:27px;
     	padding-top:3px;
     }
@@ -164,8 +167,18 @@
 				<li class = "ohw-li form-inline mt-2 mt-md-0 input-group">
 					<table>
             			<tr>
-                			<td><a><input type = "button" class = "btn btn-success" value = "My Info"></a></td>
-                			<td><a><input type = "button" onclick="location.href='/prototype/logout'" class = "btn btn-success" value = "LogOut"></a></td>
+                			<td>
+                				<!-- <a><input type = "button" class = "btn btn-success" value = "My Info"></a> -->
+                				<a href="#">
+									<span class="glyphicon glyphicon-user ohw-btn"></span>My Info
+								</a>              			
+                			</td>
+                			<td>
+                			<!-- <a><input type = "button" onclick="location.href='/prototype/logout'" class = "btn btn-success" value = "LogOut"></a> -->
+                				<a href="<%= request.getContextPath() %>/logout">
+									<span class="glyphicon glyphicon-log-out ohw-btn"></span>LogOut
+								</a>
+                			</td>
             			</tr>
             		</table>
 				</li>
@@ -177,7 +190,7 @@
 						<select id="ee" name="seachcontent" aria-label="Search" style="margin-top:7px;">    
 							<option value="#">여기에 값을 입력하세요</option>
 						</select>      
-						<button class="btn btn-success" type="button" style="margin-top:7px;" onclick="search();">Search</button>
+						<button class="btn btn-primary" type="button" style="margin-top:7px;" onclick="search();">Search</button>
 					</form>
 				</li>
 			</ul>      
