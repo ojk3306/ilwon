@@ -31,8 +31,8 @@ public class AdminSeachUser extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+    
 	String seach=request.getParameter("seach");
-	
 	int seachOption=Integer.parseInt(request.getParameter("option"));
 	
 	Users user=new Users();
@@ -51,12 +51,11 @@ public class AdminSeachUser extends HttpServlet {
 	//전체 목록 갯수 조회 
 
 	int listCount = new users.model.service.UsersService().getListCount(user,seach,seachOption);
-
+    System.out.println(listCount+ "=listCount");
 	//현재 페이지에 출력할 목록 조회
-	ArrayList<Users> al=new users.model.service.UsersService().seachUserByAdmin(user,seach,seachOption);
+	ArrayList<Users> al=new users.model.service.UsersService().seachUserByAdmin(user,seach,seachOption,limit);
 	
-	//System.out.println("list : " + list);
-	
+
 	//총 페이지수 계산 : 목록이 1개일 때 1페이지로 처리
 	int maxPage = (int)((double)listCount / limit + 0.9);
 	//현재 페이지 그룹(10개페이지를 한그룹처리)에 보여줄 시작 페이지수
@@ -70,13 +69,13 @@ public class AdminSeachUser extends HttpServlet {
 	
     RequestDispatcher view =null;
     if(al.size()>0) {
-	request.setAttribute("list", al);
+    view=request.getRequestDispatcher("/01.CJS/adminSeachUser.jsp");
+    request.setAttribute("list", al);
 	request.setAttribute("currentPage", currentPage);
 	request.setAttribute("maxPage", maxPage);
 	request.setAttribute("startPage", startPage);
 	request.setAttribute("endPage", endPage);
 	request.setAttribute("listCount", listCount);
-	view=request.getRequestDispatcher("01.CJS/adminSeachUser.jsp");
 	view.forward(request, response);
 	}else {
 		
