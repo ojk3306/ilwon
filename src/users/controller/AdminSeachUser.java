@@ -51,11 +51,10 @@ public class AdminSeachUser extends HttpServlet {
 	//전체 목록 갯수 조회 
 
 	int listCount = new users.model.service.UsersService().getListCount(user,seach,seachOption);
-	System.out.println("listCount="+listCount);
-	//System.out.println("총 게시글 수 : " + listCount);
-	
+
 	//현재 페이지에 출력할 목록 조회
 	ArrayList<Users> al=new users.model.service.UsersService().seachUserByAdmin(user,seach,seachOption);
+	
 	//System.out.println("list : " + list);
 	
 	//총 페이지수 계산 : 목록이 1개일 때 1페이지로 처리
