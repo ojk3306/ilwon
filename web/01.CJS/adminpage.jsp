@@ -37,6 +37,10 @@
       <a href="./adminSeachUser.jsp" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 유저검색
        <span class="badge">12</span></a>
     </div>
+    
+ <div class="list-group" style="background: red">
+여기다 구현연습.
+ </div>
 
   
       </div>
@@ -48,7 +52,7 @@
   <div class="panel-body">
    <div class="col-md-3">
      <div class="well dash-box">
-       <h2><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 12</h2>
+       <h2><span class="glyphicon glyphicon-user" aria-hidden="true"></span>13</h2>
        <h4>Users</h4>
      </div>
    </div>

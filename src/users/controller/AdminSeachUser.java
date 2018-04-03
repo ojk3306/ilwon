@@ -76,7 +76,7 @@ public class AdminSeachUser extends HttpServlet {
 	request.setAttribute("startPage", startPage);
 	request.setAttribute("endPage", endPage);
 	request.setAttribute("listCount", listCount);
-	view=request.getRequestDispatcher("");
+	view=request.getRequestDispatcher("01.CJS/adminSeachUser.jsp");
 	view.forward(request, response);
 	}else {
 		
