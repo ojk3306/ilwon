@@ -214,7 +214,7 @@ public class UsersDao {
 	String query="";
 	if(seachOption==1) {
 		//모든 설정으로 검색.
-		query="select count(*) from user_type like ? and (USER_EMAIL like ? or USER_NAME like ? or USER_GENDER like ? or USER_AGE like ? or USER_LOC like ? or USER_PHONE  like ?) ";
+		query="select count(USER_NO) from users where user_type like ? and (USER_EMAIL like ? or USER_NAME like ? or USER_GENDER like ? or USER_AGE like ? or USER_LOC like ? or USER_PHONE like ? ) ";
 	}else if(seachOption==2) {
 		//이름으로 검색
 		query="";
@@ -274,8 +274,7 @@ public class UsersDao {
 		
 		rset=pstmt.executeQuery();
 		if(rset.next()) {
-			
-			result=rset.getInt(1);
+		result=rset.getInt(1);
 		}
 		
 		
