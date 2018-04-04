@@ -25,6 +25,7 @@ public class Lesson implements Serializable{
 	private int lesson_type;
 	
 	
+	
 	public Lesson() {}
 
 

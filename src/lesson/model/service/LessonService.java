@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import lesson.model.dao.LessonDao;
 import lesson.model.vo.Lesson;
+import lesson.model.vo.Onlesson;
 
 public class LessonService {
 
@@ -27,15 +28,17 @@ public class LessonService {
 		return result;
 	}
 
-	public ArrayList<Lesson> onlesson(String user) {
+	public ArrayList<Onlesson> onlesson(int user) {
 		Connection conn = getConnection();
 		
-		ArrayList<Lesson> onlesson = new LessonDao().onlesson(conn, user);
+		ArrayList<Onlesson> onlesson = new LessonDao().onlesson(conn, user);
 		
 		close(conn);
 		
 		return onlesson;
 	}
+
+	
 
 	
 	

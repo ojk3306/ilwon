@@ -7,36 +7,35 @@
 	src="/prototype/common/resources/js/jquery-3.3.1.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>선생정보보기</title>
-<script>
+<script type="text/javascript">
+$(function(){
 	$.ajax({
-		var user = $('#userno').val();
 		url: "/prototype/onlesson",
-		data: {user : user},
+		data: {user : $('#userno').val()},
 		type: "get",
 		dataType: "json",
-		succes: function(data) {
+		success: function(data) {
 			
-			console.log(data);
 			var jsonStr = JSON.stringify(data);
 			var json = JSON.parse(jsonStr);
 			
 			var values = $('#ongoing_table').html() + "<br>";
 			for(var i in json.onlesson) {
-				
-				values += "<tr><td>"+json.onlesson[i].lesson_title"</td></tr>"
-				
-				
-				
+											
+					values += "<tr><td>"+json.onlesson[i].lesson_title+"</td>"+
+					"<td>"+json.onlesson[i].username+"</td><td><button type='button' class='btn btn-primary'>"+json.onlesson[i].state+"</button></td>"
+					+"<td><button type='button' class='btn btn-warning'>수정</button></td>"
+					+"<td><button type='button' class='btn btn-danger'>종료</button></td></tr>"			
+					
 			}
-		}
-		
-		
-		
-		
-		
-		
+			
+			$('#ongoing_table').html(values);
+		}, error: function(a,b,c){
+			console.log(b+c);
+		}	
 	});
 
+});
 </script>
 </head>
 
@@ -44,7 +43,7 @@
 <%@include file="/common/navbar.jsp" %>
 
 <nav class="contents">
- 	<intput type="hidden" value="<%= loginUser.getUserNo() %>" name="userno" id="userno">
+ 	<input type="hidden" value="<%= loginUser.getUserNo() %>" name="userno" id="userno">
 	<h1 align="center">선생 정보 보기</h1>
 	<hr>
 
@@ -83,48 +82,18 @@
 			<h1>운영중인 강좌</h1>
 			<hr>
 			<div id="info"
-				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px;">
+				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px; overflow:auto;">
 				<div style="width:100%;">
-					<table class="table table-hover" name="ongoing_table" id="ongoing_table">
+					<table class="table table-hover" id="ongoing_table"> 
 						<thead>
 							<tr>
 								<th>강의명</th>
-								<th>과목</th>
-								<th>상세보기</th>
+								<th>선생님</th>
+								<th>상태</th>
 								<th>수정하기</th>
 								<th>종료하기</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td>java강의</td>
-								<td>Doe</td>
-								<td><button type="button" class="btn">Basic</button></td>
-								<td><button type="button" class="btn">Basic</button></td>
-								<td><button type="button" class="btn">상세보기</button></td>
-							</tr>
-							<tr>
-								<td>Mary</td>
-								<td>Moe</td>
-								<td><button type="button" class="btn">Basic</button></td>
-								<td><button type="button" class="btn">후기작성</button></td>
-								<td><button type="button" class="btn">상세보기</button></td>
-							</tr>
-							<tr>
-								<td>July</td>
-								<td>Dooley</td>
-								<td><button type="button" class="btn">Basic</button></td>
-								<td><button type="button" class="btn">후기작성</button></td>
-								<td><button type="button" class="btn">상세보기</button></td>
-							</tr>
-							<tr>
-								<td>July</td>
-								<td>Dooley</td>
-								<td><button type="button" class="btn">Basic</button></td>	
-								<td><button type="button" class="btn">후기작성</button></td>
-								<td><button type="button" class="btn">상세보기</button></td>
-							</tr>
-						</tbody>
 					</table>
 				</div>
 			</div>
@@ -135,7 +104,7 @@
 			<h1>강의 내역</h1>
 			<hr>
 			<div id="info"
-				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px;">
+				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px; overflow:auto;">
 				<div style="width:100%;">
 					<table class="table table-hover">
 						<thead>
@@ -185,7 +154,7 @@
 			<hr>
 
 			<div id="info"
-				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px;">
+				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px; overflow:auto;">
 				<div style="width:100%;">
 					<table class="table table-hover">
 						<thead>
