@@ -36,6 +36,11 @@ $(function(){
 	});
 
 });
+
+function finishLesson(){
+	
+	
+}
 </script>
 </head>
 
