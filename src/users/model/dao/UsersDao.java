@@ -410,6 +410,52 @@ public class UsersDao {
 		return user;
 	}
 
+	public int adminupdate(Connection con, int userno, String value, int type) {
+		int result=0;
+		PreparedStatement pstmt = null;
+		/*
+		 * type   
+		 * 1= 이름수정
+		 * 2= 메일수정
+		 * 3= 성별수정
+		 * 4= 전번수정
+		 * 5= 최대키워드갯수 수정
+		 * 6= 최대강의갯수 수정
+		 */
+	
+
+		String query="";
+		switch(type) {
+		case 1: query="update users set user_name = ? where user_no = ?"; break;
+		
+		case 2: query="update users set USER_EMAIL = ? where user_no = ?"; break;
+		
+		
+		case 3: query="update users set USER_AGE = ? where user_no = ?"; break;
+		
+		case 4: query="update users set USER_GENDER = ? where user_no = ?"; break;
+		
+		case 5: query="update users set USER_PHONE = ? where user_no = ?"; break;
+		
+		case 6: query="update users set USER_KEYWORD_COUNT = ? where user_no = ?"; break;
+		
+		case 7: query="update users set USER_LESSONMAX = ? where user_no = ?"; break;
+		}
+		try {
+			
+			pstmt=con.prepareStatement(query);
+			pstmt.setString(1,value);
+			pstmt.setInt(2,userno);
+			result=pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
 	
 	
 	
