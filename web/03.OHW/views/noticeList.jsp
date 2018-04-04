@@ -38,7 +38,8 @@
 	 			<input type="text">	 
 	 			<input type="submit" name="search_submit" class="btn" value="검색">	
 	 		</div>
-	 		<div id="board_page">
+	 		
+	 		<div id="board_page"> <!-- 페이징 바디 -->
 		 		<ul class="pagination">
 					<li class="page-item"><a class="page-link" href="#">Previous</a></li>
 					<li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -48,7 +49,7 @@
 					<li class="page-item"><a class="page-link" href="#">5</a></li>
 					<li class="page-item"><a class="page-link" href="#">Next</a></li>
 				</ul>	 		
-			</div> 	
+			</div> 	<!-- 페이징 바디 -->
 		</div>	 
 	</div>	
 </div>

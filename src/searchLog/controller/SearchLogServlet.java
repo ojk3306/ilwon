@@ -21,7 +21,7 @@ import searchLog.model.vo.*;
 /**
  * Servlet implementation class SeachLog
  */
-@WebServlet("/seach")
+@WebServlet("/search")
 public class SearchLogServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -38,14 +38,14 @@ public class SearchLogServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-	SearchLog sl=new SearchLog();
-	sl.setSearchContent(request.getParameter("word"));
+		SearchLog sl=new SearchLog();
+		sl.setSearchContent(request.getParameter("word"));
 	
 	try {
-		sl.setUserNo(Integer.parseInt(request.getParameter("user")));
+		sl.setUserNo(Integer.parseInt(request.getParameter("userno")));
 
 	} catch (NumberFormatException e) {
-		
+		e.printStackTrace();
 	}
 
 	ArrayList<String> result=new SearchLogService().searchLog(sl);
@@ -54,11 +54,12 @@ public class SearchLogServlet extends HttpServlet {
 	
 	System.out.println("result.size : " + result.size() + " / (To.SearchLogServlet)");
 	
-	if(result.size()!=0) {
+	if(result.size() != 0) {
 		
 	for(String i: result) {		
-	System.out.println("value : " + i + " / (To.SearchLogServlet)");	
+		System.out.println("value : " + i + " / (To.SearchLogServlet)");	
 	}
+	
 	//최종 전송용 json 객체 생성함
 		JSONObject json = new JSONObject();		
 		//list 를 옮겨 담을 json 배열 객체가 필요함
@@ -74,8 +75,9 @@ public class SearchLogServlet extends HttpServlet {
 		
 		job.put("word",i);
 		
-		jarr.add(i);		
+		jarr.add(i);
 		
+		}
 		//전송용 객체에 jarr 배열 담음
 		json.put("list", jarr);
 		System.out.println("json : " + json.toJSONString() + " / (To.SearchLogServlet)");
@@ -85,11 +87,9 @@ public class SearchLogServlet extends HttpServlet {
 		out.print(json.toJSONString());
 		out.flush();
 		out.close();
-			}
-	
-		}
-	
-	}
+			 // for문 끝
+		} // if문 끝
+	} // doGet 끝
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

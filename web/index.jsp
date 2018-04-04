@@ -129,7 +129,7 @@
 	<div class="text-center">   
 	<form class="form-inline" action="/prototype/Insertlog" method="post">
 		<!-- <div class="input-group"  style="margin-top:10%;">
-	<input type="text" class="form-control" name="seachcontent" size="50" placeholder="태그를 검색해주세요">
+	<input type="text" class="form-control" name="searchcontent" size="50" placeholder="태그를 검색해주세요">
 	<div class="input-group-btn">
     <input type="submit" class="btn" value="Search">
 		</div>
