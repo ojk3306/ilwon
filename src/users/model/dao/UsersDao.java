@@ -115,37 +115,49 @@ public class UsersDao {
 		
 	}
 
-	public ArrayList<Users> seachUserByAdmin(Connection con, Users user, String seach, int seachOption, int limit) {
+	public ArrayList<Users> seachUserByAdmin(Connection con, Users user, String seach, int seachOption, int limit, int currentPage) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Users> al=new ArrayList<Users>();
 		String query="";
-		System.out.println("seach="+seach+"\tseachOption="+seachOption);
-	
+		
+		
+		int startRow = (currentPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		System.out.println("usertype="+user.getUserTypeNo());
 		if(seachOption==1) {
-			//모든 설정으로 검색.
-			query="select * from users where user_type like ? and (USER_EMAIL like ? or USER_NAME like ? or USER_GENDER like ? or USER_AGE like ? or USER_LOC like ? or USER_PHONE like ? ) ";
+		//모든 설정으로 검색.
+		query="select * from (select ROWNUM AS RNUM, A.* FROM  (SELECT * FROM users where user_type like ? and USER_EMAIL like ? or USER_NAME like ? or USER_GENDER like ? or USER_AGE like ? or USER_LOC like ? or USER_PHONE like ? ) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY user_no DESC ";
 		}else if(seachOption==2) {
 			//이름으로 검색
-			query="select * from users where user_type like ? and USER_NAME like ? ";
+			query="select * from (select ROWNUM AS RNUM, A.* FROM  (select * from users where user_type like ? and USER_NAME like ? ) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY user_no DESC";
+	
 		}else if(seachOption==3) {
 			//이메일로 검색.
-			query="select * from users where user_type like ? and USER_email like ?";
+			query="select * from (select ROWNUM AS RNUM, A.* FROM  (select * from users where user_type like ? and USER_email like ? ) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY user_no DESC";
+
+	
 		}else if(seachOption==4) {
 			//현재 정상인지,차단인지로 검색.
-			query="select * from users where user_type like ? and USER_EXEABLE like ? or USER_LOGINABLE like ?";
+			query="select * from (select ROWNUM AS RNUM, A.* FROM  (select * from users where user_type like ? and  USER_EXEABLE like ? or USER_LOGINABLE like ? ) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY user_no DESC ";
+
 		}else if(seachOption==5) {
 			//나이로 검색 (오차한계 2살)
-			query="select * from users where user_type like ? and USER_age like ?";
+			query="select * from (select ROWNUM AS RNUM, A.* FROM  (select * from users where user_type like ? and USER_age like ? ) WHERE RNUM >= ? ORDER BY user_no DESC ";
+
+	
 		}else if(seachOption==6) {
 			//성별로검색
-			query="select * from users where user_type like ? and USER_gender like ?";
+			query="select * from (select ROWNUM AS RNUM, A.* FROM  (select * from users where user_type like ? and USER_gender like ?  ) WHERE RNUM >= ? ORDER BY user_no DESC ";
+
 		}else if(seachOption==7) {
-			//주소로검색
-			query="select * from users where user_type like ? and USER_loc like ?";
+		//주소로검색
+			query="select * from (select ROWNUM AS RNUM, A.* FROM  (select * from users where user_type like ? and USER_loc like ? and ROWNUM >= ? and ROWNUM <= ?  ) WHERE RNUM >= ? ORDER BY user_no DESC ";
+
 		}else if(seachOption==8) {
 			//전화번호로검색
-			query="select * from users where user_type like ? and USER_phone like ?";
+			query="select * from (select ROWNUM AS RNUM, A.* FROM  (select * from users where user_type like ? and USER_phone like ? and  ROWNUM >= ? and ROWNUM <= ?  ) WHERE RNUM >= ? ORDER BY user_no DESC ";
+
 		}
 			
 		try {
@@ -159,43 +171,60 @@ public class UsersDao {
 				pstmt.setString(5,"%"+seach+"%");
 				pstmt.setString(6,"%"+seach+"%");
 				pstmt.setString(7,"%"+seach+"%");
+				
+				pstmt.setInt(8, endRow);
+				pstmt.setInt(9, startRow);
+				
 				}else if(seachOption==2) {
 					//이름으로 검색
 					
 					pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
 					pstmt.setString(2,"%"+seach+"%");
+					pstmt.setInt(4, startRow);
+					pstmt.setInt(3, endRow);
 				}else if(seachOption==3) {
 					//이메일로 검색.
 								
 					pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
 					pstmt.setString(2,"%"+seach+"%");
+					pstmt.setInt(3, endRow);
+					pstmt.setInt(4, startRow);
 				}else if(seachOption==4) {
 					//현재 정상인지,차단인지로 검색.
 					pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
 					pstmt.setString(2,"%"+seach+"%");
 					pstmt.setString(3,"%"+seach+"%");
-					
+					pstmt.setInt(5, startRow);
+					pstmt.setInt(4, endRow);
 				}else if(seachOption==5) {
 					//나이로 검색 (오차한계 2살)
 					pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
 					pstmt.setString(2,"%"+seach+"%");
+					pstmt.setInt(4, startRow);
+					pstmt.setInt(3, endRow);
 				}else if(seachOption==6) {
 					//성별로검색
 					pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
 					pstmt.setString(2,"%"+seach+"%");
+					pstmt.setInt(4, startRow);
+					pstmt.setInt(3, endRow);
 				}else if(seachOption==7) {
 					//주소로검색
 					pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
 					pstmt.setString(2,"%"+seach+"%");
+					pstmt.setInt(3, startRow);
+					pstmt.setInt(4, endRow);
 				}else if(seachOption==8) {
 					//전화번호로검색
 					pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
 					pstmt.setString(2,"%"+seach+"%");
+					pstmt.setInt(4, startRow);
+					pstmt.setInt(3, endRow);
 				}
 			
 			
 			rset=pstmt.executeQuery();
-			int i=0;
+		
 			while(rset.next()) {
 			user=new Users();
 			user.setUserNo(rset.getInt("USER_NO"));
@@ -211,30 +240,31 @@ public class UsersDao {
 			user.setUserExeable(rset.getString("USER_EXEABLE"));
 			user.setUserLessonmax(rset.getInt("USER_LESSONMAX"));
 			user.setUserEnrollDate(rset.getDate("USER_ENROLLDATE"));
-			if(rset.getString("USER_ORIGINAL_PHOTO")!=null) {
-				user.setUserOriginalPhoto(rset.getString("USER_ORIGINAL_PHOTO"));	
-			}
-			if(rset.getString("USER_RENAME_PHOTO")!=null) {
-				user.setUserRenamePhoto(rset.getString("USER_RENAME_PHOTO"));	
-			}
+					if(rset.getString("USER_ORIGINAL_PHOTO")!=null) {
+					user.setUserOriginalPhoto(rset.getString("USER_ORIGINAL_PHOTO"));	
+					}
+					if(rset.getString("USER_RENAME_PHOTO")!=null) {
+						user.setUserRenamePhoto(rset.getString("USER_RENAME_PHOTO"));	
+					}
+			System.out.println(user.toString());
+
 			al.add(user);	
-			i++;
-			if(i>=10)
-				break;
+			
 			}
 			
 			
 		}catch (Exception e) {
+			
 		e.printStackTrace();
 		
 		}finally {
 			close(rset);
 			close(pstmt);
 		}		
-		
 		return al;
 	}
 
+	
 	public int getListCount(Connection con, Users user, String seach, int seachOption) {
 	int result=0;
 	PreparedStatement pstmt = null;

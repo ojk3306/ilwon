@@ -41,12 +41,15 @@ public class UsersService {
 		return result;
 	}
 
-	public ArrayList<Users> seachUserByAdmin(Users user, String seach, int seachOption,int limit) {
+	public ArrayList<Users> seachUserByAdmin(Users user, String seach, int seachOption,int limit, int currentPage) {
 		
-		Connection con = getConnection();
-		 ArrayList<Users> al=new UsersDao().seachUserByAdmin(con,user,seach,seachOption,limit);
+		 Connection con = getConnection();
+		 
+		 ArrayList<Users> al=new UsersDao().seachUserByAdmin(con,user,seach,seachOption,limit,currentPage);
+		
 		 close(con);
-		return al;
+		
+		 return al;
 	}
 
 	public int getListCount(Users user, String seach, int seachOption) {

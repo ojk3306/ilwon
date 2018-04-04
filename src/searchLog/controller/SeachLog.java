@@ -54,6 +54,8 @@ public class SeachLog extends HttpServlet {
 		
 	for(String i: result)
 	System.out.println("가져온값"+i);
+	
+	
 	//최종 전송용 json 객체 생성함
 		JSONObject json = new JSONObject();
 		
@@ -73,7 +75,7 @@ public class SeachLog extends HttpServlet {
 		job.put("word",i);
 		
 		jarr.add(i);
-		}
+}
 		
 		//전송용 객체에 jarr 배열 담음
 		json.put("list", jarr);
