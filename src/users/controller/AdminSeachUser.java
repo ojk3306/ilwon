@@ -91,8 +91,19 @@ public class AdminSeachUser extends HttpServlet {
 	view.forward(request, response);
 	}else {
 		
-	view=request.getRequestDispatcher("/01.CJS/adminSeachUser.jsp");
+		view=request.getRequestDispatcher("/01.CJS/adminSeachUser.jsp");
+	    request.setAttribute("list", al);
+		request.setAttribute("currentPage", currentPage);
+		request.setAttribute("maxPage", maxPage);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		request.setAttribute("listCount", listCount);
+		request.setAttribute("seach", seach);
+		request.setAttribute("seachOption",seachOption);
+		request.setAttribute("seachtype",user.getUserTypeNo());
 	request.setAttribute("message","결과값이 존재하지 않습니다!");
+	
+	
 	view.forward(request, response);
 	}
   

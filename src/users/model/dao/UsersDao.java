@@ -125,38 +125,39 @@ public class UsersDao {
 		int startRow = (currentPage - 1) * limit + 1;
 		int endRow = startRow + limit - 1;
 		System.out.println("usertype="+user.getUserTypeNo());
+		
 		if(seachOption==1) {
 		//모든 설정으로 검색.
-		query="select * from (select ROWNUM AS RNUM, A.* FROM  (SELECT * FROM users where user_type like ? and USER_EMAIL like ? or USER_NAME like ? or USER_GENDER like ? or USER_AGE like ? or USER_LOC like ? or USER_PHONE like ? ) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY user_no DESC ";
+		query="select * from (select ROWNUM AS RNUM, A.* FROM  (SELECT * FROM users where user_type like ? and ( USER_EMAIL like ? or USER_NAME like ? or USER_GENDER like ? or USER_AGE like ? or USER_LOC like ? or USER_PHONE like ?) ) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY user_no DESC ";
 		}else if(seachOption==2) {
 			//이름으로 검색
-			query="select * from (select ROWNUM AS RNUM, A.* FROM  (select * from users where user_type like ? and USER_NAME like ? ) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY user_no DESC";
+			query="select * from (select ROWNUM AS RNUM, A.* FROM  (select * from users where user_type like ? and ( USER_NAME like ?) ) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY user_no DESC";
 	
 		}else if(seachOption==3) {
 			//이메일로 검색.
-			query="select * from (select ROWNUM AS RNUM, A.* FROM  (select * from users where user_type like ? and USER_email like ? ) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY user_no DESC";
+			query="select * from (select ROWNUM AS RNUM, A.* FROM  (select * from users where user_type like ? and ( USER_email like ? ) ) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY user_no DESC";
 
 	
 		}else if(seachOption==4) {
 			//현재 정상인지,차단인지로 검색.
-			query="select * from (select ROWNUM AS RNUM, A.* FROM  (select * from users where user_type like ? and  USER_EXEABLE like ? or USER_LOGINABLE like ? ) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY user_no DESC ";
+			query="select * from (select ROWNUM AS RNUM, A.* FROM  (select * from users where user_type like ? and ( USER_EXEABLE like ? or USER_LOGINABLE like ? ) ) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY user_no DESC ";
 
 		}else if(seachOption==5) {
 			//나이로 검색 (오차한계 2살)
-			query="select * from (select ROWNUM AS RNUM, A.* FROM  (select * from users where user_type like ? and USER_age like ? ) WHERE RNUM >= ? ORDER BY user_no DESC ";
+			query="select * from (select ROWNUM AS RNUM, A.* FROM  (select * from users where user_type like ? and ( USER_age between ? and ? ) ) A WHERE ROWNUM < ? ) WHERE RNUM >= ?  ORDER BY user_no DESC ";
 
 	
 		}else if(seachOption==6) {
 			//성별로검색
-			query="select * from (select ROWNUM AS RNUM, A.* FROM  (select * from users where user_type like ? and USER_gender like ?  ) WHERE RNUM >= ? ORDER BY user_no DESC ";
+			query="select * from (select ROWNUM AS RNUM, A.* FROM  (select * from users where user_type like ? and ( USER_gender like ?  ) ) WHERE RNUM >= ? ORDER BY user_no DESC ";
 
 		}else if(seachOption==7) {
 		//주소로검색
-			query="select * from (select ROWNUM AS RNUM, A.* FROM  (select * from users where user_type like ? and USER_loc like ? and ROWNUM >= ? and ROWNUM <= ?  ) WHERE RNUM >= ? ORDER BY user_no DESC ";
+			query="select * from (select ROWNUM AS RNUM, A.* FROM  (select * from users where user_type like ? and ( USER_loc like ? ) ) WHERE RNUM >= ? ORDER BY user_no DESC ";
 
 		}else if(seachOption==8) {
 			//전화번호로검색
-			query="select * from (select ROWNUM AS RNUM, A.* FROM  (select * from users where user_type like ? and USER_phone like ? and  ROWNUM >= ? and ROWNUM <= ?  ) WHERE RNUM >= ? ORDER BY user_no DESC ";
+			query="select * from (select ROWNUM AS RNUM, A.* FROM  (select * from users where user_type like ? and ( USER_phone like ? )) WHERE RNUM >= ? ORDER BY user_no DESC ";
 
 		}
 			
@@ -199,9 +200,10 @@ public class UsersDao {
 				}else if(seachOption==5) {
 					//나이로 검색 (오차한계 2살)
 					pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
-					pstmt.setString(2,"%"+seach+"%");
-					pstmt.setInt(4, startRow);
-					pstmt.setInt(3, endRow);
+					pstmt.setInt(2,Integer.parseInt(seach)-2);
+					pstmt.setInt(3,Integer.parseInt(seach)+2);
+					pstmt.setInt(5, startRow);
+					pstmt.setInt(4, endRow);
 				}else if(seachOption==6) {
 					//성별로검색
 					pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
@@ -344,6 +346,7 @@ public class UsersDao {
 		
 		
 		rset=pstmt.executeQuery();
+		
 		if(rset.next()) {
 		result=rset.getInt(1);
 		}

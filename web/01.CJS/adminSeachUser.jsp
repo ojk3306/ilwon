@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
     <%@ page import="java.util.ArrayList, java.sql.Date, users.model.vo.*"  %> 
-<%	String seach="";
+<%	
 	ArrayList<Users> list = (ArrayList<Users>)request.getAttribute("list");
 	int listCount = ((Integer)request.getAttribute("listCount")).intValue();
 	int startPage = ((Integer)request.getAttribute("startPage")).intValue();
@@ -10,8 +10,7 @@
 	int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 	int seachOption =((Integer)request.getAttribute("seachOption")).intValue();
 	int seachtype =((Integer)request.getAttribute("seachtype")).intValue();
-	if(request.getAttribute("seach")!=null){
-	seach = (String)request.getAttribute("seach");}
+	String seach = (String)request.getAttribute("seach");
 	String message=(String)request.getAttribute("message");
 %>
 <!DOCTYPE html>
@@ -129,6 +128,7 @@ min-height: 440px;
                   	 <option value="8">전화번호로검색</option>
                   	 
                   	 </select>
+                  	 
                   	<input type="text" placeholder="입력" style="height: 28px" name="seach" value="<%=seach%>">
                   	
                     <button type="submit" class="btn btn-sm btn-primary btn-create">검색!</button>
@@ -155,16 +155,14 @@ min-height: 440px;
 					 </tr> 
                   </thead>
                   <tbody>
-                 <% if(list!=null){for(Users i: list){ %>
-                  
-                  <tr>
+                 <% if(list!=null){
+                	 for(Users i: list){ %>
+                            <tr>
                             <td align="center">
-                         
-                            <a class="btn btn-default" onclick="location.href=">
-                            
-                            <em class="fa fa-pencil">
-                            
-                            </em></a>
+                         	<a class="btn btn-default" onclick="location.href='/prototype/aDtail?userno=<%=i.getUserNo()%>'">
+                          dsfadf
+                            </em>
+                            </a>
                   			</td>
                             <%if(i.getUserTypeNo()==1001){ %>
                             <td class="hidden-xs" style="color:red">학생</td>
@@ -193,18 +191,15 @@ min-height: 440px;
 						<%}else{ %>
 						<a class="btn btn-danger loading">글 작성 불가능</a>
 						<%} %>
-                        
-     
-                        </td>
-                 </tr>
+                       </td>
+                	 </tr>
 				 <%}%> 
                   	<%}else{%> 
                   	 <tr>
-                  	 
-                  	 <th colspan="9" align="center"><%=seach%> </th>
-                  	 
+                  	 <td colspan="" align="center"><%=message%></td>
                   	 </tr>
                   <%}%>
+                  
                    </tbody>
                 </table>
             

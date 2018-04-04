@@ -41,12 +41,9 @@ public class SearchLogServlet extends HttpServlet {
 		SearchLog sl=new SearchLog();
 		sl.setSearchContent(request.getParameter("word"));
 	
-	try {
-		sl.setUserNo(Integer.parseInt(request.getParameter("userno")));
 
-	} catch (NumberFormatException e) {
-		e.printStackTrace();
-	}
+		if(request.getParameter("userno")!=null)
+		sl.setUserNo(Integer.parseInt(request.getParameter("userno")));
 
 	ArrayList<String> result=new SearchLogService().searchLog(sl);
 	
