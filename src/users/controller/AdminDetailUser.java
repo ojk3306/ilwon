@@ -41,7 +41,7 @@ public class AdminDetailUser extends HttpServlet {
 	if(user!=null) {
 	view=request.getRequestDispatcher("/01.CJS/detailOfadmin.jsp");
 	request.setAttribute("user",user);
-	 view.forward(request, response);
+	view.forward(request, response);
 	}else {
 		
 		

@@ -80,6 +80,7 @@ public class AdminSeachUser extends HttpServlet {
 	if(maxPage < endPage)
 		endPage = maxPage;
 	
+	response.setContentType("text/html; charset=utf-8");
     RequestDispatcher view =null;
     if(al.size()>0) {
     view=request.getRequestDispatcher("/01.CJS/adminSeachUser.jsp");

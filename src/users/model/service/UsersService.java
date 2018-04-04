@@ -70,12 +70,14 @@ public class UsersService {
 	public int adminUpdate(int userno, String value, int type) {
 		Connection con = getConnection();
 		int result= new UsersDao().adminupdate(con,userno,value,type);
+	
 		if(result > 0) {
 			commit(con);
 		}else {
 			rollback(con);
 			System.out.println("adminUpdate서비스 실패");
 		}
+		
 		close(con);
 		
 		return result;

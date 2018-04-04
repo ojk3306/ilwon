@@ -97,14 +97,74 @@ function updatelessonmax(){
 	});
 }
 
-$(function(){
-	console.log(<%=user.getUserGender() %>);
-	if(<%=user.getUserGender()%>==M){
-		$("#M").attr("checked", true) ;
+function updateloginable(){
+	if($("#TriSeaPrimary").is(":checked")!=true ) {
+		$.ajax({
+			url:"<%=request.getContextPath()%>/adminupdate",
+		    data:{ userno:$("#a").val(),value:"N",type:"8"},
+			type:"get",
+		    success:function(data){
+		    	console.log(data)
+		    	$("#TriSeaPrimary").attr("checked", false);
+		    }
+		});
 	}else{
-		$("#F").attr("checked", true) ;
+		$.ajax({
+			url:"<%=request.getContextPath()%>/adminupdate",
+		    data:{ userno:$("#a").val(),value:"Y",type:"8"},
+			type:"get",
+		    success:function(data){
+		    	console.log(data)
+		    	 $("#TriSeaPrimary").attr("checked", true);
+		    }
+		});
+	}
+}
+
+function updateexeable(){
+
+	if($("#TriSeaInfo").is(":checked")!=true ) {
+		$.ajax({
+			url:"<%=request.getContextPath()%>/adminupdate",
+		    data:{ userno:$("#a").val(),value:"N",type:"9"},
+			type:"get",
+		    success:function(data){
+		    	console.log(data)
+		    	$("#TriSeaInfo").attr("checked", false);
+		    }
+		});
+	}else{
+		$.ajax({
+			url:"<%=request.getContextPath()%>/adminupdate",
+		    data:{ userno:$("#a").val(),value:"Y",type:"9"},
+			type:"get",
+		    success:function(data){
+		    	console.log(data)
+		    	 $("#TriSeaInfo").attr("checked", true);
+		    }
+		});
+	}
+}
+
+$(function(){
+	
+	if(<%=user.getUserGender()%>==M){
+		$("#M").attr("checked", true);
+	}else{
+		$("#F").attr("checked", true);
 	}
 	
+	if('<%=user.getUserLoginable()%>'=='Y'){
+        $("#TriSeaPrimary").attr("checked", true);    
+	}else{
+		$("#TriSeaPrimary").attr("checked", false);
+	}
+	
+	if('<%=user.getUserExeable()%>'=='Y'){
+	    $("#TriSeaInfo").attr("checked", true);     
+	}else{
+		$("#TriSeaInfo").attr("checked", false);
+	}
 })
 
 </script>
@@ -306,53 +366,26 @@ margin-left: 190px;
                 <h2 class="panel-heading" style="text-align:center;">권한 설정</h2>
       
                 <ul class="list-group">
+                 
                     <li class="list-group-item">
-                        Bootstrap Switch Default
+ 						     로그인권한
                         <div class="TriSea-technologies-Switch pull-right">
-                            <input id="TriSeaDefault" name="TriSea1" type="checkbox"/>
-                            <label for="TriSeaDefault" class="label-default"></label>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        Bootstrap Switch Primary
-                        <div class="TriSea-technologies-Switch pull-right">
-                            <input id="TriSeaPrimary" name="TriSea1" type="checkbox"/>
+                            <input id="TriSeaPrimary" name="TriSea1" type="checkbox" onclick="updateloginable()" checked="checked">
                             <label for="TriSeaPrimary" class="label-primary"></label>
                         </div>
                     </li>
+   
                     <li class="list-group-item">
-                        Bootstrap Switch Success
+             			      글 작성권한
                         <div class="TriSea-technologies-Switch pull-right">
-                            <input id="TriSeaSuccess" name="TriSea1" type="checkbox"/>
-                            <label for="TriSeaSuccess" class="label-success"></label>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        Bootstrap Switch Info
-                        <div class="TriSea-technologies-Switch pull-right">
-                            <input id="TriSeaInfo" name="TriSea1" type="checkbox"/>
+                            <input id="TriSeaInfo" name="TriSea1" type="checkbox" onclick="updateexeable()" checked="checked">
                             <label for="TriSeaInfo" class="label-info"></label>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        Bootstrap Switch Warning
-                        <div class="TriSea-technologies-Switch pull-right">
-                            <input id="TriSeaWarning" name="TriSea1" type="checkbox"/>
-                            <label for="TriSeaWarning" class="label-warning"></label>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        Bootstrap Switch Danger
-                        <div class="TriSea-technologies-Switch pull-right">
-                            <input id="TriSeaDanger" name="TriSea1" type="checkbox"/>
-                            <label for="TriSeaDanger" class="label-danger"></label>
                         </div>
                     </li>
                 </ul>
 
 <center>
-<input type="submit" class="btn btn-primary loading" value="수정하기(수정은신중히)" readonly="readonly">
-<input type="reset" class="btn btn-primary loading" value="초기화하기" readonly="readonly" >
+
 <input type="button" class="btn btn-primary loading" value="뒤로가기" onclick="history.back(-1)" readonly="readonly">
 </center>
 </form>

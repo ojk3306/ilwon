@@ -37,15 +37,7 @@ public class AdminUpdate extends HttpServlet {
 	int userno= Integer.parseInt(request.getParameter("userno"));
 	String value=request.getParameter("value");
 	int type= Integer.parseInt(request.getParameter("type"));
-	/*
-	 * type   
-	 * 1= 이름수정
-	 * 2= 메일수정
-	 * 3= 성별수정
-	 * 4= 전번수정
-	 * 5= 최대키워드갯수 수정
-	 * 6= 최대강의갯수 수정
-	 */
+	
 	System.out.println("어드민의 유저정보수정  userno="+userno);
 	System.out.println("어드민의 유저정보수정  value="+value);
 	System.out.println("어드민의 유저정보수정  type="+type);

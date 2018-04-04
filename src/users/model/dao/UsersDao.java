@@ -440,6 +440,10 @@ public class UsersDao {
 		case 6: query="update users set USER_KEYWORD_COUNT = ? where user_no = ?"; break;
 		
 		case 7: query="update users set USER_LESSONMAX = ? where user_no = ?"; break;
+		
+		case 8: query="update users set USER_LOGINABLE = ? where user_no = ?"; break;
+		
+		case 9: query="update users set USER_EXEABLE = ? where user_no = ?"; break;
 		}
 		try {
 			
@@ -449,7 +453,7 @@ public class UsersDao {
 			result=pstmt.executeUpdate();
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}finally {
 			close(pstmt);
 		}

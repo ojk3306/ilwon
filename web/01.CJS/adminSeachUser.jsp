@@ -12,6 +12,7 @@
 	int seachtype =((Integer)request.getAttribute("seachtype")).intValue();
 	String seach = (String)request.getAttribute("seach");
 	String message=(String)request.getAttribute("message");
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -21,6 +22,7 @@
 
 <script type="text/javascript">
 $(function(){
+	
 	$("option[value="+<%=seachOption%>+"]").prop("selected", true);
 	$("option[value="+<%=seachtype%>+"]").prop("selected", true);
 
