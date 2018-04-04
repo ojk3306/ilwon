@@ -25,9 +25,9 @@ public class SearchLogService {
 		return result;
 	}
 
-	public ArrayList<String> Seachlog(SearchLog sl) {
+	public ArrayList<String> searchLog(SearchLog sl) {
 		Connection con = getConnection();
-		ArrayList<String> al = new SearchLogDao().Seachlog(con,sl);
+		ArrayList<String> al = new SearchLogDao().searchLog(con,sl);
 		close(con);
 //		if(al.size()<5) {
 //			Connection con1 = getConnection();

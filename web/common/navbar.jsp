@@ -51,7 +51,7 @@
 		var json= JSON.parse(jsonStr);   
 
         for(var i in json.list) {            
-        	console.log(json.list[i]);          
+        	/* console.log(json.list[i]); */        
         	$("#ee").html($("#ee").html()+'<option>'+json.list[i]+'</option>')         
         	};
 		}, error:function(a,b,c) {         

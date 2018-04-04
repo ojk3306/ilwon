@@ -45,7 +45,7 @@ public class SearchLogDao {
 		return result;
 	}
 
-	public ArrayList<String> Seachlog(Connection con, SearchLog sl) {
+	public ArrayList<String> searchLog(Connection con, SearchLog sl) {
 		ArrayList<String> al=new ArrayList<String>();
 		PreparedStatement pstmt = null;		
 		ResultSet rset=null;
@@ -85,7 +85,7 @@ public class SearchLogDao {
 				if(rset.next()) 
 				{
 					al.add(rset.getString("SEACH_CONTENT"));
-					System.out.println("al.size()="+al.size());
+					System.out.println("al.size : "+al.size() + " / (To.SearchLogDao)");
 					row++;
 				}
 				j++;
@@ -93,7 +93,7 @@ public class SearchLogDao {
 				};
 			}	
 		}catch(java.sql.SQLException e1) {
-			System.out.println("써치로그의 값을 모두 불렀습니다. 걱정ㄴㄴ");
+			System.out.println("SearchLogData Loading Complete / (To.SearchLogDao)");
 		}catch(Exception e)
 		{
 			e.printStackTrace();
@@ -110,7 +110,7 @@ public class SearchLogDao {
 		return al;
 	}
 
-	public ArrayList<String> Seachlog2(Connection con, ArrayList<String> al, SearchLog sl) {
+	public ArrayList<String> searchLog2(Connection con, ArrayList<String> al, SearchLog sl) {
 		PreparedStatement pstmt = null;		
 		ResultSet rset=null;
 		
@@ -133,7 +133,7 @@ public class SearchLogDao {
 	
 		} catch (java.sql.SQLException e) {
 		
-			System.out.println("써치로그의 값을 모두 불렀습니다. 걱정ㄴㄴ");
+			System.out.println("SearchLogData Loading Complete / (To.SearchLogDao)");
 		
 		}catch(Exception e1)
 		{

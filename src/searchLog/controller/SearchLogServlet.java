@@ -16,19 +16,19 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import searchLog.model.service.SearchLogService;
-import searchLog.model.vo.SearchLog;
+import searchLog.model.vo.*;
 
 /**
  * Servlet implementation class SeachLog
  */
 @WebServlet("/seach")
-public class SeachLog extends HttpServlet {
+public class SearchLogServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SeachLog() {
+    public SearchLogServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,54 +37,57 @@ public class SeachLog extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
 	SearchLog sl=new SearchLog();
 	sl.setSearchContent(request.getParameter("word"));
+	
 	try {
 		sl.setUserNo(Integer.parseInt(request.getParameter("user")));
 
 	} catch (NumberFormatException e) {
-		// TODO: handle exception
+		
 	}
 
-	ArrayList<String> result=new SearchLogService().Seachlog(sl);
-	response.setContentType("text/html; charset=utf-8");
-	System.out.println("result.size()"+result.size());
-	if(result.size()!=0) {
+	ArrayList<String> result=new SearchLogService().searchLog(sl);
 	
+	response.setContentType("text/html; charset=utf-8");
+	
+	System.out.println("result.size : " + result.size() + " / (To.SearchLogServlet)");
+	
+	if(result.size()!=0) {
 		
-	for(String i: result)
-	System.out.println("가져온값"+i);
+	for(String i: result) {		
+	System.out.println("value : " + i + " / (To.SearchLogServlet)");	
+	}
 	//최종 전송용 json 객체 생성함
-		JSONObject json = new JSONObject();
-		
+		JSONObject json = new JSONObject();		
 		//list 를 옮겨 담을 json 배열 객체가 필요함
-		JSONArray jarr = new JSONArray();
-		
-		
-		
+		JSONArray jarr = new JSONArray();		
 		
 		//list 에서 user 객체 한 개 꺼냄
 		// => json 객체 한 개에 값들을 옮겨 담음
 		// => json 객체를 json 배열에 저장함
+	
 		for(String  i : result) {
 		
 		JSONObject job = new JSONObject();
 		
 		job.put("word",i);
 		
-		jarr.add(i);
-		}
+		jarr.add(i);		
 		
 		//전송용 객체에 jarr 배열 담음
 		json.put("list", jarr);
-		System.out.println("json : " + json.toJSONString());
+		System.out.println("json : " + json.toJSONString() + " / (To.SearchLogServlet)");
 		
 		response.setContentType("application/json; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.print(json.toJSONString());
 		out.flush();
 		out.close();
-	}
+			}
+	
+		}
 	
 	}
 
