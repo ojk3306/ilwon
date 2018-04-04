@@ -34,62 +34,67 @@
 	function search(){
     	location.href="/prototype/insertlog?seachcontent="+$('#select2-chosen-1').text()+"&user="+$("#userno").val();    
    //후에 섹션의 로그인유저의 번호까지 넣기.
-    }
-	
-	 $(document).ready(function (){
-    //console.log($("#userno").val());
-    $.ajax({       
-    	url:"<%=request.getContextPath()%>/seach",
-        data:{word:$("a").val(),user:$("#userno").val()},//추가로 유저 번호도 보낸다.
-        type:"get",
-        dataType:"json",
-        success: function(data){
-        	$("#ee").html("");
-        	var jsonStr=JSON.stringify(data);
-        	//문자열을 다시 변경
-        	//json 객체로 파싱함. 
-		var json= JSON.parse(jsonStr);   
+	}
+	$(document).ready(function (){
+		
+    	$.ajax({       
+    		url:"<%=request.getContextPath()%>/search",
+    	    data:{
+    	    word:$("a").val(),
+    	    user:$("#userno").val()
+    	    },//추가로 유저 번호도 보낸다.
+			type:"get",
+    	    dataType:"json",
+    	    success:function(data) {
+    	    	$("#menubar-searchbar").html("");
+   		     	var jsonStr = JSON.stringify(data);
+    	    	//문자열을 다시 변경
+   		     	//json 객체로 파싱함. 
+				var json= JSON.parse(jsonStr);
+					
+				for(var i in json.list) {            
+        			console.log(json.list[i]);       
+					$("#menubar-searchbar").html($("#menubar-searchbar").html()+'<option>'+json.list[i]+'</option>')         
+        		};
+        	
+			}, error:function(a,b,c) {         
+        		console.log(b+c)
+			}, complete: function() {
+				$("#select2-chosen-1").html($("#s2id_autogen1_search").val());
+				//select2-results에 li로 나열.
+			}
+		});           
 
-        for(var i in json.list) {            
-        	console.log(json.list[i]);          
-        	$("#ee").html($("#ee").html()+'<option>'+json.list[i]+'</option>')         
-        	};
-		}, error:function(a,b,c) {         
-        	console.log(b+c)
-		}, complete: function() {
-			$("#select2-chosen-1").html($("#s2id_autogen1_search").val());
-			//select2-results에 li로 나열.
-		}
-	});            
-	
-    $("#ee").select2();           
-    $("#s2id_autogen1_search").keyup(function(){
-    $.ajax({      
-		url:"<%=request.getContextPath()%>/seach",
-        data:{word:$("a").val(),user:$("#userno").val()},//추가로 유저 번호도 보낸다.
-        type:"get",
-        dataType:"json",
-        success: function(data){
-        	$("#ee").html("");
-            var jsonStr=JSON.stringify(data);
-            //문자열을 다시 변경
-            //json 객체로 파싱함. 
-            var json= JSON.parse(jsonStr);   
-			for(var i in json.list){
-            	console.log(json.list[i]);
-            	$("#ee").html($("#ee").html()+'<option>'+json.list[i]+'</option>')
-               
-            };
-		}, error:function(a,b,c) {
-        	console.log(b+c)
-        }, complete: function() {
-        	$("#select2-chosen-1").html($("#s2id_autogen1_search").val());
-            //select2-results에 li로 나열.
-        }
-	});
+		$("#menubar-searchbar").select2();           
+		$("#s2id_autogen1_search").keyup(function(){
+		$.ajax({      
+			url:"<%=request.getContextPath()%>/search",
+			data:{
+				word:$("a").val(),
+				user:$("#userno").val()
+				},//추가로 유저 번호도 보낸다.
+			type:"get",
+			dataType:"json",
+			success: function(data){
+				$("#menubar-searchbar").html("");
+				var jsonStr=JSON.stringify(data);
+				//문자열을 다시 변경
+				//json 객체로 파싱함. 
+				var json= JSON.parse(jsonStr); 
             
-	});
-    
+				for(var i in json.list) {
+            		console.log(json.list[i]);
+            		$("#menubar-searchbar").html($("#menubar-searchbar").html()+'<option>'+json.list[i]+'</option>')               
+				};
+				
+			}, error:function(a,b,c) {
+        		console.log(b+c)
+			}, complete: function() {
+        		$("#select2-chosen-1").html($("#s2id_autogen1_search").val());
+            //select2-results에 li로 나열.
+			}
+		});            
+	});    
 });
 
 	function movePage(id) {        
@@ -194,10 +199,17 @@
 				
 				 <li>
 					<form class="form-inline mt-2 mt-md-0 input-group" action="#" method="post">
-						<select id="ee" name="seachcontent" aria-label="Search" style="margin-top:7px;">    
+						<select id="menubar-searchbar" name="seachcontent" aria-label="Search" style="margin-top:7px;">    
 							<option value="#">여기에 값을 입력하세요</option>
 						</select>      
 						<button class="btn btn-primary" type="button" style="margin-top:7px;" onclick="search();">Search</button>
+						
+						<% if(loginUser != null) { %>
+							<input type = "hidden" name = "userno" value = "<%= loginUser.getUserNo() %>">
+						<% } else { %>
+							
+						<% } %>
+						
 					</form>
 				</li>
 			</ul>      

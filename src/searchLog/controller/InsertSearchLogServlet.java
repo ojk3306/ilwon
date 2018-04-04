@@ -14,13 +14,13 @@ import javax.servlet.http.*;
  * Servlet implementation class InsertSeach_Log
  */
 @WebServlet("/insertlog")
-public class InsertSeach_Log extends HttpServlet {
+public class InsertSearchLogServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertSeach_Log() {
+    public InsertSearchLogServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -45,10 +45,10 @@ public class InsertSeach_Log extends HttpServlet {
 		int result=new SearchLogService().insertlog(sl);
 		response.setContentType("text/html; charset=utf-8");
 		if(result>0) {
-			System.out.println("삽입완료");
+			System.out.println("삽입완료  / (To.InsertSearchLogServlet)");
 			response.sendRedirect("/prototype/tlist?word="+keyword);
 		} else {
-			System.out.println("삽입실패");
+			System.out.println("삽입실패 / (To.InsertSearchLogServlet)");
 		}
 	}
 

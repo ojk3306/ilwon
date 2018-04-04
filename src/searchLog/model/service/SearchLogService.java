@@ -15,8 +15,8 @@ public class SearchLogService {
 	
 	public int insertlog(SearchLog sl) {
 		Connection con = getConnection();
-		int result = new SearchLogDao().insertlog(con,sl);
-		System.out.println("reuslt="+result);
+		int result = new SearchLogDao().insertLog(con,sl);
+		System.out.println("result : " + result + " / (To.SearchLogService)");
 		if(result>0)
 			commit(con);
 		else 
@@ -25,17 +25,18 @@ public class SearchLogService {
 		return result;
 	}
 
-	public ArrayList<String> Seachlog(SearchLog sl) {
+	public ArrayList<String> searchLog(SearchLog sl) {
 		Connection con = getConnection();
-		ArrayList<String> al = new SearchLogDao().Seachlog(con,sl);
+		ArrayList<String> al = new SearchLogDao().searchLog(con,sl);
 		close(con);
 //		if(al.size()<5) {
 //			Connection con1 = getConnection();
-//		    ArrayList<String> al1=new SearchLogDao().Seachlog2(con1,al,sl);
+//		    ArrayList<String> al1=new SearchLogDao().Searchlog2(con1,al,sl);
 //			close(con);
 //			
 //			return al1;
 //		}
+		System.out.println("al : " + al + " / (To.SearchLogService)");
 		return al;
 	}
 

@@ -1,23 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ page import="java.util.ArrayList, java.sql.Date" %> 
-<%
-	ArrayList<Users> list=null;
-int listCount = 0;
-int startPage= 0;
-int endPage= 0;
-int maxPage= 0;
-int currentPage=0;
-if((ArrayList<Users>)request.getAttribute("list")!=null){
-	list = (ArrayList<Users>)request.getAttribute("list");
-	
-	listCount = ((Integer)request.getAttribute("listCount")).intValue();
- startPage = ((Integer)request.getAttribute("startPage")).intValue();
- endPage = ((Integer)request.getAttribute("endPage")).intValue();
-	maxPage = ((Integer)request.getAttribute("maxPage")).intValue();			
-currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
-}
-
+    pageEncoding="UTF-8" %>
+    <%@ page import="java.util.ArrayList, java.sql.Date, users.model.vo.*"  %> 
+<%	
+	ArrayList<Users> list = (ArrayList<Users>)request.getAttribute("list");
+	int listCount = ((Integer)request.getAttribute("listCount")).intValue();
+	int startPage = ((Integer)request.getAttribute("startPage")).intValue();
+	int endPage = ((Integer)request.getAttribute("endPage")).intValue();
+	int maxPage = ((Integer)request.getAttribute("maxPage")).intValue();			
+	int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
+	int seachOption =((Integer)request.getAttribute("seachOption")).intValue();
+	int seachtype =((Integer)request.getAttribute("seachtype")).intValue();
+	String seach = (String)request.getAttribute("seach");
+	String message=(String)request.getAttribute("message");
 %>
 <!DOCTYPE html>
 <html>
@@ -25,6 +19,13 @@ currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript" src="/prototype/common\resources\js\jquery-3.3.1.min.js"></script>
 
+<script type="text/javascript">
+$(function(){
+	$("option[value="+<%=seachOption%>+"]").prop("selected", true);
+	$("option[value="+<%=seachtype%>+"]").prop("selected", true);
+
+})
+</script>
 
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -112,9 +113,11 @@ min-height: 440px;
                   	 <option value="1001">학생</option>
                   	 <option value="1002">선생</option>
                   	 <option value="1003">관리자</option>
+                  	 
                   	 </select>
                   	 
                   	<select style="height: 28px; margin-top:5px" name="option">
+                  	
                   	 <option value="1">모든설정으로검색(무관)</option>
                   	 <option value="2">이름으로검색</option>
                   	 <option value="3">이메일로검색</option>
@@ -125,7 +128,8 @@ min-height: 440px;
                   	 <option value="8">전화번호로검색</option>
                   	 
                   	 </select>
-                  	<input type="text" placeholder="입력" style="height: 28px" name="seach">
+                  	 
+                  	<input type="text" placeholder="입력" style="height: 28px" name="seach" value="<%=seach%>">
                   	
                     <button type="submit" class="btn btn-sm btn-primary btn-create">검색!</button>
                     </form>
@@ -151,16 +155,14 @@ min-height: 440px;
 					 </tr> 
                   </thead>
                   <tbody>
-                 <% if(list!=null){for(Users i: list){ %>
-                  
-                  <tr>
+                 <% if(list!=null){
+                	 for(Users i: list){ %>
+                            <tr>
                             <td align="center">
-                            
-                            <a class="btn btn-default" onclick="location.href=">
-                            
-                            <em class="fa fa-pencil">
-                            
-                            </em></a>
+                         	<a class="btn btn-default" onclick="location.href='/prototype/aDtail?userno=<%=i.getUserNo()%>'">
+                          dsfadf
+                            </em>
+                            </a>
                   			</td>
                             <%if(i.getUserTypeNo()==1001){ %>
                             <td class="hidden-xs" style="color:red">학생</td>
@@ -189,18 +191,15 @@ min-height: 440px;
 						<%}else{ %>
 						<a class="btn btn-danger loading">글 작성 불가능</a>
 						<%} %>
-                        
-     
-                        </td>
-                 </tr>
+                       </td>
+                	 </tr>
 				 <%}%> 
                   	<%}else{%> 
                   	 <tr>
-                  	 
-                  	 <th colspan="9" align="center">값을입력하세요</th>
-                  	 
+                  	 <td colspan="" align="center"><%=message%></td>
                   	 </tr>
                   <%}%>
+                  
                    </tbody>
                 </table>
             
@@ -213,11 +212,11 @@ min-height: 440px;
                      <% if(currentPage <= 1){ %>
 	[맨처음]&nbsp;
 <% }else{ %>
-<a href="/first/blist?page=1">[맨처음]</a>
+<a href="/prototype/adminseachuser?page=1">[맨처음]</a>
 <% } %>
 
 <% if((currentPage - 10) < startPage && (currentPage - 10) > 1){ %>
-	<a href="/first/blist?page=<%= startPage - 10 %>">◀</a>	
+	<a href="/prototype/adminseachuser?page=<%= startPage - 10 %>">◀</a>	
 <% }else{ %>
 	◀&nbsp;
 <% } %>
@@ -227,20 +226,20 @@ min-height: 440px;
 %>
 	<font color="red" size="4"><b>[<%= p %>]</b></font>
 <% }else{ %>
-	<a href="/first/blist?page=<%= p %>"><%= p %></a>
+	<a href="/prototype/adminseachuser?page=<%= p %>&seach=<%=seach%>&option=<%=seachOption%>&type=<%=seachtype%>"><%= p %></a>
 <% }} %>
 
 <% if((currentPage + 10) > endPage 
 		&& (currentPage + 10) < maxPage){ %>
-	<a href="/first/blist?page=<%= endPage + 10 %>">▶</a>	
+	<a href="/prototype/adminseachuser?page=<%= endPage + 10 %>">▶</a>	
 <% }else{ %>
-	▶&nbsp;
+	▶ &nbsp;
 <% } %>
 
 <% if(currentPage >= maxPage){ %>
 	[맨끝]&nbsp;
 <% }else{ %>
-	<a href="/first/blist?page=<%= maxPage %>">[맨끝]</a>
+	<a href="/prototype/adminseachuser?page=<%= maxPage %>">[맨끝]</a>
 <% } %>
                     
                     </ul>
