@@ -156,12 +156,16 @@ min-height: 440px;
                   </thead>
                   <tbody>
                  <% if(list!=null){
-                	 for(Users i: list){ %>
+                	 for(Users i: list){%>
                             <tr>
                             <td align="center">
-                         	<a class="btn btn-default" onclick="location.href='/prototype/aDtail?userno=<%=i.getUserNo()%>'">
-                          dsfadf
+                         	<a class="btn btn-default" onclick="location.href='/prototype/aDtail?userno=<%=i.getUserNo()%>'" >
+                            
+                            <em class="fa fa-pencil" >
                             </em>
+                            
+                            
+                            
                             </a>
                   			</td>
                             <%if(i.getUserTypeNo()==1001){ %>

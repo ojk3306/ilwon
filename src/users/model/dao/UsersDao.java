@@ -365,6 +365,54 @@ public class UsersDao {
 	
 	
 	
+	public Users userDetailByAdmin(Connection con, int i) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Users user=null;
+		String query="select * from users where USER_NO = ?";
+		
+		try {
+			pstmt=con.prepareStatement(query);
+			pstmt.setInt(1,i);
+			rset=pstmt.executeQuery();
+			
+			if(rset.next()) {
+				user=new Users();
+				user.setUserNo(rset.getInt("USER_NO"));
+				user.setUserTypeNo(rset.getInt("USER_TYPE"));
+				user.setUserEmail(rset.getString("USER_EMAIL"));
+				user.setUserName(rset.getString("USER_NAME"));
+				user.setUserGender(rset.getString("USER_GENDER"));
+				user.setUserAge(rset.getInt("USER_AGE"));
+				user.setUserLoc(rset.getString("USER_LOC"));
+				user.setUserPhone(rset.getString("USER_PHONE"));
+				user.setUserKeywordCount(rset.getInt("USER_KEYWORD_COUNT"));
+				user.setUserLoginable(rset.getString("USER_LOGINABLE"));
+				user.setUserExeable(rset.getString("USER_EXEABLE"));
+				user.setUserLessonmax(rset.getInt("USER_LESSONMAX"));
+				user.setUserEnrollDate(rset.getDate("USER_ENROLLDATE"));
+				if(rset.getString("USER_ORIGINAL_PHOTO")!=null) {
+				user.setUserOriginalPhoto(rset.getString("USER_ORIGINAL_PHOTO"));	
+				}
+				if(rset.getString("USER_RENAME_PHOTO")!=null) {
+				user.setUserRenamePhoto(rset.getString("USER_RENAME_PHOTO"));	
+				}
+				
+			}
+			
+		} catch (Exception e) {
+		e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return user;
+	}
+
+	
+	
+	
 	
 	
 }

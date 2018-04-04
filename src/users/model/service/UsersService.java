@@ -59,6 +59,14 @@ public class UsersService {
 		return listCount;
 	}
 
+	public Users userDetailByAdmin(int i) {
+		Connection con = getConnection();
+		Users user=new UsersDao().userDetailByAdmin(con,i);
+		close(con);
+
+		return user;
+	}
+
 	
 	
 	

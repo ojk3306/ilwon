@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="users.model.vo.*" %>
+    <%
+    Users user=(Users)request.getAttribute("user");
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +12,6 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
-
 <style>
 body {
 background:#eeeeee;
@@ -88,7 +91,7 @@ margin-left: 190px;
 	<div class="row" >
        <div class="col-md-7">
 <div class="panel panel-default">
-  <div class="panel-heading" style="background:#00ffff;">  <h4 >~~의 프로필</h4></div>
+  <div class="panel-heading" style="background:#00ffff;">  <h4 ><%=user.getUserName() %>의 프로필</h4></div>
    <div class="panel-body">
        
     <div class="box box-info">
@@ -105,9 +108,8 @@ margin-left: 190px;
               <br>
     
               <!-- /input-group -->
-            </div>
-            <div class="col-sm-6">
-
+</div>
+ <div class="col-sm-6">
 <h4 style="color:#00b1b1;">Prasad Shankar Huddedar </h4>
 <span>Aspirant</span>            
             </div>
@@ -115,76 +117,75 @@ margin-left: 190px;
 <hr style="margin:5px 0 5px 0;">
  <form>
 <div class="col-sm-5 col-xs-6 tital">
-<strong>이름:</strong>&nbsp;여기에 값21323213122
+<strong>이름:</strong>&nbsp;<%=user.getUserName() %>
 </div>
 <div class="col-sm-7 col-xs-6" style="font-size:medium;">
-<INPUT TYPE="TEXT" placeholder="여기에 수정값">&nbsp;&nbsp;&nbsp;
+<INPUT TYPE="TEXT" value="<%=user.getUserName()%>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary loading" value="이름 수정" readonly="readonly">
+
 </div>
 <div class="clearfix"></div>
 <div class="bot-border"></div>
 
 <div class="col-sm-5 col-xs-6 tital">
-<strong>이름:</strong>&nbsp;여기에 값21323213122
+<strong>이메일:</strong>&nbsp;<%=user.getUserEmail()%>
 </div>
 <div class="col-sm-7 col-xs-6" style="font-size:medium;">
-<INPUT TYPE="TEXT" placeholder="여기에 수정값">&nbsp;&nbsp;&nbsp;
+<INPUT TYPE="TEXT" value="<%=user.getUserEmail()%>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary loading" value="메일 수정" readonly="readonly">
 </div>
 <div class="clearfix"></div>
 <div class="bot-border"></div>
 
 <div class="col-sm-5 col-xs-6 tital">
-<strong>이름:</strong>&nbsp;여기에 값21323213122
+<strong>나이:</strong>&nbsp;<%=user.getUserAge()%>
 </div>
 <div class="col-sm-7 col-xs-6" style="font-size:medium;">
-<INPUT TYPE="TEXT" placeholder="여기에 수정값">&nbsp;&nbsp;&nbsp;
+<INPUT TYPE="number" value="<%= user.getUserAge()%>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary loading" value="나이 수정" readonly="readonly">
 </div>
 <div class="clearfix"></div>
 <div class="bot-border"></div>
 
 <div class="col-sm-5 col-xs-6 tital">
-<strong>이름:</strong>&nbsp;여기에 값21323213122
+<strong>성별:</strong>&nbsp;<%=user.getUserGender()%>
 </div>
 <div class="col-sm-7 col-xs-6" style="font-size:medium;">
-<INPUT TYPE="TEXT" placeholder="여기에 수정값">&nbsp;&nbsp;&nbsp;
+<INPUT TYPE="TEXT" placeholder="여기에 수정값">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary loading" value="성별 수정" readonly="readonly">
 </div>
 <div class="clearfix"></div>
 <div class="bot-border"></div>
 
 <div class="col-sm-5 col-xs-6 tital">
-<strong>이름:</strong>&nbsp;여기에 값21323213122
+<strong>전화번호:</strong>&nbsp;<%=user.getUserPhone()%>
 </div>
 <div class="col-sm-7 col-xs-6" style="font-size:medium;">
-<INPUT TYPE="TEXT" placeholder="여기에 수정값">&nbsp;&nbsp;&nbsp;
+<INPUT TYPE="TEXT" placeholder="여기에 수정값">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary loading" value="전번 수정" readonly="readonly">
 </div>
 <div class="clearfix"></div>
 <div class="bot-border"></div>
 
 <div class="col-sm-5 col-xs-6 tital">
-<strong>이름:</strong>&nbsp;여기에 값21323213122
+<strong>최대 키워드수:</strong>&nbsp;<%=user.getUserKeywordCount() %>
 </div>
 <div class="col-sm-7 col-xs-6" style="font-size:medium;">
-<INPUT TYPE="TEXT" placeholder="여기에 수정값">&nbsp;&nbsp;&nbsp;
+<INPUT TYPE="TEXT" placeholder="여기에 수정값">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary loading" value="키워드 수정" readonly="readonly">
+</div>
+<div class="clearfix"></div>
+<div class="bot-border"></div>
+<div class="col-sm-5 col-xs-6 tital">
+
+<strong>최대 강의수 :</strong>&nbsp;<%=user.getUserLessonmax() %>
+</div>
+<div class="col-sm-7 col-xs-6" style="font-size:medium;">
+<INPUT TYPE="TEXT" placeholder="여기에 수정값">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary loading" value="강의수 수정" readonly="readonly">
 </div>
 <div class="clearfix"></div>
 <div class="bot-border"></div>
 
 <div class="col-sm-5 col-xs-6 tital">
-<strong>이름:</strong>&nbsp;여기에 값21323213122
+<strong>회원가입일:</strong>&nbsp;<%=user.getUserEnrollDate() %>
 </div>
-<div class="col-sm-7 col-xs-6" style="font-size:medium;">
-<INPUT TYPE="TEXT" placeholder="여기에 수정값">&nbsp;&nbsp;&nbsp;
-</div>
-<div class="clearfix"></div>
-<div class="bot-border"></div>
 
-<div class="col-sm-5 col-xs-6 tital">
-<strong>이름:</strong>&nbsp;여기에 값21323213122
-</div>
-<div class="col-sm-7 col-xs-6" style="font-size:medium;">
-<INPUT TYPE="TEXT" placeholder="여기에 수정값">&nbsp;&nbsp;&nbsp;
-</div>
-<div class="clearfix"></div>
-<div class="bot-border"></div>
+
+
 
 
 
@@ -237,7 +238,11 @@ margin-left: 190px;
                     </li>
                 </ul>
 
-<center><input type="reset"></center>
+<center>
+<input type="submit" class="btn btn-primary loading" value="수정하기(수정은신중히)" readonly="readonly">
+<input type="reset" class="btn btn-primary loading" value="초기화하기" readonly="readonly" >
+<input type="button" class="btn btn-primary loading" value="뒤로가기" onclick="history.back(-1)" readonly="readonly">
+</center>
 </form>
 
 

@@ -58,10 +58,14 @@ public class AdminSeachUser extends HttpServlet {
 	//한 페이지당 출력할 목록 갯수 지정
 	int limit = 10;
 	//전체 목록 갯수 조회 
-
+	
+	
 	int listCount = new users.model.service.UsersService().getListCount(user,seach,seachOption);
-    System.out.println(listCount+ "=listCount");
+    
+	
+	System.out.println(listCount+ "=listCount");
 	//현재 페이지에 출력할 목록 조회
+	
 	ArrayList<Users> al=new users.model.service.UsersService().seachUserByAdmin(user,seach,seachOption,limit,currentPage);
 	
 
