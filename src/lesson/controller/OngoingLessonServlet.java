@@ -47,10 +47,17 @@ public class OngoingLessonServlet extends HttpServlet {
 		JSONArray jarr = new JSONArray();
 		
 		for(Onlesson l : onlesson) {
+			
 			JSONObject job = new JSONObject();
-			job.put("lesson_title", l.getLesson_title());
 			job.put("username", l.getUser_name());
 			job.put("state", l.getState());
+			job.put("lesson_no", l.getLesson_no());
+			job.put("lesson_title", l.getLesson_title());
+			
+			if(l.getLesson_enddate()!=null) {			
+			job.put("lesson_enddate", l.getLesson_enddate().toString());
+			
+			}
 			
 			jarr.add(job);
 		}

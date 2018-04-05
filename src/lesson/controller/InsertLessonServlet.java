@@ -33,17 +33,17 @@ public class InsertLessonServlet extends HttpServlet {
 		System.out.println(request.getParameter("title"));
 		Lesson lesson = new Lesson();
 		
-		lesson.setlesson_title(request.getParameter("title"));
+		lesson.setLesson_title(request.getParameter("title"));
 		lesson.setLevel_no(Integer.parseInt(request.getParameter("level")));
 		lesson.setUser_no2(Integer.parseInt(request.getParameter("userno")));
-		lesson.setlesson_price(Integer.parseInt(request.getParameter("price")));
-		lesson.setlesson_count(Integer.parseInt(request.getParameter("count")));
-		lesson.setlesson_contop(request.getParameter("contop"));
-		lesson.setlesson_conmid(request.getParameter("conmid"));
-		lesson.setlesson_conbot(request.getParameter("conbot"));
-		lesson.setlesson_loc(request.getParameter("loc"));
-		lesson.setlesson_rad(Integer.parseInt(request.getParameter("rad")));
-		lesson.setlesson_keyword(request.getParameter("keyword"));
+		lesson.setLesson_price(Integer.parseInt(request.getParameter("price")));
+		lesson.setLesson_count(Integer.parseInt(request.getParameter("count")));
+		lesson.setLesson_contop(request.getParameter("contop"));
+		lesson.setLesson_conmid(request.getParameter("conmid"));
+		lesson.setLesson_conbot(request.getParameter("conbot"));
+		lesson.setLesson_loc(request.getParameter("loc"));
+		lesson.setLesson_rad(Integer.parseInt(request.getParameter("rad")));
+		lesson.setLesson_keyword(request.getParameter("keyword"));
 		
 		int result = new LessonService().insertlesson(lesson);
 		
