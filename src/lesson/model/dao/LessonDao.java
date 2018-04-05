@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import lesson.model.vo.Lesson;
+import lesson.model.vo.LessonDetail;
 import lesson.model.vo.Onlesson;
 
 
@@ -21,7 +22,7 @@ public class LessonDao {
 		PreparedStatement pstmt = null;
 		String sql = "insert into lesson values((SELECT max(lesson_no) from lesson)+1"
 				+ ",?,1,5513,null,?,?,?,?,?,?,sysdate,null,?,?,?,?,7000)";
-		//ë¶„ë¥˜ë²ˆí˜¸ ë“± ì¶”ê°€í•  ê²ƒ
+		//Ä«Å×°í¸® ¹øÈ£ °°Àº °Í ³ªÁß¿¡ Ãß°¡ÇÏÀÚ
 		
 		try {
 		System.out.println("lesson.getUser_no2()"+lesson.getUser_no2());
@@ -100,6 +101,22 @@ public class LessonDao {
 		}
 		
 		return result;
+	}
+
+	public LessonDetail lessonView() {
+		LessonDetail lessondetail = new LessonDetail();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql= "select l.lesson_title, lv.lessonlev, l.lesson_loc, l.lesson_rad, l.lesson_price,\r\n" + 
+				"l.lesson_count, s.state_no, l.lesson_contop, l.lesson_conmid, l.lesson_conbot, l.lesson_keyword,\r\n" + 
+				"u.user_name, r.review_prepare, r.review_sincerity, r.review_delivery, r.review_no, r.review_content\r\n" + 
+				"from lesson l, review r,users u,lessonlev lv\r\n" + 
+				"where l.lesson_no = r.lesson_no and l.user_no2=u.user_no and l.level_no = lv.lessonlev_no and\r\n" + 
+				"l.lesson_no = ? and user_no2 = (select user_no2 from lesson where lesson_no = ?) \r\n" + 
+				"and l.level_no = (select level_no from lesson where lesson_no = ?)";
+		
+		
+		return null;
 	}
 
 	
