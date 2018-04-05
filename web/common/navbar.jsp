@@ -34,8 +34,7 @@
 	function search(){
     	location.href="/prototype/insertlog?seachcontent="+$('#select2-chosen-1').text()+"&user="+$("#userno").val();    
    //후에 섹션의 로그인유저의 번호까지 넣기.
-    }
-	
+	}
 	$(document).ready(function (){
 		
     	$.ajax({       
@@ -65,7 +64,7 @@
 				//select2-results에 li로 나열.
 			}
 		});           
-	
+
 		$("#menubar-searchbar").select2();           
 		$("#s2id_autogen1_search").keyup(function(){
 		$.ajax({      
@@ -100,7 +99,7 @@
 
 	function movePage(id) {        
         location.href = "/prototype/03.OHW/views/find_teacher.jsp?id=" + id;       
-    }
+    } 
 
 </script>  
   

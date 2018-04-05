@@ -41,12 +41,15 @@ public class UsersService {
 		return result;
 	}
 
-	public ArrayList<Users> seachUserByAdmin(Users user, String seach, int seachOption,int limit) {
+	public ArrayList<Users> seachUserByAdmin(Users user, String seach, int seachOption,int limit, int currentPage) {
 		
-		Connection con = getConnection();
-		 ArrayList<Users> al=new UsersDao().seachUserByAdmin(con,user,seach,seachOption,limit);
+		 Connection con = getConnection();
+		 
+		 ArrayList<Users> al=new UsersDao().seachUserByAdmin(con,user,seach,seachOption,limit,currentPage);
+		
 		 close(con);
-		return al;
+		
+		 return al;
 	}
 
 	public int getListCount(Users user, String seach, int seachOption) {
@@ -54,6 +57,30 @@ public class UsersService {
 		int listCount = new UsersDao().getListCount(con,user,seach,seachOption);
 		close(con);
 		return listCount;
+	}
+
+	public Users userDetailByAdmin(int i) {
+		Connection con = getConnection();
+		Users user=new UsersDao().userDetailByAdmin(con,i);
+		close(con);
+
+		return user;
+	}
+
+	public int adminUpdate(int userno, String value, int type) {
+		Connection con = getConnection();
+		int result= new UsersDao().adminupdate(con,userno,value,type);
+	
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+			System.out.println("adminUpdate서비스 실패");
+		}
+		
+		close(con);
+		
+		return result;
 	}
 
 	
