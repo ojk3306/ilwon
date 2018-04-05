@@ -114,7 +114,7 @@
 		margin-bottom: 10px;
 		border-top-left-radius: 0;
 		border-top-right-radius: 0;
-	}
+	}	
     
 </style>
    
@@ -137,18 +137,19 @@
 		<input type="password" id="inputPassword" name = "pwd" class="form-control" placeholder="Password" required>
 		
 		<div class="checkbox">		
+		
 		<label>
 		<input type="checkbox" value="remember-me"> 정보 기억
-		</label>		
-		</div>
-		
-		<button class="btn btn-lg btn-primary btn-block" type="submit">LogIn</button>
+		</label>
+				
+		</div>		
+		<button class="btn btn-lg btn-primary btn-block ohw-btn" type="submit">LogIn</button>
 	</form>
 </div>
 
-<div class = "form-signin">
+<div class = "form-signin ohw-btn">
 	<a href = "../../04.OJK/join_start.jsp">
-		<input type = "button" class = "btn btn-lg btn-success btn-block" value = "아직 회원이 아니시라면?">
+		<input type = "button" class = "btn btn-lg btn-success btn-block " value = "아직 회원이 아니시라면?">
 	</a>
 </div>
 

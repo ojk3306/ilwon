@@ -38,6 +38,20 @@ public class LessonService {
 		return onlesson;
 	}
 
+	public int stopLesson(int lesson_no) {
+		Connection conn = getConnection();
+		
+		int result = new LessonDao().stopLesson(conn,lesson_no);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return result;
+	}
+
 	
 
 	

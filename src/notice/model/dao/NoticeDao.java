@@ -14,35 +14,40 @@ public NoticeDao() {
 		
 	}
 
-	public List<Notice> selectList(Connection con) {
-		List<Notice> list = new ArrayList<Notice>();
+	public ArrayList<Notice> selectList(Connection con) {
+		ArrayList<Notice> list = new ArrayList<Notice>();
 		Statement stmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * from notice order by notice_no desc";
+		String query = "select * from notice n, users u "
+						+ "where n.user_no = u.user_no "
+						+ "order by n.notice_no desc";
 		
 		try {
 			stmt = con.createStatement();
 			rset = stmt.executeQuery(query);
 			
 			while(rset.next()) {
+				
 				Notice n = new Notice();
 				n.setNoticeNo(rset.getInt("notice_no"));
-				n.setNoticeTitle(rset.getString("notice_title"));
-				n.setNoticeDate(rset.getDate("notice_date"));
 				n.setUserNo(rset.getInt("user_no"));
+				n.setNoticeTitle(rset.getString("notice_title"));
+				n.setUserName(rset.getString("user_name"));
+				n.setNoticeDate(rset.getDate("notice_date"));
 				n.setNoticeContent(rset.getString("notice_content"));				
 				
-				list.add(n);
+				list.add(n);				
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			close(rset);
 			close(stmt);
 		}
-		
-		return list;
+		/*System.out.println("Daolist : " + list + " / (To.NoticeDao)");*/
+		return list;		
 	}
 	
 	public Notice selectNotice(Connection con, int noticeNo) {
@@ -65,6 +70,7 @@ public NoticeDao() {
 			if(rset.next()) {
 				notice = new Notice();
 				notice.setNoticeNo(noticeNo);
+				notice.setUserNo(rset.getInt("user_no"));
 				notice.setNoticeTitle(rset.getString("notice_title"));
 				notice.setUserName(rset.getString("user_name"));
 				notice.setNoticeContent(rset.getString("notice_content"));
@@ -80,7 +86,7 @@ public NoticeDao() {
 			close(rset);
 			close(pstmt);
 		}
-		
+		System.out.println("Daonotice : " + notice + " / (To.NoticeDao)");
 		return notice;
 	}
 	
@@ -88,23 +94,30 @@ public NoticeDao() {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
-		String query = "insert into notice values ("
-				+ "(select max(notice_no) from notice) + 1, "
-				+ "?, sysdate, ?, ?, ?, ?)";
+		String query = "insert into notice values "
+				+ "((select max(notice_no) from notice) + 1, "
+				+ "?, ?, sysdate, ?)";
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, notice.getNoticeTitle());
-			pstmt.setInt(2, notice.getUserNo());
-			pstmt.setString(3, notice.getNoticeContent());
 			
+			pstmt.setInt(1, notice.getUserNo());
+			pstmt.setString(2, notice.getNoticeTitle());
+			pstmt.setString(3, notice.getNoticeContent());			
+			
+			System.out.println(notice.getUserNo());
+			System.out.println(notice.getNoticeTitle());
+			System.out.println(notice.getNoticeContent());
 			
 			result = pstmt.executeUpdate();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
-		}		
+		}
+		
+		System.out.println("Daoresult : " + result + " / (To.NoticeDao)");
 		return result;
 	}
 	
@@ -132,6 +145,7 @@ public NoticeDao() {
 		} finally {
 			close(pstmt);
 		}
+		System.out.println("Daoresult : " + result + " / (To.NoticeDao)");
 		return result;
 	}
 
@@ -155,24 +169,24 @@ public NoticeDao() {
 		} finally {
 			close(pstmt);
 		}
-		
+		System.out.println("Daoresult : " + result + " / (To.NoticeDao)");
 		return result;
 	}
 	
-	public List<Notice> selectSearchTitle(Connection con, String keyword) {
-		List<Notice> list = new ArrayList<Notice>();		
+	public ArrayList<Notice> selectSearchTitle(Connection con, String keyword) {
+		ArrayList<Notice> list = new ArrayList<Notice>();		
 		
 		return list;
 	}
 	
-	public List<Notice> selectSearchDate(Connection con, Date start, Date end) {
-		List<Notice> list = new ArrayList<Notice>();		
+	public ArrayList<Notice> selectSearchDate(Connection con, Date start, Date end) {
+		ArrayList<Notice> list = new ArrayList<Notice>();		
 		
 		return list;
 	}
 	
-	public List<Notice> selectSearchWriter(Connection con, String keyword) {
-		List<Notice> list = new ArrayList<Notice>();		
+	public ArrayList<Notice> selectSearchWriter(Connection con, String keyword) {
+		ArrayList<Notice> list = new ArrayList<Notice>();		
 		
 		return list;
 	}
@@ -195,6 +209,7 @@ public ArrayList<Notice> selectMainNotice(Connection con) {
 			rset = stmt.executeQuery(query);
 			
 			while(rset.next()) {
+				
 				Notice n = new Notice();
 				n.setNoticeNo(rset.getInt("notice_no"));
 				n.setNoticeTitle(rset.getString("notice_title"));
@@ -210,6 +225,7 @@ public ArrayList<Notice> selectMainNotice(Connection con) {
 			close(rset);
 			close(stmt);
 		}
+		
 		System.out.println("DaoList : " + list);
 		return list;
 	}

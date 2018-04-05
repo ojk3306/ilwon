@@ -15,19 +15,23 @@ public NoticeService() {
 		
 	}
 
-	public List<Notice> selectList() {
+	public ArrayList<Notice> selectList() {
+		
 		Connection con = getConnection();
-		List<Notice> list = new NoticeDao().selectList(con);
+		ArrayList<Notice> list = new NoticeDao().selectList(con);
 		close(con);
 		
+		System.out.println("ServiceResult : " + list + " / (To.NoticeService)");
 		return list;
 	}
 	
 	public Notice selectNotice(int noticeNo) {
+		
 		Connection con = getConnection();
 		Notice notice = new NoticeDao().selectNotice(con, noticeNo);
 		close(con);
-				
+		
+		System.out.println("ServiceResult : " + notice + " / (To.NoticeService)");
 		return notice;
 	}
 	
@@ -39,7 +43,7 @@ public NoticeService() {
 		} else {
 			rollback(con);
 		}
-		
+		System.out.println("ServiceResult : " + result + " / (To.NoticeService)");
 		return result;
 	}
 	
@@ -52,7 +56,7 @@ public NoticeService() {
 		} else {
 			rollback(con);
 		}
-		
+		System.out.println("ServiceResult : " + result + " / (To.NoticeService)");
 		return result;
 	}
 
@@ -65,39 +69,43 @@ public NoticeService() {
 		} else {
 			rollback(con);
 		}
-		
+		System.out.println("ServiceResult : " + result + " / (To.NoticeService)");
 		return result;
 	}
 	
-	public List<Notice> selectSearchTitle(String keyword) {
+	public ArrayList<Notice> selectSearchTitle(String keyword) {
+		
 		Connection con = getConnection();
-		List<Notice> list = new NoticeDao().selectSearchTitle(con, keyword);
+		ArrayList<Notice> list = new NoticeDao().selectSearchTitle(con, keyword);
 		close(con);
 		
+		System.out.println("ServiceResult : " + list + " / (To.NoticeService)");
 		return list;
 	}
 	
-	public List<Notice> selectSearchDate(Date start, Date end) {
+	public ArrayList<Notice> selectSearchDate(Date start, Date end) {
 		
 		Connection con = getConnection();
-		List<Notice> list = new NoticeDao().selectSearchDate(con, start, end);
+		ArrayList<Notice> list = new NoticeDao().selectSearchDate(con, start, end);
 		close(con);
 		
+		System.out.println("ServiceResult : " + list + " / (To.NoticeService)");
 		return list;
 	}
 	
-	public List<Notice> selectSearchWriter(String keyword) {
+	public ArrayList<Notice> selectSearchWriter(String keyword) {
 		
 		Connection con = getConnection();
-		List<Notice> list = new NoticeDao().selectSearchWriter(con, keyword);
+		ArrayList<Notice> list = new NoticeDao().selectSearchWriter(con, keyword);
 		close(con);
 		
+		System.out.println("ServiceResult : " + list + " / (To.NoticeService)");
 		return list;
 	}
 	
 	public ArrayList<Notice> selectMainNotice() {
-		Connection con = getConnection();
 		
+		Connection con = getConnection();		
 		ArrayList<Notice> list = new NoticeDao().selectMainNotice(con);
 		close(con);
 		

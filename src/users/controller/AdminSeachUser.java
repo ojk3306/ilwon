@@ -80,7 +80,6 @@ public class AdminSeachUser extends HttpServlet {
 	if(maxPage < endPage)
 		endPage = maxPage;
 	
-	response.setContentType("text/html; charset=utf-8");
     RequestDispatcher view =null;
     if(al.size()>0) {
     view=request.getRequestDispatcher("/01.CJS/adminSeachUser.jsp");
@@ -95,17 +94,16 @@ public class AdminSeachUser extends HttpServlet {
 	request.setAttribute("seachtype",user.getUserTypeNo());
 	view.forward(request, response);
 	}else {
-		
-		view=request.getRequestDispatcher("/01.CJS/adminSeachUser.jsp");
+    view=request.getRequestDispatcher("/01.CJS/adminSeachUser.jsp");
 	    request.setAttribute("list", al);
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("maxPage", maxPage);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("listCount", listCount);
-		request.setAttribute("seach", seach);
-		request.setAttribute("seachOption",seachOption);
-		request.setAttribute("seachtype",user.getUserTypeNo());
+	request.setAttribute("seach", seach);
+	request.setAttribute("seachOption",seachOption);
+	request.setAttribute("seachtype",user.getUserTypeNo());
 	request.setAttribute("message","결과값이 존재하지 않습니다!");
 	
 	

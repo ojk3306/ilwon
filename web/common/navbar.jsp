@@ -53,7 +53,7 @@
 				var json= JSON.parse(jsonStr);
 					
 				for(var i in json.list) {            
-        			console.log(json.list[i]);       
+        			/* console.log(json.list[i]); */       
 					$("#menubar-searchbar").html($("#menubar-searchbar").html()+'<option>'+json.list[i]+'</option>')         
         		};
         	
@@ -83,7 +83,7 @@
 				var json= JSON.parse(jsonStr); 
             
 				for(var i in json.list) {
-            		console.log(json.list[i]);
+            		/* console.log(json.list[i]); */
             		$("#menubar-searchbar").html($("#menubar-searchbar").html()+'<option>'+json.list[i]+'</option>')               
 				};
 				
@@ -122,7 +122,7 @@
     	padding-left:15px;
     }
     
-    .btn-primary {
+    .ohw-primary {
     	height:27px;
     	padding-top:3px;
     }
@@ -150,7 +150,7 @@
 		
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">은밀한 공지</a></li>
+				<li class="active"><a href="/prototype/03.OHW/views/noticeList.jsp">은밀한 공지</a></li>
 				<li><a href="/prototype/03.OHW/views/find_teacher.jsp">선생 찾기</a></li>
 				<li><a href="/prototype/03.OHW/views/find_learn_list.jsp">학생 찾기</a></li>
 				<li><a href="/prototype/01.CJS/semina.jsp">세미나  찾기</a></li>
@@ -202,7 +202,7 @@
 						<select id="menubar-searchbar" name="seachcontent" aria-label="Search" style="margin-top:7px;">    
 							<option value="#">여기에 값을 입력하세요</option>
 						</select>      
-						<button class="btn btn-primary" type="button" style="margin-top:7px;" onclick="search();">Search</button>
+						<button class="btn btn-primary ohw-primary" type="button" style="margin-top:7px;" onclick="search();">Search</button>
 						
 						<% if(loginUser != null) { %>
 							<input type = "hidden" name = "userno" value = "<%= loginUser.getUserNo() %>">

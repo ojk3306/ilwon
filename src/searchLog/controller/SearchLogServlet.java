@@ -40,22 +40,22 @@ public class SearchLogServlet extends HttpServlet {
 	
 		SearchLog sl=new SearchLog();
 		sl.setSearchContent(request.getParameter("word"));
-	
-
-		if(request.getParameter("userno")!=null)
+		
+		if(request.getParameter("userno")!=null) {
 		sl.setUserNo(Integer.parseInt(request.getParameter("userno")));
+		}
 
 	ArrayList<String> result=new SearchLogService().searchLog(sl);
 	
 	response.setContentType("text/html; charset=utf-8");
 	
-	System.out.println("result.size : " + result.size() + " / (To.SearchLogServlet)");
+	/*System.out.println("result.size : " + result.size() + " / (To.SearchLogServlet)");*/
 	
 	if(result.size() != 0) {
 		
-	for(String i: result) {		
+	/*for(String i: result) {		
 		System.out.println("value : " + i + " / (To.SearchLogServlet)");	
-	}
+	}*/
 	
 	//최종 전송용 json 객체 생성함
 		JSONObject json = new JSONObject();		
@@ -77,7 +77,7 @@ public class SearchLogServlet extends HttpServlet {
 		}
 		//전송용 객체에 jarr 배열 담음
 		json.put("list", jarr);
-		System.out.println("json : " + json.toJSONString() + " / (To.SearchLogServlet)");
+		/*System.out.println("json : " + json.toJSONString() + " / (To.SearchLogServlet)");*/
 		
 		response.setContentType("application/json; charset=utf-8");
 		PrintWriter out = response.getWriter();

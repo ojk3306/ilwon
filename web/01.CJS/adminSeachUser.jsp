@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" %>
+    pageEncoding="UTF-8" errorPage="login.jsp"  %>
     <%@ page import="java.util.ArrayList, java.sql.Date, users.model.vo.*"  %> 
 <%	
 	ArrayList<Users> list = (ArrayList<Users>)request.getAttribute("list");

@@ -37,7 +37,7 @@ public class NoticeDetailServlet extends HttpServlet {
 		
 		RequestDispatcher view = null;
 		if(notice != null) {
-			view = request.getRequestDispatcher(request.getContextPath() + "/views/noticeDetail.jsp");
+			view = request.getRequestDispatcher("/03.OHW/views/noticeDetail.jsp");
 			request.setAttribute("notice", notice);
 			view.forward(request, response);						
 		} else {

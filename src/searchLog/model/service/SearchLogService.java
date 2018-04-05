@@ -36,7 +36,7 @@ public class SearchLogService {
 //			
 //			return al1;
 //		}
-		System.out.println("al : " + al + " / (To.SearchLogService)");
+		/*System.out.println("al : " + al + " / (To.SearchLogService)");*/
 		return al;
 	}
 
