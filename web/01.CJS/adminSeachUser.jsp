@@ -22,10 +22,8 @@
 
 <script type="text/javascript">
 $(function(){
-	
 	$("option[value="+<%=seachOption%>+"]").prop("selected", true);
 	$("option[value="+<%=seachtype%>+"]").prop("selected", true);
-
 })
 </script>
 
