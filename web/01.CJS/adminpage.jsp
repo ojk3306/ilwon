@@ -19,6 +19,10 @@
     <!-- Bootstrap core CSS -->
     <link href="./css/bootstrap.min.css" rel="stylesheet">
     <link href="./css/adminpage.css" rel="stylesheet" type="text/css" >
+    
+    
+    
+    
   </head>
   <body>
   <%@include file="/common\navbar.jsp" %>
@@ -38,9 +42,16 @@
        <span class="badge">12</span></a>
     </div>
     
- <div class="list-group" style="background: red">
-여기다 구현연습.
- </div>
+<div class="list-group">
+<table class="table" style="border: 1px solid #ddd; width: 100%;">
+<tr style="align:center; background-color:#337ab7;"><td colspan="2" style="text-align:center; color:white;">실시간 검색</td></tr>
+<tr><td>1</td><td style="text-align:center;"><a href="#"><span>아직 링크 기능 구현 안됨</span></a></td></tr>
+<tr><td>2</td><td style="text-align:center;"><a href="#"><span>아직 링크 기능 구현 안됨</span></a></td></tr>
+<tr><td>3</td><td style="text-align:center;"><a href="#"><span>아직 링크 기능 구현 안됨</span></a></td></tr>
+<tr><td>4</td><td style="text-align:center;"><a href="#"><span>아직 링크 기능 구현 안됨</span></a></td></tr>
+<tr><td>5</td><td style="text-align:center;"><a href="#"><span>아직 링크 기능 구현 안됨</span></a></td></tr>
+</table>
+</div>
 
   
       </div>
