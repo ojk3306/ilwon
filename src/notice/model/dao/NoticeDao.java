@@ -70,6 +70,7 @@ public NoticeDao() {
 			if(rset.next()) {
 				notice = new Notice();
 				notice.setNoticeNo(noticeNo);
+				notice.setUserNo(rset.getInt("user_no"));
 				notice.setNoticeTitle(rset.getString("notice_title"));
 				notice.setUserName(rset.getString("user_name"));
 				notice.setNoticeContent(rset.getString("notice_content"));

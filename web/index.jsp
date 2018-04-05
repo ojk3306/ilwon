@@ -179,9 +179,9 @@
 	<h3>제휴 사이트 바로 가기</h3>	
 	</div>		
 	</div>
-
-<div class="ohw_footer">
-	<h1>Footer!! 호우!</h1>
+	
+<div>
+	<%@ include file = "common/footer.jsp" %>
 </div>
 
 </body>
