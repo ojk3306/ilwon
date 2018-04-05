@@ -122,7 +122,7 @@
     	padding-left:15px;
     }
     
-    .btn-primary {
+    .ohw-primary {
     	height:27px;
     	padding-top:3px;
     }
@@ -202,7 +202,7 @@
 						<select id="menubar-searchbar" name="seachcontent" aria-label="Search" style="margin-top:7px;">    
 							<option value="#">여기에 값을 입력하세요</option>
 						</select>      
-						<button class="btn btn-primary" type="button" style="margin-top:7px;" onclick="search();">Search</button>
+						<button class="btn btn-primary ohw-primary" type="button" style="margin-top:7px;" onclick="search();">Search</button>
 						
 						<% if(loginUser != null) { %>
 							<input type = "hidden" name = "userno" value = "<%= loginUser.getUserNo() %>">

@@ -8,6 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>선생정보보기</title>
 <script type="text/javascript">
+//운영강의
 $(function(){
 	$.ajax({
 		url: "/prototype/onlesson",
@@ -20,13 +21,15 @@ $(function(){
 			var json = JSON.parse(jsonStr);
 			
 			var values = $('#ongoing_table').html() + "<br>";
-			for(var i in json.onlesson) {
-											
-					values += "<tr><td>"+json.onlesson[i].lesson_title+"</td>"+
-					"<td>"+json.onlesson[i].username+"</td><td><button type='button' class='btn btn-primary'>"+json.onlesson[i].state+"</button></td>"
+			
+			for(var i in json.onlesson) {	
+					if(json.onlesson[i].state == "수강중") {
+					values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
+					+"</td><td>"+json.onlesson[i].username+"</td><td><button type='button' class='btn'>상세보기</button></td>"
+					+"<td><button type='button' class='btn btn-primary'>"+json.onlesson[i].state+"</button></td>"
 					+"<td><button type='button' class='btn btn-warning'>수정</button></td>"
-					+"<td><button type='button' class='btn btn-danger'>종료</button></td></tr>"			
-					
+					+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='finishLesson(this)'>종료</button></td></tr>"			
+					}
 			}
 			
 			$('#ongoing_table').html(values);
@@ -37,7 +40,65 @@ $(function(){
 
 });
 
-function finishLesson(){
+//강의내역
+$(function(){
+	$.ajax({
+		url: "/prototype/onlesson",
+		data: {user : $('#userno').val()},
+		type: "get",
+		dataType: "json",
+		success: function(data) {
+			
+			var jsonStr = JSON.stringify(data);
+			var json = JSON.parse(jsonStr);
+			
+			var values = $('#previous_table').html() + "<br>";
+			
+			for(var i in json.onlesson) {	
+					if(json.onlesson[i].state == "숨김") {
+					values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
+					+"</td><td>"+json.onlesson[i].username+"</td><td><button type='button' class='btn'>상세보기</button></td>"
+					+"<td>"+json.onlesson[i].lesson_enddate+"</td></tr>"			
+					}
+			}
+			
+			$('#previous_table').html(values);
+		}, error: function(a,b,c){
+			console.log(b+c);
+		}	
+	});
+
+});
+
+</script>
+<script>
+//종료하기
+function finishLesson(val){
+	
+	var result = confirm('종료 하시겠습니까?'); 
+	console.log(val.id);
+	
+	if(result) {
+		location.href="/prototype/stoplesson?no=" + val.id;
+		
+	}else {
+		
+	} 
+	
+	
+}
+//강의삭제하기
+function DeleteLesson(val){
+	
+	var result = confirm('삭제 하시겠습니까?'); 
+	console.log(val.id);
+	
+	if(result) {
+		location.href="/prototype/stoplesson?no=" + val.id;
+		
+	}else {
+		
+	} 
 	
 	
 }
@@ -70,7 +131,7 @@ function finishLesson(){
 
 				</div>
 				<div style="width: 100%; height: 70px; padding: 20px;">
-					<button type="button" class="btn">개인정보 수정하기</button>
+					<button type="button" class="btn" >개인정보 수정하기</button>
 					&nbsp;
 					<button type="button" class="btn">프로필 사진 수정</button>
 					&nbsp;
@@ -94,6 +155,7 @@ function finishLesson(){
 							<tr>
 								<th>강의명</th>
 								<th>선생님</th>
+								<th>상세보기</th>
 								<th>상태</th>
 								<th>수정하기</th>
 								<th>종료하기</th>
@@ -111,46 +173,15 @@ function finishLesson(){
 			<div id="info"
 				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px; overflow:auto;">
 				<div style="width:100%;">
-					<table class="table table-hover">
+					<table class="table table-hover" id="previous_table">
 						<thead>
 							<tr>
 								<th>강의명</th>
-								<th>과목</th>
+								<th>선생님</th>
 								<th>상세보기</th>
-								<th>리뷰보기</th>
-								<th>삭제하기</th>
+								<th>종료일</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td>java강의</td>
-								<td>Doe</td>
-								<td><button type="button" class="btn">Basic</button></td>
-								<td><button type="button" class="btn">Basic</button></td>
-								<td><button type="button" class="btn btn-danger">삭제</button></td>
-							</tr>
-							<tr>
-								<td>Mary</td>
-								<td>Moe</td>
-								<td><button type="button" class="btn">후기작성</button></td>
-								<td><button type="button" class="btn">Basic</button></td>
-								<td><button type="button" class="btn btn-danger">삭제</button></td>
-							</tr>
-							<tr>
-								<td>July</td>
-								<td>Dooley</td>
-								<td><button type="button" class="btn">Basic</button></td>
-								<td><button type="button" class="btn">후기작성</button></td>
-								<td><button type="button" class="btn btn-danger">삭제</button></td>
-							</tr>
-							<tr>
-								<td>July</td>
-								<td>Dooley</td>
-								<td><button type="button" class="btn">Basic</button></td>
-								<td><button type="button" class="btn">후기작성</button></td>
-								<td><button type="button" class="btn btn-danger">삭제</button></td>
-							</tr>
-						</tbody>
 					</table>
 				</div>
 			</div>

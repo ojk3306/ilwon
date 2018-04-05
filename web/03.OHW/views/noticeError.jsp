@@ -10,7 +10,7 @@
 <title>noticeError</title>
 </head>
 <body>
-	<%@ include file="../../header.jsp" %>
+	<%@ include file="../../common/navbar.jsp" %>
 	<hr style="clear:both;">
 	
 	<section style="height : 400px; background : gray;">
@@ -24,6 +24,6 @@
 	<a href="/first/index.jsp">시작페이지로 이동</a>
 	
 	</section>
-	<%@ include file= "../../footer.html" %>	
+	<%@ include file= "../../common/footer.jsp" %>	
 </body>
 </html>

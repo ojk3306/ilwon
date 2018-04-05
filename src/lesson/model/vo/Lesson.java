@@ -22,6 +22,7 @@ public class Lesson implements Serializable{
 	private String lesson_conmid;
 	private String lesson_conbot;
 	private String lesson_keyword;
+	private Date lesson_enddate;
 	private int lesson_type;
 	
 	
@@ -29,9 +30,11 @@ public class Lesson implements Serializable{
 	public Lesson() {}
 
 
+
 	public Lesson(int lesson_no, int level_no, int state_no, int category_no, int user_no1, int user_no2,
-			String lesson_title, String lesson_loc, int lesson_rad, int lesson_price, int lesson_count, Date lesson_date,
-			String lesson_contop, String lesson_conmid, String lesson_conbot, String lesson_keyword, int lesson_type) {
+			String lesson_title, String lesson_loc, int lesson_rad, int lesson_price, int lesson_count,
+			Date lesson_date, String lesson_contop, String lesson_conmid, String lesson_conbot, String lesson_keyword,
+			Date lesson_enddate, int lesson_type) {
 		super();
 		this.lesson_no = lesson_no;
 		this.level_no = level_no;
@@ -49,18 +52,22 @@ public class Lesson implements Serializable{
 		this.lesson_conmid = lesson_conmid;
 		this.lesson_conbot = lesson_conbot;
 		this.lesson_keyword = lesson_keyword;
+		this.lesson_enddate = lesson_enddate;
 		this.lesson_type = lesson_type;
 	}
 
 
-	public int getlesson_no() {
+
+	public int getLesson_no() {
 		return lesson_no;
 	}
 
 
-	public void setlesson_no(int lesson_no) {
+
+	public void setLesson_no(int lesson_no) {
 		this.lesson_no = lesson_no;
 	}
+
 
 
 	public int getLevel_no() {
@@ -68,9 +75,11 @@ public class Lesson implements Serializable{
 	}
 
 
+
 	public void setLevel_no(int level_no) {
 		this.level_no = level_no;
 	}
+
 
 
 	public int getState_no() {
@@ -78,9 +87,11 @@ public class Lesson implements Serializable{
 	}
 
 
+
 	public void setState_no(int state_no) {
 		this.state_no = state_no;
 	}
+
 
 
 	public int getCategory_no() {
@@ -88,9 +99,11 @@ public class Lesson implements Serializable{
 	}
 
 
+
 	public void setCategory_no(int category_no) {
 		this.category_no = category_no;
 	}
+
 
 
 	public int getUser_no1() {
@@ -98,9 +111,11 @@ public class Lesson implements Serializable{
 	}
 
 
+
 	public void setUser_no1(int user_no1) {
 		this.user_no1 = user_no1;
 	}
+
 
 
 	public int getUser_no2() {
@@ -108,119 +123,155 @@ public class Lesson implements Serializable{
 	}
 
 
+
 	public void setUser_no2(int user_no2) {
 		this.user_no2 = user_no2;
 	}
 
 
-	public String getlesson_title() {
+
+	public String getLesson_title() {
 		return lesson_title;
 	}
 
 
-	public void setlesson_title(String lesson_title) {
+
+	public void setLesson_title(String lesson_title) {
 		this.lesson_title = lesson_title;
 	}
 
 
-	public String getlesson_loc() {
+
+	public String getLesson_loc() {
 		return lesson_loc;
 	}
 
 
-	public void setlesson_loc(String lesson_loc) {
+
+	public void setLesson_loc(String lesson_loc) {
 		this.lesson_loc = lesson_loc;
 	}
 
 
-	public int getlesson_rad() {
+
+	public int getLesson_rad() {
 		return lesson_rad;
 	}
 
 
-	public void setlesson_rad(int lesson_rad) {
+
+	public void setLesson_rad(int lesson_rad) {
 		this.lesson_rad = lesson_rad;
 	}
 
 
-	public int getlesson_price() {
+
+	public int getLesson_price() {
 		return lesson_price;
 	}
 
 
-	public void setlesson_price(int lesson_price) {
+
+	public void setLesson_price(int lesson_price) {
 		this.lesson_price = lesson_price;
 	}
 
 
-	public int getlesson_count() {
+
+	public int getLesson_count() {
 		return lesson_count;
 	}
 
 
-	public void setlesson_count(int lesson_count) {
+
+	public void setLesson_count(int lesson_count) {
 		this.lesson_count = lesson_count;
 	}
 
 
-	public Date getlesson_date() {
+
+	public Date getLesson_date() {
 		return lesson_date;
 	}
 
 
-	public void setlesson_date(Date lesson_date) {
+
+	public void setLesson_date(Date lesson_date) {
 		this.lesson_date = lesson_date;
 	}
 
 
-	public String getlesson_contop() {
+
+	public String getLesson_contop() {
 		return lesson_contop;
 	}
 
 
-	public void setlesson_contop(String lesson_contop) {
+
+	public void setLesson_contop(String lesson_contop) {
 		this.lesson_contop = lesson_contop;
 	}
 
 
-	public String getlesson_conmid() {
+
+	public String getLesson_conmid() {
 		return lesson_conmid;
 	}
 
 
-	public void setlesson_conmid(String lesson_conmid) {
+
+	public void setLesson_conmid(String lesson_conmid) {
 		this.lesson_conmid = lesson_conmid;
 	}
 
 
-	public String getlesson_conbot() {
+
+	public String getLesson_conbot() {
 		return lesson_conbot;
 	}
 
 
-	public void setlesson_conbot(String lesson_conbot) {
+
+	public void setLesson_conbot(String lesson_conbot) {
 		this.lesson_conbot = lesson_conbot;
 	}
 
 
-	public String getlesson_keyword() {
+
+	public String getLesson_keyword() {
 		return lesson_keyword;
 	}
 
 
-	public void setlesson_keyword(String lesson_keyword) {
+
+	public void setLesson_keyword(String lesson_keyword) {
 		this.lesson_keyword = lesson_keyword;
 	}
 
 
-	public int getlesson_type() {
+
+	public Date getLesson_enddate() {
+		return lesson_enddate;
+	}
+
+
+
+	public void setLesson_enddate(Date lesson_enddate) {
+		this.lesson_enddate = lesson_enddate;
+	}
+
+
+
+	public int getLesson_type() {
 		return lesson_type;
 	}
 
 
-	public void setlesson_type(int lesson_type) {
+
+	public void setLesson_type(int lesson_type) {
 		this.lesson_type = lesson_type;
 	}
+
 
 
 	public static long getSerialversionuid() {
@@ -228,15 +279,6 @@ public class Lesson implements Serializable{
 	}
 
 
-	@Override
-	public String toString() {
-		return "lessones [lesson_no=" + lesson_no + ", level_no=" + level_no + ", state_no=" + state_no + ", category_no="
-				+ category_no + ", user_no1=" + user_no1 + ", user_no2=" + user_no2 + ", lesson_title=" + lesson_title
-				+ ", lesson_loc=" + lesson_loc + ", lesson_rad=" + lesson_rad + ", lesson_price=" + lesson_price
-				+ ", lesson_count=" + lesson_count + ", lesson_date=" + lesson_date + ", lesson_contop=" + lesson_contop
-				+ ", lesson_conmid=" + lesson_conmid + ", lesson_conbot=" + lesson_conbot + ", lesson_keyword="
-				+ lesson_keyword + ", lesson_type=" + lesson_type + "]";
-	}
 	
 	
 	

@@ -111,7 +111,7 @@
 		 				<th class = 'ohw-notice-conn'>번호</th>
 		 				<th class = 'ohw-notice-cont'>제목</th>
 		 				<th class = 'ohw-notice-conw'>작성자</th>
-		 				<th class = 'ohw-notice-cond'>작성일</th>		 				
+		 				<th class = 'ohw-notice-cond'>작성일</th>
 		 			</tr>		 		
 		 		</table>		 	
 			</div>
