@@ -7,7 +7,7 @@
 <title>Footer</title>
 <style type="text/css">
 	.ohw_footer {
-	background:olive;
+	background:gray;
 	height:100px;
 	width:100%;
 	min-width:800px;

@@ -38,7 +38,7 @@
       <a href="posts.html" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>카테고리관리<span class="badge">126</span></a>
       <a href="posts.html" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>카테고리관리<span class="badge">126</span></a>
       <a href="posts.html" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>카테고리관리<span class="badge">126</span></a>
-      <a href="./adminSeachUser.jsp" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 유저검색
+      <a href="/prototype/adminseachuser" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true" ></span> 유저검색
        <span class="badge">12</span></a>
     </div>
     

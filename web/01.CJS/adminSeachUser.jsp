@@ -1,17 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ page import="java.util.ArrayList, java.sql.Date" %> 
-<%
-ArrayList<Users> list=null;
-	if((ArrayList<Users>)request.getAttribute("list")!=null){
-	list = (ArrayList<Users>)request.getAttribute("list");
+    pageEncoding="UTF-8" %>
+    <%@ page import="java.util.ArrayList, java.sql.Date, users.model.vo.*"  %> 
+<%	
+	ArrayList<Users> list = (ArrayList<Users>)request.getAttribute("list");
 	int listCount = ((Integer)request.getAttribute("listCount")).intValue();
 	int startPage = ((Integer)request.getAttribute("startPage")).intValue();
 	int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 	int maxPage = ((Integer)request.getAttribute("maxPage")).intValue();			
 	int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
-    }
-
+	int seachOption =((Integer)request.getAttribute("seachOption")).intValue();
+	int seachtype =((Integer)request.getAttribute("seachtype")).intValue();
+	String seach = (String)request.getAttribute("seach");
+	String message=(String)request.getAttribute("message");
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -19,6 +20,14 @@ ArrayList<Users> list=null;
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript" src="/prototype/common\resources\js\jquery-3.3.1.min.js"></script>
 
+<script type="text/javascript">
+$(function(){
+	
+	$("option[value="+<%=seachOption%>+"]").prop("selected", true);
+	$("option[value="+<%=seachtype%>+"]").prop("selected", true);
+
+})
+</script>
 
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -95,7 +104,7 @@ min-height: 440px;
     <div class="row">
        <div class="col-md-10 col-md-offset-1">
 
-            <div class="panel panel-default panel-table">
+            <div class="panel panel-default panel-table" style="margin-top: -100px;">
               <div class="panel-heading">
                 
                 <div class="row">
@@ -106,20 +115,23 @@ min-height: 440px;
                   	 <option value="1001">학생</option>
                   	 <option value="1002">선생</option>
                   	 <option value="1003">관리자</option>
+                  	 
                   	 </select>
                   	 
                   	<select style="height: 28px; margin-top:5px" name="option">
+                  	
                   	 <option value="1">모든설정으로검색(무관)</option>
                   	 <option value="2">이름으로검색</option>
                   	 <option value="3">이메일로검색</option>
-                  	 <option value="4">현상태로검색</option>
-                  	 <option value="5">나이로 검색 (오차한계 2살) </option>
+                  	 <option value="4">현상태로검색(Y,N)</option>
+                  	 <option value="5">나이로 검색 (오차한계 2살)</option>
                   	 <option value="6">성별로검색</option>
                   	 <option value="7">주소로검색</option>
                   	 <option value="8">전화번호로검색</option>
                   	 
                   	 </select>
-                  	<input type="text" placeholder="입력" style="height: 28px" name="seach">
+                  	 
+                  	<input type="text" placeholder="입력" style="height: 28px" name="seach" value="<%=seach%>">
                   	
                     <button type="submit" class="btn btn-sm btn-primary btn-create">검색!</button>
                     </form>
@@ -138,43 +150,63 @@ min-height: 440px;
                         <th>이름</th>
                         <th>메일</th>
                         <th>전화번호</th>
+                        <th>나이</th>
                         <th>성별</th>
-                        <th>제한 상태</th>
+                        <th>로그인 제한 상태(Y , N)</th>
+                        <th>글쓰기 제한 상태(Y , N)</th>
 					 </tr> 
                   </thead>
                   <tbody>
-                  	<% if(list!=null){for(Users i: list){ %>
-                  
-                  <tr>
+                 <% if(list!=null){
+                	 for(Users i: list){%>
+                            <tr>
                             <td align="center">
-                            <a class="btn btn-default" onclick="location.href="><em class="fa fa-pencil"></em></a>
+                         	<a class="btn btn-default" onclick="location.href='/prototype/aDtail?userno=<%=i.getUserNo()%>'" >
+                            
+                            <em class="fa fa-pencil" >
+                            </em>
+                            
+                            
+                            
+                            </a>
                   			</td>
-                            <td class="hidden-xs">선생인지, 학생인지</td>
-                            <td>John Doe</td>
-                            <td>johndoe@example.com</td>
-                            <td>정상인지,차단인지</td>
-                          
-                          
-                   </tr>
-                        
-                        
-                        
-                        <%}%> 
+                            <%if(i.getUserTypeNo()==1001){ %>
+                            <td class="hidden-xs" style="color:red">학생</td>
+                            <%}else if(i.getUserTypeNo()==1002){ %>
+                             <td class="hidden-xs" style="color:blue">선생</td>
+                            <%}else if(i.getUserTypeNo()==1003){ %>
+                             <td class="hidden-xs">관리자</td>
+                            <%}%>
+                        <!-- 이름 -->    <td><%=i.getUserName()%> </td>
+                         <!-- 이메일 -->     <td><%=i.getUserEmail()%></td>
+                         <!-- 전화번호 --> <td><%=i.getUserPhone()%>      </td>  
+                         				<TD><%=i.getUserAge() %></TD>
+                        <!-- 성별 -->  <td><%=i.getUserGender()%></td>
+                         
+                        <td align="center">    
+                        <%if( i.getUserLoginable().equals("Y") ){ %>
+						<a class="btn btn-primary loading">접속가능</a>
+						<%}else{ %>
+						<a class="btn btn-danger loading">접속불가능</a>
+						<%} %>
+						</td>
+						
+                        <td align="center">
+                        <%if(i.getUserExeable().equals("Y")){ %>
+                      <a class="btn btn-primary loading">글 작성 가능</a>
+						<%}else{ %>
+						<a class="btn btn-danger loading">글 작성 불가능</a>
+						<%} %>
+                       </td>
+                	 </tr>
+				 <%}%> 
                   	<%}else{%> 
-                  		
-                  	
-                  	 <tr><th colspan="7" align="center">값을입력하세요</th></tr>
-                  	
-                  	
-                  	
+                  	 <tr>
+                  	 <td colspan="" align="center"><%=message%></td>
+                  	 </tr>
                   <%}%>
-                   
-                   
-                   
-                   
-                   
-                   
-                    </tbody>
+                  
+                   </tbody>
                 </table>
             
               </div>
@@ -182,27 +214,49 @@ min-height: 440px;
                 <div class="row">
                   <div class="col col-xs-8">
                     <ul class="pagination hidden-xs pull-right">
-                       <li><a href="#">«</a></li>
-                        <li><a href="#"><</a></li>
-                      <li><a href="#">1</a></li>
-                      <li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
-                      <li><a href="#">4</a></li>
-                      <li><a href="#">5</a></li>
-                      
-                     <li><a href="#">></a></li>
-                     <li><a href="#">»</a></li>
-                    </ul>
-                    <ul class="pagination visible-xs pull-right">
-                        <li><a href="#">«</a></li>
-                        <li><a href="#">»</a></li>
+                     
+                     <% if(currentPage <= 1){ %>
+	[맨처음]&nbsp;
+<% }else{ %>
+<a href="/prototype/adminseachuser?page=1">[맨처음]</a>
+<% } %>
+
+<% if((currentPage - 10) < startPage && (currentPage - 10) > 1){ %>
+	<a href="/prototype/adminseachuser?page=<%= startPage - 10 %>">◀</a>	
+<% }else{ %>
+	◀&nbsp;
+<% } %>
+<!-- 현재 페이지가 포함된 그룹의 페이지 숫자 출력 -->
+<% for(int p = startPage; p <= endPage; p++){ 
+		if(p == currentPage){
+%>
+	<font color="red" size="4"><b>[<%= p %>]</b></font>
+<% }else{ %>
+	<a href="/prototype/adminseachuser?page=<%= p %>&seach=<%=seach%>&option=<%=seachOption%>&type=<%=seachtype%>"><%= p %></a>
+<% }} %>
+
+<% if((currentPage + 10) > endPage 
+		&& (currentPage + 10) < maxPage){ %>
+	<a href="/prototype/adminseachuser?page=<%= endPage + 10 %>">▶</a>	
+<% }else{ %>
+	▶ &nbsp;
+<% } %>
+
+<% if(currentPage >= maxPage){ %>
+	[맨끝]&nbsp;
+<% }else{ %>
+	<a href="/prototype/adminseachuser?page=<%= maxPage %>">[맨끝]</a>
+<% } %>
+                    
                     </ul>
                   </div>
                 </div>
               </div>
             </div>
 
-</div></div></div>
+</div>
+</div>
+</div>
 
 </div>
 <%} %>

@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import lesson.model.vo.Lesson;
+import lesson.model.vo.Onlesson;
 
 
 public class LessonDao {
@@ -47,13 +48,40 @@ public class LessonDao {
 		return result;
 	}
 
-	public ArrayList<Lesson> onlesson(Connection conn, String user) {
-		ArrayList<Lesson> onlesson = new ArrayList<Lesson>();
+	public ArrayList<Onlesson> onlesson(Connection conn, int user) {
+		ArrayList<Onlesson> onlesson = new ArrayList<Onlesson>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = "select * from lesson where user_no2 = ? order by lesson_no desc ";
+		String sql = 
+				"select l.lesson_title, u.user_name, s.state from lesson l, users u,state s where l.user_no2 = u.user_no and l.state_no=s.state_no and " + 
+				"l.user_no2 = ? order by l.lesson_no desc";
 		
-		return null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, user);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+			Onlesson l = new Onlesson();
+			l.setLesson_title(rset.getString("lesson_title"));
+			l.setState(rset.getString("state"));
+			l.setUser_name(rset.getString("user_name"));
+			
+			onlesson.add(l);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return onlesson;
+	}
+
+	
 	}
 	
-}
+
