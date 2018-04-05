@@ -101,9 +101,8 @@
 						
 				<% if(loginUser != null) { %>
 				
-				<%-- "<tr class = 'ohw-main-notice-tr'><td class = 'ohw-main-notice-cont'><a href = '"+<%= request.getContextPath() %>+"/ndetail?no=" + json.list[i].noticeNo + "&page=1'>" + json.list[i].noticeTitle + "</a></td>" --%>
-				"<tr class = 'ohw-main-notice-tr'><td class = 'ohw-main-notice-cont'>" + json.list[i].noticeTitle + "</td>"
-				
+				"<tr class = 'ohw-main-notice-tr'><td class = 'ohw-main-notice-cont'><a href = '<%= request.getContextPath() %>/ndetail?no=" + json.list[i].noticeNo + "&page=1'>" + json.list[i].noticeTitle + "</a></td>"
+								
 				<% } else { %>
 				
 				"<tr class = 'ohw-main-notice-tr'><td class = 'ohw-main-notice-cont'>" + json.list[i].noticeTitle + "</td>"
