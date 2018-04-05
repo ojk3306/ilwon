@@ -93,7 +93,7 @@ public class SearchLogDao {
 					if(rset.next()) {
 							
 						al.add(rset.getString("SEACH_CONTENT"));
-						System.out.println("al.size : "+al.size() + " / (To.SearchLogDao)");
+						/*System.out.println("al.size : "+al.size() + " / (To.SearchLogDao)");*/
 						row++;
 					}						
 				j++;					
@@ -108,7 +108,7 @@ public class SearchLogDao {
 			close(rset);			
 			close(pstmt);		
 		}
-		System.out.println("al : " + al + " / (To.SearchLogDao)");
+		/*System.out.println("al : " + al + " / (To.SearchLogDao)");*/
 		return al;
 	}
 

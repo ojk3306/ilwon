@@ -83,7 +83,7 @@
 	$(function () {
 	
 	$.ajax({
-		url:"mainnotice",			
+		url:"<%= request.getContextPath() %>/mainnotice",			
 		dataType:"json",
 		success:function(data) {
 			

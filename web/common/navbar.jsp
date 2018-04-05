@@ -54,7 +54,7 @@
 				var json= JSON.parse(jsonStr);
 					
 				for(var i in json.list) {            
-        			console.log(json.list[i]);       
+        			/* console.log(json.list[i]); */       
 					$("#menubar-searchbar").html($("#menubar-searchbar").html()+'<option>'+json.list[i]+'</option>')         
         		};
         	
@@ -84,7 +84,7 @@
 				var json= JSON.parse(jsonStr); 
             
 				for(var i in json.list) {
-            		console.log(json.list[i]);
+            		/* console.log(json.list[i]); */
             		$("#menubar-searchbar").html($("#menubar-searchbar").html()+'<option>'+json.list[i]+'</option>')               
 				};
 				
@@ -151,7 +151,7 @@
 		
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">은밀한 공지</a></li>
+				<li class="active"><a href="/prototype/03.OHW/views/noticeList.jsp">은밀한 공지</a></li>
 				<li><a href="/prototype/03.OHW/views/find_teacher.jsp">선생 찾기</a></li>
 				<li><a href="/prototype/03.OHW/views/find_learn_list.jsp">학생 찾기</a></li>
 				<li><a href="/prototype/01.CJS/semina.jsp">세미나  찾기</a></li>
