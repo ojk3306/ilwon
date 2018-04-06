@@ -53,9 +53,13 @@ public class LessonService {
 		return result;
 	}
 
-	public LessonDetail lessonView() {
-		LessonDetail lessondetail = new LessonDao().lessonView();
-		return null;
+	public LessonDetail lessonView(int lesson_no) {
+		Connection conn = getConnection();
+		LessonDetail lessondetail = new LessonDao().lessonView(conn,lesson_no);
+		
+		close(conn);
+		
+		return lessondetail;
 	}
 
 	

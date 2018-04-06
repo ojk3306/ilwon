@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="lesson.model.vo.LessonDetail" %>    
+<%
+	LessonDetail lessondetail =(LessonDetail)request.getAttribute("lessondetail");
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -186,6 +191,7 @@ margin-left: auto;
 margin-right: auto;
 border-radius: 35px;
 }
+
 </style>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -222,7 +228,7 @@ border-radius: 35px;
 	</li>
 		<li class="topdiv" name="title">
 		<ul style="list-style: none;">
-			<li class="">타이틀넣기</li>
+			<li class=""><h1><%=lessondetail.getLesson_title() %></h1></li>
 			<li class=""> 태그넣기</li>
 			<li class=""> 점수내용</li>
 			<li class=""> 점수넣기</li>
@@ -234,13 +240,26 @@ border-radius: 35px;
 		조회수?<br>
 		등록일?<br>
 		<div class="imticon">
+		
 		<%@ include file="/01.CJS\imticon.jsp" %>
-		</div>>
+		
+		</div>
 		</li>
 		
 		
 	</ul>
 	</nav>
+	<!-- 강의료 부분 -->
+	<div align="center" style="margin-top:2px;">
+		<nav style="width:1100px; height:150px; border: 1px solid gray;">
+			<div style="width:500px; height: 140px; border: 1px solid gray; float:left;">
+			
+			</div>
+			<div style="width:500px; height: 140px; border: 1px solid gray;">
+			
+			</div>
+		</nav>	
+	</div>	
     <nav class="review"><!-- 리뷰란 -->
 	<table border="1" style="width:100%">
 	
@@ -377,7 +396,7 @@ border-radius: 35px;
 	<nav class="school"><!--학력란-->
 	
 	<ul class="schoolofdetail">
-		<li class="schoolOfdetailIOfli">고등학교나옴!</li>	
+		<li class="schoolOfdetailIOfli"><%=lessondetail.getLesson_loc()%></li>	
 		<li class="schoolOfdetailIOfli">공부 쫌 잘함.!</li>	
 		<li class="schoolOfdetailIOfli">집은 님근처로 이사감</li>
 		<li class="schoolOfdetailIOfli">월 30만원! 20회수업!</li>
@@ -412,11 +431,7 @@ border-radius: 35px;
             <div class="tab-content">
                     
                     <div class="tab-pane fade in active" id="tab1info">
-                      <div style="padding: 10px">
-          
-          
-           <%@ include file="/01.CJS/map.jsp" %>
-          
+                      <div style="padding: 10px; width: 770px; height: 300px;" id="map">
           
           
            
@@ -429,17 +444,17 @@ border-radius: 35px;
                    <nav class="in1">
 			<nav class="info1Oftop">
 			<!-- 간단한소개 -->
-			나는 말이야!!
+			<%= lessondetail.getLesson_contop() %>
 			
 			</nav>
 			<nav class="info1Oftop" id="info10">
 			<!--  진행방식-->
-			수업은 이렇게 할거야!
+			<%= lessondetail.getLesson_conmid() %>
 			
 			</nav>
 			<nav class="info1Oftop">
 			<!-- 수업경력과 포부 -->
-			내가 해온거야!
+			<%= lessondetail.getLesson_conbot() %>
 			</nav>
    
 	     
@@ -497,66 +512,47 @@ border-radius: 35px;
 <!-- 포트번호 8889 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=120b01867e29e09658100681cf1d0604&libraries=services"></script>
 <script>
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+mapOption = {
+    center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+    level: 6 // 지도의 확대 레벨
+};  
+
+//지도를 생성합니다    
+var map = new daum.maps.Map(mapContainer, mapOption); 
+
+
 //주소-좌표 변환 객체를 생성합니다
 var geocoder = new daum.maps.services.Geocoder();
-// 주소로 좌표를 검색합니다
-geocoder.addressSearch('경기도 의왕시 삼동 부곡복지관길 41', function(result, status) {
-    // 정상적으로 검색이 완료됐으면 
-     if (status === daum.maps.services.Status.OK) {
+//주소로 좌표를 검색합니다
 
-      coords = new daum.maps.LatLng(result[0].y, result[0].x);
+geocoder.addressSearch('<%=lessondetail.getLesson_loc()%>', function(result, status) {
 
-        // 결과값으로 받은 위치를 마커로 표시합니다
-       var circle = new daum.maps.Circle({
-                center : coords,  // 원의 중심좌표 입니다 
-                radius: 200, // 미터 단위의 원의 반지름입니다 
-                strokeWeight: 1, // 선의 두께입니다 
-                strokeColor: '#75B8FA', // 선의 색깔입니다
-                strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-                strokeStyle: 'dashed', // 선의 스타일 입니다
-                fillColor: '#CFE7FF', // 채우기 색깔입니다
-                fillOpacity: 0.8  // 채우기 불투명도 입니다   
-            }); 
+// 정상적으로 검색이 완료됐으면 
+ if (status === daum.maps.services.Status.OK) {
 
-            // 지도에 원을 표시합니다 
-            circle.setMap(map); 
-      
-            
-        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-        map.setCenter( new daum.maps.LatLng(result[0].y, result[0].x) );
-    
-        var mapContainer = document.getElementById('map');
-        mapContainer.style.width = '650px';
-        mapContainer.style.height = '300px'; 
-    } 
-    
-});
+    var coords = new daum.maps.LatLng(result[0].y, result[0].x);
 
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = {
-        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 4 // 지도의 확대 레벨
+    // 결과값으로 받은 위치를 마커로 표시합니다
+   var circle = new daum.maps.Circle({
+            center : coords,  // 원의 중심좌표 입니다 
+            radius: <%=lessondetail.getLesson_rad()%>, // 미터 단위의 원의 반지름입니다 
+            strokeWeight: 1, // 선의 두께입니다 
+            strokeColor: '#75B8FA', // 선의 색깔입니다
+            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+            strokeStyle: 'dashed', // 선의 스타일 입니다
+            fillColor: '#CFE7FF', // 채우기 색깔입니다
+            fillOpacity: 0.5  // 채우기 불투명도 입니다   
+        }); 
+
+        // 지도에 원을 표시합니다 
+        circle.setMap(map); 
+  
         
-    };  
-
-// 지도를 생성합니다    
-var map = new daum.maps.Map(mapContainer, mapOption); 
-resizeMap();
-
-function resizeMap() {
-    var mapContainer = document.getElementById('map');
-    mapContainer.style.width = '650px';
-    mapContainer.style.height = '300px'; 
-    relayout();
-}
-
-function relayout() {    
-
-    // 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
-    // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다 
-    // window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
-    map.relayout();
-}
+    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+    map.setCenter(coords);
+} 
+});    
 </script>
           </div>
            
