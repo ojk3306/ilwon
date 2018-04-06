@@ -430,7 +430,6 @@ public class UsersDao {
 		
 		case 2: query="update users set USER_EMAIL = ? where user_no = ?"; break;
 		
-		
 		case 3: query="update users set USER_AGE = ? where user_no = ?"; break;
 		
 		case 4: query="update users set USER_GENDER = ? where user_no = ?"; break;
