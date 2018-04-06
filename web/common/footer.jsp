@@ -21,7 +21,7 @@
     text-transform: uppercase;
 	}
 	#footer {
-    background: #007b5e !important;
+    background: gray !important;
 	}
 	#footer h5{
 	padding-left: 10px;

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import lesson.model.dao.LessonDao;
 import lesson.model.vo.Lesson;
+import lesson.model.vo.LessonDetail;
 import lesson.model.vo.Onlesson;
 
 public class LessonService {
@@ -50,6 +51,11 @@ public class LessonService {
 		}
 		
 		return result;
+	}
+
+	public LessonDetail lessonView() {
+		LessonDetail lessondetail = new LessonDao().lessonView();
+		return null;
 	}
 
 	

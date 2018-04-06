@@ -1,27 +1,26 @@
-package users.controller;
+package lesson.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import users.model.service.UsersService;
+import lesson.model.service.LessonService;
+import lesson.model.vo.LessonDetail;
 
 /**
- * Servlet implementation class EmailCheck
+ * Servlet implementation class LessonDetailServlet
  */
-@WebServlet("/emailcheck")
-public class EmailCheck extends HttpServlet {
+@WebServlet("/lessondetail")
+public class LessonDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EmailCheck() {
+    public LessonDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,26 +29,10 @@ public class EmailCheck extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int lesson_no = Integer.parseInt(request.getParameter("lesson_no"));
 		
-		String email = request.getParameter("email");
+		LessonDetail lessondetail = new LessonService().lessonView();
 		
-		System.out.println(email);
-		
-		String ok = "사용가능한 email 입니다";
-		String no = "중복된 email 입니다";
-		
-		int result = new UsersService().checkEmail(email);
-		
-		if(result > 0 ) {
-			response.setContentType("text/html; charset=utf-8"); 
-			PrintWriter out = response.getWriter();
-			out.append(no);
-			
-		}else {
-			response.setContentType("text/html; charset=utf-8"); 
-			PrintWriter out = response.getWriter();
-			out.append(ok);
-		}
 	}
 
 	/**
