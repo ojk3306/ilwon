@@ -53,12 +53,12 @@
 		<tr>
 			<td style = "padding-right:5px;">
 				<button type="submit" class="btn btn-default">
-					<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 등록
+					<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 작성 완료
 				</button>
 			</td>
 			<td>
 				<button type="reset" class="btn btn-default">
-					<span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 초기화
+					<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> 초기화
 				</button>
 			</td>
 		</tr>

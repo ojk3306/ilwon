@@ -104,6 +104,7 @@
 	}
 	
 </style>
+
 </head>
 <body>
 <%@ include file="/common/navbar.jsp" %>
@@ -111,7 +112,7 @@
 <hr>
 <br>
 <div align = "center">
-<form action="<%= request.getContextPath() %>/nupdate" method = "post">
+
 <input type = "hidden" name = "dwritern" value = "<%= loginUser.getUserNo() %>">
 
 <div class = "ohw-div">
@@ -153,19 +154,38 @@
 	<table>
 		<tr>
 			<td style = "padding-right:5px;">
-				<button type="submit" class="btn btn-default">
-					<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 수정
+				<button class="btn btn-default" onclick = "goUpdate();">
+					<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 수정 하기
 				</button>
+				<script type="text/javascript">
+					function goUpdate() {
+						location.href = "<%= request.getContextPath() %>/nupview?no=<%= notice.getNoticeNo() %>";
+					}
+				</script>
+			</td>
+			<td style = "padding-right:5px;">
+				<button class="btn btn-default" onclick = "goDelete();">
+					<span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 삭제 하기
+				</button>
+				<script type="text/javascript">
+					function goDelete() {
+						location.href = "<%= request.getContextPath() %>/ndelete?no=<%= notice.getNoticeNo() %>";
+					}
+				</script>
 			</td>
 			<td>
-				<button type="button" class="btn btn-default">
-					<span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 목록
+				<button type="button" class="btn btn-default" onclick = "goList();">
+					<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> 목록으로
 				</button>
+				<script type="text/javascript">
+					function goList() {						
+						location.href = "<%= request.getContextPath() %>/03.OHW/views/noticeList.jsp";
+					}
+				</script>
 			</td>
 		</tr>
 	</table>
 </div>
-</form>
 </div>
 <hr>
 	

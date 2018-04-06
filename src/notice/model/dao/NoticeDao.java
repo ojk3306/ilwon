@@ -127,9 +127,9 @@ public NoticeDao() {
 		
 		PreparedStatement pstmt = null;
 		
-		String query = "update notice set noticetitle = ?,"
-						+ "noticecontent = ? "					
-						+ "where noticeno = ?"; 
+		String query = "update notice set notice_title = ?,"
+						+ "notice_content = ? "
+						+ "where notice_no = ?"; 
 		
 		try {
 			

@@ -1,4 +1,4 @@
-package lesson.controller;
+package notice.controller;
 
 import java.io.IOException;
 
@@ -9,20 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import lesson.model.service.LessonService;
-import lesson.model.vo.LessonDetail;
+import notice.model.service.NoticeService;
 
 /**
- * Servlet implementation class LessonDetailServlet
+ * Servlet implementation class NoticeDeleteServlet
  */
-@WebServlet("/lessondetail")
-public class LessonDetailServlet extends HttpServlet {
+@WebServlet("/ndelete")
+public class NoticeDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LessonDetailServlet() {
+    public NoticeDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,23 +30,17 @@ public class LessonDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int lesson_no = Integer.parseInt(request.getParameter("no"));
+		int noticeNo = Integer.parseInt(request.getParameter("no"));
 		
-		LessonDetail lessondetail = new LessonService().lessonView(lesson_no);
+		int result = new NoticeService().deleteNotice(noticeNo);
 		
-		response.setContentType("text/html; charset=utf-8"); 
-		RequestDispatcher view =null;
-		if(lessondetail != null) {
-			view = request.getRequestDispatcher("04.OJK/teacherdetail.jsp");
-			request.setAttribute("lessondetail", lessondetail);
-			view.forward(request, response);
-		}else {
-			//에러페이지 만들자
-			view = request.getRequestDispatcher("#");
-			request.setAttribute("message","강의조회 실패");
+		if(result > 0) {
+			response.sendRedirect( request.getContextPath() + "/03.OHW/views/noticeList.jsp" );
+		} else {
+			RequestDispatcher view = request.getRequestDispatcher("views/notice/noticeError.jsp");
+			request.setAttribute("message", noticeNo + "번 공지글 삭제 처리 실패");
 			view.forward(request, response);
 		}
-		
 	}
 
 	/**

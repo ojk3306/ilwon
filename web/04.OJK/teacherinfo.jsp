@@ -25,7 +25,7 @@ $(function(){
 			for(var i in json.onlesson) {	
 					if(json.onlesson[i].state == "수강중") {
 					values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
-					+"</td><td>"+json.onlesson[i].username+"</td><td><button type='button' class='btn' onclick='location.href='/prototype/lessondetail?no="+json.onlesson[i].lesson_no+"'>상세보기</button></td>"
+					+"</td><td>"+json.onlesson[i].username+"</td><td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
 					+"<td><button type='button' class='btn btn-primary'>"+json.onlesson[i].state+"</button></td>"
 					+"<td><button type='button' class='btn btn-warning'>수정</button></td>"
 					+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='finishLesson(this)'>종료</button></td></tr>"			
@@ -57,7 +57,7 @@ $(function(){
 			for(var i in json.onlesson) {	
 					if(json.onlesson[i].state == "숨김") {
 					values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
-					+"</td><td>"+json.onlesson[i].username+"</td><td><button type='button' class='btn'>상세보기</button></td>"
+					+"</td><td>"+json.onlesson[i].username+"</td><td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
 					+"<td>"+json.onlesson[i].lesson_enddate+"</td></tr>"			
 					}
 			}
@@ -100,6 +100,17 @@ function DeleteLesson(val){
 		
 	} 
 	
+	
+}
+//강의상세보기
+function DetailLesson(val){
+	
+	
+	console.log(val.id);
+	location.href="/prototype/lessondetail?no=" + val.id;
+	
+		
+		
 	
 }
 </script>

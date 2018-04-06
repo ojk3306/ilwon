@@ -140,7 +140,7 @@
 	<div style="width:100%; height:330px; magin-bottom:0px;">
 	<div class="ohw_div_con" align="center">
 	<ul class="nav nav-tabs">
-		<li class="active"><a data-toggle="tab" href="#home">공지사항</a></li>
+		<li><a data-toggle="tab" href="#home">공지사항</a></li>
 		<li><a data-toggle="tab" href="#menu1">배우고 싶어요</a></li>
 		<li><a data-toggle="tab" href="#menu2">여긴 뭘까요</a></li>
 	</ul>

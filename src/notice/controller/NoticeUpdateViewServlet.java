@@ -1,6 +1,8 @@
-package lesson.controller;
+package notice.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,20 +11,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import lesson.model.service.LessonService;
-import lesson.model.vo.LessonDetail;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import notice.model.service.NoticeService;
+import notice.model.vo.Notice;
 
 /**
- * Servlet implementation class LessonDetailServlet
+ * Servlet implementation class NoticeUpdateViewServlet
  */
-@WebServlet("/lessondetail")
-public class LessonDetailServlet extends HttpServlet {
+@WebServlet("/nupview")
+public class NoticeUpdateViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LessonDetailServlet() {
+    public NoticeUpdateViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,23 +36,24 @@ public class LessonDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int lesson_no = Integer.parseInt(request.getParameter("no"));
 		
-		LessonDetail lessondetail = new LessonService().lessonView(lesson_no);
+		Notice notice = new NoticeService().selectNotice(Integer.parseInt(request.getParameter("no")));
+		response.setContentType("text/html; charset=UTF-8");
+		RequestDispatcher view = null;
 		
-		response.setContentType("text/html; charset=utf-8"); 
-		RequestDispatcher view =null;
-		if(lessondetail != null) {
-			view = request.getRequestDispatcher("04.OJK/teacherdetail.jsp");
-			request.setAttribute("lessondetail", lessondetail);
+		if(notice != null) {
+			
+			view = request.getRequestDispatcher("03.OHW/views/noticeUpdate.jsp");
+			request.setAttribute("notice", notice);
 			view.forward(request, response);
-		}else {
-			//에러페이지 만들자
-			view = request.getRequestDispatcher("#");
-			request.setAttribute("message","강의조회 실패");
+				
+		} else {
+					
+			view = request.getRequestDispatcher("03.OHW/views/noticeError.jsp");
+			request.setAttribute("message", "공지글 수정 페이지로 이동 요청 실패");
 			view.forward(request, response);
+					
 		}
-		
 	}
 
 	/**
