@@ -104,6 +104,7 @@
 	}
 	
 </style>
+
 </head>
 <body>
 <%@ include file="/common/navbar.jsp" %>
@@ -153,14 +154,24 @@
 	<table>
 		<tr>
 			<td style = "padding-right:5px;">
-				<button type="submit" class="btn btn-default">
-					<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 수정
+				<button type="submit" class="btn btn-default" onclick = "goUpdate();">
+					<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 수정하기
 				</button>
+				<script type="text/javascript">
+					function goUpdate() {
+						location.href = "<%= request.getContextPath() %>/03.OHW/views/noticeUpdate.jsp %>?no=<%= notice.getNoticeNo() %>";
+					}
+				</script>
 			</td>
 			<td>
-				<button type="button" class="btn btn-default">
-					<span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 목록
+				<button type="button" class="btn btn-default" onclick = "goList();">
+					<span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 목록으로
 				</button>
+				<script type="text/javascript">
+					function goList() {						
+						location.href = "<%= request.getContextPath() %>/03.OHW/views/noticeList.jsp";
+					}
+				</script>
 			</td>
 		</tr>
 	</table>

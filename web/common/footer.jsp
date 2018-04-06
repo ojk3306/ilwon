@@ -9,9 +9,10 @@
 <!-- <link rel="stylesheet" href="/prototype/common/resources/fontawesome-free-5.0.9/web-fonts-with-css/css/fontawesome.min.css"> -->
 
 <style type="text/css">
+
 	@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'); %>
 	section {
-    padding: 60px 0;
+    padding: 60px 0;    
 	}
 
 	section .section-title {
@@ -20,7 +21,7 @@
     margin-bottom: 50px;
     text-transform: uppercase;
 	}
-	#footer {
+	#footer {	
     background: gray !important;
 	}
 	#footer h5{
