@@ -22,7 +22,7 @@ public class LessonDao {
 		PreparedStatement pstmt = null;
 		String sql = "insert into lesson values((SELECT max(lesson_no) from lesson)+1"
 				+ ",?,1,5513,null,?,?,?,?,?,?,sysdate,null,?,?,?,?,7000)";
-		//카테고리 등 작업더해야!
+		//移댄뀒怨좊━ �벑 �옉�뾽�뜑�빐�빞!
 		
 		try {
 		System.out.println("lesson.getUser_no2()"+lesson.getUser_no2());
@@ -108,7 +108,7 @@ public class LessonDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql= "select l.lesson_title, lv.lessonlev, l.LESSON_LOCATION, l.lesson_radius, l.lesson_price, l.lesson_count, l.state_no, l.lesson_contop, l.lesson_conmid, l.lesson_conbot, l.lesson_keyword, u.user_name, r.review_prepare, r.review_sincerity, r.review_delivery, r.review_no, r.review_content from lesson l, review r,users u,lessonlev lv where l.lesson_no = r.lesson_no and l.user_no2=u.user_no and l.level_no = lv.lessonlev_no and l.lesson_no = ? and l.user_no2 = (select user_no2 from lesson where lesson_no = ?) and l.level_no = (select level_no from lesson where lesson_no = ?)";
-		
+		String sql2="select l.lesson_title, lv.lessonlev, l.LESSON_LOCATION, l.lesson_radius, l.lesson_price, l.lesson_count, l.state_no, l.lesson_contop, l.lesson_conmid, l.lesson_conbot, l.lesson_keyword, u.user_name from lesson l, users u,lessonlev lv where l.user_no2=u.user_no and l.level_no = lv.lessonlev_no and l.lesson_no = ? and l.user_no2 = (select user_no2 from lesson where lesson_no = ?) and l.level_no = (select level_no from lesson where lesson_no = ?)";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, lesson_no);
@@ -116,7 +116,7 @@ public class LessonDao {
 			pstmt.setInt(3, lesson_no);
 			rset = pstmt.executeQuery();
 			
-			
+			//리뷰 있을시
 				if(rset.next()) {
 				l = new LessonDetail();	
 				l.setLesson_no(lesson_no);
@@ -137,8 +137,32 @@ public class LessonDao {
 				l.setReviewDelivery(rset.getInt("review_delivery"));
 				l.setReviewNo(rset.getInt("review_no"));
 				l.setReviewContent(rset.getString("review_content"));
+				
 				System.out.println(l.toString());
 				
+				}else {
+					pstmt = conn.prepareStatement(sql2);
+					pstmt.setInt(1, lesson_no);
+					pstmt.setInt(2, lesson_no);
+					pstmt.setInt(3, lesson_no);
+					rset = pstmt.executeQuery();
+					rset.next();
+					l = new LessonDetail();	
+					l.setLesson_no(lesson_no);
+					l.setLesson_title(rset.getString("lesson_title"));
+					l.setlevel(rset.getString("lessonlev"));
+					l.setLesson_loc(rset.getString("lesson_location"));
+					l.setLesson_rad(rset.getInt("lesson_radius"));
+					l.setLesson_price(rset.getInt("lesson_price"));
+					l.setLesson_count(rset.getInt("lesson_count"));
+					l.setState_no(rset.getInt("state_no"));
+					l.setLesson_contop(rset.getString("lesson_contop"));
+					l.setLesson_conmid(rset.getString("lesson_conmid"));
+					l.setLesson_conbot(rset.getString("lesson_conbot"));
+					l.setLesson_keyword(rset.getString("lesson_keyword"));
+					l.setUser_name(rset.getString("user_name"));
+					
+					
 				}
 		} catch (Exception e) {
 			e.printStackTrace();
