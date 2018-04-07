@@ -89,7 +89,7 @@ function addcate(data){//소분류 추가.
 		console.log(json.CATEGORY_NO);
 	
 		
-$("div[id="+json.CATEGORY_BIG+"]").html($("div[id="+json.CATEGORY_BIG+"]").html()+'<div class="col-xs-5" style="width:200px; margin-top:-5px; border-right:1px;"><p><center><h5><strong id="'+json.CATEGORY_NO+'">'+json.CATEGORY_SMALL+'</strong></h5></center></p><center>조회수 :'+json.CATEGORY_HIT+'</center><input type="text"  name="'+json.CATEGORY_NO+'" value="'+json.CATEGORY_SMALL+'" style="width:100%;"><br><a name="'+json.CATEGORY_NO+'" onclick="update(this);" class="btn btn-primary loading">이름 수정</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="deletekey(this);" name="'+json.CATEGORY_NO+'"class="btn btn-danger loading">삭제</a> </div></div></div>');
+$("div[id="+json.CATEGORY_BIG+"]").html($("div[id="+json.CATEGORY_BIG+"]").html()+'<div class="col-xs-5" style="width:200px;  margin-top:-5px; border-right:1px;"><p><center><h5><strong id="'+json.CATEGORY_NO+'">'+json.CATEGORY_SMALL+'</strong></h5></center></p><center>조회수 :'+json.CATEGORY_HIT+'</center><input type="text"  name="'+json.CATEGORY_NO+'" value="'+json.CATEGORY_SMALL+'" style="width:100%;"><br><a name="'+json.CATEGORY_NO+'" onclick="update(this);" class="btn btn-primary loading">이름 수정</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="deletekey(this);" name="'+json.CATEGORY_NO+'"class="btn btn-danger loading">삭제</a> </div></div></div>');
 
 
 
@@ -121,7 +121,7 @@ var values1="";
 
 for(var i in json.big){ //대분류 삽입
 
-values+='<li class="list-group-item"><div class="row toggle" id="dropdown-detail-'+i+'" data-toggle="detail-'+i+'"><div class="col-xs-10"><strong>'+json.big[i].CATEGORY_BIG+'</strong></div><div class="col-xs-2"><i class="fa fa-chevron-down pull-right"></i></div></div><div id="detail-'+i+'"><hr></hr><div id="'+json.big[i].CATEGORY_BIG+'" style="margin-left:-30px; width:840px; " class="container"> </li>';
+values+='<li class="list-group-item"><div class="row toggle" id="dropdown-detail-'+i+'" data-toggle="detail-'+i+'"><div class="col-xs-10"><center><h4><strong>'+json.big[i].CATEGORY_BIG+'</strong></h4></center></div><div class="col-xs-2"><i class="fa fa-chevron-down pull-right"></i></div></div><div id="detail-'+i+'"><hr></hr><div id="'+json.big[i].CATEGORY_BIG+'" style="margin-left:-30px; width:840px; " class="container"> </li>';
 
 }
 $('.list-group').html(values);

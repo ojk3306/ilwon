@@ -1,20 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
+<% 
+
+
+
+
+%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>세미나 찾기</title>
-</head>
-<body>
+<script type="text/javascript" src="/prototype/common\resources\js\jquery-3.3.1.min.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
-<link href="assets/css/custom.css" rel="stylesheet" type="text/css"/>
-<link rel="shortcut icon" href="favicon.ico" /> 
+</head>
+<body>
+
 <!------ Include the above in your HEAD tag ---------->
 <%@ include file="/common/navbar.jsp" %>
 <section class="container">
@@ -26,8 +31,11 @@
                     <li data-target="#carousel-example-generic" data-slide-to="1"></li>
                     <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                 </ol>
+                
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner text-center" role="listbox">
+                   
+                   
                     <div class="item active">
                         <div class="col-lg-8 pull-right">
                             <img src="http://lorempixel.com/g/750/350/transport">
@@ -49,6 +57,13 @@
                                 <i class="fa fa-long-arrow-right"> </i></a>  
                         </div>
                     </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     <div class="item">                    
                         <div class="col-lg-8 pull-right">
                             <img src="http://lorempixel.com/g/750/350/nature">
@@ -95,27 +110,27 @@
                 </a>
             </div>
         </div>
-
-
-
-
-
 </section>
+
 <br><hr style="clear: both;">
+
 <div class="container">
-	<div class="col-sm-6 col-md-8 col-lg-8">
-		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-				<div class="panel panel-default">
-					<div class="panel-body">
-						<img src="https://images.pexels.com/photos/262508/pexels-photo-262508.jpeg?h=350&auto=compress&cs=tinysrgb" alt="" class="img-thumbnail img-responsive">
-						<p class="text-muted">By <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Lorem Ipsum | <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Jan/21/2018</p>
-						<h3>Images by pexels.com</h3>
-						<p>Nulla vehicula semper tellus, eleifend convallis dolor accumsan vitae. Donec diam lorem, vulputate eget pharetra at, laoreet ac augue. Vestibulum tellus justo, faucibus quis hendrerit sit amet, rutrum non nulla[...]</p>
-						<a href="javascript: void(0);" class="btn btn-default">Read more...</a>
-					</div>
-				</div>
-			</div>
+<div class="col-sm-6 col-md-8 col-lg-8">
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<img src="https://images.pexels.com/photos/262508/pexels-photo-262508.jpeg?h=350&auto=compress&cs=tinysrgb" alt="" class="img-thumbnail img-responsive">
+					<p class="text-muted">By <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Lorem Ipsum | <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Jan/21/2018</p>
+					<h3>Images by pexels.com</h3>
+				<p>Nulla vehicula semper tellus, eleifend convallis dolor accumsan vitae. Donec diam lorem, vulputate eget pharetra at, laoreet ac augue. Vestibulum tellus justo, faucibus quis hendrerit sit amet, rutrum non nulla[...]</p>
+			<a href="javascript: void(0);" class="btn btn-default">Read more...</a>
+		</div>
+	</div>
+</div>
+			
+			
+			
 			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 				<div class="panel panel-default">
 					<div class="panel-body">
