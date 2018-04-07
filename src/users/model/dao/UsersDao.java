@@ -124,7 +124,6 @@ public class UsersDao {
 		
 		int startRow = (currentPage - 1) * limit + 1;
 		int endRow = startRow + limit - 1;
-		System.out.println("usertype="+user.getUserTypeNo());
 		
 		if(seachOption==1) {
 		//모든 설정으로 검색.

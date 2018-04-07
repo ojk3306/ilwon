@@ -53,7 +53,6 @@ public class Seminainsert extends HttpServlet {
 					request.setAttribute("message", "form enctype 속성 사용 안 됨!");
 					view.forward(request, response);
 				}
-
 				// 해당 컨테이너의 구동중인 웹 애플리케이션의 루트 경로 알아냄
 				String root = request.getSession().getServletContext().getRealPath("/");
 				// 업로드되는 파일이 저장될 폴더명과 경로 연결 처리
@@ -142,7 +141,7 @@ public class Seminainsert extends HttpServlet {
 			
 				if (new SeminaService().insertSemina(semi) > 0) {
 					
-					response.sendRedirect("/first/01.CJS/semina.jsp");
+					response.sendRedirect("/prototype/01.CJS/semina.jsp");
 					
 				} else {
 					view = request.getRequestDispatcher("views/board/boardError.jsp");

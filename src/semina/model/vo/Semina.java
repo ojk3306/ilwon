@@ -11,7 +11,6 @@ public class Semina  implements Serializable {
 	private String seminaTitle;
 	private String seminaLocation;
 	private int seminaPrice;
-
 	private Date seminaStartDate;
 	private String seminatitle1;
 	private String seminaContent1;

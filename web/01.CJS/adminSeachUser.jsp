@@ -13,6 +13,10 @@
 	String seach = (String)request.getAttribute("seach");
 	String message=(String)request.getAttribute("message");
 	
+	
+	
+	
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -225,6 +229,7 @@ min-height: 440px;
 	◀&nbsp;
 <% } %>
 <!-- 현재 페이지가 포함된 그룹의 페이지 숫자 출력 -->
+
 <% for(int p = startPage; p <= endPage; p++){ 
 		if(p == currentPage){
 %>
