@@ -75,4 +75,11 @@ public class SeminaService {
 		
 	}
 
+	public Semina getseminabyno(int seminano) {
+		Connection con=getConnection();
+		Semina semi=  new SeminaDao().getseminabyno(con,seminano);
+		close(con);
+		return semi;
+	}
+
 }

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import oracle.net.aso.p;
 import semina.model.vo.Semina;
 import static common.JDBCTemplate.*;
 public class SeminaDao {
@@ -302,6 +303,55 @@ public class SeminaDao {
 		
 		
 		
+	}
+
+	public Semina getseminabyno(Connection con, int seminano) {
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		Semina semi=null;
+		String sql="select * from Semina where SEMINA_NO=?";
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1,seminano);
+			rset=pstmt.executeQuery();
+			if(rset.next())
+			{  
+				semi=new Semina();
+				semi.setSeminaNo(rset.getInt("SEMINA_NO"));
+				semi.setUserNo(rset.getInt("USER_NO"));
+				semi.setSeminaTitle(rset.getString("SEMINA_TITLE"));
+				semi.setSeminaLocation(rset.getString("SEMINA_LOCATION"));
+				semi.setSeminaPrice(rset.getInt("SEMINA_PRICE"));
+				semi.setSeminaStartDate(rset.getDate("SEMINA_STARTDATE"));
+				
+				semi.setSeminatitle1(rset.getString("SEMINA_TITLE1"));
+				semi.setSeminaContent1(rset.getString("SEMINA_CONTENT1"));
+				
+				semi.setSeminatitle2(rset.getString("SEMINA_TITLE2"));
+				semi.setSeminaContent2(rset.getString("SEMINA_CONTENT2"));
+				
+				semi.setSeminatitle3(rset.getString("SEMINA_TITLE3"));
+				semi.setSeminaContent3(rset.getString("SEMINA_CONTENT3"));
+				
+				semi.setSeminatitle4(rset.getString("SEMINA_TITLE4"));
+				semi.setSeminaContent4(rset.getString("SEMINA_CONTENT4"));
+				semi.setSeminaEndDate(rset.getDate("SEMINA_ENDDATE"));
+				semi.setSeminaMin(rset.getInt("SEMINA_MIN"));
+				semi.setSeminaNow(rset.getInt("SEMINA_NOW"));
+				semi.setSeminaMax(rset.getInt("SEMINA_MAX"));
+				semi.setSeminaOriginalFileName(rset.getString("SEMINA_ORIGINALFILENAME"));
+				semi.setSeminaRenameFileName(rset.getString("SEMINA_RENAMEFILENAME"));
+				System.out.println(semi.toString());
+			}
+		} catch (Exception e) {
+		e.printStackTrace();	
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return semi;
 	}
 
 }

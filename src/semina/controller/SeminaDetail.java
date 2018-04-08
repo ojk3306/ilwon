@@ -1,11 +1,18 @@
 package semina.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import semina.model.service.SeminaService;
+import semina.model.vo.Semina;
+import users.model.service.UsersService;
+import users.model.vo.Users;
 
 /**
  * Servlet implementation class SeminaDetail
@@ -26,8 +33,37 @@ public class SeminaDetail extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getParameter("userno"));
+		System.out.println(request.getParameter("userno"));//사실은 세미나 번호임.
+		int seminano=Integer.parseInt(request.getParameter("userno"));
+		Semina semi = new SeminaService().getseminabyno(seminano); 
+		Users user=null;
+		response.setContentType("text/html; charset=utf-8");
+		
+	    RequestDispatcher view =null;
+		if(semi!=null) {
+		//세미나 정보찾기이후 사용자 정보찾기.
+		user=new UsersService().getUserinfofromsemina(semi.getUserNo());
+			
+		
+		
+		
+		     }else {
+		//세미나 정보찾기 실패. 에러창으로 보내기. 추후업데이트.
+		
+		}
+		
+
+
+		if(user!=null) {
+		//유저 정보찾기 성공 이제 디테일로 정보를 쏜다.
+		    view=request.getRequestDispatcher("/01.CJS/seminaDetail.jsp");
+		    request.setAttribute("semina", semi);
+		    request.setAttribute("user", user);
+		    view.forward(request, response);
+		    }else {
+		//유저 정보찾기 실패. 에러창으로 보내기. 추후업데이트.
 	}
+}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
