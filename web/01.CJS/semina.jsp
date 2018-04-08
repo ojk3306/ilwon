@@ -11,7 +11,10 @@
 	int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 	int maxPage = ((Integer)request.getAttribute("maxPage")).intValue();			
 	int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
-	String search = (String)request.getAttribute("search");
+	
+	String search = "";
+	if((String)request.getAttribute("search")!=null)
+		 search =(String)request.getAttribute("search");
 	String message = (String)request.getAttribute("message");
 %>
 <html>

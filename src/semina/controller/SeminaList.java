@@ -42,7 +42,7 @@ public class SeminaList extends HttpServlet {
 		
 		if(request.getParameter("search")!=null) {
 		search=request.getParameter("search");
-		System.out.println("search"+search);
+		System.out.println("search="+search);
 		}
 		
 		
@@ -65,11 +65,12 @@ public class SeminaList extends HttpServlet {
 		ArrayList<Semina> al=null;
 		
 		
-		if(request.getParameter("search")==null)
+		if(search.equals("null")) {
+		System.out.println("이건대?");
 		al= new SeminaService().getseminalist(limit,currentPage);//최신 등록순으로
-		else
+		}else {
 		al= new SeminaService().getseminalistbysearch(limit,currentPage,search);
-		
+		}
 		int[] numbers = new int[3];
 		  
 		Random gen = new Random();
