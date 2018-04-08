@@ -3,7 +3,7 @@
 <%@ page import="lesson.model.vo.LessonDetail" %>    
 <%
 	LessonDetail lessondetail =(LessonDetail)request.getAttribute("lessondetail");
-
+	double avg_rate =(double)request.getAttribute("avg_rate");
 %>
 <!DOCTYPE html>
 <html>

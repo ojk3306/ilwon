@@ -36,7 +36,7 @@ public class PreviewReviewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int lesson_no = Integer.parseInt(request.getParameter("lesson_no"));
-		int avg_rate = 0;
+		double avg_rate = 0;
 		int count=0;
 		int sum=0;
 		System.out.println(lesson_no);
@@ -44,7 +44,6 @@ public class PreviewReviewServlet extends HttpServlet {
 		ArrayList<Review> review = new ReviewService().previewReview(lesson_no);
 		
 		JSONObject json = new JSONObject();
-		JSONObject avg = new JSONObject();
 		JSONArray jarr = new JSONArray();
 		
 		for(Review r : review) {
@@ -64,13 +63,11 @@ public class PreviewReviewServlet extends HttpServlet {
 		}
 		avg_rate = sum/count; 
 		json.put("review", jarr);
-		avg.put("avg_rate", avg_rate);
+		request.setAttribute("avg_rate", avg_rate); //평균점수 보내기
 		System.out.println(json.toJSONString());
-		System.out.println(avg.toJSONString());
 		response.setContentType("application/json; charset=utf-8;");
 		PrintWriter out = response.getWriter();
 		out.print(json.toJSONString());
-		out.print(avg.toJSONString());
 		out.flush();
 		out.close();
 		
