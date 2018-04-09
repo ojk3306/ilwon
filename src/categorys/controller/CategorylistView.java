@@ -66,7 +66,7 @@ public class CategorylistView extends HttpServlet {
 			}
 			json.put("big", jarr);
 			
-			System.out.println(json.toJSONString());
+			System.out.println("CategoryJson : " + json.toJSONString());
 		    response.setContentType("application/json; charset=utf-8;");
 			PrintWriter out = response.getWriter();
 			out.print(json.toJSONString());
@@ -76,10 +76,9 @@ public class CategorylistView extends HttpServlet {
 		}else {
 		response.setContentType("text/html; charset=utf-8");
 		response.sendRedirect("/prototype/01.CJS/login.jsp");	
-		}
-		
+		}	
 	
-}
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

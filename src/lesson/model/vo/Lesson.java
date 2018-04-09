@@ -22,7 +22,7 @@ public class Lesson implements Serializable{
 	private int lesson_rad;
 	private int lesson_price;
 	private int lesson_count;
-	private Date lesson_date;
+	private Date lesson_startdate;
 	private String lesson_contop;
 	private String lesson_conmid;
 	private String lesson_conbot;
@@ -37,7 +37,7 @@ public class Lesson implements Serializable{
 	public Lesson(int lesson_no, int level_no, String level, int state_no, int category_no, String category_bigName,
 			String category_smallName, int user_no1, int user_no2, String user_name1, String user_name2,
 			String lesson_title, String lesson_loc, int lesson_rad, int lesson_price, int lesson_count,
-			Date lesson_date, String lesson_contop, String lesson_conmid, String lesson_conbot, String lesson_keyword,
+			Date lesson_startdate, String lesson_contop, String lesson_conmid, String lesson_conbot, String lesson_keyword,
 			Date lesson_enddate, int lesson_type) {
 		super();
 		this.lesson_no = lesson_no;
@@ -56,7 +56,7 @@ public class Lesson implements Serializable{
 		this.lesson_rad = lesson_rad;
 		this.lesson_price = lesson_price;
 		this.lesson_count = lesson_count;
-		this.lesson_date = lesson_date;
+		this.lesson_startdate = lesson_startdate;
 		this.lesson_contop = lesson_contop;
 		this.lesson_conmid = lesson_conmid;
 		this.lesson_conbot = lesson_conbot;
@@ -193,12 +193,12 @@ public class Lesson implements Serializable{
 		this.lesson_count = lesson_count;
 	}
 
-	public Date getLesson_date() {
-		return lesson_date;
+	public Date getLesson_startdate() {
+		return lesson_startdate;
 	}
 
-	public void setLesson_date(Date lesson_date) {
-		this.lesson_date = lesson_date;
+	public void setLesson_startdate(Date lesson_startdate) {
+		this.lesson_startdate = lesson_startdate;
 	}
 
 	public String getLesson_contop() {
@@ -259,7 +259,7 @@ public class Lesson implements Serializable{
 				+ category_no + ", user_no1=" + user_no1 + ", user_no2=" + user_no2 + ", user_name1=" + user_name1
 				+ ", user_name2=" + user_name2 + ", lesson_title=" + lesson_title + ", lesson_loc=" + lesson_loc
 				+ ", lesson_rad=" + lesson_rad + ", lesson_price=" + lesson_price + ", lesson_count=" + lesson_count
-				+ ", lesson_date=" + lesson_date + ", lesson_contop=" + lesson_contop + ", lesson_conmid="
+				+ ", lesson_date=" + lesson_startdate + ", lesson_contop=" + lesson_contop + ", lesson_conmid="
 				+ lesson_conmid + ", lesson_conbot=" + lesson_conbot + ", lesson_keyword=" + lesson_keyword
 				+ ", lesson_enddate=" + lesson_enddate + ", lesson_type=" + lesson_type + "]";
 	}	

@@ -86,7 +86,7 @@ public class LessonDao {
 				lesson.setState_no(rset.getInt("state_no"));
 				lesson.setCategory_no(rset.getInt("category_no"));
 				lesson.setCategory_bigName(rset.getString("category_big"));
-				lesson.setCategory_smallName(rset.getString("categoru_small"));
+				lesson.setCategory_smallName(rset.getString("category_small"));
 				lesson.setUser_no1(rset.getInt("user_no1"));
 				lesson.setUser_no2(rset.getInt("user_no2"));
 				lesson.setUser_name1(rset.getString("user_name"));
@@ -96,8 +96,8 @@ public class LessonDao {
 				lesson.setLesson_rad(rset.getInt("lesson_radius"));
 				lesson.setLesson_price(rset.getInt("lesson_price"));
 				lesson.setLesson_count(rset.getInt("lesson_count"));
-				lesson.setLesson_date(rset.getDate("lesson_startdate"));
-				lesson.setLesson_date(rset.getDate("lesson_startdate"));
+				lesson.setLesson_startdate(rset.getDate("lesson_startdate"));
+				lesson.setLesson_enddate(rset.getDate("lesson_enddate"));
 				lesson.setLesson_contop(rset.getString("lesson_contop"));
 				lesson.setLesson_conmid(rset.getString("lesson_conmid"));
 				lesson.setLesson_conbot(rset.getString("lesson_conbot"));
