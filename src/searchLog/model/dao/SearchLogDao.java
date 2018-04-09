@@ -29,7 +29,7 @@ public class SearchLogDao {
 		query="insert into SEARCH_LOG values( (SELECT max(search_no) from SEARCH_LOG)+1 , null , ? ,sysdate)";
 		}
 		
-	System.out.println(sl.toString() + " / (To.SearchLogDao)");
+//	System.out.println(sl.toString() + " / (To.SearchLogDao)");
 	
 		try {
 			pstmt=con.prepareStatement(query);	

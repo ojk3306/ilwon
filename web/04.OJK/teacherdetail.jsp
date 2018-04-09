@@ -3,7 +3,7 @@
 <%@ page import="lesson.model.vo.LessonDetail" %>    
 <%
 	LessonDetail lessondetail =(LessonDetail)request.getAttribute("lessondetail");
-
+	double avg_rate =(double)request.getAttribute("avg_rate");
 %>
 <!DOCTYPE html>
 <html>
@@ -16,6 +16,25 @@
 <script type="text/javascript" src="/prototype/common/resources/js/jquery-3.3.1.min.js"></script>
 
 <script type="text/javascript">
+//리뷰보여주기
+$(function(){
+	$.ajax({
+		url: "/prototype/previewreview",
+		data: {lesson_no : <%= lessondetail.getLesson_no()%>},
+		type: "get",
+		dataType: "json",
+		success: function(data) {
+			
+			var jsonStr = JSON.stringify(data);
+			var json = JSON.parse(jsonStr);
+			
+			var values = $('#').html() + "<br>";
+		}
+		
+	});
+	
+	
+});
 
 
 
@@ -220,21 +239,16 @@ border-radius: 35px;
 		</li>
 		
 		<li class="underpic">
-		나이 이름
-		<br>
-		완료함.!
+		<li>
 		</li>
 	</ul>	
 	</li>
-		<li class="topdiv" name="title">
+	<li class="topdiv" name="title">
 		<ul style="list-style: none;">
+			<li class=""><h3><%=lessondetail.getUser_name() %></h3>선생님</li>
 			<li class=""><h1><%=lessondetail.getLesson_title() %></h1></li>
-			<li class=""> 태그넣기</li>
-			<li class=""> 점수내용</li>
-			<li class=""> 점수넣기</li>
 		</ul>
 		</li>
-		
 		
 		<li class="topdiv" name="option">
 		조회수?<br>
@@ -252,11 +266,23 @@ border-radius: 35px;
 	<!-- 강의료 부분 -->
 	<div align="center" style="margin-top:2px;">
 		<nav style="width:1100px; height:150px; border: 1px solid gray;">
-			<div style="width:500px; height: 140px; border: 1px solid gray; float:left;">
-			
+			<div style="width:500px; height: 140px; float:left;">
+			<h2>수강료</h2><br>
+				<table>
+					<tr>
+						<td><p style="font-size: 25pt;"><%=lessondetail.getLesson_price() %></p></td>
+						<td><p style="font-size: 10pt; margin-top: 6px; margin-left: 3px;">만원</p></td>		
+					</tr>
+				</table>
 			</div>
-			<div style="width:500px; height: 140px; border: 1px solid gray;">
-			
+			<div style="width:500px; height: 140px; float:right;">
+			<h2>수업횟수</h2><br>
+			<table>
+					<tr>
+						<td><p style="font-size: 25pt;"><%=lessondetail.getLesson_count() %></p></td>
+						<td><p style="font-size: 10pt; margin-top: 6px; margin-left: 3px;">회</p></td>		
+					</tr>
+				</table>
 			</div>
 		</nav>	
 	</div>	

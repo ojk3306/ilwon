@@ -470,8 +470,9 @@
                 return;
 
             if(isNullOrUndefined(step.topLabelElement)) {
-                var topLabelElm = $('<span>');
+                var topLabelElm = $('<span id="123123">');
                 topLabelElm.addClass('step-progressbar-steplabel');
+      
                 this.toplabelWrapper.append(topLabelElm);
                 step.topLabelElement = topLabelElm;
             }
