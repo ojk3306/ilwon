@@ -13,7 +13,9 @@ import lesson.model.vo.Onlesson;
 public class LessonService {
 
 	
-	public LessonService() {}
+	public LessonService() {
+		
+	}
 
 	public int insertlesson(Lesson lesson) {
 		Connection conn = getConnection();
@@ -22,11 +24,57 @@ public class LessonService {
 		
 		if(result > 0) {
 			commit(conn);
-		}else {
+		} else {
 			rollback(conn);
 		}
 		
 		return result;
+	}
+	
+	public int updateLesson(Lesson lesson) {
+		Connection conn = getConnection();
+		
+		int result = new LessonDao().updateLesson(conn, lesson);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		return result;
+	}
+	
+	public int deleteLesson(Lesson lesson) {
+		Connection conn = getConnection();
+		
+		int result = new LessonDao().deleteLesson(conn, lesson);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		return result;
+	}	
+	
+	public ArrayList<Lesson> selectLessonList() {
+		Connection con = getConnection();
+		
+		ArrayList<Lesson> list = new LessonDao().selectLessonList(con);
+		close(con);
+				
+		return list;
+	}
+	
+	public ArrayList<Lesson> selectSearchList() {
+		Connection con = getConnection();
+		
+		ArrayList<Lesson> list = new LessonDao().selectSearchList(con);
+		close(con);
+				
+		return list;
 	}
 
 	public ArrayList<Onlesson> onlesson(int user) {
@@ -46,7 +94,7 @@ public class LessonService {
 		
 		if(result > 0) {
 			commit(conn);
-		}else {
+		} else {
 			rollback(conn);
 		}
 		
@@ -61,9 +109,5 @@ public class LessonService {
 		
 		return lessondetail;
 	}
-
-	
-
-	
 	
 }
