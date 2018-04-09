@@ -155,7 +155,7 @@
 				<li><a href="/prototype/03.OHW/views/find_learn_list.jsp">학생 찾기</a></li>
 				<li><a href="/prototype/semilist?page=1">세미나  찾기</a></li>
 				<li><a href="/prototype/01.CJS/reportForm.jsp">신고하기</a></li>
-				<li><a href="/prototype/04.OJK/proposal.jsp">건의하기</a></li>
+				<li><a href="/prototype/plist">건의하기</a></li>
 				<% if( loginUser == null ){%>
 				
 				<%}else{%>
