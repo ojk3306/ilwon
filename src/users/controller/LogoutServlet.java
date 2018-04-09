@@ -27,11 +27,24 @@ public class LogoutServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// <a> 태그의 전송방식은 무조건 겟
 		//로그 아웃 처리용 컨트롤러
+		/*String redirectPage = request.getParameter("uri");
+		if(redirectPage == null) {
+			redirectPage = "index.jsp";
+		}
+		
+		if(request.getParameter("page") != null) {
+			String page = request.getParameter("page");
+			redirectPage = redirectPage + "?page" + page;
+		}
+		
+		request.getSession().invalidate();
+		response.sendRedirect(redirectPage);	*/	
+		
 		HttpSession session = request.getSession(false);
 		if(session != null) {
 			session.invalidate();
 			response.sendRedirect("index.jsp");
-		}	
+		}
 	}
 
 	/**

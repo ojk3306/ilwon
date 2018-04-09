@@ -354,4 +354,42 @@ public class SeminaDao {
 		return semi;
 	}
 
+	public int enrollseminabyuser(Connection con, int seminano,int studentno) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql="insert into SEMINA_DETAIL values((select max(SEMINA_DETAIL_NO)+1 from SEMINA_DETAIL),?,?,sysdate,1)";
+		System.out.println("세미 언롤 DAO:" + seminano+".."+studentno);
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, seminano);
+			pstmt.setInt(2, studentno);
+			result=pstmt.executeUpdate();
+		} catch (Exception e) {
+		e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int seminaupnow(Connection con, int seminano) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql="update semina set SEMINA_NOW = (select max(SEMINA_NOW)+1 from SEMINA where SEMINA_NO=? ) where SEMINA_NO=?";
+		
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, seminano);
+			pstmt.setInt(2, seminano);
+			result=pstmt.executeUpdate();
+		} catch (Exception e) {
+		e.printStackTrace();
+		}finally {
+		close(pstmt);
+		}
+		
+		return result;
+	}
+
 }

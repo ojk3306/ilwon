@@ -82,4 +82,34 @@ public class SeminaService {
 		return semi;
 	}
 
+	public int enrollseminabyuser(int seminano,int studentno) {
+
+		Connection con=getConnection();
+		int result= new SeminaDao().enrollseminabyuser(con,seminano,studentno);
+		if(result>0) {
+			commit(con);
+		System.out.println("세미나에 신청완료");
+		}else
+			rollback(con);
+		close(con);
+		return result;
+		
+		
+		
+		
+	}
+
+	public int seminaupnow(int seminano) {
+		Connection con=getConnection();
+		int result= new SeminaDao().seminaupnow(con,seminano);
+		if(result>0) {
+			commit(con);
+		System.out.println("세미나 현재인원 상승완료");
+		}else
+			rollback(con);
+		close(con);
+		return result;
+		
+	}
+
 }

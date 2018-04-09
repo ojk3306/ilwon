@@ -135,7 +135,7 @@ $("#"+json.clist[i].CATEGORY_BIG).html($("#"+json.clist[i].CATEGORY_BIG).html()+
 }
 for(var i in json.big){
 	
-	$("#detail-"+i).html( $("#detail-"+i).html()+'<hr><center><button type="button" id="'+json.big[i].CATEGORY_BIG+'1" onclick="addcate(this);" class="btn btn-success">추가</button></center>'  )
+	$("#detail-"+i).html( $("#detail-"+i).html()+'<hr><center><button type="button" id="'+json.big[i].CATEGORY_BIG+'1" onclick="addcate(this);" class="btn btn-success">소분류추가</button></center>'  )
 
 }
  

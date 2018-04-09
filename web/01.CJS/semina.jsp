@@ -33,9 +33,12 @@
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 </head>
 <body>
+
 <!------ Include the above in your HEAD tag ---------->
 <%@ include file="/common/navbar.jsp" %>
-<section class="container">
+<% if(loginUser!=null){ %>
+<input type="hidden" id="usernono" value="<%=loginUser.getUserNo()%>">
+<%} %>
 	<div class='container carousel'>
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
@@ -59,10 +62,16 @@
                             <p>
                              <%=toplist.get(0).getSeminaContent1()%>
                             </p>
+                         <% if(loginUser==null){ %>
                           <a class='btn btn-info pull-right'
                                href="/prototype/sdetail?userno=<%=toplist.get(0).getSeminaNo()%>">
                                 <i class="fa fa-long-arrow-right"> </i></a> 
-                             
+                          <%}else{ %>   
+                        <a class='btn btn-info pull-right'
+                               href="/prototype/sdetail?userno=<%=toplist.get(0).getSeminaNo()%>&usernono=<%=loginUser.getUserNo()%>">
+                                <i class="fa fa-long-arrow-right"> </i></a> 
+                       
+                       <%}%>
                         </div>
                     </div>
              
@@ -78,9 +87,17 @@
                             <p>
                        <%=toplist.get(1).getSeminaContent1()%>                          
                             </p>    
+                            <% if(loginUser==null){ %>
                            <a class='btn btn-info pull-right'
                                href="/prototype/sdetail?userno=<%=toplist.get(1).getSeminaNo()%>">
                                 <i class="fa fa-long-arrow-right"> </i></a>  
+                       <%}else{%>
+                                <a class='btn btn-info pull-right'
+                            	   href="/prototype/sdetail?userno=<%=toplist.get(1).getSeminaNo()%>&usernono=<%=loginUser.getUserNo()%>">
+                                <i class="fa fa-long-arrow-right"> </i></a>  
+                        
+                         <%}%>
+                       
                         </div>                    
                     </div> 
                     <div class="item">                    
@@ -92,9 +109,17 @@
                                 <small>in <%=toplist.get(2).getSeminaEndDate()%></small></h2>
                             <p>
                             <%=toplist.get(2).getSeminaContent1()%>        </p>       
+                            
+                            <% if(loginUser==null){ %>
                             <a class='btn btn-info pull-right'
                                href="/prototype/sdetail?userno=<%=toplist.get(2).getSeminaNo()%>">
                                 <i class="fa fa-long-arrow-right"> </i></a>                            
+                      <%}else{%>
+                        <a class='btn btn-info pull-right'
+                               href="/prototype/sdetail?userno=<%=toplist.get(2).getSeminaNo()%>&usernono=<%=loginUser.getUserNo()%>">
+                                <i class="fa fa-long-arrow-right"> </i></a>  
+                        
+                         <%}%>
                         </div>                    
                     </div> 
               
@@ -124,7 +149,7 @@
 
 <div class="col-sm-6 col-md-8 col-lg-8">
 	<div class="row">
-	 <%if( message ==null){ %>
+	 <%if( message == null){ %>
 	    <%for(Semina i: list){%>
 		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style=" width:50%; max-height:400px; margin-bottom: 15px;">
 	    <div class="panel panel-default" >
@@ -155,7 +180,12 @@
 		<p>
 		<%=i.getSeminaContent1()%>
 		</p>
+		<% if(loginUser==null){ %>
 		<a href="/prototype/sdetail?userno=<%=i.getSeminaNo()%> " class="btn btn-default">자세히보기...</a>
+		<%}else{ %>
+			<a href="/prototype/sdetail?userno=<%=i.getSeminaNo()%>&usernono=<%=loginUser.getUserNo()%>" class="btn btn-default">자세히보기...</a>
+	
+		<%} %>
 		</div>
 		</div>
 		</div>
@@ -287,8 +317,13 @@
 				<img src="<%=img[result] %>" alt="" class="img-thumbnail img-responsive">
 					</div>
 					<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-						
+							<% if(loginUser==null){ %>
 						<a href="/prototype/sdetail?userno=<%=i.getSeminaNo()%>"><h5><%=i.getSeminaTitle() %></h5></a>
+						<%}else{ %>
+						
+					 <a href="/prototype/sdetail?userno=<%=i.getSeminaNo()%>&usernono=<%= loginUser.getUserNo()%>"><h5><%=i.getSeminaTitle() %></h5></a>
+						
+						<%} %>
 						<p class="text-muted"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><%=i.getSeminaEndDate() %></p>
 					</div>
 				</div>
