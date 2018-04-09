@@ -21,7 +21,8 @@ function juso(){
 	//비밀번호 체크
 	 $(function() {
 	$('#repwd').keyup(function(pwdcheck){
-		if($('#repwd').val() != $('#pwd').val()) {
+		if($('#repwd').val() != $('#pwd'
+				).val()) {
 			$('#la_pwd').html("비밀번호가 일치하지 않습니다")
 		}else {
 			
