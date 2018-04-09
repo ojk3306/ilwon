@@ -58,7 +58,8 @@ public class Seminainsert extends HttpServlet {
 				// 업로드되는 파일이 저장될 폴더명과 경로 연결 처리
 				String savePath = root + "seminaTitleimg";
 				// web/seminaTitleimg을 세미나 강의에서 받을 타이틀 이미지로 지정함
-
+			System.out.println("root="+root);
+			System.out.println("savePath="+savePath);
 				// request 를 MultipartRequest 객체로 변환함
 				MultipartRequest mrequest = new MultipartRequest(
 				request, savePath, maxSize, "UTF-8",
@@ -141,7 +142,7 @@ public class Seminainsert extends HttpServlet {
 			
 				if (new SeminaService().insertSemina(semi) > 0) {
 					
-					response.sendRedirect("/prototype/01.CJS/semina.jsp");
+					response.sendRedirect("/prototype/semilist");
 					
 				} else {
 					view = request.getRequestDispatcher("views/board/boardError.jsp");

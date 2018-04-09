@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
    <%@
-   page import="users.model.vo.Users , semina.model.vo.*"
+   page import="users.model.vo.Users , semina.model.vo.* ,seminaDetail.model.vo.*"
     %> 
     <%
     Semina semi=(Semina)request.getAttribute("semina");
     Users user=(Users)request.getAttribute("user");
+    SeminaDetail semideta=(SeminaDetail)request.getAttribute("semideta");
     %>
 <!DOCTYPE html>
 <html>
@@ -14,10 +15,28 @@
 <link href="/prototype/common/resources/css/bootstrap-theme.min.css" rel="stylesheet">
 <link href="/prototype/01.CJS\js\jquery.stepProgressBar.css" rel="stylesheet" type="text/css">
  
+ <script type="text/javascript">
+
+ function enrollsemina(){
+	 $.ajax({
+		url:"/prototype/enrollsemina",
+		data:{semino:<%=semi.getSeminaNo()%>,teacherno:<%=user.getUserNo()%>,studentno:$("#studentno").val()},
+		success:function(data){
+		$("#enrollstat").html('<button type="button"  style="margin-top : 50px;"  class="btn btn-warning">신청된 상태입니다!</button>');
+
+		history.go(0);
+		}		 	
+	 })
+ }
+ 
+ 
+ 
+ </script>
+ 
+ 
 <style type="text/css">
 .btn-primary,
-.btn-warning
-{
+.btn-warning{
     -webkit-box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.3);
     -moz-box-shadow:    0px 3px 0px rgba(0, 0, 0, 0.3);
     box-shadow:         0px 3px 0px rgba(0, 0, 0, 0.3);
@@ -235,6 +254,7 @@ section .section-title{
 <body>
 <%@include file="/common/navbar.jsp" %>
 <%@include file="/01.CJS\sidebar.jsp" %>
+
 <div class="contentbody">
 			<div class="contents">
 				<nav class="topbend"> <!--최상단 띠.-->
@@ -347,9 +367,9 @@ section .section-title{
 			
 			
 <script src="/prototype/01.CJS\js\jquery.stepProgressBar.js"></script>
-	     	<input type="hidden" id="max" value="<%=semi.getSeminaMax()%>">
-			<input type="hidden" id="min" value="<%=semi.getSeminaMin()%>">
-			<input type="hidden" id="now" value="<%=semi.getSeminaNow()%>">
+<input type="hidden" id="max" value="<%=semi.getSeminaMax()%>">
+<input type="hidden" id="min" value="<%=semi.getSeminaMin()%>">
+<input type="hidden" id="now" value="<%=semi.getSeminaNow()%>">
 			
 <script>
 min= $("#min").val();
@@ -363,19 +383,19 @@ $('#myGoal').stepProgressBar({
   currentValue: 0,
   steps: [
     { 
-    	topLabel: now+":현재",
+    	topLabel: now+":now",
         value: now
     
     	},
     {
     	 topLabel: " ",
          value: min,
-         bottomLabel: min+":최소인원"
+         bottomLabel: min+":min"
     },
     {  
     	 topLabel:" ",
          value: max,
-         bottomLabel: max
+         bottomLabel: max+":max"
     }
   ],
   unit: '$'
@@ -399,13 +419,22 @@ $('#myGoal').stepProgressBar({
 </script>
 		    
 			</div>
-			<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
-				 
-		    <button type="button" class="btn btn-primary">세미나 신청하기!</button>
-
-            <button type="button" class="btn btn-warning">이미 신청된 상태입니다</button>
-				
-				
+			<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4" id="enrollstat">
+			
+			<%if(loginUser==null){ %>
+	
+			<button type="button" style="margin-top : 50px;" onclick="location.href='/prototype/03.OHW/views/login.jsp'" class="btn btn-warning">지금 로그인하세요!</button>
+			<%}else{ %>
+			<input type="hidden" value="<%=loginUser.getUserNo()%>" id="studentno">
+			
+			<% if(Integer.parseInt(semideta.getSeminaState()) != 1 ){ %>	 
+			     <!--  -->
+		    <button type="button" style="margin-top : 50px;" onclick="enrollsemina();"  class="btn btn-primary">세미나 신청하기!</button>
+					<%}else{ %>
+            <button type="button"  style="margin-top : 50px;"  class="btn btn-warning">신청된 상태입니다!</button>
+			
+			<%}}%>	
+		
 				</div>
 			
 			</div>
@@ -414,8 +443,6 @@ $('#myGoal').stepProgressBar({
 			
 </div>
 	<div style="margin-top: -900px;">
-	
-
 <%@include file="/common/footer.jsp"  %>
 </div>
 </body>
