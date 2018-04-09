@@ -1,6 +1,8 @@
 package lesson.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import lesson.model.service.LessonService;
 import lesson.model.vo.LessonDetail;
+import review.model.service.ReviewService;
+import review.model.vo.Review;
 
 /**
  * Servlet implementation class LessonDetailServlet
@@ -34,17 +38,69 @@ public class LessonDetailServlet extends HttpServlet {
 		int lesson_no = Integer.parseInt(request.getParameter("no"));
 		
 		LessonDetail lessondetail = new LessonService().lessonView(lesson_no);
+		ArrayList<Review> review = new ReviewService().previewReview(lesson_no);
+		//�씪�떒 由щ럭 �쟾遺��떎 媛��졇�샂!
+		int sumd = 0;
+		int sump = 0;
+		int sums = 0;
+		int count = 0;
+		double avga = 0;
+		int avgd= 0;
+		int avgs= 0;
+		int avgp= 0;
+		
+		//由щ럭 �룊�젏 援ы븯湲�
+		for(Review i : review) {
+			sumd += i.getReviewDelivery();
+			sump += i.getReviewPrepare();
+			sums += i.getReviewSincerity();
+			
+			count++;
+		}
+		if(sumd != 0 && sump != 0 && sums != 0) {
+		avgd= sumd/count;
+		avgp= sump/count;
+		avgs= sums/count;
+		avga= (double)(avgd+avgp+avgs)/3;
+		}else {
+			avgd= 0;
+			avgp= 0;
+			avgs= 0;
+			avga= 0;	
+		}
+		System.out.println("移댁슫�듃�뒗"+count+"avgd="+avgd+"avgp="+avgp+"avgs="+avgs+"avga="+avga);
 		
 		response.setContentType("text/html; charset=utf-8"); 
 		RequestDispatcher view =null;
-		if(lessondetail != null) {
+		if(lessondetail != null && review != null) {
 			view = request.getRequestDispatcher("04.OJK/teacherdetail.jsp");
 			request.setAttribute("lessondetail", lessondetail);
+			request.setAttribute("review", review);
+			request.setAttribute("avgd", avgd);
+			request.setAttribute("avgp", avgp);
+			request.setAttribute("avgs", avgs);
+			request.setAttribute("avga", avga);
 			view.forward(request, response);
-		}else {
-			//에러페이지 만들자
+			
+		}else if(lessondetail != null && review == null){
+			view = request.getRequestDispatcher("04.OJK/teacherdetail.jsp");
+			request.setAttribute("lessondetail", lessondetail);
+			request.setAttribute("review", null);
+			avgd=0;
+			avgp=0;
+			avgs=0;
+			avga=0;
+			request.setAttribute("avgd", avgd);
+			request.setAttribute("avgp", avgp);
+			request.setAttribute("avgs", avgs);
+			request.setAttribute("avga", avga);
+			view.forward(request, response);
+			
+		}
+		else if(lessondetail == null){
+//에러페이지 만들어
 			view = request.getRequestDispatcher("#");
-			request.setAttribute("message","강의조회 실패");
+			request.setAttribute("message","媛뺤쓽議고쉶 �떎�뙣");
 			view.forward(request, response);
 		}
 		

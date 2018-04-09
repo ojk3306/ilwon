@@ -17,7 +17,7 @@ public class ReviewDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = 
-				"select * from review where lesson_no = ? order by review_no desc;";
+				"select r.*, u.user_name from review r, users u where lesson_no = ? and r.user_no = u.user_no order by r.review_no desc";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -33,6 +33,8 @@ public class ReviewDao {
 				r.setReviewPrepare(rset.getInt("review_prepare"));
 				r.setReviewSincerity(rset.getInt("review_sincerity"));
 				r.setReviewDelivery(rset.getInt("review_delivery"));
+				r.setUserNO(rset.getInt("user_no"));
+				r.setUserName(rset.getString("user_name"));
 				System.out.println(r.toString());
 				review.add(r);
 				

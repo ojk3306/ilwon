@@ -4,6 +4,7 @@ import static common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.List;
 
 import review.model.dao.ReviewDao;
 import review.model.vo.Review;
@@ -20,5 +21,7 @@ public class ReviewService {
 		
 		return previewReview;
 	}
+
+	
 	
 }
