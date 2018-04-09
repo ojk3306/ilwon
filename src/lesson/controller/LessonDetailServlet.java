@@ -39,7 +39,7 @@ public class LessonDetailServlet extends HttpServlet {
 		
 		LessonDetail lessondetail = new LessonService().lessonView(lesson_no);
 		ArrayList<Review> review = new ReviewService().previewReview(lesson_no);
-		//일단 리뷰 전부다 가져옴!
+		//�씪�떒 由щ럭 �쟾遺��떎 媛��졇�샂!
 		int sumd = 0;
 		int sump = 0;
 		int sums = 0;
@@ -49,7 +49,7 @@ public class LessonDetailServlet extends HttpServlet {
 		int avgs= 0;
 		int avgp= 0;
 		
-		//리뷰 평점 구하기
+		//由щ럭 �룊�젏 援ы븯湲�
 		for(Review i : review) {
 			sumd += i.getReviewDelivery();
 			sump += i.getReviewPrepare();
@@ -68,11 +68,11 @@ public class LessonDetailServlet extends HttpServlet {
 			avgs= 0;
 			avga= 0;	
 		}
-		System.out.println("카운트는"+count+"avgd="+avgd+"avgp="+avgp+"avgs="+avgs+"avga="+avga);
+		System.out.println("移댁슫�듃�뒗"+count+"avgd="+avgd+"avgp="+avgp+"avgs="+avgs+"avga="+avga);
 		
 		response.setContentType("text/html; charset=utf-8"); 
 		RequestDispatcher view =null;
-		if(lessondetail != null || review != null) {
+		if(lessondetail != null && review != null) {
 			view = request.getRequestDispatcher("04.OJK/teacherdetail.jsp");
 			request.setAttribute("lessondetail", lessondetail);
 			request.setAttribute("review", review);
@@ -82,10 +82,10 @@ public class LessonDetailServlet extends HttpServlet {
 			request.setAttribute("avga", avga);
 			view.forward(request, response);
 			
-		}else if(lessondetail != null || review == null){
+		}else if(lessondetail != null && review == null){
 			view = request.getRequestDispatcher("04.OJK/teacherdetail.jsp");
 			request.setAttribute("lessondetail", lessondetail);
-			request.setAttribute("review", 0);
+			request.setAttribute("review", null);
 			avgd=0;
 			avgp=0;
 			avgs=0;
@@ -96,11 +96,11 @@ public class LessonDetailServlet extends HttpServlet {
 			request.setAttribute("avga", avga);
 			view.forward(request, response);
 			
-			
-		}else {
-//에러페이지 만들자
+		}
+		else if(lessondetail == null){
+//에러페이지 만들어
 			view = request.getRequestDispatcher("#");
-			request.setAttribute("message","강의조회 실패");
+			request.setAttribute("message","媛뺤쓽議고쉶 �떎�뙣");
 			view.forward(request, response);
 		}
 		

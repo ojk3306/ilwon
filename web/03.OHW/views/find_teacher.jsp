@@ -207,8 +207,8 @@
 	
 	<section class = "teacher_class">
 	
-		<table>
-			<tr>
+		<table class = "ohw-big-category">
+			<!-- <tr>
 				<th style = "width : 100px;"><h3 class="header_text">수업</h3></th>
 				<th style = "padding-top : 18px;">
 					<a onclick="changeClass(this.id);" id = "게임">게임</a>
@@ -217,10 +217,10 @@
 					<a onclick="changeClass(this.id);" id = "댄스">댄스</a>
 					<a onclick="changeClass(this.id);" id = "기타">기타</a>
 				</th>
-			</tr>
+			</tr> -->
 		</table>			
 			
-		<p class = "select_class">
+		<!-- <p class = "select_class">
 			<div class="tclass" id="ohw_게임">
 				<input type="radio" name = "tclass-radio" value="배틀그라운드">배틀그라운드
 				<input type="radio" name = "tclass-radio" value="오버워치">오버워치
@@ -250,8 +250,40 @@
 			<div class="tclass" id="ohw_기타">
 				<input type="radio" name = "tclass-radio" value="웃음">웃음
 			</div>
-		</p>						
+		</p> -->
+								
 	</section>
+	
+		
+	<script type="text/javascript">
+	
+	$.ajax({
+    	url:"/prototype/clist",
+    	type:"get",
+    	datatype:"json",
+    	success:function(data) {
+    		
+			var jsonStr = JSON.stringify(data);
+			var json = JSON.parse(jsonStr);			
+
+			for(var i in json.big){ //대분류 삽입
+
+				$('.ohw-big-category').append(
+					"<tr><td>" + json.clist[i].CATEGORY_BIG + "</td></tr>"
+				);				
+			}			
+
+			/* for(var i in json.clist){ //소분류 삽입
+			$("fluid-row[id="+json.clist[i].CATEGORY_BIG+"]").html("");	
+	
+			$("#"+json.clist[i].CATEGORY_BIG).html($("#"+json.clist[i].CATEGORY_BIG).html()+'<div class="col-xs-5" style="width:200px; margin-top:-5px; border-right:1px;"><p><center><h5><strong id="'+json.clist[i].CATEGORY_NO+'">'+json.clist[i].CATEGORY_SMALL+'</strong></h5></center></p><center>조회수 :'+json.clist[i].CATEGORY_HIT+'</center><input type="text"  name="'+json.clist[i].CATEGORY_NO+'" value="'+json.clist[i].CATEGORY_SMALL+'" style="width:100%;"><br><a name="'+json.clist[i].CATEGORY_NO+'" onclick="update(this);" class="btn btn-primary loading">이름 수정</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="deletekey(this);" name="'+json.clist[i].CATEGORY_NO+'" class="btn btn-danger loading">삭제</a> </div></div></div>');
+
+			} */
+			
+			} 	
+    });
+	
+	</script>
 	
 	<hr>
 	
@@ -269,8 +301,8 @@
 			<div id = "person_info">					
 				<div>
 					<label>선생님 성별</label>
-					<input type="radio" name="gender">남  &nbsp;
-					<input type="radio" name="gender">여  &nbsp;
+					<input type="radio" name="gender">남  &nbsp; 
+					<input type="radio" name="gender">여  &nbsp; 
 					<input type="radio" name="gender">무관
 				</div>
 					
