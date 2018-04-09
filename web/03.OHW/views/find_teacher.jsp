@@ -19,14 +19,14 @@
 	}
 	
 	function changeClass(id) {
+		console.log(id);
+		switch(id) {		
 		
-		switch(id) {
-		
-		case "게임": $(".tclass").hide(); $("#ohw_게임").show(); break;
-		case "스포츠": $(".tclass").hide(); $("#ohw_스포츠").show(); break;
-		case "음악": $(".tclass").hide(); $("#ohw_음악").show(); break;
-		case "댄스": $(".tclass").hide(); $("#ohw_댄스").show(); break;
-		case "기타": $(".tclass").hide(); $("#ohw_기타").show(); break;		
+		case "게임": $(".tclass").hide(); $(".ohw-게임").show(); break;
+		case "스포츠": $(".tclass").hide(); $(".ohw-스포츠").show(); break;
+		case "음악": $(".tclass").hide(); $(".ohw-음악").show(); break;
+		case "댄스": $(".tclass").hide(); $(".ohw-댄스").show(); break;
+		case "기타": $(".tclass").hide(); $(".ohw-기타").show(); break;		
 		}
 	}
 	
@@ -55,8 +55,7 @@
 	
 	function searchTeacher() {
 		
-		var classValue = $("input[type=radio][name=tclass-radio]:checked").val();
-		alert(classValue);
+		var classValue = $("input[type=radio][name=tclass-radio]:checked").val();		
 		
 	}
 	
@@ -89,14 +88,14 @@
 	
 	#left_bar {	
 			
-		background : rgba(50, 50, 50, .5);
+		background : rgba(50, 50, 50, .0);
 		width : 100px;
 		height : 680px;
 		float : left;
 	}
 	
 	#right_bar {
-		background : rgba(50, 50, 50, .5);
+		background : rgba(50, 50, 50, .0);
 		width : 100px;
 		height : 680px;
 		float : right;		
@@ -122,16 +121,14 @@
 		margin-left : 20px;		
 	}	
 			
-	#show_table, #search_table {
-		width:50%;
-		height:700px;
-		margin-left:30%;
+	#show_table, #search_table {		
+		width:60%;
 	}
 	
 	.ohw-ready-table, .ohw-search-table {
-		width:50%;
+		width:900px;
 		height:700px;
-		padding:0px;
+		padding:0px;		
 	}
 	
 	.ohw-ready-photo, .ohw-search-photo {
@@ -140,22 +137,19 @@
 	}
 	
 	.ohw-ready-name, .ohw-search-name {
-	
+		width:100px;
+		height:110px;
 	}
 	
 	.ohw-ready-category, .ohw-search-category {
-	
+		width:200px;
+		height:110px;
 	}
 	
 	.ohw-ready-comment, .ohw-search-comment {
-	
+		width:500px;
+		height:110px;
 	}
-	
-	.ohw-ready-th, .ohw-search-th {
-		text-align:center;
-		height:30px;
-	}
-	
 	
 </style>
 </head>
@@ -208,79 +202,35 @@
 	<section class = "teacher_class">
 	
 		<table class = "ohw-big-category">
-			<!-- <tr>
-				<th style = "width : 100px;"><h3 class="header_text">수업</h3></th>
-				<th style = "padding-top : 18px;">
-					<a onclick="changeClass(this.id);" id = "게임">게임</a>
-					<a onclick="changeClass(this.id);" id = "스포츠">스포츠</a>
-					<a onclick="changeClass(this.id);" id = "음악">음악</a>
-					<a onclick="changeClass(this.id);" id = "댄스">댄스</a>
-					<a onclick="changeClass(this.id);" id = "기타">기타</a>
-				</th>
-			</tr> -->
-		</table>			
-			
-		<!-- <p class = "select_class">
-			<div class="tclass" id="ohw_게임">
-				<input type="radio" name = "tclass-radio" value="배틀그라운드">배틀그라운드
-				<input type="radio" name = "tclass-radio" value="오버워치">오버워치
-				<input type="radio" name = "tclass-radio" value="리그오브레전드">리그 오브 레전드
-				<input type="radio" name = "tclass-radio" value="철권">철권
-			</div>
-			
-			<div class="tclass" id="ohw_스포츠">
-				<input type="radio" name = "tclass-radio" value="축구">축구
-				<input type="radio" name = "tclass-radio" value="농구">농구
-				<input type="radio" name = "tclass-radio" value="야구">야구
-			</div>
-			
-			<div class="tclass" id="ohw_음악">
-				<input type="radio" name = "tclass-radio" value="현악기">현악기
-				<input type="radio" name = "tclass-radio" value="관악기">관악기
-				<input type="radio" name = "tclass-radio" value="타악기">타악기
-				<input type="radio" name = "tclass-radio" value="보컬">보컬
-				<input type="radio" name = "tclass-radio" value="랩">랩
-			</div>
-			
-			<div class="tclass" id="ohw_댄스">
-				<input type="radio" name = "tclass-radio" value="방송댄스">방송댄스
-				<input type="radio" name = "tclass-radio" value="팝핀">팝핀
-			</div>
-			
-			<div class="tclass" id="ohw_기타">
-				<input type="radio" name = "tclass-radio" value="웃음">웃음
-			</div>
-		</p> -->
+			<tr class = "ohw-big-category-tr">
+				<th style = "width : 100px;"><h3 class="header_text">수업</h3></th>				
+			</tr>
+		</table>		
 								
-	</section>
-	
+	</section>	
 		
 	<script type="text/javascript">
 	
 	$.ajax({
-    	url:"/prototype/clist",
+    	url:"<%= request.getContextPath() %>/clist",
     	type:"get",
     	datatype:"json",
     	success:function(data) {
     		
 			var jsonStr = JSON.stringify(data);
-			var json = JSON.parse(jsonStr);			
+			var json = JSON.parse(jsonStr);
+			var bigCategory = "";
 
-			for(var i in json.big){ //대분류 삽입
-
-				$('.ohw-big-category').append(
-					"<tr><td>" + json.clist[i].CATEGORY_BIG + "</td></tr>"
-				);				
-			}			
-
-			/* for(var i in json.clist){ //소분류 삽입
-			$("fluid-row[id="+json.clist[i].CATEGORY_BIG+"]").html("");	
-	
-			$("#"+json.clist[i].CATEGORY_BIG).html($("#"+json.clist[i].CATEGORY_BIG).html()+'<div class="col-xs-5" style="width:200px; margin-top:-5px; border-right:1px;"><p><center><h5><strong id="'+json.clist[i].CATEGORY_NO+'">'+json.clist[i].CATEGORY_SMALL+'</strong></h5></center></p><center>조회수 :'+json.clist[i].CATEGORY_HIT+'</center><input type="text"  name="'+json.clist[i].CATEGORY_NO+'" value="'+json.clist[i].CATEGORY_SMALL+'" style="width:100%;"><br><a name="'+json.clist[i].CATEGORY_NO+'" onclick="update(this);" class="btn btn-primary loading">이름 수정</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="deletekey(this);" name="'+json.clist[i].CATEGORY_NO+'" class="btn btn-danger loading">삭제</a> </div></div></div>');
-
-			} */
+			for(var i in json.big){ //대분류 삽입				
+				bigCategory += '<td><a onclick="changeClass(this.id);" id = "' + json.big[i].CATEGORY_BIG + '">' + json.big[i].CATEGORY_BIG + '</a></td>'						
+			}
 			
-			} 	
+			$('.ohw-big-category-tr').append(bigCategory);
+
+			 for(var i in json.clist){ //소분류 삽입	
+				 $("#"+json.clist[i].CATEGORY_BIG).html($("#"+json.clist[i].CATEGORY_BIG).html()+'<div class = "tclass ohw-' + json.clist[i].CATEGORY_BIG + '"><input type="radio" name="tclass-radio" value="'+json.clist[i].CATEGORY_SMALL+'">' + json.clist[i].CATEGORY_SMALL + '</div>');
+			}			
+		} 	
     });
 	
 	</script>
@@ -411,6 +361,8 @@
 	</div>	
 	</section>
 	
+	<hr>
+	
 <script type="text/javascript">
 
 $(function () {
@@ -484,24 +436,22 @@ function searchResult() {
 };
 
 </script>
-	
-	<div id="show_table" align = "center"> <!-- 평소에 펼쳐져 있는 테이블 -->
-		<h3>새로 올라온 강의</h3>
+	<div align = "center">
+	<div id="show_table" align = "center"> <!-- 평소에 펼쳐져 있는 테이블 -->		
 		<table class="table table-hover ohw-ready-table">
-			  
+			<tr style = "height:30px; padding:0px; margin:0px;">
+        		<td colspan = "4" align = "center"><h3>새로 올라온 강의</h3></td>        		
+      		</tr> 
 		</table>
 	</div>
 	
-	<div id="search_table" align = "center">
-		<h3>검색 결과</h3>
+	<div id="search_table" align = "center"> <!-- 검색 결과 표시 테이블 -->
 		<table class="table table-hover ohw-search-table">      
-			<tr>
-        		<td style="height : 100px; width : 100px;">
-        		<img src="" style="height : 50px; width : 40px;"></td>
-        		<td>Doe</td>
-        		<td>john@example.com</td>
+			<tr style = "height:30px; padding:0px; margin:0px;">
+        		<td colspan = "4" align = "center"><h3>검색 결과</h3></td>   		
       		</tr>     
 		</table>
+	</div>
 	</div>
 	
 <div>

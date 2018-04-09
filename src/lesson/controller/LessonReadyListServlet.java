@@ -68,7 +68,8 @@ public class LessonReadyListServlet extends HttpServlet {
 			job.put("lessonRadius",lesson.getLesson_rad());	
 			job.put("lessonPrice",lesson.getLesson_price());	
 			job.put("lessonCount",lesson.getLesson_count());
-			job.put("lessonDate", lesson.getLesson_date().toString());
+			job.put("lessonStartDate", lesson.getLesson_startdate().toString());
+			job.put("lessonEndDate", lesson.getLesson_enddate().toString());
 			job.put("lessonContop",lesson.getLesson_contop());
 			job.put("lessonConmid",lesson.getLesson_conmid());
 			job.put("lessonConbot",lesson.getLesson_conbot());
