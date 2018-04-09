@@ -23,7 +23,7 @@ public class LessonDao {
 		PreparedStatement pstmt = null;
 		String sql = "insert into lesson values((SELECT max(lesson_no) from lesson)+1"
 				+ ",?,1,5513,null,?,?,?,?,?,?,sysdate,null,?,?,?,?,7000)";
-		//移댄뀒怨좊━ �벑 �옉�뾽�뜑�빐�빞!
+		
 		
 		try {
 		System.out.println("lesson.getUser_no2()"+lesson.getUser_no2());
@@ -73,7 +73,7 @@ public class LessonDao {
 				+ "and l.LESSON_TYPE = lt.TYPE_NO "
 				+ "and l.category_no = c.category_no "
 				+ "and rownum <= 5 "
-				+ "order by lesson_date desc";
+				+ "order by lesson_startdate desc";
 		try {
 			stmt = con.createStatement();
 			rset = stmt.executeQuery(query);
@@ -96,7 +96,8 @@ public class LessonDao {
 				lesson.setLesson_rad(rset.getInt("lesson_radius"));
 				lesson.setLesson_price(rset.getInt("lesson_price"));
 				lesson.setLesson_count(rset.getInt("lesson_count"));
-				lesson.setLesson_date(rset.getDate("lesson_date"));
+				lesson.setLesson_date(rset.getDate("lesson_startdate"));
+				lesson.setLesson_date(rset.getDate("lesson_startdate"));
 				lesson.setLesson_contop(rset.getString("lesson_contop"));
 				lesson.setLesson_conmid(rset.getString("lesson_conmid"));
 				lesson.setLesson_conbot(rset.getString("lesson_conbot"));

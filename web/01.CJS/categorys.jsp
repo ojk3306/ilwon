@@ -99,6 +99,7 @@ $("div[id="+json.CATEGORY_BIG+"]").html($("div[id="+json.CATEGORY_BIG+"]").html(
 	})
 
 }
+
 $(document).ready(function(){
     $('[id^=detail-]').hide();
     
