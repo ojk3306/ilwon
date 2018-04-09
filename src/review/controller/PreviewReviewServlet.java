@@ -37,8 +37,14 @@ public class PreviewReviewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int lesson_no = Integer.parseInt(request.getParameter("lesson_no"));
 		double avg_rate = 0;
+		int avg_p = 0;
+		int avg_s = 0;
+		int avg_d = 0;
 		int count=0;
-		int sum=0;
+		int sumAll=0;
+		int sumP=0;
+		int sumS=0;
+		int sumD=0;
 		System.out.println(lesson_no);
 		
 		ArrayList<Review> review = new ReviewService().previewReview(lesson_no);
@@ -56,14 +62,24 @@ public class PreviewReviewServlet extends HttpServlet {
 			job.put("review_sincerity", r.getReviewSincerity());
 			job.put("review_delivery", r.getReviewDelivery());
 			job.put("sum_rate", r.getReviewDelivery()+r.getReviewPrepare()+r.getReviewSincerity());
-			//Æò±ÕÁ¡¼ö°¡ ÇÊ¿äÇÏ´Ù~
-			sum +=  r.getReviewDelivery()+r.getReviewPrepare()+r.getReviewSincerity();
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½Ï´ï¿½~
+			sumAll +=  r.getReviewDelivery()+r.getReviewPrepare()+r.getReviewSincerity();
+			sumP += r.getReviewPrepare();
+			sumS += r.getReviewSincerity();
+			sumD += r.getReviewDelivery();
 			count++;
 			jarr.add(job);
 		}
-		avg_rate = sum/count; 
+		avg_rate = sumAll/count; 
+		avg_p = sumP/count;
+		avg_s = sumS/count;
+		avg_d = sumD/count;
+		System.out.println(avg_rate +", " + avg_p + ", " + avg_s + ", " + avg_d);
 		json.put("review", jarr);
-		request.setAttribute("avg_rate", avg_rate); //Æò±ÕÁ¡¼ö º¸³»±â
+		request.setAttribute("avg_rate", avg_rate); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		request.setAttribute("avg_p", avg_p);
+		request.setAttribute("avg_s", avg_s);
+		request.setAttribute("avg_d", avg_d);
 		System.out.println(json.toJSONString());
 		response.setContentType("application/json; charset=utf-8;");
 		PrintWriter out = response.getWriter();

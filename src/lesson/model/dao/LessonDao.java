@@ -107,10 +107,10 @@ public class LessonDao {
 		LessonDetail l = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql= "select l.lesson_title, lv.lessonlev, l.LESSON_LOCATION, l.lesson_radius, l.lesson_price, l.lesson_count, l.state_no, l.lesson_contop, l.lesson_conmid, l.lesson_conbot, l.lesson_keyword, u.user_name, r.review_prepare, r.review_sincerity, r.review_delivery, r.review_no, r.review_content from lesson l, review r,users u,lessonlev lv where l.lesson_no = r.lesson_no and l.user_no2=u.user_no and l.level_no = lv.lessonlev_no and l.lesson_no = ? and l.user_no2 = (select user_no2 from lesson where lesson_no = ?) and l.level_no = (select level_no from lesson where lesson_no = ?)";
+		//String sql= "select l.lesson_title, lv.lessonlev, l.LESSON_LOCATION, l.lesson_radius, l.lesson_price, l.lesson_count, l.state_no, l.lesson_contop, l.lesson_conmid, l.lesson_conbot, l.lesson_keyword, u.user_name, r.review_prepare, r.review_sincerity, r.review_delivery, r.review_no, r.review_content from lesson l, review r,users u,lessonlev lv where l.lesson_no = r.lesson_no and l.user_no2=u.user_no and l.level_no = lv.lessonlev_no and l.lesson_no = ? and l.user_no2 = (select user_no2 from lesson where lesson_no = ?) and l.level_no = (select level_no from lesson where lesson_no = ?)";
 		String sql2="select l.lesson_title, lv.lessonlev, l.LESSON_LOCATION, l.lesson_radius, l.lesson_price, l.lesson_count, l.state_no, l.lesson_contop, l.lesson_conmid, l.lesson_conbot, l.lesson_keyword, u.user_name from lesson l, users u,lessonlev lv where l.user_no2=u.user_no and l.level_no = lv.lessonlev_no and l.lesson_no = ? and l.user_no2 = (select user_no2 from lesson where lesson_no = ?) and l.level_no = (select level_no from lesson where lesson_no = ?)";
 		try {
-			pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql2);
 			pstmt.setInt(1, lesson_no);
 			pstmt.setInt(2, lesson_no);
 			pstmt.setInt(3, lesson_no);
@@ -132,15 +132,15 @@ public class LessonDao {
 				l.setLesson_conbot(rset.getString("lesson_conbot"));
 				l.setLesson_keyword(rset.getString("lesson_keyword"));
 				l.setUser_name(rset.getString("user_name"));
-				l.setReviewPrepare(rset.getInt("review_prepare"));
+		/*		l.setReviewPrepare(rset.getInt("review_prepare"));
 				l.setReviewSincerity(rset.getInt("review_sincerity"));
 				l.setReviewDelivery(rset.getInt("review_delivery"));
 				l.setReviewNo(rset.getInt("review_no"));
-				l.setReviewContent(rset.getString("review_content"));
+				l.setReviewContent(rset.getString("review_content"));*/
 				
 				System.out.println(l.toString());
 				
-				}else {
+				}/*else {
 					pstmt = conn.prepareStatement(sql2);
 					pstmt.setInt(1, lesson_no);
 					pstmt.setInt(2, lesson_no);
@@ -163,7 +163,7 @@ public class LessonDao {
 					l.setUser_name(rset.getString("user_name"));
 					
 					
-				}
+				}*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		

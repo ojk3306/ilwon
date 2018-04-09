@@ -1,10 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="lesson.model.vo.LessonDetail" %>    
+<%@ page import="review.model.vo.Review" %>    
 <%
 	LessonDetail lessondetail =(LessonDetail)request.getAttribute("lessondetail");
-	double avg_rate =(double)request.getAttribute("avg_rate");
-%>
+	ArrayList<Review> review = (ArrayList<Review>)request.getAttribute("review");
+	double avga =((Double)request.getAttribute("avga")).doubleValue();
+	int avgd = ((Integer)request.getAttribute("avgd")).intValue();
+	int avgs = ((Integer)request.getAttribute("avgs")).intValue();
+	int avgp = ((Integer)request.getAttribute("avgp")).intValue();
+	double avgs1 = 0;
+	double avgd1 = 0;
+	double avgp1 = 0;
+	double a = 0;
+	if(avgd != 0 && avgs != 0 && avgp != 0 && avga != 0) {
+	avgs1 = (double)avgs/5*100;
+	avgd1 = (double)avgd/5*100;
+	avgp1 = (double)avgp/5*100;
+	a = Math.round(avga*10d) / 10d;
+	}
+%>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,11 +28,11 @@
 
 
 
-<script type="text/javascript" src="/prototype/common/resources/js/jquery-3.3.1.min.js"></script>
-
+<script type="text/javascript" src="/prototype/common\resources\js\jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/prototype/common\resources\js\select2.js"></script>
 <script type="text/javascript">
 //리뷰보여주기
-$(function(){
+<%-- $(function(){
 	$.ajax({
 		url: "/prototype/previewreview",
 		data: {lesson_no : <%= lessondetail.getLesson_no()%>},
@@ -29,13 +44,15 @@ $(function(){
 			var json = JSON.parse(jsonStr);
 			
 			var values = $('#').html() + "<br>";
+		},error: function(a,b,c) {
+			console.log(b+c);
 		}
 		
 	});
 	
 	
 });
-
+ --%>
 
 
 </script>
@@ -292,7 +309,7 @@ border-radius: 35px;
 	<tr>
 	<td rowspan="2" style="width:35%;">
 	
-			<h3 align="center">평점 :3/5</h3>
+			<h3 align="center">평점 : <%-- <%= a %> --%>/5</h3>
 			 <hr style="clear:both;">
 			<div class="col-xs-12 col-md-6" style="width:95%">
                         <div class="row rating-desc">
@@ -304,7 +321,7 @@ border-radius: 35px;
                             <div class="col-xs-8 col-md-9" >
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20"
-                                        aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                        aria-valuemin="0" aria-valuemax="100" style="width: <%-- <%= avgs1%> --%>%">
                                         <span class="sr-only">2.5</span>
                                     </div>
                                 </div>
@@ -317,7 +334,7 @@ border-radius: 35px;
                             <div class="col-xs-8 col-md-9">
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20"
-                                        aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                        aria-valuemin="0" aria-valuemax="100" style="width: <%-- <%= avgp1%> --%>%">
                                         <span class="sr-only">20%</span>
                                     </div>
                                 </div>
@@ -330,7 +347,7 @@ border-radius: 35px;
                             <div class="col-xs-8 col-md-9">
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80"
-                                        aria-valuemin="0" aria-valuemax="100" style="width: 15%">
+                                        aria-valuemin="0" aria-valuemax="100" style="width: <%-- <%= avgd1%> --%>%">
                                         <span class="sr-only">15%</span>
                                     </div>
                                 </div>
@@ -347,31 +364,45 @@ border-radius: 35px;
 	<div class="row">
 						<div class="col-sm-3">
 							<img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
-							<div class="review-block-name"><a href="#">리뷰남긴사람 이름.</a></div>
-							<div class="review-block-date">년도, 월<br/>시각</div>
+							<div class="review-block-name"><a href="#"><%-- <%=review.get(0).getUserName() %> --%></a></div>
+							<div class="review-block-date"><%-- <%=review.get(0).getReviewDate() %> --%></div>
 						</div>
 						<div class="col-sm-9">
 							<div class="review-block-rate">
+							
+							
+							
+							
 								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
 								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 								</button>
+								
 								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
 								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 								</button>
+								
 								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
 								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 								</button>
-								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-								</button>
+								
 								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
 								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 								</button>
+								
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+							
+							
+							
+							
+							
+							
+							
 							</div>
-							<div class="review-block-title">제목</div>
+							<div class="review-block-title"><br></div>
 							<div class="review-block-description">
-							여기에 리뷰 를 넣는다. 
-							일단,버튼의 클래스로 점수를 나눌수있다.
+							<%-- <%=review.get(0).getReviewContent() %> --%>
 							</div>
 						</div>
 					</div>
@@ -385,8 +416,8 @@ border-radius: 35px;
 	<div class="row">
 						<div class="col-sm-3">
 							<img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
-							<div class="review-block-name"><a href="#">리뷰남긴사람 이름.</a></div>
-							<div class="review-block-date">년도, 월<br/>시각</div>
+							<div class="review-block-name"><a href="#"><%-- <%=review.get(1).getUserName() %> --%></a></div>
+							<div class="review-block-date"><%-- <%=review.get(1).getReviewDate() %> --%></div>
 						</div>
 						<div class="col-sm-9">
 							<div class="review-block-rate">
@@ -406,10 +437,9 @@ border-radius: 35px;
 								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 								</button>
 							</div>
-							<div class="review-block-title">제목</div>
+							<div class="review-block-title"><br></div>
 							<div class="review-block-description">
-							여기에 리뷰 를 넣는다. 
-							일단,버튼의 클래스로 점수를 나눌수있다.
+							<%-- <%=review.get(1).getReviewContent() %> --%>
 							</div>
 						</div>
 					</div>
