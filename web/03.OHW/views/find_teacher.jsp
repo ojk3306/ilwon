@@ -55,7 +55,68 @@
 	
 	function searchTeacher() {
 		
-		var classValue = $("input[type=radio][name=tclass-radio]:checked").val();		
+		var locationValue = $("input[type=radio][name=ohw-teacher-location]:checked").val();
+		console.log(locationValue);
+		
+		var lessonValue = $("input[type=radio][name=tclass-radio]:checked").val();		
+		console.log(lessonValue);
+		
+		var teacherGenderValue = $("input[type=radio][name=ohw-teacher-gender]:checked").val();
+		console.log(teacherGenderValue);
+		
+		var teacherAgePreValue = $("select[name=ohw-teacher-age-pre]").val();
+		console.log(teacherAgePreValue);
+		
+		var teacherAgeEndValue = $("select[name=ohw-teacher-age-end]").val();
+		console.log(teacherAgeEndValue);		
+		
+		var teacherEXPArr = new Array();
+		var teacherEXPValue = document.getElementsByName('ohw-teacher-EXP');
+		for(var i in teacherEXPValue){
+			if(teacherEXPValue[i].checked == true) {
+				console.log(teacherEXPValue[i].value);
+				teacherEXPArr[i] = teacherEXPValue[i].value;
+			}
+		}
+		
+		var lessonPricePreValue = $("select[name=ohw-lesson-price-pre]").val();
+		console.log(lessonPricePreValue);
+		
+		var lessonPriceEndValue = $("select[name=ohw-lesson-price-end]").val();
+		console.log(lessonPriceEndValue);
+		
+		var lessonLevelValue = $("select[name=ohw-lesson-level]").val();
+		console.log(lessonLevelValue);
+		
+		jQuery.ajaxSettings.traditional = true;	
+		
+		$.ajax({
+	    	url:"<%= request.getContextPath() %>/lslist",
+	    	data:{
+	    		location : locationValue, 
+	    		lesson : lessonValue, 
+	    		teacherGender : teacherGenderValue, 
+	    		teacherAgePre : teacherAgePreValue, 
+	    		teacherAgeEnd : teacherAgeEndValue, 
+	    		teacherEXP : teacherEXPArr, 
+	    		lessonPricePre : lessonPricePreValue, 
+				lessonPriceEnd : lessonPriceEndValue, 
+				lessonLevel : lessonLevelValue
+	    	},
+	    	type:"get",
+	    	datatype:"json",
+	    	success:
+	    		function(data) {
+	    		
+	    		console.log("CatgegoryList : ") + console.log(data);
+				var jsonStr = JSON.stringify(data);
+				var json = JSON.parse(jsonStr);
+				var bigCategory = "";				
+				 
+			}, error : function(a,b,c) {
+				console.log(b+c);
+			}
+	    });
 		
 	}
 	
@@ -74,9 +135,7 @@
 		case "cate_etc" : $(".tclass").hide(); $("#tetc").show(); break; 
 		
 		}		
-	}); --%>
-	
-	 
+	}); --%>	 
 	
 </script>
 
@@ -217,25 +276,30 @@
 	<script type="text/javascript">
 	
 	$.ajax({
-    	url:"<%= request.getContextPath() %>/clist",
+    	url:"<%= request.getContextPath() %>/tclist",
     	type:"get",
     	datatype:"json",
-    	success:function(data) {
+    	success:
+    		function(data) {
     		
+    		console.log("CatgegoryList : ") + console.log(data);
 			var jsonStr = JSON.stringify(data);
 			var json = JSON.parse(jsonStr);
 			var bigCategory = "";
 
-			for(var i in json.big){ //대분류 삽입				
-				bigCategory += '<td><a onclick="changeClass(this.id);" id = "' + json.big[i].CATEGORY_BIG + '">' + json.big[i].CATEGORY_BIG + '</a></td>'						
+			for(var i in json.bigCategory){ //대분류 삽입				
+				bigCategory += '<td><a onclick="changeClass(this.id);" id = "' + json.bigCategory[i].categoryBig + '">' + json.bigCategory[i].categoryBig + '</a></td>'						
 			}
 			
 			$('.ohw-big-category-tr').append(bigCategory);
 
-			 for(var i in json.clist){ //소분류 삽입	
-				 $("#"+json.clist[i].CATEGORY_BIG).html($("#"+json.clist[i].CATEGORY_BIG).html()+'<div class = "tclass ohw-' + json.clist[i].CATEGORY_BIG + '" align = "center"><input type="radio" name="tclass-radio" value="'+json.clist[i].CATEGORY_SMALL+'">' + json.clist[i].CATEGORY_SMALL + '</div>');
-			}			
-		} 	
+			 for(var i in json.categoryInfo){ //소분류 삽입	
+				 $("#"+json.categoryInfo[i].categoryBig).html($("#"+json.categoryInfo[i].categoryBig).html()+'<div class = "tclass ohw-' + json.categoryInfo[i].categoryBig + '" align = "center"><input type="radio" name="tclass-radio" value="' + json.categoryInfo[i].categorySmall + '">' + json.categoryInfo[i].categorySmall + '</div>');
+			}
+			 
+		}, error : function(a,b,c) {
+			console.log(b+c);
+		}
     });
 	
 	</script>
@@ -256,34 +320,34 @@
 			<div id = "person_info">					
 				<div>
 					<label>선생님 성별</label>
-					<input type="radio" name="gender">남  &nbsp; 
-					<input type="radio" name="gender">여  &nbsp; 
-					<input type="radio" name="gender">무관
+					<input type="radio" name="ohw-teacher-gender" value = "M">남  &nbsp; 
+					<input type="radio" name="ohw-teacher-gender" value = "F">여  &nbsp; 
+					<input type="radio" name="ohw-teacher-gender" value = "N">무관
 				</div>
 					
 				<div>
 					<label>선생님 연령대</label>
-					<select>
-						<option>선택</option>
-						<option>20대</option>
-						<option>30대</option>
-						<option>40대</option>
-						<option>50대</option>
+					<select name = "ohw-teacher-age-pre">
+						<option value = "0">선택</option>
+						<option value = "20">20</option>
+						<option value = "30">30</option>
+						<option value = "40">40</option>
+						<option value = "50">50</option>
 					</select> ~
 				
-					<select>
-						<option>선택</option>
-						<option>20대</option>
-						<option>30대</option>
-						<option>40대</option>
-						<option>50대</option>
-					</select>
+					<select name = "ohw-teacher-age-end">
+						<option value = "0">선택</option>
+						<option value = "20">20</option>
+						<option value = "30">30</option>
+						<option value = "40">40</option>
+						<option value = "50">50</option>
+					</select> 세
 				</div>
 					
 				<div>
 					<label>경력사항</label>
-					<input type="checkbox" value = "pro">프로 게이머 출신 &nbsp;
-					<input type="checkbox" value = "trophy">대회 입상 &nbsp;
+					<input type="checkbox" name = "ohw-teacher-EXP" value = "프로 게이머 출신">프로 게이머 출신 &nbsp;
+					<input type="checkbox" name = "ohw-teacher-EXP" value = "대회 입상">대회 입상 &nbsp;
 				</div>					
 							
 			</div>
@@ -307,16 +371,16 @@
 		<div id = "class_dinfo">
 			<div>
 					<label>수업료</label>
-					<select>
-						<option>선택</option>
+					<select name = "ohw-lesson-price-pre">
+						<option value = "0">선택</option>
 						<option>0</option>
 						<option>10</option>
 						<option>20</option>
 						<option>30</option>
 					</select> ~
 				
-					<select>
-						<option>선택</option>
+					<select name = "ohw-lesson-price-end">
+						<option value = "0">선택</option>
 						<option>10</option>
 						<option>20</option>
 						<option>30</option>
@@ -329,12 +393,13 @@
 				<tr>
 					<td><label>수업레벨</label></td>
 					<td>
-					<select>
-						<option>선택</option>
-						<option>초보과정</option>
-						<option>중급과정</option>
-						<option>고급과정</option>						
-					</select>
+						<select name = "ohw-lesson-level">
+							<option value = "0">선택</option>
+							<option value = "11130">초보과정</option>
+							<option value = "11131">중급과정</option>
+							<option value = "11132">고급과정</option>					
+							<option value = "11133">취미</option>					
+						</select>
 					</td>
 				</tr>				
 			</table>
@@ -345,7 +410,13 @@
 			<table>
 				<tr>
 					<td>
-						
+						<select name = "ohw-lesson-level">
+							<option value = "0">선택</option>
+							<option value = "11130">초보과정</option>
+							<option value = "11131">중급과정</option>
+							<option value = "11132">고급과정</option>					
+							<option value = "11133">취미</option>					
+						</select>
 					</td>
 				</tr>				
 			</table>
@@ -375,15 +446,13 @@ $(function () {
 	$.ajax({
 		url:"<%= request.getContextPath() %>/lrlist",			
 		dataType:"json",
-		success:function(data) {
+		success:function(data) {			
 			
-			//json 객체 하나(data)를 문자열 형태로 바꿈
 			var jsonStr = JSON.stringify(data);
-			//문자열을 다시 자바스크립트가 사용할 수 있는
-			//json 객체로 파싱함
+			
 			var json = JSON.parse(jsonStr);		 
 			
-			console.log(data);
+			console.log("LessonReadyList : ") + console.log(data);
 			
 			for(var i in json.list) {
 				
@@ -404,41 +473,6 @@ $(function () {
 		}	
 	});	
 });
-
-function searchResult() {
-	
-	$.ajax({
-		url:"<%= request.getContextPath() %>/lslist",			
-		dataType:"json",
-		success:function(data) {
-			
-			//json 객체 하나(data)를 문자열 형태로 바꿈
-			var jsonStr = JSON.stringify(data);
-			//문자열을 다시 자바스크립트가 사용할 수 있는
-			//json 객체로 파싱함
-			var json = JSON.parse(jsonStr);		 
-			
-			console.log(data);
-			
-			for(var i in json.list) {
-				
-				$('.ohw-search-table').append(
-				
-				<%-- "<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><a href = '<%= request.getContextPath() %>/ndetail?no=" + json.list[i].noticeNo + "&page=1'>" + json.list[i].noticeTitle + "</a></td>" --%>
-											
-				"<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></td>" + 
-						
-				"<td class = 'ohw-ready-name'>" + json.list[i].userName2 + "</td>" +					 
-				
-				"<td class = 'ohw-ready-category'>" + json.list[i].categoryBName + " / " + json.list[i].categorySName + "</td>" +					 
-				
-				"<td class = 'ohw-ready-comment'>" + json.list[i].lessonConmid + "</td></tr>"
-				
-				);				
-			}			
-		}	
-	});	
-};
 
 </script>
 	<div align = "center">

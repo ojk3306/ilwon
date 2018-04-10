@@ -10,10 +10,22 @@ import categorys.model.vo.Categorys;
 public class CategorysService {
 
 	public ArrayList<Categorys> getclist() {
-	Connection con=getConnection();
-	ArrayList<Categorys> clit=new categorys.model.dao.CategorysDao().getclist(con);
-	close(con);
-	return clit;
+		
+		Connection con=getConnection();
+		ArrayList<Categorys> clit=new categorys.model.dao.CategorysDao().getclist(con);
+		close(con);
+	
+		return clit;
+	}
+	
+	public ArrayList<String> getBigCategory() {
+		
+		Connection con = getConnection();
+		ArrayList<String> bigCategory = new categorys.model.dao.CategorysDao().getBigCategory(con);
+		close(con);
+		
+		System.out.println("getBigCategory : " + bigCategory + " / (To.CategoryService)");
+		return bigCategory;
 	}
 
 	public ArrayList<String> getlistcount() {

@@ -21,14 +21,14 @@ import lesson.model.vo.Onlesson;
 /**
  * Servlet implementation class CategorylistView
  */
-@WebServlet("/clist2")
-public class CategorylistView2 extends HttpServlet {
+@WebServlet("/tclist")
+public class CategorylistView extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CategorylistView2() {
+    public CategorylistView() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,46 +38,56 @@ public class CategorylistView2 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<Categorys> cate = new CategorysService().getclist();
-		ArrayList<String> catecount=new CategorysService().getlistcount();
-		RequestDispatcher view=null;
+		ArrayList<Categorys> categoryInfo = new CategorysService().getclist();
+		ArrayList<String> bigCategory = new CategorysService().getBigCategory();
+		RequestDispatcher view = null;
 		
-		if(cate.size()>0) {			
-			JSONObject json = new JSONObject();
+		if(categoryInfo.size() > 0) {
 			
+			JSONObject json = new JSONObject();			
 			JSONArray jarr = new JSONArray();
 			
-			for(Categorys l : cate) {
+			for(Categorys info : categoryInfo) {
+				
 				JSONObject job = new JSONObject();
-				job.put("CATEGORY_NO",l.getCATEGORY_NO());
-				job.put("CATEGORY_BIG",l.getcATEGORY_BIG());
-				job.put("CATEGORY_SMALL",l.getCATEGORY_SMALL());
-				job.put("CATEGORY_HIT",l.getCATEGORY_HIT());
-				job.put("maxcount",catecount);
-				jarr.add(job);
-			}
-			json.put("clist", jarr);
-			jarr = new JSONArray();
-			for(String l :   catecount) {
-				JSONObject job = new JSONObject();
-				job.put("CATEGORY_BIG",l);
+				
+				job.put("categoryNo", info.getCATEGORY_NO());
+				job.put("categoryBig", info.getcATEGORY_BIG());
+				job.put("categorySmall", info.getCATEGORY_SMALL());
+				job.put("categoryHit", info.getCATEGORY_HIT());
+				job.put("bigCategoryss", bigCategory);
 				
 				jarr.add(job);
 			}
-			json.put("big", jarr);
 			
-			System.out.println("CategoryJson : " + json.toJSONString());
+			json.put("categoryInfo", jarr);
+			
+			jarr = new JSONArray();
+			
+			for(String categoryBig : bigCategory) {
+				
+				JSONObject job = new JSONObject();
+				
+				job.put("categoryBig", categoryBig);
+				
+				jarr.add(job);
+			}
+			json.put("bigCategory", jarr);
+			
+			System.out.println("CategoryJson : " + json.toJSONString() + " / (To.CategorylistViewServlet)");
+			
 		    response.setContentType("application/json; charset=utf-8;");
 			PrintWriter out = response.getWriter();
 			out.print(json.toJSONString());
 			out.flush();
 			out.close();
 		
-		}else {
-		response.setContentType("text/html; charset=utf-8");
-		response.sendRedirect("/prototype/01.CJS/login.jsp");	
+		} else {
+			
+			response.setContentType("text/html; charset=utf-8");
+			response.sendRedirect("/prototype/01.CJS/login.jsp");	
+		
 		}	
-	
 	}
 
 	/**
