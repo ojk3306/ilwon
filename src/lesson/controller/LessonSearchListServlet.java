@@ -35,8 +35,20 @@ public class LessonSearchListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//리스트 결과를 json 배열에 담아서, 전송하는 컨트롤러				
-		ArrayList<Lesson> list = new LessonService().selectSearchList();				
+		//리스트 결과를 json 배열에 담아서, 전송하는 컨트롤러		
+		
+		String locationValue = request.getParameter("location");
+		String lessonValue = request.getParameter("lesson");
+		String teacherGenderValue = request.getParameter("teacherGender");
+		String teacherAgePreValue = request.getParameter("teacherAgePre");
+		String teacherAgeEndValue = request.getParameter("teacherAgeEnd");
+		String teacherEXPValue[] = request.getParameterValues("teacherEXP");
+		String lessonPricePreValue = request.getParameter("lessonPricePre");
+		String lessonPriceEndValue = request.getParameter("lessonPriceEnd");
+		String lessonLevelValue = request.getParameter("lessonLevel");
+				
+		ArrayList<Lesson> list = new LessonService().selectSearchList(locationValue, lessonValue, teacherGenderValue, 
+				teacherAgePreValue, teacherAgeEndValue, teacherEXPValue, lessonPricePreValue, lessonPriceEndValue, lessonLevelValue);				
 					
 		//전송은 json 객체 한개만 전송할 수 있음
 		//최종 전송용 json 객체 생성함
@@ -66,7 +78,8 @@ public class LessonSearchListServlet extends HttpServlet {
 			job.put("lessonRadius",lesson.getLesson_rad());	
 			job.put("lessonPrice",lesson.getLesson_price());	
 			job.put("lessonCount",lesson.getLesson_count());
-			job.put("lessonDate", lesson.getLesson_date().toString());
+			job.put("lessonStartDate", lesson.getLesson_startdate().toString());
+			job.put("lessonEndDate", lesson.getLesson_enddate().toString());
 			job.put("lessonContop",lesson.getLesson_contop());
 			job.put("lessonConmid",lesson.getLesson_conmid());
 			job.put("lessonConbot",lesson.getLesson_conbot());

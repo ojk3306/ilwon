@@ -239,11 +239,14 @@ public class LessonDao {
 		return l;
 	}
 
-	public ArrayList<Lesson> selectSearchList(Connection con) {
+	public ArrayList<Lesson> selectSearchList(Connection con, String locationValue, String lessonValue, String teacherGenderValue, 
+			String teacherAgePreValue, String teacherAgeEndValue, String[] teacherEXPValue, String lessonPricePreValue, 
+			String lessonPriceEndValue, String lessonLevelValue) {
 		
 		return null;
+		
 	}
 	
-	}
+}
 	
 
