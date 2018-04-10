@@ -1,10 +1,9 @@
-package semina.controller;
+package proposal.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,20 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import semina.model.service.SeminaService;
-import semina.model.vo.Semina;
-import users.model.vo.Users;
+import proposal.model.vo.*;
 
 /**
- * Servlet implementation class SeminaList
+ * Servlet implementation class ProposalList
  */
-@WebServlet("/semilist")
-public class SeminaList extends HttpServlet {
+@WebServlet("/plist")
+public class ProposalList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SeminaList() {
+    public ProposalList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,8 +32,8 @@ public class SeminaList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		Semina semi=new Semina();
+		Proposal pro=new Proposal();
+		
 		String search="";
 		int currentPage = 1;
 		//전달된 페이지값 추출
@@ -51,20 +49,12 @@ public class SeminaList extends HttpServlet {
 		}
 		
 		//한 페이지당 출력할 목록 갯수 지정
-		int limit = 7;
+		int limit = 10;
 		//전체 목록 갯수 조회 
 		
 		int listCount=new SeminaService().getlistcount();
 		
-		ArrayList<Semina> al1=new ArrayList<Semina>();//상단 리스트
-		 
-		ArrayList<Semina> getPopular=new SeminaService().getPopular(); //인기리스트
-		
-		ArrayList<Semina> getall=new SeminaService().getallsemi();
-		
-		ArrayList<Semina> al=null;
-		
-		
+	
 		if(search.equals("null")) {
 		System.out.println("이건대?");
 		al= new SeminaService().getseminalist(limit,currentPage);//최신 등록순으로
@@ -115,60 +105,11 @@ public class SeminaList extends HttpServlet {
 		
 		
 		
-	    RequestDispatcher view =null;
-	    if(al.size()>0) {
-	    view=request.getRequestDispatcher("/01.CJS/semina.jsp");
-	    request.setAttribute("list", al);
-	    request.setAttribute("Popularlist", getPopular);
-	    request.setAttribute("toplist", al1);
-		request.setAttribute("currentPage", currentPage);
-		request.setAttribute("maxPage", maxPage);
-		request.setAttribute("startPage", startPage);
-		request.setAttribute("endPage", endPage);
-		request.setAttribute("listCount", listCount);
-		if(request.getParameter("search")!=null) 
-	    request.setAttribute("search",request.getParameter("search"));
 		
 		
 		
 		
-		view.forward(request, response);
-		
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    }else {
-	    	view=request.getRequestDispatcher("/01.CJS/semina.jsp");
-		    request.setAttribute("list", al);
-		    request.setAttribute("Popularlist", getPopular);
-		    request.setAttribute("toplist", al1);
-			request.setAttribute("currentPage", currentPage);
-			request.setAttribute("maxPage", maxPage);
-			request.setAttribute("startPage", startPage);
-			request.setAttribute("endPage", endPage);
-			request.setAttribute("listCount", listCount);
-			if(request.getParameter("search")!=null) 
-		    request.setAttribute("search",request.getParameter("search"));
-			
-			
-			
-		request.setAttribute("message","결과값이 존재하지 않습니다!");
-		
-		
-		view.forward(request, response);
-		}
-	  
-		}
-
-		
-	
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

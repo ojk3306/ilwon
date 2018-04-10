@@ -138,7 +138,35 @@ public class SearchLogDao {
 			close(pstmt);
 		}		
 		return al;
-	}	
+	}
+	
+	
+	public ArrayList<String> realTimeLog(Connection con,ArrayList<String> list){
+		PreparedStatement pstmt = null;		
+		ResultSet rset=null;
+		
+		String query="select SEACH_CONTENT from SEArCH_LOG group by seach_content order by count(seach_content) desc";
+		try {
+			pstmt=con.prepareStatement(query);
+			rset=pstmt.executeQuery();		
+			
+			while(list.size()<5) {				
+				rset.next();				
+				list.add(rset.getString("SEACH_CONTENT"));				
+			};		
+	
+		} catch (java.sql.SQLException e) {		
+			System.out.println("SearchLogData Loading Complete / (To.SearchLogDao)");		
+		} catch(Exception e1) {
+			e1.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}		
+		return list;
+		
+	}
+	
 }
 
 

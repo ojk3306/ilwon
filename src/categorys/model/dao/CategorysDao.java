@@ -14,7 +14,6 @@ public class CategorysDao {
 		ResultSet rset= null;
 		ArrayList<Categorys> clist=new ArrayList<Categorys>();
 		String query="select * from CATEGORYS where CATEGORY_SMALL is not null";
-		
 		try {
 		pstmt=con.prepareStatement(query);
 		rset=pstmt.executeQuery();	

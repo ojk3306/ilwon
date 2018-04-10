@@ -21,14 +21,14 @@ import lesson.model.vo.Onlesson;
 /**
  * Servlet implementation class CategorylistView
  */
-@WebServlet("/clist")
-public class CategorylistView extends HttpServlet {
+@WebServlet("/clist2")
+public class CategorylistView2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CategorylistView() {
+    public CategorylistView2() {
         super();
         // TODO Auto-generated constructor stub
     }

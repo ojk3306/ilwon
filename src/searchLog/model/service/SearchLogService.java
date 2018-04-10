@@ -39,8 +39,18 @@ public class SearchLogService {
 		/*System.out.println("al : " + al + " / (To.SearchLogService)");*/
 		return al;
 	}
+	
+		public ArrayList<String> realTimeList(){
+			Connection con = getConnection();
+			ArrayList<String> list=new ArrayList<String>();
+			list=new SearchLogDao().realTimeLog(con,list);
+			close(con);
+			return list;
+			
+		}
+	}
 
-}
+
 
 
 

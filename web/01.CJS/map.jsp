@@ -15,8 +15,8 @@ function resizeWindow(win)    {
 </script>
     <meta charset="utf-8">
     <title>주소로 장소 표시하기</title>
-    
 </head>
+
 <body onload='resizeWindow(this)' onclick="self.close();">
 <div id="map" style="width:600px; height:350px;"></div>
 <%=loc%>
