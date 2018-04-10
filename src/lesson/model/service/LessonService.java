@@ -68,14 +68,28 @@ public class LessonService {
 		return list;
 	}
 	
-	public ArrayList<Lesson> selectSearchList() {
+	public ArrayList<Lesson> selectSearchList(String locationValue, String lessonValue, String teacherGenderValue,
+			String teacherAgePreValue, String teacherAgeEndValue, String[] teacherEXPValue, String lessonPricePreValue,
+			String lessonPriceEndValue, String lessonLevelValue) {
+		
+		Connection con = getConnection();
+		
+		ArrayList<Lesson> list = new LessonDao().selectSearchList(con, locationValue, lessonValue, teacherGenderValue, 
+				teacherAgePreValue, teacherAgeEndValue, teacherEXPValue, lessonPricePreValue, lessonPriceEndValue, lessonLevelValue);
+		
+		close(con);
+				
+		return list;
+	}	
+	
+	/*public ArrayList<Lesson> selectSearchList(String[] a) {
 		Connection con = getConnection();
 		
 		ArrayList<Lesson> list = new LessonDao().selectSearchList(con);
 		close(con);
 				
 		return list;
-	}
+	}*/
 
 	public ArrayList<Onlesson> onlesson(int user) {
 		Connection conn = getConnection();
@@ -108,6 +122,6 @@ public class LessonService {
 		close(conn);
 		
 		return lessondetail;
-	}
+	}	
 	
 }

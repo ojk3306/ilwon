@@ -45,9 +45,10 @@ public class LessonSearchListServlet extends HttpServlet {
 		String teacherEXPValue[] = request.getParameterValues("teacherEXP");
 		String lessonPricePreValue = request.getParameter("lessonPricePre");
 		String lessonPriceEndValue = request.getParameter("lessonPriceEnd");
-		String lessonLevelValue = request.getParameter("lessonLevel");		
-		
-		ArrayList<Lesson> list = new LessonService().selectSearchList();				
+		String lessonLevelValue = request.getParameter("lessonLevel");
+				
+		ArrayList<Lesson> list = new LessonService().selectSearchList(locationValue, lessonValue, teacherGenderValue, 
+				teacherAgePreValue, teacherAgeEndValue, teacherEXPValue, lessonPricePreValue, lessonPriceEndValue, lessonLevelValue);				
 					
 		//전송은 json 객체 한개만 전송할 수 있음
 		//최종 전송용 json 객체 생성함
