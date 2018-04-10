@@ -3,8 +3,45 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript"
+	src="/prototype/common/resources/js/jquery-3.3.1.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>학생 정보 보기</title>
+<script>
+//수강 중인 강좌
+$(function(){
+	$.ajax({
+		url: "/prototype/onlesson2",
+		data: {user : $('#userno').val()},
+		type: "get",
+		dataType: "json",
+		success: function(data) {
+			
+			var jsonStr = JSON.stringify(data);
+			var json = JSON.parse(jsonStr);
+			
+			var values = $('#ongoing_table').html() + "<br>";
+			
+			for(var i in json.onlesson) {	
+					if(json.onlesson[i].state == "수강중") {
+					values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
+					+"</td><td>"+json.onlesson[i].username+"</td><td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
+					+"<td><button type='button' class='btn btn-primary'>"+json.onlesson[i].state+"</button></td>"
+					+"<td><button type='button' class='btn btn-warning'>수정</button></td>"
+					+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='finishLesson(this)'>종료</button></td></tr>"			
+					}
+			}
+			
+			$('#ongoing_table').html(values);
+		}, error: function(a,b,c){
+			console.log(b+c);
+		}	
+	});
+
+});
+
+</script>
+
 </head>
 <body>
 <%@include file="/common/navbar.jsp" %>

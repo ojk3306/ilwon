@@ -1,8 +1,7 @@
-package lesson.controller;
+package review.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,16 +16,16 @@ import review.model.service.ReviewService;
 import review.model.vo.Review;
 
 /**
- * Servlet implementation class LessonDetailServlet
+ * Servlet implementation class ReviewViewServlet
  */
-@WebServlet("/lessondetail")
-public class LessonDetailServlet extends HttpServlet {
+@WebServlet("/review")
+public class ReviewViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LessonDetailServlet() {
+    public ReviewViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,8 +34,8 @@ public class LessonDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int lesson_no = Integer.parseInt(request.getParameter("no"));
 		
+		int lesson_no = Integer.parseInt(request.getParameter("no"));
 		LessonDetail lessondetail = new LessonService().lessonView(lesson_no);
 		ArrayList<Review> review = new ReviewService().previewReview(lesson_no);
 		//일단 다가져옴
@@ -72,8 +71,9 @@ public class LessonDetailServlet extends HttpServlet {
 		
 		response.setContentType("text/html; charset=utf-8"); 
 		RequestDispatcher view =null;
+		//강의 잇고 리뷰 있을때
 		if(lessondetail != null && review != null) {
-			view = request.getRequestDispatcher("04.OJK/teacherdetail.jsp");
+			view = request.getRequestDispatcher("04.OJK/review.jsp");
 			request.setAttribute("lessondetail", lessondetail);
 			request.setAttribute("review", review);
 			request.setAttribute("avgd", avgd);
@@ -82,8 +82,9 @@ public class LessonDetailServlet extends HttpServlet {
 			request.setAttribute("avga", avga);
 			view.forward(request, response);
 			
+		//강의 있고 리뷰 없을때	
 		}else if(lessondetail != null && review == null){
-			view = request.getRequestDispatcher("04.OJK/teacherdetail.jsp");
+			view = request.getRequestDispatcher("04.OJK/review.jsp");
 			request.setAttribute("lessondetail", lessondetail);
 			request.setAttribute("review", null);
 			avgd=0;
@@ -97,13 +98,13 @@ public class LessonDetailServlet extends HttpServlet {
 			view.forward(request, response);
 			
 		}
+		
 		else if(lessondetail == null){
 //에러페이지 만들어
 			view = request.getRequestDispatcher("#");
 			request.setAttribute("message","에러페이지");
 			view.forward(request, response);
 		}
-		
 	}
 
 	/**

@@ -2,6 +2,7 @@ package learnLog.model.vo;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class LearnLog implements Serializable {
 	
@@ -11,18 +12,20 @@ public class LearnLog implements Serializable {
 	private int userNo2;
 	private int lessonNo;
 	private Date logDate;
+	private int state;
 	
 	public LearnLog() {
 		
 	}
 
-	public LearnLog(int logNo, int userNo1, int userNo2, int lessonNo, Date logDate) {
+	public LearnLog(int logNo, int userNo1, int userNo2, int lessonNo, Date logDate, int state) {
 		super();
 		this.logNo = logNo;
 		this.userNo1 = userNo1;
 		this.userNo2 = userNo2;
 		this.lessonNo = lessonNo;
 		this.logDate = logDate;
+		this.state = state;
 	}
 
 	public int getLogNo() {
@@ -65,6 +68,14 @@ public class LearnLog implements Serializable {
 		this.logDate = logDate;
 	}
 
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -72,6 +83,9 @@ public class LearnLog implements Serializable {
 	@Override
 	public String toString() {
 		return "LearnLog [logNo=" + logNo + ", userNo1=" + userNo1 + ", userNo2=" + userNo2 + ", lessonNo=" + lessonNo
-				+ ", logDate=" + logDate + "]";
-	}	
+				+ ", logDate=" + logDate + ", state=" + state + "]";
+	}
+
+	
+	
 }
