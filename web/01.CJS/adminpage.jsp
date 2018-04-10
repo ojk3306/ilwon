@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+String one=(String)request.getAttribute("first"); 
+String two=(String)request.getAttribute("second"); 
+String three=(String)request.getAttribute("third"); 
+String four=(String)request.getAttribute("fourth"); 
+String five=(String)request.getAttribute("fifth"); 
+%>    
 <!DOCTYPE html>
 
 <html>
@@ -46,11 +54,11 @@
 <div class="list-group">
  <table style="border: 1px solid #ddd" name="realTimeSearch" class="table">
  <tr style="text-align:center; background-color:#337ab7"><th colspan="2" style="color:white; text-align:center;">실시간 검색어</th></tr>
- <tr><th>1</th><td style="text-align:center;"><span>첫번째 검색어</span></td></tr>
- <tr><th>2</th><td style="text-align:center;"><span>두번째 검색어</span></td></tr>
- <tr><th>3</th><td style="text-align:center;"><span>세번째 검색어</span></td></tr>
- <tr><th>4</th><td style="text-align:center;"><span>네번째 검색어</span></td></tr>
- <tr><th>5</th><td style="text-align:center;"><span>다섯번째 검색어</span></td></tr> 
+ <tr><th>1</th><td style="text-align:center;"><span><%=one %></span></td></tr>
+ <tr><th>2</th><td style="text-align:center;"><span><%=two %></span></td></tr>
+ <tr><th>3</th><td style="text-align:center;"><span><%=three %></span></td></tr>
+ <tr><th>4</th><td style="text-align:center;"><span><%=four %></span></td></tr>
+ <tr><th>5</th><td style="text-align:center;"><span><%=five %></span></td></tr> 
  </table>
  
  
@@ -178,3 +186,4 @@
 
   </body>
 </html>
+

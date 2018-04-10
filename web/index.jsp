@@ -70,12 +70,26 @@
 	}	
 	
 </style>
+<!--  -->
 
+
+<!--  -->
 </head>
 
 <body>
 <div style="height:52px">
+
+
+<!-- 나중에 지우세용 -->
+<form action="/prototype/rtsearch" type="post">
+<input type=submit value="관리자 페이지 링크" name="admin">
+</form>
+<!-- 나중에 지우세용 -->
+
+
+
 <%@ include file = "common/navbar.jsp" %>
+
 </div>
 
 <script type="text/javascript">
