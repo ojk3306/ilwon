@@ -13,9 +13,9 @@
 <script type="text/javascript" src="/prototype/common/resources/js/jquery-3.3.1.min.js"></script>
 
 </head>
-<body>
+<body onload='resizeWindow(this)' onclick="self.close();" style="width:300px;height:350px;">  
 	
-<div id="map" style="width:300px;height:350px;"></div>
+<div id="map" style="width:100%;height:100%;"></div>
 <input type="hidden" id="loc" value="<%=loc%>">
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=120b01867e29e09658100681cf1d0604&libraries=services"></script>
 <input type="hidden" id="loc" value="<%=loc%>">

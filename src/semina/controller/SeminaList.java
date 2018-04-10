@@ -128,6 +128,10 @@ public class SeminaList extends HttpServlet {
 		request.setAttribute("listCount", listCount);
 		if(request.getParameter("search")!=null) 
 	    request.setAttribute("search",request.getParameter("search"));
+		
+		
+		
+		
 		view.forward(request, response);
 		
 	    
