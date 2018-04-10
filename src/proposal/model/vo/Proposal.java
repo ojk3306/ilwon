@@ -7,7 +7,7 @@ public class Proposal implements Serializable{
 	
 	private static final long serialVersionUID = 6000L;
 	private int proposalNo;
-	private int userNo;	
+	private Integer userNo;	
 	private String proposalTitle;
 	private String proposalContent;
 	private Date proposalDate;
@@ -21,10 +21,10 @@ public class Proposal implements Serializable{
 	public void setProposalNo(int proposalNo) {
 		this.proposalNo = proposalNo;
 	}
-	public int getUserNo() {
+	public Integer getUserNo() {
 		return userNo;
 	}
-	public void setUserNo(int userNo) {
+	public void setUserNo(Integer userNo) {
 		this.userNo = userNo;
 	}
 	public String getProposalTitle() {
