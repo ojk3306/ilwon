@@ -50,16 +50,16 @@ public class OngoingLesson2Servlet extends HttpServlet {
 		for(LearnLog l : onlesson) {
 			
 			JSONObject job = new JSONObject();
-			job.put("username", l.getUser_name());
+			job.put("username", l.getUserName());
 			job.put("state", l.getState());
-			job.put("lesson_no", l.getLesson_no());
-			job.put("lesson_title", l.getLesson_title());
+			job.put("lesson_no", l.getLessonNo());
+			job.put("lesson_title", l.getLessonTitle());
+			job.put("log_no", l.getLogNo());
+			job.put("log_date", l.getLogDate().toString());
+			//job.put("user2_no", l.getUserNo2());
 			
-			if(l.getLesson_enddate()!=null) {			
-			job.put("lesson_enddate", l.getLesson_enddate().toString());
 			
-			}
-			
+					
 			jarr.add(job);
 		}
 		
