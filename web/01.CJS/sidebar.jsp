@@ -1,5 +1,9 @@
+<%@page import="users.model.vo.Users"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%
+ Users login = (Users)session.getAttribute("loginUser");
+ %>
 <!DOCTYPE html >
 <html>
 <head>
@@ -14,7 +18,36 @@
 
 <script type="text/javascript">
 
- $(function(){ 
+$(function(){
+if('<%=login%>' == null){
+$.ajax({
+		url:"/prototype/tsider",
+		data:{userno:"dd"},
+		success:function(){ 
+			
+		},
+		error:function(){
+			
+		}
+	})
+	
+}else{
+$.ajax({
+		url:"/prototype/tsider",
+		data:{userno:$("#userno").val()},
+		success:function(){
+			
+		},
+		error:function(){
+			
+		}
+	})
+}	
+	
+})
+
+
+$(function(){ 
 	 var $win = $(window);
 	 var top = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다. 
 	 /*사용자 설정 값 시작*/ 
@@ -214,7 +247,9 @@
  			</div>
         
         </div>
-
+<%if(login==null){}else{ %>
+<input type="hidden" value="<%=login.getUserNo() %>" id="userno">
+<%} %>
 </div>
 </div>
 </body>

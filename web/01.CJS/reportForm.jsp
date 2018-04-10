@@ -53,7 +53,7 @@ $(function() {
         $('.image-preview-clear').hide();
         $('.image-preview-input input:file').val("");
         $(".image-preview-input-title").text("Browse"); 
-    }); 
+    });  
     // Create the preview image
     $(".image-preview-input input:file").change(function (){     
         var img = $('<img/>', {

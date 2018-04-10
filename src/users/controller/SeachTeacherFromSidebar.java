@@ -1,30 +1,23 @@
-package proposal.controller;
+package users.controller;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import proposal.model.service.ProposalService;
-import proposal.model.vo.Proposal;
-import users.model.service.UsersService;
-import users.model.vo.Users;
-
 /**
- * Servlet implementation class ProposalDetail
+ * Servlet implementation class SeachTeacherFromSidebar
  */
-@WebServlet("/prodetail")
-public class ProposalDetail extends HttpServlet {
+@WebServlet("/tsider")
+public class SeachTeacherFromSidebar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProposalDetail() {
+    public SeachTeacherFromSidebar() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,31 +27,9 @@ public class ProposalDetail extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-	int result=new ProposalService().updatehitProposal(Integer.parseInt(request.getParameter("pno")));
-	
-	Proposal pro=new ProposalService().getproposaldetail(Integer.parseInt(request.getParameter("pno")));
-	
-	
+		System.out.println(request.getParameter("userno"));
 		
-	Users user=new UsersService().getUserinfoFromproposal(pro.getUserNo());
-	
-	RequestDispatcher view=null;
-	
-	if(pro!=null) {
-	view=request.getRequestDispatcher("/01.CJS/proposalDetail.jsp");
-		request.setAttribute("pro",pro);
-		request.setAttribute("user",user);
-		view.forward(request, response);
-	}else {
-		//실패시 
 	}
-	
-	
-	
-	
-
-	}
-	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

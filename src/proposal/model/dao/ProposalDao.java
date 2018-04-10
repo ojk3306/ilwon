@@ -183,4 +183,52 @@ public class ProposalDao {
 		return result;
 	}
 
+	public Proposal getproposaldetail(Connection con, int parseInt) {
+		Proposal pro=null;
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		String sql="select * from PROPOSAL where PROPOSAL_NO = ?";		
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1,parseInt);
+			rset=pstmt.executeQuery();
+			if(rset.next()) {
+				pro=new Proposal();
+				pro.setProposalContent(rset.getString("PROPOSAL_CONTENT"));
+				pro.setProposalDate(rset.getDate("PROPOSAL_DATE"));
+				pro.setProposalhit(rset.getInt("PROPOSA_HIT"));
+				pro.setProposalNo(rset.getInt("PROPOSAL_NO"));
+				pro.setProposalTitle(rset.getString("PROPOSAL_TITLE"));
+				pro.setUserNo(rset.getInt("USER_NO"));
+				System.out.println(pro.toString());	
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+			
+		}
+		
+		return pro;
+	}
+
+	public int updatehitProposal(Connection con, int proposalNo) {
+	PreparedStatement pstmt=null;
+	int result=0;
+	String sql="update proposal set PROPOSA_HIT = (select max(PROPOSA_HIT)+1 from proposal where PROPOSAL_NO=?) where PROPOSAL_NO = ? ";
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1,proposalNo);
+			pstmt.setInt(2,proposalNo);
+			result=pstmt.executeUpdate();
+		} catch (Exception e) {
+		e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 }

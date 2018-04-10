@@ -505,10 +505,6 @@ public class UsersDao {
 		System.out.println(user.toString());
 		return user;
 	}
-
-	
-	
-	
 	
 	
 }

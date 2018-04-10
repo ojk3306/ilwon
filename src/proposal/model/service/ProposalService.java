@@ -50,4 +50,24 @@ public class ProposalService {
 		return result;
 	}
 
+	public Proposal getproposaldetail(int parseInt) {
+		Connection con=getConnection();
+		Proposal pro=new ProposalDao().getproposaldetail(con,parseInt);
+		
+		close(con);
+		return pro;
+	}
+
+	public int updatehitProposal(int proposalNo) {
+		Connection con=getConnection();
+		int result=new ProposalDao().updatehitProposal(con,proposalNo);
+		if(result>0)
+			commit(con);
+		else
+			rollback(con);
+		close(con);
+		
+		return result;
+	}
+
 }
