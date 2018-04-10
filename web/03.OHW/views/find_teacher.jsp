@@ -11,21 +11,22 @@
 	function changeLocation(value){	
 		switch(value) {
 		
-		case "000" : $('#location_do').hide(); break;
-		case "111" : $('#location_do').hide();
-					$('#location_do').load("parts/location/111.jsp");
+		case "지역" : $('#location_do').hide(); break;
+		case "서울" : $('#location_do').hide();
+					$('#location_do').load("parts/location/seoul.jsp");
 					$('#location_do').show(); break;
 		}
 	}
 	
-	function changeClass(id) {	
-		switch(id) {
+	function changeClass(id) {
+		console.log(id);
+		switch(id) {		
 		
-		case "gamet": $(".tclass").hide(); $("#tgame").show(); break;
-		case "sportt": $(".tclass").hide(); $("#tsport").show(); break;
-		case "musict": $(".tclass").hide(); $("#tmusic").show(); break;
-		case "dancet": $(".tclass").hide(); $("#tdance").show(); break;
-		case "etct": $(".tclass").hide(); $("#tetc").show(); break;		
+		case "게임": $(".tclass").hide(); $(".ohw-게임").show(); break;
+		case "스포츠": $(".tclass").hide(); $(".ohw-스포츠").show(); break;
+		case "음악": $(".tclass").hide(); $(".ohw-음악").show(); break;
+		case "댄스": $(".tclass").hide(); $(".ohw-댄스").show(); break;
+		case "기타": $(".tclass").hide(); $(".ohw-기타").show(); break;		
 		}
 	}
 	
@@ -40,6 +41,7 @@
 	
 	function searchView() {
 		
+		$("#show_table").hide();
 		$("#search_table").show();
 		
 	}
@@ -47,6 +49,13 @@
 	function hideView() {
 		
 		$("#search_table").hide();
+		$("#show_table").show();
+		
+	}
+	
+	function searchTeacher() {
+		
+		var classValue = $("input[type=radio][name=tclass-radio]:checked").val();		
 		
 	}
 	
@@ -79,14 +88,14 @@
 	
 	#left_bar {	
 			
-		background : rgba(50, 50, 50, .5);
+		background : rgba(50, 50, 50, .0);
 		width : 100px;
 		height : 680px;
 		float : left;
 	}
 	
 	#right_bar {
-		background : rgba(50, 50, 50, .5);
+		background : rgba(50, 50, 50, .0);
 		width : 100px;
 		height : 680px;
 		float : right;		
@@ -111,6 +120,36 @@
 		overflow : auto;
 		margin-left : 20px;		
 	}	
+			
+	#show_table, #search_table {		
+		width:60%;
+	}
+	
+	.ohw-ready-table, .ohw-search-table {
+		width:900px;
+		height:700px;
+		padding:0px;		
+	}
+	
+	.ohw-ready-photo, .ohw-search-photo {
+		width:110px;
+		height:110px;
+	}
+	
+	.ohw-ready-name, .ohw-search-name {
+		width:100px;
+		height:110px;
+	}
+	
+	.ohw-ready-category, .ohw-search-category {
+		width:200px;
+		height:110px;
+	}
+	
+	.ohw-ready-comment, .ohw-search-comment {
+		width:500px;
+		height:110px;
+	}
 	
 </style>
 </head>
@@ -131,24 +170,24 @@
 			</td>
 			<td style = "vertical-align : top; padding-top : 19px;">
 				<select onchange = "changeLocation(this.value);">
-					<option value="000">지역</option>
-					<option value="111">서울</option>
-					<option value="222">인천</option>
-					<option value="333">세종</option>
-					<option value="444">대전</option>
-					<option value="555">울산</option>
-					<option value="666">대구</option>
-					<option value="777">광주</option>
-					<option value="888">부산</option>
-					<option value="1111">경기</option>
-					<option value="2222">강원</option>
-					<option value="3333">충북</option>
-					<option value="4444">충남</option>
-					<option value="5555">전북</option>
-					<option value="6666">전남</option>
-					<option value="7777">경북</option>
-					<option value="8888">경남</option>
-					<option value="9999">제주</option>
+					<option value="지역">지역</option>
+					<option value="서울">서울</option>
+					<option value="인천">인천</option>
+					<option value="세종">세종</option>
+					<option value="대전">대전</option>
+					<option value="울산">울산</option>
+					<option value="대구">대구</option>
+					<option value="광주">광주</option>
+					<option value="부산">부산</option>
+					<option value="경기">경기</option>
+					<option value="강원">강원</option>
+					<option value="충북">충북</option>
+					<option value="충남">충남</option>
+					<option value="전북">전북</option>
+					<option value="전남">전남</option>
+					<option value="경북">경북</option>
+					<option value="경남">경남</option>
+					<option value="제주">제주</option>
 				</select>
 			</td>
 			<td><span id = "location_do"></span></td>					
@@ -162,51 +201,39 @@
 	
 	<section class = "teacher_class">
 	
-		<table>
-			<tr>
-				<th style = "width : 100px;"><h3 class="header_text">수업</h3></th>
-				<th style = "padding-top : 18px;">
-					<a onclick="changeClass(this.id);" id = "gamet">게임</a>
-					<a onclick="changeClass(this.id);" id = "sportt">스포츠</a>
-					<a onclick="changeClass(this.id);" id = "musict">음악</a>
-					<a onclick="changeClass(this.id);" id = "dancet">댄스</a>
-					<a onclick="changeClass(this.id);" id = "etct">기타</a>
-				</th>
+		<table class = "ohw-big-category">
+			<tr class = "ohw-big-category-tr">
+				<th style = "width : 100px;"><h3 class="header_text">수업</h3></th>				
 			</tr>
-		</table>			
+		</table>		
+								
+	</section>	
+		
+	<script type="text/javascript">
+	
+	$.ajax({
+    	url:"<%= request.getContextPath() %>/clist",
+    	type:"get",
+    	datatype:"json",
+    	success:function(data) {
+    		
+			var jsonStr = JSON.stringify(data);
+			var json = JSON.parse(jsonStr);
+			var bigCategory = "";
+
+			for(var i in json.big){ //대분류 삽입				
+				bigCategory += '<td><a onclick="changeClass(this.id);" id = "' + json.big[i].CATEGORY_BIG + '">' + json.big[i].CATEGORY_BIG + '</a></td>'						
+			}
 			
-		<p class = "select_class">
-			<div class="tclass" id="tgame">
-				<input type="checkbox" value="">배틀 그라운드
-				<input type="checkbox" value="">오버워치
-				<input type="checkbox" value="">리그 오브 레전드
-				<input type="checkbox" value="">철권
-			</div>
-			
-			<div class="tclass" id="tsport">
-				<input type="checkbox" value="">축구
-				<input type="checkbox" value="">농구
-				<input type="checkbox" value="">야구
-			</div>
-			
-			<div class="tclass" id="tmusic">
-				<input type="checkbox" value="">현악기
-				<input type="checkbox" value="">관악기
-				<input type="checkbox" value="">타악기
-				<input type="checkbox" value="">보컬
-				<input type="checkbox" value="">랩
-			</div>
-			
-			<div class="tclass" id="tdance">
-				<input type="checkbox" value="">방송댄스
-				<input type="checkbox" value="">팝핀
-			</div>
-			
-			<div class="tclass" id="tetc">
-				<input type="checkbox" value="">웃음
-			</div>
-		</p>						
-	</section>
+			$('.ohw-big-category-tr').append(bigCategory);
+
+			 for(var i in json.clist){ //소분류 삽입	
+				 $("#"+json.clist[i].CATEGORY_BIG).html($("#"+json.clist[i].CATEGORY_BIG).html()+'<div class = "tclass ohw-' + json.clist[i].CATEGORY_BIG + '"><input type="radio" name="tclass-radio" value="'+json.clist[i].CATEGORY_SMALL+'">' + json.clist[i].CATEGORY_SMALL + '</div>');
+			}			
+		} 	
+    });
+	
+	</script>
 	
 	<hr>
 	
@@ -224,8 +251,8 @@
 			<div id = "person_info">					
 				<div>
 					<label>선생님 성별</label>
-					<input type="radio" name="gender">남  &nbsp;
-					<input type="radio" name="gender">여  &nbsp;
+					<input type="radio" name="gender">남  &nbsp; 
+					<input type="radio" name="gender">여  &nbsp; 
 					<input type="radio" name="gender">무관
 				</div>
 					
@@ -249,14 +276,11 @@
 				</div>
 					
 				<div>
-				<label>경력사항</label>
-				<input type="checkbox">프로 게이머 출신 &nbsp;
-				<input type="checkbox">대회 입상 &nbsp;
-				</div>	
-					
-				<div>
-				<label>추가정보</label>
-				</div>			
+					<label>경력사항</label>
+					<input type="checkbox" value = "pro">프로 게이머 출신 &nbsp;
+					<input type="checkbox" value = "trophy">대회 입상 &nbsp;
+				</div>					
+							
 			</div>
 		
 	</section>
@@ -329,49 +353,110 @@
 	<hr>
 	
 	<section class="button_section">
-	<center>
+	<div align = "center">
 		<div style="width : 40%; overflow:hidden; margin-top : 30px; margin-bottom : 30px;">
-			<button type="submit" class="btn btn-info" onclick="searchView();">검색하기</button>
+			<button type="submit" class="btn btn-info" onclick="searchView(); searchTeacher();">검색하기</button>
 			<button type="reset" class="btn btn-info" onclick="hideView();">초기화하기</button>		
 		</div>
-	</center>	
+	</div>	
 	</section>
 	
-	<section id="search_table">
-		<table class="table table-hover" style="width : 50%; margin-left : 30%;">
-    <thead>
-      <tr>
-        <th>Photo</th>
-        <th>Name</th>
-        <th>Comment</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td style="height : 100px; width : 100px;">
-        <img src="" style="height : 50px; width : 40px;"></td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-      </tr>
-      <tr>
-        <td style="height : 100px; width : 100px;">
-        <img src="" style="height : 50px; width : 40px;"></td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
-      </tr>
-      <tr>
-        <td style="height : 100px; width : 100px;">
-        <img src="" style="height : 50px; width : 40px;"></td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
-      </tr>
-    </tbody>
-  </table>
-	</section>
+	<hr>
 	
-	<div>
-		<%@ include file = "../../common/footer.jsp" %>
+<script type="text/javascript">
+
+$(function () {
+	
+	$.ajax({
+		url:"<%= request.getContextPath() %>/lrlist",			
+		dataType:"json",
+		success:function(data) {
+			
+			//json 객체 하나(data)를 문자열 형태로 바꿈
+			var jsonStr = JSON.stringify(data);
+			//문자열을 다시 자바스크립트가 사용할 수 있는
+			//json 객체로 파싱함
+			var json = JSON.parse(jsonStr);		 
+			
+			console.log(data);
+			
+			for(var i in json.list) {
+				
+				$('.ohw-ready-table').append(				
+				
+				<%-- "<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><a href = '<%= request.getContextPath() %>/ndetail?no=" + json.list[i].noticeNo + "&page=1'>" + json.list[i].noticeTitle + "</a></td>" --%>
+											
+				"<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></td>" + 
+						
+				"<td class = 'ohw-ready-name'>" + json.list[i].userName2 + "</td>" +					 
+				
+				"<td class = 'ohw-ready-category'>" + json.list[i].categoryBName + " / " + json.list[i].categorySName + "</td>" +					 
+				
+				"<td class = 'ohw-ready-comment'>" + json.list[i].lessonConmid + "</td></tr>"
+				
+				);				
+			}			
+		}	
+	});	
+});
+
+function searchResult() {
+	
+	$.ajax({
+		url:"<%= request.getContextPath() %>/lslist",			
+		dataType:"json",
+		success:function(data) {
+			
+			//json 객체 하나(data)를 문자열 형태로 바꿈
+			var jsonStr = JSON.stringify(data);
+			//문자열을 다시 자바스크립트가 사용할 수 있는
+			//json 객체로 파싱함
+			var json = JSON.parse(jsonStr);		 
+			
+			console.log(data);
+			
+			for(var i in json.list) {
+				
+				$('.ohw-search-table').append(
+				
+				<%-- "<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><a href = '<%= request.getContextPath() %>/ndetail?no=" + json.list[i].noticeNo + "&page=1'>" + json.list[i].noticeTitle + "</a></td>" --%>
+											
+				"<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></td>" + 
+						
+				"<td class = 'ohw-ready-name'>" + json.list[i].userName2 + "</td>" +					 
+				
+				"<td class = 'ohw-ready-category'>" + json.list[i].categoryBName + " / " + json.list[i].categorySName + "</td>" +					 
+				
+				"<td class = 'ohw-ready-comment'>" + json.list[i].lessonConmid + "</td></tr>"
+				
+				);				
+			}			
+		}	
+	});	
+};
+
+</script>
+	<div align = "center">
+	<div id="show_table" align = "center"> <!-- 평소에 펼쳐져 있는 테이블 -->		
+		<table class="table table-hover ohw-ready-table">
+			<tr style = "height:30px; padding:0px; margin:0px;">
+        		<td colspan = "4" align = "center"><h3>새로 올라온 강의</h3></td>        		
+      		</tr> 
+		</table>
 	</div>
+	
+	<div id="search_table" align = "center"> <!-- 검색 결과 표시 테이블 -->
+		<table class="table table-hover ohw-search-table">      
+			<tr style = "height:30px; padding:0px; margin:0px;">
+        		<td colspan = "4" align = "center"><h3>검색 결과</h3></td>   		
+      		</tr>     
+		</table>
+	</div>
+	</div>
+	
+<div>
+	<%@ include file = "../../common/footer.jsp" %>
+</div>
 	
 </body>
 </html>

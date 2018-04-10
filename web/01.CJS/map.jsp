@@ -15,8 +15,8 @@ function resizeWindow(win)    {
 </script>
     <meta charset="utf-8">
     <title>주소로 장소 표시하기</title>
-    
 </head>
+
 <body onload='resizeWindow(this)' onclick="self.close();">
 <div id="map" style="width:600px; height:350px;"></div>
 <%=loc%>
@@ -51,7 +51,7 @@ geocoder.addressSearch('<%=loc%>', function(result, status) {
                 strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
                 strokeStyle: 'dashed', // 선의 스타일 입니다
                 fillColor: '#CFE7FF', // 채우기 색깔입니다
-                fillOpacity: 0.8  // 채우기 불투명도 입니다   
+                fillOpacity: 0.7  // 채우기 불투명도 입니다   
             }); 
 
             // 지도에 원을 표시합니다 

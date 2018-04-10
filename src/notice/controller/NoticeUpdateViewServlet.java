@@ -36,42 +36,25 @@ public class NoticeUpdateViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//리스트 결과를 json 배열에 담아서, 전송하는 컨트롤러				
-				ArrayList<Notice> list = new NoticeService().selectList();				
+		
+		Notice notice = new NoticeService().selectNotice(Integer.parseInt(request.getParameter("no")));
+		response.setContentType("text/html; charset=UTF-8");
+		RequestDispatcher view = null;
+		
+		if(notice != null) {
+			
+			view = request.getRequestDispatcher("03.OHW/views/noticeUpdate.jsp");
+			request.setAttribute("notice", notice);
+			view.forward(request, response);
+				
+		} else {
 					
-				//전송은 json 객체 한개만 전송할 수 있음
-				//최종 전송용 json 객체 생성함
-				JSONObject json = new JSONObject();
+			view = request.getRequestDispatcher("03.OHW/views/noticeError.jsp");
+			request.setAttribute("message", "공지글 수정 페이지로 이동 요청 실패");
+			view.forward(request, response);
 					
-				//list 를 옮겨 담을 json 배열 객체가 필요함.
-				JSONArray jarr = new JSONArray();
-					
-				//list 에서 user 객체 한 개 꺼냄
-				// => json 객체 한 개에 값들을 옮겨 담음.
-				// => json 객체를 json 배열에 저장함.
-				for(Notice notice : list) {
-					//한 사람의 정보를 저장할 json 객체 생성함
-					JSONObject job = new JSONObject();
-					job.put("noticeNo", notice.getNoticeNo());
-					job.put("userNo", notice.getUserNo());			
-					job.put("userName", notice.getUserName());
-					job.put("noticeTitle",notice.getNoticeTitle());					
-					job.put("noticeDate", notice.getNoticeDate().toString());
-					job.put("noticeContent", notice.getNoticeContent());
-						
-					jarr.add(job);			
-				}
-					
-					//전송용 객체에 jarr 배열 담음
-					json.put("list", jarr);
-					System.out.println("NoticeUpdatejson : " + json.toJSONString());
-					
-					response.setContentType("application/json; charset=UTF-8");
-					PrintWriter out = response.getWriter();
-					out.println(json.toJSONString());
-					out.flush();
-					out.close();
-				}
+		}
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

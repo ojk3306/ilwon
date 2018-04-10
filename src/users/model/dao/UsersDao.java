@@ -124,7 +124,6 @@ public class UsersDao {
 		
 		int startRow = (currentPage - 1) * limit + 1;
 		int endRow = startRow + limit - 1;
-		System.out.println("usertype="+user.getUserTypeNo());
 		
 		if(seachOption==1) {
 		//모든 설정으로 검색.
@@ -430,7 +429,6 @@ public class UsersDao {
 		
 		case 2: query="update users set USER_EMAIL = ? where user_no = ?"; break;
 		
-		
 		case 3: query="update users set USER_AGE = ? where user_no = ?"; break;
 		
 		case 4: query="update users set USER_GENDER = ? where user_no = ?"; break;
@@ -458,6 +456,54 @@ public class UsersDao {
 			close(pstmt);
 		}
 		return result;
+	}
+
+	public Users getUserinfofromsemina(Connection con, int userNo) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Users user=null;
+		
+		String query="select * from users where USER_NO = ?";
+		
+
+		try {
+			pstmt=con.prepareStatement(query);
+			pstmt.setInt(1,userNo);
+			rset=pstmt.executeQuery();
+			
+			if(rset.next()) {
+				user=new Users();
+				user.setUserNo(rset.getInt("USER_NO"));
+				user.setUserTypeNo(rset.getInt("USER_TYPE"));
+				user.setUserEmail(rset.getString("USER_EMAIL"));
+				user.setUserName(rset.getString("USER_NAME"));
+				user.setUserGender(rset.getString("USER_GENDER"));
+				user.setUserAge(rset.getInt("USER_AGE"));
+				user.setUserLoc(rset.getString("USER_LOC"));
+				user.setUserPhone(rset.getString("USER_PHONE"));
+				user.setUserKeywordCount(rset.getInt("USER_KEYWORD_COUNT"));
+				user.setUserLoginable(rset.getString("USER_LOGINABLE"));
+				user.setUserExeable(rset.getString("USER_EXEABLE"));
+				user.setUserLessonmax(rset.getInt("USER_LESSONMAX"));
+				user.setUserEnrollDate(rset.getDate("USER_ENROLLDATE"));
+				if(rset.getString("USER_ORIGINAL_PHOTO")!=null) {
+				user.setUserOriginalPhoto(rset.getString("USER_ORIGINAL_PHOTO"));	
+				}
+				if(rset.getString("USER_RENAME_PHOTO")!=null) {
+				user.setUserRenamePhoto(rset.getString("USER_RENAME_PHOTO"));	
+				}
+				
+			}
+			
+		} catch (Exception e) {
+		e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println(user.toString());
+		return user;
 	}
 
 	

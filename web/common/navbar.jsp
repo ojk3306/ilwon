@@ -153,10 +153,19 @@
 				<li class="active"><a href="/prototype/03.OHW/views/noticeList.jsp">은밀한 공지</a></li>
 				<li><a href="/prototype/03.OHW/views/find_teacher.jsp">선생 찾기</a></li>
 				<li><a href="/prototype/03.OHW/views/find_learn_list.jsp">학생 찾기</a></li>
-				<li><a href="/prototype/01.CJS/semina.jsp">세미나  찾기</a></li>
+				<li><a href="/prototype/semilist?page=1">세미나  찾기</a></li>
 				<li><a href="/prototype/01.CJS/reportForm.jsp">신고하기</a></li>
-				<li><a href="/prototype/04.OJK/report.jsp">건의하기</a></li>
-				<li><a href="/prototype/01.CJS/adminpage.jsp">관리자</a></li>
+				<li><a href="/prototype/plist">건의하기</a></li>
+				<% if( loginUser == null ){%>
+				
+				<%}else{%>
+					<% if(loginUser.getUserTypeNo() ==1003 ){%>
+					<li><a href="/prototype/01.CJS/adminpage.jsp">관리자</a></li>
+					<%} %>
+					
+				<%} %>
+			
+			
 			</ul>
 			
 			<ul class="nav navbar-nav navbar-right ohw-btn-ul" style = "overflow : hidden;"> <!-- 메뉴바 오른쪽 -->

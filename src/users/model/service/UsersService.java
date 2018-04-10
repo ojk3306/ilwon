@@ -83,6 +83,15 @@ public class UsersService {
 		return result;
 	}
 
+	public Users getUserinfofromsemina(int userNo) {
+		Connection con = getConnection();
+		Users user=new UsersDao().getUserinfofromsemina(con,userNo);
+		close(con);			
+		
+		
+		return user;
+	}
+
 	
 	
 	

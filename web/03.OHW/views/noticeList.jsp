@@ -97,8 +97,10 @@
 			
 			<% if(loginUser != null && loginUser.getUserTypeNo() == 1003) { %>
 			
-			<div style="padding: 0px; float:right;">
-				<button type="button" class="btn" onclick="location.href='/prototype/03.OHW/views/noticeInsert.jsp'">글쓰기</button>
+			<div style="padding: 0px; float:right;">				
+				<button type="button" class="btn btn-default" onclick="location.href='/prototype/03.OHW/views/noticeInsert.jsp'">
+					<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 글쓰기
+				</button>
 			</div>					
 					
 			<% } %>

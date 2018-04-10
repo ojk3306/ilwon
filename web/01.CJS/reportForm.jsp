@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+String message=(String)request.getAttribute("message");
+%>
 <html>
 <head>
 <script type="text/javascript" src="/prototype/common\resources\js\jquery-3.3.1.min.js"></script>
@@ -9,7 +12,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<title>Insert title here</title>
+<title>신고 폼</title>
 <script type="text/javascript">
 $(document).on('click', '#close-preview', function(){ 
     $('.image-preview').popover('hide');
@@ -25,6 +28,8 @@ $(document).on('click', '#close-preview', function(){
 });
 
 $(function() {
+	if('<%=message%>'!=null)
+		alert('<%=message%>');
     // Create the close button
     var closebtn = $('<button/>', {
         type:"button",
@@ -71,9 +76,6 @@ $(function() {
 });
 
 //delayed execution
-$(function() {
- $('#comment').inputLengthLabel();
-});
 
 //module inputLengthLabel
 //Carlos C Soto <eclipxe13@gmail.com>
@@ -146,6 +148,8 @@ $(function() {
  
 }(jQuery));
 </script>
+
+
 <style type="text/css">
 .inputlengthlabel-container {
     position: relative;
@@ -206,27 +210,35 @@ $(function() {
 <%@include file="/01.CJS\sidebar.jsp" %>
 <div class="container">
 <div class="row">
-<div class="col-md-6 col-md-offset-3">
+<div class="col-md-6 col-md-offset-3" style="margin-top: -600px;">
     
-    <form method="post" action="#">
-   	<div class="selections" Style="margin-right:0px;  ">
-    <select> <option>d</option>
-    </select>
-    <select> <option>d</option>
-    </select>
-    <select> <option>d</option>
-    </select>
-  
-  	 </div>
+    <form method="post" action="/prototype/inreport" enctype="multipart/form-data">
+   	<%if(loginUser!=null){ %>
+   	<input type="hidden" name="userno" value="<%=loginUser.getUserNo()%>">
+   	<% }%>
         <fieldset>
             <div class="form-group">
               <br>
                 <label for="exampleInputEmail1">제목</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" name="title">
             </div>
             <div class="form-group">
-                <label>내용</label>
-                <textarea class="form-control" id="comment" maxlength="3000" rows="20" name="contents" placeholder="신고는 신중히" ></textarea>
+<label>내용</label>
+<textarea class="form-control" id="comment" maxlength="3000" rows="20" name="contents" placeholder="신고는 신중히" >
+ 신고 유형: 
+	ex)욕설, 사기, 선정성 ...
+	
+신고 내용:
+
+사건 발생일: 
+    ex)18/01/25
+
+
+
+
+보다 빠른 사건 처리를 위해 첨부파일이 필수적으로 필요합니다.
+이점 유의해 주세요.
+</textarea>
             </div>
             <div class="col-xs-12 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">  
             <!-- image-preview-filename input [CUT FROM HERE]-->
@@ -241,7 +253,7 @@ $(function() {
                     <div class="btn btn-default image-preview-input">
                         <span class="glyphicon glyphicon-folder-open"></span>
                         <span class="image-preview-input-title">Browse</span>
-                        <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"/> <!-- rename it -->
+<input type="file" accept="image/png, image/jpeg, image/gif" name="img"/> <!-- rename it -->
                     </div>
                 </span>
             </div><!-- /input-group image-preview [TO HERE]--> 

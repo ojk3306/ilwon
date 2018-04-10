@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isErrorPage="true"%>
 
+<%
+String message =(String)request.getAttribute("message");
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -15,59 +18,10 @@
 <script type="text/javascript" src="/prototype/common\resources\js\jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 $(function(){
-	alert("관리자 로그인을 해주세요")
+	alert('<%=message%>');
 })
-	(function () {
-		'use strict';
 
-	function emulatedIEMajorVersion() {
-		var groups = /MSIE ([0-9.]+)/.exec(window.navigator.userAgent)
-		if (groups === null) {
-		return null
-		}
-		var ieVersionNum = parseInt(groups[1], 10)
-		var ieMajorVersion = Math.floor(ieVersionNum)
-		return ieMajorVersion
-	}
 
-	function actualNonEmulatedIEMajorVersion() {
-		var jscriptVersion = new Function('/*@cc_on return @_jscript_version; @*/')() // jshint ignore:line
-		if (jscriptVersion === undefined) {
-		return 11 // IE11+ not in emulation mode
-		}
-		if (jscriptVersion < 9) {
-		return 8 // IE8 (or lower; haven't tested on IE<8)
-		}
-		return jscriptVersion // IE9 or IE10 in any mode, or IE11 in non-IE11 mode
-	}
-		var ua = window.navigator.userAgent
-		if (ua.indexOf('Opera') > -1 || ua.indexOf('Presto') > -1) {
-		return // Opera, which might pretend to be IE
-		}
-		var emulated = emulatedIEMajorVersion()
-		if (emulated === null) {
-		return // Not IE
-		}
-		var nonEmulated = actualNonEmulatedIEMajorVersion()
-
-		if (emulated !== nonEmulated) {
-		window.alert('WARNING: You appear to be using IE' + nonEmulated + ' in IE' + emulated + ' emulation mode.\nIE emulation modes can behave significantly differently from ACTUAL older versions of IE.\nPLEASE DON\'T FILE BOOTSTRAP BUGS based on testing in IE emulation modes!')
-		}
-	})();	
-
-	(function () {
-	  'use strict';
-	  if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
-	    var msViewportStyle = document.createElement('style')
-	    msViewportStyle.appendChild(
-	      document.createTextNode(
-	        '@-ms-viewport{width:auto!important}'
-	      )
-	    )
-	    document.querySelector('head').appendChild(msViewportStyle)
-	  }
-	})();
-	
 </script>
     
 <style type="text/css">
@@ -124,7 +78,7 @@ $(function(){
 
 <body>
 
-<div style="height:52px">
+<div style="margin-top: -48px;">
 	<%@ include file = "../../common/navbar.jsp" %>
 </div>
 

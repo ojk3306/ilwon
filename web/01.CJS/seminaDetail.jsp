@@ -1,17 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   <%@
+   page import="users.model.vo.Users , semina.model.vo.* ,seminaDetail.model.vo.*"
+    %> 
+    <%
+    Semina semi=(Semina)request.getAttribute("semina");
+    Users user=(Users)request.getAttribute("user");
+    SeminaDetail semideta=(SeminaDetail)request.getAttribute("semideta");
+    %>
 <!DOCTYPE html>
 <html>
 <head>
 <script type="text/javascript" src="/prototype/common/resources/js/jquery-3.3.1.min.js"></script>
 <link href="/prototype/common/resources/css/bootstrap-theme.min.css" rel="stylesheet">
 <link href="/prototype/01.CJS\js\jquery.stepProgressBar.css" rel="stylesheet" type="text/css">
- <script src="/prototype/common/resources/js/select2.js"></script>
+ 
+ <script type="text/javascript">
+
+ function enrollsemina(){
+	 $.ajax({
+		url:"/prototype/enrollsemina",
+		data:{semino:<%=semi.getSeminaNo()%>,teacherno:<%=user.getUserNo()%>,studentno:$("#studentno").val()},
+		success:function(data){
+		$("#enrollstat").html('<button type="button"  style="margin-top : 50px;"  class="btn btn-warning">신청된 상태입니다!</button>');
+
+		history.go(0);
+		}		 	
+	 })
+ }
+ 
+ 
+ 
+ </script>
+ 
  
 <style type="text/css">
 .btn-primary,
-.btn-warning
-{
+.btn-warning{
     -webkit-box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.3);
     -moz-box-shadow:    0px 3px 0px rgba(0, 0, 0, 0.3);
     box-shadow:         0px 3px 0px rgba(0, 0, 0, 0.3);
@@ -229,6 +254,7 @@ section .section-title{
 <body>
 <%@include file="/common/navbar.jsp" %>
 <%@include file="/01.CJS\sidebar.jsp" %>
+
 <div class="contentbody">
 			<div class="contents">
 				<nav class="topbend"> <!--최상단 띠.-->
@@ -239,56 +265,74 @@ section .section-title{
 				<li class="topdiv" name="img">
 					<ul>
 					<li>
+					<%if(user.getUserRenamePhoto()== null){ //유저가 사진이 있나 없나 유무확인%>
+					<!-- 사진이 없을경우 기본 디폴트 로간다. -->
+						
+						<%if( user.getUserGender().equals("F")){ %>
+						
+				   <!-- 여성용사진 -->	여자용사진으로 대채후 이글 삭제.
+						<img src="/prototype/userTitleimg/black-suit-1295853_640.png">
+						
+						<%}else{ %>
+						
+					<!-- 남성용사진 -->남성용사진 으로 대채후 이글 삭제
 					
-					<img src="./img/tech.jpg">
+						<img src="/prototype/userTitleimg/black-suit-1295853_640.png">
+						
+						<%} %>
+					
+					<%}else{ %> 
+					
+					<img Style="border-radius:501px; " src="/prototype/userTitleimg/<%=user.getUserRenamePhoto()%>">
+					
+					<%} %>
 					</li>
 					
 					<li class="underpic">
-					나이 이름
+					이름 : <%=user.getUserName() %>
 					<br>
-					완료함.!
+				
 					</li>
 				</ul>	
 				</li>
 					<li class="topdiv" name="title">
 					<ul style="list-style: none;">
-						<li class="">타이틀넣기</li>
+						<li class=""><h3><%=semi.getSeminaTitle() %></h3></li>
 						<li class=""> 태그넣기</li>
-						<li class=""> 점수내용</li>
-						<li class=""> 점수넣기</li>
+						<li class=""> 모집기간 :<%=semi.getSeminaStartDate()%> ~ <%=semi.getSeminaEndDate() %> </li>
+						<li class=""> 강연 위치 :<%=semi.getSeminaLocation() %></li>
+						<li class=""> 
+						위치 확인하기.<button onclick="window.open('/prototype/01.CJS/seminamap.jsp?loc=<%=semi.getSeminaLocation()%>','window_name','width=430,height=500,location=no,status=no,scrollbars=yes');">button</button>
+						</li>
+						
 					</ul>
 					</li>
-					
-					
-					<li class="topdiv" name="option">
-					조회수?<br>
-					등록일?<br>
-				
-					</li>
-					
-					
 				</ul>
 				</nav>
 			
 			</div>
 			<section id="what-we-do">
+			
 		<div class="container-fluid">
 			<h2 class="section-title mb-2 h1">세미나 에 어서오세요</h2>
-			<p class="text-center text-muted h5">Having and managing a correct marketing strategy is crucial in a fast moving market.</p>
 			<div class="row mt-5">
 				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
 					<div class="card">
 						<div class="card-block block-2">
-							<h3 class="card-title">3 </h3>
-							<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+							<h3 class="card-title"><%=semi.getSeminatitle1() %> </h3>
+							<p class="card-text">
+							<%=semi.getSeminaContent1() %>
+							</p>
 							</div>
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
 					<div class="card">
 						<div class="card-block block-2">
-							<h3 class="card-title">333333333</h3>
-							<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+							<h3 class="card-title"><%=semi.getSeminatitle2() %></h3>
+							<p class="card-text">
+							<%=semi.getSeminaContent2() %>
+							</p>
 						
 							</div>
 					</div>
@@ -296,8 +340,10 @@ section .section-title{
 				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
 					<div class="card">
 						<div class="card-block block-3">
-							<h3 class="card-title">2</h3>
-							<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+							<h3 class="card-title"><%=semi.getSeminatitle3() %></h3>
+							<p class="card-text">
+	<%=semi.getSeminaContent3() %>
+</p>
 							</div>
 					</div>
 				</div>
@@ -307,8 +353,8 @@ section .section-title{
 				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
 					<div class="card">
 						<div class="card-block block-4">
-							<h3 class="card-title">Special title</h3>
-							<p class="card-text">With supporting text below as a natural lead-in .</p>
+							<h3 class="card-title"><%=semi.getSeminatitle4() %></h3>
+							<p class="card-text"><%=semi.getSeminaContent4() %></p>
 							</div>
 					</div>
 				</div>
@@ -316,29 +362,40 @@ section .section-title{
 			
 			<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">	
 		    
-			<div id="myGoal"></div>
+			<div id="myGoal"><center>현재인원현황</center></div>
 			
 			
 			
 <script src="/prototype/01.CJS\js\jquery.stepProgressBar.js"></script>
+<input type="hidden" id="max" value="<%=semi.getSeminaMax()%>">
+<input type="hidden" id="min" value="<%=semi.getSeminaMin()%>">
+<input type="hidden" id="now" value="<%=semi.getSeminaNow()%>">
+			
 <script>
+min= $("#min").val();
+max=$("#max").val();
+now=$("#now").val();
+console.log(min);
+console.log(now);
+console.log(max);
 $('#myGoal').stepProgressBar({
+
   currentValue: 0,
   steps: [
     { 
-    	topLabel: '1',
-        value: 1,
-        bottomLabel: '1'
+    	topLabel: now+":now",
+        value: now
+    
     	},
     {
-    	 topLabel: 'min',
-         value: 5,
-         bottomLabel: '5'
+    	 topLabel: " ",
+         value: min,
+         bottomLabel: min+":min"
     },
     {  
-    	 topLabel: 'max',
-         value: 10,
-         bottomLabel: '10'
+    	 topLabel:" ",
+         value: max,
+         bottomLabel: max+":max"
     }
   ],
   unit: '$'
@@ -362,13 +419,22 @@ $('#myGoal').stepProgressBar({
 </script>
 		    
 			</div>
-			<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
-				 
-		    <button type="button" class="btn btn-primary">세미나 신청하기!</button>
-
-            <button type="button" class="btn btn-warning">이미 신청된 상태입니다</button>
-				
-				
+			<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4" id="enrollstat">
+			
+			<%if(loginUser==null){ %>
+	
+			<button type="button" style="margin-top : 50px;" onclick="location.href='/prototype/03.OHW/views/login.jsp'" class="btn btn-warning">지금 로그인하세요!</button>
+			<%}else{ %>
+			<input type="hidden" value="<%=loginUser.getUserNo()%>" id="studentno">
+			
+			<% if(Integer.parseInt(semideta.getSeminaState()) != 1 ){ %>	 
+			     <!--  -->
+		    <button type="button" style="margin-top : 50px;" onclick="enrollsemina();"  class="btn btn-primary">세미나 신청하기!</button>
+					<%}else{ %>
+            <button type="button"  style="margin-top : 50px;"  class="btn btn-warning">신청된 상태입니다!</button>
+			
+			<%}}%>	
+		
 				</div>
 			
 			</div>
@@ -376,7 +442,9 @@ $('#myGoal').stepProgressBar({
 	</section>
 			
 </div>
-<%@include file="/common/footer.jsp" %>
+	<div style="margin-top: -900px;">
+<%@include file="/common/footer.jsp"  %>
+</div>
 </body>
 
 </html>
