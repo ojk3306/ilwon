@@ -6,6 +6,7 @@
   <head>
 
 <script src="/prototype\common\resources\js\jquery-3.3.1.min.js"></script>
+
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -43,15 +44,17 @@
     </div>
     
 <div class="list-group">
-<table class="table" style="border: 1px solid #ddd; width: 100%;">
-<tr style="align:center; background-color:#337ab7;"><td colspan="2" style="text-align:center; color:white;">실시간 검색</td></tr>
-<tr><td>1</td><td style="text-align:center;"><a href="#"><span>아직 링크 기능 구현 안됨</span></a></td></tr>
-<tr><td>2</td><td style="text-align:center;"><a href="#"><span>아직 링크 기능 구현 안됨</span></a></td></tr>
-<tr><td>3</td><td style="text-align:center;"><a href="#"><span>아직 링크 기능 구현 안됨</span></a></td></tr>
-<tr><td>4</td><td style="text-align:center;"><a href="#"><span>아직 링크 기능 구현 안됨</span></a></td></tr>
-<tr><td>5</td><td style="text-align:center;"><a href="#"><span>아직 링크 기능 구현 안됨</span></a></td></tr>
-</table>
-</div>
+ <table style="border: 1px solid #ddd" name="realTimeSearch" class="table">
+ <tr style="text-align:center; background-color:#337ab7"><th colspan="2" style="color:white; text-align:center;">실시간 검색어</th></tr>
+ <tr><th>1</th><td style="text-align:center;"><span>첫번째 검색어</span></td></tr>
+ <tr><th>2</th><td style="text-align:center;"><span>두번째 검색어</span></td></tr>
+ <tr><th>3</th><td style="text-align:center;"><span>세번째 검색어</span></td></tr>
+ <tr><th>4</th><td style="text-align:center;"><span>네번째 검색어</span></td></tr>
+ <tr><th>5</th><td style="text-align:center;"><span>다섯번째 검색어</span></td></tr> 
+ </table>
+ 
+ 
+ </div>
 
   
       </div>
