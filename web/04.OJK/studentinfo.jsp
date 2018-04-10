@@ -23,12 +23,11 @@ $(function(){
 			var values = $('#ongoing_table').html() + "<br>";
 			
 			for(var i in json.onlesson) {	
-					if(json.onlesson[i].state == "수강중") {
+					if(json.onlesson[i].state == 1) {
 					values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
 					+"</td><td>"+json.onlesson[i].username+"</td><td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
-					+"<td><button type='button' class='btn btn-primary'>"+json.onlesson[i].state+"</button></td>"
-					+"<td><button type='button' class='btn btn-warning'>수정</button></td>"
-					+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='finishLesson(this)'>종료</button></td></tr>"			
+					+"<td><button type='button' class='btn btn-warning'>후기쓰기</button></td>"
+					+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='finishLesson(this)'>취소</button></td></tr>"			
 					}
 			}
 			
@@ -47,7 +46,7 @@ $(function(){
 <%@include file="/common/navbar.jsp" %>
 
 <nav class="contents">
-
+	<input type="hidden" value="<%= loginUser.getUserNo() %>" name="userno" id="userno">
 	<h1 align="center">학생 정보 보기</h1>
 	<hr>
 
@@ -88,56 +87,17 @@ $(function(){
 			<div id="info"
 				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px;">
 				<div style="width:100%;">
-					<table class="table table-hover">
+					<table class="table table-hover" id="ongoing_table">
 						<thead>
 							<tr>
 								<th>강의명</th>
 								<th>선생님</th>
-								<th>과목</th>
-								<th>후기작성</th>
 								<th>상세보기</th>
-								<th>상태보기</th>
+								<th>후기작성</th>
 								<th>취소하기</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td>java강의</td>
-								<td>Doe</td>
-								<td>컴퓨터/IT</td>
-								<td><button type="button" class="btn">Basic</button></td>
-								<td><button type="button" class="btn">상세보기</button></td>
-								<td><button type="button" class="btn btn-success">수강중</button></td>
-								<td><button type="button" class="btn btn-danger">취소</button></td>
-							</tr>
-							<tr>
-								<td>Mary</td>
-								<td>Moe</td>
-								<td>mary@example.com</td>
-								<td><button type="button" class="btn">후기작성</button></td>
-								<td><button type="button" class="btn">상세보기</button></td>
-								<td><button type="button" class="btn btn-warning">신청중</button></td>
-								<td><button type="button" class="btn btn-danger">취소</button></td>
-							</tr>
-							<tr>
-								<td>July</td>
-								<td>Dooley</td>
-								<td>july@example.com</td>
-								<td><button type="button" class="btn">후기작성</button></td>
-								<td><button type="button" class="btn">상세보기</button></td>
-								<td><button type="button" class="btn">상태</button></td>
-								<td><button type="button" class="btn btn-danger">취소</button></td>
-							</tr>
-							<tr>
-								<td>July</td>
-								<td>Dooley</td>
-								<td>july@example.com</td>
-								<td><button type="button" class="btn">후기작성</button></td>
-								<td><button type="button" class="btn">상세보기</button></td>
-								<td><button type="button" class="btn">상태</button></td>
-								<td><button type="button" class="btn btn-danger">취소</button></td>
-							</tr>
-						</tbody>
+						
 					</table>
 				</div>
 			</div>

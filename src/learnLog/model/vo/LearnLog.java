@@ -13,12 +13,15 @@ public class LearnLog implements Serializable {
 	private int lessonNo;
 	private Date logDate;
 	private int state;
+	private String userName;
+	private String lessonTitle;
 	
 	public LearnLog() {
 		
 	}
 
-	public LearnLog(int logNo, int userNo1, int userNo2, int lessonNo, Date logDate, int state) {
+	public LearnLog(int logNo, int userNo1, int userNo2, int lessonNo, Date logDate, int state, String userName,
+			String lessonTitle) {
 		super();
 		this.logNo = logNo;
 		this.userNo1 = userNo1;
@@ -26,6 +29,8 @@ public class LearnLog implements Serializable {
 		this.lessonNo = lessonNo;
 		this.logDate = logDate;
 		this.state = state;
+		this.userName = userName;
+		this.lessonTitle = lessonTitle;
 	}
 
 	public int getLogNo() {
@@ -76,6 +81,22 @@ public class LearnLog implements Serializable {
 		this.state = state;
 	}
 
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getLessonTitle() {
+		return lessonTitle;
+	}
+
+	public void setLessonTitle(String lessonTitle) {
+		this.lessonTitle = lessonTitle;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -83,9 +104,11 @@ public class LearnLog implements Serializable {
 	@Override
 	public String toString() {
 		return "LearnLog [logNo=" + logNo + ", userNo1=" + userNo1 + ", userNo2=" + userNo2 + ", lessonNo=" + lessonNo
-				+ ", logDate=" + logDate + ", state=" + state + "]";
+				+ ", logDate=" + logDate + ", state=" + state + ", userName=" + userName + ", lessonTitle="
+				+ lessonTitle + "]";
 	}
 
+	
 	
 	
 }
