@@ -57,7 +57,7 @@ $(function(){
 	<hr>
 	<section>
 	<div align="center" width="500">
-	<div style="width: 900px; height: 600px;">
+	<div style="width: 900px; height: 800px;">
 		 	<div style="padding: 10px; padding-right: 0px; float:right;">
 		 		<button type="button" class="btn" onclick="location.href='/prototype/04.OJK/proposalForm.jsp'">글쓰기</button>
 		 		
@@ -96,7 +96,7 @@ $(function(){
 	 		
 	 		
 	 		    <form action="/prototype/plist" method="post">
-	 			<select name="serchoption" id="select_id" style="height: 25px; margin-top:10px; ">
+	 			<select name="serchoption" id="select_id" style="height: 25px; margin-top:70px; ">
 				  <option value="1">제목</option>
 				  <option value="2">내용</option>
 				  <option value="3">작성자</option>

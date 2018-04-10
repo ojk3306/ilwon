@@ -1,6 +1,9 @@
 package searchLog.controller;
 
 import java.io.IOException;
+import searchLog.model.service.*;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,13 +14,13 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class RealTimeSearch
  */
 @WebServlet("/rtsearch")
-public class RealTimeSearch extends HttpServlet {
+public class RealTimeSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RealTimeSearch() {
+    public RealTimeSearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,8 +29,32 @@ public class RealTimeSearch extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	SearchLogService list = new SearchLogService();
+	
+	String first = list.realTimeList().get(0);
+	String second =list.realTimeList().get(1);
+	String third =list.realTimeList().get(2);
+	String fourth =list.realTimeList().get(3);
+	String fifth =list.realTimeList().get(4);
+	
+	System.out.println("리스트 값: "+first+second+third+fourth+fifth);
+	
+	
+	//1. response.sendRedirect("해당 jsp파일의 주소");
+	
+	//2. request.getRequestDispatcher("해당 jsp 파일의 주소");
+	
+	response.setCharacterEncoding("text/html; charset=utf-8");
+	
+	RequestDispatcher view = null;
+	view=request.getRequestDispatcher("./01.CJS/adminpage.jsp");
+	request.setAttribute("first", first);
+	request.setAttribute("second", second);
+	request.setAttribute("third", third);
+	request.setAttribute("fourth", fourth);
+	request.setAttribute("fifth", fifth);	
+	view.forward(request, response);
+	
 	}
 
 	/**

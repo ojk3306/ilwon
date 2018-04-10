@@ -13,6 +13,8 @@
 	double avgd1 = 0;
 	double avgp1 = 0;
 	double a = 0;
+	
+	//리뷰 있을시 값 구해주는 부분
 	if(avgd != 0 && avgs != 0 && avgp != 0 && avga != 0) {
 	avgs1 = (double)avgs/5*100;
 	avgd1 = (double)avgd/5*100;
@@ -37,7 +39,7 @@
 
 function popupReview(){
 
-	var popUrl = "/prototype/reviewview?no=<%= lessondetail.getLesson_no() %>"; 
+	var popUrl = "/prototype/review?no=<%= lessondetail.getLesson_no() %>"; 
 	//팝업창에 출력될 페이지 URL
 	
 	var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)

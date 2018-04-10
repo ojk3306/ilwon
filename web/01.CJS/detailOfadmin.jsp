@@ -244,7 +244,10 @@ margin-left: 190px;
 </head>
 <body style="background:#eeeeee;">
 <%@include file="/common/navbar.jsp" %>
+<%@include file="/01.CJS\sidebar.jsp" %>
 
+
+<%@ include file="/common/footer.jsp" %>
 <div class="container" >
 	<div class="row" >
   <div class="col-md-7" Style="overflow:hidden;">

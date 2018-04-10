@@ -75,7 +75,7 @@ public class ProposalList extends HttpServlet {
 		System.out.println("검색이 없음.");
 		pro= new ProposalService().getprolist(limit,currentPage);//최신 등록순으로
 		}else {
-			System.out.println("검색을 실행함.");
+		System.out.println("검색을 실행함.");
 		pro= new ProposalService().getprolistBysearch(limit,currentPage,search,seachOption);
 		}
 	

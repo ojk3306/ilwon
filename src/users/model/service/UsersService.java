@@ -92,6 +92,15 @@ public class UsersService {
 		return user;
 	}
 
+	public Users getUserinfoFromproposal(Integer userNo) {
+		Connection con = getConnection();
+		Users user=new UsersDao().getUserinfofromsemina(con, userNo);
+		close(con);			
+		
+		
+		return user;
+	}
+
 	
 	
 	
