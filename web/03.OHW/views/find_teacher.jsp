@@ -205,6 +205,11 @@
 			<tr class = "ohw-big-category-tr">
 				<th style = "width : 100px;"><h3 class="header_text">수업</h3></th>				
 			</tr>
+		</table>
+		<table>
+			<tr>
+				
+			</tr>	
 		</table>		
 								
 	</section>	
@@ -228,7 +233,7 @@
 			$('.ohw-big-category-tr').append(bigCategory);
 
 			 for(var i in json.clist){ //소분류 삽입	
-				 $("#"+json.clist[i].CATEGORY_BIG).html($("#"+json.clist[i].CATEGORY_BIG).html()+'<div class = "tclass ohw-' + json.clist[i].CATEGORY_BIG + '"><input type="radio" name="tclass-radio" value="'+json.clist[i].CATEGORY_SMALL+'">' + json.clist[i].CATEGORY_SMALL + '</div>');
+				 $("#"+json.clist[i].CATEGORY_BIG).html($("#"+json.clist[i].CATEGORY_BIG).html()+'<div class = "tclass ohw-' + json.clist[i].CATEGORY_BIG + '" align = "center"><input type="radio" name="tclass-radio" value="'+json.clist[i].CATEGORY_SMALL+'">' + json.clist[i].CATEGORY_SMALL + '</div>');
 			}			
 		} 	
     });

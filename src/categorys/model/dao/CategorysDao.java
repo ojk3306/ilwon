@@ -20,7 +20,7 @@ public class CategorysDao {
 		rset=pstmt.executeQuery();	
 		while(rset.next()) {
 			Categorys cate=new Categorys();
-			cate.setcATEGORY_BIG(rset.getString("CATEGORY_BIG"));	
+			cate.setcATEGORY_BIG(rset.getString("CATEGORY_BIG"));
 			cate.setCATEGORY_HIT(rset.getInt("CATEGORY_HIT"));
 			cate.setCATEGORY_NO(rset.getInt("CATEGORY_NO"));
 			cate.setCATEGORY_SMALL(rset.getString("CATEGORY_SMALL"));
