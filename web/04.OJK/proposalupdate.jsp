@@ -1,7 +1,9 @@
+<%@page import="proposal.model.vo.Proposal"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
     String message=(String)request.getAttribute("message");
+    Proposal pro=(Proposal)request.getAttribute("list");
     %>
 <!DOCTYPE html>
 <html>
@@ -14,7 +16,7 @@
 <script src="/prototype/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<title>Insert title here</title>
+<title>건의안 수정하기</title>
 <script type="text/javascript" src="/prototype/common\resources\js\jquery-3.3.1.min.js"></script>
 
 <script type="text/javascript">
@@ -205,9 +207,12 @@ $(function() {
 <div class="row">
 <div class="col-md-6 col-md-offset-3">
     
-    <form method="post" action="/prototype/inpro">
+   
+    
+    
+    <form method="post" action="/prototype/pupdate">
     <%if(loginUser==null ){ }else{%>
-    <input type="hidden" value="<%=loginUser.getUserNo()%>" name="userno" >
+    <input type="hidden" value="<%=pro.getProposalNo()%>" name="prono" >
     <%}%>
    	<div class="selections" Style="margin-right:0px;">
   	 </div>
@@ -215,11 +220,16 @@ $(function() {
             <div class="form-group">
               <br>
                 <label for="exampleInputEmail1">제목</label>
-                <input type="text" name="title" class="form-control" required="required">
+                <input type="text" name="title" class="form-control" value="<%=pro.getProposalTitle() %>" required="required">
             </div>
             <div class="form-group">
                 <label>내용</label>
-                <textarea class="form-control"  required="required" id="comment" name="content" maxlength="3000" rows="20" name="contents" placeholder="여러분들의 모든 건의사항은 운영진들이 운영함에 있어, 큰도움이 됩니다. 감사합니다." ></textarea>
+             <textarea class="form-control"  required="required" id="comment" name="content" maxlength="3000" rows="20" placeholder="여러분들의 모든 건의사항은 운영진들이 운영함에 있어, 큰도움이 됩니다. 감사합니다." >
+             <%=pro.getProposalContent() %>
+             
+             
+             
+             </textarea>
             </div>
             <div class="col-xs-12 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">  
             <!-- image-preview-filename input [CUT FROM HERE]-->
@@ -231,8 +241,8 @@ $(function() {
            <br>
            <br>
            <div align="center">
-	            <button type="submit " class="btn btn-primary">Submit</button>
-	            <button type="reset" class="btn btn-primary">Reset</button>
+	            <button type="submit" class="btn btn-primary">수정하기</button>
+	            <button type="reset" class="btn btn-primary">초기화하기</button>
             </div>
         </fieldset>
     

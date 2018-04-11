@@ -41,7 +41,7 @@ public class ProposalDao {
 		ArrayList<Proposal> plist=new ArrayList<Proposal>();
 		int startRow = (currentPage - 1) * limit + 1; 
 		int endRow = startRow + limit - 1;
-		String sql="select * from (select ROWNUM AS RNUM, A.* FROM   (SELECT * FROM PROPOSAL ) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY PROPOSAL_DATE DESC ";
+		String sql="select * from (select ROWNUM AS RNUM, A.* FROM   (SELECT * FROM PROPOSAL ORDER BY proposal_date desc) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY PROPOSAL_DATE DESC ";
 		try {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, endRow);
@@ -115,13 +115,13 @@ public class ProposalDao {
 		String sql="";
 		switch (seachOption) {
 		case 1://제목
-			sql="select * from (select ROWNUM AS RNUM, A.* FROM   (SELECT * FROM PROPOSAL where PROPOSAL_TITLE like ?) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY PROPOSAL_DATE DESC ";
+			sql="select * from (select ROWNUM AS RNUM, A.* FROM   (SELECT * FROM PROPOSAL where PROPOSAL_TITLE like ? ORDER BY proposal_date desc) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY PROPOSAL_DATE DESC ";
 			break;
 		case 2://내용
-			sql="select * from (select ROWNUM AS RNUM, A.* FROM   (SELECT * FROM PROPOSAL where PROPOSAL_CONTENT like ?) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY PROPOSAL_DATE DESC ";
+			sql="select * from (select ROWNUM AS RNUM, A.* FROM   (SELECT * FROM PROPOSAL where PROPOSAL_CONTENT like ? ORDER BY proposal_date desc) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY PROPOSAL_DATE DESC ";
 			break;
 		case 3://작성자
-			sql="select * from (select ROWNUM AS RNUM, A.* FROM   (SELECT * FROM PROPOSAL where USER_NO in (select USER_NO from users where USER_NAME like ? ) ) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY PROPOSAL_DATE DESC ";
+			sql="select * from (select ROWNUM AS RNUM, A.* FROM   (SELECT * FROM PROPOSAL where USER_NO in (select USER_NO from users where USER_NAME like ? ORDER BY proposal_date desc) ) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY PROPOSAL_DATE DESC ";
 			break;	
 		}
 		try {
@@ -227,6 +227,62 @@ public class ProposalDao {
 		}finally {
 			close(pstmt);
 		}
+		
+		return result;
+	}
+
+	public Proposal findProposal(Connection con, int parseInt) {
+		Proposal pro=null;
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		String sql="select * from proposal where PROPOSAL_NO=? ";
+			
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1,parseInt);
+			
+			rset=pstmt.executeQuery();
+			if(rset.next()) {
+				pro=new Proposal();
+				pro.setProposalContent(rset.getString("PROPOSAL_CONTENT"));
+				pro.setProposalDate(rset.getDate("PROPOSAL_DATE"));
+				pro.setProposalhit(rset.getInt("PROPOSA_HIT"));
+				pro.setProposalNo(rset.getInt("PROPOSAL_NO"));
+				pro.setProposalTitle(rset.getString("PROPOSAL_TITLE"));
+				pro.setUserNo(rset.getInt("USER_NO"));
+				System.out.println(pro.toString());
+			}
+		} catch (Exception e) {
+		e.printStackTrace();
+		}finally {
+		close(pstmt);
+		}
+		return pro;
+	}
+
+	public int updateProposal(Connection con, int parseInt, String parameter, String parameter2) {
+		int result=0;
+		System.out.println(parseInt);
+		System.out.println(parameter);
+		System.out.println(parameter2);
+		PreparedStatement pstmt=null;
+		String sql="update proposal set PROPOSAL_TITLE =? , PROPOSAL_CONTENT = ? where PROPOSAL_NO=?";
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, parameter);
+			pstmt.setString(2, parameter2);
+			pstmt.setInt(3,parseInt);
+			
+			
+			result=pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+		e.printStackTrace();
+		}finally {
+		close(pstmt);
+		}
+		
+		
 		
 		return result;
 	}

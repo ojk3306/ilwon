@@ -70,4 +70,23 @@ public class ProposalService {
 		return result;
 	}
 
+	public Proposal findProposal(int parseInt) {
+		Connection con=getConnection();
+		Proposal result=new ProposalDao().findProposal(con,parseInt);
+				
+		return result;
+	}
+
+	public int updateProposal(int parseInt, String parameter, String parameter2) {
+		Connection con=getConnection();
+		int result=new ProposalDao().updateProposal(con,parseInt,parameter,parameter2);
+		if(result>0)
+			commit(con);
+		else
+			rollback(con);
+		close(con);
+		
+		return result;
+	}
+
 }

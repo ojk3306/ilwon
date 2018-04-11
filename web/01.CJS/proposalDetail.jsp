@@ -16,11 +16,16 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<style type="text/css">
+.btn-label {position: relative;left: -12px;display: inline-block;padding: 6px 12px;background: rgba(0,0,0,0.15);border-radius: 3px 0 0 3px;}
+.btn-labeled {padding-top: 0;padding-bottom: 0;}
+.btn { margin-bottom:10px; }</style>
 </head>
-<body>
+
+<body style="background:#f3f4f5 ">
 <%@include file="/common/navbar.jsp" %>
 <%@include file="/01.CJS/sidebar.jsp" %>
-
+ 
 <div class="container" style="margin-top: -500px; width: 800px; height: 800px;">
             <div class="col-sm-12">
 
@@ -36,12 +41,18 @@
 							
 	                        <hr>
                             <div class="cta-desc">
+                            <textarea maxlength="3000" rows="20" style="width:100%; background:#f3f4f5; border: 0" readonly="readonly">
                           <%=pro.getProposalContent() %>
+                          </textarea>
                             </div>
                             <hr>
                             <%if(loginUser==null){}else{ if(loginUser.getUserNo()==user.getUserNo()){%>
-                            <input type="button" value="수정하기">
-                            <input type="button" value="삭제하기">
+                            
+                 <center>
+<a href="/prototype/uppro?prono=<%=pro.getProposalNo() %>" class="btn"><i class="icon-edit"></i> <strong>수정하기</strong></a>
+<a href="/prototype/delpro?prono=<%=pro.getProposalNo() %>" class="btn"><i class="icon-trash"></i> <strong>삭제하기</strong></a>
+                         </center>   
+                            
                             <%} }%>
                         	</div>
                         </div>

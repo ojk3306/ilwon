@@ -267,7 +267,7 @@ public ArrayList<Sidebar> seachlistByKeyword(Connection con, String string) {
 				side.setUser_name(rset.getString("user_name"));
 				side.setCategory_small(rset.getString("category_small"));
 				side.setLESSON_RENAME_PHOTO(rset.getString("LESSON_RENAME_PHOTO"));
-				System.out.println(side.toString());
+				
 
 				list.add(side);			
 			}		
@@ -305,7 +305,7 @@ public ArrayList<Sidebar> seachlistByKeyword(Connection con, String string) {
 				side.setUser_name(rset.getString("user_name"));
 				side.setCategory_small(rset.getString("category_small"));
 				side.setLESSON_RENAME_PHOTO(rset.getString("LESSON_RENAME_PHOTO"));
-				System.out.println(side.toString());
+				
 
 				lessonList.add(side);			
 			}		
@@ -338,7 +338,7 @@ public ArrayList<Sidebar> seachlistByKeyword(Connection con, String string) {
 				side.setUser_name(rset.getString("user_name"));
 				side.setCategory_small(rset.getString("category_small"));
 				side.setLESSON_RENAME_PHOTO(rset.getString("LESSON_RENAME_PHOTO"));
-				System.out.println(side.toString());
+				
 				Sidebar.add(side);	
 			}		
 			

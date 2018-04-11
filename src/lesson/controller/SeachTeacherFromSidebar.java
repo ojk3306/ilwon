@@ -73,7 +73,7 @@ public class SeachTeacherFromSidebar extends HttpServlet {
 	}
 	
 	json.put("list", jarr);
-	System.out.println(json.toJSONString());
+
     response.setContentType("application/json; charset=utf-8;");
 	PrintWriter out = response.getWriter();
 	out.print(json.toJSONString());

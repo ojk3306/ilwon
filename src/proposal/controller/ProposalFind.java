@@ -11,20 +11,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import proposal.model.service.ProposalService;
 import proposal.model.vo.Proposal;
-import users.model.service.UsersService;
-import users.model.vo.Users;
 
 /**
- * Servlet implementation class ProposalDetail
+ * Servlet implementation class ProposalUpdate
  */
-@WebServlet("/prodetail")
-public class ProposalDetail extends HttpServlet {
+@WebServlet("/uppro")
+public class ProposalFind extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProposalDetail() {
+    public ProposalFind() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,40 +31,19 @@ public class ProposalDetail extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	int pno=0;
-	
-	if(request.getParameter("pno")!=null)
-	pno=Integer.parseInt(request.getParameter("pno"));
-	
-	
-	if(request.getAttribute("pno")!=null)
-	pno= (int) request.getAttribute("pno") ;
-	
-	int result=new ProposalService().updatehitProposal(pno);
-	
-	Proposal pro=new ProposalService().getproposaldetail(pno);
-	
-	
+		System.out.println(request.getParameter("prono"));
 		
-	Users user=new UsersService().getUserinfoFromproposal(pro.getUserNo());
-	
-	RequestDispatcher view=null;
-	if(pro!=null) {
-	view=request.getRequestDispatcher("/01.CJS/proposalDetail.jsp");
-		request.setAttribute("pro",pro);
-		request.setAttribute("user",user);
-		view.forward(request, response);
+	Proposal pro=new ProposalService().findProposal(Integer.parseInt(request.getParameter("prono")));
+			RequestDispatcher view=null;
+	if(pro != null) {
+	view=request.getRequestDispatcher("/04.OJK/proposalupdate.jsp");
+	request.setAttribute("list",pro);
+	view.forward(request, response);
 	}else {
-		//실패시 
-
+		
 	}
 	
-	
-	
-	
-
-	}
-	
+}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

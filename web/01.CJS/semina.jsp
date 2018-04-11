@@ -36,6 +36,7 @@
 
 <!------ Include the above in your HEAD tag ---------->
 <%@ include file="/common/navbar.jsp" %>
+
 <% if(loginUser!=null){ %>
 <input type="hidden" id="usernono" value="<%=loginUser.getUserNo()%>">
 <%} %>
