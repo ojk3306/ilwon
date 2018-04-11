@@ -44,6 +44,12 @@ public class InsertLessonServlet extends HttpServlet {
 		lesson.setLesson_loc(request.getParameter("loc"));
 		lesson.setLesson_rad(Integer.parseInt(request.getParameter("rad")));
 		lesson.setLesson_keyword(request.getParameter("keyword"));
+//		if(request.getParameter("original")==null) {
+//			
+//		}else {
+//		lesson.setLesson_orginal(request.getParameter("original"));
+//		}
+		
 		
 		int result = new LessonService().insertlesson(lesson);
 		

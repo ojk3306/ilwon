@@ -28,17 +28,19 @@ public class Lesson implements Serializable{
 	private String lesson_conbot;
 	private String lesson_keyword;
 	private Date lesson_enddate;
-	private int lesson_type;	
+	private int lesson_type;
+	private String lesson_orginal;
+	private String lesson_rename;
 	
 	public Lesson() {
 		
-	}	
+	}
 
 	public Lesson(int lesson_no, int level_no, String level, int state_no, int category_no, String category_bigName,
 			String category_smallName, int user_no1, int user_no2, String user_name1, String user_name2,
 			String lesson_title, String lesson_loc, int lesson_rad, int lesson_price, int lesson_count,
-			Date lesson_startdate, String lesson_contop, String lesson_conmid, String lesson_conbot, String lesson_keyword,
-			Date lesson_enddate, int lesson_type) {
+			Date lesson_startdate, String lesson_contop, String lesson_conmid, String lesson_conbot,
+			String lesson_keyword, Date lesson_enddate, int lesson_type, String lesson_orginal, String lesson_rename) {
 		super();
 		this.lesson_no = lesson_no;
 		this.level_no = level_no;
@@ -63,12 +65,14 @@ public class Lesson implements Serializable{
 		this.lesson_keyword = lesson_keyword;
 		this.lesson_enddate = lesson_enddate;
 		this.lesson_type = lesson_type;
+		this.lesson_orginal = lesson_orginal;
+		this.lesson_rename = lesson_rename;
 	}
-	
+
 	public int getLesson_no() {
 		return lesson_no;
 	}
-	
+
 	public void setLesson_no(int lesson_no) {
 		this.lesson_no = lesson_no;
 	}
@@ -79,7 +83,7 @@ public class Lesson implements Serializable{
 
 	public void setLevel_no(int level_no) {
 		this.level_no = level_no;
-	}	
+	}
 
 	public String getLevel() {
 		return level;
@@ -103,7 +107,7 @@ public class Lesson implements Serializable{
 
 	public void setCategory_no(int category_no) {
 		this.category_no = category_no;
-	}	
+	}
 
 	public String getCategory_bigName() {
 		return category_bigName;
@@ -249,19 +253,39 @@ public class Lesson implements Serializable{
 		this.lesson_type = lesson_type;
 	}
 
+	public String getLesson_orginal() {
+		return lesson_orginal;
+	}
+
+	public void setLesson_orginal(String lesson_orginal) {
+		this.lesson_orginal = lesson_orginal;
+	}
+
+	public String getLesson_rename() {
+		return lesson_rename;
+	}
+
+	public void setLesson_rename(String lesson_rename) {
+		this.lesson_rename = lesson_rename;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
 	@Override
 	public String toString() {
-		return "Lesson [lesson_no=" + lesson_no + ", level_no=" + level_no + ", state_no=" + state_no + ", category_no="
-				+ category_no + ", user_no1=" + user_no1 + ", user_no2=" + user_no2 + ", user_name1=" + user_name1
-				+ ", user_name2=" + user_name2 + ", lesson_title=" + lesson_title + ", lesson_loc=" + lesson_loc
-				+ ", lesson_rad=" + lesson_rad + ", lesson_price=" + lesson_price + ", lesson_count=" + lesson_count
-				+ ", lesson_date=" + lesson_startdate + ", lesson_contop=" + lesson_contop + ", lesson_conmid="
-				+ lesson_conmid + ", lesson_conbot=" + lesson_conbot + ", lesson_keyword=" + lesson_keyword
-				+ ", lesson_enddate=" + lesson_enddate + ", lesson_type=" + lesson_type + "]";
+		return "Lesson [lesson_no=" + lesson_no + ", level_no=" + level_no + ", level=" + level + ", state_no="
+				+ state_no + ", category_no=" + category_no + ", category_bigName=" + category_bigName
+				+ ", category_smallName=" + category_smallName + ", user_no1=" + user_no1 + ", user_no2=" + user_no2
+				+ ", user_name1=" + user_name1 + ", user_name2=" + user_name2 + ", lesson_title=" + lesson_title
+				+ ", lesson_loc=" + lesson_loc + ", lesson_rad=" + lesson_rad + ", lesson_price=" + lesson_price
+				+ ", lesson_count=" + lesson_count + ", lesson_startdate=" + lesson_startdate + ", lesson_contop="
+				+ lesson_contop + ", lesson_conmid=" + lesson_conmid + ", lesson_conbot=" + lesson_conbot
+				+ ", lesson_keyword=" + lesson_keyword + ", lesson_enddate=" + lesson_enddate + ", lesson_type="
+				+ lesson_type + ", lesson_orginal=" + lesson_orginal + ", lesson_rename=" + lesson_rename + "]";
 	}	
+
+	
 	
 }
