@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import lesson.model.vo.Lesson;
 import lesson.model.vo.LessonDetail;
 import lesson.model.vo.Onlesson;
+import lesson.model.vo.Sidebar;
 
 
 public class LessonDao {
@@ -248,44 +249,28 @@ public class LessonDao {
 		
 	}
 
-	public ArrayList<Lesson> seachlistByKeyword(Connection con, String string) {
-		ArrayList<Lesson> list = new ArrayList<Lesson>();
+	
+	
+
+public ArrayList<Sidebar> seachlistByKeyword(Connection con, String string) {
+		ArrayList<Sidebar> list = new ArrayList<Sidebar>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql="select * from LESSON where LESSON_KEYWORD like ?";
+		String sql="select user_name, lesson_no , LESSON_RENAME_PHOTO, category_small from categorys , lesson , users where categorys.CATEGORY_NO=lesson.CATEGORY_NO and LESSON.user_no2=users.user_no and LESSON.LESSON_KEYWORD like  ?";
 		
 		try {
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1,string);
+			pstmt.setString(1,"%"+string+"%");
 			rset=pstmt.executeQuery();
 			while(rset.next()) {
-				Lesson lesson = new Lesson();				
-				lesson.setLesson_no(rset.getInt("lesson_no"));
-				lesson.setLevel_no(rset.getInt("level_no"));
-				lesson.setLevel(rset.getString("lessonlev"));
-				lesson.setState_no(rset.getInt("state_no"));
-				lesson.setCategory_no(rset.getInt("category_no"));
-				lesson.setCategory_bigName(rset.getString("category_big"));
-				lesson.setCategory_smallName(rset.getString("category_small"));
-				lesson.setUser_no1(rset.getInt("user_no1"));
-				lesson.setUser_no2(rset.getInt("user_no2"));
-				lesson.setUser_name1(rset.getString("user_name"));
-				lesson.setUser_name2(rset.getString("user_name"));
-				lesson.setLesson_title(rset.getString("lesson_title"));
-				lesson.setLesson_loc(rset.getString("lesson_location"));
-				lesson.setLesson_rad(rset.getInt("lesson_radius"));
-				lesson.setLesson_price(rset.getInt("lesson_price"));
-				lesson.setLesson_count(rset.getInt("lesson_count"));
-				lesson.setLesson_startdate(rset.getDate("lesson_startdate"));
-				lesson.setLesson_enddate(rset.getDate("lesson_enddate"));
-				lesson.setLesson_contop(rset.getString("lesson_contop"));
-				lesson.setLesson_conmid(rset.getString("lesson_conmid"));
-				lesson.setLesson_conbot(rset.getString("lesson_conbot"));
-				lesson.setLesson_keyword(rset.getString("lesson_keyword"));
-				lesson.setLesson_type(rset.getInt("lesson_type"));	
-				lesson.setLESSON_ORIGINAL_PHOTO(rset.getString("LESSON_ORIGINAL_PHOTO"));
-				lesson.setLESSON_RENAME_PHOTO(rset.getString("LESSON_RENAME_PHOTO"));
-				list.add(lesson);			
+				Sidebar side=new Sidebar();
+				side.setLesson_no(rset.getInt("lesson_no"));
+				side.setUser_name(rset.getString("user_name"));
+				side.setCategory_small(rset.getString("category_small"));
+				side.setLESSON_RENAME_PHOTO(rset.getString("LESSON_RENAME_PHOTO"));
+				System.out.println(side.toString());
+
+				list.add(side);			
 			}		
 			
 		} catch (Exception e) {
@@ -299,7 +284,74 @@ public class LessonDao {
 		
 		return list;
 	}
-	
+
+	public ArrayList<Sidebar> seachlistByKeyword2(Connection con, String string, ArrayList<Sidebar> lessonList) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql="select user_name, lesson_no ,LESSON_RENAME_PHOTO, category_small from categorys , lesson , users where categorys.CATEGORY_NO=lesson.CATEGORY_NO and LESSON.user_no2=users.user_no and LESSON.LESSON_KEYWORD like  ?";
+		
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1,"%"+string+"%");
+			rset=pstmt.executeQuery();
+			while(rset.next()) {
+				
+				//동일한 강의가 들어가는것을 방지함.
+				for(Sidebar i: lessonList) {
+				 if(i.getLesson_no()==rset.getInt("lesson_no"))
+				rset.next();	 
+				}
+				Sidebar side=new Sidebar();
+				side.setLesson_no(rset.getInt("lesson_no"));
+				side.setUser_name(rset.getString("user_name"));
+				side.setCategory_small(rset.getString("category_small"));
+				side.setLESSON_RENAME_PHOTO(rset.getString("LESSON_RENAME_PHOTO"));
+				System.out.println(side.toString());
+
+				lessonList.add(side);			
+			}		
+			
+		} catch (Exception e) {
+		e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return lessonList;
+	}
+
+	public ArrayList<Sidebar> seachlistByKeyword2(Connection con, ArrayList<Sidebar> Sidebar) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql="select user_name, lesson_no , category_small , LESSON_RENAME_PHOTO from categorys , lesson , users where categorys.CATEGORY_NO=lesson.CATEGORY_NO and LESSON.user_no2=users.user_no order by DBMS_RANDOM.RANDOM  ";
+		try {
+			pstmt=con.prepareStatement(sql);
+			rset=pstmt.executeQuery();
+			while(rset.next() && Sidebar.size()<9 ) {
+				//동일한 강의가 들어가는것을 방지함.
+				for(Sidebar i: Sidebar) {
+				 if(i.getLesson_no()==rset.getInt("lesson_no"))
+				rset.next();	 
+				}
+				Sidebar side=new Sidebar();
+				side.setLesson_no(rset.getInt("lesson_no"));
+				side.setUser_name(rset.getString("user_name"));
+				side.setCategory_small(rset.getString("category_small"));
+				side.setLESSON_RENAME_PHOTO(rset.getString("LESSON_RENAME_PHOTO"));
+				System.out.println(side.toString());
+				Sidebar.add(side);	
+			}		
+			
+		} catch (Exception e) {
+		e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return Sidebar;
+	}
 }
 	
 

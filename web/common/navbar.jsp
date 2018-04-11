@@ -160,7 +160,7 @@
 				
 				<%}else{%>
 					<% if(loginUser.getUserTypeNo() ==1003 ){%>
-					<li><a href="/prototype/01.CJS/adminpage.jsp">관리자</a></li>
+					<li><a href="/prototype/rtsearch">관리자</a></li>
 					<%} %>
 					
 				<%} %>

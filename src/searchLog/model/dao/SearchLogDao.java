@@ -152,7 +152,8 @@ public class SearchLogDao {
 			
 			while(list.size()<5) {				
 				rset.next();				
-				list.add(rset.getString("SEACH_CONTENT"));				
+				list.add(rset.getString("SEACH_CONTENT"));		
+				System.out.println(rset.getString("SEACH_CONTENT"));
 			};		
 	
 		} catch (java.sql.SQLException e) {		
