@@ -246,6 +246,58 @@ public class LessonDao {
 		return null;
 		
 	}
+
+	public ArrayList<Lesson> seachlistByKeyword(Connection con, String string) {
+		ArrayList<Lesson> list = new ArrayList<Lesson>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql="select * from LESSON where LESSON_KEYWORD like ?";
+		
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1,string);
+			rset=pstmt.executeQuery();
+			while(rset.next()) {
+				Lesson lesson = new Lesson();				
+				lesson.setLesson_no(rset.getInt("lesson_no"));
+				lesson.setLevel_no(rset.getInt("level_no"));
+				lesson.setLevel(rset.getString("lessonlev"));
+				lesson.setState_no(rset.getInt("state_no"));
+				lesson.setCategory_no(rset.getInt("category_no"));
+				lesson.setCategory_bigName(rset.getString("category_big"));
+				lesson.setCategory_smallName(rset.getString("category_small"));
+				lesson.setUser_no1(rset.getInt("user_no1"));
+				lesson.setUser_no2(rset.getInt("user_no2"));
+				lesson.setUser_name1(rset.getString("user_name"));
+				lesson.setUser_name2(rset.getString("user_name"));
+				lesson.setLesson_title(rset.getString("lesson_title"));
+				lesson.setLesson_loc(rset.getString("lesson_location"));
+				lesson.setLesson_rad(rset.getInt("lesson_radius"));
+				lesson.setLesson_price(rset.getInt("lesson_price"));
+				lesson.setLesson_count(rset.getInt("lesson_count"));
+				lesson.setLesson_startdate(rset.getDate("lesson_startdate"));
+				lesson.setLesson_enddate(rset.getDate("lesson_enddate"));
+				lesson.setLesson_contop(rset.getString("lesson_contop"));
+				lesson.setLesson_conmid(rset.getString("lesson_conmid"));
+				lesson.setLesson_conbot(rset.getString("lesson_conbot"));
+				lesson.setLesson_keyword(rset.getString("lesson_keyword"));
+				lesson.setLesson_type(rset.getInt("lesson_type"));	
+				lesson.setLESSON_ORIGINAL_PHOTO(rset.getString("LESSON_ORIGINAL_PHOTO"));
+				lesson.setLESSON_RENAME_PHOTO(rset.getString("LESSON_RENAME_PHOTO"));
+				list.add(lesson);			
+			}		
+			
+		} catch (Exception e) {
+		e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		
+		return list;
+	}
 	
 }
 	

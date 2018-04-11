@@ -19,31 +19,30 @@
 <script type="text/javascript">
 
 $(function(){
-if('<%=login%>' == null){
+if('<%=login%>' == null){ //비로그인인 경우
+
 $.ajax({
 		url:"/prototype/tsider",
 		data:{userno:"dd"},
-		success:function(){ 
-			
+		success:function(date){ 
+		
 		},
-		error:function(){
+		error:function(a,b,c){
 			
 		}
 	})
-	
-}else{
+}else{	
 $.ajax({
 		url:"/prototype/tsider",
 		data:{userno:$("#userno").val()},
-		success:function(){
+		success:function(date){ 
 			
 		},
-		error:function(){
+		error:function(a,b,c){
 			
 		}
 	})
 }	
-	
 })
 
 

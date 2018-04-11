@@ -45,7 +45,7 @@ public class AdminSeachUser extends HttpServlet {
 	if((request.getParameter("option"))!=null) {
 	seachOption = Integer.parseInt(request.getParameter("option"));
 	System.out.println("ad min SeachUser , option="+Integer.parseInt(request.getParameter("option")));
-
+	
 	}
 	if(request.getParameter("type")!=null) {
 	user.setUserTypeNo(Integer.parseInt(request.getParameter("type")));

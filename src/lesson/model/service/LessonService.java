@@ -122,6 +122,14 @@ public class LessonService {
 		close(conn);
 		
 		return lessondetail;
+	}
+
+	public ArrayList<Lesson> seachlistByKeyword(String string) {
+		Connection con = getConnection();
+		ArrayList<Lesson> LessonList=new LessonDao().seachlistByKeyword(con,string);
+		
+		close(con);
+		return LessonList;
 	}	
 	
 }

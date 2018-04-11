@@ -166,6 +166,28 @@ public class SearchLogDao {
 		return list;
 		
 	}
+
+	public ArrayList<String> getSearchhistroy(Connection con, int parseInt) {
+		
+		ArrayList<String> list =new ArrayList<String>();
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		String sql = "select SEACH_CONTENT from search_log where user_no = ? group by SEACH_CONTENT order by count(seach_content) desc";
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1,parseInt);
+			rset=pstmt.executeQuery();
+			while(rset.next()) {
+				list.add(rset.getString(1));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+	return list;
+	}
 	
 }
 

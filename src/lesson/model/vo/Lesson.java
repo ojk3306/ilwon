@@ -29,7 +29,25 @@ public class Lesson implements Serializable{
 	private String lesson_keyword;
 	private Date lesson_enddate;
 	private int lesson_type;	
+	private String LESSON_ORIGINAL_PHOTO;
+	private String LESSON_RENAME_PHOTO;
 	
+	public String getLESSON_ORIGINAL_PHOTO() {
+		return LESSON_ORIGINAL_PHOTO;
+	}
+
+	public void setLESSON_ORIGINAL_PHOTO(String lESSON_ORIGINAL_PHOTO) {
+		LESSON_ORIGINAL_PHOTO = lESSON_ORIGINAL_PHOTO;
+	}
+
+	public String getLESSON_RENAME_PHOTO() {
+		return LESSON_RENAME_PHOTO;
+	}
+
+	public void setLESSON_RENAME_PHOTO(String lESSON_RENAME_PHOTO) {
+		LESSON_RENAME_PHOTO = lESSON_RENAME_PHOTO;
+	}
+
 	public Lesson() {
 		
 	}	
@@ -255,13 +273,18 @@ public class Lesson implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Lesson [lesson_no=" + lesson_no + ", level_no=" + level_no + ", state_no=" + state_no + ", category_no="
-				+ category_no + ", user_no1=" + user_no1 + ", user_no2=" + user_no2 + ", user_name1=" + user_name1
-				+ ", user_name2=" + user_name2 + ", lesson_title=" + lesson_title + ", lesson_loc=" + lesson_loc
-				+ ", lesson_rad=" + lesson_rad + ", lesson_price=" + lesson_price + ", lesson_count=" + lesson_count
-				+ ", lesson_date=" + lesson_startdate + ", lesson_contop=" + lesson_contop + ", lesson_conmid="
-				+ lesson_conmid + ", lesson_conbot=" + lesson_conbot + ", lesson_keyword=" + lesson_keyword
-				+ ", lesson_enddate=" + lesson_enddate + ", lesson_type=" + lesson_type + "]";
-	}	
+		return "Lesson [lesson_no=" + lesson_no + ", level_no=" + level_no + ", level=" + level + ", state_no="
+				+ state_no + ", category_no=" + category_no + ", category_bigName=" + category_bigName
+				+ ", category_smallName=" + category_smallName + ", user_no1=" + user_no1 + ", user_no2=" + user_no2
+				+ ", user_name1=" + user_name1 + ", user_name2=" + user_name2 + ", lesson_title=" + lesson_title
+				+ ", lesson_loc=" + lesson_loc + ", lesson_rad=" + lesson_rad + ", lesson_price=" + lesson_price
+				+ ", lesson_count=" + lesson_count + ", lesson_startdate=" + lesson_startdate + ", lesson_contop="
+				+ lesson_contop + ", lesson_conmid=" + lesson_conmid + ", lesson_conbot=" + lesson_conbot
+				+ ", lesson_keyword=" + lesson_keyword + ", lesson_enddate=" + lesson_enddate + ", lesson_type="
+				+ lesson_type + ", LESSON_ORIGINAL_PHOTO=" + LESSON_ORIGINAL_PHOTO + ", LESSON_RENAME_PHOTO="
+				+ LESSON_RENAME_PHOTO + "]";
+	}
+
+	
 	
 }
