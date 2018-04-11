@@ -287,4 +287,22 @@ public class ProposalDao {
 		return result;
 	}
 
+	public int deleteProposal(Connection con, String parameter) {
+		int result=0;
+		PreparedStatement pstmt=null;
+		String sql="delete from proposal where PROPOSAL_NO= ?";
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1,parameter);
+			result=pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+		e.printStackTrace();	
+		// TODO: handle exception
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
 }

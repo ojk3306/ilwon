@@ -89,4 +89,16 @@ public class ProposalService {
 		return result;
 	}
 
+	public int deleteProposal(String parameter) {
+		Connection con=getConnection();
+		int result=new ProposalDao().deleteProposal(con,parameter);
+		if(result>0)
+			commit(con);
+		else
+			rollback(con);
+		close(con);
+		
+		return result;
+	}
+
 }
