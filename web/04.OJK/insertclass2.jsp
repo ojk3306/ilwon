@@ -125,7 +125,7 @@ function removeDetail(a){
 			<div class="panel-heading">강의를 등록합니다.
 			</div>
 			<div class="panel-body">
-				<form action="/prototype/insertlesson.sm" method="post">
+				<form action="/prototype/insertlesson.sm" method="post" enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="title">강의 타이틀</label>
 						<input id="title" name="title" class="form-control" type="text" data-validation="required">
@@ -193,8 +193,8 @@ function removeDetail(a){
 					</div>
 					
 					<div class="form-group">
-						<label for="img">사진</label>
-						<input type="file" name="original" id="img">
+						<label for="img">포트폴리오</label>
+						<input type="file" name="upfile" id="img">
 						<span id="error_phone" class="text-danger"></span>
 					</div>
 					

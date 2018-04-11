@@ -56,6 +56,7 @@ public class OngoingLesson2Servlet extends HttpServlet {
 			job.put("lesson_title", l.getLessonTitle());
 			job.put("log_no", l.getLogNo());
 			job.put("log_date", l.getLogDate().toString());
+			job.put("lesson_state", l.getLesson_state());
 			//job.put("user2_no", l.getUserNo2());
 			
 			
