@@ -29,6 +29,7 @@ public class SearchLogService {
 		Connection con = getConnection();
 		ArrayList<String> al = new SearchLogDao().searchLog(con,sl);
 		close(con);
+//		검색결과가 5개가 안됫을시, 다른것을 추가로 넣는다.
 //		if(al.size()<5) {
 //			Connection con1 = getConnection();
 //		    ArrayList<String> al1=new SearchLogDao().Searchlog2(con1,al,sl);
@@ -47,6 +48,13 @@ public class SearchLogService {
 			close(con);
 			return list;
 			
+		}
+
+		public ArrayList<String> getSearchhistroy(int parseInt) {
+			Connection con = getConnection();
+			ArrayList<String>  list = new SearchLogDao().getSearchhistroy(con,parseInt);
+			close(con);
+			return list;
 		}
 	}
 

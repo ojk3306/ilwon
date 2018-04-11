@@ -136,7 +136,6 @@ public class UsersDao {
 			//이메일로 검색.
 			query="select * from (select ROWNUM AS RNUM, A.* FROM  (select * from users where user_type like ? and ( USER_email like ? ) ) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY user_no DESC";
 
-	
 		}else if(seachOption==4) {
 			//현재 정상인지,차단인지로 검색.
 			query="select * from (select ROWNUM AS RNUM, A.* FROM  (select * from users where user_type like ? and ( USER_EXEABLE like ? or USER_LOGINABLE like ? ) ) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY user_no DESC ";
