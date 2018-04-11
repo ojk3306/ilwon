@@ -74,19 +74,19 @@ String five=(String)request.getAttribute("fifth");
   <div class="panel-body">
    <div class="col-md-3">
      <div class="well dash-box">
-       <h2><span class="glyphicon glyphicon-user" aria-hidden="true"></span>13</h2>
+       <h2><span class="glyphicon glyphicon-user" aria-hidden="true"></span><%=(String)request.getAttribute("user") %></h2>
        <h4>회원수</h4>
-     </div>
+     </div>  
    </div>
    <div class="col-md-3">
      <div class="well dash-box">
-       <h2><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> 25</h2>
+       <h2><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> <%=(String)request.getAttribute("lesson") %></h2>
        <h4>등록강의수</h4>
      </div>
    </div>
    <div class="col-md-3">
      <div class="well dash-box">
-       <h2><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>126</h2>
+       <h2><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span><%=(String)request.getAttribute("semina") %></h2>
        <h4>등록세미나수</h4>
      </div>
    </div>

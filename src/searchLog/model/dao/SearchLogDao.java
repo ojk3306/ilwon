@@ -190,6 +190,39 @@ public class SearchLogDao {
 	return list;
 	}
 	
+	
+
+	public ArrayList<String> getNumbers(Connection con, ArrayList<String> list) {
+		PreparedStatement pstmt = null;		
+		ResultSet rset=null;
+		
+		String query="select (select count(USER_NO) from users),(select count(LESSON_NO) from lesson),(select count(SEMINA_NO) from semina) from dual";
+		
+		try {
+			pstmt=con.prepareStatement(query);
+			rset=pstmt.executeQuery();		
+			
+		rset.next();	
+		String user=rset.getString(1);
+		String lesson=rset.getString(2);
+		String semina=rset.getString(3);
+		System.out.println(user+" "+lesson+" "+semina);
+		
+		list.add(user);
+		list.add(lesson);
+		list.add(semina);
+		
+		} catch (java.sql.SQLException e) {		
+			System.out.println("SearchLogData Loading Complete / (To.SearchLogDao)");		
+		} catch(Exception e1) {
+			e1.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}		
+		return list;
+	}
+	
 }
 
 

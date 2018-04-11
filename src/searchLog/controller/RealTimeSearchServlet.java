@@ -36,7 +36,9 @@ public class RealTimeSearchServlet extends HttpServlet {
 	String third =list.realTimeList().get(2);
 	String fourth =list.realTimeList().get(3);
 	String fifth =list.realTimeList().get(4);
-	
+	String user =list.getUserLessonSeminaNumbers().get(0);
+	String lesson=list.getUserLessonSeminaNumbers().get(1);
+	String semina=list.getUserLessonSeminaNumbers().get(2);
 	System.out.println("리스트 값: "+first+second+third+fourth+fifth);
 	
 	
@@ -53,6 +55,10 @@ public class RealTimeSearchServlet extends HttpServlet {
 	request.setAttribute("third", third);
 	request.setAttribute("fourth", fourth);
 	request.setAttribute("fifth", fifth);	
+	request.setAttribute("user", user);	
+	request.setAttribute("lesson", lesson);	
+	request.setAttribute("semina", semina);	
+	
 	view.forward(request, response);
 	
 	}

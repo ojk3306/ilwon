@@ -56,6 +56,20 @@ public class SearchLogService {
 			close(con);
 			return list;
 		}
+		
+		public ArrayList<String> getUserLessonSeminaNumbers(){
+			Connection con = getConnection();
+			ArrayList<String> list=new ArrayList<String>();
+			list = new SearchLogDao().getNumbers(con,list);
+			close(con);
+			return list;
+			
+			
+		}
+		
+		
+		
+		
 	}
 
 
