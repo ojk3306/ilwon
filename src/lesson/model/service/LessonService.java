@@ -9,6 +9,7 @@ import lesson.model.dao.LessonDao;
 import lesson.model.vo.Lesson;
 import lesson.model.vo.LessonDetail;
 import lesson.model.vo.Onlesson;
+import lesson.model.vo.Sidebar;
 
 public class LessonService {
 
@@ -124,12 +125,25 @@ public class LessonService {
 		return lessondetail;
 	}
 
-	public ArrayList<Lesson> seachlistByKeyword(String string) {
+	public ArrayList<Sidebar> seachlistByKeyword(String string) {
 		Connection con = getConnection();
-		ArrayList<Lesson> LessonList=new LessonDao().seachlistByKeyword(con,string);
-		
+		ArrayList<Sidebar> LessonList=new LessonDao().seachlistByKeyword(con,string);
 		close(con);
 		return LessonList;
+	}
+
+	public ArrayList<Sidebar> seachlistByKeyword(String string, ArrayList<Sidebar> lessonList) {
+		Connection con = getConnection();
+		ArrayList<Sidebar> l=new LessonDao().seachlistByKeyword2(con,string,lessonList);
+		close(con);
+		return l;
+	}
+
+	public ArrayList<Sidebar> seachlistByKeyword(ArrayList<Sidebar> lessonList) {
+		Connection con = getConnection();
+		ArrayList<Sidebar> l=new LessonDao().seachlistByKeyword2(con,lessonList);
+		close(con);
+		return l;
 	}	
 	
 }
