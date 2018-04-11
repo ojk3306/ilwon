@@ -43,19 +43,19 @@ public class SeachTeacherFromSidebar extends HttpServlet {
 		
 		if(list.size()!=0) {//로그인 유저가 평소에 검색한것이 있다면, 그 키워드를 토대로 강의를 가져온다.
 		LessonList = new LessonService().seachlistByKeyword(list.get(0));
-					
+					System.out.println( list.size());
 	    //첫번째 키워드값을 지닌 강의의 수가 적을수 있다. 그럴경우 2번째 꺼까지 간다.
-		if(LessonList.size()<6 && list.get(1) != null) 
+		if(LessonList.size()<9 && list.size() > 2  ) 
 		LessonList=new LessonService().seachlistByKeyword(list.get(1),LessonList);		
 		}
 	}
 		
 	//비로그인시, 검색결과가 없다는것이므로, 강의를 전체검색후, 랜덤하게 6개를 뽑는다. 혹은 위에서 로그인하고도, 키워드 검색후 레슨결과가 6개가 안나왔을시,
-	if(LessonList.size()<6)
+	if(LessonList.size()<9)
 	LessonList = new LessonService().seachlistByKeyword(LessonList);
 			
 	//모든 값이 정리되었으므로, 이제 제이슨을 이용해서 다시 jsp로 쏜다.		
-	/*
+	
 	JSONObject json = new JSONObject();
 	
 	JSONArray jarr = new JSONArray();
@@ -64,50 +64,21 @@ public class SeachTeacherFromSidebar extends HttpServlet {
 		
 		JSONObject job = new JSONObject();
 		job.put("username", l.getUser_name());
-		job.put("state", l.getState());
 		job.put("lesson_no", l.getLesson_no());
-		job.put("lesson_title", l.getLesson_title());
-		
-		if(l.getLesson_enddate()!=null) {			
-		job.put("lesson_enddate", l.getLesson_enddate().toString());
-		
+		job.put("CATEGORY_SMALL", l.getCategory_small());
+		if(l.getLESSON_RENAME_PHOTO()!=null) {			
+		job.put("LESSON_RENAME_PHOTO", l.getLESSON_RENAME_PHOTO());
 		}
-		
 		jarr.add(job);
 	}
 	
-	json.put("onlesson", jarr);
+	json.put("list", jarr);
 	System.out.println(json.toJSONString());
     response.setContentType("application/json; charset=utf-8;");
 	PrintWriter out = response.getWriter();
 	out.print(json.toJSONString());
 	out.flush();
 	out.close();
-	
-	*/
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-		
-		
-		
-		
 		
 	}
 

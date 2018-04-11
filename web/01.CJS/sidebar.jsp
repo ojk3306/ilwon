@@ -19,16 +19,15 @@
 <script type="text/javascript">
 
 $(function(){
-if('<%=login%>' == null){ //비로그인인 경우
-
+if('<%=login%>'== 'null'){ //비로그인인 경우
 $.ajax({
 		url:"/prototype/tsider",
-		data:{userno:"dd"},
+		data:{},
 		success:function(date){ 
-		
+			console.log(date+"비로그인")
 		},
 		error:function(a,b,c){
-			
+			console.log(b+c);
 		}
 	})
 }else{	
@@ -36,10 +35,10 @@ $.ajax({
 		url:"/prototype/tsider",
 		data:{userno:$("#userno").val()},
 		success:function(date){ 
-			
+			console.log(date+"로그인")
 		},
 		error:function(a,b,c){
-			
+			console.log(b+c);
 		}
 	})
 }	
