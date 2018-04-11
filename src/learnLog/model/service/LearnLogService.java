@@ -20,5 +20,18 @@ public class LearnLogService {
 		close(conn);
 		return onlesson;
 	}
+
+	public int cancleLesson(int lesson_no, int userno) {
+		Connection conn = getConnection();
+		
+		int result = new LearnLogDao().cancleLesson(conn,userno,lesson_no);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+	}
 	
 }

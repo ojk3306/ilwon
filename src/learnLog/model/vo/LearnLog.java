@@ -15,13 +15,14 @@ public class LearnLog implements Serializable {
 	private int state;
 	private String userName;
 	private String lessonTitle;
+	private int lesson_state;
 	
 	public LearnLog() {
 		
 	}
 
 	public LearnLog(int logNo, int userNo1, int userNo2, int lessonNo, Date logDate, int state, String userName,
-			String lessonTitle) {
+			String lessonTitle, int lesson_state) {
 		super();
 		this.logNo = logNo;
 		this.userNo1 = userNo1;
@@ -31,6 +32,7 @@ public class LearnLog implements Serializable {
 		this.state = state;
 		this.userName = userName;
 		this.lessonTitle = lessonTitle;
+		this.lesson_state = lesson_state;
 	}
 
 	public int getLogNo() {
@@ -97,6 +99,14 @@ public class LearnLog implements Serializable {
 		this.lessonTitle = lessonTitle;
 	}
 
+	public int getLesson_state() {
+		return lesson_state;
+	}
+
+	public void setLesson_state(int lesson_state) {
+		this.lesson_state = lesson_state;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -105,9 +115,10 @@ public class LearnLog implements Serializable {
 	public String toString() {
 		return "LearnLog [logNo=" + logNo + ", userNo1=" + userNo1 + ", userNo2=" + userNo2 + ", lessonNo=" + lessonNo
 				+ ", logDate=" + logDate + ", state=" + state + ", userName=" + userName + ", lessonTitle="
-				+ lessonTitle + "]";
+				+ lessonTitle + ", lesson_state=" + lesson_state + "]";
 	}
 
+	
 	
 	
 	

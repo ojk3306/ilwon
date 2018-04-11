@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,11 +24,11 @@ $(function(){
 			var values = $('#ongoing_table').html() + "<br>";
 			
 			for(var i in json.onlesson) {	
-					if(json.onlesson[i].state == 1) {
+					if(json.onlesson[i].state == 1 && json.onlesson[i].lesson_state == 1) {
 					values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
 					+"</td><td>"+json.onlesson[i].username+"</td><td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
 					+"<td><button type='button' class='btn btn-warning'>후기쓰기</button></td>"
-					+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='finishLesson(this)'>취소</button></td></tr>"			
+					+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='CancleLesson(this)'>취소</button></td></tr>"			
 					}
 			}
 			
@@ -38,7 +39,57 @@ $(function(){
 	});
 
 });
+//수강 내역
+$(function(){
+	$.ajax({
+		url: "/prototype/onlesson2",
+		data: {user : $('#userno').val()},
+		type: "get",
+		dataType: "json",
+		success: function(data) {
+			
+			var jsonStr = JSON.stringify(data);
+			var json = JSON.parse(jsonStr);
+			
+			var values = $('#previous_table').html() + "<br>";
+			
+			for(var i in json.onlesson) {	
+					if(json.onlesson[i].state == 1 && json.onlesson[i].lesson_state == 2) {
+					values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
+					+"</td><td>"+json.onlesson[i].username+"</td><td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
+					+"<td>"+json.onlesson[i].lesson_enddate+"</td></tr>"			
+					}
+			}
+			
+			$('#previous_table').html(values);
+		}, error: function(a,b,c){
+			console.log(b+c);
+		}	
+	});
 
+});
+
+//강의 상세보기
+
+function DetailLesson(val) {
+	
+	console.log(val.id);
+	location.href="/prototype/lessondetail?no=" + val.id;
+	
+} 
+
+//강의 취소하기
+function CancleLesson(val) {
+	var result = confirm('삭제 하시겠습니까?'); 
+	console.log(val.id);
+	var userno = $('#userno').val();
+	console.log(userno);
+	if(result) {
+		location.href="/prototype/canclelesson?no=" + val.id + "&?userno=" + userno;
+	}else {
+		
+	}
+}
 </script>
 
 </head>
@@ -160,75 +211,6 @@ $(function(){
 		</div>
 		
 		
-		<!-- 탭으로 변경해보자 -->
-		
-	<!-- 	<div class="container" >
-
-    <div class="col-md-6" Style="margin-top: 15px;">
-   
-        <div class="panel with-nav-tabs panel-info" Style="width:1200px;">
-            <div class="panel-heading">
-                <ul class="nav nav-tabs">
-                    <li class="active">
-                    <a href="#tab1info" data-toggle="tab">위치와 반경</a></li>
-                    <li><a href="#tab2info" data-toggle="tab">수업방식</a></li>
-                    <li><a href="#tab3info" data-toggle="tab">포트폴리오</a></li>
-
-            
-        
-                </ul>
-            </div>
-            
-            
-            <div class="panel-body">
-            
-            
-            <div class="tab-content">
-                    
-                    <div class="tab-pane fade in active" id="tab1info">
-                      <div style="padding: 10px">
-          
-          
-         <h1>수강 신청 내역</h1>
-			<hr>
-
-			<div id="info"
-				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px;">
-				<div style="width:100%;">
-					<table class="table table-hover">
-						<thead>
-							<tr>
-								<th>강의명</th>
-								<th>선생님</th>
-								<th>과목</th>
-								<th>취소하기</th>
-								<th>상세보기</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>java강의</td>
-								<td>Doe</td>
-								<td>컴퓨터/IT</td>
-								<td><button type="button" class="btn">취소</button></td>
-								<td><button type="button" class="btn">상세보기</button></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-          
-          
-          
-           
-           </div>
-                    
-                   	</div>
-                    </div>
-                    </div>
-                    </div>
-                    </div>
-                    </div> -->
 		
 		
 	</div>
