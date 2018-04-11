@@ -194,7 +194,7 @@ function removeDetail(a){
 					
 					<div class="form-group">
 						<label for="img">사진</label>
-						<input type="file" name="img" id="img">
+						<input type="file" name="original" id="img">
 						<span id="error_phone" class="text-danger"></span>
 					</div>
 					

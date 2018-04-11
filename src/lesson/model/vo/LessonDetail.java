@@ -23,6 +23,8 @@ public class LessonDetail implements Serializable{
 	private int reviewDelivery;
 	private int reviewNo;		
 	private String reviewContent;
+	private String lesson_orginal;
+	private String lesson_rename;
 	
 	
 	public LessonDetail() {}
@@ -31,7 +33,7 @@ public class LessonDetail implements Serializable{
 	public LessonDetail(int lesson_no, String level, String lesson_title, String lesson_loc, int lesson_rad,
 			int lesson_price, int lesson_count, int state_no, String lesson_contop, String lesson_conmid,
 			String lesson_conbot, String lesson_keyword, String user_name, int reviewPrepare, int reviewSincerity,
-			int reviewDelivery, int reviewNo, String reviewContent) {
+			int reviewDelivery, int reviewNo, String reviewContent, String lesson_orginal, String lesson_rename) {
 		super();
 		this.lesson_no = lesson_no;
 		this.level = level;
@@ -51,6 +53,8 @@ public class LessonDetail implements Serializable{
 		this.reviewDelivery = reviewDelivery;
 		this.reviewNo = reviewNo;
 		this.reviewContent = reviewContent;
+		this.lesson_orginal = lesson_orginal;
+		this.lesson_rename = lesson_rename;
 	}
 
 
@@ -64,12 +68,12 @@ public class LessonDetail implements Serializable{
 	}
 
 
-	public String getlevel() {
+	public String getLevel() {
 		return level;
 	}
 
 
-	public void setlevel(String level) {
+	public void setLevel(String level) {
 		this.level = level;
 	}
 
@@ -234,6 +238,26 @@ public class LessonDetail implements Serializable{
 	}
 
 
+	public String getLesson_orginal() {
+		return lesson_orginal;
+	}
+
+
+	public void setLesson_orginal(String lesson_orginal) {
+		this.lesson_orginal = lesson_orginal;
+	}
+
+
+	public String getLesson_rename() {
+		return lesson_rename;
+	}
+
+
+	public void setLesson_rename(String lesson_rename) {
+		this.lesson_rename = lesson_rename;
+	}
+
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -247,8 +271,12 @@ public class LessonDetail implements Serializable{
 				+ ", lesson_conmid=" + lesson_conmid + ", lesson_conbot=" + lesson_conbot + ", lesson_keyword="
 				+ lesson_keyword + ", user_name=" + user_name + ", reviewPrepare=" + reviewPrepare
 				+ ", reviewSincerity=" + reviewSincerity + ", reviewDelivery=" + reviewDelivery + ", reviewNo="
-				+ reviewNo + ", reviewContent=" + reviewContent + "]";
+				+ reviewNo + ", reviewContent=" + reviewContent + ", lesson_orginal=" + lesson_orginal
+				+ ", lesson_rename=" + lesson_rename + "]";
 	}
+
+
+	
 
 		
 	

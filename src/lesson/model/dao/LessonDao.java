@@ -23,7 +23,7 @@ public class LessonDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = "insert into lesson values((SELECT max(lesson_no) from lesson)+1"
-				+ ",?,1,5513,null,?,?,?,?,?,?,sysdate,null,?,?,?,?,7000)";
+				+ ",?,1,5513,null,?,?,?,?,?,?,sysdate,null,?,?,?,?,7000,null,null)";
 		
 		
 		try {
@@ -189,7 +189,7 @@ public class LessonDao {
 				l = new LessonDetail();	
 				l.setLesson_no(lesson_no);
 				l.setLesson_title(rset.getString("lesson_title"));
-				l.setlevel(rset.getString("lessonlev"));
+				l.setLevel(rset.getString("lessonlev"));
 				l.setLesson_loc(rset.getString("lesson_location"));
 				l.setLesson_rad(rset.getInt("lesson_radius"));
 				l.setLesson_price(rset.getInt("lesson_price"));

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="lesson.model.vo.LessonDetail" %>    
 <%@ page import="review.model.vo.Review" %>    
-<%
+<% 
 	LessonDetail lessondetail =(LessonDetail)request.getAttribute("lessondetail");
 	ArrayList<Review> review = (ArrayList<Review>)request.getAttribute("review");
 	double avga =((Double)request.getAttribute("avga")).doubleValue();
