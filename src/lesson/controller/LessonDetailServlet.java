@@ -15,6 +15,8 @@ import lesson.model.service.LessonService;
 import lesson.model.vo.LessonDetail;
 import review.model.service.ReviewService;
 import review.model.vo.Review;
+import users.model.service.UsersService;
+import users.model.vo.Users;
 
 /**
  * Servlet implementation class LessonDetailServlet
@@ -39,6 +41,7 @@ public class LessonDetailServlet extends HttpServlet {
 		
 		LessonDetail lessondetail = new LessonService().lessonView(lesson_no);
 		ArrayList<Review> review = new ReviewService().previewReview(lesson_no);
+		String userimg = new UsersService().getUserImg(lessondetail.getUser_no());
 		//일단 다가져옴
 		int sumd = 0;
 		int sump = 0;
@@ -75,6 +78,7 @@ public class LessonDetailServlet extends HttpServlet {
 		if(lessondetail != null && review != null) {
 			view = request.getRequestDispatcher("04.OJK/teacherdetail.jsp");
 			request.setAttribute("lessondetail", lessondetail);
+			request.setAttribute("userimg", userimg);
 			request.setAttribute("review", review);
 			request.setAttribute("avgd", avgd);
 			request.setAttribute("avgp", avgp);

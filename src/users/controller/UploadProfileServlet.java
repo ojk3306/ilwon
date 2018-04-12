@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
@@ -45,7 +47,7 @@ int maxSize = 1024 * 1024 * 10;
 		
 		RequestDispatcher view = null;
 		if(!ServletFileUpload.isMultipartContent(request)) {
-			//enctype �꽕�젙�씠 �릺吏� �븡�븯�떎硫�
+			
 			view = request.getRequestDispatcher("views/board/boardError.jsp");
 			request.setAttribute("message", "form �깭洹몄뿉 enctype �냽�꽦�씠 �꽕�젙�릺吏� �븡�븯�뒿�땲�떎.");
 			view.forward(request, response);
@@ -57,10 +59,10 @@ int maxSize = 1024 * 1024 * 10;
 		MultipartRequest mrequest = new MultipartRequest(
 				request, savePath, maxSize, "utf-8",
 				new DefaultFileRenamePolicy());		
-		
+		int userNo = Integer.parseInt(mrequest.getParameter("userno"));
 		Users user = new Users();
 		
-		user.setUserNo(Integer.parseInt(mrequest.getParameter("no")));
+		user.setUserNo(Integer.parseInt(mrequest.getParameter("userno")));
 		user.setUserOriginalPhoto(mrequest.getFilesystemName("upfile"));
 		
 		String original = user.getUserOriginalPhoto();
@@ -68,29 +70,28 @@ int maxSize = 1024 * 1024 * 10;
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 			String rename = sdf.format(new java.sql.Date(System.currentTimeMillis()))
 					+ "." + original.substring(original.lastIndexOf(".") + 1);
-			//�뙆�씪紐� 諛붽씀�젮硫� File 媛앹껜�쓽 renameTo() �궗�슜�븿
+			
 			File originFile = new File(savePath + "\\" + original);
 			File renameFile = new File(savePath + "\\" + rename);
 			
 			if(!originFile.renameTo(renameFile)) {
-				//�뙆�씪�씠由� 諛붽씀湲� �떎�뙣�뻼�떎硫�
+				
 				int read = -1;
 				byte[] buf = new byte[1024];
-				//�븳踰덉뿉 �씫�쓣 諛곗뿴 �겕湲� 吏��젙
-				//�썝蹂몄쓣 �씫湲� �쐞�븳 �뙆�씪�뒪�듃由� �깮�꽦
+				
 				FileInputStream fin = new FileInputStream(originFile);
-				//�씫�� �궡�슜 湲곕줉�븷 蹂듭궗蹂� �뙆�씪 異쒕젰�슜 �뒪�듃由� �깮�꽦
+			
 				FileOutputStream fout = new FileOutputStream(renameFile);
 				
-				//�썝蹂� �씫�뼱�꽌 蹂듭궗蹂몄뿉 湲곕줉 泥섎━
+				
 				while((read = fin.read(buf, 0, buf.length)) != -1) {
 					fout.write(buf, 0, read);
 				}
 				
-				//�뒪�듃由� 諛섎궔
+				
 				fin.close();
 				fout.close();
-				originFile.delete(); //�썝蹂� �궘�젣
+				originFile.delete(); 
 				
 			} //rename if close
 			
@@ -98,11 +99,33 @@ int maxSize = 1024 * 1024 * 10;
 		}
 		
 		int result = new UsersService().uploadProfile(user);
-		
+		Users loginUser = new UsersService().updateLogin(userNo);
 		response.setContentType("text/html; charset=utf-8");
 		
+		//세션 새로생성하자
+	/*	HttpSession session = request.getSession(false);
+		if(session != null) {
+			session.invalidate();
+			response.sendRedirect("index.jsp");
+		}*/
+		
+		if(loginUser != null) {
+		HttpSession session = request.getSession(false);        	
+		session.invalidate();
+		HttpSession session2 = request.getSession();
+    	session2.setAttribute("loginUser", loginUser);
+    	
+		   }
+		
 		if(result > 0) {
-			response.sendRedirect("/prototype/04.OJK\\teacherdetail.jsp");
+			 PrintWriter out = response.getWriter();
+			 String str="";
+			   str = "<script language='javascript'>";
+			   str += "opener.window.location.reload();";  //오프너 새로고침
+			   str += "self.close();";   // 창닫기
+			    str += "</script>";
+			   out.print(str);
+			//response.sendRedirect("/prototype/04.OJK\\teacherdetail.jsp");
 		}else {
 			response.sendRedirect("index.jsp");
 		}

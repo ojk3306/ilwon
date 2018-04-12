@@ -25,6 +25,11 @@ public class LessonDetail implements Serializable{
 	private String reviewContent;
 	private String lesson_orginal;
 	private String lesson_rename;
+	private String lesson_orginal2;
+	private String lesson_rename2;
+	private String lesson_orginal3;
+	private String lesson_rename3;
+	private int user_no;
 	
 	
 	public LessonDetail() {}
@@ -33,7 +38,8 @@ public class LessonDetail implements Serializable{
 	public LessonDetail(int lesson_no, String level, String lesson_title, String lesson_loc, int lesson_rad,
 			int lesson_price, int lesson_count, int state_no, String lesson_contop, String lesson_conmid,
 			String lesson_conbot, String lesson_keyword, String user_name, int reviewPrepare, int reviewSincerity,
-			int reviewDelivery, int reviewNo, String reviewContent, String lesson_orginal, String lesson_rename) {
+			int reviewDelivery, int reviewNo, String reviewContent, String lesson_orginal, String lesson_rename,
+			String lesson_orginal2, String lesson_rename2, String lesson_orginal3, String lesson_rename3, int user_no) {
 		super();
 		this.lesson_no = lesson_no;
 		this.level = level;
@@ -55,6 +61,11 @@ public class LessonDetail implements Serializable{
 		this.reviewContent = reviewContent;
 		this.lesson_orginal = lesson_orginal;
 		this.lesson_rename = lesson_rename;
+		this.lesson_orginal2 = lesson_orginal2;
+		this.lesson_rename2 = lesson_rename2;
+		this.lesson_orginal3 = lesson_orginal3;
+		this.lesson_rename3 = lesson_rename3;
+		this.user_no = user_no;
 	}
 
 
@@ -258,6 +269,56 @@ public class LessonDetail implements Serializable{
 	}
 
 
+	public String getLesson_orginal2() {
+		return lesson_orginal2;
+	}
+
+
+	public void setLesson_orginal2(String lesson_orginal2) {
+		this.lesson_orginal2 = lesson_orginal2;
+	}
+
+
+	public String getLesson_rename2() {
+		return lesson_rename2;
+	}
+
+
+	public void setLesson_rename2(String lesson_rename2) {
+		this.lesson_rename2 = lesson_rename2;
+	}
+
+
+	public String getLesson_orginal3() {
+		return lesson_orginal3;
+	}
+
+
+	public void setLesson_orginal3(String lesson_orginal3) {
+		this.lesson_orginal3 = lesson_orginal3;
+	}
+
+
+	public String getLesson_rename3() {
+		return lesson_rename3;
+	}
+
+
+	public void setLesson_rename3(String lesson_rename3) {
+		this.lesson_rename3 = lesson_rename3;
+	}
+
+
+	public int getUser_no() {
+		return user_no;
+	}
+
+
+	public void setUser_no(int user_no) {
+		this.user_no = user_no;
+	}
+
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -272,9 +333,14 @@ public class LessonDetail implements Serializable{
 				+ lesson_keyword + ", user_name=" + user_name + ", reviewPrepare=" + reviewPrepare
 				+ ", reviewSincerity=" + reviewSincerity + ", reviewDelivery=" + reviewDelivery + ", reviewNo="
 				+ reviewNo + ", reviewContent=" + reviewContent + ", lesson_orginal=" + lesson_orginal
-				+ ", lesson_rename=" + lesson_rename + "]";
+				+ ", lesson_rename=" + lesson_rename + ", lesson_orginal2=" + lesson_orginal2 + ", lesson_rename2="
+				+ lesson_rename2 + ", lesson_orginal3=" + lesson_orginal3 + ", lesson_rename3=" + lesson_rename3
+				+ ", user_no=" + user_no + "]";
 	}
 
+
+	
+	
 
 	
 

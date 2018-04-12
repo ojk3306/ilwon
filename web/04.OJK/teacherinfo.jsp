@@ -143,9 +143,15 @@ function upload_profile() {
 				<div style="width: 100%; height: 230px; background: #f2f2f2;">
 					<div
 						style="width: 250px; height: 230px; float: left; margin-top: 10px; padding: 5px;">
+						<%if(loginUser.getUserRenamePhoto() != null) { %>
 						<img src="/prototype/userTitleimg/<%= loginUser.getUserRenamePhoto() %>"
 							class="img-circle" alt="Cinque Terre" width="200px"
 							height="200px">
+						<% }else {%>
+							<img src="/prototype/userTitleimg/rakoon.jpg"
+							class="img-circle" alt="Cinque Terre" width="200px"
+							height="200px">
+						<%} %>
 					</div>
 					<div style="float: left; margin-top: 20px;">
 						<span style="font-weight: bold; font-size: 25pt;"><%= loginUser.getUserName() %> 님</span>
