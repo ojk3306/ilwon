@@ -12,11 +12,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>은밀한 과외 가입하기</title>
 </head>
-<body>
+<body style="background:#e9e9e9">
 <%@ include file="/common/navbar.jsp" %>
-
+<%@ include file="/01.CJS\sidebar.jsp" %>
 	<nav class="contents">
-		<div id="wrapper">	
+		<div id="wrapper" style="height: 750px; margin-top: -600px">	
 			<br>
 			<h1 align="center">은밀한 과외 가입하기</h1>
 			<hr>
@@ -34,5 +34,8 @@
 			</div>
 		</div>
 	</nav>
+	<div style="margin-bottom:-150px">
+	<%@ include file="/common/footer.jsp" %>	
+	</div>
 </body>
 </html>
