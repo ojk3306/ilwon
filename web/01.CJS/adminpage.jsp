@@ -41,12 +41,12 @@ String five=(String)request.getAttribute("fifth");
       <div class="col-md-3">
         <div class="list-group">
       <a href="index.html" class="list-group-item active main-color-bg"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-      설정관리<span class="badge">11</span>
+      설정관리<span class="badge">1</span>
       </a>
       <a href="/prototype/03.OHW/views/noticeList.jsp" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>공지사항관리<span class="badge">25</span></a>
       <a href="/prototype/01.CJS/categorys.jsp" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>카테고리관리<span class="badge">126</span></a>
       <a href="/prototype/reportlist" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>신고관리<span class="badge"></span></a>
-      <a href="posts.html" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>카테고리관리<span class="badge">126</span></a>
+      <a href="/prototype/03.OHW/views/noticeInsert.jsp" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>공지사항작성<span class="badge">126</span></a>
       <a href="/prototype/adminseachuser" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true" ></span> 유저검색
        <span class="badge">12</span></a>
     </div>

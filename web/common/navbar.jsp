@@ -150,7 +150,8 @@
 		
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="/prototype/03.OHW/views/noticeList.jsp">은밀한 공지</a></li>
+				<li class="active">
+				<a href="/prototype/03.OHW/views/noticeList.jsp">은밀한 공지사항</a></li>
 				<li><a href="/prototype/03.OHW/views/find_teacher.jsp">선생 찾기</a></li>
 				<li><a href="/prototype/03.OHW/views/find_learn_list.jsp">학생 찾기</a></li>
 				<li><a href="/prototype/semilist?page=1">세미나  찾기</a></li>
@@ -162,7 +163,6 @@
 					<% if(loginUser.getUserTypeNo() ==1003 ){%>
 					<li><a href="/prototype/rtsearch">관리자</a></li>
 					<%} %>
-					
 				<%} %>
 			
 			

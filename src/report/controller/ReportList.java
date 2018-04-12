@@ -38,8 +38,8 @@ public class ReportList extends HttpServlet {
 		ArrayList<Report> re=null;
 		String message1=null;
 		String search=null;
-		int currentPage;
-		int seachOption;
+		int currentPage=1;
+		int seachOption=1;
 		//전달된 페이지값 추출
 		
 		if(request.getAttribute("message1") != null) {
@@ -75,14 +75,10 @@ public class ReportList extends HttpServlet {
 		re= new ReportService().getprolist(limit,currentPage);//최신 등록순으로
 		}else {
 		System.out.println("검색을 실행함.");
-		re= new ProposalService().getprolistBysearch(limit,currentPage,search,seachOption);
+		re= new ReportService().getprolistBysearch(limit,currentPage,search,seachOption);
 		}
-	
-		 
-	
-		
-		
-		System.out.println("listCount="+listCount+"개");
+	    
+	    System.out.println("listCount="+listCount+"개");
 		//현재 페이지에 출력할 목록 조회
 		
 		
@@ -96,11 +92,11 @@ public class ReportList extends HttpServlet {
 		
 		if(maxPage < endPage)
 			endPage = maxPage;
-		
+		response.setContentType("text/html; charset=utf-8");
 		RequestDispatcher view=null;
-		if(pro.size()>0) {
-			view=request.getRequestDispatcher("/04.OJK/proposal.jsp");
-		    request.setAttribute("list", pro);
+		if(re.size()>0) {
+			view=request.getRequestDispatcher("/01.CJS/report.jsp");
+		    request.setAttribute("list", re);
 			request.setAttribute("currentPage", currentPage);
 			request.setAttribute("maxPage", maxPage);
 			request.setAttribute("startPage", startPage);
@@ -111,8 +107,8 @@ public class ReportList extends HttpServlet {
 			request.setAttribute("message1",message1);
 			view.forward(request, response);
 		}else {
-			view=request.getRequestDispatcher("/04.OJK/proposal.jsp");
-			request.setAttribute("list", pro);
+			view=request.getRequestDispatcher("/01.CJS/report.jsp");
+			request.setAttribute("list", re);
 			request.setAttribute("currentPage", currentPage);
 			request.setAttribute("maxPage", maxPage);
 			request.setAttribute("startPage", startPage);
@@ -122,7 +118,6 @@ public class ReportList extends HttpServlet {
 			request.setAttribute("seachoption",seachOption);
 			request.setAttribute("message","검색 결과값이 존재하지않습니다.");
 			view.forward(request, response);
-			
 		}
 	
 	}

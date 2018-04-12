@@ -46,7 +46,7 @@ public class RealTimeSearchServlet extends HttpServlet {
 	
 	//2. request.getRequestDispatcher("해당 jsp 파일의 주소");
 	
-	response.setCharacterEncoding("text/html; charset=utf-8");
+	response.setContentType("text/html; charset=utf-8");
 	
 	RequestDispatcher view = null;
 	view=request.getRequestDispatcher("./01.CJS/adminpage.jsp");
