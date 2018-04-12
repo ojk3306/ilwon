@@ -184,7 +184,7 @@
 		<% if(loginUser==null){ %>
 		<a href="/prototype/sdetail?userno=<%=i.getSeminaNo()%> " class="btn btn-default">자세히보기...</a>
 		<%}else{ %>
-			<a href="/prototype/sdetail?userno=<%=i.getSeminaNo()%>&usernono=<%=loginUser.getUserNo()%>" class="btn btn-default">자세히보기...</a>
+		<a href="/prototype/sdetail?userno=<%=i.getSeminaNo()%>&usernono=<%=loginUser.getUserNo()%>" class="btn btn-default">자세히보기...</a>
 	
 		<%} %>
 		</div>

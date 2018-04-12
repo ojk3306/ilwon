@@ -55,7 +55,7 @@ public class ReportInsert extends HttpServlet {
 				// 해당 컨테이너의 구동중인 웹 애플리케이션의 루트 경로 알아냄
 				String root = request.getSession().getServletContext().getRealPath("/");
 				// 업로드되는 파일이 저장될 폴더명과 경로 연결 처리
-				String savePath = root + "seminaTitleimg";
+				String savePath = root + "reportimg";
 				// web/seminaTitleimg을 세미나 강의에서 받을 타이틀 이미지로 지정함
 			System.out.println("root="+root);
 			System.out.println("savePath="+savePath);

@@ -54,4 +54,18 @@ public class ReportService {
 		return ar;
 	}
 
+	public ArrayList<Report> getprolistBysearch(int limit, int currentPage, String search, int seachOption) {
+		Connection con=getConnection();
+		ArrayList<Report> ar=new ReportDao().getprolist(con,limit,currentPage,search,seachOption);
+		close(con);
+		return ar;
+	}
+
+	public Report getReportDetail(String parameter) {
+		Connection con=getConnection();
+		Report re=new ReportDao().getReportDetail(con,Integer.parseInt(parameter));
+		close(con);
+		return re;
+	}
+
 }
