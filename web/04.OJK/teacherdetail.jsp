@@ -5,6 +5,7 @@
 <% 
 	LessonDetail lessondetail =(LessonDetail)request.getAttribute("lessondetail");
 	ArrayList<Review> review = (ArrayList<Review>)request.getAttribute("review");
+	String userimg = (String)request.getAttribute("userimg");
 	double avga =((Double)request.getAttribute("avga")).doubleValue();
 	int avgd = ((Integer)request.getAttribute("avgd")).intValue();
 	int avgs = ((Integer)request.getAttribute("avgs")).intValue();
@@ -243,8 +244,11 @@ border-radius: 35px;
 	<li class="topdiv" name="img">
 		<ul>
 		<li>
-		
-		<img src="./img/tech.jpg">
+		<%if(userimg != null) { %>
+		<img src="/prototype/userTitleimg/<%= userimg%>">
+		<%}else { %>
+		<img src="/prototype/userTitleimg/rakoon.jpg">
+		<%} %>
 		</li>
 		
 		<li class="underpic">
@@ -256,6 +260,9 @@ border-radius: 35px;
 		<ul style="list-style: none;">
 			<li class=""><h3><%=lessondetail.getUser_name() %></h3>선생님</li>
 			<li class=""><h1><%=lessondetail.getLesson_title() %></h1></li>
+			<li class=""><br></li>
+			<li class=""><h3>키워드></h3><h4> <%=lessondetail.getLesson_keyword() %></h4></li>
+			
 		</ul>
 		</li>
 		
@@ -845,22 +852,18 @@ border-radius: 35px;
                                     <div class="carousel-inner"> 
                                     <!-- 이미지 받기 -->
                                         <div class="active item" data-slide-number="0">
-                                        <img src="/prototype/lesson_upload/<%= lessondetail.getLesson_rename() %>"></div>
+                                        <img src="/prototype/lesson_upload/<%= lessondetail.getLesson_rename() %>"
+                                        style="width:500px; height:500px"></div>
 
                                         <div class="item" data-slide-number="1">
-                                        <img src="./img/bg-masthead2.jpg"></div>
+                                        <img src="/prototype/lesson_upload/<%= lessondetail.getLesson_rename2() %>"
+                                         style="width:500px; height:500px"></div>
 
                                         <div class="item" data-slide-number="2">
-                                        <img src="./img/bg-showcase-1.jpg"></div>
+                                        <img src="/prototype/lesson_upload/<%= lessondetail.getLesson_rename3() %>"
+                                         style="width:500px; height:500px"></div>
 
-                                        <div class="item" data-slide-number="3">
-                                        <img src="./img/bg-showcase-2.jpg"></div>
-
-                                        <div class="item" data-slide-number="4">
-                                        <img src="./img/bg-showcase-3.jpg"></div>
-
-                                        <div class="item" data-slide-number="5">
-                                        <img src="./img/tech.jpg"></div>
+                                  
                                     
                                     </div><!-- Carousel nav -->
                                     <a class="carousel-control left" data-slide="prev" href="#myCarousel">‹</a> <a class="carousel-control right" data-slide="next" href="#myCarousel">›</a>
