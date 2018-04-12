@@ -101,7 +101,7 @@ String five=(String)request.getAttribute("fifth");
 <!--Latest User-->
 <div class="panel panel-default">
   <div class="panel-heading"style="background-color:  #095f59;">
-    <h3 class="panel-title" style="color:#ffffff">최신 ~</h3>
+    <h3 class="panel-title" style="color:#ffffff">최신 강의</h3>
   </div>
   <div class="panel-body">
     <table class="table table-striped table-hover">

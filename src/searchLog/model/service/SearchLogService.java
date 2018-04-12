@@ -65,8 +65,9 @@ public class SearchLogService {
 			return list;
 			
 			
-		}
 		
+	
+		}
 		
 		
 		
