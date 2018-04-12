@@ -1,4 +1,4 @@
-package lesson.controller;
+package users.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,19 +19,20 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import lesson.model.service.LessonService;
-import lesson.model.vo.Lesson;
+import users.model.service.UsersService;
+import users.model.vo.Users;
 
 /**
- * Servlet implementation class InsertClassServlet
+ * Servlet implementation class UploadProfileServlet
  */
-@WebServlet("/insertlesson.sm")
-public class InsertLessonServlet extends HttpServlet {
+@WebServlet("/uploadp")
+public class UploadProfileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertLessonServlet() {
+    public UploadProfileServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,8 +41,7 @@ public class InsertLessonServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int maxSize = 1024 * 1024 * 10;
+int maxSize = 1024 * 1024 * 10;
 		
 		RequestDispatcher view = null;
 		if(!ServletFileUpload.isMultipartContent(request)) {
@@ -52,29 +52,18 @@ public class InsertLessonServlet extends HttpServlet {
 		}
 		
 		String root = request.getSession().getServletContext().getRealPath("/");
-		String savePath = root + "lesson_upload";
+		String savePath = root + "userTitleimg";
 		
 		MultipartRequest mrequest = new MultipartRequest(
 				request, savePath, maxSize, "utf-8",
 				new DefaultFileRenamePolicy());		
 		
+		Users user = new Users();
 		
-		Lesson lesson = new Lesson();
+		user.setUserNo(Integer.parseInt(mrequest.getParameter("no")));
+		user.setUserOriginalPhoto(mrequest.getFilesystemName("upfile"));
 		
-		lesson.setLesson_title(mrequest.getParameter("title"));
-		lesson.setLevel_no(Integer.parseInt(mrequest.getParameter("level")));
-		lesson.setUser_no2(Integer.parseInt(mrequest.getParameter("userno")));
-		lesson.setLesson_price(Integer.parseInt(mrequest.getParameter("price")));
-		lesson.setLesson_count(Integer.parseInt(mrequest.getParameter("count")));
-		lesson.setLesson_contop(mrequest.getParameter("contop"));
-		lesson.setLesson_conmid(mrequest.getParameter("conmid"));
-		lesson.setLesson_conbot(mrequest.getParameter("conbot"));
-		lesson.setLesson_loc(mrequest.getParameter("loc"));
-		lesson.setLesson_rad(Integer.parseInt(mrequest.getParameter("rad")));
-		lesson.setLesson_keyword(mrequest.getParameter("keyword"));
-		lesson.setLesson_orginal(mrequest.getFilesystemName("upfile"));
-		
-		String original = lesson.getLesson_orginal();
+		String original = user.getUserOriginalPhoto();
 		if(original!=null) {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 			String rename = sdf.format(new java.sql.Date(System.currentTimeMillis()))
@@ -105,23 +94,18 @@ public class InsertLessonServlet extends HttpServlet {
 				
 			} //rename if close
 			
-			lesson.setLesson_rename(rename);
+			user.setUserRenamePhoto(rename);
 		}
 		
-		
-		
-		int result = new LessonService().insertlesson(lesson);
+		int result = new UsersService().uploadProfile(user);
 		
 		response.setContentType("text/html; charset=utf-8");
 		
 		if(result > 0) {
-			response.sendRedirect("/prototype/04.OJK\\lessonSuccess.jsp");
+			response.sendRedirect("/prototype/04.OJK\\teacherdetail.jsp");
 		}else {
 			response.sendRedirect("index.jsp");
 		}
-		
-		
-		
 	}
 
 	/**

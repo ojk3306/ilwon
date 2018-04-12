@@ -1,8 +1,7 @@
-package proposal.controller;
+package report.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,21 +10,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import semina.model.service.SeminaService;
 import proposal.model.service.ProposalService;
-import proposal.model.vo.*;
+import report.model.Service.ReportService;
+import report.model.vo.Report;
+
 
 /**
- * Servlet implementation class ProposalList
+ * Servlet implementation class ReportList
  */
-@WebServlet("/plist")
-public class ProposalList extends HttpServlet {
+@WebServlet("/reportlist")
+public class ReportList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProposalList() {
+    public ReportList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,12 +34,12 @@ public class ProposalList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		ArrayList<Proposal> pro=null;
+
+		ArrayList<Report> re=null;
 		String message1=null;
 		String search=null;
-		int currentPage = 1;
-		int seachOption = 1;
+		int currentPage;
+		int seachOption;
 		//전달된 페이지값 추출
 		
 		if(request.getAttribute("message1") != null) {
@@ -58,24 +58,24 @@ public class ProposalList extends HttpServlet {
 		if(request.getParameter("serchoption") != null) {
 		seachOption=Integer.parseInt(request.getParameter("serchoption"));
 		}
+		
 		//한 페이지당 출력할 목록 갯수 지정
 		int limit = 9;
 		//전체 목록 갯수 조회 
 		int  listCount=0;
 		
 		if(request.getParameter("search")!=null)  //만일, 검색일경우, 
-			listCount=new ProposalService().getlistcountBySearch(search,seachOption);
-		else
-			listCount=new ProposalService().getlistcount(seachOption);
-		
+			listCount=new ReportService().getlistcountBySearch(search,seachOption);
+		else 
+			listCount=new ReportService().getlistcount();
 		
 		
 	    if(search == null) {
 		System.out.println("검색이 없음.");
-		pro= new ProposalService().getprolist(limit,currentPage);//최신 등록순으로
+		re= new ReportService().getprolist(limit,currentPage);//최신 등록순으로
 		}else {
 		System.out.println("검색을 실행함.");
-		pro= new ProposalService().getprolistBysearch(limit,currentPage,search,seachOption);
+		re= new ProposalService().getprolistBysearch(limit,currentPage,search,seachOption);
 		}
 	
 		 
@@ -124,9 +124,12 @@ public class ProposalList extends HttpServlet {
 			view.forward(request, response);
 			
 		}
+	
 	}
 
-
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

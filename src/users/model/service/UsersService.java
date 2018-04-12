@@ -75,7 +75,7 @@ public class UsersService {
 			commit(con);
 		}else {
 			rollback(con);
-			System.out.println("adminUpdate서비스 실패");
+			System.out.println("adminUpdate�꽌鍮꾩뒪 �떎�뙣");
 		}
 		
 		close(con);
@@ -99,6 +99,19 @@ public class UsersService {
 		
 		
 		return user;
+	}
+
+	public int uploadProfile(Users user) {
+		Connection conn = getConnection();
+		
+		int result = new UsersDao().uploadProfile(conn,user);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
 	}
 
 	

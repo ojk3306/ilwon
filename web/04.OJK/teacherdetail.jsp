@@ -845,7 +845,7 @@ border-radius: 35px;
                                     <div class="carousel-inner"> 
                                     <!-- 이미지 받기 -->
                                         <div class="active item" data-slide-number="0">
-                                        <img src="./img/bg-masthead.jpg"></div>
+                                        <img src="/prototype/lesson_upload/<%= lessondetail.getLesson_rename() %>"></div>
 
                                         <div class="item" data-slide-number="1">
                                         <img src="./img/bg-masthead2.jpg"></div>
