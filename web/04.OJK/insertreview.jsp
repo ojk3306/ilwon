@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="lesson.model.vo.LessonDetail" %>        
+<% 
+	LessonDetail lesson =(LessonDetail)request.getAttribute("lesson");
+	int lesson_no = ((Integer)request.getAttribute("lesson_no"));
+	int user_no = ((Integer)request.getAttribute("user_no"));
+%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +13,7 @@
 <title>리뷰작성</title>
 </head>
 <body>
-<%@include file="/common/navbar.jsp" %>
+
 
 <nav class="contents">
 	<div align="center">
@@ -21,14 +27,15 @@
 			<div style="width: 1100px; height: 200px; b">
 				<div style="width: 1100px; height: 120px; ">
 					<br>
-					<h1 style="margin-top: 30px;">선생님이름/강의이름</h1>
+					<h3 style="margin-top: 30px;"><%= lesson.getUser_name()%>&nbsp;선생님</h3>
+					<h2><%= lesson.getLesson_title() %></h2>
 
 
 
 				</div>
 
 				<div style="width: 1100px; height: 80px; ">
-					<br> <span style="font-weight: bold;font-size: 15pt;">별점</span>&nbsp;&nbsp;<%@ include
+					<br> <span style="font-weight: bold;font-size: 15pt;">성실성</span>&nbsp;&nbsp;<%@ include
 						file="../01.CJS/Fixedstar.jsp"%>
 				</div>
 

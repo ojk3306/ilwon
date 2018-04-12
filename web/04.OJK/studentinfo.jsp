@@ -27,7 +27,7 @@ $(function(){
 					if(json.onlesson[i].state == 1 && json.onlesson[i].lesson_state == 1) {
 					values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
 					+"</td><td>"+json.onlesson[i].username+"</td><td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
-					+"<td><button type='button' class='btn btn-warning'>후기쓰기</button></td>"
+					+"<td><button type='button' id='"+json.onlesson[i].lesson_no+"' class='btn btn-warning' onclick='insertReview(this)'>후기쓰기</button></td>"
 					+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='CancleLesson(this)'>취소</button></td></tr>"			
 					}
 			}
@@ -85,12 +85,21 @@ function CancleLesson(val) {
 	var userno = $('#userno').val();
 	console.log(userno);
 	if(result) {
-		location.href="/prototype/canclelesson?no=" + val.id + "&?userno=" + userno;
+		location.href="/prototype/canclelesson?no=" + val.id + "&userno=" + userno;
 	}else {
 		
 	}
 }
 
+//리뷰작성하기
+function insertReview(val) {
+	var userno = $('#userno').val();
+	console.log(userno);
+	var popUrl = "/prototype/popreview?no="+val.id+"&userno="+userno;
+	var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
+
+	window.open(popUrl,"a",popOption);
+}
 //프로필 업로드하기
 function upload_profile() {
 	
