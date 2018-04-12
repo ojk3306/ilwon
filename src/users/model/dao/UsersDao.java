@@ -22,7 +22,7 @@ public class UsersDao {
 		ResultSet rset = null;
 		
 		String query = "select * from users where user_email= ? "
-				+ "and user_pwd = ?";
+				+ "and user_pwd = ? and USER_LOGINABLE = 'Y' ";
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -519,6 +519,76 @@ public class UsersDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public Users updateLogin(Connection con, int userNo) {
+		Users loginUser = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "select * from users where user_no= ?";
+				
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				loginUser = new Users();
+				
+				loginUser.setUserEmail(rset.getString("user_email"));
+				loginUser.setUserPassword(rset.getString("user_pwd"));
+				loginUser.setUserName(rset.getString("user_name"));
+				loginUser.setUserNo(rset.getInt("user_no"));
+				loginUser.setUserTypeNo(rset.getInt("user_type"));
+				loginUser.setUserGender(rset.getString("user_gender"));
+				loginUser.setUserAge(rset.getInt("user_age"));
+				loginUser.setUserLoc(rset.getString("user_loc"));
+				loginUser.setUserPhone(rset.getString("user_phone"));
+				loginUser.setUserOriginalPhoto(rset.getString("user_original_photo"));
+				loginUser.setUserRenamePhoto(rset.getString("user_rename_photo"));
+				loginUser.setUserKeywordCount(rset.getInt("user_keyword_count"));
+				loginUser.setUserLoginable(rset.getString("user_loginable"));
+				loginUser.setUserExeable(rset.getString("user_exeable"));
+				loginUser.setUserLessonmax(rset.getInt("user_lessonmax"));
+				loginUser.setUserEnrollDate(rset.getDate("user_enrolldate"));
+				
+			}			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return loginUser;		
+	}
+
+	public String getUserImg(Connection con, int userimg) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String result = null;
+		String query = "select USER_RENAME_PHOTO from users where user_no= ?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userimg);
+			rset= pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = rset.getString("USER_RENAME_PHOTO");
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
 			close(pstmt);
 		}
 		return result;

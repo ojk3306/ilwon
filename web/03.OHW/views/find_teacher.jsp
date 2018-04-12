@@ -144,8 +144,7 @@
 	.tclass, #person_info, #class_dinfo, #search_table {
 		display : none;	
 	}
-	
-	#left_bar {	
+	/*	#left_bar {	
 			
 		background : rgba(50, 50, 50, .0);
 		width : 100px;
@@ -159,7 +158,7 @@
 		height : 680px;
 		float : right;		
 	}
-		
+	*/	
 	 .header_text {		
 		color : #4988ed;
 	}
@@ -213,10 +212,13 @@
 </style>
 </head>
 
-<body style="min-width : 800px; overflow : auto; display : absolute;">
-	<nav><%@ include file = "../../common/navbar.jsp" %></nav>
-	<div id = "left_bar">왼쪽 구역</div>
-	<div id = "right_bar">오른쪽 구역</div>
+<body style="min-width : 800px; overflow : auto; display : absolute; back">
+	<nav><%@ include file = "../../common/navbar.jsp" %>
+		<%@include file="/01.CJS\sidebar.jsp" %>
+	</nav>
+<div style="margin-top: -550px;">
+	<div id = "left_bar"></div>
+	<div id = "right_bar"></div>
 	<header style="text-align : center;"><h3 class="header_text">선생님 찾기</h3></header>
 	
 	<hr>
@@ -494,6 +496,7 @@ $(function () {
 	</div>
 	
 <div>
+</div>
 	<%@ include file = "../../common/footer.jsp" %>
 </div>
 	

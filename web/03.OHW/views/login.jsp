@@ -73,7 +73,7 @@
 	body {
 		padding-top: 40px;
 		padding-bottom: 40px;
-		background-color: #eee;
+	
 	}
 
 	.form-signin {
@@ -120,18 +120,19 @@
    
 </head>
 
-<body>
+<body style="background:#e9e9e9"> 
 
-<div style="height:52px">
-	<%@ include file = "../../common/navbar.jsp" %>
+<div style="height:52px; margin-top:-40px; ">
+<%@ include file = "../../common/navbar.jsp" %>
+<%@ include file ="/01.CJS/sidebar.jsp" %>
 </div>
-
-<div class = "container">
+    
+<div class = "container" style="margin-top:100px; height: 680px;" >
 	<form class = "form-signin" action = "<%= request.getContextPath() %>/login.sm">
-		<h2 class="form-signin-heading">로그인</h2>
+		<center><h2 class="form-signin-heading">로그인</h2></center>
 		
 		<label for="inputEmail" class="sr-only">ID</label>
-		<input type="email" id="inputEmail" name = "id" class="form-control" placeholder="ID" required autofocus>
+		<input type="email" id="inputEmail" name = "id" class="form-control" placeholder="e-mail" required autofocus>
 		
 		<label for="inputPassword" class="sr-only">Password</label>
 		<input type="password" id="inputPassword" name = "pwd" class="form-control" placeholder="Password" required>
@@ -139,21 +140,20 @@
 		<div class="checkbox">		
 		
 		<label>
-		<input type="checkbox" value="remember-me"> 정보 기억
+	 
 		</label>
 				
 		</div>		
 		<button class="btn btn-lg btn-primary btn-block ohw-btn" type="submit">LogIn</button>
 	</form>
-</div>
-
-<div class = "form-signin ohw-btn">
+	<div class = "form-signin ohw-btn">
 	<a href = "../../04.OJK/join_start.jsp">
 		<input type = "button" class = "btn btn-lg btn-success btn-block " value = "아직 회원이 아니시라면?">
 	</a>
 </div>
+</div>
 
-<div style="margin-top:30%">
+<div style="margin-bottom: -200px; ">
 	<%@ include file = "../../common/footer.jsp" %>
 </div>
 	

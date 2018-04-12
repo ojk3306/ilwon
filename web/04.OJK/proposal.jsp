@@ -48,7 +48,7 @@ $(function(){
 
 </script>
 </head>
-<body> 
+<body style="background:#e9e9e9"> 
 <%@ include file="/common/navbar.jsp" %>
 <%@ include file="/01.CJS\sidebar.jsp" %>
 <nav class="contents" style="margin-top: -600px;">
@@ -57,7 +57,7 @@ $(function(){
 	<hr>
 	<section>
 	<div align="center" width="500">
-	<div style="width: 900px; height: 800px;">
+	<div style="width: 900px; height: 650px;">
 		 	<div style="padding: 10px; padding-right: 0px; float:right;">
 		 		<button type="button" class="btn" onclick="location.href='/prototype/04.OJK/proposalForm.jsp'">글쓰기</button>
 		 		

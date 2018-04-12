@@ -73,42 +73,129 @@ public class InsertLessonServlet extends HttpServlet {
 		lesson.setLesson_rad(Integer.parseInt(mrequest.getParameter("rad")));
 		lesson.setLesson_keyword(mrequest.getParameter("keyword"));
 		lesson.setLesson_orginal(mrequest.getFilesystemName("upfile"));
+		lesson.setLesson_orginal2(mrequest.getFilesystemName("upfile2"));
+		lesson.setLesson_orginal3(mrequest.getFilesystemName("upfile3"));
 		
+		//키워드 합치기 부분
+				String[] keywords = mrequest.getParameterValues("keyword");
+				StringBuilder sb = new StringBuilder();
+				for(int i = 0; i <  keywords.length; i++) {
+					if(i < keywords.length -1) {
+						sb.append(keywords[i] + ", ");
+					}else {
+						sb.append(keywords[i]);
+					}
+					lesson.setLesson_keyword(sb.toString());
+				}
+				System.out.println(keywords);
+				
+				//String.join() 사용
+		
+		
+		
+		
+		
+		//업로드 파일 부분 1
 		String original = lesson.getLesson_orginal();
 		if(original!=null) {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 			String rename = sdf.format(new java.sql.Date(System.currentTimeMillis()))
 					+ "." + original.substring(original.lastIndexOf(".") + 1);
-			//�뙆�씪紐� 諛붽씀�젮硫� File 媛앹껜�쓽 renameTo() �궗�슜�븿
+			
 			File originFile = new File(savePath + "\\" + original);
 			File renameFile = new File(savePath + "\\" + rename);
 			
 			if(!originFile.renameTo(renameFile)) {
-				//�뙆�씪�씠由� 諛붽씀湲� �떎�뙣�뻼�떎硫�
+				
 				int read = -1;
 				byte[] buf = new byte[1024];
-				//�븳踰덉뿉 �씫�쓣 諛곗뿴 �겕湲� 吏��젙
-				//�썝蹂몄쓣 �씫湲� �쐞�븳 �뙆�씪�뒪�듃由� �깮�꽦
+				
 				FileInputStream fin = new FileInputStream(originFile);
-				//�씫�� �궡�슜 湲곕줉�븷 蹂듭궗蹂� �뙆�씪 異쒕젰�슜 �뒪�듃由� �깮�꽦
+				
 				FileOutputStream fout = new FileOutputStream(renameFile);
 				
-				//�썝蹂� �씫�뼱�꽌 蹂듭궗蹂몄뿉 湲곕줉 泥섎━
+				
 				while((read = fin.read(buf, 0, buf.length)) != -1) {
 					fout.write(buf, 0, read);
 				}
 				
-				//�뒪�듃由� 諛섎궔
+			
 				fin.close();
 				fout.close();
-				originFile.delete(); //�썝蹂� �궘�젣
+				originFile.delete(); 
 				
 			} //rename if close
 			
 			lesson.setLesson_rename(rename);
 		}
 		
+		//업로드 파일 부분 2
+		String original2 = lesson.getLesson_orginal2();
+		if(original2!=null) {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+			String rename2 = sdf.format(new java.sql.Date(System.currentTimeMillis()))+"2"
+					+ "." + original2.substring(original2.lastIndexOf(".") + 1);
+			
+			File originFile2 = new File(savePath + "\\" + original2);
+			File renameFile2 = new File(savePath + "\\" + rename2);
+			
+			if(!originFile2.renameTo(renameFile2)) {
+				
+				int read = -1;
+				byte[] buf = new byte[1024];
+				
+				FileInputStream fin2 = new FileInputStream(originFile2);
+				
+				FileOutputStream fout2 = new FileOutputStream(renameFile2);
+				
+				
+				while((read = fin2.read(buf, 0, buf.length)) != -1) {
+					fout2.write(buf, 0, read);
+				}
+				
+			
+				fin2.close();
+				fout2.close();
+				originFile2.delete(); 
+				
+			} //rename if close
+			
+			lesson.setLesson_rename2(rename2);
+		}
 		
+		//업로드 파일 부분 3
+		String original3 = lesson.getLesson_orginal3();
+		if(original3!=null) {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+			String rename3 = sdf.format(new java.sql.Date(System.currentTimeMillis()))+"3"
+					+ "." + original3.substring(original3.lastIndexOf(".") + 1);
+			
+			File originFile3 = new File(savePath + "\\" + original3);
+			File renameFile3 = new File(savePath + "\\" + rename3);
+			
+			if(!originFile3.renameTo(renameFile3)) {
+				
+				int read = -1;
+				byte[] buf = new byte[1024];
+				
+				FileInputStream fin3 = new FileInputStream(originFile3);
+				
+				FileOutputStream fout3 = new FileOutputStream(renameFile3);
+				
+				
+				while((read = fin3.read(buf, 0, buf.length)) != -1) {
+					fout3.write(buf, 0, read);
+				}
+				
+			
+				fin3.close();
+				fout3.close();
+				originFile3.delete(); 
+				
+			} //rename if close
+			
+			lesson.setLesson_rename3(rename3);
+		}
 		
 		int result = new LessonService().insertlesson(lesson);
 		

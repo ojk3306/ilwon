@@ -114,6 +114,23 @@ public class UsersService {
 		return result;
 	}
 
+	public Users updateLogin(int userNo) {
+		Connection con = getConnection();
+		Users user = new UsersDao().updateLogin(con, userNo);
+		close(con);
+		return user;
+	}
+
+	public String getUserImg(int userimg) {
+		Connection con = getConnection();
+		String result = new UsersDao().getUserImg(con, userimg);
+		
+		close(con);
+		return result;
+	}
+
+	
+
 	
 	
 	

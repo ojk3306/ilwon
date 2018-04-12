@@ -27,7 +27,7 @@ $(function(){
 					if(json.onlesson[i].state == 1 && json.onlesson[i].lesson_state == 1) {
 					values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
 					+"</td><td>"+json.onlesson[i].username+"</td><td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
-					+"<td><button type='button' class='btn btn-warning'>후기쓰기</button></td>"
+					+"<td><button type='button' id='"+json.onlesson[i].lesson_no+"' class='btn btn-warning' onclick='insertReview(this)'>후기쓰기</button></td>"
 					+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='CancleLesson(this)'>취소</button></td></tr>"			
 					}
 			}
@@ -85,10 +85,31 @@ function CancleLesson(val) {
 	var userno = $('#userno').val();
 	console.log(userno);
 	if(result) {
-		location.href="/prototype/canclelesson?no=" + val.id + "&?userno=" + userno;
+		location.href="/prototype/canclelesson?no=" + val.id + "&userno=" + userno;
 	}else {
 		
 	}
+}
+
+//리뷰작성하기
+function insertReview(val) {
+	var userno = $('#userno').val();
+	console.log(userno);
+	var popUrl = "/prototype/popreview?no="+val.id+"&userno="+userno;
+	var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
+
+	window.open(popUrl,"a",popOption);
+}
+//프로필 업로드하기
+function upload_profile() {
+	
+	var popUrl = "/prototype/04.OJK/profile_upload.jsp"; 
+	//팝업창에 출력될 페이지 URL
+	
+	var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
+
+		window.open(popUrl,"a",popOption);
+	
 }
 </script>
 
@@ -108,9 +129,15 @@ function CancleLesson(val) {
 				<div style="width: 100%; height: 230px; background: #f2f2f2;">
 					<div
 						style="width: 250px; height: 230px; float: left; margin-top: 10px; padding: 5px;">
-						<img src="/prototype/04.OJK\images\rakoon.jpg"
+						<%if(loginUser.getUserRenamePhoto() != null) { %>
+						<img src="/prototype/userTitleimg/<%= loginUser.getUserRenamePhoto() %>"
 							class="img-circle" alt="Cinque Terre" width="200px"
 							height="200px">
+						<% }else {%>
+							<img src="/prototype/userTitleimg/rakoon.jpg"
+							class="img-circle" alt="Cinque Terre" width="200px"
+							height="200px">
+						<%} %>
 					</div>
 					<div style="float: left; margin-top: 20px;">
 						<span style="font-weight: bold; font-size: 25pt;"><%= loginUser.getUserName() %> 님</span>
@@ -121,7 +148,7 @@ function CancleLesson(val) {
 				<div style="width: 100%; height: 70px; padding: 20px;">
 					<button type="button" class="btn">개인정보 수정하기</button>
 					&nbsp;
-					<button type="button" class="btn">프로필 사진 수정</button>
+					<button type="button" class="btn" onclick="upload_profile();">프로필 사진 수정</button>
 					&nbsp;
 					<button type="button" class="btn">메세지 보기</button>
 					&nbsp;

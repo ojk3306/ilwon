@@ -5,12 +5,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>프로필 업로드</title>
+<script>
+
+</script>
 </head>
 <body>
 <%@include file="/common/navbar.jsp" %>
+<form action="/prototype/uploadp" method="post" enctype="multipart/form-data">
 <input type="hidden" value="<%= loginUser.getUserNo() %>" name="userno" id="userno">
-<form action='"/prototype/uploadp?no="+<%= loginUser.getUserNo() %>'method="post" enctype="multipart/form-data">
 <input type="file" name="upfile"> 
+
 <input type="submit" value="등록">
 </form>
 </body>

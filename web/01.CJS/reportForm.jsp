@@ -179,7 +179,7 @@ $(function() {
 }
 .container{
     margin-top:120px;
-    margin-bottom:30px; 
+
 }
 .image-preview-input {
     position: relative;
@@ -205,12 +205,12 @@ $(function() {
 }
 </style>
 </head>
-<body>
+<body style="background:#e9e9e9">
 <%@ include file="/common/navbar.jsp" %>
 <%@include file="/01.CJS\sidebar.jsp" %>
-<div class="container">
+<div class="container" >
 <div class="row">
-<div class="col-md-6 col-md-offset-3" style="margin-top: -600px;">
+<div class="col-md-6 col-md-offset-3" style="margin-top: -650px;">
     
     <form method="post" action="/prototype/inreport" enctype="multipart/form-data">
    	<%if(loginUser!=null){ %>
@@ -274,12 +274,13 @@ $(function() {
 <!-- 파일  -->
   
     
-       
-</div>
 
 </div>
+</div>
 
-  <%@include file="/common/footer.jsp" %>
-
+<div style="margin-top: 50px;">
+<%@include file="/common/footer.jsp" %>
+   </div>
+   
 </body>
 </html>

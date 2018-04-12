@@ -1,27 +1,28 @@
-package users.controller;
+package review.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import users.model.service.UsersService;
+import lesson.model.service.LessonService;
+import lesson.model.vo.LessonDetail;
 
 /**
- * Servlet implementation class EmailCheck
+ * Servlet implementation class PopupReviewServlet
  */
-@WebServlet("/emailcheck")
-public class EmailCheck extends HttpServlet {
+@WebServlet("/popreview")
+public class PopupReviewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EmailCheck() {
+    public PopupReviewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,26 +31,26 @@ public class EmailCheck extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		int user_no = Integer.parseInt(request.getParameter("userno"));
+		int lesson_no = Integer.parseInt(request.getParameter("no"));
 		
-		String email = request.getParameter("email");
+		LessonDetail lesson = new LessonService().lessonView(lesson_no);
 		
-		System.out.println(email);
+		response.setContentType("text/html; charset=utf-8"); 
+		RequestDispatcher view =null;
 		
-		String ok = "회원가입이 가능한 email입니다";
-		String no = "이미 존재한 email입니다";
-		
-		int result = new UsersService().checkEmail(email);
-		
-		if(result > 0 ) {
-			response.setContentType("text/html; charset=utf-8"); 
-			PrintWriter out = response.getWriter();
-			out.append(no);
+		if(lesson != null) {
+			view = request.getRequestDispatcher("04.OJK/insertreview.jsp");
+			request.setAttribute("lesson", lesson);
+			request.setAttribute("user_no", user_no);
+			request.setAttribute("lesson_no", lesson_no);
+			view.forward(request, response);
 			
 		}else {
-			response.setContentType("text/html; charset=utf-8"); 
-			PrintWriter out = response.getWriter();
-			out.append(ok);
+			//error page
 		}
+		
 	}
 
 	/**
