@@ -6,7 +6,9 @@ String one=(String)request.getAttribute("first");
 String two=(String)request.getAttribute("second"); 
 String three=(String)request.getAttribute("third"); 
 String four=(String)request.getAttribute("fourth"); 
-String five=(String)request.getAttribute("fifth"); 
+String five=(String)request.getAttribute("fifth");
+
+ArrayList<Users> list = (ArrayList<Users>)(request.getAttribute("newUserList"));
 %>    
 <!DOCTYPE html>
 
@@ -150,29 +152,14 @@ String five=(String)request.getAttribute("fifth");
         <th>메일</th>
         <th>가입일</th>
       </tr>
-   
-   
+   <% for (int i=0; i<5; i++){ %>
     <tr>
-      <td>Madhav Prasad</td>
-      <td>mr.madhavprasad@gmail.com</td>
-      <td>Dec 13,2014</td>
+      <td><%=list.get(i).getUserName() %></td>
+      <td><%=list.get(i).getUserEmail() %></td>
+      <td><%=list.get(i).getUserEnrollDate()%></td>
     </tr>
-    <tr>
-      <td>Nagendra Kushwaha</td>
-      <td>nkushwaha822@gmail.com</td>
-      <td>Feb 15,2014</td>
-    </tr>
-    <tr>
-      <td>Arun Kumar</td>
-      <td>kumarun@yahoo.com</td>
-      <td>Aug 17, 2015</td>
-    </tr>
-    <tr>
-      <td>Nabin Singh</td>
-      <td>singhNavs@outlook.com</td>
-      <td>March 08,2016</td>
-    </tr>
-    </table>
+   <%} %>
+   </table>
 
   </div>
 </div>
@@ -186,4 +173,5 @@ String five=(String)request.getAttribute("fifth");
 
   </body>
 </html>
+
 

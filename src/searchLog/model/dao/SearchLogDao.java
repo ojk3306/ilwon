@@ -5,6 +5,7 @@ import java.sql.*;
 import java.util.*;
 
 import searchLog.model.vo.SearchLog;
+import users.model.vo.Users;
 
 import static common.JDBCTemplate.*;
 
@@ -173,7 +174,7 @@ public class SearchLogDao {
 		ArrayList<String> list =new ArrayList<String>();
 		PreparedStatement pstmt=null;
 		ResultSet rset=null;
-		String sql = "select SEACH_CONTENT from search_log where user_no = ? group by SEACH_CONTENT order by count(seach_content) desc";
+		String sql = "select SEACH_CONTENT from search_log where user_no =?  group by SEACH_CONTENT order by count(seach_content) desc";
 		try {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1,parseInt);
@@ -223,6 +224,34 @@ public class SearchLogDao {
 		return list;
 	}
 	
+	public ArrayList<Users> newUsers(Connection con,ArrayList<Users> list){
+		PreparedStatement pstmt = null;		
+		ResultSet rset=null;
+		
+		String query="select USER_EMAIL,USER_NAME,USER_ENROLLDATE from users order by user_enrolldate desc";
+		try {
+			pstmt=con.prepareStatement(query);
+			rset=pstmt.executeQuery();	
+			while(rset.next()) {
+			Users u = new Users();
+			u.setUserEmail(rset.getString(1));
+			u.setUserName(rset.getString(2));
+			u.setUserEnrollDate(rset.getDate(3));
+			list.add(u);
+			}
+			
+		} catch (java.sql.SQLException e) {		
+			System.out.println("SearchLogData Loading Complete / (To.SearchLogDao)");		
+		} catch(Exception e1) {
+			e1.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}		
+		return list;
+		
+	}
+
 }
 
 

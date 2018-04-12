@@ -5,6 +5,7 @@ import java.sql.*;
 import java.util.*;
 
 import searchLog.model.vo.SearchLog;
+import users.model.vo.Users;
 import searchLog.model.dao.SearchLogDao;
 
 public class SearchLogService {
@@ -69,13 +70,19 @@ public class SearchLogService {
 	
 		}
 		
+		public ArrayList<Users> getNewUsers(){
+			Connection con = getConnection();
+			ArrayList<Users> list=new ArrayList<Users>();
+			list = new SearchLogDao().newUsers(con,list);
+			close(con);
+			return list;
 		
 		
 	}
 
 
 
-
+}
 
 
 
