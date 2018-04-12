@@ -75,6 +75,8 @@ function juso(){
 					type: "get",
 					success: function(data){
 						$('#la_email').html(data);
+					},error:function(a,b,c){
+						console.log(b+c)
 					}
 				
 				});			
@@ -86,18 +88,18 @@ function juso(){
 <meta charset="UTF-8">
 <title>선생님으로 가입하기</title>
 </head>
-<body>
+<body style="background:#e9e9e9">
 <%@ include file="/common/navbar.jsp"%>
+<%@ include file="/01.CJS/sidebar.jsp" %>
 	
-	
-	<nav class="contents">
+	<nav class="contents" style="margin-top: -550px;">
 		<br>
 		<h1 align="center">선생님으로 가입하기</h1>
 		<hr>
 
 		<div id="wrapper">
 			<div align="center">
-				<div style="width: 1100px; height: 1200px;">
+				<div style="width: 100%; height: 580px;">
 					<div style="margin-top: 50px;">
 						<div style="width: 600px;">
 							<hr>
@@ -114,14 +116,14 @@ function juso(){
 									<label class="control-label col-sm-2" for="pwd-1" >비밀번호:</label>
 									<div class="col-sm-10">
 										<input type="password" class="form-control"
-											placeholder="Enter password" id="pwd" name="pwd" maxlength="16" required>
+											placeholder="Enter password" id="pwd" name="pwd" minlength="4" maxlength="16" required>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="control-label col-sm-2" for="pwd-1">비밀번호<br>재확인:</label>
 									<div class="col-sm-10">
 										<input type="password" class="form-control"
-											placeholder="Enter password" id="repwd" name="repwd"  maxlength="16" required>
+											placeholder="Enter password" id="repwd" name="repwd"  minlength="4" maxlength="16" required>
 												<label id="la_pwd" name="la_pwd" style="color:#e65c00;"></label>
 									</div>
 								</div>
@@ -143,7 +145,7 @@ function juso(){
 								<div class="form-group">
 									<label class="control-label col-sm-2" for="gender">성별:</label>
 									<div class="col-sm-10">
-										남&nbsp;&nbsp;<input type="radio" name="gender" value="M">
+										남&nbsp;&nbsp;<input type="radio" name="gender" value="M" checked="checked">
 										여&nbsp;&nbsp;<input type="radio" name="gender" value="F">
 									</div>
 								</div>
@@ -157,7 +159,7 @@ function juso(){
 								<div class="form-group">
 								<label class="control-label col-sm-2" for="loc">주소:</label>
 								<div class="col-sm-10">
-								<input type="text" name="loc" placeholder="이곳을 클릭해서 주소를 검색해주세요" id="loc" class="form-control" onclick="juso()" readonly="readonly" required>
+								<input type="text" name="loc" placeholder="이곳을 클릭해서 주소를 검색해주세요" id="loc" class="form-control" onclick="juso()" readonly="readonly" required="required">
 								</div>
 								</div>
 								
@@ -165,10 +167,14 @@ function juso(){
 							
 								<hr>
 								<div class="form-group">
-									<div class="col-sm-offset-2 col-sm-10">
-					<input type="submit" class="btn" value="확인">
-					<input type="reset" class="btn" value="초기화">
-					<input type="hidden" name="user_type" value="1002">
+								
+								<div class="col-sm-offset-2 col-sm-10">
+							
+								<input type="submit" class="btn" value="확인">
+							
+								<input type="reset" class="btn" value="초기화">
+							
+								<input type="hidden" name="user_type" value="1002">
 					
 									</div>
 								</div>

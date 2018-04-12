@@ -22,7 +22,7 @@ public class UsersDao {
 		ResultSet rset = null;
 		
 		String query = "select * from users where user_email= ? "
-				+ "and user_pwd = ?";
+				+ "and user_pwd = ? and USER_LOGINABLE = 'Y' ";
 		
 		try {
 			pstmt = con.prepareStatement(query);
