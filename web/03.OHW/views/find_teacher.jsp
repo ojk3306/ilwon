@@ -222,7 +222,6 @@
 	<header style="text-align : center;"><h3 class="header_text">선생님 찾기</h3></header>
 	
 	<hr>
-	
 	<section class = "teacher_location">
 		<table>
 			<tr>
