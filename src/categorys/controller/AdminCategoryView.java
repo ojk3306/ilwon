@@ -56,6 +56,7 @@ public class AdminCategoryView extends HttpServlet {
 				job.put("maxcount",catecount);
 				jarr.add(job);
 			}
+			
 			json.put("clist", jarr);
 			jarr = new JSONArray();
 			for(String l :   catecount) {
