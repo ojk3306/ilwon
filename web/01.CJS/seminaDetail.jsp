@@ -424,7 +424,13 @@ $('#myGoal').stepProgressBar({
 			<%if(loginUser==null){ %>
 	
 			<button type="button" style="margin-top : 50px;" onclick="location.href='/prototype/03.OHW/views/login.jsp'" class="btn btn-warning">지금 로그인하세요!</button>
+			
+			
+			<%}else if(loginUser.getUserNo()==semi.getUserNo()){ %>
+			<button type="button"  style="margin-top : 50px;"  class="btn btn-warning">본인의 세미나입니다!</button>
+			
 			<%}else{ %>
+			
 			<input type="hidden" value="<%=loginUser.getUserNo()%>" id="studentno">
 			
 			<% if(Integer.parseInt(semideta.getSeminaState()) != 1 ){ %>	 

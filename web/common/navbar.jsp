@@ -32,8 +32,10 @@
 <script type="text/javascript">
 
 	function search(){
-    	location.href="/prototype/insertlog?seachcontent="+$('#select2-chosen-1').text()+"&user="+$("#userno").val();    
-   //후에 섹션의 로그인유저의 번호까지 넣기.
+     
+		location.href="/prototype/insertlog?seachcontent="+$('#select2-chosen-1').text()+"&user="+$("#userno").val();    
+   
+    //후에 섹션의 로그인유저의 번호까지 넣기.
 	}
 	$(document).ready(function (){
 		
@@ -65,7 +67,8 @@
 			}
 		});           
 
-		$("#menubar-searchbar").select2();           
+		$("#menubar-searchbar").select2();     
+		
 		$("#s2id_autogen1_search").keyup(function(){
 		$.ajax({      
 			url:"<%=request.getContextPath()%>/search",
@@ -209,18 +212,18 @@
 				<% } %>
 				
 				 <li>
-					<form class="form-inline mt-2 mt-md-0 input-group" action="#" method="post">
+					<form class="form-inline mt-2 mt-md-0 input-group" action="<%= request.getContextPath() %>/lslist" method="post">
 						<select id="menubar-searchbar" name="seachcontent" aria-label="Search" style="margin-top:7px;">    
-							<option value="#">여기에 값을 입력하세요</option>
+							<option value="this.value">여기에 값을 입력하세요</option>
 						</select>      
-						<button class="btn btn-primary ohw-primary" type="button" style="margin-top:7px;" onclick="search();">Search</button>
+						<button class="btn btn-primary ohw-primary" type="submit" style="margin-top:7px;" onclick="search();">Search</button>
 						
 						<% if(loginUser != null) { %>
-							<input type = "hidden" name = "userno" value = "<%= loginUser.getUserNo() %>">
+							<input type = "hidden" name = "userno" value ="<%= loginUser.getUserNo() %>">
 						<% } else { %>
 							
 						<% } %>
-						
+					<input type="hidden" value="$('#s2id_autogen1_search').val()" name="search">	
 					</form>
 				</li>
 			</ul>      

@@ -16,6 +16,8 @@ import org.json.simple.JSONObject;
 import lesson.model.service.LessonService;
 import lesson.model.vo.Lesson;
 import lesson.model.vo.Onlesson;
+import semina.model.service.SeminaService;
+import semina.model.vo.Semina;
 
 /**
  * Servlet implementation class OngoingLessonServlet
@@ -42,6 +44,8 @@ public class OngoingLessonServlet extends HttpServlet {
 		
 		ArrayList<Onlesson> onlesson = new LessonService().onlesson(user);
 		
+		ArrayList<Semina> semi=new SeminaService().getSeminaInfoByuserNo(user);
+		
 		JSONObject json = new JSONObject();
 		
 		JSONArray jarr = new JSONArray();
@@ -56,13 +60,34 @@ public class OngoingLessonServlet extends HttpServlet {
 			
 			if(l.getLesson_enddate()!=null) {			
 			job.put("lesson_enddate", l.getLesson_enddate().toString());
-			
 			}
 			
 			jarr.add(job);
 		}
-		
+
 		json.put("onlesson", jarr);
+		
+		if(semi.size()>0) {
+			
+			
+		
+		for(Semina se: semi) {
+			JSONObject job = new JSONObject();
+			
+			job.put("Title",se.getSeminaTitle());
+			job.put("semi_no",se.getSeminaNo());
+			job.put("state",se.getSEMINA_STATE());
+			
+			if(se.getSeminaEndDate()!=null) 	
+			job.put("end_date",se.getSeminaEndDate().toString());
+			
+			
+			jarr.add(job);
+		}
+		json.put("semi", jarr);
+		}	
+			
+		
 		System.out.println(json.toJSONString());
 	    response.setContentType("application/json; charset=utf-8;");
 		PrintWriter out = response.getWriter();

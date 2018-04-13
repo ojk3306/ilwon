@@ -60,7 +60,12 @@ function deletekey(data){
 function addbigcate(){//대분류 추가
 
 	var input = prompt('대분류 카테고리의 이름을 적으세요.');
-	location.href='/prototype/bigadd?cate='+input;
+	if(input == null) {
+		return false;
+	}else{
+		location.href='/prototype/bigadd?cate='+input;
+	}
+
 	
 	
 }

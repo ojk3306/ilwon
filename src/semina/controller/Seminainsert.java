@@ -142,7 +142,7 @@ public class Seminainsert extends HttpServlet {
 			
 				if (new SeminaService().insertSemina(semi) > 0) {
 					
-					response.sendRedirect("/prototype/semilist");
+					response.sendRedirect("/prototype/04.OJK/teacherinfo.jsp");
 					
 				} else {
 					view = request.getRequestDispatcher("views/board/boardError.jsp");

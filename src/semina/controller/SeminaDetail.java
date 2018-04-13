@@ -37,39 +37,47 @@ public class SeminaDetail extends HttpServlet {
 		
 		System.out.println("세미나번호 :"+request.getParameter("userno"));//사실은 세미나 번호임.
 		int seminano=Integer.parseInt(request.getParameter("userno"));
+		
 		if(request.getParameter("usernono")!=null) {
+	    //로그인한 사람의 정보.
 		System.out.println("usernono:"+request.getParameter("usernono"));
 		}
-		
-		
-		
 		
 		Semina semi = new SeminaService().getseminabyno(seminano); 
 		
 		Users user=null;
+		
 		response.setContentType("text/html; charset=utf-8");
 		
 	    RequestDispatcher view =null;
 		if(semi!=null) {//세미나 정보찾기이후 사용자 정보찾기.
-			
+		
+		System.out.println("세미나 등록자의 번호:" + semi.getUserNo());
 		user=new UsersService().getUserinfofromsemina(semi.getUserNo());
 		
 			}else {//세미나 정보찾기 실패. 에러창으로 보내기. 추후업데이트.
-		System.out.println("세미나 정보찾기 실패!...");
+		
+				System.out.println("세미나 정보찾기 실패!...");
 		}
 	
+		
+		
+		
+		
+		
+		
 		if(user!=null) {//유저 정보찾기 성공 이제 디테일로 정보를 쏜다.
 		   
 			if(request.getParameter("usernono")!=null) {
 					System.out.println("usernono:"+request.getParameter("usernono"));
-					seminaDetail.model.vo.SeminaDetail semideta=new SeminaDetailService().getseminadetail(semi.getSeminaNo(),Integer.parseInt(request.getParameter("usernono")));
+					seminaDetail.model.vo.SeminaDetail semideta=new SeminaDetailService().getseminadetail( semi.getSeminaNo(),Integer.parseInt(request.getParameter("usernono")));
 					view=request.getRequestDispatcher("/01.CJS/seminaDetail.jsp");
 				    request.setAttribute("semina", semi);
 				    request.setAttribute("user", user);
 				    request.setAttribute("semideta", semideta);
 				    System.out.println(semideta.toString());
 				    view.forward(request, response);
-						}else {
+					}else {
 					view=request.getRequestDispatcher("/01.CJS/seminaDetail.jsp");
 				    request.setAttribute("semina", semi);
 				    request.setAttribute("user", user);

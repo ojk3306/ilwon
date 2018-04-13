@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import javafx.scene.Parent;
 import oracle.net.aso.p;
 import semina.model.vo.Semina;
 import static common.JDBCTemplate.*;
@@ -13,7 +14,7 @@ public class SeminaDao {
 	public int insertSemina(Connection con, Semina semi) {
 		PreparedStatement pstmt=null;
 		int result=0;
-		String sql="insert into SEMINA values((select max(SEMINA_NO)+1 from SEMINA),?,?,?,?,sysdate,?,?,?,?,?,?,?,?,?,?,0,?,?,?  )";
+		String sql="insert into SEMINA values((select max(SEMINA_NO)+1 from SEMINA),?,?,?,?,sysdate,?,?,?,?,?,?,?,?,?,?,0,?,?,?,'1')";
 		try {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, semi.getUserNo());
@@ -46,7 +47,7 @@ public class SeminaDao {
 		PreparedStatement pstmt=null;
 		ResultSet rset=null;
 		int result=0;
-		String sql="select count(*) from semina";
+		String sql="select count(*) from semina where SEMINA_ENDDATE - sysdate > 0 and SEMINA_STATE = 1";
 		try {
 			pstmt=con.prepareStatement(sql);
 			rset=pstmt.executeQuery();
@@ -65,7 +66,7 @@ public class SeminaDao {
 		PreparedStatement pstmt=null;
 		ResultSet rset=null;
 		ArrayList<Semina> al=new ArrayList<Semina>();
-		String sql="select * from (select ROWNUM AS RNUM, A.* FROM   (SELECT * FROM semina where SEMINA_ENDDATE - sysdate > 0 ) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY SEMINA_STARTDATE DESC ";
+		String sql="select * from (select ROWNUM AS RNUM, A.* FROM   (SELECT * FROM semina  where SEMINA_ENDDATE - sysdate > 0 and SEMINA_STATE = 1 ) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY SEMINA_STARTDATE DESC ";
 		int startRow = (currentPage - 1) * limit + 1; 
 		int endRow = startRow + limit - 1;
 		
@@ -119,7 +120,7 @@ public class SeminaDao {
 		PreparedStatement pstmt=null;
 		ResultSet rset=null;
 		ArrayList<Semina> al=new ArrayList<Semina>();
-		String sql="select * from Semina where SEMINA_ENDDATE - sysdate > 0";
+		String sql="select * from Semina where SEMINA_ENDDATE - sysdate > 0 and SEMINA_STATE = 1 ";
 		
 		try {
 			pstmt=con.prepareStatement(sql);
@@ -170,7 +171,7 @@ public class SeminaDao {
 		ResultSet rset=null;
 		ArrayList<Semina> al=new ArrayList<Semina>();
 		
-		String sql="select * from SEMINA where SEMINA_ENDDATE - sysdate >0 order by SEMINA_NOW desc";
+		String sql="select * from SEMINA where SEMINA_ENDDATE - sysdate >0  and SEMINA_STATE = 1 order by SEMINA_NOW desc";
 		try {
 			pstmt=con.prepareStatement(sql);
 			rset=pstmt.executeQuery();
@@ -245,7 +246,7 @@ public class SeminaDao {
 		PreparedStatement pstmt=null;
 		ResultSet rset=null;
 		ArrayList<Semina> al=new ArrayList<Semina>();
-		String sql="select * from (select ROWNUM AS RNUM, A.* FROM   (select * from semina where (SEMINA_TITLE like ? or user_no in(select user_no from users where user_name like ? )) and  SEMINA_ENDDATE - sysdate > 0) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY SEMINA_STARTDATE DESC";
+		String sql="select * from (select ROWNUM AS RNUM, A.* FROM   (select * from semina where (SEMINA_TITLE like ? or user_no in(select user_no from users where user_name like ? )) and  SEMINA_ENDDATE - sysdate > 0 and SEMINA_STATE = 1) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY SEMINA_STARTDATE DESC";
 		int startRow = (currentPage - 1) * limit + 1; 
 		int endRow = startRow + limit - 1;
 		
@@ -309,13 +310,14 @@ public class SeminaDao {
 		PreparedStatement pstmt=null;
 		ResultSet rset=null;
 		Semina semi=null;
-		String sql="select * from Semina where SEMINA_NO=?";
+		String sql="select * from Semina where SEMINA_NO= ? and SEMINA_ENDDATE - sysdate > 0";
 		try {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1,seminano);
 			rset=pstmt.executeQuery();
 			if(rset.next())
-			{  
+			
+			{ 	
 				semi=new Semina();
 				semi.setSeminaNo(rset.getInt("SEMINA_NO"));
 				semi.setUserNo(rset.getInt("USER_NO"));
@@ -353,7 +355,55 @@ public class SeminaDao {
 		
 		return semi;
 	}
-
+	public Semina getseminabyno1(Connection con, int seminano) {
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		Semina semi=null;
+		String sql="select * from Semina where SEMINA_NO= ?";
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1,seminano);
+			rset=pstmt.executeQuery();
+			if(rset.next())
+			
+			{ 	
+				semi=new Semina();
+				semi.setSeminaNo(rset.getInt("SEMINA_NO"));
+				semi.setUserNo(rset.getInt("USER_NO"));
+				semi.setSeminaTitle(rset.getString("SEMINA_TITLE"));
+				semi.setSeminaLocation(rset.getString("SEMINA_LOCATION"));
+				semi.setSeminaPrice(rset.getInt("SEMINA_PRICE"));
+				semi.setSeminaStartDate(rset.getDate("SEMINA_STARTDATE"));
+				
+				semi.setSeminatitle1(rset.getString("SEMINA_TITLE1"));
+				semi.setSeminaContent1(rset.getString("SEMINA_CONTENT1"));
+				
+				semi.setSeminatitle2(rset.getString("SEMINA_TITLE2"));
+				semi.setSeminaContent2(rset.getString("SEMINA_CONTENT2"));
+				
+				semi.setSeminatitle3(rset.getString("SEMINA_TITLE3"));
+				semi.setSeminaContent3(rset.getString("SEMINA_CONTENT3"));
+				
+				semi.setSeminatitle4(rset.getString("SEMINA_TITLE4"));
+				semi.setSeminaContent4(rset.getString("SEMINA_CONTENT4"));
+				semi.setSeminaEndDate(rset.getDate("SEMINA_ENDDATE"));
+				semi.setSeminaMin(rset.getInt("SEMINA_MIN"));
+				semi.setSeminaNow(rset.getInt("SEMINA_NOW"));
+				semi.setSeminaMax(rset.getInt("SEMINA_MAX"));
+				semi.setSeminaOriginalFileName(rset.getString("SEMINA_ORIGINALFILENAME"));
+				semi.setSeminaRenameFileName(rset.getString("SEMINA_RENAMEFILENAME"));
+				System.out.println(semi.toString());
+			}
+		} catch (Exception e) {
+		e.printStackTrace();	
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return semi;
+	}
 	public int enrollseminabyuser(Connection con, int seminano,int studentno) {
 		PreparedStatement pstmt=null;
 		int result=0;
@@ -389,6 +439,79 @@ public class SeminaDao {
 		close(pstmt);
 		}
 		
+		return result;
+	}
+
+	public ArrayList<Semina> getSeminaInfoByuserNo(Connection con, int user) {
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		Semina semi=null;
+		ArrayList<Semina> al= new ArrayList<Semina>();
+		String sql="select * from semina where USER_NO = ? ";
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1,user);
+			rset=pstmt.executeQuery();
+			
+				while(rset.next())
+				{  
+					semi=new Semina();
+					semi.setSeminaNo(rset.getInt("SEMINA_NO"));
+					semi.setUserNo(rset.getInt("USER_NO"));
+					semi.setSeminaTitle(rset.getString("SEMINA_TITLE"));
+					semi.setSeminaLocation(rset.getString("SEMINA_LOCATION"));
+					semi.setSeminaPrice(rset.getInt("SEMINA_PRICE"));
+					semi.setSeminaStartDate(rset.getDate("SEMINA_STARTDATE"));
+					
+					semi.setSeminatitle1(rset.getString("SEMINA_TITLE1"));
+					semi.setSeminaContent1(rset.getString("SEMINA_CONTENT1"));
+					
+					semi.setSeminatitle2(rset.getString("SEMINA_TITLE2"));
+					semi.setSeminaContent2(rset.getString("SEMINA_CONTENT2"));
+					
+					semi.setSeminatitle3(rset.getString("SEMINA_TITLE3"));
+					semi.setSeminaContent3(rset.getString("SEMINA_CONTENT3"));
+					
+					semi.setSeminatitle4(rset.getString("SEMINA_TITLE4"));
+					semi.setSeminaContent4(rset.getString("SEMINA_CONTENT4"));
+					semi.setSeminaEndDate(rset.getDate("SEMINA_ENDDATE"));
+					semi.setSeminaMin(rset.getInt("SEMINA_MIN"));
+					semi.setSeminaNow(rset.getInt("SEMINA_NOW"));
+					semi.setSeminaMax(rset.getInt("SEMINA_MAX"));
+					semi.setSeminaOriginalFileName(rset.getString("SEMINA_ORIGINALFILENAME"));
+					semi.setSeminaRenameFileName(rset.getString("SEMINA_RENAMEFILENAME"));
+					semi.setSEMINA_STATE(rset.getInt("SEMINA_STATE"));
+					al.add(semi);
+					
+					System.out.println(semi.toString());
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+			
+		}
+		return al;
+	}
+
+	public int stopsemina(Connection con, int parseInt) {
+	//세미나 중단하기 dao
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql="update semina set SEMINA_STATE = 2, SEMINA_ENDDATE = sysdate where SEMINA_NO = ?";
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1,parseInt);
+			result=pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
 		return result;
 	}
 

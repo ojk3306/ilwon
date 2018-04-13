@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import lesson.model.dao.LessonDao;
 import lesson.model.vo.Lesson;
 import lesson.model.vo.LessonDetail;
+import lesson.model.vo.LessonSearch;
 import lesson.model.vo.Onlesson;
 import lesson.model.vo.Sidebar;
 
@@ -69,29 +70,19 @@ public class LessonService {
 		return list;
 	}
 	
-	public ArrayList<Lesson> selectSearchList(String locationValue, String lessonValue, String teacherGenderValue,
-			String teacherAgePreValue, String teacherAgeEndValue, String[] teacherEXPValue, String lessonPricePreValue,
-			String lessonPriceEndValue, String lessonLevelValue) {
+	public ArrayList<LessonSearch> selectSearchList(LessonSearch ls) {
 		
 		Connection con = getConnection();
 		
-		ArrayList<Lesson> list = new LessonDao().selectSearchList(con, locationValue, lessonValue, teacherGenderValue, 
-				teacherAgePreValue, teacherAgeEndValue, teacherEXPValue, lessonPricePreValue, lessonPriceEndValue, lessonLevelValue);
+		System.out.println("SendInfo : " + ls + " / (To.LessonService)");
+		ArrayList<LessonSearch> list = new LessonDao().selectSearchList(con, ls);
 		
 		close(con);
-				
+		
+		System.out.println("SearchList : " + list + " / (To.LessonService)");
 		return list;
-	}	
+	}		
 	
-	/*public ArrayList<Lesson> selectSearchList(String[] a) {
-		Connection con = getConnection();
-		
-		ArrayList<Lesson> list = new LessonDao().selectSearchList(con);
-		close(con);
-				
-		return list;
-	}*/
-
 	public ArrayList<Onlesson> onlesson(int user) {
 		Connection conn = getConnection();
 		
@@ -144,6 +135,18 @@ public class LessonService {
 		ArrayList<Sidebar> l=new LessonDao().seachlistByKeyword2(con,lessonList);
 		close(con);
 		return l;
+	}
+
+	public Lesson findLessonBylessonNo(int parseInt) {
+		Connection con = getConnection();
+
+		Lesson ls = new LessonDao().findLessonBylessonNo(con,parseInt);
+		
+	close(con);
+		
+		return ls;
+		
+		
 	}	
 	
 }

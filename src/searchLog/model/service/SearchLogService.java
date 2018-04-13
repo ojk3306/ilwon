@@ -2,14 +2,18 @@ package searchLog.model.service;
 
 import static common.JDBCTemplate.*;
 import java.sql.*;
+import java.sql.Date;
 import java.util.*;
 
 import searchLog.model.vo.SearchLog;
+import users.model.vo.NewestLessonByAdmin;
 import users.model.vo.Users;
 import searchLog.model.dao.SearchLogDao;
 
 public class SearchLogService {
 	
+	public int ArrayList;
+
 	public SearchLogService() {
 		
 	}
@@ -50,6 +54,14 @@ public class SearchLogService {
 			return list;
 			
 		}
+		
+		public ArrayList<NewestLessonByAdmin> newestLessonList(){
+			Connection connn = getConnection();
+			ArrayList<NewestLessonByAdmin> list=new ArrayList<NewestLessonByAdmin>();
+			list=new SearchLogDao().newstLessonLog(connn,list);
+			return list;
+			
+		}
 
 		public ArrayList<String> getSearchhistroy(int parseInt) {
 			Connection con = getConnection();
@@ -65,9 +77,6 @@ public class SearchLogService {
 			close(con);
 			return list;
 			
-			
-		
-	
 		}
 		
 		public ArrayList<Users> getNewUsers(){
