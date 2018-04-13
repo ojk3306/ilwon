@@ -32,6 +32,9 @@ public class RealTimeSearchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+	
+		
 	SearchLogService list = new SearchLogService();
 	
 	String first = list.realTimeList().get(0);

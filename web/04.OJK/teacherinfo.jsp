@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>선생정보보기</title>
 <script type="text/javascript">
-//운영강의
+//운영중인 강의
 $(function(){
 	$.ajax({
 		url: "/prototype/onlesson",
@@ -22,24 +22,45 @@ $(function(){
 			
 			var values = $('#ongoing_table').html() + "<br>";
 			
-			for(var i in json.onlesson) {	
-					if(json.onlesson[i].state == "수강중") {
+			for(var i in json.onlesson) {
+				if(json.onlesson[i].state == "수강중") {
 					values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
-					+"</td><td>"+json.onlesson[i].username+"</td><td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
+					+"</td><td>레슨</td><td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
 					+"<td><button type='button' class='btn btn-primary'>"+json.onlesson[i].state+"</button></td>"
-					+"<td><button type='button' class='btn btn-warning'>수정</button></td>"
+					+"<td><button type='button' class='btn btn-warning' id='"+json.onlesson[i].lesson_no+"' onclick='updateLesson(this)'>수정</button></td>"
 					+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='finishLesson(this)'>종료</button></td></tr>"			
 					}
 			}
-			
-			$('#ongoing_table').html(values);
+		    
+			if(json.semi!=null){
+			values += "<tr><input type='hidden' class='btn btn' value='"+json.semi.semi_no+"'>"+"<td>"+json.semi.Title
+			+"</td><td>세미나</td><td><button type='button' class='btn' id='"+json.semi.semi_no+"' onclick='Detailsemina(this)'>상세보기</button></td>"
+			+"<td><button type='button' class='btn btn-primary'>모집중</button></td>"
+			+"<td><button type='button' class='btn btn-warning' id='"+json.semi.semi_no+"' onclick='updatesemina(this)'>수정</button></td>"
+			+"<td><button type='button' class='btn btn-danger' id='"+json.semi.semi_no+"' onclick='finishsemina(this)'>종료</button></td></tr>"			
+			}
+		$('#ongoing_table').html(values);
 		}, error: function(a,b,c){
 			console.log(b+c);
 		}	
 	});
 
 });
+function updatesemina(a){
+	
+}
+function finishsemina(a){
+	location.href="/prototype/semistop?semino="+a.id;
 
+
+	
+}
+function Detailsemina(a){
+	location.href="/prototype/sdetail?userno="+a.id;
+}
+function updateLesson(a){
+	
+}
 //강의내역
 $(function(){
 	$.ajax({
@@ -55,12 +76,10 @@ $(function(){
 			var values = $('#previous_table').html() + "<br>";
 			
 			for(var i in json.onlesson) {	
-					if(json.onlesson[i].state == "숨김") {
-					values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
-					+"</td><td>"+json.onlesson[i].username+"</td><td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
-					+"<td>"+json.onlesson[i].lesson_enddate+"</td></tr>"			
-					}
-			}
+if(json.onlesson[i].state == "숨김") {
+values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
++"</td><td>"+json.onlesson[i].username+"</td><td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
++"<td>"+json.onlesson[i].lesson_enddate+"</td></tr>"}}
 			
 			$('#previous_table').html(values);
 		}, error: function(a,b,c){
@@ -183,7 +202,7 @@ function upload_profile() {
 						<thead>
 							<tr>
 								<th>강의명</th>
-								<th>선생님</th>
+								<th>강의타입</th>
 								<th>상세보기</th>
 								<th>상태</th>
 								<th>수정하기</th>
@@ -192,10 +211,13 @@ function upload_profile() {
 						</thead>
 					</table>
 				</div>
+			<hr>
+			<center>
+			<button type="button" class="btn btn-info" onclick="location.href = 'insertSemina.jsp' ">세미나 등록</button>
+			<button type="button" class="btn btn-info" onclick="location.href = 'insertclass2.jsp' ">강의 등록</button>
+			</center>
 			</div>
-			<div style="width: 1100px; height: 70px; padding: 10px; margin-left: 909px;">
-				<button type="button" class="btn btn-info" onclick="location.href = 'insertclass2.jsp' ">강의 등록</button>
-			</div>
+			
 			<br> <br>
 			<h1>강의 내역</h1>
 			<hr>
@@ -217,9 +239,8 @@ function upload_profile() {
 			<br> <br> <br> <br><br>
 			<h1>학생 신청 내역</h1>
 			<hr>
-
-			<div id="info"
-				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px; overflow:auto;">
+			
+			<div id="info" style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px; overflow:auto;">
 				<div style="width:100%;">
 					<table class="table table-hover">
 						<thead>
@@ -237,22 +258,6 @@ function upload_profile() {
 								<td>java강의</td>
 								<td>컴퓨터/IT</td>
 								<td>오주경</td>
-								<td><button type="button" class="btn">취소</button></td>
-								<td><button type="button" class="btn">상세보기</button></td>
-								<td><button type="button" class="btn">상세보기</button></td>
-							</tr>
-							<tr>
-								<td>Mary</td>
-								<td>Moe</td>
-								<td>mary@example.com</td>
-								<td><button type="button" class="btn">취소</button></td>
-								<td><button type="button" class="btn">상세보기</button></td>
-								<td><button type="button" class="btn">상세보기</button></td>
-							</tr>
-							<tr>
-								<td>July</td>
-								<td>Dooley</td>
-								<td>july@example.com</td>
 								<td><button type="button" class="btn">취소</button></td>
 								<td><button type="button" class="btn">상세보기</button></td>
 								<td><button type="button" class="btn">상세보기</button></td>
