@@ -70,14 +70,14 @@
 		var teacherAgeEndValue = $("select[name=ohw-teacher-age-end]").val();
 		console.log(teacherAgeEndValue);		
 		
-		var teacherEXPArr = new Array();
+		/* var teacherEXPArr = new Array();
 		var teacherEXPValue = document.getElementsByName('ohw-teacher-EXP');
 		for(var i in teacherEXPValue){
 			if(teacherEXPValue[i].checked == true) {
 				console.log(teacherEXPValue[i].value);
 				teacherEXPArr[i] = teacherEXPValue[i].value;
 			}
-		}
+		} */
 		
 		var lessonPricePreValue = $("select[name=ohw-lesson-price-pre]").val();
 		console.log(lessonPricePreValue);
@@ -98,7 +98,7 @@
 	    		teacherGender : teacherGenderValue, 
 	    		teacherAgePre : teacherAgePreValue, 
 	    		teacherAgeEnd : teacherAgeEndValue, 
-	    		teacherEXP : teacherEXPArr, 
+	    		/* teacherEXP : teacherEXPArr,  */
 	    		lessonPricePre : lessonPricePreValue, 
 				lessonPriceEnd : lessonPriceEndValue, 
 				lessonLevel : lessonLevelValue
@@ -107,13 +107,31 @@
 	    	datatype:"json",
 	    	success:
 	    		function(data) {
-	    		
-	    		console.log("CatgegoryList : ") + console.log(data);
-				var jsonStr = JSON.stringify(data);
-				var json = JSON.parse(jsonStr);
-				var bigCategory = "";				
-				 
-			}, error : function(a,b,c) {
+	    			
+	    			var jsonStr = JSON.stringify(data);
+	    			
+	    			var json = JSON.parse(jsonStr);		 
+	    			
+	    			console.log("LessonSearchList : ") + console.log(data);
+	    			
+	    			for(var i in json.list) {
+	    				
+	    				$('.ohw-search-table').append(				
+	    				
+	    				<%-- "<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><a href = '<%= request.getContextPath() %>/ndetail?no=" + json.list[i].noticeNo + "&page=1'>" + json.list[i].noticeTitle + "</a></td>" --%>
+	    											
+	    				"<tr class = 'ohw-search-table-tr'><td class = 'ohw-ready-photo'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></td>" + 
+	    						
+	    				"<td class = 'ohw-search-name'>" + json.list[i].userName2 + "</td>" +					 
+	    				
+	    				"<td class = 'ohw-search-category'>" + json.list[i].categoryBName + " / " + json.list[i].categorySName + "</td>" +					 
+	    				
+	    				"<td class = 'ohw-search-comment'>" + json.list[i].lessonConmid + "</td></tr>"
+	    				
+	    				);				
+	    			}			
+	    		}, 
+	    	error : function(a,b,c) {
 				console.log(b+c);
 			}
 	    });
@@ -323,7 +341,7 @@
 					<label>선생님 성별</label>
 					<input type="radio" name="ohw-teacher-gender" value = "M">남  &nbsp; 
 					<input type="radio" name="ohw-teacher-gender" value = "F">여  &nbsp; 
-					<input type="radio" name="ohw-teacher-gender" value = "N">무관
+					<input type="radio" name="ohw-teacher-gender" value = null>무관
 				</div>
 					
 				<div>
@@ -345,11 +363,11 @@
 					</select> 세
 				</div>
 					
-				<div>
+				<!-- <div>
 					<label>경력사항</label>
 					<input type="checkbox" name = "ohw-teacher-EXP" value = "프로 게이머 출신">프로 게이머 출신 &nbsp;
 					<input type="checkbox" name = "ohw-teacher-EXP" value = "대회 입상">대회 입상 &nbsp;
-				</div>					
+				</div>		 -->			
 							
 			</div>
 		
@@ -374,18 +392,40 @@
 					<label>수업료</label>
 					<select name = "ohw-lesson-price-pre">
 						<option value = "0">선택</option>
-						<option>0</option>
-						<option>10</option>
-						<option>20</option>
-						<option>30</option>
+						<option value = "1">1</option>
+						<option value = "10">10</option>
+						<option value = "20">20</option>
+						<option value = "30">30</option>
+						<option value = "40">40</option>
+						<option value = "50">50</option>
+						<option value = "60">60</option>
+						<option value = "70">70</option>
+						<option value = "80">80</option>
+						<option value = "90">90</option>
+						<option value = "100">100</option>
+						<option value = "110">110</option>
+						<option value = "120">120</option>
+						<option value = "130">130</option>
+						<option value = "140">140</option>						
 					</select> ~
 				
 					<select name = "ohw-lesson-price-end">
 						<option value = "0">선택</option>
-						<option>10</option>
-						<option>20</option>
-						<option>30</option>
-						<option>40</option>
+						<option value = "10">10</option>
+						<option value = "20">20</option>
+						<option value = "30">30</option>
+						<option value = "40">40</option>
+						<option value = "50">50</option>
+						<option value = "60">60</option>
+						<option value = "70">70</option>
+						<option value = "80">80</option>
+						<option value = "90">90</option>
+						<option value = "100">100</option>
+						<option value = "110">110</option>
+						<option value = "120">120</option>
+						<option value = "130">130</option>
+						<option value = "140">140</option>
+						<option value = "150">150</option>
 					</select>
 				</div>		
 			
