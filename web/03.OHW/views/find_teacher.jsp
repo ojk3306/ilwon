@@ -18,16 +18,11 @@
 		}
 	}
 	
-	function changeClass(id) {
-		console.log(id);
-		switch(id) {		
+	function changeClass(id) {						
 		
-		case "게임": $(".tclass").hide(); $(".ohw-게임").show(); break;
-		case "스포츠": $(".tclass").hide(); $(".ohw-스포츠").show(); break;
-		case "음악": $(".tclass").hide(); $(".ohw-음악").show(); break;
-		case "댄스": $(".tclass").hide(); $(".ohw-댄스").show(); break;
-		case "기타": $(".tclass").hide(); $(".ohw-기타").show(); break;		
-		}
+		$(".tclass").hide(); $(".ohw-" + id).show();			
+		
+		console.log(".ohw-" + id);
 	}
 	
 	function infoView(id) {
@@ -113,6 +108,8 @@
 	    			var json = JSON.parse(jsonStr);		 
 	    			
 	    			console.log("LessonSearchList : ") + console.log(data);
+	    			
+	    			$(".ohw-search-table-tr").empty();
 	    			
 	    			for(var i in json.list) {
 	    				
@@ -226,6 +223,14 @@
 		width:500px;
 		height:110px;
 	}
+	
+	ohw-search-table-tr {
+		height:30px;
+	}
+	
+	ohw-search-table-td {
+		height:30px;
+	}	
 	
 </style>
 </head>
@@ -518,25 +523,25 @@ $(function () {
 
 </script>
 	<div align = "center">
-	<div id="show_table" align = "center"> <!-- 평소에 펼쳐져 있는 테이블 -->		
+	<div id="show_table" align = "center"> <!-- 평소에 펼쳐져 있는 테이블 -->	
+		<div><h3>새로 올라온 강의</h3></div>	
 		<table class="table table-hover ohw-ready-table">
 			<tr style = "height:30px; padding:0px; margin:0px;">
-        		<td colspan = "4" align = "center"><h3>새로 올라온 강의</h3></td>        		
+        		        		
       		</tr> 
 		</table>
 	</div>
 	
 	<div id="search_table" align = "center"> <!-- 검색 결과 표시 테이블 -->
+		<div><h3>검색 결과</h3></div>
 		<table class="table table-hover ohw-search-table">      
-			<tr style = "height:30px; padding:0px; margin:0px;">
-        		<td colspan = "4" align = "center"><h3>검색 결과</h3></td>   		
-      		</tr>     
+			<tr class="ohw-search-table-tr" style = "height:30px; padding:0px; margin:0px;">
+        		
 		</table>
 	</div>
 	</div>
 	
 <div>
-</div>
 	<%@ include file = "../../common/footer.jsp" %>
 </div>
 	

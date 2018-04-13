@@ -79,7 +79,8 @@ public class LessonDao {
 				+ "and l.LEVEL_NO = lv.LESSONLEV_NO "
 				+ "and l.LESSON_TYPE = lt.TYPE_NO "
 				+ "and l.category_no = c.category_no "
-				+ "and rownum <= 5 "
+				+ "and l.LESSON_ENDDATE is not null "
+				+ "and rownum <= 6 "
 				+ "order by lesson_startdate desc";
 		try {
 			stmt = con.createStatement();
@@ -273,8 +274,8 @@ public class LessonDao {
 						+ "and u.USER_AGE <= ? "
 						+ "and l.LESSON_PRICE >= ? "
 						+ "and l.LESSON_PRICE <= ? "
-						+ "and l.LEVEL_NO >= ?"
-						+ "and l.LEVEL_NO <= ?";		
+						+ "and l.LEVEL_NO >= ? "
+						+ "and l.LEVEL_NO <= ? ";		
 				
 		try {
 			pstmt = con.prepareStatement(query);
