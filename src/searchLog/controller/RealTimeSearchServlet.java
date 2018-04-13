@@ -33,6 +33,13 @@ public class RealTimeSearchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+<<<<<<< HEAD
+=======
+	
+	
+		
+	SearchLogService list = new SearchLogService();
+>>>>>>> branch 'master' of https://github.com/ojk3306/ilwon.git
 	
 	SearchLogService list = new SearchLogService();
 //최신 강의 (성훈이형!!)	

@@ -15,6 +15,7 @@ import org.json.simple.JSONObject;
 
 import lesson.model.service.LessonService;
 import lesson.model.vo.Lesson;
+import lesson.model.vo.LessonSearch;;
 
 /**
  * Servlet implementation class LessonSearchListServlet
@@ -38,17 +39,20 @@ public class LessonSearchListServlet extends HttpServlet {
 		//리스트 결과를 json 배열에 담아서, 전송하는 컨트롤러		
 		
 		String locationValue = request.getParameter("location");
-		String lessonValue = request.getParameter("lesson");
+		String lessonValue = request.getParameter("lesson");	
 		String teacherGenderValue = request.getParameter("teacherGender");
-		String teacherAgePreValue = request.getParameter("teacherAgePre");
-		String teacherAgeEndValue = request.getParameter("teacherAgeEnd");
-		String teacherEXPValue[] = request.getParameterValues("teacherEXP");
-		String lessonPricePreValue = request.getParameter("lessonPricePre");
-		String lessonPriceEndValue = request.getParameter("lessonPriceEnd");
-		String lessonLevelValue = request.getParameter("lessonLevel");
-				
-		ArrayList<Lesson> list = new LessonService().selectSearchList(locationValue, lessonValue, teacherGenderValue, 
-				teacherAgePreValue, teacherAgeEndValue, teacherEXPValue, lessonPricePreValue, lessonPriceEndValue, lessonLevelValue);				
+		int teacherAgePreValue = Integer.parseInt(request.getParameter("teacherAgePre"));
+		int teacherAgeEndValue = Integer.parseInt(request.getParameter("teacherAgeEnd"));
+		/*String teacherEXPValue[] = request.getParameterValues("teacherEXP");*/
+		int lessonPricePreValue = Integer.parseInt(request.getParameter("lessonPricePre"));
+		int lessonPriceEndValue = Integer.parseInt(request.getParameter("lessonPriceEnd"));
+		int lessonLevelPreValue = Integer.parseInt(request.getParameter("lessonLevel"));
+		int lessonLevelEndValue = Integer.parseInt(request.getParameter("lessonLevel"));
+		
+		LessonSearch ls = new LessonSearch(locationValue, lessonValue, teacherGenderValue, 
+				teacherAgePreValue, teacherAgeEndValue, /*teacherEXPValue,*/ lessonPricePreValue, lessonPriceEndValue, lessonLevelPreValue, lessonLevelEndValue);			
+		System.out.println("SendInfo : " + ls + " / (To.LessonSearchListServlet)");		
+		ArrayList<LessonSearch> list = new LessonService().selectSearchList(ls);
 					
 		//전송은 json 객체 한개만 전송할 수 있음
 		//최종 전송용 json 객체 생성함
@@ -60,31 +64,41 @@ public class LessonSearchListServlet extends HttpServlet {
 		//list 에서 user 객체 한 개 꺼냄
 		// => json 객체 한 개에 값들을 옮겨 담음.
 		// => json 객체를 json 배열에 저장함.
-		for(Lesson lesson : list) {
+		for(LessonSearch lessonSearch : list) {
 			//한 사람의 정보를 저장할 json 객체 생성함
-			JSONObject job = new JSONObject();			
-			job.put("lessonNo",lesson.getLesson_no());
-			job.put("levelNo",lesson.getLevel_no());
-			job.put("stateNo",lesson.getState_no());
-			job.put("categoryNo", lesson.getCategory_no());
-			job.put("categoryBName", lesson.getCategory_bigName());
-			job.put("categorySName", lesson.getCategory_smallName());
-			job.put("userNo1", lesson.getUser_no1());			
-			job.put("userNo2", lesson.getUser_no2());			
-			job.put("userName1", lesson.getUser_name1());			
-			job.put("userName2", lesson.getUser_name2());			
-			job.put("lessonTitle",lesson.getLesson_title());	
-			job.put("lessonLocation",lesson.getLesson_loc());	
-			job.put("lessonRadius",lesson.getLesson_rad());	
-			job.put("lessonPrice",lesson.getLesson_price());	
-			job.put("lessonCount",lesson.getLesson_count());
-			job.put("lessonStartDate", lesson.getLesson_startdate().toString());
-			job.put("lessonEndDate", lesson.getLesson_enddate().toString());
-			job.put("lessonContop",lesson.getLesson_contop());
-			job.put("lessonConmid",lesson.getLesson_conmid());
-			job.put("lessonConbot",lesson.getLesson_conbot());
-			job.put("lessonKeyword",lesson.getLesson_keyword());
-			job.put("lessonType",lesson.getLesson_type());
+			JSONObject job = new JSONObject();
+			
+			job.put("locationValue", lessonSearch.getLocationValue());
+			job.put("lessonValue", lessonSearch.getLessonValue());
+			job.put("genderValue", lessonSearch.getTeacherGenderValue());
+			job.put("teacherPreValue", lessonSearch.getTeacherAgePreValue());
+			job.put("teacherEndValue", lessonSearch.getTeacherAgeEndValue());
+			job.put("lessonPricePreValue", lessonSearch.getLessonPricePreValue());
+			job.put("lessonPriceEndValue", lessonSearch.getLessonPriceEndValue());
+			job.put("lessonLevelPreValue", lessonSearch.getLessonLevelPreValue());
+			job.put("lessonLevelEndValue", lessonSearch.getLessonLevelEndValue());
+			job.put("lessonNo",lessonSearch.getLesson_no());
+			job.put("levelNo",lessonSearch.getLevel_no());
+			job.put("stateNo",lessonSearch.getState_no());
+			job.put("categoryNo", lessonSearch.getCategory_no());
+			job.put("categoryBName", lessonSearch.getCategory_bigName());
+			job.put("categorySName", lessonSearch.getCategory_smallName());
+			job.put("userNo1", lessonSearch.getUser_no1());			
+			job.put("userNo2", lessonSearch.getUser_no2());			
+			job.put("userName1", lessonSearch.getUser_name1());			
+			job.put("userName2", lessonSearch.getUser_name2());			
+			job.put("lessonTitle",lessonSearch.getLesson_title());	
+			job.put("lessonLocation",lessonSearch.getLesson_loc());	
+			job.put("lessonRadius",lessonSearch.getLesson_rad());	
+			job.put("lessonPrice",lessonSearch.getLesson_price());	
+			job.put("lessonCount",lessonSearch.getLesson_count());
+			job.put("lessonStartDate", lessonSearch.getLesson_startdate().toString());
+			job.put("lessonEndDate", lessonSearch.getLesson_enddate().toString());
+			job.put("lessonContop",lessonSearch.getLesson_contop());
+			job.put("lessonConmid",lessonSearch.getLesson_conmid());
+			job.put("lessonConbot",lessonSearch.getLesson_conbot());
+			job.put("lessonKeyword",lessonSearch.getLesson_keyword());
+			job.put("lessonType",lessonSearch.getLesson_type());
 				
 			jarr.add(job);			
 		}

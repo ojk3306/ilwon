@@ -26,6 +26,14 @@ public class Semina  implements Serializable {
 	private int seminaMax;
 	private String seminaOriginalFileName;
 	private String seminaRenameFileName;
+	private int SEMINA_STATE;
+	
+	public int getSEMINA_STATE() {
+		return SEMINA_STATE;
+	}
+	public void setSEMINA_STATE(int sEMINA_STATE) {
+		SEMINA_STATE = sEMINA_STATE;
+	}
 	public Semina() {}
 	public int getSeminaNo() {
 		return seminaNo;
