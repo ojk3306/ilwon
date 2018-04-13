@@ -31,14 +31,15 @@ $(function(){
 					+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='finishLesson(this)'>종료</button></td></tr>"			
 					}
 			}
-		    
-			if(json.semi!=null){
-			values += "<tr><input type='hidden' class='btn btn' value='"+json.semi.semi_no+"'>"+"<td>"+json.semi.Title
-			+"</td><td>세미나</td><td><button type='button' class='btn' id='"+json.semi.semi_no+"' onclick='Detailsemina(this)'>상세보기</button></td>"
+			for(var i in json.semi) {
+			if(json.semi[i].state==1){
+			values += "<tr><input type='hidden' class='btn btn' value='"+json.semi[i].semi_no+"'>"+"<td>"+json.semi[i].Title
+			+"</td><td>세미나</td><td><button type='button' class='btn' id='"+json.semi[i].semi_no+"' onclick='Detailsemina(this)'>상세보기</button></td>"
 			+"<td><button type='button' class='btn btn-primary'>모집중</button></td>"
-			+"<td><button type='button' class='btn btn-warning' id='"+json.semi.semi_no+"' onclick='updatesemina(this)'>수정</button></td>"
-			+"<td><button type='button' class='btn btn-danger' id='"+json.semi.semi_no+"' onclick='finishsemina(this)'>종료</button></td></tr>"			
+			+"<td><button type='button' class='btn btn-warning' id='"+json.semi[i].semi_no+"' onclick='updatesemina(this)'>수정</button></td>"
+			+"<td><button type='button' class='btn btn-danger' id='"+json.semi[i].semi_no+"' onclick='finishsemina(this)'>종료</button></td></tr>"			
 			}
+		}
 		$('#ongoing_table').html(values);
 		}, error: function(a,b,c){
 			console.log(b+c);
@@ -46,20 +47,17 @@ $(function(){
 	});
 
 });
-function updatesemina(a){
+function updatesemina(a){ //세미나 수정.
 	
 }
-function finishsemina(a){
+function finishsemina(a){ //세미나 끝내기
 	location.href="/prototype/semistop?semino="+a.id;
-
-
-	
 }
-function Detailsemina(a){
+function Detailsemina(a){ //세미나 상세보기
 	location.href="/prototype/sdetail?userno="+a.id;
 }
-function updateLesson(a){
-	
+function updateLesson(a){ //레슨 수정.
+	location.href="/prototype/lessonupdate?lessno="a.id;
 }
 //강의내역
 $(function(){
@@ -70,16 +68,23 @@ $(function(){
 		dataType: "json",
 		success: function(data) {
 			
-			var jsonStr = JSON.stringify(data);
-			var json = JSON.parse(jsonStr);
-			
-			var values = $('#previous_table').html() + "<br>";
-			
-			for(var i in json.onlesson) {	
+var jsonStr = JSON.stringify(data);
+var json = JSON.parse(jsonStr);
+var values = $('#previous_table').html() + "<br>";
+for(var i in json.onlesson) {	
 if(json.onlesson[i].state == "숨김") {
 values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
-+"</td><td>"+json.onlesson[i].username+"</td><td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
++"</td><td>레슨</td><td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
 +"<td>"+json.onlesson[i].lesson_enddate+"</td></tr>"}}
+			
+for(var i in json.semi) {
+	if(json.semi[i].state==2){
+		values += "<tr><input type='hidden' class='btn btn' value='"+json.semi[i].semi_no+"'>"+"<td>"+json.semi[i].Title
+		+"</td><td>세미나</td><td><button type='button' class='btn' id='"+json.semi[i].semi_no+"' onclick='Detailsemina(this)'>상세보기</button></td>"
+		+"<td>"+json.semi[i].end_date+"</td></tr>"			
+		}
+			}
+			
 			
 			$('#previous_table').html(values);
 		}, error: function(a,b,c){
@@ -228,7 +233,7 @@ function upload_profile() {
 						<thead>
 							<tr>
 								<th>강의명</th>
-								<th>선생님</th>
+								<th>강의타입</th>
 								<th>상세보기</th>
 								<th>종료일</th>
 							</tr>

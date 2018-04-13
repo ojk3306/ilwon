@@ -65,7 +65,8 @@
 			}
 		});           
 
-		$("#menubar-searchbar").select2();           
+		$("#menubar-searchbar").select2();     
+		
 		$("#s2id_autogen1_search").keyup(function(){
 		$.ajax({      
 			url:"<%=request.getContextPath()%>/search",

@@ -503,6 +503,11 @@ public class UsersDao {
 		}
 		System.out.println(user.toString());
 		return user;
+	
+	
+	
+	
+	
 	}
 
 	public int uploadProfile(Connection conn, Users user) {

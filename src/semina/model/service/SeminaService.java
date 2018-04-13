@@ -77,7 +77,7 @@ public class SeminaService {
 
 	public Semina getseminabyno(int seminano) {
 		Connection con=getConnection();
-		Semina semi=  new SeminaDao().getseminabyno(con,seminano);
+		Semina semi=  new SeminaDao().getseminabyno1(con,seminano);
 		close(con);
 		return semi;
 	}
@@ -112,9 +112,9 @@ public class SeminaService {
 		
 	}
 
-	public Semina getSeminaInfoByuserNo(int user) {
+	public ArrayList<Semina> getSeminaInfoByuserNo(int user) {
 		Connection con=getConnection();
-		Semina semi=new SeminaDao().getSeminaInfoByuserNo(con,user);
+		ArrayList<Semina> semi=new SeminaDao().getSeminaInfoByuserNo(con,user);
 		close(con);
 		
 		return semi;
@@ -124,6 +124,19 @@ public class SeminaService {
 		//세미나 중단.
 		Connection con=getConnection();
 		int result= new SeminaDao().stopsemina(con,parseInt);
+		if(result>0)
+			commit(con);
+		else 
+			rollback(con);
+		close(con);
+		
+		return result;
+	}
+
+	public int insertseminaLog(int parseInt) {
+		//세미나 중단후 세미나의 기록을 넣음.
+		Connection con=getConnection();
+		int result= new SeminaDao().insertseminaLog(con,parseInt);
 		if(result>0)
 			commit(con);
 		else 

@@ -475,6 +475,31 @@ public ArrayList<Sidebar> seachlistByKeyword(Connection con, String string) {
 		return Sidebar;
 	}
 
+	public Lesson findLessonBylessonNo(Connection con, int parseInt) {
+		
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		Lesson le=new Lesson();
+		
+		String sql="select * from LESSON where LESSON_NO=?";
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1,parseInt);
+			rset=pstmt.executeQuery();
+			if(rset.next()) {
+		
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return null;
+	}
+
 }
 	
 
