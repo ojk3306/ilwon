@@ -135,6 +135,18 @@ public class LessonService {
 		ArrayList<Sidebar> l=new LessonDao().seachlistByKeyword2(con,lessonList);
 		close(con);
 		return l;
+	}
+
+	public Lesson findLessonBylessonNo(int parseInt) {
+		Connection con = getConnection();
+
+		Lesson ls = new LessonDao().findLessonBylessonNo(con,parseInt);
+		
+	close(con);
+		
+		return ls;
+		
+		
 	}	
 	
 }

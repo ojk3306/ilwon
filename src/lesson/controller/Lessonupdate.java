@@ -1,4 +1,4 @@
-package semina.controller;
+package lesson.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,19 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import semina.model.service.SeminaService;
+import lesson.model.service.LessonService;
+import lesson.model.vo.Lesson;
 
 /**
- * Servlet implementation class SeminaStop
+ * Servlet implementation class Lessonupdate
  */
-@WebServlet("/semistop")
-public class SeminaStop extends HttpServlet {
+@WebServlet("/lessonupdate")
+public class Lessonupdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SeminaStop() {
+    public Lessonupdate() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,16 +29,12 @@ public class SeminaStop extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("종료할 세미 번호="+request.getParameter("semino"));
 	
-		int result=new SeminaService().stopsemina(Integer.parseInt(request.getParameter("semino")));
-	
-		if(result>0) {
-			response.sendRedirect("/prototype/04.OJK/teacherinfo.jsp");
-		}else {
-			
-		}
 		
+		Lesson le=new LessonService().findLessonBylessonNo(Integer.parseInt(request.getParameter("lessno")));
+	
+	
+	
 	}
 
 	/**

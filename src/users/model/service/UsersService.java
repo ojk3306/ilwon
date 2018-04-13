@@ -2,11 +2,14 @@ package users.model.service;
 
 import static common.JDBCTemplate.*;
 
+
 import java.sql.Connection;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import users.model.*;
 import users.model.dao.UsersDao;
+import users.model.vo.NewestLessonByAdmin;
 import users.model.vo.Users;
 
 public class UsersService {
@@ -51,7 +54,15 @@ public class UsersService {
 		
 		 return al;
 	}
+	
+	
+	//태환
+	
 
+	//태환
+	
+	
+	
 	public int getListCount(Users user, String seach, int seachOption) {
 		Connection con = getConnection();
 		int listCount = new UsersDao().getListCount(con,user,seach,seachOption);
@@ -111,6 +122,7 @@ public class UsersService {
 		}else {
 			rollback(conn);
 		}
+		close(conn);
 		return result;
 	}
 
