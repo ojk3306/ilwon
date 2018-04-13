@@ -2,9 +2,11 @@
 
 
 import java.sql.*;
+import java.sql.Date;
 import java.util.*;
 
 import searchLog.model.vo.SearchLog;
+import users.model.vo.NewestLessonByAdmin;
 import users.model.vo.Users;
 
 import static common.JDBCTemplate.*;
@@ -156,6 +158,36 @@ public class SearchLogDao {
 				list.add(rset.getString("SEACH_CONTENT"));		
 				System.out.println(rset.getString("SEACH_CONTENT"));
 			};		
+	
+		} catch (java.sql.SQLException e) {		
+			System.out.println("SearchLogData Loading Complete / (To.SearchLogDao)");		
+		} catch(Exception e1) {
+			e1.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}		
+		return list;
+		
+	}
+	
+	public ArrayList<NewestLessonByAdmin> newstLessonLog(Connection connn,ArrayList<NewestLessonByAdmin> list){
+		PreparedStatement pstmt = null;		
+		ResultSet rset=null;
+		
+		String query="select lesson_title,user_name,lesson_startdate from lesson,users where lesson.USER_NO2=users.USER_NO order by lesson_startdate desc";
+		try {
+			pstmt=connn.prepareStatement(query);
+			rset=pstmt.executeQuery();		
+			
+			while(list.size()<5) {
+				rset.next();
+				NewestLessonByAdmin u = new NewestLessonByAdmin();
+				u.setUserName(rset.getString("user_name"));
+				u.setLesson_title(rset.getString("lesson_title"));
+				u.setLesson_startdate(rset.getDate("lesson_startdate"));
+				list.add(u);
+			};
 	
 		} catch (java.sql.SQLException e) {		
 			System.out.println("SearchLogData Loading Complete / (To.SearchLogDao)");		

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="users.model.vo.*"%>
     
 <%
 String one=(String)request.getAttribute("first"); 
@@ -7,9 +7,10 @@ String two=(String)request.getAttribute("second");
 String three=(String)request.getAttribute("third"); 
 String four=(String)request.getAttribute("fourth"); 
 String five=(String)request.getAttribute("fifth");
-
 ArrayList<Users> list = (ArrayList<Users>)(request.getAttribute("newUserList"));
-%>    
+ArrayList<NewestLessonByAdmin> list2 = (ArrayList<NewestLessonByAdmin>)(request.getAttribute("newestlist"));
+%> 
+   
 <!DOCTYPE html>
 
 <html>
@@ -100,7 +101,11 @@ ArrayList<Users> list = (ArrayList<Users>)(request.getAttribute("newUserList"));
    </div>
   </div>
 </div>
-<!--Latest User-->
+<!-최신 강의->
+
+
+
+
 <div class="panel panel-default">
   <div class="panel-heading"style="background-color:  #095f59;">
     <h3 class="panel-title" style="color:#ffffff">최신 강의</h3>
@@ -108,43 +113,32 @@ ArrayList<Users> list = (ArrayList<Users>)(request.getAttribute("newUserList"));
   <div class="panel-body">
     <table class="table table-striped table-hover">
       <tr>
-        <th>이름</th>
-        <th>메일</th>
-        <th>가입일</th>
+        <th>강의명</th>
+        <th>선생님</th>
+        <th>등록일</th>
       </tr>
    
    
+   <% for (int i=0; i<5; i++){ %>
     <tr>
-      <td>Madhav Prasad</td>
-      <td>mr.madhavprasad@gmail.com</td>
-      <td>Dec 13,2014</td>
+      <td><%=list2.get(i).getLesson_title() %></td>
+      <td><%=list2.get(i).getUserName() %></td>
+      <td><%=list2.get(i).getLesson_startdate() %></td>
     </tr>
-    <tr>
-      <td>Nagendra Kushwaha</td>
-      <td>nkushwaha822@gmail.com</td>
-      <td>Feb 15,2014</td>
-    </tr>
-    <tr>
-      <td>Arun Kumar</td>
-      <td>kumarun@yahoo.com</td>
-      <td>Aug 17, 2015</td>
-    </tr>
-    <tr>
-      <td>Nabin Singh</td>
-      <td>singhNavs@outlook.com</td>
-      <td>March 08,2016</td>
-    </tr>
+   <%} %>
+   
     </table>
 
   </div>
 </div>
-<!--  -->
+ <!-최신유저 ->
 
 <div class="panel panel-default">
   <div class="panel-heading"style="background-color:  #095f59;">
     <h3 class="panel-title" style="color:#ffffff">최신 유저
     </h3>
   </div>
+ 
   <div class="panel-body">
     <table class="table table-striped table-hover">
       <tr>

@@ -22,6 +22,8 @@ public class SearchLog implements Serializable {
 		this.searchCount = searchCount;
 		this.searchDate = searchDate;
 	}
+	
+	
 
 
 	public int getSearchNo() {
