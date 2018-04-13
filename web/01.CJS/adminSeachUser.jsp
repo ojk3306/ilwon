@@ -101,7 +101,7 @@ min-height: 440px;
 <%if(loginUser.getUserTypeNo()==1003){ %>
 <!-- 관리자가 아닐시에 팅기게하는 문장 만들기. -->
 
-<div class="main">
+<div class="main" style="height: 600px">
 <div class="container">
     <div class="row">
        <div class="col-md-10 col-md-offset-1">

@@ -21,6 +21,11 @@ function juso(){
 	//비밀번호 체크
 	 $(function() {
 	$('#repwd').keyup(function(pwdcheck){
+		if($("#pwd").val().lenght<4){
+			$('#la_pwd').html("비밀번호는 4글자 이상이여야합니다.")
+		
+		
+		}else{
 		if($('#repwd').val() != $('#pwd').val()) {
 			$('#la_pwd').html("비밀번호가 일치하지 않습니다")
 		}else {
@@ -28,7 +33,7 @@ function juso(){
 			$('#la_pwd').html("비밀번호가 일치합니다")
 		}	
 	
-	
+		}
 	
 		});
 	
@@ -43,7 +48,8 @@ function juso(){
 			if(userpwd.length<4) {
 				$('#la_pwd').html("비밀번호는 4~16자리로 입력해주세요");
 			}else{
-			if($('#repwd').val() != $('#pwd').val()) {
+			
+				if($('#repwd').val() != $('#pwd').val()) {
 				$('#la_pwd').html("비밀번호가 일치하지 않습니다");
 			}else {
 				
@@ -87,18 +93,19 @@ function juso(){
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>학생으로 가입하기</title>
 </head>
-<body>
+<body style=" background:#e9e9e9">
 <%@ include file="/common/navbar.jsp" %>
+<%@ include file="/01.CJS/sidebar.jsp" %>
+
 	
-	
-	<nav class="contents">
+	<nav class="contents" style="margin-top: -550px;" >
 		<br>
 		<h1 align="center">학생으로 가입하기</h1>
 		<hr>
 
 		<div id="wrapper">
 			<div align="center">
-				<div style="width: 1100px; height: 1200px;">
+				<div style="width: 1100px; height: 580px;">
 					<div style="margin-top: 50px;">
 						<div style="width: 600px;">
 							<hr>
@@ -115,14 +122,14 @@ function juso(){
 									<label class="control-label col-sm-2" for="pwd-1" >비밀번호:</label>
 									<div class="col-sm-10">
 										<input type="password" class="form-control"
-											placeholder="Enter password" id="pwd" name="pwd" maxlength="16" required>
+											placeholder="Enter password" id="pwd" name="pwd" minlength="4"  maxlength="16" required>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="control-label col-sm-2" for="pwd-1">비밀번호<br>재확인:</label>
 									<div class="col-sm-10">
 										<input type="password" class="form-control"
-											placeholder="Enter password" id="repwd" name="repwd"  maxlength="16" required>
+											placeholder="Enter password" id="repwd" name="repwd" minlength="4"  maxlength="16" required>
 												<label id="la_pwd" name="la_pwd" style="color:#e65c00;"></label>
 									</div>
 								</div>
@@ -144,14 +151,14 @@ function juso(){
 								<div class="form-group">
 									<label class="control-label col-sm-2" for="gender">성별:</label>
 									<div class="col-sm-10">
-										남&nbsp;&nbsp;<input type="radio" name="gender" value="M">
+										남&nbsp;&nbsp;<input type="radio" name="gender" value="M" checked="checked">
 										여&nbsp;&nbsp;<input type="radio" name="gender" value="F">
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="control-label col-sm-2" >나이:</label>
 									<div class="col-sm-10">
-					<input type="number" name="age" class="form-control" min="0" max="100" required>
+								<input type="number" name="age" class="form-control" min="0" max="100" required>
 									
 									</div>
 								</div>
@@ -181,6 +188,6 @@ function juso(){
 
 
 	</nav>
-
+<%@ include file="/common/footer.jsp" %>
 </body>
 </html>

@@ -1,5 +1,10 @@
+<%@page import="proposal.model.vo.Proposal"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+    String message=(String)request.getAttribute("message");
+    Proposal pro=(Proposal)request.getAttribute("list");
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,22 +16,15 @@
 <script src="/prototype/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<title>Insert title here</title>
+<title>건의안 수정하기</title>
+<script type="text/javascript" src="/prototype/common\resources\js\jquery-3.3.1.min.js"></script>
+
 <script type="text/javascript">
-$(document).on('click', '#close-preview', function(){ 
-    $('.image-preview').popover('hide');
-    // Hover befor close the preview
-    $('.image-preview').hover(
-        function () {
-           $('.image-preview').popover('show');
-        }, 
-         function () {
-           $('.image-preview').popover('hide');
-        }
-    );    
-});
+
 
 $(function() {
+	if(<%=message%>!=null)
+		alert(<%=message%>);
     // Create the close button
     var closebtn = $('<button/>', {
         type:"button",
@@ -73,9 +71,7 @@ $(function() {
 });
 
 //delayed execution
-$(function() {
- $('#comment').inputLengthLabel();
-});
+
 
 //module inputLengthLabel
 //Carlos C Soto <eclipxe13@gmail.com>
@@ -205,48 +201,39 @@ $(function() {
 </head>
 <body>
 <%@ include file="/common/navbar.jsp" %>
+<%@ include file="/01.CJS\sidebar.jsp" %>
 
-<div class="container">
+<div class="container" style="margin-top: -550px;">
 <div class="row">
 <div class="col-md-6 col-md-offset-3">
     
-    <form method="post" action="#">
-   	<div class="selections" Style="margin-right:0px;  ">
-    <select> <option>d</option>
-    </select>
-    <select> <option>d</option>
-    </select>
-    <select> <option>d</option>
-    </select>
-  
+   
+    
+    
+    <form method="post" action="/prototype/pupdate">
+    <%if(loginUser==null ){ }else{%>
+    <input type="hidden" value="<%=pro.getProposalNo()%>" name="prono" >
+    <%}%>
+   	<div class="selections" Style="margin-right:0px;">
   	 </div>
         <fieldset>
             <div class="form-group">
               <br>
                 <label for="exampleInputEmail1">제목</label>
-                <input type="text" class="form-control">
+                <input type="text" name="title" class="form-control" value="<%=pro.getProposalTitle() %>" required="required">
             </div>
             <div class="form-group">
                 <label>내용</label>
-                <textarea class="form-control" id="comment" maxlength="3000" rows="20" name="contents" placeholder="신고는 신중히" ></textarea>
+             <textarea class="form-control"  required="required" id="comment" name="content" maxlength="3000" rows="20" placeholder="여러분들의 모든 건의사항은 운영진들이 운영함에 있어, 큰도움이 됩니다. 감사합니다." >
+             <%=pro.getProposalContent() %>
+             
+             
+             
+             </textarea>
             </div>
             <div class="col-xs-12 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">  
             <!-- image-preview-filename input [CUT FROM HERE]-->
-            <div class="input-group image-preview">
-                <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
-                <span class="input-group-btn">
-                    <!-- image-preview-clear button -->
-                    <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
-                        <span class="glyphicon glyphicon-remove"></span> Clear
-                    </button>
-                    <!-- image-preview-input -->
-                    <div class="btn btn-default image-preview-input">
-                        <span class="glyphicon glyphicon-folder-open"></span>
-                        <span class="image-preview-input-title">Browse</span>
-                        <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"/> <!-- rename it -->
-                    </div>
-                </span>
-            </div><!-- /input-group image-preview [TO HERE]--> 
+      
         </div>
            
            
@@ -254,22 +241,19 @@ $(function() {
            <br>
            <br>
            <div align="center">
-	            <button type="submit" class="btn btn-primary">Submit</button>
-	            <button type="reset" class="btn btn-primary">Reset</button>
+	            <button type="submit" class="btn btn-primary">수정하기</button>
+	            <button type="reset" class="btn btn-primary">초기화하기</button>
             </div>
         </fieldset>
+    
     </form>
     
 </div>
-<!-- 파일  -->
-  
-    
-       
 </div>
 
 </div>
 
   
-
+<%@ include file="/common\footer.jsp" %>
 </body>
 </html>

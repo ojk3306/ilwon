@@ -75,7 +75,7 @@ public class UsersService {
 			commit(con);
 		}else {
 			rollback(con);
-			System.out.println("adminUpdate서비스 실패");
+			System.out.println("adminUpdate�꽌鍮꾩뒪 �떎�뙣");
 		}
 		
 		close(con);
@@ -91,6 +91,45 @@ public class UsersService {
 		
 		return user;
 	}
+
+	public Users getUserinfoFromproposal(Integer userNo) {
+		Connection con = getConnection();
+		Users user=new UsersDao().getUserinfofromsemina(con, userNo);
+		close(con);			
+		
+		
+		return user;
+	}
+
+	public int uploadProfile(Users user) {
+		Connection conn = getConnection();
+		
+		int result = new UsersDao().uploadProfile(conn,user);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+	}
+
+	public Users updateLogin(int userNo) {
+		Connection con = getConnection();
+		Users user = new UsersDao().updateLogin(con, userNo);
+		close(con);
+		return user;
+	}
+
+	public String getUserImg(int userimg) {
+		Connection con = getConnection();
+		String result = new UsersDao().getUserImg(con, userimg);
+		
+		close(con);
+		return result;
+	}
+
+	
 
 	
 	

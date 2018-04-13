@@ -51,7 +51,7 @@ public class InsertNoticeServlet extends HttpServlet {
 		if(result > 0) {
 			response.sendRedirect(request.getContextPath()+"/03.OHW/views/noticeList.jsp");
 		} else {
-			view = request.getRequestDispatcher(request.getContextPath()+"/03.OHW/views/noticeError.jsp");
+			view = request.getRequestDispatcher("/03.OHW/views/noticeError.jsp");
 			request.setAttribute("message", "게시글 등록 실패");
 			view.forward(request, response);
 		}	

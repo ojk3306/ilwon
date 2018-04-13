@@ -95,16 +95,7 @@
 	<div align="center">
 		<div style="width: 1100px; height: 100%;">
 			
-			<% if(loginUser != null && loginUser.getUserTypeNo() == 1003) { %>
-			
-			<div style="padding: 0px; float:right;">				
-				<button type="button" class="btn btn-default" onclick="location.href='/prototype/03.OHW/views/noticeInsert.jsp'">
-					<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 글쓰기
-				</button>
-			</div>					
-					
-			<% } %>
-			
+		
 		 	 <!-- 게시판 몸통 -->		 	 
 		 	<div style="margin-top: 30px;">
 		 		<table class="table table-hover ohw-notice">

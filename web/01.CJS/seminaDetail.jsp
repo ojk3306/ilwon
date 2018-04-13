@@ -302,7 +302,7 @@ section .section-title{
 						<li class=""> 모집기간 :<%=semi.getSeminaStartDate()%> ~ <%=semi.getSeminaEndDate() %> </li>
 						<li class=""> 강연 위치 :<%=semi.getSeminaLocation() %></li>
 						<li class=""> 
-						위치 확인하기.<button onclick="window.open('/prototype/01.CJS/seminamap.jsp?loc=<%=semi.getSeminaLocation()%>','window_name','width=430,height=500,location=no,status=no,scrollbars=yes');">button</button>
+						위치 확인하기.<button onclick="window.open('/prototype/01.CJS/seminamap.jsp?loc=<%=semi.getSeminaLocation()%>','window_name','width=790,height=790,location=no,status=no,scrollbars=yes');">button</button>
 						</li>
 						
 					</ul>

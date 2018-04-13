@@ -1,5 +1,9 @@
+<%@page import="users.model.vo.Users"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%
+ Users login = (Users)session.getAttribute("loginUser");
+ %>
 <!DOCTYPE html >
 <html>
 <head>
@@ -14,7 +18,61 @@
 
 <script type="text/javascript">
 
- $(function(){ 
+$(function(){
+	
+if('<%=login%>'== 'null'){ //비로그인인 경우
+$.ajax({
+		url:"/prototype/tsider",
+		data:{},
+		success:function(date){ 
+			console.log(date+"비로그인")
+			var value="";
+			var jsonStr = JSON.stringify(date);
+			var json = JSON.parse(jsonStr);
+			console.log(json.list[0].username)
+		/*
+		username
+		lesson_no
+		CATEGORY_SMALL
+		LESSON_RENAME_PHOTO
+		*/
+		$("#fi").html('<div class="active item"><img src="/prototype/01.CJS/img/bg-masthead.jpg"  class="img-responsive" data-target="#carousel-main" data-slide-to="0">이름:<a href="/prototype/lessondetail?no='+json.list[0].lesson_no+'">'+json.list[0].username+'</a><br>분야 :'+json.list[0].CATEGORY_SMALL+'</div><div class="item"><img src="/prototype/01.CJS/img/bg-masthead2.jpg"  class="img-responsive" data-target="#carousel-main" data-slide-to="1">이름:<a href="/prototype/lessondetail?no='+json.list[1].lesson_no+'">'+json.list[1].username+'</a><br>분야 :'+json.list[1].CATEGORY_SMALL+'</div><div class="item"> <img src="/prototype/01.CJS/img/bg-showcase-3.jpg" class="img-responsive" data-target="#carousel-main" data-slide-to="2">이름:<a href="/prototype/lessondetail?no='+json.list[2].lesson_no+'">'+json.list[2].username+'</a><br>분야 :'+json.list[2].CATEGORY_SMALL+'</div>')
+		$("#se").html('<div class="active item"><img src="/prototype/01.CJS/img/bg-masthead.jpg"  class="img-responsive" data-target="#carousel-main" data-slide-to="0">이름:<a href="/prototype/lessondetail?no='+json.list[3].lesson_no+'">'+json.list[3].username+'</a><br>분야 :'+json.list[3].CATEGORY_SMALL+'</div><div class="item"><img src="/prototype/01.CJS/img/bg-masthead2.jpg"  class="img-responsive" data-target="#carousel-main" data-slide-to="1">이름:<a href="/prototype/lessondetail?no='+json.list[4].lesson_no+'">'+json.list[4].username+'</a><br>분야 :'+json.list[4].CATEGORY_SMALL+'</div><div class="item"> <img src="/prototype/01.CJS/img/bg-showcase-3.jpg" class="img-responsive" data-target="#carousel-main" data-slide-to="2">이름:<a href="/prototype/lessondetail?no='+json.list[5].lesson_no+'">'+json.list[5].username+'</a><br>분야 :'+json.list[5].CATEGORY_SMALL+'</div>')
+		$("#th").html('<div class="active item"><img src="/prototype/01.CJS/img/bg-masthead.jpg"  class="img-responsive" data-target="#carousel-main" data-slide-to="0">이름:<a href="/prototype/lessondetail?no='+json.list[6].lesson_no+'">'+json.list[6].username+'</a><br>분야 :'+json.list[6].CATEGORY_SMALL+'</div><div class="item"><img src="/prototype/01.CJS/img/bg-masthead2.jpg"  class="img-responsive" data-target="#carousel-main" data-slide-to="1">이름:<a href="/prototype/lessondetail?no='+json.list[7].lesson_no+'">'+json.list[7].username+'</a><br>분야 :'+json.list[7].CATEGORY_SMALL+'</div><div class="item"> <img src="/prototype/01.CJS/img/bg-showcase-3.jpg" class="img-responsive" data-target="#carousel-main" data-slide-to="2">이름:<a href="/prototype/lessondetail?no='+json.list[8].lesson_no+'">'+json.list[8].username+'</a><br>분야 :'+json.list[8].CATEGORY_SMALL+'</div>')
+	},
+		error:function(a,b,c){
+			console.log(b+c);
+			
+		}
+	})
+}else{	
+$.ajax({
+		url:"/prototype/tsider",
+		data:{userno:$("#userno").val()},
+		success:function(date){ 
+			console.log(date+"로그인")
+			var jsonStr = JSON.stringify(date);
+			var json = JSON.parse(jsonStr);
+			console.log(json.list[0].username)	
+			$("#fi").html('<div class="active item"><img src="/prototype/01.CJS/img/bg-masthead.jpg"  class="img-responsive" data-target="#carousel-main" data-slide-to="0">이름:<a href="/prototype/lessondetail?no='+json.list[0].lesson_no+'">'+json.list[0].username+'</a><br>분야 :'+json.list[0].CATEGORY_SMALL+'</div><div class="item"><img src="/prototype/01.CJS/img/bg-masthead2.jpg"  class="img-responsive" data-target="#carousel-main" data-slide-to="1">이름:<a href="/prototype/lessondetail?no='+json.list[1].lesson_no+'">'+json.list[1].username+'</a><br>분야 :'+json.list[1].CATEGORY_SMALL+'</div><div class="item"> <img src="/prototype/01.CJS/img/bg-showcase-3.jpg" class="img-responsive" data-target="#carousel-main" data-slide-to="2">이름:<a href="/prototype/lessondetail?no='+json.list[2].lesson_no+'">'+json.list[2].username+'</a><br>분야 :'+json.list[2].CATEGORY_SMALL+'</div>')
+			$("#se").html('<div class="active item"><img src="/prototype/01.CJS/img/bg-masthead.jpg"  class="img-responsive" data-target="#carousel-main" data-slide-to="0">이름:<a href="/prototype/lessondetail?no='+json.list[3].lesson_no+'">'+json.list[3].username+'</a><br>분야 :'+json.list[3].CATEGORY_SMALL+'</div><div class="item"><img src="/prototype/01.CJS/img/bg-masthead2.jpg"  class="img-responsive" data-target="#carousel-main" data-slide-to="1">이름:<a href="/prototype/lessondetail?no='+json.list[4].lesson_no+'">'+json.list[4].username+'</a><br>분야 :'+json.list[4].CATEGORY_SMALL+'</div><div class="item"> <img src="/prototype/01.CJS/img/bg-showcase-3.jpg" class="img-responsive" data-target="#carousel-main" data-slide-to="2">이름:<a href="/prototype/lessondetail?no='+json.list[5].lesson_no+'">'+json.list[5].username+'</a><br>분야 :'+json.list[5].CATEGORY_SMALL+'</div>')
+			$("#th").html('<div class="active item"><img src="/prototype/01.CJS/img/bg-masthead.jpg"  class="img-responsive" data-target="#carousel-main" data-slide-to="0">이름:<a href="/prototype/lessondetail?no='+json.list[6].lesson_no+'">'+json.list[6].username+'</a><br>분야 :'+json.list[6].CATEGORY_SMALL+'</div><div class="item"><img src="/prototype/01.CJS/img/bg-masthead2.jpg"  class="img-responsive" data-target="#carousel-main" data-slide-to="1">이름:<a href="/prototype/lessondetail?no='+json.list[7].lesson_no+'">'+json.list[7].username+'</a><br>분야 :'+json.list[7].CATEGORY_SMALL+'</div><div class="item"> <img src="/prototype/01.CJS/img/bg-showcase-3.jpg" class="img-responsive" data-target="#carousel-main" data-slide-to="2">이름:<a href="/prototype/lessondetail?no='+json.list[8].lesson_no+'">'+json.list[8].username+'</a><br>분야 :'+json.list[8].CATEGORY_SMALL+'</div>')
+},
+		error:function(a,b,c){
+			console.log(b+c);
+		}
+	})
+}	
+
+
+
+})
+
+
+
+
+
+$(function(){ 
 	 var $win = $(window);
 	 var top = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다. 
 	 /*사용자 설정 값 시작*/ 
@@ -158,63 +216,35 @@
  <p align="center">이 선생은 어떄요?	</p>
 <hr style="clear: both;">
 <div class="col-md-3" style="width: 100%; height: 80%;">
-            <div id="carousel-pager" class="carousel slide " data-ride="carousel" data-interval="6000">
+            <div id="carousel-pager" class="carousel slide " data-ride="carousel" data-interval="3000">
                 <!-- Carousel items -->
-                <div class="carousel-inner vertical" style="height:30%; ">
-                    <div class="active item">
-                        <img src="/prototype/01.CJS\img\bg-masthead.jpg"  class="img-responsive" data-target="#carousel-main" data-slide-to="0">
-            이름:<>
-           가리치는 것:<>
-                    </div>
-                    <div class="item">
-                        <img src="/prototype/01.CJS\img\bg-masthead2.jpg"  class="img-responsive" data-target="#carousel-main" data-slide-to="1">
-                    </div>
-                    
-                    
-                    <div class="item">
-                        <img src="/prototype/01.CJS\img\bg-showcase-3.jpg" class="img-responsive" data-target="#carousel-main" data-slide-to="2">
-                    </div>
+         	  <div class="carousel-inner vertical" style="height:30%; "  id="fi">
+                
                 </div>
  			</div>
-              <div id="carousel-pager" class="carousel slide " data-ride="carousel" data-interval="5000">
+ 			
+ 			
+              <div id="carousel-pager" class="carousel slide " data-ride="carousel" data-interval="3000" >
                 <!-- Carousel items -->
-                <div class="carousel-inner vertical">
-                    <div class="active item">
-                        <img src="/prototype/01.CJS\img\bg-masthead.jpg"  class="img-responsive" data-target="#carousel-main" data-slide-to="0">
-            이름:<>
-           가리치는 것:<>
-                    </div>
-                    <div class="item">
-                        <img src="/prototype/01.CJS\img\bg-masthead2.jpg"  class="img-responsive" data-target="#carousel-main" data-slide-to="1">
-                    </div>
-                    
-                    
-                    <div class="item">
-                        <img src="/prototype/01.CJS\img\bg-showcase-3.jpg" class="img-responsive" data-target="#carousel-main" data-slide-to="2">
-                    </div>
+                <div class="carousel-inner vertical" id="se">
+                   
                 </div>
  			</div>
-              <div id="carousel-pager" class="carousel slide " data-ride="carousel" data-interval="5000">
+ 			
+              <div id="carousel-pager" class="carousel slide " data-ride="carousel" data-interval="3000" >
                 <!-- Carousel items -->
-                <div class="carousel-inner vertical">
-                    <div class="active item">
-                        <img src="/prototype/01.CJS\img\bg-masthead.jpg"  class="img-responsive" data-target="#carousel-main" data-slide-to="0">
-            이름:~~~
-           가리치는 것:태그
-                    </div>
-                    <div class="item">
-                        <img src="/prototype/01.CJS\img\bg-masthead2.jpg"  class="img-responsive" data-target="#carousel-main" data-slide-to="1">
-                    </div>
-                    
-                    
-                    <div class="item">
-                        <img src="/prototype/01.CJS\img\bg-showcase-3.jpg" class="img-responsive" data-target="#carousel-main" data-slide-to="2">
-                    </div>
+                <div class="carousel-inner vertical" id="th">
+                  
                 </div>
  			</div>
         
+        
+        
+        
         </div>
-
+<%if(login==null){}else{ %>
+<input type="hidden" value="<%=login.getUserNo() %>" id="userno">
+<%} %>
 </div>
 </div>
 </body>

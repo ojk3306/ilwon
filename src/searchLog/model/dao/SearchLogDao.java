@@ -5,6 +5,7 @@ import java.sql.*;
 import java.util.*;
 
 import searchLog.model.vo.SearchLog;
+import users.model.vo.Users;
 
 import static common.JDBCTemplate.*;
 
@@ -152,7 +153,8 @@ public class SearchLogDao {
 			
 			while(list.size()<5) {				
 				rset.next();				
-				list.add(rset.getString("SEACH_CONTENT"));				
+				list.add(rset.getString("SEACH_CONTENT"));		
+				System.out.println(rset.getString("SEACH_CONTENT"));
 			};		
 	
 		} catch (java.sql.SQLException e) {		
@@ -166,7 +168,90 @@ public class SearchLogDao {
 		return list;
 		
 	}
+
+	public ArrayList<String> getSearchhistroy(Connection con, int parseInt) {
+		
+		ArrayList<String> list =new ArrayList<String>();
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		String sql = "select SEACH_CONTENT from search_log where user_no =?  group by SEACH_CONTENT order by count(seach_content) desc";
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1,parseInt);
+			rset=pstmt.executeQuery();
+			while(rset.next()) {
+				list.add(rset.getString(1));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+	return list;
+	}
 	
+	
+
+	public ArrayList<String> getNumbers(Connection con, ArrayList<String> list) {
+		PreparedStatement pstmt = null;		
+		ResultSet rset=null;
+		
+		String query="select (select count(USER_NO) from users),(select count(LESSON_NO) from lesson),(select count(SEMINA_NO) from semina) from dual";
+		
+		try {
+			pstmt=con.prepareStatement(query);
+			rset=pstmt.executeQuery();		
+			
+		rset.next();	
+		String user=rset.getString(1);
+		String lesson=rset.getString(2);
+		String semina=rset.getString(3);
+		System.out.println(user+" "+lesson+" "+semina);
+		
+		list.add(user);
+		list.add(lesson);
+		list.add(semina);
+		
+		} catch (java.sql.SQLException e) {		
+			System.out.println("SearchLogData Loading Complete / (To.SearchLogDao)");		
+		} catch(Exception e1) {
+			e1.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}		
+		return list;
+	}
+	
+	public ArrayList<Users> newUsers(Connection con,ArrayList<Users> list){
+		PreparedStatement pstmt = null;		
+		ResultSet rset=null;
+		
+		String query="select USER_EMAIL,USER_NAME,USER_ENROLLDATE from users order by user_enrolldate desc";
+		try {
+			pstmt=con.prepareStatement(query);
+			rset=pstmt.executeQuery();	
+			while(rset.next()) {
+			Users u = new Users();
+			u.setUserEmail(rset.getString(1));
+			u.setUserName(rset.getString(2));
+			u.setUserEnrollDate(rset.getDate(3));
+			list.add(u);
+			}
+			
+		} catch (java.sql.SQLException e) {		
+			System.out.println("SearchLogData Loading Complete / (To.SearchLogDao)");		
+		} catch(Exception e1) {
+			e1.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}		
+		return list;
+		
+	}
+
 }
 
 

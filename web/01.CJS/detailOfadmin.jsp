@@ -245,7 +245,9 @@ margin-left: 190px;
 <body style="background:#eeeeee;">
 <%@include file="/common/navbar.jsp" %>
 
-<div class="container" >
+
+
+<div class="container" style="height: 900px" >
 	<div class="row" >
   <div class="col-md-7" Style="overflow:hidden;">
 <div class="panel panel-default">

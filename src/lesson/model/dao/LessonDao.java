@@ -12,6 +12,7 @@ import lesson.model.vo.Lesson;
 import lesson.model.vo.LessonDetail;
 import lesson.model.vo.LessonSearch;
 import lesson.model.vo.Onlesson;
+import lesson.model.vo.Sidebar;
 
 
 public class LessonDao {
@@ -23,7 +24,7 @@ public class LessonDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = "insert into lesson values((SELECT max(lesson_no) from lesson)+1"
-				+ ",?,1,5513,null,?,?,?,?,?,?,sysdate,null,?,?,?,?,7000)";
+				+ ",?,1,5513,null,?,?,?,?,?,?,sysdate,null,?,?,?,?,7000,?,?,?,?,?,?)";
 		
 		
 		try {
@@ -40,7 +41,12 @@ public class LessonDao {
 			pstmt.setString(9, lesson.getLesson_conmid());
 			pstmt.setString(10, lesson.getLesson_conbot());
 			pstmt.setString(11, lesson.getLesson_keyword());
-			
+			pstmt.setString(12, lesson.getLesson_orginal());
+			pstmt.setString(13, lesson.getLesson_rename());
+			pstmt.setString(14, lesson.getLesson_orginal2());
+			pstmt.setString(15, lesson.getLesson_rename2());
+			pstmt.setString(16, lesson.getLesson_orginal3());
+			pstmt.setString(17, lesson.getLesson_rename3());
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -176,8 +182,9 @@ public class LessonDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		//String sql= "select l.lesson_title, lv.lessonlev, l.LESSON_LOCATION, l.lesson_radius, l.lesson_price, l.lesson_count, l.state_no, l.lesson_contop, l.lesson_conmid, l.lesson_conbot, l.lesson_keyword, u.user_name, r.review_prepare, r.review_sincerity, r.review_delivery, r.review_no, r.review_content from lesson l, review r,users u,lessonlev lv where l.lesson_no = r.lesson_no and l.user_no2=u.user_no and l.level_no = lv.lessonlev_no and l.lesson_no = ? and l.user_no2 = (select user_no2 from lesson where lesson_no = ?) and l.level_no = (select level_no from lesson where lesson_no = ?)";
-		String sql2="select l.lesson_title, lv.lessonlev, l.LESSON_LOCATION, l.lesson_radius, l.lesson_price, l.lesson_count, l.state_no, l.lesson_contop, l.lesson_conmid, l.lesson_conbot, l.lesson_keyword, u.user_name from lesson l, users u,lessonlev lv where l.user_no2=u.user_no and l.level_no = lv.lessonlev_no and l.lesson_no = ? and l.user_no2 = (select user_no2 from lesson where lesson_no = ?) and l.level_no = (select level_no from lesson where lesson_no = ?)";
-		
+
+		String sql2="select l.user_no2, l.lesson_title, lv.lessonlev, l.LESSON_LOCATION, l.LESSON_rename_PHOTO, l.LESSON_rename_PHOTO2, l.LESSON_rename_PHOTO3, l.lesson_radius, l.lesson_price, l.lesson_count, l.state_no, l.lesson_contop, l.lesson_conmid, l.lesson_conbot, l.lesson_keyword, u.user_name from lesson l, users u,lessonlev lv where l.user_no2=u.user_no and l.level_no = lv.lessonlev_no and l.lesson_no = ? and l.user_no2 = (select user_no2 from lesson where lesson_no = ?) and l.level_no = (select level_no from lesson where lesson_no = ?)";
+
 		try {
 			pstmt = conn.prepareStatement(sql2);
 			pstmt.setInt(1, lesson_no);
@@ -190,7 +197,7 @@ public class LessonDao {
 				l = new LessonDetail();	
 				l.setLesson_no(lesson_no);
 				l.setLesson_title(rset.getString("lesson_title"));
-				l.setlevel(rset.getString("lessonlev"));
+				l.setLevel(rset.getString("lessonlev"));
 				l.setLesson_loc(rset.getString("lesson_location"));
 				l.setLesson_rad(rset.getInt("lesson_radius"));
 				l.setLesson_price(rset.getInt("lesson_price"));
@@ -201,6 +208,10 @@ public class LessonDao {
 				l.setLesson_conbot(rset.getString("lesson_conbot"));
 				l.setLesson_keyword(rset.getString("lesson_keyword"));
 				l.setUser_name(rset.getString("user_name"));
+				l.setLesson_rename(rset.getString("LESSON_rename_PHOTO"));
+				l.setLesson_rename2(rset.getString("LESSON_rename_PHOTO2"));
+				l.setLesson_rename3(rset.getString("LESSON_rename_PHOTO3"));
+				l.setUser_no(rset.getInt("user_no2"));
 		/*		l.setReviewPrepare(rset.getInt("review_prepare"));
 				l.setReviewSincerity(rset.getInt("review_sincerity"));
 				l.setReviewDelivery(rset.getInt("review_delivery"));
@@ -358,9 +369,112 @@ public class LessonDao {
 			close(pstmt);
 		}
 		
+
 		System.out.println("SearchList : " + list + " / (To.LessonDao)");
 		return list;		
 	}	
+
+public ArrayList<Sidebar> seachlistByKeyword(Connection con, String string) {
+		ArrayList<Sidebar> list = new ArrayList<Sidebar>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql="select user_name, lesson_no , LESSON_RENAME_PHOTO, category_small from categorys , lesson , users where categorys.CATEGORY_NO=lesson.CATEGORY_NO and LESSON.user_no2=users.user_no and LESSON.LESSON_KEYWORD like  ?";
+		
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1,"%"+string+"%");
+			rset=pstmt.executeQuery();
+			while(rset.next()) {
+				Sidebar side=new Sidebar();
+				side.setLesson_no(rset.getInt("lesson_no"));
+				side.setUser_name(rset.getString("user_name"));
+				side.setCategory_small(rset.getString("category_small"));
+				side.setLESSON_RENAME_PHOTO(rset.getString("LESSON_RENAME_PHOTO"));
+				
+
+				list.add(side);			
+			}		
+			
+		} catch (Exception e) {
+		e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		
+		return list;
+	}
+
+	public ArrayList<Sidebar> seachlistByKeyword2(Connection con, String string, ArrayList<Sidebar> lessonList) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql="select user_name, lesson_no ,LESSON_RENAME_PHOTO, category_small from categorys , lesson , users where categorys.CATEGORY_NO=lesson.CATEGORY_NO and LESSON.user_no2=users.user_no and LESSON.LESSON_KEYWORD like  ?";
+		
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1,"%"+string+"%");
+			rset=pstmt.executeQuery();
+			while(rset.next()) {
+				
+				//동일한 강의가 들어가는것을 방지함.
+				for(Sidebar i: lessonList) {
+				 if(i.getLesson_no()==rset.getInt("lesson_no"))
+				rset.next();	 
+				}
+				Sidebar side=new Sidebar();
+				side.setLesson_no(rset.getInt("lesson_no"));
+				side.setUser_name(rset.getString("user_name"));
+				side.setCategory_small(rset.getString("category_small"));
+				side.setLESSON_RENAME_PHOTO(rset.getString("LESSON_RENAME_PHOTO"));
+				
+
+				lessonList.add(side);			
+			}		
+			
+		} catch (Exception e) {
+		e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return lessonList;
+	}
+
+	public ArrayList<Sidebar> seachlistByKeyword2(Connection con, ArrayList<Sidebar> Sidebar) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql="select user_name, lesson_no , category_small , LESSON_RENAME_PHOTO from categorys , lesson , users where categorys.CATEGORY_NO=lesson.CATEGORY_NO and LESSON.user_no2=users.user_no order by DBMS_RANDOM.RANDOM  ";
+		try {
+			pstmt=con.prepareStatement(sql);
+			rset=pstmt.executeQuery();
+			while(rset.next() && Sidebar.size()<9 ) {
+				//동일한 강의가 들어가는것을 방지함.
+				for(Sidebar i: Sidebar) {
+				 if(i.getLesson_no()==rset.getInt("lesson_no"))
+				rset.next();	 
+				}
+				Sidebar side=new Sidebar();
+				side.setLesson_no(rset.getInt("lesson_no"));
+				side.setUser_name(rset.getString("user_name"));
+				side.setCategory_small(rset.getString("category_small"));
+				side.setLESSON_RENAME_PHOTO(rset.getString("LESSON_RENAME_PHOTO"));
+				
+				Sidebar.add(side);	
+			}		
+			
+		} catch (Exception e) {
+		e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return Sidebar;
+	}
+
 }
 	
 

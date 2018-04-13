@@ -125,7 +125,7 @@ function removeDetail(a){
 			<div class="panel-heading">강의를 등록합니다.
 			</div>
 			<div class="panel-body">
-				<form action="/prototype/insertlesson.sm" method="post">
+				<form action="/prototype/insertlesson.sm" method="post" enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="title">강의 타이틀</label>
 						<input id="title" name="title" class="form-control" type="text" data-validation="required">
@@ -193,8 +193,16 @@ function removeDetail(a){
 					</div>
 					
 					<div class="form-group">
-						<label for="img">사진</label>
-						<input type="file" name="img" id="img">
+						<label for="img">포트폴리오</label>
+						<input type="file" name="upfile" id="img" >
+						<span id="error_phone" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<input type="file" name="upfile2" id="img2">
+						<span id="error_phone" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<input type="file" name="upfile3" id="img3">
 						<span id="error_phone" class="text-danger"></span>
 					</div>
 					
@@ -206,7 +214,7 @@ function removeDetail(a){
 					
 					<div class="form-group">
 						<label for="rad">가능 반경(단위/미터)</label>
-						<input type="number" name="rad" id="rad" min="1000" class="form-control" placeholder="1000" style="width: 100px; margin-bottom: 10px;">
+						<input type="number" name="rad" id="rad" min="1000" class="form-control" value="1000" style="width: 100px; margin-bottom: 10px;">
 								<button type="button" class="btn" onclick="mapshow()">확인하기</button>
 								</div> 
 									<div id="map" style="width:500px; height:350px; display: none;" ></div>
@@ -219,7 +227,6 @@ function removeDetail(a){
 						<label for="keyword" style="padding:auto; width:100px;">키워드</label>
 						<div style="width: 99%;">
 						<input type="text" name="keyword" class="form-control" style="width:150px; float:left">
-						
 						<input type="button" onclick="addDetail()" class="btn btn-primary center" value="키워드 추가" style="margin-left:140px;">						
 						</div>
 						

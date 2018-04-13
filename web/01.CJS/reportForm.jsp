@@ -28,7 +28,7 @@ $(document).on('click', '#close-preview', function(){
 });
 
 $(function() {
-	if('<%=message%>'!=null)
+	if(<%=message%> != null)
 		alert('<%=message%>');
     // Create the close button
     var closebtn = $('<button/>', {
@@ -53,7 +53,7 @@ $(function() {
         $('.image-preview-clear').hide();
         $('.image-preview-input input:file').val("");
         $(".image-preview-input-title").text("Browse"); 
-    }); 
+    });  
     // Create the preview image
     $(".image-preview-input input:file").change(function (){     
         var img = $('<img/>', {
@@ -179,7 +179,7 @@ $(function() {
 }
 .container{
     margin-top:120px;
-    margin-bottom:30px; 
+
 }
 .image-preview-input {
     position: relative;
@@ -205,12 +205,12 @@ $(function() {
 }
 </style>
 </head>
-<body>
+<body style="background:#e9e9e9">
 <%@ include file="/common/navbar.jsp" %>
 <%@include file="/01.CJS\sidebar.jsp" %>
-<div class="container">
+<div class="container" >
 <div class="row">
-<div class="col-md-6 col-md-offset-3" style="margin-top: -600px;">
+<div class="col-md-6 col-md-offset-3" style="margin-top: -650px;">
     
     <form method="post" action="/prototype/inreport" enctype="multipart/form-data">
    	<%if(loginUser!=null){ %>
@@ -253,7 +253,7 @@ $(function() {
                     <div class="btn btn-default image-preview-input">
                         <span class="glyphicon glyphicon-folder-open"></span>
                         <span class="image-preview-input-title">Browse</span>
-<input type="file" accept="image/png, image/jpeg, image/gif" name="img"/> <!-- rename it -->
+<input type="file" accept="image/png, image/jpeg, image/gif" name="titleimg"/> <!-- rename it -->
                     </div>
                 </span>
             </div><!-- /input-group image-preview [TO HERE]--> 
@@ -274,12 +274,13 @@ $(function() {
 <!-- 파일  -->
   
     
-       
-</div>
 
 </div>
+</div>
 
-  <%@include file="/common/footer.jsp" %>
-
+<div style="margin-top: 50px;">
+<%@include file="/common/footer.jsp" %>
+   </div>
+   
 </body>
 </html>

@@ -15,6 +15,8 @@ import lesson.model.service.LessonService;
 import lesson.model.vo.LessonDetail;
 import review.model.service.ReviewService;
 import review.model.vo.Review;
+import users.model.service.UsersService;
+import users.model.vo.Users;
 
 /**
  * Servlet implementation class LessonDetailServlet
@@ -39,7 +41,8 @@ public class LessonDetailServlet extends HttpServlet {
 		
 		LessonDetail lessondetail = new LessonService().lessonView(lesson_no);
 		ArrayList<Review> review = new ReviewService().previewReview(lesson_no);
-		//�씪�떒 由щ럭 �쟾遺��떎 媛��졇�샂!
+		String userimg = new UsersService().getUserImg(lessondetail.getUser_no());
+		//일단 다가져옴
 		int sumd = 0;
 		int sump = 0;
 		int sums = 0;
@@ -49,7 +52,7 @@ public class LessonDetailServlet extends HttpServlet {
 		int avgs= 0;
 		int avgp= 0;
 		
-		//由щ럭 �룊�젏 援ы븯湲�
+		//평균점수구하기
 		for(Review i : review) {
 			sumd += i.getReviewDelivery();
 			sump += i.getReviewPrepare();
@@ -68,13 +71,14 @@ public class LessonDetailServlet extends HttpServlet {
 			avgs= 0;
 			avga= 0;	
 		}
-		System.out.println("移댁슫�듃�뒗"+count+"avgd="+avgd+"avgp="+avgp+"avgs="+avgs+"avga="+avga);
+		System.out.println("평균?:"+count+"avgd="+avgd+"avgp="+avgp+"avgs="+avgs+"avga="+avga);
 		
 		response.setContentType("text/html; charset=utf-8"); 
 		RequestDispatcher view =null;
 		if(lessondetail != null && review != null) {
 			view = request.getRequestDispatcher("04.OJK/teacherdetail.jsp");
 			request.setAttribute("lessondetail", lessondetail);
+			request.setAttribute("userimg", userimg);
 			request.setAttribute("review", review);
 			request.setAttribute("avgd", avgd);
 			request.setAttribute("avgp", avgp);
@@ -100,7 +104,7 @@ public class LessonDetailServlet extends HttpServlet {
 		else if(lessondetail == null){
 //에러페이지 만들어
 			view = request.getRequestDispatcher("#");
-			request.setAttribute("message","媛뺤쓽議고쉶 �떎�뙣");
+			request.setAttribute("message","에러페이지");
 			view.forward(request, response);
 		}
 		

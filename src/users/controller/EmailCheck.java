@@ -35,8 +35,8 @@ public class EmailCheck extends HttpServlet {
 		
 		System.out.println(email);
 		
-		String ok = "»ç¿ë°¡´ÉÇÑ email ÀÔ´Ï´Ù";
-		String no = "Áßº¹µÈ email ÀÔ´Ï´Ù";
+		String ok = "íšŒì›ê°€ì…ì´ ê°€ëŠ¥í•œ emailì…ë‹ˆë‹¤";
+		String no = "ì´ë¯¸ ì¡´ì¬í•œ emailì…ë‹ˆë‹¤";
 		
 		int result = new UsersService().checkEmail(email);
 		

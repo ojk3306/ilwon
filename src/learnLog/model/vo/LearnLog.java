@@ -2,6 +2,7 @@ package learnLog.model.vo;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class LearnLog implements Serializable {
 	
@@ -11,18 +12,27 @@ public class LearnLog implements Serializable {
 	private int userNo2;
 	private int lessonNo;
 	private Date logDate;
+	private int state;
+	private String userName;
+	private String lessonTitle;
+	private int lesson_state;
 	
 	public LearnLog() {
 		
 	}
 
-	public LearnLog(int logNo, int userNo1, int userNo2, int lessonNo, Date logDate) {
+	public LearnLog(int logNo, int userNo1, int userNo2, int lessonNo, Date logDate, int state, String userName,
+			String lessonTitle, int lesson_state) {
 		super();
 		this.logNo = logNo;
 		this.userNo1 = userNo1;
 		this.userNo2 = userNo2;
 		this.lessonNo = lessonNo;
 		this.logDate = logDate;
+		this.state = state;
+		this.userName = userName;
+		this.lessonTitle = lessonTitle;
+		this.lesson_state = lesson_state;
 	}
 
 	public int getLogNo() {
@@ -65,6 +75,38 @@ public class LearnLog implements Serializable {
 		this.logDate = logDate;
 	}
 
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getLessonTitle() {
+		return lessonTitle;
+	}
+
+	public void setLessonTitle(String lessonTitle) {
+		this.lessonTitle = lessonTitle;
+	}
+
+	public int getLesson_state() {
+		return lesson_state;
+	}
+
+	public void setLesson_state(int lesson_state) {
+		this.lesson_state = lesson_state;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -72,6 +114,12 @@ public class LearnLog implements Serializable {
 	@Override
 	public String toString() {
 		return "LearnLog [logNo=" + logNo + ", userNo1=" + userNo1 + ", userNo2=" + userNo2 + ", lessonNo=" + lessonNo
-				+ ", logDate=" + logDate + "]";
-	}	
+				+ ", logDate=" + logDate + ", state=" + state + ", userName=" + userName + ", lessonTitle="
+				+ lessonTitle + ", lesson_state=" + lesson_state + "]";
+	}
+
+	
+	
+	
+	
 }

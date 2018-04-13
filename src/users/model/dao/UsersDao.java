@@ -22,7 +22,7 @@ public class UsersDao {
 		ResultSet rset = null;
 		
 		String query = "select * from users where user_email= ? "
-				+ "and user_pwd = ?";
+				+ "and user_pwd = ? and USER_LOGINABLE = 'Y' ";
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -126,36 +126,35 @@ public class UsersDao {
 		int endRow = startRow + limit - 1;
 		
 		if(seachOption==1) {
-		//모든 설정으로 검색.
+		//紐⑤뱺 �꽕�젙�쑝濡� 寃��깋.
 		query="select * from (select ROWNUM AS RNUM, A.* FROM  (SELECT * FROM users where user_type like ? and ( USER_EMAIL like ? or USER_NAME like ? or USER_GENDER like ? or USER_AGE like ? or USER_LOC like ? or USER_PHONE like ?) ) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY user_no DESC ";
 		}else if(seachOption==2) {
-			//이름으로 검색
+			//�씠由꾩쑝濡� 寃��깋
 			query="select * from (select ROWNUM AS RNUM, A.* FROM  (select * from users where user_type like ? and ( USER_NAME like ?) ) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY user_no DESC";
 	
 		}else if(seachOption==3) {
-			//이메일로 검색.
+			//�씠硫붿씪濡� 寃��깋.
 			query="select * from (select ROWNUM AS RNUM, A.* FROM  (select * from users where user_type like ? and ( USER_email like ? ) ) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY user_no DESC";
 
-	
 		}else if(seachOption==4) {
-			//현재 정상인지,차단인지로 검색.
+			//�쁽�옱 �젙�긽�씤吏�,李⑤떒�씤吏�濡� 寃��깋.
 			query="select * from (select ROWNUM AS RNUM, A.* FROM  (select * from users where user_type like ? and ( USER_EXEABLE like ? or USER_LOGINABLE like ? ) ) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY user_no DESC ";
 
 		}else if(seachOption==5) {
-			//나이로 검색 (오차한계 2살)
+			//�굹�씠濡� 寃��깋 (�삤李⑦븳怨� 2�궡)
 			query="select * from (select ROWNUM AS RNUM, A.* FROM  (select * from users where user_type like ? and ( USER_age between ? and ? ) ) A WHERE ROWNUM < ? ) WHERE RNUM >= ?  ORDER BY user_no DESC ";
 
 	
 		}else if(seachOption==6) {
-			//성별로검색
+			//�꽦蹂꾨줈寃��깋
 			query="select * from (select ROWNUM AS RNUM, A.* FROM  (select * from users where user_type like ? and ( USER_gender like ?  ) ) WHERE RNUM >= ? ORDER BY user_no DESC ";
 
 		}else if(seachOption==7) {
-		//주소로검색
+		//二쇱냼濡쒓��깋
 			query="select * from (select ROWNUM AS RNUM, A.* FROM  (select * from users where user_type like ? and ( USER_loc like ? ) ) WHERE RNUM >= ? ORDER BY user_no DESC ";
 
 		}else if(seachOption==8) {
-			//전화번호로검색
+			//�쟾�솕踰덊샇濡쒓��깋
 			query="select * from (select ROWNUM AS RNUM, A.* FROM  (select * from users where user_type like ? and ( USER_phone like ? )) WHERE RNUM >= ? ORDER BY user_no DESC ";
 
 		}
@@ -176,47 +175,47 @@ public class UsersDao {
 				pstmt.setInt(9, startRow);
 				
 				}else if(seachOption==2) {
-					//이름으로 검색
+					//�씠由꾩쑝濡� 寃��깋
 					
 					pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
 					pstmt.setString(2,"%"+seach+"%");
 					pstmt.setInt(4, startRow);
 					pstmt.setInt(3, endRow);
 				}else if(seachOption==3) {
-					//이메일로 검색.
+					//�씠硫붿씪濡� 寃��깋.
 								
 					pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
 					pstmt.setString(2,"%"+seach+"%");
 					pstmt.setInt(3, endRow);
 					pstmt.setInt(4, startRow);
 				}else if(seachOption==4) {
-					//현재 정상인지,차단인지로 검색.
+					//�쁽�옱 �젙�긽�씤吏�,李⑤떒�씤吏�濡� 寃��깋.
 					pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
 					pstmt.setString(2,"%"+seach+"%");
 					pstmt.setString(3,"%"+seach+"%");
 					pstmt.setInt(5, startRow);
 					pstmt.setInt(4, endRow);
 				}else if(seachOption==5) {
-					//나이로 검색 (오차한계 2살)
+					//�굹�씠濡� 寃��깋 (�삤李⑦븳怨� 2�궡)
 					pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
 					pstmt.setInt(2,Integer.parseInt(seach)-2);
 					pstmt.setInt(3,Integer.parseInt(seach)+2);
 					pstmt.setInt(5, startRow);
 					pstmt.setInt(4, endRow);
 				}else if(seachOption==6) {
-					//성별로검색
+					//�꽦蹂꾨줈寃��깋
 					pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
 					pstmt.setString(2,"%"+seach+"%");
 					pstmt.setInt(4, startRow);
 					pstmt.setInt(3, endRow);
 				}else if(seachOption==7) {
-					//주소로검색
+					//二쇱냼濡쒓��깋
 					pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
 					pstmt.setString(2,"%"+seach+"%");
 					pstmt.setInt(3, startRow);
 					pstmt.setInt(4, endRow);
 				}else if(seachOption==8) {
-					//전화번호로검색
+					//�쟾�솕踰덊샇濡쒓��깋
 					pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
 					pstmt.setString(2,"%"+seach+"%");
 					pstmt.setInt(4, startRow);
@@ -272,28 +271,28 @@ public class UsersDao {
 	ResultSet rset = null;
 	String query="";
 	if(seachOption==1) {
-		//모든 설정으로 검색.
+		//紐⑤뱺 �꽕�젙�쑝濡� 寃��깋.
 		query="select count(USER_NO) from users where user_type like ? and (USER_EMAIL like ? or USER_NAME like ? or USER_GENDER like ? or USER_AGE like ? or USER_LOC like ? or USER_PHONE like ? ) ";
 	}else if(seachOption==2) {
-		//이름으로 검색
+		//�씠由꾩쑝濡� 寃��깋
 		query="select count(USER_NO) from users where user_type like ? and USER_NAME like ? ";
 	}else if(seachOption==3) {
-		//이메일로 검색.
+		//�씠硫붿씪濡� 寃��깋.
 		query="select count(USER_NO) from users where user_type like ? and USER_email like ?";
 	}else if(seachOption==4) {
-		//현재 정상인지,차단인지로 검색.
+		//�쁽�옱 �젙�긽�씤吏�,李⑤떒�씤吏�濡� 寃��깋.
 		query="select count(USER_NO) from users where user_type like ? and USER_EXEABLE like ? or USER_LOGINABLE like ?";
 	}else if(seachOption==5) {
-		//나이로 검색 (오차한계 2살)
+		//�굹�씠濡� 寃��깋 (�삤李⑦븳怨� 2�궡)
 		query="select count(USER_NO) from users where user_type like ? and USER_age like ?";
 	}else if(seachOption==6) {
-		//성별로검색
+		//�꽦蹂꾨줈寃��깋
 		query="select count(USER_NO) from users where user_type like ? and USER_gender like ?";
 	}else if(seachOption==7) {
-		//주소로검색
+		//二쇱냼濡쒓��깋
 		query="select count(USER_NO) from users where user_type like ? and USER_loc like ?";
 	}else if(seachOption==8) {
-		//전화번호로검색
+		//�쟾�솕踰덊샇濡쒓��깋
 		query="select count(USER_NO) from users where user_type like ? and USER_phone like ?";
 	}
 		
@@ -310,35 +309,35 @@ public class UsersDao {
 		pstmt.setString(6,"%"+seach+"%");
 		pstmt.setString(7,"%"+seach+"%");
 		}else if(seachOption==2) {
-			//이름으로 검색
+			//�씠由꾩쑝濡� 寃��깋
 			
 			pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
 			pstmt.setString(2,"%"+seach+"%");
 		}else if(seachOption==3) {
-			//이메일로 검색.
+			//�씠硫붿씪濡� 寃��깋.
 						
 			pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
 			pstmt.setString(2,"%"+seach+"%");
 		}else if(seachOption==4) {
-			//현재 정상인지,차단인지로 검색.
+			//�쁽�옱 �젙�긽�씤吏�,李⑤떒�씤吏�濡� 寃��깋.
 			pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
 			pstmt.setString(2,"%"+seach+"%");
 			pstmt.setString(3,"%"+seach+"%");
 			
 		}else if(seachOption==5) {
-			//나이로 검색 (오차한계 2살)
+			//�굹�씠濡� 寃��깋 (�삤李⑦븳怨� 2�궡)
 			pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
 			pstmt.setString(2,"%"+seach+"%");
 		}else if(seachOption==6) {
-			//성별로검색
+			//�꽦蹂꾨줈寃��깋
 			pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
 			pstmt.setString(2,"%"+seach+"%");
 		}else if(seachOption==7) {
-			//주소로검색
+			//二쇱냼濡쒓��깋
 			pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
 			pstmt.setString(2,"%"+seach+"%");
 		}else if(seachOption==8) {
-			//전화번호로검색
+			//�쟾�솕踰덊샇濡쒓��깋
 			pstmt.setString(1,"%"+user.getUserTypeNo()+"%");
 			pstmt.setString(2,"%"+seach+"%");
 		}
@@ -414,12 +413,12 @@ public class UsersDao {
 		PreparedStatement pstmt = null;
 		/*
 		 * type   
-		 * 1= 이름수정
-		 * 2= 메일수정
-		 * 3= 성별수정
-		 * 4= 전번수정
-		 * 5= 최대키워드갯수 수정
-		 * 6= 최대강의갯수 수정
+		 * 1= �씠由꾩닔�젙
+		 * 2= 硫붿씪�닔�젙
+		 * 3= �꽦蹂꾩닔�젙
+		 * 4= �쟾踰덉닔�젙
+		 * 5= 理쒕��궎�썙�뱶媛��닔 �닔�젙
+		 * 6= 理쒕�媛뺤쓽媛��닔 �닔�젙
 		 */
 	
 
@@ -506,9 +505,94 @@ public class UsersDao {
 		return user;
 	}
 
-	
-	
-	
+	public int uploadProfile(Connection conn, Users user) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = "update users set USER_ORIGINAL_PHOTO = ?, USER_RENAME_PHOTO = ? where user_no = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user.getUserOriginalPhoto());
+			pstmt.setString(2, user.getUserRenamePhoto());
+			pstmt.setInt(3, user.getUserNo());
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public Users updateLogin(Connection con, int userNo) {
+		Users loginUser = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "select * from users where user_no= ?";
+				
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				loginUser = new Users();
+				
+				loginUser.setUserEmail(rset.getString("user_email"));
+				loginUser.setUserPassword(rset.getString("user_pwd"));
+				loginUser.setUserName(rset.getString("user_name"));
+				loginUser.setUserNo(rset.getInt("user_no"));
+				loginUser.setUserTypeNo(rset.getInt("user_type"));
+				loginUser.setUserGender(rset.getString("user_gender"));
+				loginUser.setUserAge(rset.getInt("user_age"));
+				loginUser.setUserLoc(rset.getString("user_loc"));
+				loginUser.setUserPhone(rset.getString("user_phone"));
+				loginUser.setUserOriginalPhoto(rset.getString("user_original_photo"));
+				loginUser.setUserRenamePhoto(rset.getString("user_rename_photo"));
+				loginUser.setUserKeywordCount(rset.getInt("user_keyword_count"));
+				loginUser.setUserLoginable(rset.getString("user_loginable"));
+				loginUser.setUserExeable(rset.getString("user_exeable"));
+				loginUser.setUserLessonmax(rset.getInt("user_lessonmax"));
+				loginUser.setUserEnrollDate(rset.getDate("user_enrolldate"));
+				
+			}			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return loginUser;		
+	}
+
+	public String getUserImg(Connection con, int userimg) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String result = null;
+		String query = "select USER_RENAME_PHOTO from users where user_no= ?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userimg);
+			rset= pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = rset.getString("USER_RENAME_PHOTO");
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
 	
 	
 }

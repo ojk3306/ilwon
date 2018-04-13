@@ -1,5 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@page import="report.model.vo.Report, java.util.*"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+ArrayList<Report> re=(ArrayList<Report>)request.getAttribute("list");
+
+int listCount = ((Integer)request.getAttribute("listCount")).intValue();
+int startPage = ((Integer)request.getAttribute("startPage")).intValue();
+int endPage = ((Integer)request.getAttribute("endPage")).intValue();
+int maxPage = ((Integer)request.getAttribute("maxPage")).intValue();			
+int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
+
+
+int seachOption =((Integer)request.getAttribute("seachoption")).intValue();
+
+String search = (String)request.getAttribute("search");
+
+
+String message=null;
+if((String)request.getAttribute("message")!=null)	
+	 message=(String)request.getAttribute("message");	
+
+String message1=null;
+if((String)request.getAttribute("message1")!=null)	
+message=(String)request.getAttribute("message1");	
+
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -89,7 +114,7 @@ th {
 </style>
 
 <meta charset="UTF-8">
-<title>건의게시판</title>
+<title>신고게시판</title>
 </head>
 <body>
 <!-- 헤더 시작-->
@@ -106,93 +131,38 @@ th {
 <div id="wrapper">
 	<center>
 	<div style="width: 1100px; height: 1200px;">
-		 	<div style="padding: 10px; padding-right: 0px; float:right;">
-		 		<button type="button" class="btn" >글쓰기</button>
-		 		
-		 	</div>
+		 
 		 	 <!-- 게시판 몸통 -->	
 		 	 
 		 	<div style="margin-top: 30px;">
 		 	<table class="table table-hover">
+		 		
 		 		<tr>
-		 			<th>번호</th>
 		 			<th>제목</th>
 		 			<th>작성일</th>
-		 			<th>조회수</th>
+		 			<th>첨부파일여부</th>
+		 			
 		 		</tr>
+				<%if(re.size()!=0){ %>
+		 		<% for( Report  i : re) { %>
 		 		<tr>
-		 			<td>10</td>
-		 			<td><a href="#">은밀한과이 업데이트에 따른 시스템 점검 안내</a></td>
-		 			<td>2018-02-05</td>
-		 			<td>32</td>
+		 		
+		 			<td><a href="/prototype/redetail?pno=<%=i.getReportNo() %>"><%=i.getReportTitle() %></a></td>
+		 			<td><%=i.getReportDate()%></td>
+		 			<%if(i.getReportRenameFileName()==null){ %>
+		 			<td>사진이 없어</td>
+		 			<%}else{ %>
+		 			
+		 			<td>사진있어
+		 			</td>
+		 			<%} %>
 		 		</tr>
-		 		<tr>
-		 			<td>10</td>
-		 			<td><a href="#">은밀한과이 업데이트에 따른 시스템 점검 안내</a></td>
-		 			<td>2018-02-05</td>
-		 			<td>32</td>
-		 		</tr>
-		 		<tr>
-		 			<td>10</td>
-		 			<td><a href="#">은밀한과이 업데이트에 따른 시스템 점검 안내</a></td>
-		 			<td>2018-02-05</td>
-		 			<td>32</td>
-		 		</tr>
-		 		<tr>
-		 			<td>10</td>
-		 			<td><a href="#">은밀한과이 업데이트에 따른 시스템 점검 안내</a></td>
-		 			<td>2018-02-05</td>
-		 			<td>32</td>
-		 		</tr>
-		 		<tr>
-		 			<td>10</td>
-		 			<td><a href="#">은밀한과이 업데이트에 따른 시스템 점검 안내</a></td>
-		 			<td>2018-02-05</td>
-		 			<td>32</td>
-		 		</tr>
-		 		<tr>
-		 			<td>10</td>
-		 			<td><a href="#">은밀한과이 업데이트에 따른 시스템 점검 안내</a></td>
-		 			<td>2018-02-05</td>
-		 			<td>32</td>
-		 		</tr>
-		 		<tr>
-		 			<td>10</td>
-		 			<td><a href="#">은밀한과이 업데이트에 따른 시스템 점검 안내</a></td>
-		 			<td>2018-02-05</td>
-		 			<td>32</td>
-		 		</tr>
-		 		<tr>
-		 			<td>10</td>
-		 			<td><a href="#">은밀한과이 업데이트에 따른 시스템 점검 안내</a></td>
-		 			<td>2018-02-05</td>
-		 			<td>32</td>
-		 		</tr>
-		 		<tr>
-		 			<td>10</td>
-		 			<td><a href="#">은밀한과이 업데이트에 따른 시스템 점검 안내</a></td>
-		 			<td>2018-02-05</td>
-		 			<td>32</td>
-		 		</tr>
-		 		<tr>
-		 			<td>10</td>
-		 			<td><a href="#">은밀한과이 업데이트에 따른 시스템 점검 안내</a></td>
-		 			<td>2018-02-05</td>
-		 			<td>32</td>
-		 		</tr>
-		 		<tr>
-		 			<td>10</td>
-		 			<td><a href="#">은밀한과이 업데이트에 따른 시스템 점검 안내</a></td>
-		 			<td>2018-02-05</td>
-		 			<td>32</td>
-		 		</tr>
-		 		<tr>
-		 			<td>10</td>
-		 			<td><a href="#">은밀한과이 업데이트에 따른 시스템 점검 안내</a></td>
-		 			<td>2018-02-05</td>
-		 			<td>32</td>
-		 		</tr>
+		 		<%}}else{ %>
+		 		<th><h3><%=message%></h3></th>
+		 		
+		 		<%} %>
 		 	</table>
+		 	
 		 	
 		 	</div>
 		 	<!-- 게시판 몸통끝 -->
@@ -206,13 +176,27 @@ th {
 	 		</div>
 	 		<div id="board_page">
 		 		<ul class="pagination">
-				  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-				  <li class="page-item"><a class="page-link" href="#">1</a></li>
-				  <li class="page-item"><a class="page-link" href="#">2</a></li>
-				  <li class="page-item"><a class="page-link" href="#">3</a></li>
-				  <li class="page-item"><a class="page-link" href="#">4</a></li>
-				  <li class="page-item"><a class="page-link" href="#">5</a></li>
-				  <li class="page-item"><a class="page-link" href="#">Next</a></li>
+				
+	 		<% if((currentPage - 10) < startPage && (currentPage - 10) > 1){ %>
+			<li class="page-item"><a class="page-link" href="/prototype/reportlist?page=<%= startPage - 10 %>">Previous</a></li>
+			<% }else{ %>	  
+			<li class="page-item"><a class="page-link" onclick="retu()">Previous</a></li>
+			<% } %> 
+			
+			
+			<% for(int p = startPage; p <= endPage; p++){%>
+			<%if(p == currentPage){%>
+			<li class="page-item"><a class="page-link" href="#"><strong><%= p %></strong></a></li>
+			<%}else{ %>	 
+			<li class="page-item"><a class="page-link" href="/prototype/reportlist?page=<%= p %>&seach=<%=search%>&option=<%=seachOption%>"><strong><%= p %></strong></a></li>
+			<% }} %> 
+		
+			<% if((currentPage + 10) > endPage && (currentPage + 10) < maxPage){ %>
+	 		<li class="page-item"><a class="page-link" href="/prototype/reportlist?page=<%= endPage + 10 %>">Next</a></li>
+			<% }else{ %>
+		<li class="page-item"><a class="page-link" onclick="retu()">Next</a></li>
+	<% } %> 
+
 				</ul>	 		
 	 		</div> 	
 	 	</div>	 
