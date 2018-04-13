@@ -212,7 +212,12 @@ String sql2="select l.user_no2, l.lesson_title, lv.lessonlev, l.LESSON_LOCATION,
 				l.setLesson_rename(rset.getString("LESSON_rename_PHOTO"));
 				l.setLesson_rename2(rset.getString("LESSON_rename_PHOTO2"));
 				l.setLesson_rename3(rset.getString("LESSON_rename_PHOTO3"));
-				l.setUser_no(rset.getInt("user_no2"));
+			l.setUser_no(rset.getInt("user_no2"));
+			
+			
+			
+			
+			
 		/*		l.setReviewPrepare(rset.getInt("review_prepare"));
 				l.setReviewSincerity(rset.getInt("review_sincerity"));
 				l.setReviewDelivery(rset.getInt("review_delivery"));
@@ -480,14 +485,41 @@ public ArrayList<Sidebar> seachlistByKeyword(Connection con, String string) {
 		
 		PreparedStatement pstmt=null;
 		ResultSet rset=null;
-		Lesson le=new Lesson();
+		Lesson search=new Lesson();
 		
 		String sql="select * from LESSON where LESSON_NO=?";
 		try {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1,parseInt);
 			rset=pstmt.executeQuery();
+		
+			
 			if(rset.next()) {
+				
+				search.setLesson_no(rset.getInt("lesson_no"));
+				search.setLevel_no(rset.getInt("level_no"));
+				search.setLevel(rset.getString("lessonlev"));
+				search.setState_no(rset.getInt("state_no"));
+				search.setCategory_no(rset.getInt("category_no"));
+				search.setCategory_bigName(rset.getString("category_big"));
+				search.setCategory_smallName(rset.getString("category_small"));
+				search.setUser_no1(rset.getInt("user_no1"));
+				search.setUser_no2(rset.getInt("user_no2"));
+				search.setUser_name1(rset.getString("user_name"));
+				search.setUser_name2(rset.getString("user_name"));
+				search.setLesson_title(rset.getString("lesson_title"));
+				search.setLesson_loc(rset.getString("lesson_location"));
+				search.setLesson_rad(rset.getInt("lesson_radius"));
+				search.setLesson_price(rset.getInt("lesson_price"));
+				search.setLesson_count(rset.getInt("lesson_count"));
+				search.setLesson_startdate(rset.getDate("lesson_startdate"));
+				search.setLesson_enddate(rset.getDate("lesson_enddate"));
+				search.setLesson_contop(rset.getString("lesson_contop"));
+				search.setLesson_conmid(rset.getString("lesson_conmid"));
+				search.setLesson_conbot(rset.getString("lesson_conbot"));
+				search.setLesson_keyword(rset.getString("lesson_keyword"));
+				search.setLesson_type(rset.getInt("lesson_type"));
+				
 		
 			}
 		} catch (Exception e) {
@@ -498,7 +530,7 @@ public ArrayList<Sidebar> seachlistByKeyword(Connection con, String string) {
 			close(pstmt);
 		}
 		
-		return null;
+		return search;
 	}
 
 }

@@ -1,6 +1,8 @@
 package lesson.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,8 +35,15 @@ public class Lessonupdate extends HttpServlet {
 		
 		Lesson le=new LessonService().findLessonBylessonNo(Integer.parseInt(request.getParameter("lessno")));
 	
-	
-	
+	    response.setContentType("text/html; charset=utf-8 "); 
+		RequestDispatcher view=null;
+		if(le!=null) {
+		view=request.getRequestDispatcher("/04.OJK/lessonupdate.jsp");
+		request.setAttribute("list",le);
+		view.forward(request, response);
+		}else {
+			
+		}
 	}
 
 	/**

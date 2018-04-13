@@ -57,7 +57,7 @@ function Detailsemina(a){ //세미나 상세보기
 	location.href="/prototype/sdetail?userno="+a.id;
 }
 function updateLesson(a){ //레슨 수정.
-	location.href="/prototype/lessonupdate?lessno="a.id;
+	location.href="/prototype/lessonupdate?lessno="+a.id;
 }
 //강의내역
 $(function(){
