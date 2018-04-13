@@ -32,8 +32,10 @@
 <script type="text/javascript">
 
 	function search(){
-    	location.href="/prototype/insertlog?seachcontent="+$('#select2-chosen-1').text()+"&user="+$("#userno").val();    
-   //후에 섹션의 로그인유저의 번호까지 넣기.
+   
+		location.href="/prototype/insertlog?seachcontent="+$('#select2-chosen-1').text()+"&user="+$("#select2-chosen-1").val();    
+   
+    //후에 섹션의 로그인유저의 번호까지 넣기.
 	}
 	$(document).ready(function (){
 		
