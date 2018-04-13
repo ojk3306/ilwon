@@ -22,6 +22,17 @@ public class ReviewService {
 		return previewReview;
 	}
 
+	public int insertReview(Review review) {
+		Connection con = getConnection();
+		int result = new ReviewDao().insertReview(con,review);
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		return result;
+	}
+
 	
 	
 }

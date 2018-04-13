@@ -436,13 +436,11 @@ padding-top:30px;
 					</th>
 	</tr>
 	
-	<tr>
-	<td align="right">
-	<button onclick="history.go(-1)">뒤로 가즈아</button>
-	<button onclick="history.go(-2)">검색 목록으로 가즈아</button>
-	</td>
-	</tr>
 	</table>
+	
+	<div style="width:900px;" align="center">
+	<button>나가기</button>
+	</div>
 	
 	</nav><!-- 리뷰란 종료 -->
 </nav>

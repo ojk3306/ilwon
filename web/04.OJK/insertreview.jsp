@@ -17,44 +17,63 @@
 
 <nav class="contents">
 	<div align="center">
-		<div id="wrapper" style="width: 1100px; height: 1000px;">
+		<div id="wrapper" style="width: 600px; height: 800px;">
 		
 			<h1 align="center">리뷰작성하기</h1>
 			<br>
 			<hr>
 
 
-			<div style="width: 1100px; height: 200px; b">
-				<div style="width: 1100px; height: 120px; ">
-					<br>
+			<div style="width: 600px; height: 200px; b">
+				<div style="width: 600px; height: 120px; ">
 					<h3 style="margin-top: 30px;"><%= lesson.getUser_name()%>&nbsp;선생님</h3>
 					<h2><%= lesson.getLesson_title() %></h2>
-
-
-
 				</div>
-
-				<div style="width: 1100px; height: 80px; ">
-					<br> <span style="font-weight: bold;font-size: 15pt;">성실성</span>&nbsp;&nbsp;<%@ include
-						file="../01.CJS/Fixedstar.jsp"%>
-				</div>
-
-				<div style="width: 1100px;">
-
-					<div>
+				
+				<!-- 입력란 -->
+				<form action="/prototype/insertr" method="post">
+					<div style="width: 600px; height: 200px; ">
+						<hr>
 						<br>
-						
-						<br>
-						<form>
-							<div class="form-group">
-
-								<textarea class="form-control" rows="15"  id="comment" style="resize: vertical;"></textarea>
-							</div>
-						</form>
-					</div>
+					<%-- <%@ include file="../01.CJS/Fixedstar.jsp"%> --%>
+					<table>
+						<tr>
+							<th>성실성</th>
+								<td><input type="radio" name="s" value="1">1</td>
+								<td><input type="radio" name="s" value="2">2</td>
+								<td><input type="radio" name="s" value="3">3</td>
+								<td><input type="radio" name="s" value="4">4</td>
+								<td><input type="radio" name="s" value="5">5</td>
+						</tr>
+						<tr>
+							<th>준비성</th>
+								<td><input type="radio" name="p" value="1">1</td>
+								<td><input type="radio" name="p" value="2">2</td>
+								<td><input type="radio" name="p" value="3">3</td>
+								<td><input type="radio" name="p" value="4">4</td>
+								<td><input type="radio" name="p" value="5">5</td>
+						</tr>
+						<tr>
+							<th>정보전달력</th>
+								<td><input type="radio" name="d" value="1">1</td>
+								<td><input type="radio" name="d" value="2">2</td>
+								<td><input type="radio" name="d" value="3">3</td>
+								<td><input type="radio" name="d" value="4">4</td>
+								<td><input type="radio" name="d" value="5">5</td>
+						</tr>
+					</table>
+					<br>
+					<hr>
 				</div>
-
-				<div><button type="button" class="btn">등록하기</button></div>
+					<div style="width: 600px; height: 200px;">
+					<textarea rows="20" cols="80" name="content" placeholder="솔직한 리뷰를 작성해주세요" style="margin-bottom: 15px"></textarea>
+					
+					<input type="submit" value="등록하기">
+					<input type="hidden" value="<%= lesson_no%>" name="lesson_no">
+					<input type="hidden" value="<%= user_no%>" name="user_no">
+					</div>		
+					
+				</form>		
 			</div>
 			</div>
 	</div>

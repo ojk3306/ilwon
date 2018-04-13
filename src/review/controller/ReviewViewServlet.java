@@ -36,8 +36,10 @@ public class ReviewViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int lesson_no = Integer.parseInt(request.getParameter("no"));
+		int user_no = Integer.parseInt(request.getParameter("userno"));
 		LessonDetail lessondetail = new LessonService().lessonView(lesson_no);
 		ArrayList<Review> review = new ReviewService().previewReview(lesson_no);
+		System.out.println("유저넘버:"+user_no);
 		//일단 다가져옴
 		int sumd = 0;
 		int sump = 0;
@@ -80,6 +82,7 @@ public class ReviewViewServlet extends HttpServlet {
 			request.setAttribute("avgp", avgp);
 			request.setAttribute("avgs", avgs);
 			request.setAttribute("avga", avga);
+			request.setAttribute("userno", user_no);
 			view.forward(request, response);
 			
 		//강의 있고 리뷰 없을때	
@@ -87,6 +90,7 @@ public class ReviewViewServlet extends HttpServlet {
 			view = request.getRequestDispatcher("04.OJK/review.jsp");
 			request.setAttribute("lessondetail", lessondetail);
 			request.setAttribute("review", null);
+			request.setAttribute("userno", user_no);
 			avgd=0;
 			avgp=0;
 			avgs=0;

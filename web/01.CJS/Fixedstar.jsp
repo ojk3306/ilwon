@@ -162,7 +162,7 @@
   <output for="star-input2"><b>0</b>점</output>
 </span>
 
-<span class="star-input">
+<!-- <span class="star-input">
   <span class="input">
     <input type="radio" name="star-input3" id="p2" value="2"><label for="p2">2</label> 
     <input type="radio" name="star-input3" id="p4" value="4"><label for="p4">4</label>
@@ -171,7 +171,7 @@
     <input type="radio" name="star-input3" id="p10" value="10"><label for="p10">10</label>
   </span>
   <output for="star-input"><b>0</b>점</output>
-</span> 	
+</span>  -->	
 <script >
 // star rating
 var starRating = function(){
@@ -209,32 +209,32 @@ starRating();
 
 
 var starRating2 = function(){
-	  var $star = $(".star-input2"),
-	      $result = $star.find("output>b");
+	  var $star2 = $(".star-input2"),
+	      $result2 = $star2.find("output>b");
 	  $(document)
 	    .on("focusin", ".star-input2>.input2", function(){
 	    $(this).addClass("focus");
 	  })
 	    .on("focusout", ".star-input2>.input2", function(){
-	    var $this = $(this);
-	    setTimeout(function(){
-	      if($this.find(":focus").length === 0){
-	        $this.removeClass("focus");
+	    var $this2 = $(this);
+	    setTimeout2(function(){
+	      if($this2.find(":focus").length === 0){
+	        $this2.removeClass("focus");
 	      }
 	    }, 100);
 	  })
 	    .on("change", ".star-input2 :radio", function(){
-	    $result.text($(this).next().text());
+	    $result2.text($(this).next().text());
 	  })
 	    .on("mouseover", ".star-input2 label", function(){
-	    $result.text($(this).text());
+	    $result2.text($(this).text());
 	  })
 	    .on("mouseleave", ".star-input2>.input2", function(){
-	    var $checked = $star.find(":checked");
-	    if($checked.length === 0){
-	      $result.text("0");
+	    var $checked2 = $star2.find(":checked");
+	    if($checked2.length === 0){
+	      $result2.text("0");
 	    } else {
-	      $result.text($checked.next().text());
+	      $result2.text($checked2.next().text());
 	    }
 	  });
 	};

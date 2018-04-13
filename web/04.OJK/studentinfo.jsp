@@ -74,7 +74,9 @@ $(function(){
 function DetailLesson(val) {
 	
 	console.log(val.id);
-	location.href="/prototype/lessondetail?no=" + val.id;
+	var userno = $('#userno').val();
+	console.log(userno);
+	location.href="/prototype/lessondetail?no=" + val.id + "&userno=" + userno;
 	
 } 
 
@@ -96,7 +98,7 @@ function insertReview(val) {
 	var userno = $('#userno').val();
 	console.log(userno);
 	var popUrl = "/prototype/popreview?no="+val.id+"&userno="+userno;
-	var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
+	var popOption = "width=700, height=920, resizable=no, scrollbars=no, status=no; left=600;";    //팝업창 옵션(optoin)
 
 	window.open(popUrl,"a",popOption);
 }
@@ -118,7 +120,7 @@ function upload_profile() {
 <%@include file="/common/navbar.jsp" %>
 
 <nav class="contents">
-	<input type="hidden" value="<%= loginUser.getUserNo() %>" name="userno" id="userno">
+	<input type="hidden" value="<%= loginUser.getUserNo() %>" id="userno">
 	<h1 align="center">학생 정보 보기</h1>
 	<hr>
 

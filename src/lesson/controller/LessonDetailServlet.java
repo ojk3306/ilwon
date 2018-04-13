@@ -38,7 +38,7 @@ public class LessonDetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int lesson_no = Integer.parseInt(request.getParameter("no"));
-		
+		int userno = Integer.parseInt(request.getParameter("userno"));
 		LessonDetail lessondetail = new LessonService().lessonView(lesson_no);
 		ArrayList<Review> review = new ReviewService().previewReview(lesson_no);
 		String userimg = new UsersService().getUserImg(lessondetail.getUser_no());
@@ -84,6 +84,7 @@ public class LessonDetailServlet extends HttpServlet {
 			request.setAttribute("avgp", avgp);
 			request.setAttribute("avgs", avgs);
 			request.setAttribute("avga", avga);
+			request.setAttribute("user_no", userno);
 			view.forward(request, response);
 			
 		}else if(lessondetail != null && review == null){
@@ -98,6 +99,7 @@ public class LessonDetailServlet extends HttpServlet {
 			request.setAttribute("avgp", avgp);
 			request.setAttribute("avgs", avgs);
 			request.setAttribute("avga", avga);
+			request.setAttribute("user_no", userno);
 			view.forward(request, response);
 			
 		}
