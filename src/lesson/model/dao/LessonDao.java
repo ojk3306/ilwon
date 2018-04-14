@@ -273,7 +273,7 @@ String sql2="select l.user_no2, l.lesson_title, lv.lessonlev, l.LESSON_LOCATION,
 						+ "and l.LESSON_TYPE = lt.TYPE_NO "
 						+ "and u.USER_TYPE = ut.USERTYPE_NO "
 						+ "and l.STATE_NO = st.STATE_NO "
-						+ "and l.LESSON_ENDDATE is not null "
+						/*+ "and l.LESSON_ENDDATE is not null "*/
 						+ "and l.LESSON_LOCATION like ? "
 						+ "and c.CATEGORY_SMALL like ? "
 						+ "and u.USER_GENDER like ? "
@@ -359,8 +359,7 @@ String sql2="select l.user_no2, l.lesson_title, lv.lessonlev, l.LESSON_LOCATION,
 				search.setLesson_rad(rset.getInt("lesson_radius"));
 				search.setLesson_price(rset.getInt("lesson_price"));
 				search.setLesson_count(rset.getInt("lesson_count"));
-				search.setLesson_startdate(rset.getDate("lesson_startdate"));
-				search.setLesson_enddate(rset.getDate("lesson_enddate"));
+				search.setLesson_startdate(rset.getDate("lesson_startdate"));				
 				search.setLesson_contop(rset.getString("lesson_contop"));
 				search.setLesson_conmid(rset.getString("lesson_conmid"));
 				search.setLesson_conbot(rset.getString("lesson_conbot"));
@@ -380,9 +379,11 @@ String sql2="select l.user_no2, l.lesson_title, lv.lessonlev, l.LESSON_LOCATION,
 
 		System.out.println("SearchList : " + list + " / (To.LessonDao)");
 		return list;		
-	}	
+	}
+	
+	
 
-public ArrayList<Sidebar> seachlistByKeyword(Connection con, String string) {
+	public ArrayList<Sidebar> seachlistByKeyword(Connection con, String string) {
 		ArrayList<Sidebar> list = new ArrayList<Sidebar>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;

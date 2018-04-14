@@ -94,7 +94,7 @@ public class LessonSearchListServlet extends HttpServlet {
 			job.put("lessonPrice",lessonSearch.getLesson_price());	
 			job.put("lessonCount",lessonSearch.getLesson_count());
 			job.put("lessonStartDate", lessonSearch.getLesson_startdate().toString());
-			job.put("lessonEndDate", lessonSearch.getLesson_enddate().toString());
+			/*job.put("lessonEndDate", lessonSearch.getLesson_enddate().toString());*/
 			job.put("lessonContop",lessonSearch.getLesson_contop());
 			job.put("lessonConmid",lessonSearch.getLesson_conmid());
 			job.put("lessonConbot",lessonSearch.getLesson_conbot());
