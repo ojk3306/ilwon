@@ -39,7 +39,7 @@
 	}
 	$(document).ready(function (){
 		
-    	$.ajax({       
+    	$.ajax({        
     		url:"<%=request.getContextPath()%>/search",
     	    data:{
     	    word:$("a").val(),
@@ -63,7 +63,7 @@
         		console.log(b+c)
 			}, complete: function() {
 				$("#select2-chosen-1").html($("#s2id_autogen1_search").val());
-				//select2-results에 li로 나열.
+				//select2-results에 li로 나열.				
 			}
 		});           
 
@@ -94,15 +94,13 @@
         		console.log(b+c)
 			}, complete: function() {
         		$("#select2-chosen-1").html($("#s2id_autogen1_search").val());
+        		console.log($("#s2id_autogen1_search").val());
+        		
             //select2-results에 li로 나열.
 			}
 		});            
 	});    
-});
-
-	function movePage(id) {        
-        location.href = "/prototype/03.OHW/views/find_teacher.jsp?id=" + id;       
-    } 
+});   
 
 </script>  
   
@@ -212,19 +210,19 @@
 				<% } %>
 				
 				 <li>
-					<form class="form-inline mt-2 mt-md-0 input-group" action="<%= request.getContextPath() %>/lslist" method="post">
+					<div class="form-inline mt-2 mt-md-0 input-group" action = "find_teacher.jsp" method="post">
+						<input type = "hidden" class = "ohw-navbar-search-hidden" name = "ohw-navbar-search-hidden" value = "">
 						<select id="menubar-searchbar" name="seachcontent" aria-label="Search" style="margin-top:7px;">    
-							<option value="this.value">여기에 값을 입력하세요</option>
+							<option>여기에 값을 입력하세요</option>
 						</select>      
-						<button class="btn btn-primary ohw-primary" type="submit" style="margin-top:7px;" onclick="search();">Search</button>
+						<button class="btn btn-primary ohw-primary" type="button" style="margin-top:7px;" onclick="search(), searchKeyword();">Search</button>
 						
 						<% if(loginUser != null) { %>
 							<input type = "hidden" name = "userno" value ="<%= loginUser.getUserNo() %>">
 						<% } else { %>
 							
-						<% } %>
-					<input type="hidden" value="$('#s2id_autogen1_search').val()" name="search">	
-					</form>
+						<% } %>						
+					</div>
 				</li>
 			</ul>      
 		</div>

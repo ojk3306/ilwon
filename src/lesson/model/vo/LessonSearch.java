@@ -106,6 +106,11 @@ public class LessonSearch implements Serializable {
 		this.lessonLevelEndValue = lessonLevelEndValue;
 	}
 
+	public LessonSearch(String lesson_keyword) {
+		super();
+		this.lesson_keyword = lesson_keyword;
+	}
+
 	public String getLocationValue() {
 		return locationValue;
 	}

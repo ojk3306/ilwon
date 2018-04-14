@@ -79,7 +79,7 @@ public class LessonDao {
 				+ "and l.LEVEL_NO = lv.LESSONLEV_NO "
 				+ "and l.LESSON_TYPE = lt.TYPE_NO "
 				+ "and l.category_no = c.category_no "
-				+ "and l.LESSON_ENDDATE is not null "
+				+ "and l.LESSON_ENDDATE is null "
 				+ "and rownum <= 6 "
 				+ "order by lesson_startdate desc";
 		try {
@@ -104,8 +104,7 @@ public class LessonDao {
 				lesson.setLesson_rad(rset.getInt("lesson_radius"));
 				lesson.setLesson_price(rset.getInt("lesson_price"));
 				lesson.setLesson_count(rset.getInt("lesson_count"));
-				lesson.setLesson_startdate(rset.getDate("lesson_startdate"));
-				lesson.setLesson_enddate(rset.getDate("lesson_enddate"));
+				lesson.setLesson_startdate(rset.getDate("lesson_startdate"));				
 				lesson.setLesson_contop(rset.getString("lesson_contop"));
 				lesson.setLesson_conmid(rset.getString("lesson_conmid"));
 				lesson.setLesson_conbot(rset.getString("lesson_conbot"));
@@ -271,7 +270,7 @@ String sql2="select l.user_no2, l.lesson_title, lv.lessonlev, l.LESSON_LOCATION,
 						+ "and l.LESSON_TYPE = lt.TYPE_NO "
 						+ "and u.USER_TYPE = ut.USERTYPE_NO "
 						+ "and l.STATE_NO = st.STATE_NO "
-						/*+ "and l.LESSON_ENDDATE is not null "*/
+						+ "and l.LESSON_ENDDATE is null "
 						+ "and l.LESSON_LOCATION like ? "
 						+ "and c.CATEGORY_SMALL like ? "
 						+ "and u.USER_GENDER like ? "
@@ -379,7 +378,83 @@ String sql2="select l.user_no2, l.lesson_title, lv.lessonlev, l.LESSON_LOCATION,
 		return list;		
 	}
 	
-	
+	public ArrayList<LessonSearch> selectSearchKeyword(Connection con, LessonSearch ls) {
+		
+		System.out.println("SendInfo : " + ls + " / (To.LessonDao)");
+		
+		ArrayList<LessonSearch> list = new ArrayList<LessonSearch>();		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "select * from LESSON l, CATEGORYS c, USERS u, LESSONLEV lv, LESSONTYPE lt, USER_TYPE ut, STATE st "
+						+ "where l.CATEGORY_NO = c.CATEGORY_NO "
+						+ "and l.USER_NO2 = u.USER_NO "
+						+ "and l.LEVEL_NO = lv.LESSONLEV_NO "
+						+ "and l.LESSON_TYPE = lt.TYPE_NO "
+						+ "and u.USER_TYPE = ut.USERTYPE_NO "
+						+ "and l.STATE_NO = st.STATE_NO "
+						+ "and l.LESSON_ENDDATE is null "
+						+ "and l.LESSON_KEYWORD like ? ";	
+				
+		try {
+			pstmt = con.prepareStatement(query);
+			list = new ArrayList<LessonSearch>();
+			
+			if(ls.getLocationValue() != null) {
+				pstmt.setString(1, ls.getLesson_keyword());
+			} else {
+				pstmt.setString(1, "%%");
+			}			
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				LessonSearch search = new LessonSearch();
+				search.setLocationValue(rset.getString("lesson_location"));
+				search.setLessonValue(rset.getString("category_small"));
+				search.setTeacherGenderValue(rset.getString("user_gender"));
+				search.setTeacherAgePreValue(rset.getInt("user_age"));
+				search.setTeacherAgeEndValue(rset.getInt("user_age"));
+				search.setLessonPricePreValue(rset.getInt("lesson_price"));
+				search.setLessonPriceEndValue(rset.getInt("lesson_price"));
+				search.setLessonLevelPreValue(rset.getInt("level_no"));
+				search.setLessonLevelEndValue(rset.getInt("level_no"));
+				search.setLesson_no(rset.getInt("lesson_no"));
+				search.setLevel_no(rset.getInt("level_no"));
+				search.setLevel(rset.getString("lessonlev"));
+				search.setState_no(rset.getInt("state_no"));
+				search.setCategory_no(rset.getInt("category_no"));
+				search.setCategory_bigName(rset.getString("category_big"));
+				search.setCategory_smallName(rset.getString("category_small"));
+				search.setUser_no1(rset.getInt("user_no1"));
+				search.setUser_no2(rset.getInt("user_no2"));
+				search.setUser_name1(rset.getString("user_name"));
+				search.setUser_name2(rset.getString("user_name"));
+				search.setLesson_title(rset.getString("lesson_title"));
+				search.setLesson_loc(rset.getString("lesson_location"));
+				search.setLesson_rad(rset.getInt("lesson_radius"));
+				search.setLesson_price(rset.getInt("lesson_price"));
+				search.setLesson_count(rset.getInt("lesson_count"));
+				search.setLesson_startdate(rset.getDate("lesson_startdate"));				
+				search.setLesson_contop(rset.getString("lesson_contop"));
+				search.setLesson_conmid(rset.getString("lesson_conmid"));
+				search.setLesson_conbot(rset.getString("lesson_conbot"));
+				search.setLesson_keyword(rset.getString("lesson_keyword"));
+				search.setLesson_type(rset.getInt("lesson_type"));
+				
+				list.add(search);
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+
+		System.out.println("SearchList : " + list + " / (To.LessonDao)");
+		return list;		
+	}
 
 	public ArrayList<Sidebar> seachlistByKeyword(Connection con, String string) {
 		ArrayList<Sidebar> list = new ArrayList<Sidebar>();
@@ -533,6 +608,8 @@ String sql2="select l.user_no2, l.lesson_title, lv.lessonlev, l.LESSON_LOCATION,
 		
 		return search;
 	}
+
+	
 
 }
 	

@@ -81,7 +81,20 @@ public class LessonService {
 		
 		System.out.println("SearchList : " + list + " / (To.LessonService)");
 		return list;
-	}		
+	}
+	
+	public ArrayList<LessonSearch> selectSearchKeyword(LessonSearch ls) {
+		
+		Connection con = getConnection();
+		
+		System.out.println("SendInfo : " + ls + " / (To.LessonService)");
+		ArrayList<LessonSearch> list = new LessonDao().selectSearchKeyword(con, ls);
+		
+		close(con);
+		
+		System.out.println("SearchList : " + list + " / (To.LessonService)");
+		return list;
+	}	
 	
 	public ArrayList<Onlesson> onlesson(int user) {
 		Connection conn = getConnection();
@@ -147,6 +160,8 @@ public class LessonService {
 		return ls;
 		
 		
-	}	
+	}
+
+	
 	
 }
