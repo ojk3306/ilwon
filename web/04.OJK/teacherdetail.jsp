@@ -5,6 +5,7 @@
 <% 
 	LessonDetail lessondetail =(LessonDetail)request.getAttribute("lessondetail");
 	ArrayList<Review> review = (ArrayList<Review>)request.getAttribute("review");
+	int user_no = ((Integer)request.getAttribute("user_no"));
 	String userimg = (String)request.getAttribute("userimg");
 	double avga =((Double)request.getAttribute("avga")).doubleValue();
 	int avgd = ((Integer)request.getAttribute("avgd")).intValue();
@@ -39,15 +40,16 @@
 <script type="text/javascript">
 
 function popupReview(){
-
-	var popUrl = "/prototype/review?no=<%= lessondetail.getLesson_no() %>"; 
+	var popUrl = "/prototype/review?no=<%= lessondetail.getLesson_no() %>" + "&userno=<%= user_no%>"; 
 	//팝업창에 출력될 페이지 URL
 	
-	var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
+	var popOption = "width=1050, height=900, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
 
 		window.open(popUrl,"a",popOption);
 
 	}
+	
+
 </script>
 	
 <style type="text/css">
@@ -305,7 +307,7 @@ border-radius: 35px;
     <nav class="review"><!-- 리뷰란 -->
 	<table border="1" style="width:100%">
 	
-	<% if(review.size() > 2) {%>
+	<% if(review.size() > 3 || review.size() == 2) {%>
 	
 	<tr>
 		<td rowspan="2" style="width:35%;">
@@ -361,7 +363,11 @@ border-radius: 35px;
 	<td style="padding: 10px;">
 	<div class="row">
 						<div class="col-sm-3">
+							<%if(review.get(0).getUserPhoto() == null) {%>
 							<img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
+							<%}else { %>
+							<img src="/prototype/userTitleimg/<%=review.get(0).getUserPhoto() %>" class="img-rounded" style="width:60px; height:60px;">
+							<%} %>
 							<div class="review-block-name"><a href="#"><%=review.get(0).getUserName() %></a></div>
 							<div class="review-block-date"><%=review.get(0).getReviewDate() %></div>
 						</div>
@@ -494,7 +500,11 @@ border-radius: 35px;
 	<td style="padding: 10px;">
 	<div class="row">
 						<div class="col-sm-3">
+							<%if(review.get(1).getUserPhoto() == null) {%>
 							<img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
+							<%}else { %>
+							<img src="/prototype/userTitleimg/<%=review.get(1).getUserPhoto() %>" class="img-rounded" style="width:60px; height:60px;">
+							<%} %>
 							<div class="review-block-name"><a href="#"><%=review.get(1).getUserName() %></a></div>
 							<div class="review-block-date"><%=review.get(1).getReviewDate() %></div>
 						</div>
@@ -623,8 +633,235 @@ border-radius: 35px;
 	</td>
 	</tr>
 	
-	<%}else { %>
+	<%}else if(review.size() == 1){ %>
+		<tr>
+		<td rowspan="2" style="width:35%;">
+			<h3 align="center">평점 : <%= a %>/5</h3>
+			 <hr style="clear:both;">
+			<div class="col-xs-12 col-md-6" style="width:95%">
+                        <div class="row rating-desc">
+    
+                            <div class="col-xs-3 col-md-3 text-right">
+                                <span class="glyphicon glyphicon-star"></span>
+                                	성실성
+                            </div>
+                            <div class="col-xs-8 col-md-9" >
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20"
+                                        aria-valuemin="0" aria-valuemax="100" style="width: <%= avgs1%>%">
+                                        <span class="sr-only">2.5</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr style="clear:both;">
+                            <!-- end 3 -->
+                            <div class="col-xs-3 col-md-3 text-right">
+                                <span class="glyphicon glyphicon-star"></span>준비성
+                            </div>
+                            <div class="col-xs-8 col-md-9">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20"
+                                        aria-valuemin="0" aria-valuemax="100" style="width: <%= avgp1%>%">
+                                        <span class="sr-only">20%</span>
+                                    </div>
+                                </div>
+                            </div>
+                             <hr style="clear:both;">
+                            <!-- end 2 -->
+                            <div class="col-xs-3 col-md-3 text-right">
+                                <span class="glyphicon glyphicon-star"></span>지식전달력
+                            </div>
+                            <div class="col-xs-8 col-md-9">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80"
+                                        aria-valuemin="0" aria-valuemax="100" style="width: <%= avgd1%>%">
+                                        <span class="sr-only">15%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end 1 -->
+                        </div>
+                        <!-- end row -->
+                    </div>
+	</td>
+	
+	<td style="padding: 10px;">
+	<div class="row">
+						<div class="col-sm-3">
+							<%if(review.get(0).getUserPhoto() == null) {%>
+							<img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
+							<%}else { %>
+							<img src="/prototype/userTitleimg/<%=review.get(0).getUserPhoto() %>" class="img-rounded" style="width:60px; height:60px;">
+							<%} %>
+							<div class="review-block-name"><a href="#"><%=review.get(0).getUserName() %></a></div>
+							<div class="review-block-date"><%=review.get(0).getReviewDate() %></div>
+						</div>
+						<div class="col-sm-9">
+							<div class="review-block-rate">
+							
+							<%if(1 == (review.get(0).getReviewDelivery()+review.get(0).getReviewPrepare()+review.get(0).getReviewSincerity())/3){ %>
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+							
+							<% }else if(2==(review.get(0).getReviewDelivery()+review.get(0).getReviewPrepare()+review.get(0).getReviewSincerity())/3) {%>
+							
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+							
+							<% }else if(3==(review.get(0).getReviewDelivery()+review.get(0).getReviewPrepare()+review.get(0).getReviewSincerity())/3) {%>
+								
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								<% }else if(4==(review.get(0).getReviewDelivery()+review.get(0).getReviewPrepare()+review.get(0).getReviewSincerity())/3) {%>
+								
+									<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								<%}else if(5 == (review.get(0).getReviewDelivery()+review.get(0).getReviewPrepare()+review.get(0).getReviewSincerity())/3) {%>
+								
+									<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								<%} %>
+								
+							</div>
+							<div class="review-block-title"><br></div>
+							<div class="review-block-description">
+							<%=review.get(0).getReviewContent() %>
+							</div>
+						</div>
+					</div>
+	
+		</td>
+	</tr>
 		
+		<tr>
+	<td style="padding: 10px;">
+	<div class="row">
+						<div class="col-sm-3">
+							<img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
+							<div class="review-block-name"><a href="#">작성자</a></div>
+							<div class="review-block-date"></div>
+						</div>
+						<div class="col-sm-9">
+							<div class="review-block-rate">
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+								
+								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</button>
+							</div>
+							<div class="review-block-title"><br></div>
+							<div class="review-block-description">
+							리뷰가 아직 없습니다
+							</div>
+						</div>
+					</div>
+	
+	</td>
+	</tr>
+	
+		<%}else {%>
 		<td rowspan="2" style="width:35%;">
 			<h3 align="center">평점 : 0/5</h3>
 			 <hr style="clear:both;">

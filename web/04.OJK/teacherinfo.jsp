@@ -57,7 +57,7 @@ function Detailsemina(a){ //세미나 상세보기
 	location.href="/prototype/sdetail?userno="+a.id;
 }
 function updateLesson(a){ //레슨 수정.
-	location.href="/prototype/lessonupdate?lessno="a.id;
+	location.href="/prototype/lessonupdate?lessno="+a.id;
 }
 //강의내역
 $(function(){
@@ -131,7 +131,8 @@ function DetailLesson(val){
 	
 	
 	console.log(val.id);
-	location.href="/prototype/lessondetail?no=" + val.id;
+	var userno = $("#userno").val();
+	location.href="/prototype/lessondetail?no=" + val.id + "&userno=" + userno;
 	
 		
 		
@@ -156,7 +157,7 @@ function upload_profile() {
 <%@include file="/common/navbar.jsp" %>
 
 <nav class="contents">
- 	<input type="hidden" value="<%= loginUser.getUserNo() %>" name="userno" id="userno">
+ 	<input type="hidden" value="<%= loginUser.getUserNo() %>"  id="userno">
 	<h1 align="center">선생 정보 보기</h1>
 	<hr>
 

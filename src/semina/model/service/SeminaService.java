@@ -133,17 +133,6 @@ public class SeminaService {
 		return result;
 	}
 
-	public int insertseminaLog(int parseInt) {
-		//세미나 중단후 세미나의 기록을 넣음.
-		Connection con=getConnection();
-		int result= new SeminaDao().insertseminaLog(con,parseInt);
-		if(result>0)
-			commit(con);
-		else 
-			rollback(con);
-		close(con);
-		
-		return result;
-	}
+
 
 }

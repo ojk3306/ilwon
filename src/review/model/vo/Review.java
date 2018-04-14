@@ -15,11 +15,12 @@ public class Review implements Serializable {
 	private Date reviewDate;
 	private int userNO;
 	private String userName;
+	private String userPhoto;
 	public Review() {
 		
 	}
 	public Review(int reviewNo, int lessonNo, String reviewContent, int reviewPrepare, int reviewSincerity,
-			int reviewDelivery, Date reviewDate, int userNO, String userName) {
+			int reviewDelivery, Date reviewDate, int userNO, String userName, String userPhoto) {
 		super();
 		this.reviewNo = reviewNo;
 		this.lessonNo = lessonNo;
@@ -30,6 +31,7 @@ public class Review implements Serializable {
 		this.reviewDate = reviewDate;
 		this.userNO = userNO;
 		this.userName = userName;
+		this.userPhoto = userPhoto;
 	}
 	public int getReviewNo() {
 		return reviewNo;
@@ -85,6 +87,12 @@ public class Review implements Serializable {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+	public String getUserPhoto() {
+		return userPhoto;
+	}
+	public void setUserPhoto(String userPhoto) {
+		this.userPhoto = userPhoto;
+	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -92,7 +100,8 @@ public class Review implements Serializable {
 	public String toString() {
 		return "Review [reviewNo=" + reviewNo + ", lessonNo=" + lessonNo + ", reviewContent=" + reviewContent
 				+ ", reviewPrepare=" + reviewPrepare + ", reviewSincerity=" + reviewSincerity + ", reviewDelivery="
-				+ reviewDelivery + ", reviewDate=" + reviewDate + ", userNO=" + userNO + ", userName=" + userName + "]";
+				+ reviewDelivery + ", reviewDate=" + reviewDate + ", userNO=" + userNO + ", userName=" + userName
+				+ ", userPhoto=" + userPhoto + "]";
 	}
 	
 

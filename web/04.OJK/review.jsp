@@ -6,6 +6,7 @@
 <%
 	LessonDetail lessondetail =(LessonDetail)request.getAttribute("lessondetail");
 	ArrayList<Review> review = (ArrayList<Review>)request.getAttribute("review");
+	//int user_no = ((Integer)request.getAttribute("user_no")).intValue();
 	double avga =((Double)request.getAttribute("avga")).doubleValue();
 	int avgd = ((Integer)request.getAttribute("avgd")).intValue();
 	int avgs = ((Integer)request.getAttribute("avgs")).intValue();
@@ -28,7 +29,12 @@
 <script type="text/javascript" src="/prototype/common/resources/js/jquery-3.3.1.min.js"></script>
 
 <script type="text/javascript">
-
+function pclose(){
+	
+	close();
+	window.close();
+	self.close();
+}	
 </script>
 	
 <style type="text/css">
@@ -147,12 +153,12 @@ padding-top:30px;
 <body>
 
 <!-- 헤더 종료-->
-
-<%@ include file="/01.CJS\sidebar.jsp" %>
+<%-- <%@ include file="/common\navbar.jsp" %> --%>
+<%-- <%@ include file="/01.CJS\sidebar.jsp" %> --%>
 
 <!--내용물-->
        
-<nav class="contents">
+<nav class="contents" style="margin-top: 0;">
 	<nav class="topbend"> <!--최상단 띠.-->
 	
 	</nav>
@@ -162,7 +168,7 @@ padding-top:30px;
 		<ul>
 		<li>
 		
-		<img src="./img/tech.jpg">
+		<img src="/prototype/userTitleimg/rakoon.jpg">
 		</li>
 		
 		<li class="underpic">
@@ -253,8 +259,13 @@ padding-top:30px;
 		<tr> 
 		    <th style="padding: 10px; border-bottom: 1px solid #eeeeee;">
 						<div class="col-sm-3">
+							<% if(r.getUserPhoto() != null) {%>
+							<img src="/prototype/userTitleimg/<%=r.getUserPhoto() %>" class="img-rounded" 
+							style="width: 60px; height: 60px;">
+							<%}else { %>
 							<img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
-							<div class="review-block-name"><a href="#"><%=r.getUserName() %></a></div>
+							<%} %>
+							<div class="review-block-name"><a href="#"><%=r.getUserName()%></a></div>
 							<div class="review-block-date"><%=r.getReviewDate() %><br/></div>
 						</div>
 						<div class="col-sm-9">
@@ -520,18 +531,16 @@ padding-top:30px;
 	<%} %>
 	<!-- -----------------------------------------------------------------리뷰찍습니다--------------------------------------------------------- -->
 	
-	<tr>
-	<td align="right">
-	<button onclick="history.go(-1)">뒤로 가즈아</button>
-	<button onclick="history.go(-2)">검색 목록으로 가즈아</button>
-	</td>
-	</tr>
 	</table>
 	
+	<div style="width:900px;" align="center">
+	<input type="button" onclick="pclose()" value='나가기'>
+	<!-- 함수호출 안됨 이해불가 -->
+	</div>
 	</nav><!-- 리뷰란 종료 -->
 </nav>
 
- <div style="margin-top: -60px;"><%@ include file="/common/footer.jsp" %></div>
+ <div><%@ include file="/common/footer.jsp" %></div>
 
 <!--바닥종료-->
 

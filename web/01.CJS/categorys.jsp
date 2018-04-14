@@ -88,12 +88,6 @@ function addcate(data){//소분류 추가.
 			json.put("CATEGORY_SMALL",cate.getCATEGORY_SMALL());
 			json.put("CATEGORY_HIT",cate.getCATEGORY_HIT());
 		*/
-
-		var json = JSON.parse(jsonStr);
-		
-		console.log(json.CATEGORY_NO);
-	
-		
 $("div[id="+json.CATEGORY_BIG+"]").html($("div[id="+json.CATEGORY_BIG+"]").html()+'<div class="col-xs-5" style="width:200px;  margin-top:-5px; border-right:1px;"><p><center><h5><strong id="'+json.CATEGORY_NO+'">'+json.CATEGORY_SMALL+'</strong></h5></center></p><center>조회수 :'+json.CATEGORY_HIT+'</center><input type="text"  name="'+json.CATEGORY_NO+'" value="'+json.CATEGORY_SMALL+'" style="width:100%;"><br><a name="'+json.CATEGORY_NO+'" onclick="update(this);" class="btn btn-primary loading">이름 수정</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="deletekey(this);" name="'+json.CATEGORY_NO+'"class="btn btn-danger loading">삭제</a> </div></div></div>');
 
 

@@ -1,6 +1,10 @@
+<%@page import="lesson.model.vo.Lesson"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%
+Lesson l=(Lesson)request.getAttribute("list");
+%>
 <html>
 <head>
 <script type="text/javascript"
@@ -28,6 +32,7 @@
 </style>
 
 <script>
+console.log(<%= l.getLesson_title()%>)
 function juso(){ 
 
 	new daum.Postcode({
@@ -112,78 +117,9 @@ function removeDetail(a){
 	detailCount--;
 	console.log(detailCount);
 }
-$(function(){
-	
-	$.ajax({
-	url:"/prototype/clist",
-	type: "get",
-	dataType: "json",
-	success: function(data) {
-		
-		var jsonStr = JSON.stringify(data);
-		var json = JSON.parse(jsonStr);
-		/*
-		json.put("CATEGORY_NO",cate.getCATEGORY_NO());
-		json.put("CATEGORY_BIG",cate.getcATEGORY_BIG());
-		json.put("CATEGORY_SMALL",cate.getCATEGORY_SMALL());
-		json.put("CATEGORY_HIT",cate.getCATEGORY_HIT());
-	*/
-var values="";
-	for(var i in json.big){ //대분류 삽입
-values+='<option id="'+json.big[i].CATEGORY_BIG+'" value="'+json.big[i].CATEGORY_BIG+'">'+json.big[i].CATEGORY_BIG+'</option>';
-/*
-<option value="음악">음악</option>
-<option value="운동">운동</option>
-<option value="게임">게임</option>
-*/
-}
-	$('#category1').html(values);
-	},error:function(a,b,c){
-		 console.log(b+c);
-	}});
-	
-	
-		
-})
-
-$(function(){
-$('#category1').click(function() {
-	
-	 small=this.value;
-	console.log(small);
-	$.ajax({
-		url:"/prototype/clist",
-		type: "get",
-		dataType: "json",
-		success: function(data) {
-			
-			var jsonStr = JSON.stringify(data);
-			var json = JSON.parse(jsonStr);
-			/*
-			json.put("CATEGORY_NO",cate.getCATEGORY_NO());
-			json.put("CATEGORY_BIG",cate.getcATEGORY_BIG());
-			json.put("CATEGORY_SMALL",cate.getCATEGORY_SMALL());
-			json.put("CATEGORY_HIT",cate.getCATEGORY_HIT());
-		*/
-		values = "";
-		for(var i in json.clist){ //소분류 삽입
-		if(json.clist[i].CATEGORY_BIG == small)
-		values+='<option id="'+json.clist[i].CATEGORY_NO+'" value="'+json.clist[i].CATEGORY_SMALL+'">'+json.clist[i].CATEGORY_SMALL+'</option>';
-		}
-		
-		$('#category2').html(values);
-		},error:function(a,b,c){
-			 console.log(b+c);
-		}});
-		
-		
-			
-	})
-})
-
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>강의 등록</title>
+<title>강의 수정합니다</title>
 </head>
 <body>
 <%@ include file="/common/navbar.jsp" %>
@@ -202,25 +138,17 @@ $('#category1').click(function() {
 					</div>
 					<div class="form-group">
 						<label for="category">카테고리</label><br>	
-						
-						<label>대분류 : </label>&nbsp;
-						
-						
-						<select id="category1" name="category1">
-							
+						<label>대분류 : </label>&nbsp;<select name="category1">
+							<option value="음악">음악</option>
+							<option value="운동">운동</option>
+							<option value="게임">게임</option>
 						</select>&nbsp;
 						
-						<label>소분류 : </label>&nbsp;
-						
-						
-						<select id="category2"  name="category2">
+						<label>소분류 : </label>&nbsp;<select name="category2">
 							<option value="피아노">피아노</option>
 							<option value="테니스">테니스</option>
 							<option value="리그오브레전드">리그오브레전드</option>
 						</select>
-						
-						
-						
 						<span id="error_lastname" class="text-danger"></span>
 					</div>
 					<div class="form-group">
