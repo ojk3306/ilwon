@@ -24,29 +24,31 @@ public class LessonDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = "insert into lesson values((SELECT max(lesson_no) from lesson)+1"
-				+ ",?,1,5513,null,?,?,?,?,?,?,sysdate,null,?,?,?,?,7000,?,?,?,?,?,?)";
+				+ ",?,1,?,null,?,?,?,?,?,?,sysdate,null,?,?,?,?,7000,?,?,?,?,?,?)";
 		
 		
 		try {
 		System.out.println("lesson.getUser_no2()"+lesson.getUser_no2());
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, lesson.getLevel_no());
-			pstmt.setInt(2, lesson.getUser_no2());
-			pstmt.setString(3, lesson.getLesson_title());
-			pstmt.setString(4, lesson.getLesson_loc());
-			pstmt.setInt(5, lesson.getLesson_rad());
-			pstmt.setInt(6, lesson.getLesson_price());
-			pstmt.setInt(7, lesson.getLesson_count());
-			pstmt.setString(8, lesson.getLesson_contop());
-			pstmt.setString(9, lesson.getLesson_conmid());
-			pstmt.setString(10, lesson.getLesson_conbot());
-			pstmt.setString(11, lesson.getLesson_keyword());
-			pstmt.setString(12, lesson.getLesson_orginal());
-			pstmt.setString(13, lesson.getLesson_rename());
-			pstmt.setString(14, lesson.getLesson_orginal2());
-			pstmt.setString(15, lesson.getLesson_rename2());
-			pstmt.setString(16, lesson.getLesson_orginal3());
-			pstmt.setString(17, lesson.getLesson_rename3());
+			pstmt.setInt(2, lesson.getCategory_no());
+			
+			pstmt.setInt(3, lesson.getUser_no2());
+			pstmt.setString(4, lesson.getLesson_title());
+			pstmt.setString(5, lesson.getLesson_loc());
+			pstmt.setInt(6, lesson.getLesson_rad());
+			pstmt.setInt(7, lesson.getLesson_price());
+			pstmt.setInt(8, lesson.getLesson_count());
+			pstmt.setString(9, lesson.getLesson_contop());
+			pstmt.setString(10, lesson.getLesson_conmid());
+			pstmt.setString(11, lesson.getLesson_conbot());
+			pstmt.setString(12, lesson.getLesson_keyword());
+			pstmt.setString(13, lesson.getLesson_orginal());
+			pstmt.setString(14, lesson.getLesson_rename());
+			pstmt.setString(15, lesson.getLesson_orginal2());
+			pstmt.setString(16, lesson.getLesson_rename2());
+			pstmt.setString(17, lesson.getLesson_orginal3());
+			pstmt.setString(18, lesson.getLesson_rename3());
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -563,7 +565,7 @@ String sql2="select l.user_no2, l.lesson_title, lv.lessonlev, l.LESSON_LOCATION,
 		ResultSet rset=null;
 		Lesson search=new Lesson();
 		
-		String sql="select * from LESSON where LESSON_NO=?";
+		String sql="select * from lesson,categorys,lessonlev where lesson.level_no=lessonlev.lessonlev_no and LESSON.CATEGORY_NO=CATEGORYS.category_no and lesson_no=?";
 		try {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1,parseInt);
@@ -572,31 +574,37 @@ String sql2="select l.user_no2, l.lesson_title, lv.lessonlev, l.LESSON_LOCATION,
 			
 			if(rset.next()) {
 				
-				search.setLesson_no(rset.getInt("lesson_no"));
-				search.setLevel_no(rset.getInt("level_no"));
-				search.setLevel(rset.getString("lessonlev"));
-				search.setState_no(rset.getInt("state_no"));
-				search.setCategory_no(rset.getInt("category_no"));
-				search.setCategory_bigName(rset.getString("category_big"));
-				search.setCategory_smallName(rset.getString("category_small"));
-				search.setUser_no1(rset.getInt("user_no1"));
-				search.setUser_no2(rset.getInt("user_no2"));
-				search.setUser_name1(rset.getString("user_name"));
-				search.setUser_name2(rset.getString("user_name"));
-				search.setLesson_title(rset.getString("lesson_title"));
-				search.setLesson_loc(rset.getString("lesson_location"));
-				search.setLesson_rad(rset.getInt("lesson_radius"));
-				search.setLesson_price(rset.getInt("lesson_price"));
-				search.setLesson_count(rset.getInt("lesson_count"));
-				search.setLesson_startdate(rset.getDate("lesson_startdate"));
-				search.setLesson_enddate(rset.getDate("lesson_enddate"));
-				search.setLesson_contop(rset.getString("lesson_contop"));
-				search.setLesson_conmid(rset.getString("lesson_conmid"));
-				search.setLesson_conbot(rset.getString("lesson_conbot"));
-				search.setLesson_keyword(rset.getString("lesson_keyword"));
-				search.setLesson_type(rset.getInt("lesson_type"));
+				search.setLesson_no(rset.getInt("LESSON_NO"));
+				search.setLevel_no(rset.getInt("LEVEL_NO"));
+				search.setLevel(rset.getString("LESSONLEV"));
+				search.setState_no(rset.getInt("STATE_NO"));
+				search.setCategory_no(rset.getInt("CATEGORY_NO"));
+				search.setCategory_bigName(rset.getString("CATEGORY_BIG"));
+				search.setCategory_smallName(rset.getString("CATEGORY_SMALL"));
+				search.setUser_no2(rset.getInt("USER_NO2"));
+			    search.setLesson_title(rset.getString("LESSON_TITLE"));
+				search.setLesson_loc(rset.getString("LESSON_LOCATION"));
+				search.setLesson_rad(rset.getInt("LESSON_RADIUS"));
+				search.setLesson_price(rset.getInt("LESSON_PRICE"));
+				search.setLesson_count(rset.getInt("LESSON_COUNT"));
+				search.setLesson_startdate(rset.getDate("LESSON_STARTDATE"));
+				search.setLesson_contop(rset.getString("LESSON_CONTOP"));
+				search.setLesson_conmid(rset.getString("LESSON_CONMID"));
+				search.setLesson_conbot(rset.getString("LESSON_CONBOT"));
+				search.setLesson_keyword(rset.getString("LESSON_KEYWORD"));
+				search.setLesson_type(rset.getInt("LESSON_TYPE"));
+				search.setLesson_orginal(rset.getString("LESSON_ORIGINAL_PHOTO"));
+				search.setLesson_orginal2(rset.getString("LESSON_ORIGINAL_PHOTO2"));
+				search.setLesson_orginal3(rset.getString("LESSON_ORIGINAL_PHOTO3"));
+				search.setLesson_rename(rset.getString("LESSON_RENAME_PHOTO"));
+				search.setLesson_rename2(rset.getString("LESSON_RENAME_PHOTO2"));
+				search.setLesson_rename3(rset.getString("LESSON_RENAME_PHOTO3"));
 				
-		
+			
+				
+				System.out.println(search.toString());
+	
+				
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -609,7 +617,46 @@ String sql2="select l.user_no2, l.lesson_title, lv.lessonlev, l.LESSON_LOCATION,
 		return search;
 	}
 
+	public int updatelesson(Connection conn, Lesson lesson) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql ="update LESSON set LEVEL_NO = ?, CATEGORY_NO = ?, LESSON_TITLE = ? , LESSON_LOCATION= ?, "
+				+ "LESSON_RADIUS = ?, LESSON_PRICE = ? , LESSON_COUNT = ? , LESSON_CONTOP = ? , LESSON_CONMID= ?,  "
+				+ "LESSON_CONBOT = ? , LESSON_KEYWORD = ? , LESSON_ORIGINAL_PHOTO = ? , LESSON_RENAME_PHOTO = ? , LESSON_ORIGINAL_PHOTO2 = ? , LESSON_RENAME_PHOTO2 = ? , LESSON_ORIGINAL_PHOTO3 = ? , LESSON_RENAME_PHOTO3 = ? where LESSON_NO = ?";
 	
+		try {
+		System.out.println("lesson.getUser_no2()"+lesson.getUser_no2());
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, lesson.getLevel_no());
+			pstmt.setInt(2, lesson.getCategory_no());
+	
+			pstmt.setString(3, lesson.getLesson_title());
+			pstmt.setString(4, lesson.getLesson_loc());
+			pstmt.setInt(5, lesson.getLesson_rad());
+			pstmt.setInt(6, lesson.getLesson_price());
+			pstmt.setInt(7, lesson.getLesson_count());
+			pstmt.setString(8, lesson.getLesson_contop());
+			pstmt.setString(9, lesson.getLesson_conmid());
+			pstmt.setString(10, lesson.getLesson_conbot());
+			pstmt.setString(11, lesson.getLesson_keyword());
+			pstmt.setString(12, lesson.getLesson_orginal());
+			pstmt.setString(13, lesson.getLesson_rename());
+			pstmt.setString(14, lesson.getLesson_orginal2());
+			pstmt.setString(15, lesson.getLesson_rename2());
+			pstmt.setString(16, lesson.getLesson_orginal3());
+			pstmt.setString(17, lesson.getLesson_rename3());
+			pstmt.setInt(18, lesson.getLesson_no());
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+
+	}
 
 }
 	

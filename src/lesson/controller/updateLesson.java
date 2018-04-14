@@ -24,14 +24,14 @@ import lesson.model.vo.Lesson;
 /**
  * Servlet implementation class InsertClassServlet
  */
-@WebServlet("/insertlesson.sm")
-public class InsertLessonServlet extends HttpServlet {
+@WebServlet("/updatelesson.sm")
+public class updateLesson extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertLessonServlet() {
+    public updateLesson() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -60,7 +60,6 @@ public class InsertLessonServlet extends HttpServlet {
 		
 		
 		Lesson lesson = new Lesson();
-		
 		lesson.setLesson_title(mrequest.getParameter("title"));
 		lesson.setLevel_no(Integer.parseInt(mrequest.getParameter("level")));
 		lesson.setUser_no2(Integer.parseInt(mrequest.getParameter("userno")));
@@ -72,13 +71,16 @@ public class InsertLessonServlet extends HttpServlet {
 		lesson.setLesson_loc(mrequest.getParameter("loc"));
 		lesson.setLesson_rad(Integer.parseInt(mrequest.getParameter("rad")));
 		lesson.setLesson_keyword(mrequest.getParameter("keyword"));
+		
 		lesson.setLesson_orginal(mrequest.getFilesystemName("upfile"));
 		lesson.setLesson_orginal2(mrequest.getFilesystemName("upfile2"));
 		lesson.setLesson_orginal3(mrequest.getFilesystemName("upfile3"));
+		
+		
 		lesson.setCategory_no(Integer.parseInt(mrequest.getParameter("category2")));
-		
-		
-		
+		lesson.setLesson_no(Integer.parseInt(mrequest.getParameter("leno")));
+
+		System.out.println("파일1번"+mrequest.getFilesystemName("upfile"));
 		//키워드 합치기 부분
 				String[] keywords = mrequest.getParameterValues("keyword");
 				StringBuilder sb = new StringBuilder();
@@ -199,8 +201,9 @@ public class InsertLessonServlet extends HttpServlet {
 			
 			lesson.setLesson_rename3(rename3);
 		}
+		System.out.println("업데이트에서 lesson"+lesson.toString());
 		
-		int result = new LessonService().insertlesson(lesson);
+		int result = new LessonService().updatelesson(lesson);
 		
 		response.setContentType("text/html; charset=utf-8");
 		

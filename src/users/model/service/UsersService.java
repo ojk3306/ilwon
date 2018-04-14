@@ -141,6 +141,14 @@ public class UsersService {
 		return result;
 	}
 
+	public int getmaxkeyword(int user_no2) {
+		Connection con = getConnection();
+		int result = new UsersDao().getmaxkeyword(con, user_no2);
+		
+		close(con);
+		return result;
+	}
+
 	
 
 	

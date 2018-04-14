@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
+
 import static common.JDBCTemplate.*;
 
 import users.model.vo.Users;
@@ -596,6 +598,29 @@ public class UsersDao {
 			close(rset);
 			close(pstmt);
 		}
+		return result;
+	}
+
+	public int getmaxkeyword(Connection con, int user_no2) {
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		int result=3;
+		String sql="select USER_KEYWORD_COUNT from users where USER_NO = ?";
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1,user_no2);
+			rset=pstmt.executeQuery();
+			rset.next();
+			result=rset.getInt(1);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
 		return result;
 	}
 	

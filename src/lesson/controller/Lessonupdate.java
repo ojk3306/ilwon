@@ -1,6 +1,8 @@
 package lesson.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import lesson.model.service.LessonService;
 import lesson.model.vo.Lesson;
+import users.model.service.UsersService;
 
 /**
  * Servlet implementation class Lessonupdate
@@ -35,11 +38,27 @@ public class Lessonupdate extends HttpServlet {
 		
 		Lesson le=new LessonService().findLessonBylessonNo(Integer.parseInt(request.getParameter("lessno")));
 	
+		System.out.println(le.getLesson_keyword());
+		
+		ArrayList<String> keyword=new ArrayList<String>();
+		if(le.getLesson_keyword()!=null) {
+		StringTokenizer tokens = new StringTokenizer(le.getLesson_keyword());
+         while(tokens.hasMoreTokens()) {
+		 keyword.add(tokens.nextToken(","));
+		 }
+		}
+		int keymax = new UsersService().getmaxkeyword(le.getUser_no2());
+		
+		for(String i : keyword)
+	        System.out.println(i);
+	        
 	    response.setContentType("text/html; charset=utf-8 "); 
 		RequestDispatcher view=null;
 		if(le!=null) {
-		view=request.getRequestDispatcher("/04.OJK/lessonupdate.jsp");
+		view=request.getRequestDispatcher("/04.OJK/updateclass.jsp");
 		request.setAttribute("list",le);
+		request.setAttribute("keyword",keyword);
+		request.setAttribute("keyamx",keymax);
 		view.forward(request, response);
 		}else {
 			

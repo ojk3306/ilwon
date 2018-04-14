@@ -13,6 +13,7 @@
 	@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'); %>
 	section {
     padding: 60px 0;    
+  
 	}
 
 	section .section-title {
@@ -20,22 +21,24 @@
     color: #007b5e;
     margin-bottom: 50px;
     text-transform: uppercase;
+      width: 100%;
 	}
 	#footer {	
     background: gray !important;
+      width: 100%;
 	}
 	#footer h5{
 	padding-left: 10px;
     border-left: 3px solid #eeeeee;
     padding-bottom: 6px;
     margin-bottom: 20px;
-    color:#ffffff;
+    color:#ffffff;  width: 100%;
 	}
 	#footer a {
     color: #ffffff;
     text-decoration: none !important;
     background-color: transparent;
-    -webkit-text-decoration-skip: objects;
+    -webkit-text-decoration-skip: objects;  width: 100%;
 	}
 	#footer ul.social li{
 	padding: 3px 0;
@@ -84,15 +87,18 @@
 		margin-bottom: 10px;
 		}
 	}
+	.row{
+	background:#e9e9e9;  width: 100%;
+	}
 </style>
 </head>
 
-<body>
+<body style="  width: 100%;">
 <!-- Footer -->
-	<section id="footer">
-		<div class="container">
+	<section id="footer" style="  width: 100%;">
+		<div class="container" >
 			<div class="row">
-				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5" style="background:gray">
 					<ul class="list-unstyled list-inline social text-center">
 						<li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-facebook"></i></a></li>
 						<li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-twitter"></i></a></li>
@@ -104,7 +110,7 @@
 				</hr>
 			</div>	
 			<div class="row">
-				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white" style="background:gray">
 					<p>National Transaction Corporation is a Registered MSP/ISO of Elavon, Inc. Georgia [a wholly owned subsidiary of U.S. Bancorp, Minneapolis, MN]</p>
 					<p class="h6">&copy All right Reversed.<a class="text-green ml-2" href="https://www.sunlimetech.com" target="_blank">Sunlimetech</a></p>
 				</div>
