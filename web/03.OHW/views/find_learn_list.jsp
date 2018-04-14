@@ -64,10 +64,16 @@
 </style>
 </head>
 
-<body style="min-width : 800px; overflow : auto; display : absolute;">
-	<nav><%@ include file = "/common/navbar.jsp" %></nav>
-	<div id = "left_bar">왼쪽 구역</div>
-	<div id = "right_bar">오른쪽 구역</div>
+<body style="height:600px; overflow : auto; display : absolute;">
+	<nav>
+	<%@ include file = "/common/navbar.jsp" %>
+		<%@include file="/01.CJS\sidebar.jsp" %>
+	</nav>
+	<div style="margin-top: -550px;">
+	
+	
+	<div id = "left_bar"></div>
+	<div id = "right_bar"></div>
 	<header style="text-align : center;"><h3 class="header_text">배우고 싶어요</h3></header>
 	
 	<hr>
@@ -170,12 +176,19 @@
 	</section>
 	
 <div align="right">
-	<a href="/prototype/03.OHW/views/find_learn.jsp"><input class = "btn btn-info" type = "button" value = "요청 등록"></a>
+	<a href="/prototype/03.OHW/views/find_learn.jsp">
+	<input class = "btn btn-info" type = "button" value = "요청 등록">
+	</a>
 </div>
+
 </div>
 
 	<hr>
 	
-	<footer style = "margin-left:25%;"><%@ include file = "parts/footer.jsp" %></footer>
+
+<%@ include file = "/common/footer.jsp" %>
+
+	
+
 </body>
 </html>

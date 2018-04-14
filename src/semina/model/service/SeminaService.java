@@ -133,6 +133,19 @@ public class SeminaService {
 		return result;
 	}
 
+	public int updateSemina(Semina semi) {
+		Connection con=getConnection();
+		int result= new SeminaDao().updateSemina(con,semi);
+		if(result>0)
+			commit(con);
+		else 
+			rollback(con);
+		close(con);
+		
+
+		return result;
+	}
+
 
 
 }

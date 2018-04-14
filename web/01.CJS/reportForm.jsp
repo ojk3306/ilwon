@@ -256,7 +256,9 @@ $(function() {
 <input type="file" accept="image/png, image/jpeg, image/gif" name="titleimg"/> <!-- rename it -->
                     </div>
                 </span>
-            </div><!-- /input-group image-preview [TO HERE]--> 
+            </div>
+            
+            <!-- /input-group image-preview [TO HERE]--> 
         </div>
            
            

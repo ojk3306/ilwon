@@ -168,7 +168,7 @@ $('#category1').click(function() {
 		values = "";
 		for(var i in json.clist){ //소분류 삽입
 		if(json.clist[i].CATEGORY_BIG == small)
-		values+='<option id="'+json.clist[i].CATEGORY_NO+'" value="'+json.clist[i].CATEGORY_SMALL+'">'+json.clist[i].CATEGORY_SMALL+'</option>';
+		values+='<option id="'+json.clist[i].CATEGORY_NO+'" value="'+json.clist[i].CATEGORY_NO+'">'+json.clist[i].CATEGORY_SMALL+'</option>';
 		}
 		
 		$('#category2').html(values);
@@ -183,7 +183,7 @@ $('#category1').click(function() {
 
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>강의 등록</title>
+<title>강의 등록 페이지</title>
 </head>
 <body>
 <%@ include file="/common/navbar.jsp" %>
@@ -214,9 +214,8 @@ $('#category1').click(function() {
 						
 						
 						<select id="category2"  name="category2">
-							<option value="피아노">피아노</option>
-							<option value="테니스">테니스</option>
-							<option value="리그오브레전드">리그오브레전드</option>
+							<option >대분류를먼저선택하세요</option>
+					
 						</select>
 						
 						

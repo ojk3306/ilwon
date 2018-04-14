@@ -48,7 +48,7 @@ $(function(){
 
 });
 function updatesemina(a){ //세미나 수정.
-	
+	location.href="/prototype/semiup?semino="+a.id;
 }
 function finishsemina(a){ //세미나 끝내기
 	location.href="/prototype/semistop?semino="+a.id;

@@ -515,4 +515,43 @@ public class SeminaDao {
 		return result;
 	}
 
+	public int updateSemina(Connection con, Semina semi) {
+	PreparedStatement pstmt=null;
+	int result=0;
+	String sql="update semina set SEMINA_TITLE= ? , SEMINA_LOCATION = ?, SEMINA_PRICE=?, 	"
+			+ "SEMINA_MIN = ? , SEMINA_MAX = ? , SEMINA_ORIGINALFILENAME = ? , "
+			+ "SEMINA_RENAMEFILENAME = ?	,	SEMINA_ENDDATE = ?, SEMINA_TITLE1= ? , "
+			+ "SEMINA_CONTENT1 = ? , SEMINA_TITLE2 = ?, SEMINA_CONTENT2 = ? , SEMINA_TITLE3 = ? , "
+			+ "SEMINA_CONTENT3 = ? , SEMINA_TITLE4 = ? , SEMINA_CONTENT4 = ?  where SEMINA_NO=?";
+			
+try {
+		pstmt=con.prepareStatement(sql);
+		
+		pstmt.setString(1, semi.getSeminaTitle());
+		pstmt.setString(2,semi.getSeminaLocation());
+		pstmt.setInt(3,semi.getSeminaPrice());
+		pstmt.setInt(4, semi.getSeminaMin());
+		pstmt.setInt(5, semi.getSeminaMax());
+		pstmt.setString(6, semi.getSeminaOriginalFileName());
+		pstmt.setString(7, semi.getSeminaRenameFileName());
+		pstmt.setDate(8, semi.getSeminaEndDate());
+		
+		pstmt.setString(9,semi.getSeminatitle1());
+		pstmt.setString(10,semi.getSeminaContent1());
+		pstmt.setString(11,semi.getSeminatitle2() );
+		pstmt.setString(12, semi.getSeminaContent2());
+		pstmt.setString(13, semi.getSeminatitle3());
+		pstmt.setString(14, semi.getSeminaContent3());
+		pstmt.setString(15, semi.getSeminatitle4());
+		pstmt.setString(16, semi.getSeminaContent4());
+		pstmt.setInt(17, semi.getSeminaNo());
+		
+	result=pstmt.executeUpdate();
+	} catch (Exception e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}		
+		return result;
+	}
+
 }

@@ -147,6 +147,22 @@ public class LessonService {
 		return ls;
 		
 		
+	}
+
+	public int updatelesson(Lesson lesson) {
+		Connection conn = getConnection();
+		
+		int result = new LessonDao().updatelesson(conn, lesson);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		return result;
+		
+	
 	}	
 	
 }
