@@ -78,5 +78,51 @@ public class ReviewDao {
 		}
 		return result;
 	}
+
+	public int deleteReview(Connection con, int review_no) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = "delete from review where review_no = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, review_no);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	 public int updateReview(Connection con, int review_no, Review review) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = "update review set review_content = ?, review_prepare = ?, review_delivery = ?, review_sincerity =? where review_no = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, review.getReviewContent());
+			pstmt.setInt(2, review.getReviewPrepare());
+			pstmt.setInt(3, review.getReviewDelivery());
+			pstmt.setInt(4, review.getReviewSincerity());
+			pstmt.setInt(5, review_no);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	
+
+	
 	
 }

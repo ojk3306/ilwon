@@ -855,6 +855,8 @@ border-radius: 35px;
 							<div class="review-block-description">
 							리뷰가 아직 없습니다
 							</div>
+							<div class="review-block-title" style="text-align:right;"><br>
+								<a href="javascript:popupReview();">리뷰 더 보기></a></div>
 						</div>
 					</div>
 	

@@ -33,6 +33,31 @@ public class ReviewService {
 		return result;
 	}
 
+	public int deleteReview(int review_no) {
+		Connection con = getConnection();
+		int result = new ReviewDao().deleteReview(con,review_no);
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		return result;
+	}
+
+	public int updateReview(int review_no, Review review) {
+		
+		Connection con = getConnection();
+		int result = new ReviewDao().updateReview(con,review_no,review); 
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		return result;
+	}
+
 	
+
+
 	
 }

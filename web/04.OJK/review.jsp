@@ -6,7 +6,7 @@
 <%
 	LessonDetail lessondetail =(LessonDetail)request.getAttribute("lessondetail");
 	ArrayList<Review> review = (ArrayList<Review>)request.getAttribute("review");
-	//int user_no = ((Integer)request.getAttribute("user_no")).intValue();
+	int user_no = ((Integer)request.getAttribute("userno")).intValue();
 	double avga =((Double)request.getAttribute("avga")).doubleValue();
 	int avgd = ((Integer)request.getAttribute("avgd")).intValue();
 	int avgs = ((Integer)request.getAttribute("avgs")).intValue();
@@ -35,6 +35,30 @@ function pclose(){
 	window.close();
 	self.close();
 }	
+
+function deleteReview(val) {
+	var result = confirm('삭제 하시겠습니까?'); 
+	console.log(val.id);
+	
+	if(result) {
+		location.href="/prototype/deletereview?no=" + val.id + "&userno=" + <%=user_no%> + "&lessonno=" 
+				+ <%=lessondetail.getLesson_no()%>;
+		
+	}else {
+		
+	} 
+	
+}
+
+function updateReview(val) {
+	var popUrl = "/prototype/04.OJK/updatereview.jsp?no=" + val.id + "&userno=" + <%=user_no%>; 
+	//팝업창에 출력될 페이지 URL
+	
+	var popOption = "width=1050, height=900, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
+
+		window.open(popUrl,"b",popOption);
+
+}
 </script>
 	
 <style type="text/css">
@@ -524,7 +548,12 @@ padding-top:30px;
 							<br>
 							<%=r.getReviewContent() %>
 							</div>
-						</div>
+							<div class="review-block-title" style="text-align:right; float:right;"><br>
+							<%if(user_no == r.getUserNO()) {%>
+								<input type=button id='<%=r.getReviewNo()%>' onclick="deleteReview(this);" value="삭제"></div>
+								<div class="review-block-title" style="text-align:right; "><br>
+								<input type=button id='<%=r.getReviewNo()%>' onclick="updateReview(this);" value="수정">&nbsp;</div>
+							<%} %>
 					
 					</th>
 	</tr>
