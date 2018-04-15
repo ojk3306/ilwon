@@ -2,16 +2,15 @@ package lesson.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 import lesson.model.service.LessonService;
 import lesson.model.vo.LessonSearch;
@@ -35,9 +34,28 @@ public class LessonNavbarSearchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("LessonNavbarSearchServlet Run and getParameter : "+request.getParameter("ohw-span-value"));
-							
-	}
+		System.out.println("LessonNavbarSearchServlet Run and getParameter : "+request.getParameter("ohw-navbar-search-hidden"));
+		RequestDispatcher view = null;				
+		
+		/*//2. 전송온 값 꺼내서 변수 또는 객체에 저장하기 */
+						
+		LessonSearch ls = new LessonSearch();
+		ls.setLesson_keyword(request.getParameter("ohw-keyword"));							
+		
+		//3. 서비스 클래스 메소드로 값 전달하고, 결과 받기
+		ArrayList<LessonSearch> result = new LessonService().selectSearchKeyword(ls);
+		
+		//4. 받은 결과를 가지고 성공/실패에 대한 뷰를 선택해서 내보냄
+		response.setContentType("text/html; charset=UTF-8");
+		if(result != null) {
+			//성공시 상세보기 페이지로 넘김
+			response.sendRedirect( request.getContextPath() + "/03.OHW/views/find_teacher.jsp?ohw-keyword=" + ls.getLesson_keyword());
+		} else {
+			view = request.getRequestDispatcher("03.OHW/views/noticeError.jsp");
+			request.setAttribute("message", "키워드 검색 실패");
+			view.forward(request, response);
+		}	
+	}	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

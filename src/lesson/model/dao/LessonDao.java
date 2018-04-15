@@ -264,6 +264,7 @@ public class LessonDao {
 						+ "and u.USER_TYPE = ut.USERTYPE_NO "
 						+ "and l.STATE_NO = st.STATE_NO "
 						+ "and l.LESSON_ENDDATE is null "
+						+ "and l.LESSON_TYPE = 7000 "
 						+ "and l.LESSON_KEYWORD like ? ";	
 				
 		try {

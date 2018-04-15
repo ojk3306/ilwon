@@ -95,7 +95,8 @@
 			}, complete: function() {
         		$("#select2-chosen-1").html($("#s2id_autogen1_search").val());
         		console.log($("#s2id_autogen1_search").val());
-        		
+        		$(".ohw-navbar-search-hidden").val($("#s2id_autogen1_search").val());
+        		console.log($(".ohw-navbar-search-hidden").val());
             //select2-results에 li로 나열.
 			}
 		});            
@@ -211,7 +212,7 @@
 				
 				 <li>
 					<form class="form-inline mt-2 mt-md-0 input-group" action = "lnsearch" method="post">
-						<input type = "hidden" class = "ohw-navbar-search-hidden" name = "ohw-navbar-search-hidden" value = "">
+						<input type = "hidden" class = "ohw-navbar-search-hidden" name = "ohw-keyword" value = "">
 						<select id="menubar-searchbar" name="seachcontent" aria-label="Search" style="margin-top:7px;">    
 							<option>여기에 값을 입력하세요</option>
 						</select>      
