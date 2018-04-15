@@ -52,6 +52,8 @@ ArrayList<NewestLessonByAdmin> list2 = (ArrayList<NewestLessonByAdmin>)(request.
       <a href="/prototype/03.OHW/views/noticeInsert.jsp" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>공지사항작성<span class="badge">126</span></a>
       <a href="/prototype/adminseachuser" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true" ></span> 유저검색
        <span class="badge">12</span></a>
+      <a href="/prototype/adminlessnolist" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>강의관리<span class="badge">126</span></a>
+      
     </div>
     
 <div class="list-group">
