@@ -167,7 +167,7 @@
 <div style="margin-top: -550px;">
 	<div id = "left_bar"></div>
 	<div id = "right_bar"></div>
-	<header style="text-align : center;"><h3 class="header_text">선생님 찾기</h3></header>
+	<header style="text-align : center;"><h3 class="header_text">은밀한 선생</h3></header>
 	
 	<hr>
 	<section class = "teacher_location">

@@ -155,16 +155,16 @@
 			<ul class="nav navbar-nav">
 				<li class="active">
 				<a href="/prototype/03.OHW/views/noticeList.jsp">은밀한 공지사항</a></li>
-				<li><a href="/prototype/03.OHW/views/find_teacher.jsp">선생 찾기</a></li>
-				<li><a href="/prototype/03.OHW/views/find_learn_list.jsp">학생 찾기</a></li>
-				<li><a href="/prototype/semilist?page=1">세미나  찾기</a></li>
-				<li><a href="/prototype/01.CJS/reportForm.jsp">신고하기</a></li>
-				<li><a href="/prototype/plist">건의하기</a></li>
+				<li><a href="/prototype/03.OHW/views/find_teacher.jsp">은밀한 선생</a></li>
+				<li><a href="/prototype/03.OHW/views/find_learn_list.jsp">은밀한 학생</a></li>
+				<li><a href="/prototype/semilist?page=1">은밀한 세미나</a></li>
+				<li><a href="/prototype/01.CJS/reportForm.jsp">은밀한 신고</a></li>
+				<li><a href="/prototype/plist">은밀한 건의</a></li>
 				<% if( loginUser == null ){%>
 				
 				<%}else{%>
 					<% if(loginUser.getUserTypeNo() ==1003 ){%>
-					<li><a href="/prototype/rtsearch">관리자</a></li>
+					<li><a href="/prototype/rtsearch">은밀한 관리자</a></li>
 					<%} %>
 				<%} %>
 			
@@ -210,19 +210,19 @@
 				<% } %>
 				
 				 <li>
-					<div class="form-inline mt-2 mt-md-0 input-group" action = "find_teacher.jsp" method="post">
+					<form class="form-inline mt-2 mt-md-0 input-group" action = "lnsearch" method="post">
 						<input type = "hidden" class = "ohw-navbar-search-hidden" name = "ohw-navbar-search-hidden" value = "">
 						<select id="menubar-searchbar" name="seachcontent" aria-label="Search" style="margin-top:7px;">    
 							<option>여기에 값을 입력하세요</option>
 						</select>      
-						<button class="btn btn-primary ohw-primary" type="button" style="margin-top:7px;" onclick="search(), searchKeyword();">Search</button>
+						<button class="btn btn-primary ohw-primary" type="submit" style="margin-top:7px;" onclick="search();">Search</button>
 						
 						<% if(loginUser != null) { %>
 							<input type = "hidden" name = "userno" value ="<%= loginUser.getUserNo() %>">
 						<% } else { %>
 							
 						<% } %>						
-					</div>
+					</form>
 				</li>
 			</ul>      
 		</div>

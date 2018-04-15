@@ -37,7 +37,7 @@ public class LessonSearchListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//리스트 결과를 json 배열에 담아서, 전송하는 컨트롤러		
-	System.out.println(request.getParameter("search"));
+		System.out.println(request.getParameter("search"));
 		
 		String locationValue = request.getParameter("location");
 		String lessonValue = request.getParameter("lesson");	
