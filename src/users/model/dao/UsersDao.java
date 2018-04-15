@@ -397,6 +397,7 @@ public class UsersDao {
 				if(rset.getString("USER_RENAME_PHOTO")!=null) {
 				user.setUserRenamePhoto(rset.getString("USER_RENAME_PHOTO"));	
 				}
+				System.out.println("userDetailByAdmin에서"+user.toString());
 				
 			}
 			
