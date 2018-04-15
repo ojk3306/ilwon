@@ -20,7 +20,7 @@
 	
 	function changeClass(id) {						
 		
-		$(".tclass").hide(); $(".ohw-" + id).show();			
+		$(".sclass").hide(); $(".ohw-" + id).show();
 		
 		console.log(".ohw-" + id);
 	}
@@ -211,7 +211,7 @@
 	<script type="text/javascript">
 	
 	$.ajax({
-    	url:"<%= request.getContextPath() %>/sclist",
+    	url:"<%= request.getContextPath() %>/tclist",
     	type:"get",
     	datatype:"json",
     	success:

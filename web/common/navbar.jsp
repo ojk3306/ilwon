@@ -156,7 +156,7 @@
 				<li class="active">
 				<a href="/prototype/03.OHW/views/noticeList.jsp">은밀한 공지사항</a></li>
 				<li><a href="/prototype/03.OHW/views/find_teacher.jsp">은밀한 선생</a></li>
-				<li><a href="/prototype/03.OHW/views/find_learn_list.jsp">은밀한 학생</a></li>
+				<li><a href="/prototype/03.OHW/views/find_learn.jsp">은밀한 학생</a></li>
 				<li><a href="/prototype/semilist?page=1">은밀한 세미나</a></li>
 				<li><a href="/prototype/01.CJS/reportForm.jsp">은밀한 신고</a></li>
 				<li><a href="/prototype/plist">은밀한 건의</a></li>
