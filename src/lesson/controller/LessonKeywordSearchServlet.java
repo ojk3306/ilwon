@@ -14,20 +14,19 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import lesson.model.service.LessonService;
-import lesson.model.vo.Lesson;
-import lesson.model.vo.LessonSearch;;
+import lesson.model.vo.LessonSearch;
 
 /**
- * Servlet implementation class LessonSearchListServlet
+ * Servlet implementation class LearnSearchServlet
  */
-@WebServlet("/lslist")
-public class LessonSearchListServlet extends HttpServlet {
+@WebServlet("/lsearch")
+public class LessonKeywordSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LessonSearchListServlet() {
+    public LessonKeywordSearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,24 +35,13 @@ public class LessonSearchListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//리스트 결과를 json 배열에 담아서, 전송하는 컨트롤러		
-		System.out.println(request.getParameter("search"));
+		System.out.println(request.getParameter("ohw-keyword"));
 		
-		String locationValue = request.getParameter("location");
-		String lessonValue = request.getParameter("lesson");	
-		String teacherGenderValue = request.getParameter("teacherGender");
-		int teacherAgePreValue = Integer.parseInt(request.getParameter("teacherAgePre"));
-		int teacherAgeEndValue = Integer.parseInt(request.getParameter("teacherAgeEnd"));
-		/*String teacherEXPValue[] = request.getParameterValues("teacherEXP");*/
-		int lessonPricePreValue = Integer.parseInt(request.getParameter("lessonPricePre"));
-		int lessonPriceEndValue = Integer.parseInt(request.getParameter("lessonPriceEnd"));
-		int lessonLevelPreValue = Integer.parseInt(request.getParameter("lessonLevel"));
-		int lessonLevelEndValue = Integer.parseInt(request.getParameter("lessonLevel"));
+		String keywordValue = request.getParameter("keyword");		
 		
-		LessonSearch ls = new LessonSearch(locationValue, lessonValue, teacherGenderValue, 
-				teacherAgePreValue, teacherAgeEndValue, /*teacherEXPValue,*/ lessonPricePreValue, lessonPriceEndValue, lessonLevelPreValue, lessonLevelEndValue);			
+		LessonSearch ls = new LessonSearch(keywordValue);			
 		System.out.println("SendInfo : " + ls + " / (To.LessonSearchListServlet)");		
-		ArrayList<LessonSearch> list = new LessonService().selectSearchList(ls);
+		ArrayList<LessonSearch> list = new LessonService().selectSearchKeyword(ls);
 					
 		//전송은 json 객체 한개만 전송할 수 있음
 		//최종 전송용 json 객체 생성함
@@ -115,7 +103,7 @@ public class LessonSearchListServlet extends HttpServlet {
 			out.close();
 			
 	}
-	
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

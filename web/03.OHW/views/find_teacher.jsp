@@ -167,7 +167,7 @@
 <div style="margin-top: -550px;">
 	<div id = "left_bar"></div>
 	<div id = "right_bar"></div>
-	<header style="text-align : center;"><h3 class="header_text">선생님 찾기</h3></header>
+	<header style="text-align : center;"><h3 class="header_text">은밀한 선생</h3></header>
 	
 	<hr>
 	<section class = "teacher_location">
@@ -558,16 +558,16 @@ $(function () {
 	
 <script type="text/javascript"> /* 키워드 검색용 스크립트 */
 
-	function searchKeyword() {
+	function searchKeyword() {		
 		
-		var value = $("#menubar-searchbar").text();
-		var lessonKeywordSearch = $(".select2-chosen").text();
-		console.log(lessonKeywordSearch);	
+		var lessonKeywordSearch = <% request.getParameter("ohw-keyword"); %>
+		console.log(lessonKeywordSearch);
+		<% System.out.print(request.getParameter("ohw-keyword")); %>
 	
 		jQuery.ajaxSettings.traditional = true;	
 	
 		$.ajax({
-   	 	url:"<%= request.getContextPath() %>/lnsearch",
+   	 	url:"<%= request.getContextPath() %>/lsearch",
 		data:{keywordValue : lessonKeywordSearch},
     	type:"get",
     	datatype:"json",

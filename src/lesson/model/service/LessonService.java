@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import lesson.model.dao.LessonDao;
+import lesson.model.vo.LearnSearch;
 import lesson.model.vo.Lesson;
 import lesson.model.vo.LessonDetail;
 import lesson.model.vo.LessonSearch;
@@ -214,5 +215,26 @@ public class LessonService {
 		close(con);
 		return result;
 }
+
+	public ArrayList<Lesson> selectLearnList() {
+		Connection con = getConnection();
+		
+		ArrayList<Lesson> list = new LessonDao().selectLearnList(con);
+		close(con);
+				
+		return list;
+	}
+
+	public ArrayList<LearnSearch> selectLearnSearchList(LearnSearch ls) {
+		Connection con = getConnection();
+		
+		System.out.println("SendInfo : " + ls + " / (To.LessonService)");
+		ArrayList<LearnSearch> list = new LessonDao().selectLearnSearchList(con, ls);
+		
+		close(con);
+		
+		System.out.println("SearchList : " + list + " / (To.LessonService)");
+		return list;
+	}
 	
 }
