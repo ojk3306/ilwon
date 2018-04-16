@@ -1,19 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
-<%@ page import="lesson.model.vo.LessonDetail" %>    
+<%@ page import="lesson.model.vo.*,users.model.vo.*" %>    
 <% 
-LessonDetail lessondetail=null;
-if(request.getAttribute("lesson")!=null)
-lessondetail =(LessonDetail)request.getAttribute("lesson");
+Users user=(Users)request.getAttribute("user");
+LessonSearch lessondetail =(LessonSearch)request.getAttribute("lesson");
 %>	
 <!DOCTYPE html>
 <html>
 <head>
 
-<script type="text/javascript" src="/prototype/common\resources\js\jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="/prototype/common\resources\js\select2.js"></script>
-
-
-
+<script type="text/javascript">
+function submitLesson(a){
+	//강좌 번호와, 로그인한 유저의 번호를 보낸다.
+	location.href="/prototype/submitlesson?no="+a.id;
+	
+}
+</script>
 	
 <style type="text/css">
 /* 스타 별점 */
@@ -189,20 +190,22 @@ border-radius: 35px;
 </style>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>선생이름 님의 ...?</title>
+<title>배우고 싶어요!</title>
 </head>
+
+
 <body>
 <!-- 헤더 시작-->
 <%@ include file="/common\navbar.jsp" %>
 <!-- 헤더 종료-->
 
 <!--내용물-->
-	   <br>
-       <h1 align="center">상세보기</h1>
-       <hr>
-<nav class="contents">
+	<br>
+    <h1 align="center">상세보기</h1>
+    <hr> 
+	<nav class="contents">
 	<nav class="topbend"> <!--최상단 띠.-->
-	이사람은 이사람은이사람은 이사람은이사람은 이사람은
+	<%=lessondetail.getLesson_title()%>
 	</nav>
 	<nav class="topdetail"><!--선생소개-->
 	<ul>
@@ -211,7 +214,7 @@ border-radius: 35px;
 		<li>
 		
 		<img src="/prototype/userTitleimg/rakoon.jpg">
-
+	
 		</li>
 		
 		<li class="underpic">
@@ -219,24 +222,51 @@ border-radius: 35px;
 		</li>
 	</ul>	
 	</li>
-	<li class="topdiv" name="title">
-		<ul style="list-style: none;">
-			
-			
-			<li class=""><br></li>
+		<li class="topdiv" name="title">
 		
+			<ul style="list-style: none;">
 			
+			
+		<li class="" background="red"><br>	<center>
+	
+		<% if( user.getUserGender() == "M" ){ %>
+		
+		<h4>(<%=user.getUserAge()%>) <%=user.getUserName()%></h4>	
+		<h5>남성</h5>
+		
+		희망 분야 : <%=lessondetail.getCategory_smallName()%>
+	
+		
+		<%}else{ %>
+		
+		<h4>(<%=user.getUserAge()%>) <%=user.getUserName()%></h4>	<h5>여성</h5>
+		
+		희망 분야 : <%=lessondetail.getCategory_smallName()%> 
+		
+	
+		
+		<%} %>
+		
+		
+		</center>
+		</li>
+		<li class="" background="red"><br> </li>
+		
 		</ul>
 		</li>
 		
 		<li class="topdiv" name="option">
-		조회수?<br>
-		등록일?<br>
-		<div class="imticon">
-		
-		<%@ include file="/01.CJS\imticon.jsp" %>
-		
-		</div>
+		<h4>
+		등록일 :<br><%=lessondetail.getLesson_startdate()%><br>
+		</h4>
+		<%if(loginUser!=null) %>
+		<% if(user.getUserNo()==loginUser.getUserNo()){ %>
+		<button type='button' class='btn'>본인의 요청입니다</button>
+		<%}else if(user.getUserTypeNo()!=1001){ %>
+		<button type='button' value="<%=loginUser.getUserNo()%>/<%=lessondetail.getLesson_no()%>"  onclick="submitLesson(this)" class='btn'>레슨하기!</button>
+		<%}else{ %>
+		<button type='button' class='btn'>선생님이신가요?? 로그인을 해주세요</button>
+		<%} %>
 		</li>
 		
 		
@@ -249,7 +279,7 @@ border-radius: 35px;
 			<h2>수강료</h2><br>
 				<table>
 					<tr>
-						<td><p style="font-size: 25pt;">1</p></td>
+						<td><p style="font-size: 25pt;"><%=lessondetail.getLesson_price() %></p></td>
 						<td><p style="font-size: 10pt; margin-top: 6px; margin-left: 3px;">만원</p></td>		
 					</tr>
 				</table>
@@ -258,7 +288,7 @@ border-radius: 35px;
 			<h2>수업횟수</h2><br>
 			<table>
 					<tr>
-						<td><p style="font-size: 25pt;">2</p></td>
+						<td><p style="font-size: 25pt;"><%=lessondetail.getLesson_count() %></p></td>
 						<td><p style="font-size: 10pt; margin-top: 6px; margin-left: 3px;">회</p></td>		
 					</tr>
 				</table>
@@ -280,11 +310,7 @@ border-radius: 35px;
                 <ul class="nav nav-tabs">
                     <li class="active">
                     <a href="#tab1info" data-toggle="tab">위치와 반경</a></li>
-                    <li><a href="#tab2info" data-toggle="tab">수업방식</a></li>
-                    <li><a href="#tab3info" data-toggle="tab">포트폴리오</a></li>
-
-            
-        
+                    <li><a href="#tab2info" data-toggle="tab">희망수업방식</a></li>
                 </ul>
             </div>
             
@@ -308,17 +334,7 @@ border-radius: 35px;
                    <nav class="in1">
 			<nav class="info1Oftop">
 			<!-- 간단한소개 -->
-			1
-			
-			</nav>
-			<nav class="info1Oftop" id="info10">
-			<!--  진행방식-->
-		2
-			
-			</nav>
-			<nav class="info1Oftop">
-			<!-- 수업경력과 포부 -->
-		3
+			<%=lessondetail.getLesson_contop() %>
 			</nav>
    
 	     
@@ -429,7 +445,7 @@ geocoder.addressSearch('<%=lessondetail.getLesson_loc()%>', function(result, sta
 
 <!--내용 끝-->
 <div align="center">
-<input type="submit" value="강좌신청">&nbsp;<input type="submit" value="나가기">
+&nbsp;<input type="submit" value="나가기">
 </div>
 
  <!-- 바닥 -->

@@ -273,8 +273,7 @@ border-radius: 35px;
 		등록일?<br>
 		<div class="imticon">
 		
-		<%@ include file="/01.CJS\imticon.jsp" %>
-		
+	
 		</div>
 		</li>
 		
