@@ -48,7 +48,7 @@
 			type:"get",
     	    dataType:"json",
     	    success:function(data) {
-    	    	$("#menubar-searchbar").html("");
+    	    	$("#menubar-searchbar").html("<option>키워드로 검색합니다.</option>");
    		     	var jsonStr = JSON.stringify(data);
     	    	//문자열을 다시 변경
    		     	//json 객체로 파싱함. 
@@ -63,10 +63,21 @@
         		console.log(b+c)
 			}, complete: function() {
 				$("#select2-chosen-1").html($("#s2id_autogen1_search").val());
-				//select2-results에 li로 나열.				
+				//select2-results에 li로 나열.	
+				
 			}
 		});           
 
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
 		$("#menubar-searchbar").select2();     
 		
 		$("#s2id_autogen1_search").keyup(function(){
@@ -79,7 +90,7 @@
 			type:"get",
 			dataType:"json",
 			success: function(data){
-				$("#menubar-searchbar").html("");
+				$("#menubar-searchbar").html("<option>키워드로 검색합니다.</option>");
 				var jsonStr=JSON.stringify(data);
 				//문자열을 다시 변경
 				//json 객체로 파싱함. 
@@ -89,21 +100,23 @@
             		/* console.log(json.list[i]); */
             		$("#menubar-searchbar").html($("#menubar-searchbar").html()+'<option>'+json.list[i]+'</option>')               
 				};
-				
 			}, error:function(a,b,c) {
         		console.log(b+c)
 			}, complete: function() {
         		$("#select2-chosen-1").html($("#s2id_autogen1_search").val());
         		console.log($("#s2id_autogen1_search").val());
-        		$(".ohw-navbar-search-hidden").val($("#s2id_autogen1_search").val());
+        		$(".ohw-navbar-search-hidden").val($(".select2accessible").text());
         		console.log($(".ohw-navbar-search-hidden").val());
+        	
+        		
             //select2-results에 li로 나열.
 			}
 		});            
 	});   
 		
-		$("#menubar-searchbar").click(function(){
-			$.ajax({      
+//클릭후, 검색창에 갱신이 안되게하는 함수↓↓  삭제할것인지, 중요한 함수인지.?
+$("#menubar-searchbar").click(function(){
+	$.ajax({      
 				url:"<%=request.getContextPath()%>/search",
 				data:{
 					word:$("a").val(),
@@ -112,31 +125,38 @@
 				type:"get",
 				dataType:"json",
 				success: function(data){
-					$("#menubar-searchbar").html("");
+					$("#menubar-searchbar").html("<option>키워드로 검색합니다.</option>"	);
 					var jsonStr=JSON.stringify(data);
 					//문자열을 다시 변경
 					//json 객체로 파싱함. 
 					var json= JSON.parse(jsonStr); 
 	            
 					for(var i in json.list) {
-	            		/* console.log(json.list[i]); */
-	            		$("#menubar-searchbar").html($("#menubar-searchbar").html()+'<option>'+json.list[i]+'</option>')               
+	            	 console.log(json.list[i]); 
+	            	$("#menubar-searchbar").html($("#menubar-searchbar").html()+'<option>'+json.list[i]+'</option>')               
 					};
-					
+
 				}, error:function(a,b,c) {
 	        		console.log(b+c)
 				}, complete: function() {
-	        		$("#select2-chosen-1").html($("#s2id_autogen1_search").val());
-	        		console.log($("#s2id_autogen1_search").val());
-	        		$(".ohw-navbar-search-hidden").val($("#s2id_autogen1_search").val());
-	        		console.log($(".ohw-navbar-search-hidden").val());
-	            //select2-results에 li로 나열.
+	        		$("#select2-chosen-1").html( $("#s2id_autogen1_search").val() );
+	        		console.log($("#select2-chosen-1").text());
+	        		
+	  				
+	     $(".ohw-navbar-search-hidden").val($(".select2accessible").text());
+	     
+	     console.log($(".ohw-navbar-search-hidden").val());
+		       		 
+		//select2-results에 li로 나열.
+	           
 				}
-			});            
-		});
+			});
+	$("#select2-chosen-1").html($("#s2id_autogen1_search").val());
 		
+ 	});
+ 
+ $("#select2-chosen-1").html( $("#s2id_autogen1_search").val() );
 });   
-
 </script>  
   
 <style type="text/css">
@@ -246,7 +266,8 @@
 				
 				 <li>
 					<form class="form-inline mt-2 mt-md-0 input-group" action = "/prototype/lnsearch" method="post">
-						<input type = "hidden" class = "ohw-navbar-search-hidden" name = "ohw-keyword" value = "">
+						<input type = "hidden" class = "ohw-navbar-search-hidden" name = "ohw-keyword">
+					
 						<select id="menubar-searchbar" name="seachcontent" aria-label="Search" style="margin-top:7px;">    
 							<option>여기에 값을 입력하세요</option>
 						</select>      

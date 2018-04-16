@@ -705,7 +705,8 @@ the specific language governing permissions and limitations under the Apache Lic
                         role: "status",
                         "aria-live": "polite"
                     })
-                    .addClass("select2-hidden-accessible")
+                    .addClass("select2accessible")
+               
                     .appendTo(document.body);
             }
 
