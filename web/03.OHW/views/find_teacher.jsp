@@ -50,32 +50,14 @@
 		
 	}
 	
-	function keywordView() {
+	function keywordView(keyword) {
 		
+		searchKeyword(keyword);
 		$("#search_table").hide();
 		$("#keyword_table").show();
 		$("#show_table").hide();
 		
-	}
-	
-	
-	
-	<%-- $(document).ready(function selectCategory() {
-		
-		<% String cate = request.getParameter("id"); %>
-		
-		var cate = "<%= cate %>";
-		 		
-		switch(cate) {
-		
-		case "cate_game" : $(".tclass").hide(); $("#tgame").show(); break; 
-		case "cate_sport" : $(".tclass").hide(); $("#tsport").show(); break; 
-		case "cate_music" : $(".tclass").hide(); $("#tmusic").show(); break; 
-		case "cate_dance" : $(".tclass").hide(); $("#tdance").show(); break; 
-		case "cate_etc" : $(".tclass").hide(); $("#tetc").show(); break; 
-		
-		}		
-	}); --%>	 
+	}	
 	
 </script>
 
@@ -84,21 +66,7 @@
 	.tclass, #person_info, #class_dinfo, #search_table, #keyword_table {
 		display : none;	
 	}
-	/*	#left_bar {	
-			
-		background : rgba(50, 50, 50, .0);
-		width : 100px;
-		height : 680px;
-		float : left;
-	}
 	
-	#right_bar {
-		background : rgba(50, 50, 50, .0);
-		width : 100px;
-		height : 680px;
-		float : right;		
-	}
-	*/	
 	 .header_text {		
 		color : #4988ed;
 	}
@@ -119,32 +87,32 @@
 		margin-left : 20px;		
 	}	
 			
-	#show_table, #search_table {		
+	#show_table, #search_table, #keyword_table {		
 		width:60%;
 	}
 	
-	.ohw-ready-table, .ohw-search-table {
+	.ohw-ready-table, .ohw-search-table, .ohw-keyword-table {
 		width:900px;
 		height:700px;
 		padding:0px;		
 	}
 	
-	.ohw-ready-photo, .ohw-search-photo {
+	.ohw-ready-photo, .ohw-search-photo, .ohw-keyword-photo {
 		width:110px;
 		height:110px;
 	}
 	
-	.ohw-ready-name, .ohw-search-name {
+	.ohw-ready-name, .ohw-search-name, .ohw-keyword-name {
 		width:100px;
 		height:110px;
 	}
 	
-	.ohw-ready-category, .ohw-search-category {
+	.ohw-ready-category, .ohw-search-category, .ohw-keyword-category {
 		width:200px;
 		height:110px;
 	}
 	
-	.ohw-ready-comment, .ohw-search-comment {
+	.ohw-ready-comment, .ohw-search-comment, .ohw-keyword-comment {
 		width:500px;
 		height:110px;
 	}
@@ -374,24 +342,7 @@
 					</td>
 				</tr>				
 			</table>
-			</div>
-			
-			<!-- <div>
-			<label>수업 횟수</label>
-			<table>
-				<tr>
-					<td>
-						<select name = "ohw-lesson-level">
-							<option value = "0">선택</option>
-							<option value = "11130">초보과정</option>
-							<option value = "11131">중급과정</option>
-							<option value = "11132">고급과정</option>					
-							<option value = "11133">취미</option>					
-						</select>
-					</td>
-				</tr>				
-			</table>
-			</div> -->
+			</div>			
 			
 		</div>
 		
@@ -410,9 +361,11 @@
 	
 	<hr>
 	
+	
+	
 <script type="text/javascript">
 
-$(function () {
+$(document).ready(function readyList() {
 	
 	$.ajax({
 		url:"<%= request.getContextPath() %>/lrlist",			
@@ -457,6 +410,83 @@ $(function () {
 		</table>
 	</div>
 	
+
+	
+<script type="text/javascript"> /* 키워드 검색용 스크립트 */
+
+	$(function() {
+	
+		<% String keyword = request.getParameter("ohw-keyword"); %>
+		<% System.out.println("ReadyKeywordValue : " + keyword); %>
+		
+		var keyword = "<%= keyword %>";
+	 	alert("ReadyKeyword : " + keyword)
+		if(keyword != null) {
+			keywordView(keyword);
+		}
+		
+	});
+
+	function searchKeyword(keyword) {		
+		
+		<% System.out.println("SearchKeywordValue : " + request.getParameter("ohw-keyword")); %>
+		var lessonKeywordSearch = keyword;
+		alert(lessonKeywordSearch);
+	
+		jQuery.ajaxSettings.traditional = true;	
+	
+		$.ajax({
+   	 	url:"<%= request.getContextPath() %>/lsearch",
+		data:{
+			keywordValue : lessonKeywordSearch
+		},
+    	type:"post",
+    	datatype:"json",
+    	success:
+    		function(data) {
+    			
+    			var jsonStr = JSON.stringify(data);
+    			
+    			var json = JSON.parse(jsonStr);		 
+    			
+    			console.log("LessonSearchList : ") + console.log(data);
+    			
+    			$(".ohw-keyword-table-tr").empty();
+    			
+    			for(var i in json.list) {
+    				
+    				$('.ohw-keyword-table').append(				
+    				
+    				<%-- "<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><a href = '<%= request.getContextPath() %>/ndetail?no=" + json.list[i].noticeNo + "&page=1'>" + json.list[i].noticeTitle + "</a></td>" --%>
+    											
+    				"<tr class = 'ohw-keyword-table-tr'><td class = 'ohw-keyword-photo'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></td>" + 
+    						
+    				"<td class = 'ohw-keyword-name'>" + json.list[i].userName2 + "</td>" +					 
+    				
+    				"<td class = 'ohw-keyword-category'>" + json.list[i].categoryBName + " / " + json.list[i].categorySName + "</td>" +					 
+    				
+    				"<td class = 'ohw-keyword-comment'>" + json.list[i].lessonConmid + "</td></tr>"
+    				
+    				);				
+    			}			
+    		}, 
+    	error : function(a,b,c) {
+			console.log(b+c);
+		}
+    });
+	
+	}
+
+</script>
+	
+	<div id="keyword_table" align = "center"> <!-- 키워드 검색 결과 표시 테이블 -->
+		<div><h3>키워드 검색 결과</h3></div>
+		<table class="table table-hover ohw-keyword-table">      
+			<tr class="ohw-keyword-table-tr" style = "height:30px; padding:0px; margin:0px;">
+        		
+		</table>
+	</div>
+	
 <script type="text/javascript">
 	
 	function searchTeacher() {
@@ -476,15 +506,6 @@ $(function () {
 		var teacherAgeEndValue = $("select[name=ohw-teacher-age-end]").val();
 		console.log(teacherAgeEndValue);		
 		
-		/* var teacherEXPArr = new Array();
-		var teacherEXPValue = document.getElementsByName('ohw-teacher-EXP');
-		for(var i in teacherEXPValue){
-			if(teacherEXPValue[i].checked == true) {
-				console.log(teacherEXPValue[i].value);
-				teacherEXPArr[i] = teacherEXPValue[i].value;
-			}
-		} */
-		
 		var lessonPricePreValue = $("select[name=ohw-lesson-price-pre]").val();
 		console.log(lessonPricePreValue);
 		
@@ -503,8 +524,7 @@ $(function () {
 	    		lesson : lessonValue, 
 	    		teacherGender : teacherGenderValue, 
 	    		teacherAgePre : teacherAgePreValue, 
-	    		teacherAgeEnd : teacherAgeEndValue, 
-	    		/* teacherEXP : teacherEXPArr,  */
+	    		teacherAgeEnd : teacherAgeEndValue,	    		
 	    		lessonPricePre : lessonPricePreValue, 
 				lessonPriceEnd : lessonPriceEndValue, 
 				lessonLevel : lessonLevelValue
@@ -552,66 +572,6 @@ $(function () {
 		<div><h3>검색 결과</h3></div>
 		<table class="table table-hover ohw-search-table">      
 			<tr class="ohw-search-table-tr" style = "height:30px; padding:0px; margin:0px;">
-        		
-		</table>
-	</div>
-	
-<script type="text/javascript"> /* 키워드 검색용 스크립트 */
-
-	function searchKeyword() {		
-		
-		var lessonKeywordSearch = <% request.getParameter("ohw-keyword"); %>
-		console.log(lessonKeywordSearch);
-		<% System.out.print(request.getParameter("ohw-keyword")); %>
-	
-		jQuery.ajaxSettings.traditional = true;	
-	
-		$.ajax({
-   	 	url:"<%= request.getContextPath() %>/lsearch",
-		data:{keywordValue : lessonKeywordSearch},
-    	type:"get",
-    	datatype:"json",
-    	success:
-    		function(data) {
-    			
-    			var jsonStr = JSON.stringify(data);
-    			
-    			var json = JSON.parse(jsonStr);		 
-    			
-    			console.log("LessonSearchList : ") + console.log(data);
-    			
-    			$(".ohw-keyword-table-tr").empty();
-    			
-    			for(var i in json.list) {
-    				
-    				$('.ohw-keyword-table').append(				
-    				
-    				<%-- "<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><a href = '<%= request.getContextPath() %>/ndetail?no=" + json.list[i].noticeNo + "&page=1'>" + json.list[i].noticeTitle + "</a></td>" --%>
-    											
-    				"<tr class = 'ohw-keyword-table-tr'><td class = 'ohw-keyword-photo'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></td>" + 
-    						
-    				"<td class = 'ohw-keyword-name'>" + json.list[i].userName2 + "</td>" +					 
-    				
-    				"<td class = 'ohw-keyword-category'>" + json.list[i].categoryBName + " / " + json.list[i].categorySName + "</td>" +					 
-    				
-    				"<td class = 'ohw-keyword-comment'>" + json.list[i].lessonConmid + "</td></tr>"
-    				
-    				);				
-    			}			
-    		}, 
-    	error : function(a,b,c) {
-			console.log(b+c);
-		}
-    });
-	
-	}
-
-</script>
-	
-	<div id="keyword_table" align = "center"> <!-- 키워드 검색 결과 표시 테이블 -->
-		<div><h3>키워드 검색 결과</h3></div>
-		<table class="table table-hover ohw-keyword-table">      
-			<tr class="ohw-keyword-table-tr" style = "height:30px; padding:0px; margin:0px;">
         		
 		</table>
 	</div>

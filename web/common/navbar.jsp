@@ -100,7 +100,41 @@
             //select2-results에 li로 나열.
 			}
 		});            
-	});    
+	});   
+		
+		$("#menubar-searchbar").click(function(){
+			$.ajax({      
+				url:"<%=request.getContextPath()%>/search",
+				data:{
+					word:$("a").val(),
+					user:$("#userno").val()
+					},//추가로 유저 번호도 보낸다.
+				type:"get",
+				dataType:"json",
+				success: function(data){
+					$("#menubar-searchbar").html("");
+					var jsonStr=JSON.stringify(data);
+					//문자열을 다시 변경
+					//json 객체로 파싱함. 
+					var json= JSON.parse(jsonStr); 
+	            
+					for(var i in json.list) {
+	            		/* console.log(json.list[i]); */
+	            		$("#menubar-searchbar").html($("#menubar-searchbar").html()+'<option>'+json.list[i]+'</option>')               
+					};
+					
+				}, error:function(a,b,c) {
+	        		console.log(b+c)
+				}, complete: function() {
+	        		$("#select2-chosen-1").html($("#s2id_autogen1_search").val());
+	        		console.log($("#s2id_autogen1_search").val());
+	        		$(".ohw-navbar-search-hidden").val($("#s2id_autogen1_search").val());
+	        		console.log($(".ohw-navbar-search-hidden").val());
+	            //select2-results에 li로 나열.
+				}
+			});            
+		});
+		
 });   
 
 </script>  
@@ -155,7 +189,7 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
 				<li class="active">
-				<a href="/prototype/03.OHW/views/noticeList.jsp">은밀한 공지사항</a></li>
+				<a href="/prototype/03.OHW/views/noticeList.jsp?page=1">은밀한 공지사항</a></li>
 				<li><a href="/prototype/03.OHW/views/find_teacher.jsp">은밀한 선생</a></li>
 				<li><a href="/prototype/03.OHW/views/find_learn.jsp">은밀한 학생</a></li>
 				<li><a href="/prototype/semilist?page=1">은밀한 세미나</a></li>
@@ -211,7 +245,7 @@
 				<% } %>
 				
 				 <li>
-					<form class="form-inline mt-2 mt-md-0 input-group" action = "lnsearch" method="post">
+					<form class="form-inline mt-2 mt-md-0 input-group" action = "/prototype/lnsearch" method="post">
 						<input type = "hidden" class = "ohw-navbar-search-hidden" name = "ohw-keyword" value = "">
 						<select id="menubar-searchbar" name="seachcontent" aria-label="Search" style="margin-top:7px;">    
 							<option>여기에 값을 입력하세요</option>

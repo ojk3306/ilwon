@@ -271,8 +271,8 @@ public class LessonDao {
 			pstmt = con.prepareStatement(query);
 			list = new ArrayList<LessonSearch>();
 			
-			if(ls.getLocationValue() != null) {
-				pstmt.setString(1, ls.getLesson_keyword());
+			if(ls.getLesson_keyword() != null) {
+				pstmt.setString(1, "%"+ls.getLesson_keyword()+"%");
 			} else {
 				pstmt.setString(1, "%%");
 			}			
