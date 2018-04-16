@@ -14,18 +14,28 @@ public NoticeDao() {
 		
 	}
 
-	public ArrayList<Notice> selectList(Connection con) {
+	public ArrayList<Notice> selectList(Connection con, int currentPage, int limit) {
+		
 		ArrayList<Notice> list = new ArrayList<Notice>();
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
 		String query = "select * from notice n, users u "
 						+ "where n.user_no = u.user_no "
+						+ "and rownum >= ? "
+						+ "and rownum <= ? "
 						+ "order by n.notice_no desc";
 		
+		int startRow = (currentPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		
 		try {
-			stmt = con.createStatement();
-			rset = stmt.executeQuery(query);
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery(query);
 			
 			while(rset.next()) {
 				
@@ -44,7 +54,7 @@ public NoticeDao() {
 			e.printStackTrace();
 		} finally {
 			close(rset);
-			close(stmt);
+			close(pstmt);
 		}
 		/*System.out.println("Daolist : " + list + " / (To.NoticeDao)");*/
 		return list;		
@@ -229,5 +239,33 @@ public ArrayList<Notice> selectMainNotice(Connection con) {
 		System.out.println("DaoList : " + list);
 		return list;
 	}
+
+	public int getListCount(Connection con) {
+		
+		int listCount = 0;
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String query = "select count(*) from notice";
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()) {
+				listCount = rset.getInt(1);				
+			} else {
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return listCount;
+	}	
 
 }
