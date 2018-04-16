@@ -66,17 +66,7 @@
 				//select2-results에 li로 나열.	
 				
 			}
-		});           
-
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
+		});    	
     	
 		$("#menubar-searchbar").select2();     
 		
@@ -171,7 +161,7 @@ $(".ohw-navbar-search-hidden").val($(".select2accessible").text());
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
 				<li class="active">
-				<a href="/prototype/03.OHW/views/noticeList.jsp?page=1">은밀한 공지사항</a></li>
+				<a href="/prototype/nlist?page=1">은밀한 공지사항</a></li>
 				<li><a href="/prototype/03.OHW/views/find_teacher.jsp">은밀한 선생</a></li>
 				<li><a href="/prototype/03.OHW/views/find_learn.jsp">은밀한 학생</a></li>
 				<li><a href="/prototype/semilist?page=1">은밀한 세미나</a></li>

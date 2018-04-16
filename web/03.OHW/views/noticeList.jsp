@@ -1,5 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "notice.model.vo.*, java.util.*, java.sql.*" %>
+    
+<% 
+	ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
+	int listCount = ((Integer)(request.getAttribute("listCount"))).intValue();
+	int startPage = ((Integer)(request.getAttribute("startPage"))).intValue();
+	int endPage = ((Integer)(request.getAttribute("endPage"))).intValue();
+	int maxPage = ((Integer)(request.getAttribute("maxPage"))).intValue();
+	int currentPage = ((Integer)(request.getAttribute("currentPage"))).intValue();
+%>
     
 <!DOCTYPE html>
 <html>
@@ -44,7 +54,7 @@
 <body> 
 <%@ include file="/common/navbar.jsp" %>
 
-<script type="text/javascript">
+<%-- <script type="text/javascript">
 	
 	$(function () {
 	
@@ -86,7 +96,7 @@
 	});	
 });	
 	
-</script>
+</script> --%> <!-- ajax의 흔적 ㅜㅜ... -->
 
 <nav class="contents">
 <br>
@@ -104,11 +114,32 @@
 		 				<th class = 'ohw-notice-cont'>제목</th>
 		 				<th class = 'ohw-notice-conw'>작성자</th>
 		 				<th class = 'ohw-notice-cond'>작성일</th>
-		 			</tr>		 		
+		 			</tr>
+		 			
+		 			<% for(Notice notice : list) { %>
+	
+					<tr class = 'ohw-notice-tr'>
+						<td class = 'ohw-notice-conn' align="center"><%= notice.getNoticeNo() %></td>
+						<td class = 'ohw-notice-cont'>		
+						<!-- 로그인한 상태일 때만 상세보기 링크 처리함 -->
+						<% if(loginUser != null) { %>
+							<a href = "/prototype/ndetail?no=<%= notice.getNoticeNo() %>&page=<%= currentPage %>"><%= notice.getNoticeTitle() %></a>
+						<% } else { %>
+							<%= notice.getNoticeTitle() %>
+						<% } %>		
+						</td>
+						<td class = 'ohw-notice-conw'><%= notice.getUserName() %></td>
+						<td class = 'ohw-notice-cond'><%= notice.getNoticeDate() %></td>												
+					</tr>
+	
+					<% } //for close%>
+							 				 		
 		 		</table>		 	
 			</div>
 		 	<!-- 게시판 몸통끝 -->
-			<div>
+		 	
+		 	<!-- 검색바 -->
+			<!-- <div>
 	 			<select>
 					<option>제목</option>
 					<option>내용</option>
@@ -117,10 +148,11 @@
 	 			<input type="text">	 
 	 			<input type="submit" name="search_submit" class="btn" value="검색">				
 				 				
-	 		</div>	
+	 		</div> -->
+	 		<!-- 검색바 -->
 	 		
 	 		<!-- 페이징 바디 -->
-	 		<div class="ohw-notice-page">
+	 		<!-- <div class="ohw-notice-page">
 		 		<ul class="pagination">
 					<li class="page-item"><a class="page-link" href="#">Previous</a></li>
 					<li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -130,8 +162,55 @@
 					<li class="page-item"><a class="page-link" href="#">5</a></li>
 					<li class="page-item"><a class="page-link" href="#">Next</a></li>
 				</ul>	 		
-			</div>
+			</div> -->
 			<!-- 페이징 바디 -->
+			
+			<!-- paging 처리 -->
+
+			<!-- Start -->
+	
+			<div style = "text-align : center;">
+				<% if(currentPage <= 1) { %>
+					[맨처음]&nbsp;
+				<% } else { %>
+					<a href = "/prototype/nlist?page=1">[맨처음]</a>
+				<% } %>
+	
+				<!-- Prev -->
+
+				<% if(!((currentPage - 10) > startPage && (currentPage - 10) < 1)) { %>
+					[Prev]&nbsp;
+				<% } else { %>
+					<a href = "/prototype/nlist?page=<%= startPage - 10 %>">[Prev]</a>
+				<% } %> &nbsp; &nbsp;
+
+				<!-- 현재 페이지가 포함된 그룹의 페이지 숫자 출력 -->
+				<% for(int p = startPage; p<= endPage; p++) { 
+					 if(p == currentPage) { %>
+	
+					<font color = "red" size="4"><b>[<%= p %>]</b></font>
+				<% } else { %>
+					<a href = "/prototype/nlist?page=<%= p %>"><%= p %></a>
+				<% }
+				} %> &nbsp; &nbsp;
+
+				<!-- Next -->
+
+				<% if(!((currentPage + 10) > endPage && (currentPage + 10) < maxPage)) { %>
+					[Next]&nbsp;
+				<% } else { %>
+					<a href = "/prototype/nlist?page=<%= endPage + 10 %>">[Next]</a>
+				<% } %>
+	
+				<!-- End -->
+
+				<% if(currentPage >= maxPage) { %>
+					[맨 끝]&nbsp;
+				<% } else { %>
+					<a href = "/prototype/nlist?page=<%= maxPage %>">[맨 끝]</a>
+				<% } %>
+			</div>
+			
 		</div>	 
 	</div>	
 </div>

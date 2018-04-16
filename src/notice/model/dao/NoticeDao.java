@@ -14,28 +14,27 @@ public NoticeDao() {
 		
 	}
 
-	/*public ArrayList<Notice> selectList(Connection con, int currentPage, int limit) {*/
-	public ArrayList<Notice> selectList(Connection con) {
-		
+	public ArrayList<Notice> selectList(Connection con, int currentPage, int limit) {
+			
 		ArrayList<Notice> list = new ArrayList<Notice>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
 		String query = "select * from notice n, users u "
 						+ "where n.user_no = u.user_no "
-						/*+ "and rownum >= ? "
-						+ "and rownum <= ? "*/
+						+ "and rownum >= ? "
+						+ "and rownum <= ? "
 						+ "order by n.notice_no desc";
 		
-		/*int startRow = (currentPage - 1) * limit + 1;
-		int endRow = startRow + limit - 1;*/
+		int startRow = (currentPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
 		
 		try {
 			pstmt = con.prepareStatement(query);
 			
-			/*pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);*/
-			rset = pstmt.executeQuery(query);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
 				
@@ -56,7 +55,7 @@ public NoticeDao() {
 			close(rset);
 			close(pstmt);
 		}
-		/*System.out.println("Daolist : " + list + " / (To.NoticeDao)");*/
+		System.out.println("Daolist : " + list + " / (To.NoticeDao)");
 		return list;		
 	}
 	

@@ -381,14 +381,18 @@ $(document).ready(function readyList() {
 			for(var i in json.list) {
 				
 				$('.ohw-ready-table').append(
-				
-				<%-- "<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><a href = '<%= request.getContextPath() %>/ndetail?no=" + json.list[i].noticeNo + "&page=1'>" + json.list[i].noticeTitle + "</a></td>" --%>
-											
-				"<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></td>" + 
+						
+				 <% if(loginUser != null) { %>
+				 	<% System.out.println("이프..."); %>
+					"<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><a href = '<%= request.getContextPath() %>/lessondetail?no=" + json.list[i].lessonNo + "&page=1'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></a></td>" + 
+				 <% } else { %>
+					 <% System.out.println("엘스..."); %>
+					"<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></td>" + 
+				 <% } %>											
 						
 				"<td class = 'ohw-ready-name'>" + json.list[i].userName2 + "</td>" +					 
 				
-				"<td class = 'ohw-ready-category'>" + json.list[i].categoryBName + " / " + json.list[i].categorySName + "</td>" +					 
+				"<td class = 'ohw-ready-category'>" + json.list[i].categoryBName + " / " + json.list[i].categorySName + "</td>" +
 				
 				"<td class = 'ohw-ready-comment'>" + json.list[i].lessonConmid + "</td></tr>"
 				
