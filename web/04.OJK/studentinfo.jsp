@@ -104,7 +104,9 @@ $(function(){
 });
 
 
-
+function updateUser(){ //개인 정보 수정
+	location.href="/prototype/04.OJK/userupdate.jsp";
+}
 
 
 //강의 상세보기
@@ -183,13 +185,10 @@ function upload_profile() {
 
 				</div>
 				<div style="width: 100%; height: 70px; padding: 20px;">
-					<button type="button" class="btn">개인정보 수정하기</button>
+					<button type="button" class="btn" onclick="updateUser();">개인정보 수정하기</button>
 					&nbsp;
 					<button type="button" class="btn" onclick="upload_profile();">프로필 사진 수정</button>
 					&nbsp;
-					<button type="button" class="btn">메세지 보기</button>
-					&nbsp;
-					<button type="button" class="btn">게시판 이용내역 보기</button>
 
 
 				</div>

@@ -624,6 +624,42 @@ public class UsersDao {
 		
 		return result;
 	}
+
+	public int userUpdate(Connection con, int userno, String value, int type, String pwd) {
+		int result=0;
+		PreparedStatement pstmt = null;
+		
+
+		String query="";
+		switch(type) {
+		case 1: query="update users set USER_PHONE = ? where user_no = ?"; break;
+		
+		case 2: query="update users set USER_pwd = ? where user_no = ?"; break;
+		
+		}
+		try {
+			
+			switch(type) {
+			case 1:
+				pstmt=con.prepareStatement(query);
+				pstmt.setString(1,value);
+				pstmt.setInt(2,userno);
+				result=pstmt.executeUpdate();
+				break;
+			case 2:
+				pstmt=con.prepareStatement(query);
+				pstmt.setString(1,pwd);
+				pstmt.setInt(2,userno);
+				result=pstmt.executeUpdate();
+				break;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 	
 	
 }
