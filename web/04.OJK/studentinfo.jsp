@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>학생 정보 보기</title>
 <script>
-//본인이 올린것.
+//배우고싶어요
 $(function(){
 	$.ajax({
 		url: "/prototype/onlessonteacher",
@@ -49,122 +49,61 @@ $(function(){
 			console.log(b+c);
 		}	
 	});
-
-});
-
-//진행중인강좌.
-$(function(){
-	$.ajax({
-		url: "/prototype/onlesson2",
+	
+	//진행중인 강의
+	$.ajax({   //레슨로그에서 본인(학생)의 번호로 검색, 스테이스에 수업이 진행중인 것만 가져 가져옴.
+		url:"/prototype/llteaher2",
 		data: {user : $('#userno').val()},
 		type: "get",
 		dataType: "json",
 		success: function(data) {
 			
-			var jsonStr = JSON.stringify(data);
-			var json = JSON.parse(jsonStr);
-			
-			var values = $('#ongoing_table2').html() + "<br>";
-			
-			for(var i in json.onlesson) {	
-			values +="<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
-			+"</td><td>"+json.onlesson[i].username+"</td>"
-					
-			+"</td><td>"+json.onlesson[i].log_date+"</td><td><button type='button' class='btn'>수강중</button></td>"
-							
-						
-					+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='CancleLesson(this)'>취소</button></td></tr>"			
+	var jsonStr = JSON.stringify(data);
+	var json = JSON.parse(jsonStr);
+	var values = $('#ongoing_table2').html();
+	for(var i in json.onlesson) {
+		
+	if(json.onlesson[i].state == 1) {
+			values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
+			+"</td><td>"+json.onlesson[i].username+"</td><td>"+json.onlesson[i].phone+"</td><td>"+json.onlesson[i].log_date+"</td>"
+			+"<td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
+			+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='finishLesson(this)'>종료</button></td></tr>"			
 			}
-			
-			
-			/*
-			job.put("username", l.getUSER_NAME());//선생의 이름 
-			job.put("state", l.getLOG_STATE());
-			job.put("lesson_no", l.getLESSON_NO());
-			job.put("lesson_title", l.getLESSON_TITLE());
-			job.put("log_no", l.getLOG_NO());
-			job.put("log_date", l.getLOG_DATE().toString());
-			
-			*/
-			
-			$('#ongoing_table2').html(values);
+	else if(json.onlesson[i].state == 2 ){ 
+		//일단 보류
+		}
+	}
+	$('#ongoing_table2').html(values);
 		}, error: function(a,b,c){
 			console.log(b+c);
 		}	
-	});
- 
-});
+	})
 
-
-//진행중인 강의 lesson_log테이블에서 뽑아옴.
-$(function(){
+//학생이 이때까지 배운 내역
 	$.ajax({
-		url: "/prototype/onlesson2",
+		url:"/prototype/teachlogofteacher2",
 		data: {user : $('#userno').val()},
 		type: "get",
 		dataType: "json",
 		success: function(data) {
 			
-			var jsonStr = JSON.stringify(data);
-			var json = JSON.parse(jsonStr);
-			
-			var values = $('#previous_table').html() + "<br>";
-			
-			for(var i in json.onlesson) {	
-					if(json.onlesson[i].state == 1 && json.onlesson[i].lesson_state == 2) {
-					values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
-					+"</td><td>"+json.onlesson[i].username+"</td><td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
-					+"<td>"+json.onlesson[i].lesson_enddate+"</td></tr>"			
-					}
-			}
-			
-			$('#previous_table').html(values);
+	var jsonStr = JSON.stringify(data);
+	var json = JSON.parse(jsonStr);
+	var values = $('#ongoing_table3').html();
+	for(var i in json.onlesson) {
+		
+			values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
+			+"</td><td>"+json.onlesson[i].username+"</td><td>"+json.onlesson[i].phone+"</td><td>"+json.onlesson[i].log_date+"</td>"
+			+"<td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='insertReview(this)'>리뷰쓰기</button></td>"
+	}
+	$('#ongoing_table3').html(values);
 		}, error: function(a,b,c){
 			console.log(b+c);
 		}	
-	});
-	
-$.ajax({
-	url:"/prototype/onlesson3",
-	data:{user : $('#userno').val()},
-
-	type: "get",
-	dataType: "json",
-	success: function(data) {
-		
-		var jsonStr = JSON.stringify(data);
-		var json = JSON.parse(jsonStr);
-		$('#ongoing_table3').html("");
-		var values = $('#ongoing_table3').html();
-		
-		for(var i in json.onlesson) {	
-		values +="<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
-		+"</td><td>"+json.onlesson[i].username+"</td>"
-				
-		+"</td><td>"+json.onlesson[i].log_date+"</td><td><button type='button' id="+json.onlesson[i].lesson_no+" class='btn' onclick='insertReview(this)'>리뷰쓰기</button></td>"
-						
-}
-		
-		
-		/*
-		job.put("username", l.getUSER_NAME());//선생의 이름 
-		job.put("state", l.getLOG_STATE());
-		job.put("lesson_no", l.getLESSON_NO());
-		job.put("lesson_title", l.getLESSON_TITLE());
-		job.put("log_no", l.getLOG_NO());
-		job.put("log_date", l.getLOG_DATE().toString());
-		
-		*/
-		
-		$('#ongoing_table3').html(values);
-	}, error: function(a,b,c){
-		console.log(b+c);
-	}	
+	}) 
 });
 
-	
 
-});
 
 
 
@@ -288,17 +227,18 @@ function upload_profile() {
 			<div id="info"
 				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px;">
 				<div style="width:100%;">
-					<table class="table table-hover" id="ongoing_table2">
+					<table class="table table-hover" >
 						<thead>
 							<tr>
 								<th>강의명</th>
 								<th>선생님</th>
-								<th>최근매칭일</th>
-								<th>현 상태</th>
+								<th>연락처</th>
+								<th>매칭시작일</th>
+								<th>상세보기</th>
 								<th>취소하기</th>
 							</tr>
 						</thead>
-						
+						<tbody id="ongoing_table2"></tbody>
 					</table>
 				</div>
 			</div>
@@ -314,7 +254,8 @@ function upload_profile() {
 							<tr>
 								<th>강의명</th>
 								<th>선생님</th>
-								<th>강의최종일</th>
+								<th>연락처</th>
+								<th>레슨수행일</th>
 								<th>리뷰쓰기</th>
 							</tr>
 						</thead>

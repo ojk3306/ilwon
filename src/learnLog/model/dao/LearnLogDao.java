@@ -260,4 +260,86 @@ public class LearnLogDao {
 		
 		return result;
 	}
+
+	public ArrayList<Learnlogforinfo> getlessonLog3_1(int user, Connection conn) {
+		ArrayList<Learnlogforinfo> onlesson = new ArrayList<Learnlogforinfo>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		//선생의 학생로그
+		String sql = "select * from  LEARN_LOG,users,lesson where LEARN_LOG.LESSON_NO=lesson.LESSON_NO and LEARN_LOG.USER_NO2=users.USER_NO and LEARN_LOG.USER_NO1= ? and LOG_STATE in 1 and STATE_NO in 1";		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, user);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Learnlogforinfo l = new Learnlogforinfo();
+				l.setLESSON_NO(rset.getInt("lesson_no"));
+				l.setLOG_DATE(rset.getDate("log_date"));
+				l.setLOG_NO(rset.getInt("log_no"));
+				l.setLOG_STATE(rset.getInt("log_state"));
+				l.setUSER_NAME(rset.getString("user_name"));
+				l.setUSER_NO2(rset.getInt("user_no2"));
+				l.setLOG_STATE(rset.getInt("LOG_STATE"));
+				l.setLESSON_TITLE(rset.getString("LESSON_TITLE"));
+				l.setUSER_PHONE(rset.getString("USER_PHONE"));
+				
+				//l.setUserNo2(rset.getInt("user_no2"));
+				
+				System.out.println("getlessonLog :" +l.toString());
+				onlesson.add(l);
+				
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return onlesson;
+	}
+
+	public ArrayList<Learnlogforinfo> getlessonLog4_1(int user, Connection conn) {
+		ArrayList<Learnlogforinfo> onlesson = new ArrayList<Learnlogforinfo>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		//선생의 학생로그
+		String sql = "select * from  LEARN_LOG,users,lesson where LEARN_LOG.LESSON_NO=lesson.LESSON_NO and LEARN_LOG.USER_NO2=users.USER_NO and LEARN_LOG.USER_NO1= ? and LOG_STATE in 3 ";		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, user);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Learnlogforinfo l = new Learnlogforinfo();
+				l.setLESSON_NO(rset.getInt("lesson_no"));
+				l.setLOG_DATE(rset.getDate("log_date"));
+				l.setLOG_NO(rset.getInt("log_no"));
+				l.setLOG_STATE(rset.getInt("log_state"));
+				l.setUSER_NAME(rset.getString("user_name"));
+				l.setUSER_NO2(rset.getInt("user_no2"));
+				l.setLOG_STATE(rset.getInt("LOG_STATE"));
+				l.setLESSON_TITLE(rset.getString("LESSON_TITLE"));
+				l.setUSER_PHONE(rset.getString("USER_PHONE"));
+				
+				//l.setUserNo2(rset.getInt("user_no2"));
+				
+				System.out.println("getlessonLog :" +l.toString());
+				onlesson.add(l);
+				
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return onlesson;
+	}
 }

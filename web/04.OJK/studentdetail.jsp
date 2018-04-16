@@ -1,20 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ page import="lesson.model.vo.LessonDetail" %>    
-<%@ page import="review.model.vo.Review" %>    
 <% 
-	LessonDetail lessondetail =(LessonDetail)request.getAttribute("lessondetail");
-	
-
-
+LessonDetail lessondetail=null;
+if(request.getAttribute("lesson")!=null)
+lessondetail =(LessonDetail)request.getAttribute("lesson");
 %>	
 <!DOCTYPE html>
 <html>
 <head>
-
-
-
-
 
 <script type="text/javascript" src="/prototype/common\resources\js\jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="/prototype/common\resources\js\select2.js"></script>
