@@ -762,8 +762,8 @@ public class LessonDao {
 		case 1 : sql = "select l.*, c.category_big, c.category_small, u.user_name, u.user_email "
 				+ "from lesson l, categorys c, users u "
 				+ "where l.category_no = c.category_no and l.user_no2 = u.user_no "
-				+"and l.lesson_title like ? or l.lesson_keyword like ? or c.category_big like ? or "
-				+"c.category_small like ? or u.user_name like ? or u.user_email like ? order by l.lesson_no desc";
+				+"and (l.lesson_title like ? or l.lesson_keyword like ? or c.category_big like ? or "
+				+"c.category_small like ? or u.user_name like ? or u.user_email like ?) order by l.lesson_no desc";
 				break;
 		case 2 : sql = "select l.*, c.category_big, c.category_small, u.user_name, u.user_email "
 				+ "from lesson l, categorys c, users u "

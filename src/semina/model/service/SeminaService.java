@@ -177,6 +177,13 @@ public class SeminaService {
 		return result;
 	}
 
+	public ArrayList<Semina> aSearchSemina(String str, int option) {
+		Connection con = getConnection();
+		ArrayList<Semina> semina = new SeminaDao().aSearchSemina(con,str,option);
+		close(con);
+		return semina;
+	}
+
 
 
 }
