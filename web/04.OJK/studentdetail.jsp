@@ -263,7 +263,7 @@ border-radius: 35px;
 		<% if(user.getUserNo()==loginUser.getUserNo()){ %>
 		<button type='button' class='btn'>본인의 요청입니다</button>
 		<%}else if(user.getUserTypeNo()!=1001){ %>
-		<button type='button' value="<%=loginUser.getUserNo()%>/<%=user.getUserNo()%>/<%=lessondetail.getLesson_no()%>"  onclick="submitLesson(this)" class='btn'>레슨하기!</button>
+		<button type='button' value="<%=user.getUserNo()%>/<%=loginUser.getUserNo()%>/<%=lessondetail.getLesson_no()%>/<%=loginUser.getUserTypeNo()%>"  onclick="submitLesson(this)" class='btn'>레슨하기!</button>
 		<%}else{ %>
 		<button type='button' class='btn'>선생님이신가요?? 로그인을 해주세요</button>
 		<%} %>

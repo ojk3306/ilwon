@@ -31,11 +31,16 @@ public class SubmitLessonByTeacher extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println(request.getParameter("no"));
 		String[] arr = request.getParameter("no").split("/");
-		
+		//학생,선생,강의
 		int result=new LearnLogService().summitLesson(Integer.parseInt(arr[0]),Integer.parseInt(arr[1]),Integer.parseInt(arr[2]));
 		
 		if(result>0) {
+			
+			if(Integer.parseInt(arr[3]) == 1002)
 			response.sendRedirect("/04.OJK/teacherinfo.jsp");
+			else
+			response.sendRedirect("/04.OJK/studentinfo.jsp");	
+			
 		}else {
 			
 		}

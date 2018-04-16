@@ -43,7 +43,11 @@ function popupReview(){
 
 	}
 	
-
+function summitbystu(a){
+	
+	location.href="/prototype/submitlesson"+a.id;
+	
+}
 </script>
 	
 <style type="text/css">
@@ -263,9 +267,22 @@ border-radius: 35px;
 		</li>
 		
 		<li class="topdiv" name="option">
-		조회수?<br>
-		등록일?<br>
 	
+		등록일:<Br>
+		<%=lessondetail.getLESSON_STARTDATE() %>	
+		<br><br><br>
+		
+		<% if(loginUser==null){%>
+		<button type='button' class='btn'>학생인가요? 지금로그인하세요</button>
+		<%}else{ %>
+			<%if( loginUser.getUserNo()== user_no ){%>
+			<button type='button' class='btn'>본인의 레슨입니다</button>
+			<%}else if(loginUser.getUserNo()!= user_no && loginUser.getUserTypeNo()!=1002 ){%>
+			<button type='button' id="<%=loginUser.getUserNo()%>/<%=user_no%>/<%=lessondetail.getLesson_no()%>/<%=loginUser.getUserTypeNo()%>" onclick="summitbystu(this)" class='btn'>레슨 신청!</button>
+			<%} %>
+		
+		
+		<%} %>
 		</li>
 		
 		
