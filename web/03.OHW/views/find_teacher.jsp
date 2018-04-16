@@ -421,8 +421,12 @@ $(document).ready(function readyList() {
 		
 		var keyword = "<%= keyword %>";
 	 	alert("ReadyKeyword : " + keyword)
-		if(keyword != null) {
+		if(keyword != "null") {
+			alert("KeywordView Run");
 			keywordView(keyword);
+		} else if(keyword == "null") {
+			alert("ReadyView Run");
+			readyView();
 		}
 		
 	});
