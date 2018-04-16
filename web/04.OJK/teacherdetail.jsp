@@ -29,13 +29,7 @@
 <html>
 <head>
 
-
-
-
-
 <script type="text/javascript" src="/prototype/common\resources\js\jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="/prototype/common\resources\js\select2.js"></script>
-
 
 <script type="text/javascript">
 
@@ -271,10 +265,7 @@ border-radius: 35px;
 		<li class="topdiv" name="option">
 		조회수?<br>
 		등록일?<br>
-		<div class="imticon">
-		
 	
-		</div>
 		</li>
 		
 		

@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import learnLog.model.service.LearnLogService;
+import learnLog.model.vo.LearnLog;
+
 /**
  * Servlet implementation class SubmitLessonByTeacher
  */
@@ -27,8 +30,15 @@ public class SubmitLessonByTeacher extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println(request.getParameter("no"));
+		String[] arr = request.getParameter("no").split("/");
 		
+		int result=new LearnLogService().summitLesson(Integer.parseInt(arr[0]),Integer.parseInt(arr[1]),Integer.parseInt(arr[2]));
 		
+		if(result>0) {
+			response.sendRedirect("/04.OJK/teacherinfo.jsp");
+		}else {
+			
+		}
 	}
 
 	/**
