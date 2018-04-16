@@ -21,7 +21,7 @@
 		에러 발생 : <%= exception.getMessage() %>
 	<% } %>
 		
-	<a href="/first/index.jsp">시작페이지로 이동</a>
+	<a href="/prototype/index.jsp">시작페이지로 이동</a>
 	
 	</section>
 	<%@ include file= "../../common/footer.jsp" %>	

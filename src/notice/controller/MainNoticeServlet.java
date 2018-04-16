@@ -61,7 +61,7 @@ public class MainNoticeServlet extends HttpServlet {
 				
 				//전송용 객체에 jarr 배열 담음
 				json.put("list", jarr);
-				System.out.println("Noticejson : " + json.toJSONString());
+				System.out.println("MainNoticeJson : " + json.toJSONString());
 				
 				response.setContentType("application/json; charset=UTF-8");
 				PrintWriter out = response.getWriter();
