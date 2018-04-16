@@ -160,7 +160,7 @@ public class LearnLogDao {
 		ResultSet rset = null;
 
 		//선생의 학생로그
-		String sql = "select  * from  LEARN_LOG,users,lesson where LEARN_LOG.LESSON_NO=lesson.LESSON_NO and LEARN_LOG.USER_NO2=users.USER_NO and LEARN_LOG.USER_NO2 = ? ";
+		String sql = "select * from  LEARN_LOG,users,lesson where LEARN_LOG.LESSON_NO=lesson.LESSON_NO and LEARN_LOG.USER_NO1=users.USER_NO and LEARN_LOG.USER_NO2=? ";		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, user);

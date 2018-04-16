@@ -103,23 +103,24 @@ $.ajax({
 		
 var jsonStr = JSON.stringify(data);
 var json = JSON.parse(jsonStr);
-var values = $('#ongoing_table2').html() + "<br>";
-
+var values = $('#ongoing_table2').html();
 for(var i in json.onlesson) {
 	
 if(json.onlesson[i].state == 1) {
 		values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
-		+"</td><td>레슨</td><td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
-		+"<td><button type='button' class='btn btn-primary'>"+json.onlesson[i].state+"</button></td>"
+		+"</td><td>레슨</td><td>"+json.onlesson[i].username+"</td>"
+		+"<td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
 		+"<td><button type='button' class='btn btn-warning' id='"+json.onlesson[i].lesson_no+"' onclick='updateLesson(this)'>수정</button></td>"
-		+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='finishLesson(this)'>종료</button></td></tr>"			
+		+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+ "' onclick='finishLesson(this)'>종료</button></td></tr>"			
 		}
+
+
 else if(json.onlesson[i].state == 2 ){
-		values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
-		+"</td><td>레슨</td><td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
-		+"<td><button type='button' class='btn btn-primary'>"+json.onlesson[i].state+"</button></td>"
-		+"<td><button type='button' class='btn btn-warning' id='"+json.onlesson[i].lesson_no+"' onclick='updateLesson(this)'>수정</button></td>"
-		+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='finishLesson(this)'>종료</button></td></tr>"			
+	values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
+	+"</td><td>레슨</td><td>"+json.onlesson[i].username+"</td>"
+	+"<td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
+	+"<td><button type='button' class='btn btn-warning' id='"+json.onlesson[i].lesson_no+"' onclick='updateLesson(this)'>수정</button></td>"
+	+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+ "' onclick='finishLesson(this)'>종료</button></td></tr>"			
 	}
 }
 
@@ -287,7 +288,7 @@ function upload_profile() {
 							<tr>
 								<th>강의명</th>
 								<th>강의타입</th>
-								<th>상세보기</th>
+								<th>상세보기바로가기</th>
 								<th>종료일</th>
 							</tr>
 						</thead>
@@ -304,30 +305,15 @@ function upload_profile() {
 						<thead>
 							<tr>
 								<th>강의명</th>
-								<th>과목</th>
+								<th>타입</th>
 								<th>학생명</th>
-								<th>상세보기</th>
+								<th>상세보기바로가기</th>
 								<th>수락</th>
 								<th>거절</th>
 							</tr>
 						</thead>
 						<tbody id="ongoing_table2">
-							<tr>
-								<td>java강의</td>
-								<td>컴퓨터/IT</td>
-								<td>오주경</td>
-								<td><button type="button" class="btn">취소</button></td>
-								<td><button type="button" class="btn">상세보기</button></td>
-								<td><button type="button" class="btn">상세보기</button></td>
-							</tr>
-							<tr>
-								<td>July</td>
-								<td>Dooley</td>
-								<td>july@example.com</td>
-								<td><button type="button" class="btn">취소</button></td>
-								<td><button type="button" class="btn">상세보기</button></td>
-								<td><button type="button" class="btn">상세보기</button></td>
-							</tr>
+							
 						</tbody>
 					</table>
 				</div>
