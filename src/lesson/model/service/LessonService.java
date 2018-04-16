@@ -179,7 +179,6 @@ public class LessonService {
 	
 	}
 
-<<<<<<< HEAD
 	public ArrayList<Onlesson> onlesson2(int user) {
 		Connection conn = getConnection();
 		
@@ -197,7 +196,7 @@ public class LessonService {
 		
 		
 		return ls;
-=======
+	}
 	public ArrayList<Lesson> selectLearnList() {
 		Connection con = getConnection();
 		
@@ -217,7 +216,6 @@ public class LessonService {
 		
 		System.out.println("SearchList : " + list + " / (To.LessonService)");
 		return list;
->>>>>>> branch 'master' of https://github.com/ojk3306/ilwon.git
 	}
 	
 }

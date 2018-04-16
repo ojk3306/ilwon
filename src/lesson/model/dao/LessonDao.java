@@ -663,7 +663,6 @@ public class LessonDao {
 		
 
 	}
-<<<<<<< HEAD
 
 	public int insertlesson1(Connection conn, Lesson lesson) {
 		int result = 0;
@@ -767,10 +766,7 @@ public class LessonDao {
 		return ls;
 	}
 
-}
-	
-=======
->>>>>>> branch 'master' of https://github.com/ojk3306/ilwon.git
+
 
 	public ArrayList<Lesson> selectLearnList(Connection con) {
 		ArrayList<Lesson> list = new ArrayList<Lesson>();
