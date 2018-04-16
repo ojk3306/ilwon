@@ -664,6 +664,39 @@ public class LessonDao {
 
 	}
 
+	public int insertlesson1(Connection conn, Lesson lesson) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = "insert into lesson values((SELECT max(lesson_no) from lesson)+1"
+				+ ",?,1,?,?,null,?,?,?,?,?,sysdate,null,?,'.','.','.',8000,'','','','','','')";
+		
+		
+		try {
+		System.out.println("lesson.getUser_no2()"+lesson.getUser_no2());
+			pstmt = conn.prepareStatement(sql);
+			
+			
+			pstmt.setInt(1, lesson.getLevel_no());
+			pstmt.setInt(2, lesson.getCategory_no());
+			pstmt.setInt(3, lesson.getUser_no1());
+			pstmt.setString(4, lesson.getLesson_title());
+			pstmt.setString(5, lesson.getLesson_loc());
+			pstmt.setInt(6, lesson.getLesson_rad());
+			pstmt.setInt(7, lesson.getLesson_price());
+			pstmt.setInt(8, lesson.getLesson_count());
+			pstmt.setString(9, lesson.getLesson_contop());
+	
+	
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 
 	public ArrayList<Lesson> aLessonList(Connection con) {
 		ArrayList<Lesson> lesson = new ArrayList<Lesson>();
@@ -920,6 +953,77 @@ public class LessonDao {
 
 
 	
+
+	public ArrayList<Onlesson> onlesson2(Connection conn, int user) {
+		ArrayList<Onlesson> onlesson = new ArrayList<Onlesson>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql ="select * from lesson where USER_NO1 = ? and lesson_type = 8000 and state_no = 1";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, user);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+			Onlesson l = new Onlesson();
+			l.setLesson_title(rset.getString("lesson_title"));
+			l.setState(rset.getString("STATE_NO"));
+		
+			l.setLesson_no(rset.getInt("lesson_no"));
+			System.out.println(l.toString());
+			onlesson.add(l);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return onlesson;
+	}
+
+	public LessonSearch getlessoninfoStudentByNo(Connection conn, int parseInt) {
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		LessonSearch ls=null;
+	
+		String sql="select * from lesson,categorys,lessonlev where lesson.CATEGORY_NO=categorys.CATEGORY_NO and Lesson_no = ? and lesson.LEVEL_NO=LESSONLEV.LESSONLEV_NO  and lesson.LESSON_TYPE=8000 ";
+		try {
+			
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1,parseInt);
+			rset=pstmt.executeQuery();
+		if(rset.next()) {
+			ls=new LessonSearch();
+			ls.setCategory_smallName(rset.getString("CATEGORY_SMALL"));	
+		    ls.setLesson_contop(rset.getString("LESSON_CONTOP"));
+		    ls.setLesson_loc(rset.getString("LESSON_LOCATION"));
+		    ls.setLesson_no(rset.getInt("LESSON_NO"));
+		    ls.setLesson_count(rset.getInt("LESSON_COUNT"));
+		    ls.setLesson_price(rset.getInt("LESSON_PRICE"));
+		    ls.setLesson_rad(rset.getInt("LESSON_RADIUS"));
+		    ls.setLesson_startdate(rset.getDate("LESSON_STARTDATE"));
+		    ls.setLesson_title(rset.getString("LESSON_TITLE"));
+		    ls.setLevel(rset.getString("LESSONLEV"));
+		System.out.println("getlessoninfoStudentByNo에서"+ ls.toString());
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return ls;
+	}
+
+
 
 	public ArrayList<Lesson> selectLearnList(Connection con) {
 		ArrayList<Lesson> list = new ArrayList<Lesson>();

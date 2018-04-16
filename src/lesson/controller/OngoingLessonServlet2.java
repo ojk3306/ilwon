@@ -1,8 +1,7 @@
-package learnLog.controller;
+package lesson.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -14,21 +13,23 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import learnLog.model.service.LearnLogService;
-import learnLog.model.vo.Learnlogforinfo;
-
+import lesson.model.service.LessonService;
+import lesson.model.vo.Lesson;
+import lesson.model.vo.Onlesson;
+import semina.model.service.SeminaService;
+import semina.model.vo.Semina;
 
 /**
- * Servlet implementation class OngoingLesson2Servlet
+ * Servlet implementation class OngoingLessonServlet
  */
-@WebServlet("/onlesson2")
-public class OngoingLesson2Servlet extends HttpServlet {
+@WebServlet("/onlessonteacher")
+public class OngoingLessonServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OngoingLesson2Servlet() {
+    public OngoingLessonServlet2() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,36 +40,39 @@ public class OngoingLesson2Servlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int user = Integer.parseInt(request.getParameter("user"));
 		System.out.println(user);
-		//현재 진행중인 수업.
+		//학생이 올린 게시판 구하는 서블릿
 		
-		ArrayList<Learnlogforinfo> onlesson = new LearnLogService().getlessonLog(user);
+		ArrayList<Onlesson> onlesson = new LessonService().onlesson2(user);
 		
 		JSONObject json = new JSONObject();
 		
 		JSONArray jarr = new JSONArray();
 		
-		for(Learnlogforinfo l : onlesson) {
+		for(Onlesson l : onlesson) {
 			
 			JSONObject job = new JSONObject();
-			job.put("username", l.getUSER_NAME());//선생의 이름 
-			job.put("state", l.getLOG_STATE());
-			job.put("lesson_no", l.getLESSON_NO());
-			job.put("lesson_title", l.getLESSON_TITLE());
-			job.put("log_no", l.getLOG_NO());
-			job.put("log_date", l.getLOG_DATE().toString());
-		
-			//job.put("user2_no", l.getUserNo2());
+			job.put("username", l.getUser_name());
+			job.put("state", l.getState());
+			job.put("lesson_no", l.getLesson_no());
+			job.put("lesson_title", l.getLesson_title());
 			
-		jarr.add(job);
+			if(l.getLesson_enddate()!=null) {			
+			job.put("lesson_enddate", l.getLesson_enddate().toString());
+			}
+			
+			jarr.add(job);
 		}
-		
+
 		json.put("onlesson", jarr);
-		System.out.println("onlesson2:"+json.toJSONString());
+					
+		
+		System.out.println(json.toJSONString());
 	    response.setContentType("application/json; charset=utf-8;");
 		PrintWriter out = response.getWriter();
 		out.print(json.toJSONString());
 		out.flush();
 		out.close();
+		
 	}
 
 	/**

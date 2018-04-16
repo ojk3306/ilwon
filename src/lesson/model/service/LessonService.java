@@ -23,7 +23,7 @@ public class LessonService {
 	public int insertlesson(Lesson lesson) {
 		Connection conn = getConnection();
 		
-		int result = new LessonDao().insertlesson(conn, lesson);
+		int result = new LessonDao().insertlesson1(conn, lesson);
 		
 		if(result > 0) {
 			commit(conn);
@@ -179,6 +179,17 @@ public class LessonService {
 	
 	}
 
+	public ArrayList<Onlesson> onlesson2(int user) {
+		Connection conn = getConnection();
+		
+		ArrayList<Onlesson> onlesson = new LessonDao().onlesson2(conn, user);
+		
+		close(conn);
+		
+		return onlesson;
+	}
+
+
 	public ArrayList<Lesson> aLessonList() {
 		Connection con = getConnection();
 		ArrayList<Lesson> lesson = new LessonDao().aLessonList(con);
@@ -216,6 +227,15 @@ public class LessonService {
 		return result;
 }
 
+
+	public LessonSearch getlessoninfoStudentByNo(int parseInt) {
+		Connection conn = getConnection();
+		LessonSearch ls= new LessonDao().getlessoninfoStudentByNo(conn, parseInt);
+		close(conn);
+		
+		
+		return ls;
+	}
 	public ArrayList<Lesson> selectLearnList() {
 		Connection con = getConnection();
 		
