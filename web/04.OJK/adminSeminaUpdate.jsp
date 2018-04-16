@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page  import="lesson.model.vo.*"%>  
-<% Lesson lesson = (Lesson)request.getAttribute("lesson"); %>
+<%@ page  import="semina.model.vo.*"%>  
+<% Semina semina = (Semina)request.getAttribute("semina"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,8 +17,8 @@ function updatelessonview(){
 
 	if($("#TriSeaInfo").is(":checked")!=true ) {
 		$.ajax({
-			url:"<%=request.getContextPath()%>/aulesson",
-		    data:{ lessonno:$("#lesson_no").val(),value:"1",type:"1"},
+			url:"<%=request.getContextPath()%>/ausemina",
+		    data:{ seminano:$("#semina_no").val(),value:"1",type:"1"},
 			type:"get",
 		    success:function(data){
 		    	console.log(data)
@@ -27,8 +27,8 @@ function updatelessonview(){
 		});
 	}else{
 		$.ajax({
-			url:"<%=request.getContextPath()%>/aulesson",
-		    data:{ lessonno:$("#lesson_no").val(),value:"3",type:"1"},
+			url:"<%=request.getContextPath()%>/ausemina",
+		    data:{ seminano:$("#semina_no").val(),value:"3",type:"1"},
 			type:"get",
 		    success:function(data){
 		    	console.log(data)
@@ -41,7 +41,7 @@ function updatelessonview(){
 function updatekeyword(){
 	$.ajax({
 		url:"<%=request.getContextPath()%>/aulesson",
-	    data:{lessonno:$("#lesson_no").val(),value:$("#rekeyword").val(),type:"2"},
+	    data:{lessonno:$("#semina_no").val(),value:$("#rekeyword").val(),type:"2"},
 		type:"get",
 	    success:function(data){
 	    	console.log(data)
@@ -53,14 +53,14 @@ function updatekeyword(){
 $(function(){
 	
 	
-	if('<%=lesson.getState_no()%>'== '3'){
+	if('<%=semina.getSEMINA_STATE()%>'== '3'){
 	    $("#TriSeaInfo").attr("checked", true);     
 	}else{
 		$("#TriSeaInfo").attr("checked", false);
 	}
 })
 </script>
-<title>강의 관리</title>
+<title>세미나 관리</title>
 <style>
 
 body {
@@ -144,7 +144,7 @@ margin-left: 190px;
   <div class="col-md-7" Style="overflow:hidden;">
 <div class="panel panel-default">
   <div class="panel-heading" style="background:#00ffff;"> 
-   <h4><%=lesson.getLesson_title() %></h4></div>
+   <h4><%=semina.getSeminaTitle() %></h4></div>
    <div class="panel-body" >
        
     <div class="box box-info" >
@@ -171,13 +171,13 @@ margin-left: 190px;
 <div class="clearfix" ></div>
 <hr style="margin:5px 0 5px 0;">
  <form>
- <input type="hidden" id = "lesson_no" value = "<%= lesson.getLesson_no()%>" >
+ <input type="hidden" id = "semina_no" value = "<%= semina.getSeminaNo()%>" >
 <div class="col-sm-5 col-xs-6 tital"  >
 <strong>이름:</strong>&nbsp;
 <label id="username"></label>
 </div>
 <div class="col-sm-7 col-xs-6" style="font-size:medium;">
-<label><%=lesson.getUser_name2() %></label>
+<label><%=semina.getUser_name() %></label>
 </div>
 <div class="clearfix"></div>
 <div class="bot-border"></div>
@@ -187,7 +187,7 @@ margin-left: 190px;
 <label id="usermail"></label>
 </div>
 <div class="col-sm-7 col-xs-6" style="font-size:medium;">
-<label><%=lesson.getUser_name1() %></label><!-- 이메일임  -->
+<label><%=semina.getUser_email()%></label><!-- 이메일임  -->
 </div>
 <div class="clearfix"></div>
 <div class="bot-border"></div>
@@ -197,27 +197,27 @@ margin-left: 190px;
 <label id="userage"></label>
 </div>
 <div class="col-sm-7 col-xs-6" style="font-size:medium;">
-<label><%=lesson.getLesson_price() %>&nbsp;만원</label>
+<label><%=semina.getSeminaPrice() %>&nbsp;만원</label>
 </div>
 <div class="clearfix"></div>
 <div class="bot-border"></div>
 
 <div class="col-sm-5 col-xs-6 tital">
-<strong>횟수:</strong>&nbsp;
+<strong>최소인원:</strong>&nbsp;
 <label id="usergender"></label>
 </div>
 <div class="col-sm-7 col-xs-6" style="font-size:medium;">
-<label><%=lesson.getLesson_count() %>&nbsp;회</label>
+<label><%=semina.getSeminaMin() %>&nbsp;명</label>
 </div>
 <div class="clearfix"></div>
 <div class="bot-border"></div>
 
 <div class="col-sm-5 col-xs-6 tital">
-<strong>키워드:</strong>&nbsp;
+<strong>최대인원:</strong>&nbsp;
 <label id="userphone"></label>
 </div>
 <div class="col-sm-7 col-xs-6" style="font-size:medium;">
-<INPUT TYPE="TEXT" id="rekeyword" value="<%=lesson.getLesson_keyword()%>" placeholder=" ' ,' 로 키워드 구분해 주세요">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary loading" value="키워드 수정" onclick="updatekeyword();" id="4"  readonly="readonly">
+<label><%=semina.getSeminaMax() %>&nbsp;명</label>
 </div>
 <div class="clearfix"></div>
 <div class="bot-border"></div>
@@ -225,7 +225,7 @@ margin-left: 190px;
 
 
 <div class="col-sm-5 col-xs-6 tital">
-<strong>강의등록일:</strong>&nbsp;<%=lesson.getLesson_startdate() %>
+<strong>세미나등록일:</strong>&nbsp;<%=semina.getSeminaStartDate() %>
 </div>
 
 
@@ -236,12 +236,12 @@ margin-left: 190px;
 
                 <!-- Default panel contents -->
                 <br>
-                <h2 class="panel-heading" style="text-align:center;">강의 설정</h2>
+                <h2 class="panel-heading" style="text-align:center;">세미나 설정</h2>
       
                 <ul class="list-group">
                  
                     <li class="list-group-item">
- 						     강의 숨김
+ 						     세미나 숨김
                        <div class="TriSea-technologies-Switch pull-right">
                             <input id="TriSeaInfo" name="TriSea1" type="checkbox" onclick="updatelessonview()" checked="checked">
                             <label for="TriSeaInfo" class="label-info"></label>

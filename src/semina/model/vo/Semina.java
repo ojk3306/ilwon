@@ -27,21 +27,48 @@ public class Semina  implements Serializable {
 	private String seminaOriginalFileName;
 	private String seminaRenameFileName;
 	private int SEMINA_STATE;
+	private String user_name;
+	private String user_email;
 	
-	public int getSEMINA_STATE() {
-		return SEMINA_STATE;
-	}
-	public void setSEMINA_STATE(int sEMINA_STATE) {
-		SEMINA_STATE = sEMINA_STATE;
-	}
 	public Semina() {}
+	
+	public Semina(int seminaNo, int userNo, String seminaTitle, String seminaLocation, int seminaPrice,
+			Date seminaStartDate, String seminatitle1, String seminaContent1, String seminatitle2,
+			String seminaContent2, String seminatitle3, String seminaContent3, String seminatitle4,
+			String seminaContent4, Date seminaEndDate, int seminaMin, int seminaNow, int seminaMax,
+			String seminaOriginalFileName, String seminaRenameFileName, int sEMINA_STATE, String user_name,
+			String user_email) {
+		super();
+		this.seminaNo = seminaNo;
+		this.userNo = userNo;
+		this.seminaTitle = seminaTitle;
+		this.seminaLocation = seminaLocation;
+		this.seminaPrice = seminaPrice;
+		this.seminaStartDate = seminaStartDate;
+		this.seminatitle1 = seminatitle1;
+		this.seminaContent1 = seminaContent1;
+		this.seminatitle2 = seminatitle2;
+		this.seminaContent2 = seminaContent2;
+		this.seminatitle3 = seminatitle3;
+		this.seminaContent3 = seminaContent3;
+		this.seminatitle4 = seminatitle4;
+		this.seminaContent4 = seminaContent4;
+		this.seminaEndDate = seminaEndDate;
+		this.seminaMin = seminaMin;
+		this.seminaNow = seminaNow;
+		this.seminaMax = seminaMax;
+		this.seminaOriginalFileName = seminaOriginalFileName;
+		this.seminaRenameFileName = seminaRenameFileName;
+		SEMINA_STATE = sEMINA_STATE;
+		this.user_name = user_name;
+		this.user_email = user_email;
+	}
 	public int getSeminaNo() {
 		return seminaNo;
 	}
 	public void setSeminaNo(int seminaNo) {
 		this.seminaNo = seminaNo;
 	}
-
 	public int getUserNo() {
 		return userNo;
 	}
@@ -66,7 +93,6 @@ public class Semina  implements Serializable {
 	public void setSeminaPrice(int seminaPrice) {
 		this.seminaPrice = seminaPrice;
 	}
-	
 	public Date getSeminaStartDate() {
 		return seminaStartDate;
 	}
@@ -157,47 +183,40 @@ public class Semina  implements Serializable {
 	public void setSeminaRenameFileName(String seminaRenameFileName) {
 		this.seminaRenameFileName = seminaRenameFileName;
 	}
+	public int getSEMINA_STATE() {
+		return SEMINA_STATE;
+	}
+	public void setSEMINA_STATE(int sEMINA_STATE) {
+		SEMINA_STATE = sEMINA_STATE;
+	}
+	public String getUser_name() {
+		return user_name;
+	}
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+	public String getUser_email() {
+		return user_email;
+	}
+	public void setUser_email(String user_email) {
+		this.user_email = user_email;
+	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	public Semina(int seminaNo, int categoryNo, int userNo, String seminaTitle, String seminaLocation, int seminaPrice,
-			int seminaLevel, Date seminaStartDate, String seminatitle1, String seminaContent1, String seminatitle2,
-			String seminaContent2, String seminatitle3, String seminaContent3, String seminatitle4,
-			String seminaContent4, Date seminaEndDate, int seminaMin, int seminaNow, int seminaMax,
-			String seminaOriginalFileName, String seminaRenameFileName) {
-		super();
-		this.seminaNo = seminaNo;
-		this.userNo = userNo;
-		this.seminaTitle = seminaTitle;
-		this.seminaLocation = seminaLocation;
-		this.seminaPrice = seminaPrice;
-	
-		this.seminaStartDate = seminaStartDate;
-		this.seminatitle1 = seminatitle1;
-		this.seminaContent1 = seminaContent1;
-		this.seminatitle2 = seminatitle2;
-		this.seminaContent2 = seminaContent2;
-		this.seminatitle3 = seminatitle3;
-		this.seminaContent3 = seminaContent3;
-		this.seminatitle4 = seminatitle4;
-		this.seminaContent4 = seminaContent4;
-		this.seminaEndDate = seminaEndDate;
-		this.seminaMin = seminaMin;
-		this.seminaNow = seminaNow;
-		this.seminaMax = seminaMax;
-		this.seminaOriginalFileName = seminaOriginalFileName;
-		this.seminaRenameFileName = seminaRenameFileName;
-	}
 	@Override
 	public String toString() {
-		return "Semina [seminaNo=" + seminaNo + ", userNo=" + userNo + ", seminaTitle="
-				+ seminaTitle + ", seminaLocation=" + seminaLocation + ", seminaPrice=" + seminaPrice +", seminaStartDate=" + seminaStartDate + ", seminatitle1=" + seminatitle1
-				+ ", seminaContent1=" + seminaContent1 + ", seminatitle2=" + seminatitle2 + ", seminaContent2="
-				+ seminaContent2 + ", seminatitle3=" + seminatitle3 + ", seminaContent3=" + seminaContent3
-				+ ", seminatitle4=" + seminatitle4 + ", seminaContent4=" + seminaContent4 + ", seminaEndDate="
-				+ seminaEndDate + ", seminaMin=" + seminaMin + ", seminaNow=" + seminaNow + ", seminaMax=" + seminaMax
-				+ ", seminaOriginalFileName=" + seminaOriginalFileName + ", seminaRenameFileName="
-				+ seminaRenameFileName + "]";
+		return "Semina [seminaNo=" + seminaNo + ", userNo=" + userNo + ", seminaTitle=" + seminaTitle
+				+ ", seminaLocation=" + seminaLocation + ", seminaPrice=" + seminaPrice + ", seminaStartDate="
+				+ seminaStartDate + ", seminatitle1=" + seminatitle1 + ", seminaContent1=" + seminaContent1
+				+ ", seminatitle2=" + seminatitle2 + ", seminaContent2=" + seminaContent2 + ", seminatitle3="
+				+ seminatitle3 + ", seminaContent3=" + seminaContent3 + ", seminatitle4=" + seminatitle4
+				+ ", seminaContent4=" + seminaContent4 + ", seminaEndDate=" + seminaEndDate + ", seminaMin=" + seminaMin
+				+ ", seminaNow=" + seminaNow + ", seminaMax=" + seminaMax + ", seminaOriginalFileName="
+				+ seminaOriginalFileName + ", seminaRenameFileName=" + seminaRenameFileName + ", SEMINA_STATE="
+				+ SEMINA_STATE + ", user_name=" + user_name + ", user_email=" + user_email + "]";
 	}
+	
+	
 
 }
