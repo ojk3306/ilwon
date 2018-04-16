@@ -382,11 +382,9 @@ $(document).ready(function readyList() {
 				
 				$('.ohw-ready-table').append(
 						
-				 <% if(loginUser != null) { %>
-				 	<% System.out.println("이프..."); %>
+				 <% if(loginUser != null) { %>				 	
 					"<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><a href = '<%= request.getContextPath() %>/lessondetail?no=" + json.list[i].lessonNo + "&page=1'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></a></td>" + 
-				 <% } else { %>
-					 <% System.out.println("엘스..."); %>
+				 <% } else { %>					
 					"<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></td>" + 
 				 <% } %>											
 						
