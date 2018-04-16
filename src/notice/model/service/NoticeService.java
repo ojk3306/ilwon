@@ -15,10 +15,12 @@ public NoticeService() {
 		
 	}
 
-	public ArrayList<Notice> selectList(int currentPage, int limit) {
+	/*public ArrayList<Notice> selectList(int currentPage, int limit) {*/
+	public ArrayList<Notice> selectList() {
 		
 		Connection con = getConnection();
-		ArrayList<Notice> list = new NoticeDao().selectList(con, currentPage, limit);
+		/*ArrayList<Notice> list = new NoticeDao().selectList(con, currentPage, limit);*/
+		ArrayList<Notice> list = new NoticeDao().selectList(con);
 		close(con);
 		
 		System.out.println("ServiceResult : " + list + " / (To.NoticeService)");

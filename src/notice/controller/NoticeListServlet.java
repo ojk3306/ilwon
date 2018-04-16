@@ -36,7 +36,9 @@ public class NoticeListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-int currentPage = 1;
+		/*System.out.println("NoticeListServlet Run...");
+		
+		int currentPage = 1;
 		
 		//전달된 페이지값 추출
 		if(request.getParameter("page") != null) {
@@ -65,15 +67,17 @@ int currentPage = 1;
 			endPage = maxPage;
 		} else {
 			
-		}
+		}*/
 		
 		//리스트 결과를 json 배열에 담아서, 전송하는 컨트롤러				
-		ArrayList<Notice> list = new NoticeService().selectList(currentPage, limit);
+		/*ArrayList<Notice> list = new NoticeService().selectList(currentPage, limit);*/
+		ArrayList<Notice> list = new NoticeService().selectList();
+		System.out.println("List : " + list + " / (To.NoticeListServlet)");
 		
-		response.setContentType("text/html; charset=UTF-8");
+		/*response.setContentType("text/html; charset=UTF-8");
 		RequestDispatcher view = null;
 		if(list.size() > 0) {
-			view = request.getRequestDispatcher("views/board/boardListView.jsp");
+			view = request.getRequestDispatcher("03.OHW/views/noticeList.jsp");
 			request.setAttribute("list", list);
 			request.setAttribute("currentPage", currentPage);
 			request.setAttribute("maxPage", maxPage);
@@ -82,10 +86,10 @@ int currentPage = 1;
 			request.setAttribute("listCount", listCount);			
 			view.forward(request, response);
 		} else {
-			view = request.getRequestDispatcher("views/board/boardError.jsp");
+			view = request.getRequestDispatcher("03.OHW/views/noticeError.jsp");
 			request.setAttribute("message", currentPage + "에 대한 조회 실패");
 			view.forward(request, response);
-		}
+		}*/
 			
 		//전송은 json 객체 한개만 전송할 수 있음
 		//최종 전송용 json 객체 생성함

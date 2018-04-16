@@ -88,16 +88,14 @@ min-height: 440px;
               <div class="panel-heading">
                 <div class="row">
                 	<div class="col col-xs-6 text-right" style="width: 100%;">
-                	  <form action="/prototype/adminsearchlesson" method="post">
+                	  <form action="/prototype/adminsearchsemina" method="post">
                   		<select style="height: 28px; margin-top:5px" name="option">
                   	
                   	 		<option value="1">모든설정으로검색(무관)</option>
-                  	 		<option value="2">이름으로검색</option>
+                  	 		<option value="2">제목으로검색</option>
                   	 		<option value="3">이메일로검색</option>
-                  	 		<option value="4">상태로 검색(1=강의중,2=숨김,3=삭제)</option>
-                  	 		<option value="5">제목으로검색</option>
-                  	 		<option value="6">카테고리로검색</option>
-                  	 		<option value="7">키워드로검색</option>
+                  	 		<option value="4">상태로 검색(1=정상,2=숨김,3=삭제)</option>
+                  	 		<option value="5">이름으로검색</option>
                   	 
                   		</select>
                   	 
