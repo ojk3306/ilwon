@@ -35,12 +35,12 @@ public class LessonKeywordSearchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getParameter("ohw-keyword"));
+		System.out.println("LessonKeywordSearchServlet Run : " + request.getParameter("keywordValue"));
 		
-		String keywordValue = request.getParameter("keyword");		
+		String keywordValue = request.getParameter("keywordValue");		
 		
 		LessonSearch ls = new LessonSearch(keywordValue);			
-		System.out.println("SendInfo : " + ls + " / (To.LessonSearchListServlet)");		
+		System.out.println("SendInfo : " + ls + " / (To.LessonKeywordSearchServlet)");		
 		ArrayList<LessonSearch> list = new LessonService().selectSearchKeyword(ls);
 					
 		//전송은 json 객체 한개만 전송할 수 있음
@@ -94,7 +94,7 @@ public class LessonKeywordSearchServlet extends HttpServlet {
 			
 			//전송용 객체에 jarr 배열 담음
 			json.put("list", jarr);
-			System.out.println("Lessonjson : " + json.toJSONString());
+			System.out.println("Lessonjson : " + json.toJSONString() + " / (To.LessonKeywordSearchServlet)");
 			
 			response.setContentType("application/json; charset=UTF-8");
 			PrintWriter out = response.getWriter();

@@ -34,7 +34,8 @@ public class LessonNavbarSearchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("LessonNavbarSearchServlet Run and getParameter : "+request.getParameter("ohw-navbar-search-hidden"));
+		
+		System.out.println("LessonNavbarSearchServlet Run and getParameter : "+request.getParameter("ohw-keyword"));
 		RequestDispatcher view = null;				
 		
 		/*//2. 전송온 값 꺼내서 변수 또는 객체에 저장하기 */
@@ -45,11 +46,15 @@ public class LessonNavbarSearchServlet extends HttpServlet {
 		//3. 서비스 클래스 메소드로 값 전달하고, 결과 받기
 		ArrayList<LessonSearch> result = new LessonService().selectSearchKeyword(ls);
 		
+		System.out.println("Result : " + result + " / (To.LessonNavbarSearchServlet)");
 		//4. 받은 결과를 가지고 성공/실패에 대한 뷰를 선택해서 내보냄
 		response.setContentType("text/html; charset=UTF-8");
 		if(result != null) {
 			//성공시 상세보기 페이지로 넘김
-			response.sendRedirect( request.getContextPath() + "/03.OHW/views/find_teacher.jsp?ohw-keyword=" + ls.getLesson_keyword());
+			System.out.println("Result(0) : " + result.get(0).getLesson_keyword() + " / (To.LessonNavbarSearchServlet)");
+			view = request.getRequestDispatcher("03.OHW/views/find_teacher.jsp");
+			request.setAttribute("ohw-keyword", result.get(0).getLesson_keyword());
+			view.forward(request, response);
 		} else {
 			view = request.getRequestDispatcher("03.OHW/views/noticeError.jsp");
 			request.setAttribute("message", "키워드 검색 실패");
