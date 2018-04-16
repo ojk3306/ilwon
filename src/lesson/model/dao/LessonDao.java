@@ -417,7 +417,7 @@ public class LessonDao {
 				l.setLesson_rename2(rset.getString("LESSON_rename_PHOTO2"));
 				l.setLesson_rename3(rset.getString("LESSON_rename_PHOTO3"));
 				l.setLESSON_STARTDATE(rset.getDate("LESSON_STARTDATE"));
-			l.setUser_no(rset.getInt("user_no2"));
+				l.setUser_no(rset.getInt("user_no2"));
 			
 			
 			

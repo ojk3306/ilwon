@@ -35,15 +35,16 @@ public class SubmitLessonByTeacher extends HttpServlet {
 		int result=new LearnLogService().summitLesson(Integer.parseInt(arr[0]),Integer.parseInt(arr[1]),Integer.parseInt(arr[2]));
 		
 		if(result>0) {
-			
+			System.out.println("레슨신청 성공");
 			if(Integer.parseInt(arr[3]) == 1002)
-			response.sendRedirect("/04.OJK/teacherinfo.jsp");
+			response.sendRedirect("/prototype/04.OJK/teacherinfo.jsp");
 			else
-			response.sendRedirect("/04.OJK/studentinfo.jsp");	
+			response.sendRedirect("/prototype/04.OJK/studentinfo.jsp");	
 			
 		}else {
-			
+			System.out.println("레슨신청 실패");
 		}
+	
 	}
 
 	/**

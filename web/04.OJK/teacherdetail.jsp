@@ -6,6 +6,8 @@
 	LessonDetail lessondetail =(LessonDetail)request.getAttribute("lessondetail");
 	ArrayList<Review> review = (ArrayList<Review>)request.getAttribute("review");
 	int user_no = ((Integer)request.getAttribute("user_no"));
+	int usernumber = ((Integer)request.getAttribute("usernumber"));
+	
 	String userimg = (String)request.getAttribute("userimg");
 	double avga =((Double)request.getAttribute("avga")).doubleValue();
 	int avgd = ((Integer)request.getAttribute("avgd")).intValue();
@@ -45,9 +47,20 @@ function popupReview(){
 	
 function summitbystu(a){
 	
-	location.href="/prototype/submitlesson"+a.id;
+	location.href="/prototype/submitlesson?no="+a.id;
 	
 }
+
+$.ajax({//이 강의를 들었는지 안들었는지 확인.
+	url:"/prototype/checkLesson",
+	data:""
+	
+})
+
+
+
+
+
 </script>
 	
 <style type="text/css">
@@ -278,7 +291,7 @@ border-radius: 35px;
 			<%if( loginUser.getUserNo()== user_no ){%>
 			<button type='button' class='btn'>본인의 레슨입니다</button>
 			<%}else if(loginUser.getUserNo()!= user_no && loginUser.getUserTypeNo()!=1002 ){%>
-			<button type='button' id="<%=loginUser.getUserNo()%>/<%=user_no%>/<%=lessondetail.getLesson_no()%>/<%=loginUser.getUserTypeNo()%>" onclick="summitbystu(this)" class='btn'>레슨 신청!</button>
+			<button type='button' id="<%=loginUser.getUserNo()%>/<%=usernumber%>/<%=lessondetail.getLesson_no()%>/<%=loginUser.getUserTypeNo()%>" onclick="summitbystu(this)" class='btn'>레슨 신청!</button>
 			<%} %>
 		
 		

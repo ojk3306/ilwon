@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import lesson.model.service.LessonService;
 import lesson.model.vo.LessonDetail;
+import lesson.model.vo.LessonSearch;
 import review.model.service.ReviewService;
 import review.model.vo.Review;
 import users.model.service.UsersService;
@@ -39,12 +40,14 @@ public class LessonDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int lesson_no = Integer.parseInt(request.getParameter("no"));
 		int userno = 0;
-		
 		if(request.getParameter("userno")!=null)
-			userno = Integer.parseInt(request.getParameter("userno"));
+		userno = Integer.parseInt(request.getParameter("userno"));  //??
 		LessonDetail lessondetail = new LessonService().lessonView(lesson_no);
 		ArrayList<Review> review = new ReviewService().previewReview(lesson_no);
 		String userimg = new UsersService().getUserImg(lessondetail.getUser_no());
+		
+	
+		
 		//일단 다가져옴
 		int sumd = 0;
 		int sump = 0;
@@ -88,6 +91,7 @@ public class LessonDetailServlet extends HttpServlet {
 			request.setAttribute("avgs", avgs);
 			request.setAttribute("avga", avga);
 			request.setAttribute("user_no", userno);
+			request.setAttribute("usernumber",lessondetail.getUser_no());
 			view.forward(request, response);
 			
 		}else if(lessondetail != null && review == null){
@@ -103,6 +107,8 @@ public class LessonDetailServlet extends HttpServlet {
 			request.setAttribute("avgs", avgs);
 			request.setAttribute("avga", avga);
 			request.setAttribute("user_no", userno);
+			request.setAttribute("usernumber",lessondetail.getUser_no());
+			
 			view.forward(request, response);
 			
 		}

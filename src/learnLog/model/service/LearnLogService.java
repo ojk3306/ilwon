@@ -113,7 +113,7 @@ public class LearnLogService {
 			rollback(conn);
 		close(conn);
 		
-		return 0;
+		return result;
 	}
 	
 }
