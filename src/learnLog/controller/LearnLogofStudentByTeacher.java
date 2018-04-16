@@ -17,16 +17,16 @@ import learnLog.model.service.LearnLogService;
 import learnLog.model.vo.Learnlogforinfo;
 
 /**
- * Servlet implementation class LearnLogTeacher
+ * Servlet implementation class LearnLogofStudentByTeacher
  */
-@WebServlet("/llteaher")
-public class LearnLogTeacher extends HttpServlet {
+@WebServlet("/teachlogofteacher")
+public class LearnLogofStudentByTeacher extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LearnLogTeacher() {
+    public LearnLogofStudentByTeacher() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,11 +35,12 @@ public class LearnLogTeacher extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
 		int user = Integer.parseInt(request.getParameter("user"));
 		System.out.println(user);
 		//현재 진행중인 수업.
 		
-		ArrayList<Learnlogforinfo> onlesson = new LearnLogService().getlessonLog3(user);
+		ArrayList<Learnlogforinfo> onlesson = new LearnLogService().getlessonLog4(user);
 		
 		JSONObject json = new JSONObject();
 		
@@ -48,10 +49,9 @@ public class LearnLogTeacher extends HttpServlet {
 		for(Learnlogforinfo l : onlesson) {
 			
 			JSONObject job = new JSONObject();
-			job.put("username", l.getUSER_NAME());//학생의
+			job.put("username", l.getUSER_NAME());//선생의 이름 
 			job.put("state", l.getLOG_STATE());
 			job.put("lesson_no", l.getLESSON_NO());
-			job.put("stuno",l.getUSER_NO1());
 			job.put("lesson_title", l.getLESSON_TITLE());
 			job.put("log_no", l.getLOG_NO());
 			job.put("log_date", l.getLOG_DATE().toString());
@@ -62,7 +62,7 @@ public class LearnLogTeacher extends HttpServlet {
 		}
 		
 		json.put("onlesson", jarr);
-		System.out.println("llteaher:"+json.toJSONString());
+		System.out.println("teachlogofteacher:"+json.toJSONString());
 	    response.setContentType("application/json; charset=utf-8;");
 		PrintWriter out = response.getWriter();
 		out.print(json.toJSONString());

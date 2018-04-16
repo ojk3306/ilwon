@@ -160,7 +160,7 @@ public class LearnLogDao {
 		ResultSet rset = null;
 
 		//선생의 학생로그
-		String sql = "select * from  LEARN_LOG,users,lesson where LEARN_LOG.LESSON_NO=lesson.LESSON_NO and LEARN_LOG.USER_NO1=users.USER_NO and LEARN_LOG.USER_NO2=? ";		
+		String sql = "select * from  LEARN_LOG,users,lesson where LEARN_LOG.LESSON_NO=lesson.LESSON_NO and LEARN_LOG.USER_NO1=users.USER_NO and LEARN_LOG.USER_NO2= ? and LOG_STATE in 1 and STATE_NO in 1";		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, user);
@@ -193,5 +193,71 @@ public class LearnLogDao {
 			close(pstmt);
 		}
 		return onlesson;
+	}
+
+	public ArrayList<Learnlogforinfo> getlessonLog4(int user, Connection conn) {
+	//이때까지 본인(선생)에게 수업을 받은 학생들의 정보를 뽑아내는 내역.
+		ArrayList<Learnlogforinfo> onlesson = new ArrayList<Learnlogforinfo>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		//선생의 학생로그
+		String sql = "select * from  LEARN_LOG,users,lesson where LEARN_LOG.LESSON_NO=lesson.LESSON_NO and LEARN_LOG.USER_NO1=users.USER_NO and LEARN_LOG.USER_NO2= ? and LOG_STATE in 3 ";		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, user);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Learnlogforinfo l = new Learnlogforinfo();
+				l.setLESSON_NO(rset.getInt("lesson_no"));
+				l.setLOG_DATE(rset.getDate("log_date"));
+				l.setLOG_NO(rset.getInt("log_no"));
+				l.setLOG_STATE(rset.getInt("log_state"));
+				l.setUSER_NAME(rset.getString("user_name"));
+				l.setUSER_NO1(rset.getInt("user_no1"));
+				l.setLOG_STATE(rset.getInt("LOG_STATE"));
+				l.setLESSON_TITLE(rset.getString("LESSON_TITLE"));
+				
+				
+				//l.setUserNo2(rset.getInt("user_no2"));
+				
+				System.out.println("getlessonLog :" +l.toString());
+				onlesson.add(l);
+				
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return onlesson;
+	}
+
+	public int Comfirmlog(Connection conn, int parseInt, int parseInt2) {
+		
+		PreparedStatement pstmt=null;
+		int result=0;
+		
+		String sql="insert into LEARN_LOG values((select max(LOG_NO) from learn_log)+1,?,(select user_no2 from lesson where lesson_no = ? ),?,sysdate,3)";
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, parseInt2);
+			pstmt.setInt(2, parseInt);
+			pstmt.setInt(3, parseInt);
+			result=pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();			
+			// TODO: handle exception
+		}finally {
+			close(pstmt);
+		}
+		
+		
+		
+		return result;
 	}
 }

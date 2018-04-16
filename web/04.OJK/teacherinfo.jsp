@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>선생정보보기</title>
 <script type="text/javascript">
-//운영중인 강의
+//운영중인 강좌
 $(function(){
 	$.ajax({
 		url: "/prototype/onlesson",
@@ -93,8 +93,8 @@ for(var i in json.semi) {
 	});
 
 	
-//학생 신청내용. 
-$.ajax({
+//학생 신청 내역
+$.ajax({   //레슨로그에서 선생의 번호로 검색, 스테이스에 수업이 진행중인 것만 가져온ㄷ상관없이 가져옴.
 	url:"/prototype/llteaher",
 	data: {user : $('#userno').val()},
 	type: "get",
@@ -108,47 +108,61 @@ for(var i in json.onlesson) {
 	
 if(json.onlesson[i].state == 1) {
 		values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
-		+"</td><td>레슨</td><td>"+json.onlesson[i].username+"</td>"
+		+"</td><td>레슨</td><td>"+json.onlesson[i].username+"</td><td>"+json.onlesson[i].log_date+"</td>"
 		+"<td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
-		+"<td><button type='button' class='btn btn-warning' id='"+json.onlesson[i].lesson_no+"' onclick='updateLesson(this)'>수정</button></td>"
-		+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+ "' onclick='finishLesson(this)'>종료</button></td></tr>"			
+		+"<td><button type='button' class='btn btn-warning' id='"+json.onlesson[i].lesson_no+"/"+json.onlesson[i].stuno+"' onclick='confirm1(this)'>수업확인</button></td>"
+		+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='finishLesson(this)'>종료</button></td></tr>"			
 		}
-
-
-else if(json.onlesson[i].state == 2 ){
-	values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
-	+"</td><td>레슨</td><td>"+json.onlesson[i].username+"</td>"
-	+"<td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
-	+"<td><button type='button' class='btn btn-warning' id='"+json.onlesson[i].lesson_no+"' onclick='updateLesson(this)'>수정</button></td>"
-	+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+ "' onclick='finishLesson(this)'>종료</button></td></tr>"			
+else if(json.onlesson[i].state == 2 ){ 
+	//일단 보류
 	}
 }
-
-
-//{"onlesson":[{"log_date":"2018-04-16","lesson_no":10004,"lesson_title":"자바 1:1 강의합니다.","state":1,"log_no":1,"username":"김명도"}]}
-
 $('#ongoing_table2').html(values);
 	}, error: function(a,b,c){
 		console.log(b+c);
 	}	
+})
+
+
+//학생을 가르친 과거내역
+$.ajax({
+	url:"/prototype/teachlogofteacher",
+	data: {user : $('#userno').val()},
+	type: "get",
+	dataType: "json",
+	success: function(data) {
+		
+var jsonStr = JSON.stringify(data);
+var json = JSON.parse(jsonStr);
+var values = $('#ongoing_table3').html();
+for(var i in json.onlesson) {
 	
-	
+		values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
+		+"</td><td>레슨</td><td>"+json.onlesson[i].username+"</td><td>"+json.onlesson[i].log_date+"</td>"
+		+"<td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
+}
+$('#ongoing_table3').html(values);
+	}, error: function(a,b,c){
+		console.log(b+c);
+	}	
 })
 	
 
 	
-	
-	
-	
-	
-	
-	
-	
+
 	
 });
 
+	
 </script>
 <script>
+//수업확인 
+function confirm1(a){
+	var result = confirm('확실히 레슨을 진행하셨나요??'); 
+	location.href="/prototype/confirmlesson?no="+a.id;
+}
+	
+
 //종료하기
 function finishLesson(val){
 	
@@ -278,7 +292,7 @@ function upload_profile() {
 			</div>
 			
 			<br> <br>
-			<h1>강의 내역</h1>
+			<h1>강의 계시판 내역</h1>
 			<hr>
 			<div id="info"
 				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px; overflow:auto;">
@@ -307,9 +321,10 @@ function upload_profile() {
 								<th>강의명</th>
 								<th>타입</th>
 								<th>학생명</th>
+								<th>수업시작일</th>
 								<th>상세보기바로가기</th>
-								<th>수락</th>
-								<th>거절</th>
+								<th>수업확인</th>
+								<th>수업종료</th>
 							</tr>
 						</thead>
 						<tbody id="ongoing_table2">
@@ -318,12 +333,33 @@ function upload_profile() {
 					</table>
 				</div>
 			</div>
+			
+			<br> <br><br>
+			<h1>학생 교육 내역</h1>
+			<hr>
+			<div id="info" style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px; overflow:auto;">
+				<div style="width:100%;">
+					<table class="table table-hover">
+						<thead>
+						<tr>
+								<th>강의명</th>
+								<th>타입</th>
+								<th>학생명</th>
+								<th>레슨날</th>
+								<th>해당레슨상세보기</th>
+							
+						</tr>
+						</thead>
+						<tbody id="ongoing_table3">
+							
+						</tbody>
+					</table>
+				</div>
+			</div>
+			
+			
 		</div>
 	</div>   
-
-
-
-
 	</nav>
 	<Br><Br>
 <%@ include file="/common/footer.jsp" %>
