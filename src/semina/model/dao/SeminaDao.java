@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import javafx.scene.Parent;
+import lesson.model.vo.Lesson;
 import oracle.net.aso.p;
 import semina.model.vo.Semina;
 import static common.JDBCTemplate.*;
@@ -551,6 +552,123 @@ try {
 		// TODO: handle exception
 		e.printStackTrace();
 	}		
+		return result;
+	}
+
+	public ArrayList<Semina> aSeminaList(Connection con) {
+		ArrayList<Semina> semina = new ArrayList<Semina>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = "select s.*, u.user_name, u.user_email from semina s, users u where s.user_no = u.user_no";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+		while(rset.next()) {
+			Semina semi= new Semina();
+			semi.setSeminaNo(rset.getInt("SEMINA_NO"));
+			semi.setUserNo(rset.getInt("USER_NO"));
+			semi.setSeminaTitle(rset.getString("SEMINA_TITLE"));
+			semi.setSeminaLocation(rset.getString("SEMINA_LOCATION"));
+			semi.setSeminaPrice(rset.getInt("SEMINA_PRICE"));
+			semi.setSeminaStartDate(rset.getDate("SEMINA_STARTDATE"));
+			semi.setSEMINA_STATE(rset.getInt("semina_state"));
+			semi.setSeminatitle1(rset.getString("SEMINA_TITLE1"));
+			semi.setSeminaContent1(rset.getString("SEMINA_CONTENT1"));
+			
+			semi.setSeminatitle2(rset.getString("SEMINA_TITLE2"));
+			semi.setSeminaContent2(rset.getString("SEMINA_CONTENT2"));
+			
+			semi.setSeminatitle3(rset.getString("SEMINA_TITLE3"));
+			semi.setSeminaContent3(rset.getString("SEMINA_CONTENT3"));
+			
+			semi.setSeminatitle4(rset.getString("SEMINA_TITLE4"));
+			semi.setSeminaContent4(rset.getString("SEMINA_CONTENT4"));
+			semi.setSeminaEndDate(rset.getDate("SEMINA_ENDDATE"));
+			semi.setSeminaMin(rset.getInt("SEMINA_MIN"));
+			semi.setSeminaNow(rset.getInt("SEMINA_NOW"));
+			semi.setSeminaMax(rset.getInt("SEMINA_MAX"));
+			semi.setSeminaOriginalFileName(rset.getString("SEMINA_ORIGINALFILENAME"));
+			semi.setSeminaRenameFileName(rset.getString("SEMINA_RENAMEFILENAME"));
+			
+			semi.setUser_name(rset.getString("user_name"));
+			semi.setUser_email(rset.getString("user_email"));
+			semina.add(semi);
+			System.out.println(semi.toString());			
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return semina;
+	}
+
+	public Semina auSemina(Connection con, int semina_no) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Semina semi = new Semina();
+		String sql = "select s.*, u.user_name, u.user_email from semina s, users u where s.user_no = u.user_no and s.semina_no = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, semina_no);
+			rset = pstmt.executeQuery();
+			
+		if(rset.next()) {
+			semi.setSeminaNo(rset.getInt("SEMINA_NO"));
+			semi.setUserNo(rset.getInt("USER_NO"));
+			semi.setSeminaTitle(rset.getString("SEMINA_TITLE"));
+			semi.setSeminaLocation(rset.getString("SEMINA_LOCATION"));
+			semi.setSeminaPrice(rset.getInt("SEMINA_PRICE"));
+			semi.setSeminaStartDate(rset.getDate("SEMINA_STARTDATE"));
+			
+			semi.setSeminatitle1(rset.getString("SEMINA_TITLE1"));
+			semi.setSeminaContent1(rset.getString("SEMINA_CONTENT1"));
+			
+			semi.setSeminatitle2(rset.getString("SEMINA_TITLE2"));
+			semi.setSeminaContent2(rset.getString("SEMINA_CONTENT2"));
+			
+			semi.setSeminatitle3(rset.getString("SEMINA_TITLE3"));
+			semi.setSeminaContent3(rset.getString("SEMINA_CONTENT3"));
+			
+			semi.setSeminatitle4(rset.getString("SEMINA_TITLE4"));
+			semi.setSeminaContent4(rset.getString("SEMINA_CONTENT4"));
+			semi.setSeminaEndDate(rset.getDate("SEMINA_ENDDATE"));
+			semi.setSeminaMin(rset.getInt("SEMINA_MIN"));
+			semi.setSeminaNow(rset.getInt("SEMINA_NOW"));
+			semi.setSeminaMax(rset.getInt("SEMINA_MAX"));
+			semi.setSeminaOriginalFileName(rset.getString("SEMINA_ORIGINALFILENAME"));
+			semi.setSeminaRenameFileName(rset.getString("SEMINA_RENAMEFILENAME"));
+			
+			semi.setUser_name(rset.getString("user_name"));
+			semi.setUser_email(rset.getString("user_email"));
+			System.out.println(semi.toString());			
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return semi;
+	}
+
+	public int adminUpdateSemina(Connection con, int seminano, String value, int type) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = "update semina set SEMINA_STATE = ? where semina_no = ?";
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+					pstmt.setInt(1, Integer.parseInt(value));
+					pstmt.setInt(2, seminano);
+		
+		
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
 		return result;
 	}
 

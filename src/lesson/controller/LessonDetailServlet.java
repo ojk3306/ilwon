@@ -38,7 +38,10 @@ public class LessonDetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int lesson_no = Integer.parseInt(request.getParameter("no"));
-		int userno = Integer.parseInt(request.getParameter("userno"));
+		int userno = 0;
+		
+		if(request.getParameter("userno")!=null)
+			userno = Integer.parseInt(request.getParameter("userno"));
 		LessonDetail lessondetail = new LessonService().lessonView(lesson_no);
 		ArrayList<Review> review = new ReviewService().previewReview(lesson_no);
 		String userimg = new UsersService().getUserImg(lessondetail.getUser_no());

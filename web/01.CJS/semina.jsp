@@ -156,7 +156,7 @@
 	    <div class="panel panel-default" >
 		<div class="panel-body" >
 		<%if(i.getSeminaRenameFileName()!=null){ %>
-		<img src="<%=request.getContextPath()%>/seminaTitleimg/<%=i.getSeminaRenameFileName()%>">
+		<img src="<%=request.getContextPath()%>/seminaTitleimg/<%=i.getSeminaRenameFileName()%>" style="width:303px; height:205px;";>
 		<%}else{ //지정된 이미지가 없으면 디폴트 랜덤사진을 넣는다.
 			String[] img = new String[11];
 			img[0]="https://images.pexels.com/photos/262508/pexels-photo-262508.jpeg?h=350&auto=compress&cs=tinysrgb";

@@ -63,5 +63,28 @@ public class LearnLogService {
 		close(conn);
 		return onlesson;
 	}
+
+	public ArrayList<Learnlogforinfo> getlessonLog4(int user) {
+		Connection conn = getConnection();
+		ArrayList<Learnlogforinfo> onlesson = new LearnLogDao().getlessonLog4(user,conn);
+		
+		
+		close(conn);
+		return onlesson;
+	}
+
+	public int Comfirmlog(int parseInt, int parseInt2) {
+		Connection conn = getConnection();
+		
+		int result = new LearnLogDao().Comfirmlog(conn,parseInt,parseInt2);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+		
+	}
 	
 }

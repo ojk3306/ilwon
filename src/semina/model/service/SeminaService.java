@@ -7,6 +7,8 @@ import static common.JDBCTemplate.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import lesson.model.dao.LessonDao;
+import lesson.model.vo.Lesson;
 import oracle.net.aso.s;
 public class SeminaService {
 
@@ -143,6 +145,35 @@ public class SeminaService {
 		close(con);
 		
 
+		return result;
+	}
+
+	public ArrayList<Semina> aSeminaList() {
+		Connection con = getConnection();
+		ArrayList<Semina> semina = new SeminaDao().aSeminaList(con);
+		close(con);
+		return semina;
+	}
+
+	public Semina auSemina(int semina_no) {
+		Connection con = getConnection();
+		Semina semina = new SeminaDao().auSemina(con, semina_no);
+		close(con);
+		return semina;
+	}
+
+	public int adminUpdateSemina(int seminano, String value, int type) {
+		Connection con = getConnection();
+		int result = new SeminaDao().adminUpdateSemina(con,seminano,value,type);
+		
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+			System.out.println("수정실패!");
+		
+		}
+		close(con);
 		return result;
 	}
 
