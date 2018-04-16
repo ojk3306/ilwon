@@ -23,7 +23,7 @@ public class LessonService {
 	public int insertlesson(Lesson lesson) {
 		Connection conn = getConnection();
 		
-		int result = new LessonDao().insertlesson(conn, lesson);
+		int result = new LessonDao().insertlesson1(conn, lesson);
 		
 		if(result > 0) {
 			commit(conn);
@@ -179,6 +179,63 @@ public class LessonService {
 	
 	}
 
+	public ArrayList<Onlesson> onlesson2(int user) {
+		Connection conn = getConnection();
+		
+		ArrayList<Onlesson> onlesson = new LessonDao().onlesson2(conn, user);
+		
+		close(conn);
+		
+		return onlesson;
+	}
+
+
+	public ArrayList<Lesson> aLessonList() {
+		Connection con = getConnection();
+		ArrayList<Lesson> lesson = new LessonDao().aLessonList(con);
+		close(con);
+		return lesson;
+	}
+
+	public ArrayList<Lesson> aSearchLesson(String str, int option) {
+		Connection con = getConnection();
+		ArrayList<Lesson> lesson = new LessonDao().aSearchLesson(con,str,option);
+		close(con);
+		return lesson;
+		
+	}
+
+	public Lesson auLesson(int lesson_no) {
+		Connection con = getConnection();
+		Lesson lesson = new LessonDao().auLesson(con,lesson_no);
+		close(con);
+		return lesson;
+	}
+
+	public int adminUpdateLesson(int lessonno, String value, int type) {
+		Connection con = getConnection();
+		int result = new LessonDao().adminUpdateLesson(con,lessonno,value,type);
+		
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+			System.out.println("키워드 수정 실패");
+		
+		}
+		close(con);
+		return result;
+}
+
+
+	public LessonSearch getlessoninfoStudentByNo(int parseInt) {
+		Connection conn = getConnection();
+		LessonSearch ls= new LessonDao().getlessoninfoStudentByNo(conn, parseInt);
+		close(conn);
+		
+		
+		return ls;
+	}
 	public ArrayList<Lesson> selectLearnList() {
 		Connection con = getConnection();
 		

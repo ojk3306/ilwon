@@ -664,6 +664,367 @@ public class LessonDao {
 
 	}
 
+	public int insertlesson1(Connection conn, Lesson lesson) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = "insert into lesson values((SELECT max(lesson_no) from lesson)+1"
+				+ ",?,1,?,?,null,?,?,?,?,?,sysdate,null,?,'.','.','.',8000,'','','','','','')";
+		
+		
+		try {
+		System.out.println("lesson.getUser_no2()"+lesson.getUser_no2());
+			pstmt = conn.prepareStatement(sql);
+			
+			
+			pstmt.setInt(1, lesson.getLevel_no());
+			pstmt.setInt(2, lesson.getCategory_no());
+			pstmt.setInt(3, lesson.getUser_no1());
+			pstmt.setString(4, lesson.getLesson_title());
+			pstmt.setString(5, lesson.getLesson_loc());
+			pstmt.setInt(6, lesson.getLesson_rad());
+			pstmt.setInt(7, lesson.getLesson_price());
+			pstmt.setInt(8, lesson.getLesson_count());
+			pstmt.setString(9, lesson.getLesson_contop());
+	
+	
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+	public ArrayList<Lesson> aLessonList(Connection con) {
+		ArrayList<Lesson> lesson = new ArrayList<Lesson>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = "select l.*, c.category_big, c.category_small, u.user_name, u.user_email from lesson l, categorys c, users u where l.category_no = c.category_no and l.user_no2 = u.user_no order by l.lesson_no desc";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Lesson search = new Lesson();
+				search.setLesson_no(rset.getInt("LESSON_NO"));
+				search.setLevel_no(rset.getInt("LEVEL_NO"));
+				search.setState_no(rset.getInt("STATE_NO"));
+				search.setCategory_no(rset.getInt("CATEGORY_NO"));
+				search.setCategory_bigName(rset.getString("CATEGORY_BIG"));
+				search.setCategory_smallName(rset.getString("CATEGORY_SMALL"));
+				search.setUser_no2(rset.getInt("USER_NO2"));
+				search.setUser_name2(rset.getString("user_name"));
+			    search.setLesson_title(rset.getString("LESSON_TITLE"));
+				search.setLesson_loc(rset.getString("LESSON_LOCATION"));
+				search.setLesson_rad(rset.getInt("LESSON_RADIUS"));
+				search.setLesson_price(rset.getInt("LESSON_PRICE"));
+				search.setLesson_count(rset.getInt("LESSON_COUNT"));
+				search.setLesson_startdate(rset.getDate("LESSON_STARTDATE"));
+				search.setLesson_contop(rset.getString("LESSON_CONTOP"));
+				search.setLesson_conmid(rset.getString("LESSON_CONMID"));
+				search.setLesson_conbot(rset.getString("LESSON_CONBOT"));
+				search.setLesson_keyword(rset.getString("LESSON_KEYWORD"));
+				search.setLesson_type(rset.getInt("LESSON_TYPE"));
+				search.setLesson_orginal(rset.getString("LESSON_ORIGINAL_PHOTO"));
+				search.setLesson_orginal2(rset.getString("LESSON_ORIGINAL_PHOTO2"));
+				search.setLesson_orginal3(rset.getString("LESSON_ORIGINAL_PHOTO3"));
+				search.setLesson_rename(rset.getString("LESSON_RENAME_PHOTO"));
+				search.setLesson_rename2(rset.getString("LESSON_RENAME_PHOTO2"));
+				search.setLesson_rename3(rset.getString("LESSON_RENAME_PHOTO3"));
+				search.setCategory_smallName(rset.getString("category_small"));
+				search.setCategory_bigName(rset.getString("category_big"));
+				search.setUser_name1(rset.getString("user_email")); //이메일 담앗습니다
+				lesson.add(search);
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return lesson;
+	}
+
+	public ArrayList<Lesson> aSearchLesson(Connection con, String str, int option) {
+		ArrayList<Lesson> lesson = new ArrayList<Lesson>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = "";
+		
+		switch(option) {
+		case 1 : sql = "select l.*, c.category_big, c.category_small, u.user_name, u.user_email "
+				+ "from lesson l, categorys c, users u "
+				+ "where l.category_no = c.category_no and l.user_no2 = u.user_no "
+				+"and l.lesson_title like ? or l.lesson_keyword like ? or c.category_big like ? or "
+				+"c.category_small like ? or u.user_name like ? or u.user_email like ? order by l.lesson_no desc";
+				break;
+		case 2 : sql = "select l.*, c.category_big, c.category_small, u.user_name, u.user_email "
+				+ "from lesson l, categorys c, users u "
+				+ "where l.category_no = c.category_no and l.user_no2 = u.user_no "
+				+ "and u.user_name like ? order by l.lesson_no desc";	
+				break;
+		case 3 : sql = "select l.*, c.category_big, c.category_small, u.user_name, u.user_email "
+				+ "from lesson l, categorys c, users u "
+				+ "where l.category_no = c.category_no and l.user_no2 = u.user_no "
+				+ "and u.user_email like ? order by l.lesson_no desc";
+				break;
+		case 4 : sql = "select l.*, c.category_big, c.category_small, u.user_name, u.user_email "
+				+ "from lesson l, categorys c, users u "
+				+ "where l.category_no = c.category_no and l.user_no2 = u.user_no "
+				+ "and l.state_no = ? order by l.lesson_no desc";
+				break;
+		case 5 : sql = "select l.*, c.category_big, c.category_small, u.user_name, u.user_email "
+				+ "from lesson l, categorys c, users u "
+				+ "where l.category_no = c.category_no and l.user_no2 = u.user_no "
+				+ "and l.lesson_title like ? order by l.lesson_no desc";
+				break;
+		case 6 : sql = "select l.*, c.category_big, c.category_small, u.user_name, u.user_email "
+				+ "from lesson l, categorys c, users u "
+				+ "where l.category_no = c.category_no and l.user_no2 = u.user_no "
+				+ "and c.category_big like ? or c.category_small like ? order by l.lesson_no desc";
+				break;
+		case 7 : sql = "select l.*, c.category_big, c.category_small, u.user_name, u.user_email "
+				+ "from lesson l, categorys c, users u "
+				+ "where l.category_no = c.category_no and l.user_no2 = u.user_no "
+				+ "and l.lesson_keyword like ? order by l.lesson_no desc";
+				break;
+		}
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			switch(option) {
+			case 1 : pstmt.setString(1, "%"+str+"%");
+					 pstmt.setString(2, "%"+str+"%");
+					 pstmt.setString(3, "%"+str+"%");
+					 pstmt.setString(4, "%"+str+"%");
+					 pstmt.setString(5, "%"+str+"%");
+					 pstmt.setString(6, "%"+str+"%"); break;
+			case 2 : pstmt.setString(1, "%"+str+"%"); break;
+			case 3 : pstmt.setString(1, "%"+str+"%"); break;
+			case 4 : pstmt.setInt(1, Integer.parseInt(str)); break;
+			case 5 : pstmt.setString(1, "%"+str+"%"); break;
+			case 6 : pstmt.setString(1, "%"+str+"%"); 
+					 pstmt.setString(2, "%"+str+"%"); break;
+			case 7 : pstmt.setString(1, "%"+str+"%"); break;
+			}
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				
+				Lesson search = new Lesson();
+				search.setLesson_no(rset.getInt("LESSON_NO"));
+				search.setLevel_no(rset.getInt("LEVEL_NO"));
+				search.setState_no(rset.getInt("STATE_NO"));
+				search.setCategory_no(rset.getInt("CATEGORY_NO"));
+				search.setCategory_bigName(rset.getString("CATEGORY_BIG"));
+				search.setCategory_smallName(rset.getString("CATEGORY_SMALL"));
+				search.setUser_no2(rset.getInt("USER_NO2"));
+				search.setUser_name2(rset.getString("user_name"));
+			    search.setLesson_title(rset.getString("LESSON_TITLE"));
+				search.setLesson_loc(rset.getString("LESSON_LOCATION"));
+				search.setLesson_rad(rset.getInt("LESSON_RADIUS"));
+				search.setLesson_price(rset.getInt("LESSON_PRICE"));
+				search.setLesson_count(rset.getInt("LESSON_COUNT"));
+				search.setLesson_startdate(rset.getDate("LESSON_STARTDATE"));
+				search.setLesson_contop(rset.getString("LESSON_CONTOP"));
+				search.setLesson_conmid(rset.getString("LESSON_CONMID"));
+				search.setLesson_conbot(rset.getString("LESSON_CONBOT"));
+				search.setLesson_keyword(rset.getString("LESSON_KEYWORD"));
+				search.setLesson_type(rset.getInt("LESSON_TYPE"));
+				search.setLesson_orginal(rset.getString("LESSON_ORIGINAL_PHOTO"));
+				search.setLesson_orginal2(rset.getString("LESSON_ORIGINAL_PHOTO2"));
+				search.setLesson_orginal3(rset.getString("LESSON_ORIGINAL_PHOTO3"));
+				search.setLesson_rename(rset.getString("LESSON_RENAME_PHOTO"));
+				search.setLesson_rename2(rset.getString("LESSON_RENAME_PHOTO2"));
+				search.setLesson_rename3(rset.getString("LESSON_RENAME_PHOTO3"));
+				search.setCategory_smallName(rset.getString("category_small"));
+				search.setCategory_bigName(rset.getString("category_big"));
+				search.setUser_name1(rset.getString("user_email")); //이메일 담앗습니다
+				lesson.add(search);
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+			
+		
+		return lesson;
+	}
+
+	public Lesson auLesson(Connection con, int lesson_no) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Lesson search = new Lesson();
+		String sql = "select l.*, c.category_big, c.category_small, u.user_name, u.user_email from lesson l, categorys c, users u where l.category_no = c.category_no and l.user_no2 = u.user_no and l.lesson_no = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, lesson_no);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				search.setLesson_no(rset.getInt("LESSON_NO"));
+				search.setLevel_no(rset.getInt("LEVEL_NO"));
+				search.setState_no(rset.getInt("STATE_NO"));
+				search.setCategory_no(rset.getInt("CATEGORY_NO"));
+				search.setCategory_bigName(rset.getString("CATEGORY_BIG"));
+				search.setCategory_smallName(rset.getString("CATEGORY_SMALL"));
+				search.setUser_no2(rset.getInt("USER_NO2"));
+				search.setUser_name2(rset.getString("user_name"));
+			    search.setLesson_title(rset.getString("LESSON_TITLE"));
+				search.setLesson_loc(rset.getString("LESSON_LOCATION"));
+				search.setLesson_rad(rset.getInt("LESSON_RADIUS"));
+				search.setLesson_price(rset.getInt("LESSON_PRICE"));
+				search.setLesson_count(rset.getInt("LESSON_COUNT"));
+				search.setLesson_startdate(rset.getDate("LESSON_STARTDATE"));
+				search.setLesson_contop(rset.getString("LESSON_CONTOP"));
+				search.setLesson_conmid(rset.getString("LESSON_CONMID"));
+				search.setLesson_conbot(rset.getString("LESSON_CONBOT"));
+				search.setLesson_keyword(rset.getString("LESSON_KEYWORD"));
+				search.setLesson_type(rset.getInt("LESSON_TYPE"));
+				search.setLesson_orginal(rset.getString("LESSON_ORIGINAL_PHOTO"));
+				search.setLesson_orginal2(rset.getString("LESSON_ORIGINAL_PHOTO2"));
+				search.setLesson_orginal3(rset.getString("LESSON_ORIGINAL_PHOTO3"));
+				search.setLesson_rename(rset.getString("LESSON_RENAME_PHOTO"));
+				search.setLesson_rename2(rset.getString("LESSON_RENAME_PHOTO2"));
+				search.setLesson_rename3(rset.getString("LESSON_RENAME_PHOTO3"));
+				search.setCategory_smallName(rset.getString("category_small"));
+				search.setCategory_bigName(rset.getString("category_big"));
+				search.setUser_name1(rset.getString("user_email")); //이메일 담앗습니다
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return search;
+	}
+
+	public int adminUpdateLesson(Connection con, int lessonno, String value, int type) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = "";
+		
+		switch(type) {
+		
+			case 1: sql = "update lesson set state_no = ? where lesson_no = ?";break;
+			case 2:	sql = "update lesson set lesson_keyword = ? where lesson_no = ?";break;
+		}
+		
+		try {
+			
+			
+			pstmt = con.prepareStatement(sql);
+			switch(type) {
+			case 1 :
+					pstmt.setInt(1, Integer.parseInt(value));
+					pstmt.setInt(2, lessonno);
+					break;
+			case 2 : 
+					pstmt.setString(1, value);
+					pstmt.setInt(2, lessonno);
+					break;
+			}
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+	
+
+	public ArrayList<Onlesson> onlesson2(Connection conn, int user) {
+		ArrayList<Onlesson> onlesson = new ArrayList<Onlesson>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql ="select * from lesson where USER_NO1 = ? and lesson_type = 8000 and state_no = 1";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, user);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+			Onlesson l = new Onlesson();
+			l.setLesson_title(rset.getString("lesson_title"));
+			l.setState(rset.getString("STATE_NO"));
+		
+			l.setLesson_no(rset.getInt("lesson_no"));
+			System.out.println(l.toString());
+			onlesson.add(l);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return onlesson;
+	}
+
+	public LessonSearch getlessoninfoStudentByNo(Connection conn, int parseInt) {
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		LessonSearch ls=null;
+	
+		String sql="select * from lesson,categorys,lessonlev where lesson.CATEGORY_NO=categorys.CATEGORY_NO and Lesson_no = ? and lesson.LEVEL_NO=LESSONLEV.LESSONLEV_NO  and lesson.LESSON_TYPE=8000 ";
+		try {
+			
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1,parseInt);
+			rset=pstmt.executeQuery();
+		if(rset.next()) {
+			ls=new LessonSearch();
+			ls.setCategory_smallName(rset.getString("CATEGORY_SMALL"));	
+		    ls.setLesson_contop(rset.getString("LESSON_CONTOP"));
+		    ls.setLesson_loc(rset.getString("LESSON_LOCATION"));
+		    ls.setLesson_no(rset.getInt("LESSON_NO"));
+		    ls.setLesson_count(rset.getInt("LESSON_COUNT"));
+		    ls.setLesson_price(rset.getInt("LESSON_PRICE"));
+		    ls.setLesson_rad(rset.getInt("LESSON_RADIUS"));
+		    ls.setLesson_startdate(rset.getDate("LESSON_STARTDATE"));
+		    ls.setLesson_title(rset.getString("LESSON_TITLE"));
+		    ls.setLevel(rset.getString("LESSONLEV"));
+		System.out.println("getlessoninfoStudentByNo에서"+ ls.toString());
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return ls;
+	}
+
+
+
 	public ArrayList<Lesson> selectLearnList(Connection con) {
 		ArrayList<Lesson> list = new ArrayList<Lesson>();
 		Statement stmt = null;

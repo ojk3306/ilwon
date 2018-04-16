@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import learnLog.model.dao.LearnLogDao;
 import learnLog.model.vo.LearnLog;
+import learnLog.model.vo.Learnlogforinfo;
 
 import static common.JDBCTemplate.*;
 
@@ -32,6 +33,26 @@ public class LearnLogService {
 			rollback(conn);
 		}
 		return result;
+	}
+
+
+
+	public ArrayList<Learnlogforinfo> getlessonLog(int user) {
+		Connection conn = getConnection();
+		ArrayList<Learnlogforinfo> onlesson = new LearnLogDao().getlessonLog(user,conn);
+		
+		
+		close(conn);
+		return onlesson;
+	}
+
+	public ArrayList<Learnlogforinfo> getlessonLog1(int user) {
+		Connection conn = getConnection();
+		ArrayList<Learnlogforinfo> onlesson = new LearnLogDao().getlessonLog1(user,conn);
+		
+		
+		close(conn);
+		return onlesson;
 	}
 	
 }
