@@ -239,10 +239,11 @@ $(function(){
  			</div>
         
         
-        
-        
+     
         </div>
-<%if(login==null){}else{ %>
+<%if(login==null){
+	
+}else{ %>
 <input type="hidden" value="<%=login.getUserNo() %>" id="userno">
 <%} %>
 </div>

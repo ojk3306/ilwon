@@ -732,7 +732,7 @@ public class LessonDao {
 		PreparedStatement pstmt=null;
 		ResultSet rset=null;
 		LessonSearch ls=null;
-	
+System.out.println(parseInt);
 		String sql="select * from lesson,categorys,lessonlev where lesson.CATEGORY_NO=categorys.CATEGORY_NO and Lesson_no = ? and lesson.LEVEL_NO=LESSONLEV.LESSONLEV_NO  and lesson.LESSON_TYPE=8000 ";
 		try {
 			

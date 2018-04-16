@@ -191,6 +191,7 @@ public class LessonService {
 
 	public LessonSearch getlessoninfoStudentByNo(int parseInt) {
 		Connection conn = getConnection();
+		
 		LessonSearch ls= new LessonDao().getlessoninfoStudentByNo(conn, parseInt);
 		close(conn);
 		

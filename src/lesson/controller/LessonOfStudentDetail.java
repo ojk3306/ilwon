@@ -41,14 +41,14 @@ public class LessonOfStudentDetail extends HttpServlet {
 		
 		Users user=new users.model.service.UsersService().userDetailByAdmin(Integer.parseInt(request.getParameter("userno")));
 		
-		LessonSearch lesson=new lesson.model.service.LessonService().getlessoninfoStudentByNo(Integer.parseInt(request.getParameter("userno")));
+		LessonSearch lessondetail=new lesson.model.service.LessonService().getlessoninfoStudentByNo(Integer.parseInt(request.getParameter("no")));
 		
 		RequestDispatcher view=null;
-		if(user!=null && lesson!=null) {
+		if(user!=null && lessondetail!=null) {
 			System.out.println("학생이 올린 게시판 디테일 성공");
 			view=request.getRequestDispatcher("/04.OJK/studentdetail.jsp");
 			request.setAttribute("user", user);
-			request.setAttribute("lesson", lesson);
+			request.setAttribute("lesson", lessondetail);
 			view.forward(request, response);
 		}else {
 			

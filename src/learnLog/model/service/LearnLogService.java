@@ -54,5 +54,14 @@ public class LearnLogService {
 		close(conn);
 		return onlesson;
 	}
+
+	public ArrayList<Learnlogforinfo> getlessonLog3(int user) {
+		Connection conn = getConnection();
+		ArrayList<Learnlogforinfo> onlesson = new LearnLogDao().getlessonLog3(user,conn);
+		
+		
+		close(conn);
+		return onlesson;
+	}
 	
 }

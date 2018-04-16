@@ -92,6 +92,58 @@ for(var i in json.semi) {
 		}	
 	});
 
+	
+//학생 신청내용. 
+$.ajax({
+	url:"/prototype/llteaher",
+	data: {user : $('#userno').val()},
+	type: "get",
+	dataType: "json",
+	success: function(data) {
+		
+var jsonStr = JSON.stringify(data);
+var json = JSON.parse(jsonStr);
+var values = $('#ongoing_table2').html() + "<br>";
+
+for(var i in json.onlesson) {
+	
+if(json.onlesson[i].state == 1) {
+		values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
+		+"</td><td>레슨</td><td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
+		+"<td><button type='button' class='btn btn-primary'>"+json.onlesson[i].state+"</button></td>"
+		+"<td><button type='button' class='btn btn-warning' id='"+json.onlesson[i].lesson_no+"' onclick='updateLesson(this)'>수정</button></td>"
+		+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='finishLesson(this)'>종료</button></td></tr>"			
+		}
+else if(json.onlesson[i].state == 2 ){
+		values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
+		+"</td><td>레슨</td><td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
+		+"<td><button type='button' class='btn btn-primary'>"+json.onlesson[i].state+"</button></td>"
+		+"<td><button type='button' class='btn btn-warning' id='"+json.onlesson[i].lesson_no+"' onclick='updateLesson(this)'>수정</button></td>"
+		+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='finishLesson(this)'>종료</button></td></tr>"			
+	}
+}
+
+
+//{"onlesson":[{"log_date":"2018-04-16","lesson_no":10004,"lesson_title":"자바 1:1 강의합니다.","state":1,"log_no":1,"username":"김명도"}]}
+
+$('#ongoing_table2').html(values);
+	}, error: function(a,b,c){
+		console.log(b+c);
+	}	
+	
+	
+})
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
 });
 
 </script>
@@ -259,7 +311,7 @@ function upload_profile() {
 								<th>거절</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id="ongoing_table2">
 							<tr>
 								<td>java강의</td>
 								<td>컴퓨터/IT</td>
@@ -287,6 +339,7 @@ function upload_profile() {
 
 
 	</nav>
-
+	<Br><Br>
+<%@ include file="/common/footer.jsp" %>
 </body>
 </html>

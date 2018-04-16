@@ -5,8 +5,7 @@
 <% 
 	LessonDetail lessondetail =(LessonDetail)request.getAttribute("lessondetail");
 	
-	int user_no = ((Integer)request.getAttribute("user_no"));
-	String userimg = (String)request.getAttribute("userimg");
+
 
 %>	
 <!DOCTYPE html>
@@ -21,20 +20,7 @@
 <script type="text/javascript" src="/prototype/common\resources\js\select2.js"></script>
 
 
-<script type="text/javascript">
 
-function popupReview(){
-	var popUrl = "/prototype/review?no=<%= lessondetail.getLesson_no() %>" + "&userno=<%= user_no%>"; 
-	//팝업창에 출력될 페이지 URL
-	
-	var popOption = "width=1050, height=900, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
-
-		window.open(popUrl,"a",popOption);
-
-	}
-	
-
-</script>
 	
 <style type="text/css">
 /* 스타 별점 */
@@ -230,11 +216,9 @@ border-radius: 35px;
 	<li class="topdiv" name="img">
 		<ul>
 		<li>
-		<%if(userimg != null) { %>
-		<img src="/prototype/userTitleimg/<%= userimg%>">
-		<%}else { %>
+		
 		<img src="/prototype/userTitleimg/rakoon.jpg">
-		<%} %>
+
 		</li>
 		
 		<li class="underpic">
@@ -244,10 +228,10 @@ border-radius: 35px;
 	</li>
 	<li class="topdiv" name="title">
 		<ul style="list-style: none;">
-			<li class=""><h3><%=lessondetail.getUser_name() %></h3>선생님</li>
-			<li class=""><h1><%=lessondetail.getLesson_title() %></h1></li>
+			
+			
 			<li class=""><br></li>
-			<li class=""><h3>키워드></h3><h4> <%=lessondetail.getLesson_keyword() %></h4></li>
+		
 			
 		</ul>
 		</li>
@@ -272,7 +256,7 @@ border-radius: 35px;
 			<h2>수강료</h2><br>
 				<table>
 					<tr>
-						<td><p style="font-size: 25pt;"><%=lessondetail.getLesson_price() %></p></td>
+						<td><p style="font-size: 25pt;">1</p></td>
 						<td><p style="font-size: 10pt; margin-top: 6px; margin-left: 3px;">만원</p></td>		
 					</tr>
 				</table>
@@ -281,7 +265,7 @@ border-radius: 35px;
 			<h2>수업횟수</h2><br>
 			<table>
 					<tr>
-						<td><p style="font-size: 25pt;"><%=lessondetail.getLesson_count() %></p></td>
+						<td><p style="font-size: 25pt;">2</p></td>
 						<td><p style="font-size: 10pt; margin-top: 6px; margin-left: 3px;">회</p></td>		
 					</tr>
 				</table>
@@ -331,17 +315,17 @@ border-radius: 35px;
                    <nav class="in1">
 			<nav class="info1Oftop">
 			<!-- 간단한소개 -->
-			<%= lessondetail.getLesson_contop() %>
+			1
 			
 			</nav>
 			<nav class="info1Oftop" id="info10">
 			<!--  진행방식-->
-			<%= lessondetail.getLesson_conmid() %>
+		2
 			
 			</nav>
 			<nav class="info1Oftop">
 			<!-- 수업경력과 포부 -->
-			<%= lessondetail.getLesson_conbot() %>
+		3
 			</nav>
    
 	     
@@ -363,17 +347,7 @@ border-radius: 35px;
                                     <!-- Carousel items -->
                                     <div class="carousel-inner"> 
                                     <!-- 이미지 받기 -->
-                                        <div class="active item" data-slide-number="0">
-                                        <img src="/prototype/lesson_upload/<%= lessondetail.getLesson_rename() %>"
-                                        style="width:500px; height:500px"></div>
-
-                                        <div class="item" data-slide-number="1">
-                                        <img src="/prototype/lesson_upload/<%= lessondetail.getLesson_rename2() %>"
-                                         style="width:500px; height:500px"></div>
-
-                                        <div class="item" data-slide-number="2">
-                                        <img src="/prototype/lesson_upload/<%= lessondetail.getLesson_rename3() %>"
-                                         style="width:500px; height:500px"></div>
+                                       
 
                                   
                                     
