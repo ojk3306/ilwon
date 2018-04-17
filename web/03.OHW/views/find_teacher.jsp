@@ -129,20 +129,23 @@
 </head>
 
 <body style="min-width : 800px; overflow : auto; display : absolute; background:#E9E9E9;">
-	<nav><%@ include file = "../../common/navbar.jsp" %>
+	<nav>
+		<%@ include file = "../../common/navbar.jsp" %>
 		<%@include file="/01.CJS\sidebar.jsp" %>
 	</nav>
 <div style="margin-top: -550px;">
 	<div id = "left_bar"></div>
 	<div id = "right_bar"></div>
-	<header style="text-align : center;"><h3 class="header_text">은밀한 선생</h3></header>
+</div>
+<header style="text-align : center;"><h3 class="header_text">은밀한 선생</h3></header>
 	
-	<hr>
-	<section class = "teacher_location">
-		<table>
-			<tr>
+<hr>
+	
+<section class = "teacher_location">
+	<table>
+		<tr>
 			<td style = "width : 100px; vertical-align : top;">
-				<h3 class="header_text">지역</h3>
+			<h3 class="header_text">지역</h3>
 			</td>
 			<td style = "vertical-align : top; padding-top : 19px;">
 				<select onchange = "changeLocation(this.value);">
@@ -166,61 +169,55 @@
 					<option value="제주">제주</option>
 				</select>
 			</td>
-			</tr>
-		</table>
-		<table>
-			<tr>
-				<td>
-					<span id = "location_do"></span>
-				</td>
-			</tr>
-		</table>			
-	</section>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td>
+				<span id = "location_do"></span>
+			</td>
+		</tr>
+	</table>			
+</section>
 	
-	<hr>
+<hr>
 	
-	<section class = "teacher_class">
+<section class = "teacher_class">	
+	<table class = "ohw-big-category">
+		<tr class = "ohw-big-category-tr">
+			<th style = "width : 100px;"><h3 class="header_text">수업</h3></th>				
+		</tr>			
+	</table>		
+	<table class = "ohw-small-category">				
 	
-		<table class = "ohw-big-category">
-			<tr class = "ohw-big-category-tr">
-				<th style = "width : 100px;"><h3 class="header_text">수업</h3></th>				
-			</tr>			
-		</table>
+	</table>								
+</section>	
 		
-		<table class = "ohw-small-category">
-				
-		</table>		
-								
-	</section>	
-		
-	<script type="text/javascript">
+<script type="text/javascript">
 	
 	$.ajax({
     	url:"<%= request.getContextPath() %>/tclist",
     	type:"get",
     	datatype:"json",
     	success:
-    		function(data) {
-    		
-    		console.log("CatgegoryList : ") + console.log(data);
-			var jsonStr = JSON.stringify(data);
-			var json = JSON.parse(jsonStr);
-			var bigCategory = "";
+    		function(data) {    		
+    			console.log("CatgegoryList : ") + console.log(data);
+				var jsonStr = JSON.stringify(data);
+				var json = JSON.parse(jsonStr);
+				var bigCategory = "";
 
-			for(var i in json.bigCategory){ //대분류 삽입				
-				bigCategory += '<td class = "ohw-big-category-td"><a onclick="changeClass(this.id);" id = "' + json.bigCategory[i].categoryBig + '">' + json.bigCategory[i].categoryBig + '</a></td>'						
-			}
-			
-			$('.ohw-big-category-tr').append(bigCategory);
-
-			 for(var i in json.categoryInfo){ //소분류 삽입	
-				 $(".ohw-small-category").append($("#"+json.categoryInfo[i].categoryBig).html()+'<tr><td class = "tclass ohw-small-category-td ohw-' + json.categoryInfo[i].categoryBig + '" align = "left"><input type="radio" name="tclass-radio" value="' + json.categoryInfo[i].categorySmall + '">' + json.categoryInfo[i].categorySmall + '</td></tr>');
-			}
-			 
-		}, error : function(a,b,c) {
-			console.log(b+c);
+				for(var i in json.bigCategory){ //대분류 삽입				
+					bigCategory += '<td class = "ohw-big-category-td"><a onclick="changeClass(this.id);" id = "' + json.bigCategory[i].categoryBig + '">' + json.bigCategory[i].categoryBig + '</a></td>'						
+				}			
+				$('.ohw-big-category-tr').append(bigCategory);
+				 for(var i in json.categoryInfo){ //소분류 삽입	
+					 $(".ohw-small-category").append($("#"+json.categoryInfo[i].categoryBig).html()+'<tr><td class = "tclass ohw-small-category-td ohw-' + json.categoryInfo[i].categoryBig + '" align = "left"><input type="radio" name="tclass-radio" value="' + json.categoryInfo[i].categorySmall + '">' + json.categoryInfo[i].categorySmall + '</td></tr>');
+				}			 
+			}, 
+		error : function(a,b,c) {
+				console.log(b+c);
 		}
-    });
+	});
 	
 	</script>
 	
