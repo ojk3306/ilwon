@@ -56,26 +56,7 @@
 		$("#keyword_table").show();
 		$("#show_table").hide();
 		
-	}
-	
-	
-	
-	<%-- $(document).ready(function selectCategory() {
-		
-		<% String cate = request.getParameter("id"); %>
-		
-		var cate = "<%= cate %>";
-		 		
-		switch(cate) {
-		
-		case "cate_game" : $(".tclass").hide(); $("#tgame").show(); break; 
-		case "cate_sport" : $(".tclass").hide(); $("#tsport").show(); break; 
-		case "cate_music" : $(".tclass").hide(); $("#tmusic").show(); break; 
-		case "cate_dance" : $(".tclass").hide(); $("#tdance").show(); break; 
-		case "cate_etc" : $(".tclass").hide(); $("#tetc").show(); break; 
-		
-		}		
-	}); --%>	 
+	}	 
 	
 </script>
 
@@ -184,8 +165,13 @@
 					<option value="제주">제주</option>
 				</select>
 			</td>
-			<td><span id = "location_do"></span></td>					
-
+			</tr>			
+		</table>
+		<table>
+			<tr>
+				<td>
+					<span id = "location_do"></span>
+				</td>
 			</tr>
 		</table>
 			
@@ -223,13 +209,13 @@
 			var bigCategory = "";
 
 			for(var i in json.bigCategory){ //대분류 삽입				
-				bigCategory += '<td><a onclick="changeClass(this.id);" id = "' + json.bigCategory[i].categoryBig + '">' + json.bigCategory[i].categoryBig + '</a></td>'						
+				bigCategory += '<td class = "ohw-big-category-td"><a onclick="changeClass(this.id);" id = "' + json.bigCategory[i].categoryBig + '">' + json.bigCategory[i].categoryBig + '</a></td>'						
 			}
 			
 			$('.ohw-big-category-tr').append(bigCategory);
 
-			 for(var i in json.categoryInfo){ //소분류 삽입	
-				 $("#"+json.categoryInfo[i].categoryBig).html($("#"+json.categoryInfo[i].categoryBig).html()+'<div class = "sclass ohw-' + json.categoryInfo[i].categoryBig + '" align = "center"><input type="radio" name="sclass-radio" value="' + json.categoryInfo[i].categorySmall + '">' + json.categoryInfo[i].categorySmall + '</div>');
+			 for(var i in json.categoryInfo){ //소분류 삽입
+				 $(".ohw-small-category").append($("#"+json.categoryInfo[i].categoryBig).html()+'<tr><td class = "sclass ohw-small-category-td ohw-' + json.categoryInfo[i].categoryBig + '" align = "left"><input type="radio" name="sclass-radio" value="' + json.categoryInfo[i].categorySmall + '">' + json.categoryInfo[i].categorySmall + '</td></tr>');
 			}
 			 
 		}, error : function(a,b,c) {
@@ -277,13 +263,7 @@
 						<option value = "40">40</option>
 						<option value = "50">50</option>
 					</select> 세
-				</div>
-					
-				<!-- <div>
-					<label>경력사항</label>
-					<input type="checkbox" name = "ohw-student-EXP" value = "프로 게이머 출신">프로 게이머 출신 &nbsp;
-					<input type="checkbox" name = "ohw-student-EXP" value = "대회 입상">대회 입상 &nbsp;
-				</div>		 -->			
+				</div>								
 							
 			</div>
 		
@@ -371,8 +351,12 @@
 	<section class="button_section">
 	<div align = "center">
 		<div style="width : 40%; overflow:hidden; margin-top : 30px; margin-bottom : 30px;">
-			<button type="submit" class="btn btn-info" onclick="searchView(); searchstudent();">검색하기</button>
-			<button type="reset" class="btn btn-info" onclick="readyView();">초기화하기</button>		
+			<button type = "submit" class="btn btn-default" onclick="searchView(); searchTeacher();">
+				<span class="glyphicon glyphicon-search" aria-hidden="true"></span> 검색하기
+			</button>
+			<button type="reset" class="btn btn-default" onclick="window.location.reload();">
+				<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> 초기화
+			</button>					
 		</div>
 	</div>	
 	</section>
@@ -397,14 +381,17 @@ $(function () {
 			for(var i in json.list) {
 				
 				$('.ohw-ready-table').append(
+						
+				 <% if(loginUser != null) { %>				 	
+					"<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><a href = '<%= request.getContextPath() %>/lessondetail?no=" + json.list[i].lessonNo + "&page=1'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></a></td>" + 
 				
-				<%-- "<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><a href = '<%= request.getContextPath() %>/ndetail?no=" + json.list[i].noticeNo + "&page=1'>" + json.list[i].noticeTitle + "</a></td>" --%>
-											
-				"<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></td>" + 
+				 <% } else { %>					
+					"<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></td>" + 
+				 <% } %>											
 						
 				"<td class = 'ohw-ready-name'>" + json.list[i].userName2 + "</td>" +					 
 				
-				"<td class = 'ohw-ready-category'>" + json.list[i].categoryBName + " / " + json.list[i].categorySName + "</td>" +					 
+				"<td class = 'ohw-ready-category'>" + json.list[i].categoryBName + " / " + json.list[i].categorySName + "</td>" +
 				
 				"<td class = 'ohw-ready-comment'>" + json.list[i].lessonConmid + "</td></tr>"
 				
@@ -481,14 +468,16 @@ $(function () {
 	    			
 	    			$(".ohw-search-table-tr").empty();
 	    			
-	    			for(var i in json.list) {
+					for(var i in json.list) {
 	    				
 	    				$('.ohw-search-table').append(				
 	    				
-	    				<%-- "<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><a href = '<%= request.getContextPath() %>/ndetail?no=" + json.list[i].noticeNo + "&page=1'>" + json.list[i].noticeTitle + "</a></td>" --%>
-	    											
-	    				"<tr class = 'ohw-search-table-tr'><td class = 'ohw-ready-photo'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></td>" + 
-	    						
+	    				<% if(loginUser != null) { %>				 	
+    						"<tr class = 'ohw-search-table-tr'><td class = 'ohw-search-photo'><a href = '<%= request.getContextPath() %>/lessondetail?no=" + json.list[i].lessonNo + "&page=1'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></a></td>" + 
+    					<% } else { %>					
+    						"<tr class = 'ohw-search-table-tr'><td class = 'ohw-search-photo'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></td>" + 
+    					<% } %>
+    					
 	    				"<td class = 'ohw-search-name'>" + json.list[i].userName2 + "</td>" +					 
 	    				
 	    				"<td class = 'ohw-search-category'>" + json.list[i].categoryBName + " / " + json.list[i].categorySName + "</td>" +					 
