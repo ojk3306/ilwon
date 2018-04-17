@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page  import="semina.model.vo.*"%>  
-<% Semina semina = (Semina)request.getAttribute("semina"); %>
+<%@ page  import="seminaDetail.model.vo.*"%>  
+<% ArrayList<SeminaDetailAdmin> seminad = null;
+	Semina semina = (Semina)request.getAttribute("semina"); 
+    seminad = (ArrayList<SeminaDetailAdmin>)request.getAttribute("seminad");
+
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -239,15 +244,26 @@ margin-left: 190px;
                 <hr>
                 <h3 class="panel-heading" style="text-align:center;">신청 학생</h3>
                 <hr>
-                <table class="table table-hover" id="student_table"> 
-						<thead>
+                <div style="width:490px; hegiht: 400px; overflow:auto;" align="center">
+                <table class="table table-hover" id="student_table" > 
+						
 							<tr>
 								<th>이름</th>
 								<th>이메일</th>
 								<th>성별</th>
+								<th>신청날짜</th>
 							</tr>
-						</thead>
+							<% for (SeminaDetailAdmin s : seminad) {%>
+							<tr>
+								<td><%= s.getUser_name() %></td>
+								<td><%= s.getUser_email() %></td>
+								<td><%= s.getUser_gender() %></td>
+								<td><%= s.getSeminaDetailDate() %></td>
+							</tr>
+							<%} %>
+						
 					</table>
+					</div>
                 <br>
                 <h3 class="panel-heading" style="text-align:center;">세미나 설정</h3>
       

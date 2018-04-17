@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import seminaDetail.model.vo.SeminaDetail;
+import seminaDetail.model.vo.SeminaDetailAdmin;
 import seminaDetail.model.vo.SeminaDetailByInfo;
 
 import static common.JDBCTemplate.*;
@@ -17,7 +18,7 @@ public class SeminaDetailDao {
 		SeminaDetail semideta=null;
 		String sql="select * from SEMINA_DETAIL where SEMINA_NO=? and USER_NO=?";
 		
-		System.out.println("세미나 디테일 DAO : "+i+"....."+j);
+		System.out.println("�꽭誘몃굹 �뵒�뀒�씪 DAO : "+i+"....."+j);
 		try {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, i);
@@ -42,7 +43,7 @@ public class SeminaDetailDao {
 		System.out.println(semideta.toString());
 
 		} catch(NullPointerException e2) {
-			System.out.println("현 로그인한 사람이 세미나를 신청하지 않음.");	
+			System.out.println("�쁽 濡쒓렇�씤�븳 �궗�엺�씠 �꽭誘몃굹瑜� �떊泥��븯吏� �븡�쓬.");	
 			semideta=new SeminaDetail();
 			semideta.setSeminaState("4");
 		}
@@ -74,7 +75,7 @@ public class SeminaDetailDao {
 			sa.setSEMINA_NOW(rset.getInt("SEMINA_NOW"));
 			sa.setSEMINA_STATE(rset.getInt("SEMINA_STATE"));
 			sa.setSEMINA_TITLE(rset.getString("SEMINA_TITLE"));
-			sa.setUSER_NO(rset.getInt("USER_NO"));//강의진행자의 유저번호
+			sa.setUSER_NO(rset.getInt("USER_NO"));//媛뺤쓽吏꾪뻾�옄�쓽 �쑀��踰덊샇
 			sa.setUSER_PHONE(rset.getString("USER_PHONE"));
 			System.out.println(sa.toString());
 			al.add(sa);
@@ -105,6 +106,38 @@ public class SeminaDetailDao {
 		}
 		
 		return result;
+	}
+
+	public ArrayList<SeminaDetailAdmin> auSeminad(Connection con, int semina_no) {
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		ArrayList<SeminaDetailAdmin> sdlist = new ArrayList<SeminaDetailAdmin>();
+		String sql = "select u.user_name,u.user_email,u.user_gender,s.* from users u, SEMINA_DETAIL s where s.semina_no = ? and s.user_no = u.user_no";
+		System.out.println("아아아:" + semina_no);
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, semina_no);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				SeminaDetailAdmin s = new SeminaDetailAdmin();
+				s.setUser_name(rset.getString("user_name"));
+				s.setUser_email(rset.getString("user_email"));
+				s.setUser_gender(rset.getString("user_gender"));
+				s.setSeminaDetailDate(rset.getDate("semina_detail_date"));
+				s.toString();
+				sdlist.add(s);
+				
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return sdlist;
 	}
 
 }
