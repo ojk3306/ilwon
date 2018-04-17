@@ -92,8 +92,7 @@
 	}
 	
 	.ohw-ready-table, .ohw-search-table, .ohw-keyword-table {
-		width:900px;
-		height:700px;
+		width:900px;		
 		padding:0px;		
 	}
 	
@@ -108,7 +107,7 @@
 	}
 	
 	.ohw-ready-category, .ohw-search-category, .ohw-keyword-category {
-		width:200px;
+		width:300px;
 		height:110px;
 	}
 	
@@ -117,13 +116,13 @@
 		height:110px;
 	}
 	
-	ohw-search-table-tr {
-		height:30px;
+	.ohw-table-header {
+		height:50px;
 	}
 	
-	ohw-search-table-td {
-		height:30px;
-	}	
+	.ohw-small-category-td {
+		width:200px;
+	}
 	
 </style>
 </head>
@@ -180,12 +179,10 @@
 		<table class = "ohw-big-category">
 			<tr class = "ohw-big-category-tr">
 				<th style = "width : 100px;"><h3 class="header_text">수업</h3></th>				
-			</tr>
+			</tr>			
 		</table>
-		<table>
-			<tr>
+		<table class = "ohw-small-category">
 				
-			</tr>	
 		</table>		
 								
 	</section>	
@@ -205,13 +202,13 @@
 			var bigCategory = "";
 
 			for(var i in json.bigCategory){ //대분류 삽입				
-				bigCategory += '<td><a onclick="changeClass(this.id);" id = "' + json.bigCategory[i].categoryBig + '">' + json.bigCategory[i].categoryBig + '</a></td>'						
+				bigCategory += '<td class = "ohw-big-category-td"><a onclick="changeClass(this.id);" id = "' + json.bigCategory[i].categoryBig + '">' + json.bigCategory[i].categoryBig + '</a></td>'						
 			}
 			
 			$('.ohw-big-category-tr').append(bigCategory);
 
 			 for(var i in json.categoryInfo){ //소분류 삽입	
-				 $("#"+json.categoryInfo[i].categoryBig).html($("#"+json.categoryInfo[i].categoryBig).html()+'<div class = "tclass ohw-' + json.categoryInfo[i].categoryBig + '" align = "center"><input type="radio" name="tclass-radio" value="' + json.categoryInfo[i].categorySmall + '">' + json.categoryInfo[i].categorySmall + '</div>');
+				 $(".ohw-small-category").append($("#"+json.categoryInfo[i].categoryBig).html()+'<tr><td class = "tclass ohw-small-category-td ohw-' + json.categoryInfo[i].categoryBig + '" align = "left"><input type="radio" name="tclass-radio" value="' + json.categoryInfo[i].categorySmall + '">' + json.categoryInfo[i].categorySmall + '</td></tr>');
 			}
 			 
 		}, error : function(a,b,c) {
@@ -259,13 +256,7 @@
 						<option value = "40">40</option>
 						<option value = "50">50</option>
 					</select> 세
-				</div>
-					
-				<!-- <div>
-					<label>경력사항</label>
-					<input type="checkbox" name = "ohw-teacher-EXP" value = "프로 게이머 출신">프로 게이머 출신 &nbsp;
-					<input type="checkbox" name = "ohw-teacher-EXP" value = "대회 입상">대회 입상 &nbsp;
-				</div>		 -->			
+				</div>						
 							
 			</div>
 		
@@ -354,7 +345,7 @@
 	<div align = "center">
 		<div style="width : 40%; overflow:hidden; margin-top : 30px; margin-bottom : 30px;">
 			<button type="submit" class="btn btn-info" onclick="searchView(); searchTeacher();">검색하기</button>
-			<button type="reset" class="btn btn-info" onclick="readyView();">초기화하기</button>		
+			<button type="reset" class="btn btn-info" onclick="window.location.reload();">초기화하기</button>		
 		</div>
 	</div>	
 	</section>
@@ -384,6 +375,7 @@ $(document).ready(function readyList() {
 						
 				 <% if(loginUser != null) { %>				 	
 					"<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><a href = '<%= request.getContextPath() %>/lessondetail?no=" + json.list[i].lessonNo + "&page=1'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></a></td>" + 
+				
 				 <% } else { %>					
 					"<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></td>" + 
 				 <% } %>											
@@ -404,7 +396,7 @@ $(document).ready(function readyList() {
 
 	<div align = "center">
 	<div id="show_table" align = "center"> <!-- 평소에 펼쳐져 있는 테이블 -->	
-		<div><h3>새로 올라온 강의</h3></div>	
+		<div class = "ohw-table-header"><h3>새로 올라온 강의</h3></div>	
 		<table class="table table-hover ohw-ready-table">
 			<tr style = "height:30px; padding:0px; margin:0px;">
         		        		
@@ -422,12 +414,12 @@ $(document).ready(function readyList() {
 		<% System.out.println("ReadyKeywordValue : " + keyword); %>
 		
 		var keyword = "<%= keyword %>";
-	 	alert("ReadyKeyword : " + keyword)
+	 	/* alert("ReadyKeyword : " + keyword) */
 		if(keyword != "null") {
-			alert("KeywordView Run");
+			/* alert("KeywordView Run"); */
 			keywordView(keyword);
 		} else if(keyword == "null") {
-			alert("ReadyView Run");
+			/* alert("ReadyView Run"); */
 			readyView();
 		}
 		
@@ -437,7 +429,7 @@ $(document).ready(function readyList() {
 		
 		<% System.out.println("SearchKeywordValue : " + request.getParameter("ohw-keyword")); %>
 		var lessonKeywordSearch = keyword;
-		alert(lessonKeywordSearch);
+		/* alert(lessonKeywordSearch); */
 	
 		jQuery.ajaxSettings.traditional = true;	
 	
@@ -463,10 +455,13 @@ $(document).ready(function readyList() {
     				
     				$('.ohw-keyword-table').append(				
     				
-    				<%-- "<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><a href = '<%= request.getContextPath() %>/ndetail?no=" + json.list[i].noticeNo + "&page=1'>" + json.list[i].noticeTitle + "</a></td>" --%>
-    											
-    				"<tr class = 'ohw-keyword-table-tr'><td class = 'ohw-keyword-photo'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></td>" + 
-    						
+    				<% if(loginUser != null) { %>				 	
+    					"<tr class = 'ohw-keyword-table-tr'><td class = 'ohw-keyword-photo'><a href = '<%= request.getContextPath() %>/lessondetail?no=" + json.list[i].lessonNo + "&page=1'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></a></td>" + 
+    					
+    				<% } else { %>					
+    					"<tr class = 'ohw-keyword-table-tr'><td class = 'ohw-keyword-photo'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></td>" + 
+    				<% } %>
+    				
     				"<td class = 'ohw-keyword-name'>" + json.list[i].userName2 + "</td>" +					 
     				
     				"<td class = 'ohw-keyword-category'>" + json.list[i].categoryBName + " / " + json.list[i].categorySName + "</td>" +					 
@@ -486,7 +481,7 @@ $(document).ready(function readyList() {
 </script>
 	
 	<div id="keyword_table" align = "center"> <!-- 키워드 검색 결과 표시 테이블 -->
-		<div><h3>키워드 검색 결과</h3></div>
+		<div class = "ohw-table-header"><h3>키워드 검색 결과</h3></div>
 		<table class="table table-hover ohw-keyword-table">      
 			<tr class="ohw-keyword-table-tr" style = "height:30px; padding:0px; margin:0px;">
         		
@@ -497,7 +492,7 @@ $(document).ready(function readyList() {
 	
 	function searchTeacher() {
 		
-		var locationValue = $("input[type=radio][name=ohw-teacher-location]:checked").val();
+		var locationValue = $("input[type=radio][name=ohw-location]:checked").val();
 		console.log(locationValue);
 		
 		var lessonValue = $("input[type=radio][name=tclass-radio]:checked").val();		
@@ -552,10 +547,12 @@ $(document).ready(function readyList() {
 	    				
 	    				$('.ohw-search-table').append(				
 	    				
-	    				<%-- "<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><a href = '<%= request.getContextPath() %>/ndetail?no=" + json.list[i].noticeNo + "&page=1'>" + json.list[i].noticeTitle + "</a></td>" --%>
-	    											
-	    				"<tr class = 'ohw-search-table-tr'><td class = 'ohw-ready-photo'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></td>" + 
-	    						
+	    				<% if(loginUser != null) { %>				 	
+    						"<tr class = 'ohw-search-table-tr'><td class = 'ohw-search-photo'><a href = '<%= request.getContextPath() %>/lessondetail?no=" + json.list[i].lessonNo + "&page=1'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></a></td>" + 
+    					<% } else { %>					
+    						"<tr class = 'ohw-search-table-tr'><td class = 'ohw-search-photo'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></td>" + 
+    					<% } %>
+    					
 	    				"<td class = 'ohw-search-name'>" + json.list[i].userName2 + "</td>" +					 
 	    				
 	    				"<td class = 'ohw-search-category'>" + json.list[i].categoryBName + " / " + json.list[i].categorySName + "</td>" +					 
@@ -575,7 +572,7 @@ $(document).ready(function readyList() {
 </script>
 	
 	<div id="search_table" align = "center"> <!-- 검색 결과 표시 테이블 -->
-		<div><h3>검색 결과</h3></div>
+		<div class = "ohw-table-header"><h3>검색 결과</h3></div>
 		<table class="table table-hover ohw-search-table">      
 			<tr class="ohw-search-table-tr" style = "height:30px; padding:0px; margin:0px;">
         		

@@ -15,7 +15,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>건의게시판</title>
+<title>공지사항</title>
 	
 <style type="text/css">
 	
@@ -149,66 +149,54 @@
 	 			<input type="submit" name="search_submit" class="btn" value="검색">				
 				 				
 	 		</div> -->
-	 		<!-- 검색바 -->
-	 		
-	 		<!-- 페이징 바디 -->
-	 		<!-- <div class="ohw-notice-page">
-		 		<ul class="pagination">
-					<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-					<li class="page-item"><a class="page-link" href="#">1</a></li>
-					<li class="page-item"><a class="page-link" href="#">2</a></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
-					<li class="page-item"><a class="page-link" href="#">4</a></li>
-					<li class="page-item"><a class="page-link" href="#">5</a></li>
-					<li class="page-item"><a class="page-link" href="#">Next</a></li>
-				</ul>	 		
-			</div> -->
-			<!-- 페이징 바디 -->
+	 		<!-- 검색바 --> 		
 			
 			<!-- paging 처리 -->
 
 			<!-- Start -->
 	
 			<div style = "text-align : center;">
+				<ul class="pagination">
 				<% if(currentPage <= 1) { %>
-					[맨처음]&nbsp;
+					<li class="page-item"><a style = "cursor:no-drop" class="page-link" href="javascript:void(0)">First</a></li>
 				<% } else { %>
-					<a href = "/prototype/nlist?page=1">[맨처음]</a>
+					<li class="page-item"><a class="page-link" href="/prototype/nlist?page=1">First</a></li>					
 				<% } %>
 	
 				<!-- Prev -->
 
 				<% if(!((currentPage - 10) > startPage && (currentPage - 10) < 1)) { %>
-					[Prev]&nbsp;
+					<li class="page-item"><a style = "cursor:no-drop" class="page-link" href="javascript:void(0)">Pre</a></li>
 				<% } else { %>
-					<a href = "/prototype/nlist?page=<%= startPage - 10 %>">[Prev]</a>
-				<% } %> &nbsp; &nbsp;
+					<li class="page-item"><a class="page-link" href="/prototype/nlist?page=<%= startPage - 10 %>">Pre</a></li>				
+				<% } %>
 
 				<!-- 현재 페이지가 포함된 그룹의 페이지 숫자 출력 -->
+				
 				<% for(int p = startPage; p<= endPage; p++) { 
 					 if(p == currentPage) { %>
-	
-					<font color = "red" size="4"><b>[<%= p %>]</b></font>
+					<li class="page-item"><a style = "cursor:no-drop" class="page-link" href="javascript:void(0)"><%= p %></a></li>					
 				<% } else { %>
-					<a href = "/prototype/nlist?page=<%= p %>"><%= p %></a>
+					<li class="page-item"><a class="page-link" href="/prototype/nlist?page=<%= p %>"><%= p %></a></li>					
 				<% }
-				} %> &nbsp; &nbsp;
+				} %>
 
 				<!-- Next -->
 
 				<% if(!((currentPage + 10) > endPage && (currentPage + 10) < maxPage)) { %>
-					[Next]&nbsp;
+					<li class="page-item"><a style = "cursor:no-drop" class="page-link" href="javascript:void(0)">Next</a></li>					
 				<% } else { %>
-					<a href = "/prototype/nlist?page=<%= endPage + 10 %>">[Next]</a>
+					<li class="page-item"><a class="page-link" href="/prototype/nlist?page=<%= endPage + 10 %>">Next</a></li>					
 				<% } %>
 	
 				<!-- End -->
 
 				<% if(currentPage >= maxPage) { %>
-					[맨 끝]&nbsp;
+					<li class="page-item"><a style = "cursor:no-drop" class="page-link" href="javascript:void(0)">End</a></li>					
 				<% } else { %>
-					<a href = "/prototype/nlist?page=<%= maxPage %>">[맨 끝]</a>
+					<li class="page-item"><a class="page-link" href="/prototype/nlist?page=<%= maxPage %>">End</a></li>					
 				<% } %>
+				</ul>			
 			</div>
 			
 		</div>	 

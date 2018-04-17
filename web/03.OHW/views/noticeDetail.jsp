@@ -153,6 +153,7 @@
 <div class = "ohw-div-btn" align = "center">
 	<table>
 		<tr>
+			<% if( loginUser.getUserTypeNo() == 1003 ) { %>
 			<td style = "padding-right:5px;">
 				<button class="btn btn-default" onclick = "goUpdate();">
 					<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 수정 하기
@@ -173,13 +174,14 @@
 					}
 				</script>
 			</td>
+			<% } %>
 			<td>
 				<button type="button" class="btn btn-default" onclick = "goList();">
 					<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> 목록으로
 				</button>
 				<script type="text/javascript">
 					function goList() {						
-						location.href = "<%= request.getContextPath() %>/03.OHW/views/noticeList.jsp";
+						location.href = "<%= request.getContextPath() %>/nlist";
 					}
 				</script>
 			</td>

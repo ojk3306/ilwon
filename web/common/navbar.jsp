@@ -133,14 +133,23 @@ $(".ohw-navbar-search-hidden").val($(".select2accessible").text());
     }
     
     .ohw-primary {
-    	height:27px;
+    	width:90px;
+    	height:26.3px;
     	padding-top:3px;
+    } 
+    .ohw-searchbar {
+    	margin-top:3px;
     }
-     
-    .ohw-btn-ul {
-    	margin-top:5px;
-    	   	
-    }     
+    
+    a {
+		cursor:pointer;
+		color:gray !important;
+		text-decoration:none !important;
+	}
+	
+	a:hover {
+		color:#7800f0  !important;		
+	}
 </style>
 
 </head>
@@ -160,8 +169,7 @@ $(".ohw-navbar-search-hidden").val($(".select2accessible").text());
 		
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li class="active">
-				<a href="/prototype/nlist?page=1">은밀한 공지사항</a></li>
+				<li><a href="/prototype/nlist?page=1">은밀한 공지사항</a></li>
 				<li><a href="/prototype/03.OHW/views/find_teacher.jsp">은밀한 선생</a></li>
 				<li><a href="/prototype/03.OHW/views/find_learn.jsp">은밀한 학생</a></li>
 				<li><a href="/prototype/semilist?page=1">은밀한 세미나</a></li>
@@ -170,7 +178,7 @@ $(".ohw-navbar-search-hidden").val($(".select2accessible").text());
 				<% if( loginUser == null ){%>
 				
 				<%}else{%>
-					<% if(loginUser.getUserTypeNo() ==1003 ){%>
+					<% if(loginUser.getUserTypeNo() == 1003 ){%>
 					<li><a href="/prototype/rtsearch">은밀한 관리자</a></li>
 					<%} %>
 				<%} %>
@@ -196,17 +204,17 @@ $(".ohw-navbar-search-hidden").val($(".select2accessible").text());
             			<tr>
                 			<td>
                 				<% if( loginUser.getUserTypeNo() == 1002 ) { %>
-                					<a href="<%= request.getContextPath() %>/04.OJK/teacherinfo.jsp">
+                					<a class = "active" href="<%= request.getContextPath() %>/04.OJK/teacherinfo.jsp">
 										<span class="glyphicon glyphicon-user ohw-btn"></span>My Info
 									</a> 
                 				<% } else { %>
-                					<a href="<%= request.getContextPath() %>/04.OJK/studentinfo.jsp">
+                					<a class = "active" href="<%= request.getContextPath() %>/04.OJK/studentinfo.jsp">
 										<span class="glyphicon glyphicon-user ohw-btn"></span>My Info
 									</a> 
                 				<% } %>                				                				             			
                 			</td>
                 			<td>                			
-                				<a href="<%= request.getContextPath() %>/logout">
+                				<a class = "active" href="<%= request.getContextPath() %>/logout">
 									<span class="glyphicon glyphicon-log-out ohw-btn"></span>LogOut
 								</a>
                 			</td>
@@ -217,13 +225,15 @@ $(".ohw-navbar-search-hidden").val($(".select2accessible").text());
 				<% } %>
 				
 				 <li>
-					<form class="form-inline mt-2 mt-md-0 input-group" action = "/prototype/lnsearch" method="post">
+					<form class="form-inline mt-2 mt-md-0 input-group ohw-searchbar" action = "/prototype/lnsearch" method="post">
 						<input type = "hidden" class = "ohw-navbar-search-hidden" name = "ohw-keyword">
 					
 						<select id="menubar-searchbar" name="seachcontent" aria-label="Search" style="margin-top:7px;">    
 							<option>여기에 값을 입력하세요</option>
-						</select>      
-						<button class="btn btn-primary ohw-primary" type="submit" style="margin-top:7px;" onclick="search();">Search</button>
+						</select>
+						<button class="btn btn-default ohw-primary" type = "submit" onclick="search();" style="margin-top:7px; padding-top:3px;">
+							<span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search
+						</button>						
 						
 						<% if(loginUser != null) { %>
 							<input type = "hidden" name = "userno" value ="<%= loginUser.getUserNo() %>">

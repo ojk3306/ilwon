@@ -1090,7 +1090,7 @@ System.out.println(parseInt);
 			ResultSet rset = null;
 			String query = "select * from LESSON l, CATEGORYS c, USERS u, LESSONLEV lv, LESSONTYPE lt, USER_TYPE ut, STATE st "
 							+ "where l.CATEGORY_NO = c.CATEGORY_NO "
-							+ "and l.USER_NO2 = u.USER_NO "
+							+ "and l.USER_NO1 = u.USER_NO "
 							+ "and l.LEVEL_NO = lv.LESSONLEV_NO "
 							+ "and l.LESSON_TYPE = lt.TYPE_NO "
 							+ "and u.USER_TYPE = ut.USERTYPE_NO "
