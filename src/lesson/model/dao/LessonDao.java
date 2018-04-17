@@ -157,7 +157,7 @@ public class LessonDao {
 			list = new ArrayList<LessonSearch>();
 			
 			if(ls.getLocationValue() != null) {
-				pstmt.setString(1, ls.getLocationValue());
+				pstmt.setString(1, "%" + ls.getLocationValue() + "%");
 			} else {
 				pstmt.setString(1, "%%");
 			}
@@ -1112,7 +1112,7 @@ System.out.println(parseInt);
 				list = new ArrayList<LearnSearch>();
 				
 				if(ls.getLocationValue() != null) {
-					pstmt.setString(1, ls.getLocationValue());
+					pstmt.setString(1, "%" + ls.getLocationValue() + "%");
 				} else {
 					pstmt.setString(1, "%%");
 				}

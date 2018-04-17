@@ -351,7 +351,7 @@
 	<section class="button_section">
 	<div align = "center">
 		<div style="width : 40%; overflow:hidden; margin-top : 30px; margin-bottom : 30px;">
-			<button type = "submit" class="btn btn-default" onclick="searchView(); searchTeacher();">
+			<button type = "submit" class="btn btn-default" onclick="searchView(); searchStudent();">
 				<span class="glyphicon glyphicon-search" aria-hidden="true"></span> 검색하기
 			</button>
 			<button type="reset" class="btn btn-default" onclick="window.location.reload();">
@@ -415,7 +415,7 @@ $(function () {
 	
 <script type="text/javascript">
 	
-	function searchstudent() {
+	function searchStudent() {
 		
 		var locationValue = $("input[type=radio][name=ohw-location]:checked").val();
 		console.log(locationValue);
