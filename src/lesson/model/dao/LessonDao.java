@@ -994,8 +994,7 @@ public class LessonDao {
 		LessonSearch ls=null;
 System.out.println(parseInt);
 		String sql="select * from lesson,categorys,lessonlev where lesson.CATEGORY_NO=categorys.CATEGORY_NO and Lesson_no = ? and lesson.LEVEL_NO=LESSONLEV.LESSONLEV_NO  and lesson.LESSON_TYPE=8000 ";
-		try {
-			
+		try {			
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1,parseInt);
 			rset=pstmt.executeQuery();
@@ -1011,8 +1010,9 @@ System.out.println(parseInt);
 		    ls.setLesson_startdate(rset.getDate("LESSON_STARTDATE"));
 		    ls.setLesson_title(rset.getString("LESSON_TITLE"));
 		    ls.setLevel(rset.getString("LESSONLEV"));
+		    ls.setUser_no1(rset.getInt("USER_NO1"));
 		System.out.println("getlessoninfoStudentByNo에서"+ ls.toString());
-			}
+		}
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

@@ -36,12 +36,11 @@ public class LessonOfStudentDetail extends HttpServlet {
 
 		//학생이올린 배우고싶어요의 상세페이지
 		
-		System.out.println(Integer.parseInt(request.getParameter("no")));
-		System.out.println(Integer.parseInt(request.getParameter("userno")));
-		
-		Users user=new users.model.service.UsersService().userDetailByAdmin(Integer.parseInt(request.getParameter("userno")));
+		System.out.println(Integer.parseInt(request.getParameter("no")));	
 		
 		LessonSearch lessondetail=new lesson.model.service.LessonService().getlessoninfoStudentByNo(Integer.parseInt(request.getParameter("no")));
+	
+		Users user=new users.model.service.UsersService().userDetailByAdmin(lessondetail.getUser_no1());
 		
 		RequestDispatcher view=null;
 		if(user!=null && lessondetail!=null) {
@@ -50,10 +49,9 @@ public class LessonOfStudentDetail extends HttpServlet {
 			request.setAttribute("user", user);
 			request.setAttribute("lesson", lessondetail);
 			view.forward(request, response);
-		}else {
+		} else {
 			
-		}
-		
+		}		
 	}
 
 	/**
