@@ -360,24 +360,7 @@
 					</td>
 				</tr>				
 			</table>
-			</div>
-			
-			<!-- <div>
-			<label>수업 횟수</label>
-			<table>
-				<tr>
-					<td>
-						<select name = "ohw-lesson-level">
-							<option value = "0">선택</option>
-							<option value = "11130">초보과정</option>
-							<option value = "11131">중급과정</option>
-							<option value = "11132">고급과정</option>					
-							<option value = "11133">취미</option>					
-						</select>
-					</td>
-				</tr>				
-			</table>
-			</div> -->
+			</div>		
 			
 		</div>
 		
@@ -447,10 +430,10 @@ $(function () {
 	
 	function searchstudent() {
 		
-		var locationValue = $("input[type=radio][name=ohw-student-location]:checked").val();
+		var locationValue = $("input[type=radio][name=ohw-location]:checked").val();
 		console.log(locationValue);
 		
-		var lessonValue = $("input[type=radio][name=tclass-radio]:checked").val();		
+		var lessonValue = $("input[type=radio][name=sclass-radio]:checked").val();		
 		console.log(lessonValue);
 		
 		var studentGenderValue = $("input[type=radio][name=ohw-student-gender]:checked").val();
@@ -460,16 +443,7 @@ $(function () {
 		console.log(studentAgePreValue);
 		
 		var studentAgeEndValue = $("select[name=ohw-student-age-end]").val();
-		console.log(studentAgeEndValue);		
-		
-		/* var studentEXPArr = new Array();
-		var studentEXPValue = document.getElementsByName('ohw-student-EXP');
-		for(var i in studentEXPValue){
-			if(studentEXPValue[i].checked == true) {
-				console.log(studentEXPValue[i].value);
-				studentEXPArr[i] = studentEXPValue[i].value;
-			}
-		} */
+		console.log(studentAgeEndValue);	
 		
 		var lessonPricePreValue = $("select[name=ohw-lesson-price-pre]").val();
 		console.log(lessonPricePreValue);
@@ -489,8 +463,7 @@ $(function () {
 	    		lesson : lessonValue, 
 	    		studentGender : studentGenderValue, 
 	    		studentAgePre : studentAgePreValue, 
-	    		studentAgeEnd : studentAgeEndValue, 
-	    		/* studentEXP : studentEXPArr,  */
+	    		studentAgeEnd : studentAgeEndValue,	    		
 	    		lessonPricePre : lessonPricePreValue, 
 				lessonPriceEnd : lessonPriceEndValue, 
 				lessonLevel : lessonLevelValue

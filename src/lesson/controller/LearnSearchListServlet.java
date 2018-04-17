@@ -37,14 +37,13 @@ public class LearnSearchListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//리스트 결과를 json 배열에 담아서, 전송하는 컨트롤러		
-				System.out.println(request.getParameter("search"));
+				System.out.println("searchValue : " + request.getParameter("search") + " / (To.LearnSearchListServlet)");
 				
 				String locationValue = request.getParameter("location");
 				String lessonValue = request.getParameter("lesson");	
 				String studentGenderValue = request.getParameter("studentGender");
 				int studentAgePreValue = Integer.parseInt(request.getParameter("studentAgePre"));
-				int studentAgeEndValue = Integer.parseInt(request.getParameter("studentAgeEnd"));
-				/*String studentEXPValue[] = request.getParameterValues("studentEXP");*/
+				int studentAgeEndValue = Integer.parseInt(request.getParameter("studentAgeEnd"));			
 				int lessonPricePreValue = Integer.parseInt(request.getParameter("lessonPricePre"));
 				int lessonPriceEndValue = Integer.parseInt(request.getParameter("lessonPriceEnd"));
 				int lessonLevelPreValue = Integer.parseInt(request.getParameter("lessonLevel"));
@@ -52,7 +51,7 @@ public class LearnSearchListServlet extends HttpServlet {
 				
 				LearnSearch ls = new LearnSearch(locationValue, lessonValue, studentGenderValue, 
 						studentAgePreValue, studentAgeEndValue, lessonPricePreValue, lessonPriceEndValue, lessonLevelPreValue, lessonLevelEndValue);			
-				System.out.println("SendInfo : " + ls + " / (To.LessonSearchListServlet)");		
+				System.out.println("SendInfo : " + ls + " / (To.LearnSearchListServlet)");		
 				ArrayList<LearnSearch> list = new LessonService().selectLearnSearchList(ls);
 							
 				//전송은 json 객체 한개만 전송할 수 있음
@@ -93,8 +92,7 @@ public class LearnSearchListServlet extends HttpServlet {
 					job.put("lessonRadius",lessonSearch.getLesson_rad());	
 					job.put("lessonPrice",lessonSearch.getLesson_price());	
 					job.put("lessonCount",lessonSearch.getLesson_count());
-					job.put("lessonStartDate", lessonSearch.getLesson_startdate().toString());
-					/*job.put("lessonEndDate", lessonSearch.getLesson_enddate().toString());*/
+					job.put("lessonStartDate", lessonSearch.getLesson_startdate().toString());					
 					job.put("lessonContop",lessonSearch.getLesson_contop());
 					job.put("lessonConmid",lessonSearch.getLesson_conmid());
 					job.put("lessonConbot",lessonSearch.getLesson_conbot());
