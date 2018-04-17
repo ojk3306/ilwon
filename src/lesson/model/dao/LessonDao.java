@@ -665,7 +665,9 @@ public class LessonDao {
 
 	}
 
+	
 	public int insertlesson1(Connection conn, Lesson lesson) {
+		//학생용 강의등록
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = "insert into lesson values((SELECT max(lesson_no) from lesson)+1"
