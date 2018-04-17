@@ -231,6 +231,7 @@ $(".ohw-navbar-search-hidden").val($(".select2accessible").text());
 						<select id="menubar-searchbar" name="seachcontent" aria-label="Search" style="margin-top:7px;">    
 							<option>여기에 값을 입력하세요</option>
 						</select>
+						&nbsp;
 						<button class="btn btn-default ohw-primary" type = "submit" onclick="search();" style="margin-top:7px; padding-top:3px;">
 							<span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search
 						</button>						
