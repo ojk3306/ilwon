@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page  import="lesson.model.vo.*"%>  
-<% Lesson lesson = (Lesson)request.getAttribute("lesson"); %>
+<%@ page  import="learnLog.model.vo.*"%>  
+<% Lesson lesson = (Lesson)request.getAttribute("lesson"); 
+	ArrayList<LearnLogAdmin> lessona = null;
+	lessona = (ArrayList<LearnLogAdmin>)request.getAttribute("lessona");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -229,14 +233,36 @@ margin-left: 190px;
 </div>
 
 
-
-
+		 <br>
+                <hr>
+                <h3 class="panel-heading" style="text-align:center;">신청 학생</h3>
+                <hr>
+                <div style="width:100%; height:200px; overflow:auto;" align="center">
+                <table class="table table-hover" id="student_table" > 
+						
+							<tr>
+								<th>이름</th>
+								<th>이메일</th>
+								<th>성별</th>
+								<th>신청날짜</th>
+							</tr>
+						<% for (LearnLogAdmin l : lessona) {%>
+							<tr>
+								<td><%= l.getUSER_NAME()%></td>
+								<td><%= l.getUser_email() %></td>
+								<td><%= l.getUser_gender() %></td>
+								<td><%= l.getLOG_DATE() %></td>
+							</tr>
+							<%} %>
+						
+					</table>
+					</div>
 
 
 
                 <!-- Default panel contents -->
                 <br>
-                <h2 class="panel-heading" style="text-align:center;">강의 설정</h2>
+                <h3 class="panel-heading" style="text-align:center;">강의 설정</h3>
       
                 <ul class="list-group">
                  
@@ -254,13 +280,6 @@ margin-left: 190px;
 <input type="button" class="btn btn-primary loading" value="뒤로가기" onclick="history.back(-1)" readonly="readonly">
 </center>
 </form>
-
-
-
-
-
-
-
 
 
 

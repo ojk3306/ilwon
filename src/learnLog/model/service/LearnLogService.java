@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import learnLog.model.dao.LearnLogDao;
 import learnLog.model.vo.LearnLog;
+import learnLog.model.vo.LearnLogAdmin;
 import learnLog.model.vo.Learnlogforinfo;
 
 import static common.JDBCTemplate.*;
@@ -136,6 +137,14 @@ public class LearnLogService {
 		close(conn);
 		
 		return result;
+	}
+
+	public ArrayList<LearnLogAdmin> auLessona(int lesson_no) {
+		Connection con = getConnection();
+		ArrayList<LearnLogAdmin> lessona = new LearnLogDao().auLessona(con,lesson_no);
+		close(con);
+		
+		return lessona;
 	}
 	
 }

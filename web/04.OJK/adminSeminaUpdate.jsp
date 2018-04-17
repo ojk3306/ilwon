@@ -244,7 +244,7 @@ margin-left: 190px;
                 <hr>
                 <h3 class="panel-heading" style="text-align:center;">신청 학생</h3>
                 <hr>
-                <div style="width:490px; hegiht: 400px; overflow:auto;" align="center">
+                <div style="width:100%; height: 200px; overflow:auto;" align="center">
                 <table class="table table-hover" id="student_table" > 
 						
 							<tr>
