@@ -94,10 +94,7 @@ $(function(){
 			+"<td><button> 취소됨 </button></td> <td>...</td></tr>"
 		
 			
-		}
-			
-		
-		
+		}		
 		}
 		
 		$('#ongoing_table4').html(values);
@@ -219,18 +216,7 @@ for(var i in json.onlesson) {
 		+"</td><td>배우고싶어요</td><td>"+json.onlesson[i].username+"</td><td>"+json.onlesson[i].log_date+"</td>"
 		+"<td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson1(this)'>상세보기</button></td>"
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	}
+}
 $('#ongoing_table3').html(values);
 	}, error: function(a,b,c){
 		console.log(b+c);
