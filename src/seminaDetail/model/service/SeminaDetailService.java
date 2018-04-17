@@ -27,4 +27,11 @@ public class SeminaDetailService {
 		return seminaDetail;
 	}
 
+	public int sdcan(int parseInt) {
+		Connection con=getConnection();
+		int result=new SeminaDetailDao().sdcan(con,parseInt);
+		close(con);
+		return result;
+	}
+
 }

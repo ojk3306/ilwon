@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+Users us=(Users)session.getAttribute("loginUser");
 
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -123,7 +126,7 @@ $(function(){
 	var values = $('#ongoing_table3').html();
 	for(var i in json.semi) {
 	values += "<tr><td>"+json.semi[i].SEMINA_TITLE+"</td><td>"+json.semi[i].USER_PHONE+"</td>"
-	+"<td><input type='button' id='"+json.semi[i].SEMINA_NO+"' value='상세보기'></td><td>"+json.semi[i].SEMINA_ENDDATE+"</td>"
+	+"<td><input type='button' id='"+json.semi[i].SEMINA_NO+"' onclick='detailsemina(this)' value='상세보기'></td><td>"+json.semi[i].SEMINA_ENDDATE+"</td>"
 	+"<td><button> 신청중 </button></td>"
 	+"<td><button type='button' class='btn' id='"+json.semi[i].SEMINA_DETAIL_NO+"' onclick='cans(this)'>취소하기</button></td>"
 	
@@ -205,6 +208,14 @@ function upload_profile() {
 
 		window.open(popUrl,"a",popOption);
 	
+}
+//세미나 상세보기
+function detailsemina(a){
+	location.href='/prototype/sdetail?userno='+a.id+'&usernono='+<%=us.getUserNo()%>+'&type='+<%=us.getUserTypeNo()%>
+}
+//세미나 신청 취소하기
+function cans(a){
+	location.href='/prototype/sdcan?no='+a.id	
 }
 </script>
 
