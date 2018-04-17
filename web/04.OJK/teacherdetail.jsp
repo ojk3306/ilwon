@@ -1212,18 +1212,9 @@ geocoder.addressSearch('<%=lessondetail.getLesson_loc()%>', function(result, sta
 });    
 </script>
           </div>
-           
-           
-           
-           
-           
-           
-           
-                 
-                  </div>          
-               
-            </div>
-        </div>
+          </div>          
+          </div>
+          </div>
     
     </div>
 
@@ -1236,7 +1227,7 @@ geocoder.addressSearch('<%=lessondetail.getLesson_loc()%>', function(result, sta
 
 <!--내용 끝-->
 <div align="center">
-<input type="submit" value="강좌신청">&nbsp;<input type="submit" value="나가기">
+<input type="button" value="나가기" onclick="history.go(-1)">
 </div>
 
  <!-- 바닥 -->

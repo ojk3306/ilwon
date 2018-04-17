@@ -3,8 +3,11 @@ package seminaDetail.model.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import seminaDetail.model.vo.SeminaDetail;
+import seminaDetail.model.vo.SeminaDetailByInfo;
+
 import static common.JDBCTemplate.*;
 public class SeminaDetailDao {
 
@@ -47,6 +50,44 @@ public class SeminaDetailDao {
 		
 		
 	return semideta;
+	}
+
+	public ArrayList<SeminaDetailByInfo> getseminadetail(Connection con, int parseInt) {
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		SeminaDetailByInfo sa=null;
+		
+		ArrayList<SeminaDetailByInfo> al=new ArrayList<SeminaDetailByInfo>();
+		String sql="select * from SEMINA , SEMINA_DETAIL , users where SEMINA.USER_NO=users.USER_NO and SEMINA_DETAIL.SEMINA_NO = SEMINA.SEMINA_NO and semina.SEMINA_STATE=1 and  SEMINA_DETAIL.USER_NO = ?";
+		
+		try {
+			
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, parseInt);
+			rset=pstmt.executeQuery();
+			while(rset.next()) {
+			sa=new SeminaDetailByInfo();
+			sa.setSEMINA_DETAIL_NO(rset.getInt("SEMINA_DETAIL_NO"));
+			sa.setSEMINA_DETAIL_STATE(rset.getInt("SEMINA_DETAIL_STATE"));
+			sa.setSEMINA_ENDDATE(rset.getString("SEMINA_ENDDATE"));
+			sa.setSEMINA_LOCATION(rset.getString("SEMINA_LOCATION"));
+			sa.setSEMINA_NO(rset.getInt("SEMINA_NO"));
+			sa.setSEMINA_NOW(rset.getInt("SEMINA_NOW"));
+			sa.setSEMINA_STATE(rset.getInt("SEMINA_STATE"));
+			sa.setSEMINA_TITLE(rset.getString("SEMINA_TITLE"));
+			sa.setUSER_NO(rset.getInt("USER_NO"));//강의진행자의 유저번호
+			sa.setUSER_PHONE(rset.getString("USER_PHONE"));
+			System.out.println(sa.toString());
+			al.add(sa);
+			}
+	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+	return al;
 	}
 
 }
