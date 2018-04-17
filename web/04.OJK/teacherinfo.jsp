@@ -222,11 +222,6 @@ $('#ongoing_table3').html(values);
 		console.log(b+c);
 	}	
 })
-	
-
-	
-
-	
 });
 //세미나 상세보기
 function detailsemina(a){
@@ -240,7 +235,6 @@ function cans(a){
 </script>
 <script>
 //수업확인 
-
 function finishstudent(a){
 	var result = confirm('이 학생의 레슨을 끝내실건가요?'); 
 	if(result) 
@@ -249,21 +243,15 @@ function finishstudent(a){
 	}else {
 		
 	} 
-	
 }
-
 function confirm1(a){
 	var result = confirm('확실히 레슨을 진행하셨나요??'); 
 	if(result) {
 		location.href="/prototype/confirmlesson?no="+a.id;
 		
 	}else {
-			
-		} 
-	
-	
+	} 
 }
-	
 
 //종료하기
 function finishLesson(val){
@@ -275,7 +263,7 @@ function finishLesson(val){
 		location.href="/prototype/stoplesson?no=" + val.id;
 		
 	}else {
-		
+			
 	} 
 	
 	
