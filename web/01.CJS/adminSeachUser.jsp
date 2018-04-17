@@ -234,6 +234,7 @@ min-height: 440px;
 	 		<li class="page-item"><a class="page-link" href="/prototype/adminseachuser?page=<%= endPage + 10 %>">Next</a></li>
 			<% }else{ %>
 		<li class="page-item"><a class="page-link" onclick="retu()">Next</a></li>
+	
 	<% } %> 
 
 

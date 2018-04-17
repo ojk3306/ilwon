@@ -29,15 +29,53 @@ ArrayList<NewestLessonByAdmin> list2 = (ArrayList<NewestLessonByAdmin>)(request.
     <title>관리자 페이지</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="./css/bootstrap.min.css" rel="stylesheet">
-    <link href="./css/adminpage.css" rel="stylesheet" type="text/css" >
+    <link href="/prototype/01.CJS\css\bootstrap.min.css" rel="stylesheet">
+    <link href="/prototype/01.CJS\css\adminpage.css" rel="stylesheet" type="text/css" >
     
-    
+<script type="text/javascript">
+$(function(){
+	setInterval(function() {
+		$.ajax({
+			url:"/prototype/realtimelog",
+			data: {},
+			type: "get",
+			dataType: "json",
+			success: function(data) {
+	    var jsonStr = JSON.stringify(data);
+		var json = JSON.parse(jsonStr);
+	$("#realtime").html(
+	"<tr style='text-align:center; background-color:#337ab7'>"		
+	+"<th colspan='2' style='color:white; text-align:center;'>실시간 검색어 순위</th></tr>"
+	+"<tr><th>1.</th><td style='text-align:center;'><span>"+json.list[0]+"</span></td></tr>"
+	+"<tr><th>2.</th><td style='text-align:center;'><span>"+json.list[1]+"</span></td></tr>"
+	+"<tr><th>3.</th><td style='text-align:center;'><span>"+json.list[2]+"</span></td></tr>"
+	+"<tr><th>4.</th><td style='text-align:center;'><span>"+json.list[3]+"</span></td></tr>"
+	+"<tr><th>5.</th><td style='text-align:center;'><span>"+json.list[4]+"</span></td></tr>"
+	)
+		
+	}, error: function(a,b,c){
+				console.log(b+c);
+			}	
+		})	
+		
+	}, 5000);
+	
+	
+
+	
+	
+	
+	
+	
+	
+})
+</script>    
     
     
   </head>
   <body>
   <%@include file="/common\navbar.jsp" %>
+  
 <section id="main" style="margin-top:60px; margin-bottom:30px;">
   <div class="container">
     <div class="row">
@@ -56,14 +94,18 @@ ArrayList<NewestLessonByAdmin> list2 = (ArrayList<NewestLessonByAdmin>)(request.
     </div>
     
 <div class="list-group">
- <table style="border: 1px solid #ddd" name="realTimeSearch" class="table">
- <tr style="text-align:center; background-color:#337ab7"><th colspan="2" style="color:white; text-align:center;">실시간 검색어</th></tr>
- <tr><th>1</th><td style="text-align:center;"><span><%=one %></span></td></tr>
- <tr><th>2</th><td style="text-align:center;"><span><%=two %></span></td></tr>
- <tr><th>3</th><td style="text-align:center;"><span><%=three %></span></td></tr>
- <tr><th>4</th><td style="text-align:center;"><span><%=four %></span></td></tr>
- <tr><th>5</th><td style="text-align:center;"><span><%=five %></span></td></tr> 
- </table>
+<table style="border: 1px solid #ddd" name="realTimeSearch" class="table" >
+<tbody id="realtime">
+<tr style="text-align:center; background-color:#337ab7">
+<th colspan="2" style="color:white; text-align:center;">실시간 검색어 순위</th></tr>
+ <tr><th>1.</th><td style="text-align:center;"><span><%=one %></span></td></tr>
+ <tr><th>2.</th><td style="text-align:center;"><span><%=two %></span></td></tr>
+ <tr><th>3.</th><td style="text-align:center;"><span><%=three %></span></td></tr>
+ <tr><th>4.</th><td style="text-align:center;"><span><%=four %></span></td></tr>
+ <tr><th>5.</th><td style="text-align:center;"><span><%=five %></span></td></tr> 
+</tbody> 
+
+</table>
  
  
  </div>
