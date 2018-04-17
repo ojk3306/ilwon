@@ -257,5 +257,19 @@ public class LessonService {
 		System.out.println("SearchList : " + list + " / (To.LessonService)");
 		return list;
 	}
+
+		public int insertlesson1(Lesson lesson) {
+		Connection conn = getConnection();
+		
+		int result = new LessonDao().insertlesson1(conn, lesson);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		return result;
+	}
 	
 }

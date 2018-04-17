@@ -97,7 +97,7 @@ $(document).ready(function(){
     	$(this).css("border-color", "#2eb82e");
    
    });
-    $("#age").focusout(function(){
+   /*  $("#age").focusout(function(){
 		if($(this).val()==''){
     		$(this).css("border-color", "#FF0000");
     			$('#submit').attr('disabled',true);
@@ -110,8 +110,8 @@ $(document).ready(function(){
     		$("#error_age").text("ㅇㅇㅇ");
 
     	}
-    	});
-    $("#phone").focusout(function(){
+    	}); */
+   /*  $("#phone").focusout(function(){
         $pho =$("#phone").val();
 		if($(this).val()==''){
     		$(this).css("border-color", "#FF0000");
@@ -136,7 +136,7 @@ $(document).ready(function(){
     		$("#error_phone").text("11");
     	}
 
-	});
+	}); */
 
 		$( "#submit" ).click(function() {
 			if($("#myName" ).val()=='')
@@ -183,10 +183,10 @@ $(document).ready(function(){
 			<div class="panel-heading">세미나를 등록합니다.
 			</div>
 			<div class="panel-body">
-				<form name="myform" action="/prototype/sinsert" method="post" enctype="multipart/form-data">
+				<form name="myform" action="/prototype/sinsert" method="post" enctype="multipart/form-data" id="formBy">
 					<div class="form-group">
 						<label for="myName">세미나 타이틀 * </label>
-						<input id="myName" name="title" class="form-control" type="text" data-validation="required">
+						<input id="myName" name="title" class="form-control" type="text" required>
 						<span id="error_name" class="text-danger"></span>
 					</div>
 					<div class="form-group">
@@ -198,9 +198,9 @@ $(document).ready(function(){
 						<label for="age">인원 설정 *</label>
 						<div style="width:95%; background: red">
 						<label for="age" style="width: 15%; float:left" >최소인원:</label>
-						<input id="age" name="min"  class="form-control" type="number" min="1" style="width: 30%; float:left">
+						<input id="age" name="min"  class="form-control" type="number" min="1" style="width: 30%; float:left" required>
 						 <label for="age" style="margin-left:10px;    width: 15%; float:left" >최대인원:</label>
-						<input id="age" name="max"  class="form-control" type="number" min="1" style="width: 30%; float:left">
+						<input id="age" name="max"  class="form-control" type="number" min="1" style="width: 30%; float:left" required>
 					 	
 						</div>
 						
@@ -212,12 +212,12 @@ $(document).ready(function(){
 					
 					<div class="form-group"> 
 						<label for="dob">세미나 날 및 시각  * (오늘이 아니라 세미나를 하는 날입니다.)     </label>
-						<input type="date" name="seminadate" id="dob" class="form-control">
+						<input type="date" name="seminadate" id="dob" class="form-control" required>
 						<span id="error_dob" class="text-danger"></span>
 					</div>
 					<div class="form-group">
 						<label for="gender">희망 참가료(원)(무료가능) *</label>
-						<input type="number" name="cost" class="form-control" min="0">
+						<input type="number" name="cost" class="form-control" min="0" required>
 					<span id="error_gender" class="text-danger"></span>
 					</div>
 					
@@ -225,7 +225,7 @@ $(document).ready(function(){
 					<div class="form-group">
 						<label for="phone">강의 지역 *</label>
 						<input type="text" id="loc" name="loc" class="form-control" onclick="juso()" readonly="readonly" placeholder="클릭 해서 지역을 선택해주세요!">
-						<span id="error_phone" class="text-danger"></span>
+						<span id="locl" class="text-danger"></span>
 					</div>
 
 					<div id="detail">
@@ -233,11 +233,11 @@ $(document).ready(function(){
 						
 						<label for="disc" style="padding:auto; width:200px;">검색목록에서 보여줄 소제목 * </label>
 						<div style="width: 99%;">
-						<input type="text" id="phone" name="detailtitle" class="form-control" style="width:150px; float:left">
+						<input type="text" id="phone" name="detailtitle" class="form-control" style="width:150px; float:left" required>
 						<input type="button" onclick="addDetail()" class="btn btn-primary center" value="정보 추가하기" style="margin-left:140px;">						
 						</div>
 						<label for="disc" style="margin-top:5px; width:300px;">검색목록에서 보여줄  상세정보 *</label>
-						<textarea class="form-control" name="detailinfo" rows="3"></textarea>
+						<textarea class="form-control" name="detailinfo" rows="3" required></textarea>
 					</div>
 					</div>
 					
@@ -259,7 +259,7 @@ $(document).ready(function(){
 					 
 					<center>
 					<input type="hidden" name="userno"  value="<%=loginUser.getUserNo()%>">
-					<input type="submit" value="강의생성" class="btn btn-primary center">
+					<input type="button" value="세미나생성" class="btn btn-primary center" onclick="return check()">
 					<input type="reset" value="초기화" class="btn btn-primary center">
 					<input type="button" onclick="history.back()" value="뒤로가기" class="btn btn-primary center">
 					</center>
@@ -271,6 +271,29 @@ $(document).ready(function(){
 
 </div>
 
+			<script>
+					
+					
+					function check() {
+						  
+						
+					if($('#loc').val().length > 1){
+							//주소가 제대로 입력되었을경우.
+						
+						$("#formBy").submit();
+					
+					}else{
+						//주소가 공백일 경우.
+						$("#locl").text("주소를 입력하세요");						
+					}
+				
+				}
+					
+					
+					
+					
+					
+			</script>
 <%@ include file="/common/footer.jsp" %>
 </body>
 </html>

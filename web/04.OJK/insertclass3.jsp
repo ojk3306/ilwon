@@ -194,10 +194,10 @@ $('#category1').click(function() {
 			<div class="panel-heading">배우고싶어요를 등록합니다.
 			</div>
 			<div class="panel-body">
-				<form action="/prototype/insertlesson2.sm" method="post" enctype="multipart/form-data">
+				<form action="/prototype/insertlesson2.sm" method="post" enctype="multipart/form-data" id="formBy">
 					<div class="form-group">
 						<label for="title">배우고싶어요 등록하기</label>
-						<input id="title" name="title" class="form-control" type="text" data-validation="required">
+						<input id="title" name="title" class="form-control" type="text" required>
 						<span id="error_name" class="text-danger"></span>
 					</div>
 					<div class="form-group">
@@ -205,14 +205,14 @@ $('#category1').click(function() {
 						
 						<label>대분류 : </label>&nbsp;
 						
-						<select id="category1" name="category1">
+						<select id="category1" name="category1" required>
 							
 						</select>&nbsp;
 						
 						<label>소분류 : </label>&nbsp;
 						
 						
-						<select id="category2"  name="category2">
+						<select id="category2"  name="category2" required>
 							<option >대분류를먼저선택하세요</option>
 					
 						</select>
@@ -237,9 +237,9 @@ $('#category1').click(function() {
 						
 						<div style="width:95%; background: red">
 						<label for="price" style="width: 17%; float:left;">수업료(단위/만):</label>
-						<input id="price" name="price"  class="form-control" type="number" min="1" style="width: 15%; float:left">
+						<input id="price" name="price"  class="form-control" type="number" min="1" style="width: 15%; float:left" required>
 						 <label for="count" style="margin-left:30px;    width: 7%; float:left" >횟수:</label>
-						<input id="count" name="count"  class="form-control" type="number" min="1" style="width: 15%; float:left">
+						<input id="count" name="count"  class="form-control" type="number" min="1" style="width: 15%; float:left" required>
 					 	
 						</div>
 						
@@ -251,7 +251,7 @@ $('#category1').click(function() {
 					
 					<div class="form-group">
 						<label for="contop">신청 내용</label>
-						<textarea name="contop" id="contop" rows="10" cols="68pt"></textarea>
+						<textarea name="contop" id="contop" rows="10" cols="68pt" required></textarea>
 						<span id="error_phone" class="text-danger"></span>
 					</div>
 					
@@ -260,19 +260,19 @@ $('#category1').click(function() {
 					<div class="form-group">
 						<label for="loc">강의 지역</label>
 						<input type="text" id="loc" name="loc" class="form-control" onclick="juso()" readonly="readonly" placeholder="클릭 해서 지역을 선택해주세요!">
-						<span id="error_phone" class="text-danger"></span>
+						<span id="locl" class="text-danger"></span>
 					</div>
 					
 					<div class="form-group">
 					<label for="rad">가능 반경(단위/미터)</label>
-					<input type="number" name="rad" id="rad" min="1000" class="form-control" value="1000" style="width: 100px; margin-bottom: 10px;">
+					<input type="number" name="rad" id="rad" min="1000" class="form-control" value="1000" style="width: 100px; margin-bottom: 10px;" required>
 					<button type="button" class="btn" onclick="mapshow()">지도 확인하기</button>
 					</div> 
 					<div id="map" style="width:500px; height:350px; display: none;" ></div>
 					<span id="error_phone" class="text-danger"></span>
 					<br><br>
 					<input type="hidden" name="userno" value="<%= loginUser.getUserNo() %>">
-					<input type="submit" value="배움신청생성" class="btn btn-primary center">
+					<input type="button" value="배움신청생성" class="btn btn-primary center" onclick="return check()">
 					<input type="reset" value="초기화" class="btn btn-primary center">
 					<input type="button" onclick="history.back()" value="뒤로가기" class="btn btn-primary center">
 					
@@ -280,8 +280,22 @@ $('#category1').click(function() {
 					
 					</form>
 					
+					s
+						<script>
+					function check() {
+						  
+					if($('#loc').val().length > 1){
+							//주소가 제대로 입력되었을경우.
+						
+						$("#formBy").submit();
 					
-					
+					}else{
+						//주소가 공백일 경우.
+						$("#locl").text("주소를 입력하세요");						
+					}
+				
+				}
+			</script>
 					
 				
 

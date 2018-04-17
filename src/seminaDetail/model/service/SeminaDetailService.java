@@ -15,4 +15,6 @@ public class SeminaDetailService {
 		return seminaDetail;
 	}
 
+
+
 }

@@ -236,7 +236,20 @@ margin-left: 190px;
 
                 <!-- Default panel contents -->
                 <br>
-                <h2 class="panel-heading" style="text-align:center;">세미나 설정</h2>
+                <hr>
+                <h3 class="panel-heading" style="text-align:center;">신청 학생</h3>
+                <hr>
+                <table class="table table-hover" id="student_table"> 
+						<thead>
+							<tr>
+								<th>이름</th>
+								<th>이메일</th>
+								<th>성별</th>
+							</tr>
+						</thead>
+					</table>
+                <br>
+                <h3 class="panel-heading" style="text-align:center;">세미나 설정</h3>
       
                 <ul class="list-group">
                  
