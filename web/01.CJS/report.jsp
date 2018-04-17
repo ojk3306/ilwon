@@ -175,9 +175,9 @@ th {
 	 			<input type="submit" name="search_submit" class="btn" value="검색">	
 	 		</div>
 	 		<div id="board_page">
-		 		<ul class="pagination">
-				
-	 		<% if((currentPage - 10) < startPage && (currentPage - 10) > 1){ %>
+		 
+		 <ul class="pagination">
+			<% if((currentPage - 10) < startPage && (currentPage - 10) > 1){ %>
 			<li class="page-item"><a class="page-link" href="/prototype/reportlist?page=<%= startPage - 10 %>">Previous</a></li>
 			<% }else{ %>	  
 			<li class="page-item"><a class="page-link" onclick="retu()">Previous</a></li>

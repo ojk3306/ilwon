@@ -29,11 +29,10 @@ $(function(){
 	$("option[value="+<%=seachOption%>+"]").prop("selected", true);
 	$("option[value="+<%=seachtype%>+"]").prop("selected", true);
 })
+function retu(){
+	return false;
+}
 </script>
-
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
 
 <title>관리자의 검색창</title>
 <style type="text/css">
@@ -214,46 +213,37 @@ min-height: 440px;
               </div>
               <div class="panel-footer">
                 <div class="row">
-                  <div class="col col-xs-8">
-                    <ul class="pagination hidden-xs pull-right">
-                     
-                     <% if(currentPage <= 1){ %>
-	[맨처음]&nbsp;
-<% }else{ %>
-<a href="/prototype/adminseachuser?page=1">[맨처음]</a>
-<% } %>
-
+<div id="board_page">
+<center>
+<ul class="pagination">
 <% if((currentPage - 10) < startPage && (currentPage - 10) > 1){ %>
-	<a href="/prototype/adminseachuser?page=<%= startPage - 10 %>">◀</a>	
-<% }else{ %>
-	◀&nbsp;
-<% } %>
-<!-- 현재 페이지가 포함된 그룹의 페이지 숫자 출력 -->
+<li class="page-item"><a class="/prototype/adminseachuser?page=<%= startPage - 10 %>">Previous</a></li>
+<% }else{ %>	  
+<li class="page-item"><a class="page-link" onclick="retu()">Previous</a></li>
+<% } %> 
+			
+			
+			<% for(int p = startPage; p <= endPage; p++){%>
+			<%if(p == currentPage){%>
+			<li class="page-item"><a class="page-link" href="#"><strong><%= p %></strong></a></li>
+			<%}else{ %>	 
+			<li class="page-item"><a class="page-link" href="/prototype/adminseachuser?page=<%= p %>&seach=<%=seach%>&option=<%=seachOption%>&type=<%=seachtype%>"><strong><%= p %></strong></a></li>
+			<% }} %> 
+		
+			<% if((currentPage + 10) > endPage && (currentPage + 10) < maxPage){ %>
+	 		<li class="page-item"><a class="page-link" href="/prototype/adminseachuser?page=<%= endPage + 10 %>">Next</a></li>
+			<% }else{ %>
+		<li class="page-item"><a class="page-link" onclick="retu()">Next</a></li>
+	<% } %> 
 
-<% for(int p = startPage; p <= endPage; p++){ 
-		if(p == currentPage){
-%>
-	<font color="red" size="4"><b>[<%= p %>]</b></font>
-<% }else{ %>
-	<a href="/prototype/adminseachuser?page=<%= p %>&seach=<%=seach%>&option=<%=seachOption%>&type=<%=seachtype%>"><%= p %></a>
-<% }} %>
 
-<% if((currentPage + 10) > endPage 
-		&& (currentPage + 10) < maxPage){ %>
-	<a href="/prototype/adminseachuser?page=<%= endPage + 10 %>">▶</a>	
-<% }else{ %>
-	▶ &nbsp;
-<% } %>
-
-<% if(currentPage >= maxPage){ %>
-	[맨끝]&nbsp;
-<% }else{ %>
-	<a href="/prototype/adminseachuser?page=<%= maxPage %>">[맨끝]</a>
-<% } %>
-                    
-                    </ul>
-                  </div>
-                </div>
+					
+			</ul>	
+			</center>
+			 
+</div> 	             
+                
+ </div>
               </div>
             </div>
 

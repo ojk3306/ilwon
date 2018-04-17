@@ -43,7 +43,7 @@ ArrayList<NewestLessonByAdmin> list2 = (ArrayList<NewestLessonByAdmin>)(request.
     <div class="row">
       <div class="col-md-3">
         <div class="list-group">
-      <a href="index.html" class="list-group-item active main-color-bg"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+      <a class="list-group-item active main-color-bg"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
       설정관리<span class="badge">1</span>
       </a>
       <a href="/prototype/03.OHW/views/noticeList.jsp" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>공지사항관리</a>
@@ -53,7 +53,6 @@ ArrayList<NewestLessonByAdmin> list2 = (ArrayList<NewestLessonByAdmin>)(request.
       <a href="/prototype/adminseachuser" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true" ></span> 유저검색</a>
       <a href="/prototype/adminlessnolist" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>강의관리</a>
       <a href="/prototype/adminseminalist" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>세미나관리</a>
-      
     </div>
     
 <div class="list-group">
