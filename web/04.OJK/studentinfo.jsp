@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+Users us=(Users)session.getAttribute("loginUser");
 
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,12 +47,11 @@ $(function(){
 		
 		}
 			
-			$('#ongoing_table').html(values);
+		$('#ongoing_table').html(values);
 		}, error: function(a,b,c){
 			console.log(b+c);
 		}	
 	});
-	
 	//진행중인 강의
 	$.ajax({   //레슨로그에서 본인(학생)의 번호로 검색, 스테이스에 수업이 진행중인 것만 가져 가져옴.
 		url:"/prototype/llteaher2",
@@ -63,20 +65,29 @@ $(function(){
 	var values = $('#ongoing_table2').html();
 	for(var i in json.onlesson) {
 		
-	if(json.onlesson[i].state == 1) {
-			values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
+	if(json.onlesson[i].type == 7000) {
+	//선생이 올린 계시판으로 가기
+	values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
 			+"</td><td>"+json.onlesson[i].username+"</td><td>"+json.onlesson[i].phone+"</td><td>"+json.onlesson[i].log_date+"</td>"
-			+"<td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
-			+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='finishLesson(this)'>종료</button></td></tr>"			
-			}
-	else if(json.onlesson[i].state == 2 ){ 
-		//일단 보류
-		}
+			+"<td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson1(this)'>상세보기</button></td>"
+			+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='finishLesson(this)'>종료</button></td></tr>";			
+			
 	}
-	$('#ongoing_table2').html(values);
-		}, error: function(a,b,c){
-			console.log(b+c);
-		}	
+	else if(json.onlesson[i].type == 8000 ){ 
+		//학생이 올린 계시판으로 가기
+	values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
+		+"</td><td>"+json.onlesson[i].username+"</td><td>"+json.onlesson[i].phone+"</td><td>"+json.onlesson[i].log_date+"</td>"
+		+"<td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
+		+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='finishLesson(this)'>종료</button></td></tr>";			
+		
+		
+	}
+	
+	$('#ongoing_table2').html(values)}
+	
+	}, error: function(a,b,c){
+		console.log(b+c);
+		}
 	})
 
 //학생이 이때까지 배운 내역
@@ -101,6 +112,50 @@ $(function(){
 			console.log(b+c);
 		}	
 	}) 
+	
+// 세미나 신청내역보기	
+	$.ajax({
+	url:"/prototype/checksemina",
+	data: {no : $('#userno').val()},
+	type: "get",
+	dataType: "json",
+	success: function(data) {
+			
+	var jsonStr = JSON.stringify(data);
+	var json = JSON.parse(jsonStr);
+	var values = $('#ongoing_table3').html();
+	for(var i in json.semi) {
+	values += "<tr><td>"+json.semi[i].SEMINA_TITLE+"</td><td>"+json.semi[i].USER_PHONE+"</td>"
+	+"<td><input type='button' id='"+json.semi[i].SEMINA_NO+"' onclick='detailsemina(this)' value='상세보기'></td><td>"+json.semi[i].SEMINA_ENDDATE+"</td>"
+	+"<td><button> 신청중 </button></td>"
+	+"<td><button type='button' class='btn' id='"+json.semi[i].SEMINA_DETAIL_NO+"' onclick='cans(this)'>취소하기</button></td>"
+	
+		/*
+			<th>세미나명</th>
+			<th>진행자 연락처</th>
+			<th>세미나 상세보기</th>
+			<th>세미나당일</th>
+			<th>상태</th>
+			<th>취소하기</th>
+			
+			job.put("SEMINA_DETAIL_NO", l.getSEMINA_NO());
+			job.put("SEMINA_DETAIL_STATE", l.getSEMINA_DETAIL_STATE());
+			job.put("SEMINA_ENDDATE", l.getSEMINA_ENDDATE());
+			job.put("SEMINA_LOCATION", l.getSEMINA_LOCATION());
+			job.put("SEMINA_NO", l.getSEMINA_NO());
+			job.put("SEMINA_NOW", l.getSEMINA_NOW());
+			job.put("SEMINA_STATE", l.getSEMINA_STATE());
+			job.put("SEMINA_TITLE", l.getSEMINA_TITLE());
+			job.put("USER_NO", l.getUSER_NO());
+			job.put("USER_PHONE", l.getUSER_PHONE());
+			jarr.add(job);*/
+		}
+	
+	$('#ongoing_table4').html(values);
+	}, error: function(a,b,c){
+			console.log(b+c);
+		}	
+	})
 });
 
 
@@ -108,8 +163,12 @@ function updateUser(){ //개인 정보 수정
 	location.href="/prototype/04.OJK/userupdate.jsp";
 }
 
-
-//강의 상세보기
+function DetailLesson1(val){
+	console.log(val.id);
+	var userno = $("#userno").val();
+	location.href="/prototype/lessondetail?no=" + val.id + "&userno=" + userno;
+}
+//학생의 강의 상세보기
 function DetailLesson(val) {
 	console.log(val.id);
 	var userno = $('#userno').val();
@@ -149,6 +208,14 @@ function upload_profile() {
 
 		window.open(popUrl,"a",popOption);
 	
+}
+//세미나 상세보기
+function detailsemina(a){
+	location.href='/prototype/sdetail?userno='+a.id+'&usernono='+<%=us.getUserNo()%>+'&type='+<%=us.getUserTypeNo()%>
+}
+//세미나 신청 취소하기
+function cans(a){
+	location.href='/prototype/sdcan?no='+a.id	
 }
 </script>
 
@@ -259,6 +326,31 @@ function upload_profile() {
 							</tr>
 						</thead>
 						<tbody id="ongoing_table3">
+							
+						</tbody>
+					</table>
+				</div>
+			</div>
+				<br> <br>
+			<h1>세미나 신청 내역</h1>
+			<hr>
+			<div id="info"
+				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px;">
+				<div style="width:100%;">
+					<table class="table table-hover" >
+						<thead>
+							<tr>
+								<th>세미나명</th>
+								<th>진행자 연락처</th>
+								<th>세미나 상세보기</th>
+						
+								<th>세미나당일</th>
+								
+								<th>상태</th>
+								<th>취소하기</th>
+							</tr>
+						</thead>
+						<tbody id="ongoing_table4">
 							
 						</tbody>
 					</table>

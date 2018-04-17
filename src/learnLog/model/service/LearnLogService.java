@@ -115,5 +115,27 @@ public class LearnLogService {
 		
 		return result;
 	}
+
+	public int finishstudent(int parseInt, int parseInt2, int parseInt3) {
+		Connection conn = getConnection();
+		int result=new LearnLogDao().finishstudent(conn,parseInt,parseInt2,parseInt3);
+		
+		if(result>0)
+			commit(conn);
+		else 
+			rollback(conn);
+		close(conn);
+		
+		return result;
+	}
+
+	public int checkLesson(int parseInt, int parseInt2, int parseInt3) {
+		Connection conn = getConnection();
+		int result=new LearnLogDao().checkLesson(conn,parseInt,parseInt2,parseInt3);
+		
+		close(conn);
+		
+		return result;
+	}
 	
 }

@@ -24,7 +24,7 @@
       width: 100%;
 	}
 	#footer {	
-    background: gray !important;
+    background: #222222 !important;
       width: 100%;
 	}
 	#footer h5{
@@ -98,7 +98,7 @@
 	<section id="footer" style="  width: 100%;">
 		<div class="container" >
 			<div class="row">
-				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5" style="background:gray">
+				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5" style="background:#222222">
 					<ul class="list-unstyled list-inline social text-center">
 						<li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-facebook"></i></a></li>
 						<li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-twitter"></i></a></li>
@@ -110,7 +110,7 @@
 				</hr>
 			</div>	
 			<div class="row">
-				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white" style="background:gray">
+				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white" style="background:#222222; color:white;">
 					<p>National Transaction Corporation is a Registered MSP/ISO of Elavon, Inc. Georgia [a wholly owned subsidiary of U.S. Bancorp, Minneapolis, MN]</p>
 					<p class="h6">&copy All right Reversed.<a class="text-green ml-2" href="https://www.sunlimetech.com" target="_blank">Sunlimetech</a></p>
 				</div>

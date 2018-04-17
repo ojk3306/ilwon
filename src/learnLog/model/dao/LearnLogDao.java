@@ -174,6 +174,7 @@ public class LearnLogDao {
 				l.setLOG_STATE(rset.getInt("log_state"));
 				l.setUSER_NAME(rset.getString("user_name"));
 				l.setUSER_NO1(rset.getInt("user_no1"));
+				l.setUSER_NO2(rset.getInt("user_no2"));
 				l.setLOG_STATE(rset.getInt("LOG_STATE"));
 				l.setLESSON_TITLE(rset.getString("LESSON_TITLE"));
 				
@@ -284,7 +285,8 @@ public class LearnLogDao {
 				l.setLOG_STATE(rset.getInt("LOG_STATE"));
 				l.setLESSON_TITLE(rset.getString("LESSON_TITLE"));
 				l.setUSER_PHONE(rset.getString("USER_PHONE"));
-				
+				l.setLESSONTYPE(rset.getInt("LESSON_TYPE"));
+
 				//l.setUserNo2(rset.getInt("user_no2"));
 				
 				System.out.println("getlessonLog :" +l.toString());
@@ -325,12 +327,11 @@ public class LearnLogDao {
 				l.setLOG_STATE(rset.getInt("LOG_STATE"));
 				l.setLESSON_TITLE(rset.getString("LESSON_TITLE"));
 				l.setUSER_PHONE(rset.getString("USER_PHONE"));
-				
+				l.setLESSONTYPE(rset.getInt("LESSON_TYPE"));
 				//l.setUserNo2(rset.getInt("user_no2"));
 				
 				System.out.println("getlessonLog :" +l.toString());
-				onlesson.add(l);
-				
+				onlesson.add(l);	
 			}
 			
 			
@@ -364,5 +365,52 @@ public class LearnLogDao {
 		}
 		
 		return result;
+	}
+
+	public int finishstudent(Connection conn, int parseInt, int parseInt2, int parseInt3) {
+		int result=0;
+		//학생,선생,강의
+		PreparedStatement pstmt=null;
+		String sql="update LEARN_LOG set LOG_STATE = 3 where USER_NO1=? and USER_NO2=? and LESSON_NO=?";
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1,parseInt);
+			pstmt.setInt(2, parseInt2);
+			pstmt.setInt(3,parseInt3);
+			result=pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int checkLesson(Connection conn, int parseInt, int parseInt2, int parseInt3) {
+		int result=0;
+		//학생,선생,강의
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		String sql="select count(*) from LEARN_LOG where USER_NO1= ? and USER_NO2=? and LESSON_NO = ? and LOG_STATE = 1";
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1,parseInt);
+			pstmt.setInt(2, parseInt2);
+			pstmt.setInt(3,parseInt3);
+			rset=pstmt.executeQuery();
+			rset.next();
+			result=rset.getInt(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
 	}
 }

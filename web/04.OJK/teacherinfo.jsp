@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <html>
 <head>
 <script type="text/javascript"
@@ -8,6 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>선생정보보기</title>
 <script type="text/javascript">
+
 //운영중인 강좌
 $(function(){
 	$.ajax({
@@ -48,7 +50,9 @@ $(function(){
 
 });
 function updatesemina(a){ //세미나 수정.
+	
 	location.href="/prototype/semiup?semino="+a.id;
+
 }
 function finishsemina(a){ //세미나 끝내기
 	location.href="/prototype/semistop?semino="+a.id;
@@ -114,8 +118,9 @@ if(json.onlesson[i].state == 1) {
 		+"</td><td>레슨</td><td>"+json.onlesson[i].username+"</td><td>"+json.onlesson[i].log_date+"</td>"
 		+"<td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
 		+"<td><button type='button' class='btn btn-warning' id='"+json.onlesson[i].lesson_no+"/"+json.onlesson[i].stuno+"' onclick='confirm1(this)'>수업확인</button></td>"
-		+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='finishLesson(this)'>종료</button></td></tr>"			
+		+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].stuno+"/"+json.onlesson[i].teano+"/"+json.onlesson[i].lesson_no+"' onclick='finishstudent(this)'>이학생 종료</button></td></tr>"			
 		}
+
 else if(json.onlesson[i].state == 2 ){ 
 	//일단 보류
 	}
@@ -160,9 +165,28 @@ $('#ongoing_table3').html(values);
 </script>
 <script>
 //수업확인 
+
+function finishstudent(a){
+	var result = confirm('이 학생의 레슨을 끝내실건가요?'); 
+	if(result) 
+	{
+	location.href="/prototype/finishstudent?no=" +a.id;
+	}else {
+		
+	} 
+	
+}
+
 function confirm1(a){
 	var result = confirm('확실히 레슨을 진행하셨나요??'); 
-	location.href="/prototype/confirmlesson?no="+a.id;
+	if(result) {
+		location.href="/prototype/confirmlesson?no="+a.id;
+		
+	}else {
+			
+		} 
+	
+	
 }
 	
 
@@ -204,8 +228,7 @@ function DetailLesson(val){
 	var userno = $("#userno").val();
 	location.href="/prototype/lessondetail?no=" + val.id + "&userno=" + userno;
 	
-		
-		
+
 	
 }
 

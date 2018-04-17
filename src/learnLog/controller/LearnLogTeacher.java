@@ -52,6 +52,7 @@ public class LearnLogTeacher extends HttpServlet {
 			job.put("state", l.getLOG_STATE());
 			job.put("lesson_no", l.getLESSON_NO());
 			job.put("stuno",l.getUSER_NO1());
+			job.put("teano",l.getUSER_NO2());
 			job.put("lesson_title", l.getLESSON_TITLE());
 			job.put("log_no", l.getLOG_NO());
 			job.put("log_date", l.getLOG_DATE().toString());

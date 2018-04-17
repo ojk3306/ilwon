@@ -18,10 +18,7 @@ public class Learnlogforinfo implements Serializable {
 	private String LESSON_TITLE;
 	private String USER_NAME;
 	private String USER_PHONE;
-	
-	
-	
-	
+	private int LESSONTYPE;
 	public int getLOG_NO() {
 		return LOG_NO;
 	}
@@ -76,15 +73,39 @@ public class Learnlogforinfo implements Serializable {
 	public void setUSER_PHONE(String uSER_PHONE) {
 		USER_PHONE = uSER_PHONE;
 	}
+	public int getLESSONTYPE() {
+		return LESSONTYPE;
+	}
+	public void setLESSONTYPE(int lESSONTYPE) {
+		LESSONTYPE = lESSONTYPE;
+	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	public Learnlogforinfo(int lOG_NO, int uSER_NO1, int uSER_NO2, int lESSON_NO, Date lOG_DATE, int lOG_STATE,
+			String lESSON_TITLE, String uSER_NAME, String uSER_PHONE, int lESSONTYPE) {
+		super();
+		LOG_NO = lOG_NO;
+		USER_NO1 = uSER_NO1;
+		USER_NO2 = uSER_NO2;
+		LESSON_NO = lESSON_NO;
+		LOG_DATE = lOG_DATE;
+		LOG_STATE = lOG_STATE;
+		LESSON_TITLE = lESSON_TITLE;
+		USER_NAME = uSER_NAME;
+		USER_PHONE = uSER_PHONE;
+		LESSONTYPE = lESSONTYPE;
 	}
 	@Override
 	public String toString() {
 		return "Learnlogforinfo [LOG_NO=" + LOG_NO + ", USER_NO1=" + USER_NO1 + ", USER_NO2=" + USER_NO2
 				+ ", LESSON_NO=" + LESSON_NO + ", LOG_DATE=" + LOG_DATE + ", LOG_STATE=" + LOG_STATE + ", LESSON_TITLE="
-				+ LESSON_TITLE + ", USER_NAME=" + USER_NAME + ", USER_PHONE=" + USER_PHONE + "]";
+				+ LESSON_TITLE + ", USER_NAME=" + USER_NAME + ", USER_PHONE=" + USER_PHONE + ", LESSONTYPE="
+				+ LESSONTYPE + "]";
 	}
+	
+	
+	
 
 	
 }

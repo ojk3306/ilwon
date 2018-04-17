@@ -68,7 +68,7 @@
 	}
 	
 	 .header_text {		
-		color : #4988ed;
+		color : gray;
 	}
 	
 	.teacher_location, .teacher_class, .teacher_info, .class_info {		
@@ -118,6 +118,7 @@
 	
 	.ohw-table-header {
 		height:50px;
+		border-bottom:1 dashed gray;
 	}
 	
 	.ohw-small-category-td {
@@ -127,7 +128,7 @@
 </style>
 </head>
 
-<body style="min-width : 800px; overflow : auto; display : absolute; back">
+<body style="min-width : 800px; overflow : auto; display : absolute; background:#E9E9E9;">
 	<nav><%@ include file = "../../common/navbar.jsp" %>
 		<%@include file="/01.CJS\sidebar.jsp" %>
 	</nav>
@@ -185,6 +186,7 @@
 				<th style = "width : 100px;"><h3 class="header_text">수업</h3></th>				
 			</tr>			
 		</table>
+		
 		<table class = "ohw-small-category">
 				
 		</table>		
@@ -406,9 +408,7 @@ $(document).ready(function readyList() {
 	<div id="show_table" align = "center"> <!-- 평소에 펼쳐져 있는 테이블 -->	
 		<div class = "ohw-table-header"><h3>새로 올라온 강의</h3></div>	
 		<table class="table table-hover ohw-ready-table">
-			<tr style = "height:30px; padding:0px; margin:0px;">
-        		        		
-      		</tr> 
+			<tr></tr>
 		</table>
 	</div>
 	
@@ -491,8 +491,7 @@ $(document).ready(function readyList() {
 	<div id="keyword_table" align = "center"> <!-- 키워드 검색 결과 표시 테이블 -->
 		<div class = "ohw-table-header"><h3>키워드 검색 결과</h3></div>
 		<table class="table table-hover ohw-keyword-table">      
-			<tr class="ohw-keyword-table-tr" style = "height:30px; padding:0px; margin:0px;">
-        		
+			<tr></tr>
 		</table>
 	</div>
 	
@@ -582,11 +581,9 @@ $(document).ready(function readyList() {
 	<div id="search_table" align = "center"> <!-- 검색 결과 표시 테이블 -->
 		<div class = "ohw-table-header"><h3>검색 결과</h3></div>
 		<table class="table table-hover ohw-search-table">      
-			<tr class="ohw-search-table-tr" style = "height:30px; padding:0px; margin:0px;">
-        		
+			<tr></tr>
 		</table>
-	</div>
-	
+	</div>	
 	
 	</div>
 	

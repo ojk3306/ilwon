@@ -44,9 +44,7 @@ public class LessonDetailServlet extends HttpServlet {
 		userno = Integer.parseInt(request.getParameter("userno"));  //??
 		LessonDetail lessondetail = new LessonService().lessonView(lesson_no);
 		ArrayList<Review> review = new ReviewService().previewReview(lesson_no);
-		String userimg = new UsersService().getUserImg(lessondetail.getUser_no());
-		
-	
+		String userimg = new UsersService().getUserImg(lessondetail.getUser_no());	
 		
 		//일단 다가져옴
 		int sumd = 0;
