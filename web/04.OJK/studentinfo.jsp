@@ -169,7 +169,9 @@ $(function(){
 	})
 });
 
-
+function upstudentlesson(a){
+	location.href="/prototype/findstules?no="+a.id
+}
 function updateUser(){ //개인 정보 수정
 	location.href="/prototype/04.OJK/userupdate.jsp";
 }

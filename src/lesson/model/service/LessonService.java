@@ -268,8 +268,15 @@ public class LessonService {
 		} else {
 			rollback(conn);
 		}
-		
+		close(conn);
 		return result;
 	}
+
+		public Lesson getLssoninfoByLessonNo(int parseInt) {
+			Connection conn = getConnection();
+			Lesson less= new  LessonDao().findLessonBylessonNo(conn,parseInt);
+			close(conn);
+			return less;
+		}
 	
 }

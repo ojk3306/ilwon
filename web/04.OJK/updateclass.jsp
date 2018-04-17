@@ -234,6 +234,8 @@ $("#img2").change(function() {
 	
 	
 });
+
+
 })
 
 

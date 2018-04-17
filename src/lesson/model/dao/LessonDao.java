@@ -1203,4 +1203,12 @@ public class LessonDao {
 			System.out.println("SearchList : " + list + " / (To.LessonDao)");
 			return list;		
 	}
+
+	public Lesson getLssoninfoByLessonNo(Connection conn, int parseInt) {
+	
+		
+		
+		
+		return null;
+	}
 }
