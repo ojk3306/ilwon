@@ -149,6 +149,21 @@ public class UsersService {
 		return result;
 	}
 
+	public int userUpdate(int userno, String value, int type, String pwd) {
+		Connection con = getConnection();
+		int result= new UsersDao().userUpdate(con,userno,value,type,pwd);
+	
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}
+
 	
 
 	

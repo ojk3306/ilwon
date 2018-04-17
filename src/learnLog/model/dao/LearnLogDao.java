@@ -342,4 +342,27 @@ public class LearnLogDao {
 		}
 		return onlesson;
 	}
+
+	public int summitLesson(Connection conn, int parseInt, int parseInt2, int i) {
+		int result=0;
+		
+		//학생,선생,강의
+		PreparedStatement pstmt=null;
+		String sql="insert into LEARN_LOG values ((select max(LOG_NO)+1 from LEARN_LOG),?,?,?,sysdate,1) ";
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1,parseInt);
+			pstmt.setInt(2, parseInt2);
+			pstmt.setInt(3,i);
+			result=pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 }

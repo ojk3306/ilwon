@@ -102,5 +102,18 @@ public class LearnLogService {
 		close(conn);
 		return onlesson;
 	}
+
+	public int summitLesson(int parseInt, int parseInt2, int i) {
+		Connection conn = getConnection();
+		int result=new LearnLogDao().summitLesson(conn,parseInt,parseInt2,i);
+		
+		if(result>0)
+			commit(conn);
+		else 
+			rollback(conn);
+		close(conn);
+		
+		return result;
+	}
 	
 }

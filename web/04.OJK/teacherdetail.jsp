@@ -6,6 +6,8 @@
 	LessonDetail lessondetail =(LessonDetail)request.getAttribute("lessondetail");
 	ArrayList<Review> review = (ArrayList<Review>)request.getAttribute("review");
 	int user_no = ((Integer)request.getAttribute("user_no"));
+	int usernumber = ((Integer)request.getAttribute("usernumber"));
+	
 	String userimg = (String)request.getAttribute("userimg");
 	double avga =((Double)request.getAttribute("avga")).doubleValue();
 	int avgd = ((Integer)request.getAttribute("avgd")).intValue();
@@ -29,13 +31,7 @@
 <html>
 <head>
 
-
-
-
-
 <script type="text/javascript" src="/prototype/common\resources\js\jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="/prototype/common\resources\js\select2.js"></script>
-
 
 <script type="text/javascript">
 
@@ -49,6 +45,21 @@ function popupReview(){
 
 	}
 	
+function summitbystu(a){
+	
+	location.href="/prototype/submitlesson?no="+a.id;
+	
+}
+
+$.ajax({//이 강의를 들었는지 안들었는지 확인.
+	url:"/prototype/checkLesson",
+	data:""
+	
+})
+
+
+
+
 
 </script>
 	
@@ -269,13 +280,22 @@ border-radius: 35px;
 		</li>
 		
 		<li class="topdiv" name="option">
-		조회수?<br>
-		등록일?<br>
-		<div class="imticon">
+	
+		등록일:<Br>
+		<%=lessondetail.getLESSON_STARTDATE() %>	
+		<br><br><br>
 		
-		<%@ include file="/01.CJS\imticon.jsp" %>
+		<% if(loginUser==null){%>
+		<button type='button' class='btn'>학생인가요? 지금로그인하세요</button>
+		<%}else{ %>
+			<%if( loginUser.getUserNo()== user_no ){%>
+			<button type='button' class='btn'>본인의 레슨입니다</button>
+			<%}else if(loginUser.getUserNo()!= user_no && loginUser.getUserTypeNo()!=1002 ){%>
+			<button type='button' id="<%=loginUser.getUserNo()%>/<%=usernumber%>/<%=lessondetail.getLesson_no()%>/<%=loginUser.getUserTypeNo()%>" onclick="summitbystu(this)" class='btn'>레슨 신청!</button>
+			<%} %>
 		
-		</div>
+		
+		<%} %>
 		</li>
 		
 		
