@@ -1,7 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-	
-	    
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>    
 
 <!DOCTYPE html>
 <html>
@@ -19,6 +16,7 @@
 		overflow : auto;
 		position:absolute;		
 	}
+	
 	.ohw_img_header {
 		background-image:url("common/resources/img/sailboat.jpg");
 		background-size:100% 500px;
@@ -26,6 +24,7 @@
 		height:500px;
 		margin-bottom:0px;	
 	}
+	
 	.ohw_div_con {
 		float:left;
 		width:33.33%;
@@ -34,6 +33,7 @@
 		border:1px solid black;
 		background:gray;
 	}
+	
 	.ohw_footer {
 		background:gray;
 		height:100px;
@@ -70,124 +70,86 @@
 	}	
 	
 </style>
-<!--  -->
-
-
-<!--  -->
 </head>
 
 <body>
 <div style="height:52px">
-
-
-
-
-
-<%@ include file = "common/navbar.jsp" %>
-
+	<%@ include file = "common/navbar.jsp" %>
 </div>
 
 <script type="text/javascript">
 	
-	$(function () {
-	
-	$.ajax({
-		url:"<%= request.getContextPath() %>/mainnotice",			
-		dataType:"json",
-		success:function(data) {
-			
-			//json 객체 하나(data)를 문자열 형태로 바꿈
-			var jsonStr = JSON.stringify(data);
-			//문자열을 다시 자바스크립트가 사용할 수 있는
-			//json 객체로 파싱함
-			var json = JSON.parse(jsonStr);		 
-			
-			console.log(data);
-			
-			for(var i in json.list) {
-				
-				$('.ohw-main-notice').append(
-						
-				<% if(loginUser != null) { %>
-				
-				"<tr class = 'ohw-main-notice-tr'><td class = 'ohw-main-notice-cont'><a href = '<%= request.getContextPath() %>/ndetail?no=" + json.list[i].noticeNo + "&page=1'>" + json.list[i].noticeTitle + "</a></td>"
-								
-				<% } else { %>
-				
-				"<tr class = 'ohw-main-notice-tr'><td class = 'ohw-main-notice-cont'>" + json.list[i].noticeTitle + "</td>"
-			
-				<% } %>	+					 
-				
-				"<td class = 'ohw-main-notice-conw'>" + json.list[i].userName + "</td>" +					 
-				"<td class = 'ohw-main-notice-cond'>" + json.list[i].noticeDate + "</td></tr>"
-				
-				);
-				
-			}
-			
-		}
-	
-	});
-	
-});	
+	$(function () {	
+		$.ajax({
+			url:"<%= request.getContextPath() %>/mainnotice",			
+			dataType:"json",
+			success:
+				function(data) {				
+					var jsonStr = JSON.stringify(data);				
+					var json = JSON.parse(jsonStr);			
+					console.log(data);			
+					for(var i in json.list) {				
+						$('.ohw-main-notice').append(						
+							<% if(loginUser != null) { %>				
+								"<tr class = 'ohw-main-notice-tr'><td class = 'ohw-main-notice-cont'><a href = '<%= request.getContextPath() %>/ndetail?no=" + json.list[i].noticeNo + "&page=1'>" + json.list[i].noticeTitle + "</a></td>"
+							<% } else { %>				
+								"<tr class = 'ohw-main-notice-tr'><td class = 'ohw-main-notice-cont'>" + json.list[i].noticeTitle + "</td>"			
+							<% } %>	+				
+							"<td class = 'ohw-main-notice-conw'>" + json.list[i].userName + "</td>" +					 
+							"<td class = 'ohw-main-notice-cond'>" + json.list[i].noticeDate + "</td></tr>"				
+						);				
+					}			
+				}	
+		});	
+	});	
 	
 </script>
 
 <div class="ohw_img_header">
 	<div class="text-center">   
-	<form class="form-inline" action="/prototype/Insertlog" method="post">
-		<!-- <div class="input-group"  style="margin-top:10%;">
-	<input type="text" class="form-control" name="searchcontent" size="50" placeholder="태그를 검색해주세요">
-	<div class="input-group-btn">
-    <input type="submit" class="btn" value="Search">
-		</div>
-		</div> -->
-	</form>
+		<form class="form-inline" action="/prototype/Insertlog" method="post">
+		
+		</form>
 	</div>	
 </div>
 
-	<div style="width:100%; height:330px; magin-bottom:0px;">
+<div style="width:100%; height:330px; magin-bottom:0px;">
 	<div class="ohw_div_con" align="center">
-	<ul class="nav nav-tabs">
-		<li><a data-toggle="tab" href="#home">공지사항</a></li>
-		<li><a data-toggle="tab" href="#menu1">배우고 싶어요</a></li>
-		<li><a data-toggle="tab" href="#menu2">여긴 뭘까요</a></li>
-	</ul>
-
-	<div class="tab-content">
-	<div id="home" class="tab-pane fade in active">	
-	<div>
-		<table class = "ohw-main-notice">
-			<tr class = "ohw-main-notice-tr">
-				<th class = "ohw-main-notice-cont">제목</th>
-				<th class = "ohw-main-notice-conw">작성자</th>
-				<th class = "ohw-main-notice-cond">날짜</th>
-			</tr>
-		</table>
-	</div>
-	</div>
-	
-	<div id="menu1" class="tab-pane fade">
-	<h3>Menu 1</h3>
-	<p>Some content in menu 1.</p>
-	</div>
-	
-	<div id="menu2" class="tab-pane fade">
-	<h3>Menu 2</h3>
-	<p>Some content in menu 2.</p>
-	</div>
-	</div>
-	</div>
-	
+		<ul class="nav nav-tabs">
+			<li><a data-toggle="tab" href="#home">공지사항</a></li>
+			<li><a data-toggle="tab" href="#menu1">배우고 싶어요</a></li>
+			<li><a data-toggle="tab" href="#menu2">여긴 뭘까요</a></li>
+		</ul>
+		<div class="tab-content">
+			<div id="home" class="tab-pane fade in active">	
+				<div>
+					<table class = "ohw-main-notice">
+						<tr class = "ohw-main-notice-tr">
+							<th class = "ohw-main-notice-cont">제목</th>
+							<th class = "ohw-main-notice-conw">작성자</th>
+							<th class = "ohw-main-notice-cond">날짜</th>
+						</tr>
+					</table>
+				</div>
+			</div>	
+			<div id="menu1" class="tab-pane fade">
+				<h3>Menu 1</h3>
+				<p>Some content in menu 1.</p>
+			</div>	
+			<div id="menu2" class="tab-pane fade">
+				<h3>Menu 2</h3>
+				<p>Some content in menu 2.</p>
+			</div>
+		</div>
+	</div>	
 	<div class="ohw_div_con" align="center">
 		<h3>여기는 세미나겠지.</h3>
 		<a><img alt="" src="common/resources/img/Main.jpg" width="80%" height="auto"></a>
 	</div>
 	<div class="ohw_div_con" align="center">
-	<h3>제휴 사이트 바로 가기</h3>	
+		<h3>제휴 사이트 바로 가기</h3>	
 	</div>		
-	</div>
-	
+</div>	
 <div>
 	<%@ include file = "common/footer.jsp" %>
 </div>

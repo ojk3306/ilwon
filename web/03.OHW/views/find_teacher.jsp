@@ -526,11 +526,9 @@
 			<tr></tr>
 		</table>
 	</div>	
-</div>
-	
+</div>	
 <div>
 	<%@ include file = "../../common/footer.jsp" %>
-</div>
-	
+</div>	
 </body>
 </html>
