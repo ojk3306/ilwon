@@ -48,15 +48,7 @@
 		$("#keyword_table").hide();
 		$("#show_table").show();
 		
-	}
-	
-	function keywordView() {
-		
-		$("#search_table").hide();
-		$("#keyword_table").show();
-		$("#show_table").hide();
-		
-	}	 
+	}		 
 	
 </script>
 
@@ -67,7 +59,7 @@
 	}
 	
 	 .header_text {		
-		color : #4988ed;
+		color : gray;
 	}
 	
 	.student_location, .student_class, .student_info, .class_info {		
@@ -91,8 +83,7 @@
 	}
 	
 	.ohw-ready-table, .ohw-search-table {
-		width:900px;
-		height:700px;
+		width:900px;		
 		padding:0px;		
 	}
 	
@@ -116,18 +107,19 @@
 		height:110px;
 	}
 	
-	ohw-search-table-tr {
-		height:30px;
+	.ohw-table-header {
+		height:50px;
+		border-bottom:1 dashed gray;
 	}
 	
-	ohw-search-table-td {
-		height:30px;
-	}	
+	.ohw-small-category-td {
+		width:200px;
+	}
 	
 </style>
 </head>
 
-<body style="min-width : 800px; overflow : auto; display : absolute; back">
+<body style="min-width : 800px; overflow : auto; display : absolute; background:#E9E9E9;">
 	<nav><%@ include file = "../../common/navbar.jsp" %>
 		<%@include file="/01.CJS\sidebar.jsp" %>
 	</nav>
@@ -184,15 +176,14 @@
 		<table class = "ohw-big-category">
 			<tr class = "ohw-big-category-tr">
 				<th style = "width : 100px;"><h3 class="header_text">수업</h3></th>				
-			</tr>
+			</tr>			
 		</table>
-		<table>
-			<tr>
+		
+		<table class = "ohw-small-category">
 				
-			</tr>	
 		</table>		
 								
-	</section>	
+	</section>	>	
 		
 	<script type="text/javascript">
 	
@@ -214,7 +205,7 @@
 			
 			$('.ohw-big-category-tr').append(bigCategory);
 
-			 for(var i in json.categoryInfo){ //소분류 삽입
+			 for(var i in json.categoryInfo){ //소분류 삽입	
 				 $(".ohw-small-category").append($("#"+json.categoryInfo[i].categoryBig).html()+'<tr><td class = "sclass ohw-small-category-td ohw-' + json.categoryInfo[i].categoryBig + '" align = "left"><input type="radio" name="sclass-radio" value="' + json.categoryInfo[i].categorySmall + '">' + json.categoryInfo[i].categorySmall + '</td></tr>');
 			}
 			 
@@ -405,11 +396,9 @@ $(function () {
 
 	<div align = "center">
 	<div id="show_table" align = "center"> <!-- 평소에 펼쳐져 있는 테이블 -->	
-		<div><h3>새로 올라온 강의</h3></div>	
+		<div class = "ohw-table-header"><h3>새로 올라온 강의</h3></div>	
 		<table class="table table-hover ohw-ready-table">
-			<tr style = "height:30px; padding:0px; margin:0px;">
-        		        		
-      		</tr> 
+		<tr></tr>
 		</table>
 	</div>
 	
@@ -497,10 +486,9 @@ $(function () {
 </script>
 	
 	<div id="search_table" align = "center"> <!-- 검색 결과 표시 테이블 -->
-		<div><h3>검색 결과</h3></div>
+		<div class = "ohw-table-header"><h3>검색 결과</h3></div>
 		<table class="table table-hover ohw-search-table">      
-			<tr class="ohw-search-table-tr" style = "height:30px; padding:0px; margin:0px;">
-        		
+		<tr></tr>	
 		</table>
 	</div>	
 	
