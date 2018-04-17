@@ -123,7 +123,7 @@ $(function(){
 			
 	var jsonStr = JSON.stringify(data);
 	var json = JSON.parse(jsonStr);
-	var values = $('#ongoing_table3').html();
+	var values = $('#ongoing_table4').html();
 	for(var i in json.semi) {
 		if(json.semi[i].SEMINA_DETAIL_STATE == 1){
 	values += "<tr><td>"+json.semi[i].SEMINA_TITLE+"</td><td>"+json.semi[i].USER_PHONE+"</td>"
@@ -154,12 +154,7 @@ $(function(){
 		values += "<tr><td>"+json.semi[i].SEMINA_TITLE+"</td><td>"+json.semi[i].USER_PHONE+"</td>"
 		+"<td><input type='button' id='"+json.semi[i].SEMINA_NO+"' onclick='detailsemina(this)' value='상세보기'></td><td>"+json.semi[i].SEMINA_ENDDATE+"</td>"
 		+"<td><button> 취소됨 </button></td> <td>...</td></tr>"
-	
-		
 	}
-		
-	
-	
 	}
 	
 	$('#ongoing_table4').html(values);
