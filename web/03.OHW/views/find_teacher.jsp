@@ -165,11 +165,15 @@
 					<option value="제주">제주</option>
 				</select>
 			</td>
-			<td><span id = "location_do"></span></td>					
-
 			</tr>
 		</table>
-			
+		<table>
+			<tr>
+				<td>
+					<span id = "location_do"></span>
+				</td>
+			</tr>
+		</table>			
 	</section>
 	
 	<hr>
@@ -344,8 +348,12 @@
 	<section class="button_section">
 	<div align = "center">
 		<div style="width : 40%; overflow:hidden; margin-top : 30px; margin-bottom : 30px;">
-			<button type="submit" class="btn btn-info" onclick="searchView(); searchTeacher();">검색하기</button>
-			<button type="reset" class="btn btn-info" onclick="window.location.reload();">초기화하기</button>		
+			<button type = "submit" class="btn btn-default" onclick="searchView(); searchTeacher();">
+				<span class="glyphicon glyphicon-search" aria-hidden="true"></span> 검색하기
+			</button>
+			<button type="reset" class="btn btn-default" onclick="window.location.reload();">
+				<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> 초기화
+			</button>					
 		</div>
 	</div>	
 	</section>
