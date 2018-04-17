@@ -3,6 +3,7 @@
 <%@ page import="lesson.model.vo.LessonDetail" %>    
 <%@ page import="review.model.vo.Review" %>    
 <% 
+	Users us=(Users)session.getAttribute("loginUser");
 	LessonDetail lessondetail =(LessonDetail)request.getAttribute("lessondetail");
 	ArrayList<Review> review = (ArrayList<Review>)request.getAttribute("review");
 	int user_no = ((Integer)request.getAttribute("user_no"));
@@ -51,10 +52,29 @@ function summitbystu(a){
 	
 }
 
-$.ajax({//이 강의를 들었는지 안들었는지 확인.
-	url:"/prototype/checkLesson",
-	data:""
+$(function(){
+
+if( "<%=us%>" != null ){
+	teano=$("#teano").val();
+	leno=$("#leno").val();
+	userno=$("#userno").val();
+	$.ajax({//이 강의를 들었는지 안들었는지 확인.
+		url:"/prototype/checkLesson",
+		data:{teano:teano,leno:leno,userno:userno},
+		success:function(da){
+			console.log(da);
+			if(da!=0){
+				$("#lessonsubmit").html("<Br><Br><Br><Br><button type='button' class='btn'>이미 수강중!</button>");
+			}
+			
+		},
+		error:function(){
+			
+		}
+			
+	});
 	
+}
 })
 
 
@@ -239,7 +259,12 @@ border-radius: 35px;
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>선생이름 님의 ...?</title>
 </head>
-<body>
+<input type="hidden" value="<%=usernumber%>" id="teano"> 
+<input type="hidden" value="<%=lessondetail.getLesson_no()%>" id="leno">
+<% if(us!=null){ %>
+<input type="hidden" value="<%=us.getUserNo()%>" id="userno"> 
+<%} %>
+ <body>
 <!-- 헤더 시작-->
 <%@ include file="/common\navbar.jsp" %>
 <!-- 헤더 종료-->
@@ -283,19 +308,21 @@ border-radius: 35px;
 	
 		등록일:<Br>
 		<%=lessondetail.getLESSON_STARTDATE() %>	
-		<br><br><br>
-		
+		<br>
+		<div id="lessonsubmit">
+		<br><br><br><br>
 		<% if(loginUser==null){%>
 		<button type='button' class='btn'>학생인가요? 지금로그인하세요</button>
 		<%}else{ %>
-			<%if( loginUser.getUserNo()== user_no ){%>
+			<%if( loginUser.getUserNo() == usernumber ){%>
 			<button type='button' class='btn'>본인의 레슨입니다</button>
-			<%}else if(loginUser.getUserNo()!= user_no && loginUser.getUserTypeNo()!=1002 ){%>
+			<%}else if(loginUser.getUserNo()!= usernumber && loginUser.getUserTypeNo()!=1002 ){%>
 			<button type='button' id="<%=loginUser.getUserNo()%>/<%=usernumber%>/<%=lessondetail.getLesson_no()%>/<%=loginUser.getUserTypeNo()%>" onclick="summitbystu(this)" class='btn'>레슨 신청!</button>
+			<%}else if(loginUser.getUserTypeNo()==1002 ){ %>
+			<button type='button' class='btn'>다른 강사분의 강의입니다</button>
 			<%} %>
-		
-		
 		<%} %>
+		</div>
 		</li>
 		
 		

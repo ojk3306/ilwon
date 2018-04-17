@@ -63,20 +63,22 @@ $(function(){
 	var values = $('#ongoing_table2').html();
 	for(var i in json.onlesson) {
 		
-	if(json.onlesson[i].state == 1) {
+	if(json.onlesson[i].type == 7000) {
 			values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
 			+"</td><td>"+json.onlesson[i].username+"</td><td>"+json.onlesson[i].phone+"</td><td>"+json.onlesson[i].log_date+"</td>"
-			+"<td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
-			+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='finishLesson(this)'>종료</button></td></tr>"			
+			+"<td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson1(this)'>상세보기</button></td>"
+			+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='finishLesson(this)'>종료</button></td></tr>";			
 			}
-	else if(json.onlesson[i].state == 2 ){ 
+	else if(json.onlesson[i].type == 8000 ){ 
 		//일단 보류
-		}
+		
 	}
-	$('#ongoing_table2').html(values);
-		}, error: function(a,b,c){
-			console.log(b+c);
-		}	
+	
+	$('#ongoing_table2').html(values)}
+	
+	}, error: function(a,b,c){
+		console.log(b+c);
+		}
 	})
 
 //학생이 이때까지 배운 내역
@@ -108,8 +110,12 @@ function updateUser(){ //개인 정보 수정
 	location.href="/prototype/04.OJK/userupdate.jsp";
 }
 
-
-//강의 상세보기
+function DetailLesson1(val){
+	console.log(val.id);
+	var userno = $("#userno").val();
+	location.href="/prototype/lessondetail?no=" + val.id + "&userno=" + userno;
+}
+//학생의 강의 상세보기
 function DetailLesson(val) {
 	console.log(val.id);
 	var userno = $('#userno').val();

@@ -14,6 +14,31 @@ function submitLesson(a){
 	location.href="/prototype/submitlesson?no="+a.id;
 	
 }
+$(function(){
+	
+	if( "<%=user%>" != null ){
+		teano=$("#teano").val();
+		leno=$("#leno").val();
+		userno=$("#userno").val();
+		$.ajax({//이 강의를 들었는지 안들었는지 확인.
+			url:"/prototype/checkLesson",
+			data:{teano:teano,leno:leno,userno:userno},
+			success:function(da){
+				console.log(da);
+				if(da!=0){
+					$("#lessonsubmit").html("<Br><Br><Br><Br><button type='button' class='btn'>이미 수강중!</button>");
+				}
+			},
+			error:function(){
+				
+			}
+				
+		});
+		
+	}
+	
+})
+
 </script>
 	
 <style type="text/css">
@@ -195,6 +220,11 @@ border-radius: 35px;
 
 
 <body>
+<input type="hidden" value="<%=lessondetail.getUser_no1()%>" id="userno"> 
+<input type="hidden" value="<%=lessondetail.getLesson_no()%>" id="leno">
+<% if(user!=null){ %>
+<input type="hidden" value="<%=user.getUserNo()%>" id="teano"> 
+<%} %>
 <!-- 헤더 시작-->
 <%@ include file="/common\navbar.jsp" %>
 <!-- 헤더 종료-->
@@ -259,6 +289,7 @@ border-radius: 35px;
 		<h4>
 		등록일 :<br><%=lessondetail.getLesson_startdate()%><br>
 		</h4>
+	<div id="lessonsubmit">
 		<%if(loginUser!=null) %>
 		<% if(user.getUserNo()==loginUser.getUserNo()){ %>
 		<button type='button' class='btn'>본인의 요청입니다</button>
@@ -267,9 +298,9 @@ border-radius: 35px;
 		<%}else{ %>
 		<button type='button' class='btn'>선생님이신가요?? 로그인을 해주세요</button>
 		<%} %>
-		</li>
-		
-		
+		</div>
+	</li>
+	
 	</ul>
 	</nav>
 	<!-- 강의료 부분 -->
