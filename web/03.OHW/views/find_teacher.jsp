@@ -107,7 +107,7 @@
 	}
 	
 	.ohw-ready-category, .ohw-search-category, .ohw-keyword-category {
-		width:200px;
+		width:300px;
 		height:110px;
 	}
 	
@@ -120,8 +120,9 @@
 		height:50px;
 	}
 	
-	
-	
+	.ohw-small-category-td {
+		width:200px;
+	}
 	
 </style>
 </head>
@@ -178,15 +179,10 @@
 		<table class = "ohw-big-category">
 			<tr class = "ohw-big-category-tr">
 				<th style = "width : 100px;"><h3 class="header_text">수업</h3></th>				
-			</tr>
-			<tr class = "ohw-small-category-tr">
-								
-			</tr>
+			</tr>			
 		</table>
-		<table>
-			<tr>
+		<table class = "ohw-small-category">
 				
-			</tr>	
 		</table>		
 								
 	</section>	
@@ -206,13 +202,13 @@
 			var bigCategory = "";
 
 			for(var i in json.bigCategory){ //대분류 삽입				
-				bigCategory += '<td><a onclick="changeClass(this.id);" id = "' + json.bigCategory[i].categoryBig + '">' + json.bigCategory[i].categoryBig + '</a></td>'						
+				bigCategory += '<td class = "ohw-big-category-td"><a onclick="changeClass(this.id);" id = "' + json.bigCategory[i].categoryBig + '">' + json.bigCategory[i].categoryBig + '</a></td>'						
 			}
 			
 			$('.ohw-big-category-tr').append(bigCategory);
 
 			 for(var i in json.categoryInfo){ //소분류 삽입	
-				 $(".ohw-small-category-tr").html($("#"+json.categoryInfo[i].categoryBig).html()+'<td class = "tclass ohw-' + json.categoryInfo[i].categoryBig + '" align = "center"><input type="radio" name="tclass-radio" value="' + json.categoryInfo[i].categorySmall + '">' + json.categoryInfo[i].categorySmall + '</td>');
+				 $(".ohw-small-category").append($("#"+json.categoryInfo[i].categoryBig).html()+'<tr><td class = "tclass ohw-small-category-td ohw-' + json.categoryInfo[i].categoryBig + '" align = "left"><input type="radio" name="tclass-radio" value="' + json.categoryInfo[i].categorySmall + '">' + json.categoryInfo[i].categorySmall + '</td></tr>');
 			}
 			 
 		}, error : function(a,b,c) {
