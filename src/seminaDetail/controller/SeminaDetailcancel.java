@@ -1,31 +1,25 @@
-package semina.controller;
+package seminaDetail.controller;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import lesson.model.service.LessonService;
-import lesson.model.vo.Lesson;
-import semina.model.service.SeminaService;
-import semina.model.vo.Semina;
 import seminaDetail.model.service.SeminaDetailService;
-import seminaDetail.model.vo.*;
+
 /**
- * Servlet implementation class AdminSeminaView
+ * Servlet implementation class SeminaDetailcancel
  */
-@WebServlet("/auseminav")
-public class AdminSeminaView extends HttpServlet {
+@WebServlet("/sdcan")
+public class SeminaDetailcancel extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminSeminaView() {
+    public SeminaDetailcancel() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,18 +28,19 @@ public class AdminSeminaView extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int semina_no = Integer.parseInt(request.getParameter("no"));
-		Semina semina = new SeminaService().auSemina(semina_no);
-		response.setContentType("text/html; charset=utf-8");
-		RequestDispatcher view=null;
-		if(semina != null) {
-			view = request.getRequestDispatcher("/04.OJK/adminSeminaUpdate.jsp");
-			request.setAttribute("semina", semina);
-			view.forward(request, response);
-			
+	
+		System.out.println("");
+		int result= new SeminaDetailService().sdcan(Integer.parseInt(request.getParameter("no")));
+		if(result>0) {
+			if(Integer.parseInt(request.getParameter("type"))==1001)
+			response.sendRedirect("/prototype/04.OJK/studentinfo.jsp");
+			else if(Integer.parseInt(request.getParameter("type"))==1002)
+			response.sendRedirect("/prototype/04.OJK/teacherinfo.jsp");
+		
 		}else {
-			//error page
+			
 		}
+		
 	}
 
 	/**

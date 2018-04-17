@@ -318,12 +318,9 @@ $('#category1').click(function() {
 					</form>
 					
 					
-					<script>
-					
-					
+			<script>
 					function check() {
 						  
-						
 					if($('#loc').val().length > 1){
 							//주소가 제대로 입력되었을경우.
 						
@@ -331,37 +328,11 @@ $('#category1').click(function() {
 					
 					}else{
 						//주소가 공백일 경우.
-						$("#locl").text("주소를 입력하세욘");						
+						$("#locl").text("주소를 입력하세요");						
 					}
 				
-	}
-					
-					$(function() {
-						$('#pwd').keyup(function(pwdcheck){
-							
-							var userpwd = $('#pwd').val();
-							
-							console.log(userpwd.length);
-							if(userpwd.length<4) {
-								$('#la_pwd').html("비밀번호는 4~16자리로 입력해주세요");
-							}else{
-							
-								if($('#repwd').val() != $('#pwd').val()) {
-								$('#la_pwd').html("비밀번호가 일치하지 않습니다");
-							}else {
-								
-								$('#la_pwd').html("비밀번호가 일치합니다");
-							}	
-						
-							}
-						
-							});
-						
-						});
-					
-					
-					
-					</script>
+				}
+			</script>
 					
 				
 

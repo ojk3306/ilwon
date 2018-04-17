@@ -87,8 +87,19 @@ function juso(){
 		});
 	});
 	
+	$(function(){
+		$('#phone').keyup(function(phonecheck){
+	var re = /^\d{3}-\d{3,4}-\d{4}$/;
+	var userphone = $('#phone').val();
+	if (userphone == '' || !re.test(userphone)) {
+		$('#la_phone').html("올바른 전화번호 형식으로 입력해주세요")
+	}else{
+		
+		$('#la_phone').html("")
+	}
 	
-	
+		});
+	});
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>학생으로 가입하기</title>
@@ -109,7 +120,7 @@ function juso(){
 					<div style="margin-top: 50px;">
 						<div style="width: 600px;">
 							<hr>
-							<form class="form-horizontal" name="insertuser" action="/prototype/Insertuser.sm" method="post">
+							<form class="form-horizontal" name="insertuser" action="/prototype/Insertuser.sm" method="post" id="formBy">
 								<div class="form-group">
 									<label class="control-label col-sm-2" for="email">이메일:</label>
 									<div class="col-sm-10">
@@ -144,7 +155,8 @@ function juso(){
 									<label class="control-label col-sm-2" for="phone">전화번호:</label>
 									<div class="col-sm-10">
 										<input type="text" class="form-control"
-											placeholder="Enter phone" name="phone" id="phone" required>
+											placeholder="xxx-xxxx-xxxx" name="phone" id="phone" required>
+											<label id="la_phone" name="la_phone" style="color:#e65c00;"></label>
 									</div>
 								</div>
 
@@ -166,6 +178,7 @@ function juso(){
 								<label class="control-label col-sm-2" for="loc">주소:</label>
 								<div class="col-sm-10">
 								<input type="text" name="loc" placeholder="이곳을 클릭해서 주소를 검색해주세요" id="loc" class="form-control" onclick="juso()" readonly="readonly" required>
+								<span id="locl" style="color:#e65c00;"></span>
 								</div>
 								</div>
 								
@@ -174,7 +187,7 @@ function juso(){
 								<hr>
 								<div class="form-group">
 									<div class="col-sm-offset-2 col-sm-10">
-					<input type="submit" class="btn" value="확인">
+					<input type="button" class="btn" value="확인" onclick="return check()">
 					<input type="reset" class="btn" value="초기화">
 					<input type="hidden" name="user_type" value="1001">
 									</div>
@@ -188,6 +201,25 @@ function juso(){
 
 
 	</nav>
+	
+	<script>
+
+	function check() {
+		  
+		
+	if($('#loc').val().length > 1){
+			//주소가 제대로 입력되었을경우.
+		
+		$("#formBy").submit();
+	
+	}else{
+		//주소가 공백일 경우.
+		$("#locl").text("주소를 입력하세요");						
+	}
+
+}
+	
+	</script>
 <%@ include file="/common/footer.jsp" %>
 </body>
 </html>

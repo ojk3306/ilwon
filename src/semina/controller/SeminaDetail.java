@@ -36,10 +36,10 @@ public class SeminaDetail extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		System.out.println("세미나번호 :"+request.getParameter("userno"));//사실은 세미나 번호임.
+	
 		int seminano=Integer.parseInt(request.getParameter("userno"));
 		
-		if(request.getParameter("usernono")!=null) {
-	    //로그인한 사람의 정보.
+		if(request.getParameter("usernono")!=null) {//로그인한 사람의 정보.
 		System.out.println("usernono:"+request.getParameter("usernono"));
 		}
 		
@@ -59,14 +59,7 @@ public class SeminaDetail extends HttpServlet {
 		
 				System.out.println("세미나 정보찾기 실패!...");
 		}
-	
-		
-		
-		
-		
-		
-		
-		if(user!=null) {//유저 정보찾기 성공 이제 디테일로 정보를 쏜다.
+	if(user!=null) {//유저 정보찾기 성공 이제 디테일로 정보를 쏜다.
 		   
 			if(request.getParameter("usernono")!=null) {
 					System.out.println("usernono:"+request.getParameter("usernono"));

@@ -71,7 +71,7 @@ public class InsertLessonServlet2 extends HttpServlet {
 		lesson.setLesson_rad(Integer.parseInt(mrequest.getParameter("rad")));
 		lesson.setCategory_no(Integer.parseInt(mrequest.getParameter("category2")));
 		
-		int result = new LessonService().insertlesson(lesson);
+		int result = new LessonService().insertlesson1(lesson);
 		
 		response.setContentType("text/html; charset=utf-8");
 		

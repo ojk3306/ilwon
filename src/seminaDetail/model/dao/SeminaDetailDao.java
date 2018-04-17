@@ -28,9 +28,8 @@ public class SeminaDetailDao {
 			semideta.setSeminaDetailDate(rset.getDate("SEMINA_DETAIL_DATE"));
 			semideta.setSeminaDetailNo(rset.getInt("SEMINA_DETAIL_NO"));
 			semideta.setSeminaNo(rset.getInt("SEMINA_NO"));
-			semideta.setSeminaState(rset.getString("SEMINA_STATE"));
-			semideta.setUserNo(rset.getInt("USER_NO"));
-			
+			semideta.setSeminaState(rset.getString("SEMINA_DETAIL_STATE"));
+			semideta.setUserNo(rset.getInt("USER_NO"));			
 			}
 			
 		} catch (Exception e) {
@@ -88,6 +87,24 @@ public class SeminaDetailDao {
 			close(pstmt);
 		}
 	return al;
+	}
+
+	public int sdcan(Connection con, int parseInt) {
+		int result=0;
+		PreparedStatement pstmt=null;
+		String sql="update SEMINA_DETAIL set SEMINA_DETAIL_STATE = 2 where SEMINA_DETAIL_NO = ?";
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1,parseInt);
+			result=pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 }
