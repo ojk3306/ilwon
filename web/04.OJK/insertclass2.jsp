@@ -94,14 +94,14 @@ function mapshow(){
 	map.relayout();
 	}
 var detailCount=1;
-var detailmax=3;
+var detailmax=5;
 function addDetail(){
 if(detailmax>detailCount){
 $("#detail").append("<div id='"+detailCount+"'class='form-group'><label for='keyword' style='padding:auto; width:100px;'>키워드</label>	<div style='width: 99%;'><input type='text' name='keyword' class='form-control' style='width:150px; float:left'><input type='button' onclick='removeDetail(this)' id='"+detailCount+"' class='btn btn-primary center' value='정보삭제하기' style='margin-left:10px;'><input type='button' onclick='addDetail()' class='btn btn-primary center' value='키워드 추가' style='margin-left:10px;'></div></div>");
  detailCount++;
  console.log(detailCount);
 	}else{
-		alert("기본 키워드 개수는 3개입니다");
+		alert("기본 키워드 개수는 5개입니다");
 		
 	}
 	
@@ -194,10 +194,10 @@ $('#category1').click(function() {
 			<div class="panel-heading">강의를 등록합니다.
 			</div>
 			<div class="panel-body">
-				<form action="/prototype/insertlesson.sm" method="post" enctype="multipart/form-data">
+				<form action="/prototype/insertlesson.sm" method="post" enctype="multipart/form-data" id="formBy">
 					<div class="form-group">
 						<label for="title">강의 타이틀</label>
-						<input id="title" name="title" class="form-control" type="text" data-validation="required">
+						<input id="title" name="title" class="form-control" type="text" required>
 						<span id="error_name" class="text-danger"></span>
 					</div>
 					<div class="form-group">
@@ -206,15 +206,15 @@ $('#category1').click(function() {
 						<label>대분류 : </label>&nbsp;
 						
 						
-						<select id="category1" name="category1">
+						<select id="category1" name="category1" required>
 							
 						</select>&nbsp;
 						
 						<label>소분류 : </label>&nbsp;
 						
 						
-						<select id="category2"  name="category2">
-							<option >대분류를먼저선택하세요</option>
+						<select id="category2"  name="category2" required>
+							<option value="">대분류를먼저선택하세요</option>
 					
 						</select>
 						
@@ -238,9 +238,9 @@ $('#category1').click(function() {
 						
 						<div style="width:95%; background: red">
 						<label for="price" style="width: 17%; float:left;">수업료(단위/만):</label>
-						<input id="price" name="price"  class="form-control" type="number" min="1" style="width: 15%; float:left">
+						<input id="price" name="price"  class="form-control" type="number" min="1" value="1" style="width: 15%; float:left" required>
 						 <label for="count" style="margin-left:30px;    width: 7%; float:left" >횟수:</label>
-						<input id="count" name="count"  class="form-control" type="number" min="1" style="width: 15%; float:left">
+						<input id="count" name="count"  class="form-control" type="number" min="1" value="1" style="width: 15%; float:left" required>
 					 	
 						</div>
 						
@@ -252,19 +252,19 @@ $('#category1').click(function() {
 					
 					<div class="form-group">
 						<label for="contop">강의 내용1</label>
-						<textarea name="contop" id="contop" rows="10" cols="68pt"></textarea>
+						<textarea name="contop" id="contop" rows="10" cols="68pt" required></textarea>
 						<span id="error_phone" class="text-danger"></span>
 					</div>
 					
 					<div class="form-group">
 						<label for="conmid">강의 내용2</label>
-						<textarea rows="10" cols="68pt" name="conmid" id="conmid"></textarea>
+						<textarea rows="10" cols="68pt" name="conmid" id="conmid" required></textarea>
 						<span id="error_phone" class="text-danger"></span>
 					</div>
 					
 					<div class="form-group">
 						<label for="conbot">강의 내용3</label>
-						<textarea rows="10" cols="68pt" name="conbot" id="conbot"></textarea>
+						<textarea rows="10" cols="68pt" name="conbot" id="conbot" required></textarea>
 						<span id="error_phone" class="text-danger"></span>
 					</div>
 					
@@ -284,13 +284,13 @@ $('#category1').click(function() {
 					
 					<div class="form-group">
 						<label for="loc">강의 지역</label>
-						<input type="text" id="loc" name="loc" class="form-control" onclick="juso()" readonly="readonly" placeholder="클릭 해서 지역을 선택해주세요!">
-						<span id="error_phone" class="text-danger"></span>
+						<input type="text" id="loc" name="loc" class="form-control" onclick="juso()" readonly="readonly" placeholder="클릭 해서 지역을 선택해주세요!" required>
+						<span id="locl" style="color:#e65c00;" ></span>
 					</div>
 					
 					<div class="form-group">
 						<label for="rad">가능 반경(단위/미터)</label>
-						<input type="number" name="rad" id="rad" min="1000" class="form-control" value="1000" style="width: 100px; margin-bottom: 10px;">
+						<input type="number" name="rad" id="rad" min="1000" class="form-control" value="1000" style="width: 100px; margin-bottom: 10px;" required>
 								<button type="button" class="btn" onclick="mapshow()">확인하기</button>
 								</div> 
 									<div id="map" style="width:500px; height:350px; display: none;" ></div>
@@ -302,14 +302,14 @@ $('#category1').click(function() {
 						
 						<label for="keyword" style="padding:auto; width:100px;">키워드</label>
 						<div style="width: 99%;">
-						<input type="text" name="keyword" class="form-control" style="width:150px; float:left">
+						<input type="text" name="keyword" class="form-control" style="width:150px; float:left" required>
 						<input type="button" onclick="addDetail()" class="btn btn-primary center" value="키워드 추가" style="margin-left:140px;">						
 						</div>
 						
 					</div>
 					</div>
 					<input type="hidden" name="userno" value="<%= loginUser.getUserNo() %>">
-					<input type="submit" value="강의생성" class="btn btn-primary center">
+					<input type="button" value="강의생성" class="btn btn-primary center" onclick="return check()">
 					<input type="reset" value="초기화" class="btn btn-primary center">
 					<input type="button" onclick="history.back()" value="뒤로가기" class="btn btn-primary center">
 					
@@ -318,7 +318,50 @@ $('#category1').click(function() {
 					</form>
 					
 					
+					<script>
 					
+					
+					function check() {
+						  
+						
+					if($('#loc').val().length > 1){
+							//주소가 제대로 입력되었을경우.
+						
+						$("#formBy").submit();
+					
+					}else{
+						//주소가 공백일 경우.
+						$("#locl").text("주소를 입력하세욘");						
+					}
+				
+	}
+					
+					$(function() {
+						$('#pwd').keyup(function(pwdcheck){
+							
+							var userpwd = $('#pwd').val();
+							
+							console.log(userpwd.length);
+							if(userpwd.length<4) {
+								$('#la_pwd').html("비밀번호는 4~16자리로 입력해주세요");
+							}else{
+							
+								if($('#repwd').val() != $('#pwd').val()) {
+								$('#la_pwd').html("비밀번호가 일치하지 않습니다");
+							}else {
+								
+								$('#la_pwd').html("비밀번호가 일치합니다");
+							}	
+						
+							}
+						
+							});
+						
+						});
+					
+					
+					
+					</script>
 					
 				
 

@@ -23,7 +23,7 @@ public class LessonService {
 	public int insertlesson(Lesson lesson) {
 		Connection conn = getConnection();
 		
-		int result = new LessonDao().insertlesson1(conn, lesson);
+		int result = new LessonDao().insertlesson(conn, lesson);
 		
 		if(result > 0) {
 			commit(conn);
@@ -220,7 +220,7 @@ public class LessonService {
 			commit(con);
 		}else {
 			rollback(con);
-			System.out.println("Å°¿öµå ¼öÁ¤ ½ÇÆÐ");
+			System.out.println("Å°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		
 		}
 		close(con);
