@@ -47,7 +47,7 @@ public class SeminaDetailByUesr extends HttpServlet {
 	for(SeminaDetailByInfo l : semi) {
 		
 		JSONObject job = new JSONObject();
-		job.put("SEMINA_DETAIL_NO", l.getSEMINA_NO());
+		job.put("SEMINA_DETAIL_NO", l.getSEMINA_DETAIL_NO());
 		job.put("SEMINA_DETAIL_STATE", l.getSEMINA_DETAIL_STATE());
 		job.put("SEMINA_ENDDATE", l.getSEMINA_ENDDATE());
 		job.put("SEMINA_LOCATION", l.getSEMINA_LOCATION());

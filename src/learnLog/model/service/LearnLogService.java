@@ -73,10 +73,10 @@ public class LearnLogService {
 		return onlesson;
 	}
 
-	public int Comfirmlog(int parseInt, int parseInt2) {
+	public int Comfirmlog(int parseInt, int parseInt2, int i) {
 		Connection conn = getConnection();
 		
-		int result = new LearnLogDao().Comfirmlog(conn,parseInt,parseInt2);
+		int result = new LearnLogDao().Comfirmlog(conn,parseInt,parseInt2,i);
 		
 		if(result > 0) {
 			commit(conn);

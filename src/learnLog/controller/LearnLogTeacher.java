@@ -56,7 +56,8 @@ public class LearnLogTeacher extends HttpServlet {
 			job.put("lesson_title", l.getLESSON_TITLE());
 			job.put("log_no", l.getLOG_NO());
 			job.put("log_date", l.getLOG_DATE().toString());
-			
+			job.put("type",l.getLESSONTYPE());
+			job.put("phone",l.getUSER_PHONE()); //학생의 폰번호
 			//job.put("user2_no", l.getUserNo2());
 			
 		jarr.add(job);

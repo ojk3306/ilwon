@@ -3,11 +3,11 @@
    <%@
    page import="users.model.vo.Users , semina.model.vo.* ,seminaDetail.model.vo.*"
     %> 
-    <%
+ <%
     Semina semi=(Semina)request.getAttribute("semina");
     Users user=(Users)request.getAttribute("user");
     SeminaDetail semideta=(SeminaDetail)request.getAttribute("semideta");
-    %>
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -432,11 +432,11 @@ $('#myGoal').stepProgressBar({
 			<%}else{ %>
 			
 			<input type="hidden" value="<%=loginUser.getUserNo()%>" id="studentno">
-			
-			<% if(Integer.parseInt(semideta.getSeminaState()) != 1 ){ %>	 
-			     <!--  -->
-		    <button type="button" style="margin-top : 50px;" onclick="enrollsemina();"  class="btn btn-primary">세미나 신청하기!</button>
-					<%}else{ %>
+		
+			<!--1:신청완료, 2:취소됨, 3:숨김   -->	 
+			<% if(Integer.parseInt(semideta.getSeminaState()) == 2 || Integer.parseInt(semideta.getSeminaState()) == 4){ %>	 
+			<button type="button" style="margin-top : 50px;" onclick="enrollsemina();"  class="btn btn-primary">세미나 신청하기!</button>
+			<%}else{ %>
             <button type="button"  style="margin-top : 50px;"  class="btn btn-warning">신청된 상태입니다!</button>
 			
 			<%}}%>	

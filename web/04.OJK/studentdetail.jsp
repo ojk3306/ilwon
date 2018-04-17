@@ -2,8 +2,9 @@
 <%@ page import="lesson.model.vo.*,users.model.vo.*" %>
   
 <%
-	Users user=(Users)request.getAttribute("user");
-	LessonSearch lessondetail =(LessonSearch)request.getAttribute("lesson");
+Users login=(Users)session.getAttribute("loginUser");    
+Users user=(Users)request.getAttribute("user");
+LessonSearch lessondetail =(LessonSearch)request.getAttribute("lesson");
 %>
 	
 <!DOCTYPE html>
@@ -11,9 +12,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>배우고 싶어요!</title>
-
+<script type="text/javascript" src="/prototype/common\resources\js\jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-
+ 
 	function submitLesson(a){
 		//강좌 번호와, 로그인한 유저의 번호를 보낸다.
 		location.href="/prototype/submitlesson?no="+a.id;	
@@ -40,6 +41,25 @@
 				}				
 			});		
 		}	
+		//학생의 레슨을 선생이 교육을 신청했는지 안했는지
+		if("<%=login%>" != null )
+		teano=$("#teano").val();
+		leno=$("#leno").val();
+		userno=$("#userno").val();
+			$.ajax({//이 강의를 들었는지 안들었는지 확인.
+				url:"/prototype/checkLesson",
+				data:{teano:teano,leno:leno,userno:userno},
+				success:function(da){
+					console.log(da);
+					if(da!=0){
+						$("#lessonsubmit").html("<Br><Br><Br><Br><button type='button' class='btn'>이미 수강중!</button>");
+					}
+				},
+				error:function(){
+					
+				}
+					
+			});
 	});
 
 </script>
@@ -240,11 +260,14 @@
 </head>
 
 <body>
+
 <input type="hidden" value="<%=lessondetail.getUser_no1()%>" id="userno"> 
 <input type="hidden" value="<%=lessondetail.getLesson_no()%>" id="leno">
 <% if(user!=null){ %>
-	<input type="hidden" value="<%=user.getUserNo()%>" id="teano"> 
+<input type="hidden" value="<%=login.getUserNo()%>" id="teano"> 
 <%} %>
+
+
 	<!-- 헤더 시작-->
 <%@ include file="/common\navbar.jsp" %>
 <!-- 헤더 종료-->
@@ -303,24 +326,23 @@
 			<li class="topdiv">
 				<h4>등록일 :<br><%=lessondetail.getLesson_startdate()%><br></h4>
 				<div id="lessonsubmit">
-				
+
 					<% if(loginUser!=null) { %>
 					
 						<% if(user.getUserNo()==loginUser.getUserNo()) { %>
 						
 							<button type='button' class='btn'>본인의 요청입니다</button>
 							
-						<% } else if(user.getUserTypeNo()!=1001) { %>
+						<% } else if(loginUser.getUserTypeNo()==1002) { %>
 						
-							<button type='button' value="<%=user.getUserNo()%>/<%=loginUser.getUserNo()%>/<%=lessondetail.getLesson_no()%>/<%=loginUser.getUserTypeNo()%>"  onclick="submitLesson(this)" class='btn'>레슨하기!</button>
-						
-						<% } else { %>
-							
-							<button type='button' class='btn'>선생님이신가요?? 로그인을 해주세요</button>
-						<% } %>
-						
-					<% } %>
+							<button type='button' id="<%=user.getUserNo()%>/<%=loginUser.getUserNo()%>/<%=lessondetail.getLesson_no()%>/<%=loginUser.getUserTypeNo()%>"  onclick="submitLesson(this)" class='btn'>레슨신청!</button>
+						<% }%>
+				
+				<% }else{ %>
 					
+					
+							<button type='button' class='btn'>선생님이신가요?? 로그인을 해주세요</button>
+					<%} %>
 				</div>
 			</li>	
 		</ul>

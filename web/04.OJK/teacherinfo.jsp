@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%
+Users us=(Users)session.getAttribute("loginUser");
+
+%>
 <!DOCTYPE html>
 
 <html>
@@ -47,6 +52,59 @@ $(function(){
 			console.log(b+c);
 		}	
 	});
+	$.ajax({
+		url:"/prototype/checksemina",
+		data: {no : $('#userno').val()},
+		type: "get",
+		dataType: "json",
+		success: function(data) {
+				
+		var jsonStr = JSON.stringify(data);
+		var json = JSON.parse(jsonStr);
+		var values = $('#ongoing_table3').html();
+		for(var i in json.semi) {
+			if(json.semi[i].SEMINA_DETAIL_STATE == 1){
+		values += "<tr><td>"+json.semi[i].SEMINA_TITLE+"</td><td>"+json.semi[i].USER_PHONE+"</td>"
+		+"<td><input type='button' id='"+json.semi[i].SEMINA_NO+"' onclick='detailsemina(this)' value='상세보기'></td><td>"+json.semi[i].SEMINA_ENDDATE+"</td>"
+		+"<td><button> 신청중 </button></td>"
+		+"<td><button type='button' class='btn' id='"+json.semi[i].SEMINA_DETAIL_NO+"' onclick='cans(this)'>취소하기</button></td>"
+		
+			/*
+				<th>세미나명</th>
+				<th>진행자 연락처</th>
+				<th>세미나 상세보기</th>
+				<th>세미나당일</th>
+				<th>상태</th>
+				<th>취소하기</th>
+				
+				job.put("SEMINA_DETAIL_NO", l.getSEMINA_NO());
+				job.put("SEMINA_DETAIL_STATE", l.getSEMINA_DETAIL_STATE());
+				job.put("SEMINA_ENDDATE", l.getSEMINA_ENDDATE());
+				job.put("SEMINA_LOCATION", l.getSEMINA_LOCATION());
+				job.put("SEMINA_NO", l.getSEMINA_NO());
+				job.put("SEMINA_NOW", l.getSEMINA_NOW());
+				job.put("SEMINA_STATE", l.getSEMINA_STATE());
+				job.put("SEMINA_TITLE", l.getSEMINA_TITLE());
+				job.put("USER_NO", l.getUSER_NO());
+				job.put("USER_PHONE", l.getUSER_PHONE());
+				jarr.add(job);*/
+			}else if(json.semi[i].SEMINA_DETAIL_STATE == 2){
+			values += "<tr><td>"+json.semi[i].SEMINA_TITLE+"</td><td>"+json.semi[i].USER_PHONE+"</td>"
+			+"<td><input type='button' id='"+json.semi[i].SEMINA_NO+"' onclick='detailsemina(this)' value='상세보기'></td><td>"+json.semi[i].SEMINA_ENDDATE+"</td>"
+			+"<td><button> 취소됨 </button></td> <td>...</td></tr>"
+		
+			
+		}
+			
+		
+		
+		}
+		
+		$('#ongoing_table4').html(values);
+		}, error: function(a,b,c){
+				console.log(b+c);
+			}	
+		})
 
 });
 function updatesemina(a){ //세미나 수정.
@@ -90,9 +148,7 @@ for(var i in json.semi) {
 		+"</td><td>세미나</td><td><button type='button' class='btn' id='"+json.semi[i].semi_no+"' onclick='Detailsemina(this)'>상세보기</button></td>"
 		+"<td>"+json.semi[i].end_date+"</td></tr>"			
 		}
-			}
-			
-			
+			}		
 			$('#previous_table').html(values);
 		}, error: function(a,b,c){
 			console.log(b+c);
@@ -114,16 +170,26 @@ var values = $('#ongoing_table2').html();
 for(var i in json.onlesson) {
 	
 if(json.onlesson[i].state == 1) {
-		values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
-		+"</td><td>레슨</td><td>"+json.onlesson[i].username+"</td><td>"+json.onlesson[i].log_date+"</td>"
+	if(json.onlesson[i].type == 7000){
+		//선생이 올린 계시판일경우
+		values += 
+		"<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
+		+"</td><td>레슨</td><td>"+json.onlesson[i].username+"</td><td>"+json.onlesson[i].phone+"</td><td>"+json.onlesson[i].log_date+"</td>"
 		+"<td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
-		+"<td><button type='button' class='btn btn-warning' id='"+json.onlesson[i].lesson_no+"/"+json.onlesson[i].stuno+"' onclick='confirm1(this)'>수업확인</button></td>"
+		+"<td><button type='button' class='btn btn-warning' id='"+json.onlesson[i].stuno+"/"+json.onlesson[i].teano+"/"+json.onlesson[i].lesson_no+"' onclick='confirm1(this)'>수업확인</button></td>"
 		+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].stuno+"/"+json.onlesson[i].teano+"/"+json.onlesson[i].lesson_no+"' onclick='finishstudent(this)'>이학생 종료</button></td></tr>"			
-		}
-
-else if(json.onlesson[i].state == 2 ){ 
-	//일단 보류
+	}else if(json.onlesson[i].type == 8000){
+	 //학생이 올린 계시판일경우	
+		values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
+		+"</td><td>배우고싶어요</td><td>"+json.onlesson[i].username+"</td><td>"+json.onlesson[i].phone+"</td><td>"+json.onlesson[i].log_date+"</td>"
+		+"<td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson1(this)'>상세보기</button></td>"
+		+"<td><button type='button' class='btn btn-warning' id='"+json.onlesson[i].stuno+"/"+json.onlesson[i].teano+"/"+json.onlesson[i].lesson_no+"' onclick='confirm1(this)'>수업확인</button></td>"
+		+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].stuno+"/"+json.onlesson[i].teano+"/"+json.onlesson[i].lesson_no+"' onclick='finishstudent(this)'>이학생 종료</button></td></tr>"		
 	}
+
+}else if(json.onlesson[i].state == 2 ){ 
+	
+}
 }
 $('#ongoing_table2').html(values);
 	}, error: function(a,b,c){
@@ -144,11 +210,27 @@ var jsonStr = JSON.stringify(data);
 var json = JSON.parse(jsonStr);
 var values = $('#ongoing_table3').html();
 for(var i in json.onlesson) {
-	
+	if(json.onlesson[i].type==7000){
 		values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
 		+"</td><td>레슨</td><td>"+json.onlesson[i].username+"</td><td>"+json.onlesson[i].log_date+"</td>"
 		+"<td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
-}
+	}else if(json.onlesson[i].type==8000){
+		values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
+		+"</td><td>배우고싶어요</td><td>"+json.onlesson[i].username+"</td><td>"+json.onlesson[i].log_date+"</td>"
+		+"<td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson1(this)'>상세보기</button></td>"
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	}
 $('#ongoing_table3').html(values);
 	}, error: function(a,b,c){
 		console.log(b+c);
@@ -160,7 +242,14 @@ $('#ongoing_table3').html(values);
 
 	
 });
-
+//세미나 상세보기
+function detailsemina(a){
+	location.href='/prototype/sdetail?userno='+a.id+'&usernono='+<%=us.getUserNo()%>;
+}
+//세미나 신청 취소하기
+function cans(a){
+	location.href='/prototype/sdcan?no='+a.id+'&type='+<%=us.getUserTypeNo()%>	
+}
 	
 </script>
 <script>
@@ -222,14 +311,16 @@ function DeleteLesson(val){
 }
 //강의상세보기
 function DetailLesson(val){
-	
-	
+
 	console.log(val.id);
 	var userno = $("#userno").val();
 	location.href="/prototype/lessondetail?no=" + val.id + "&userno=" + userno;
-	
+}
 
+function DetailLesson1(a){
 	
+	console.log(userno);
+	location.href="/prototype/studentdetail?no=" + a.id + "&userno=" + userno;
 }
 
 //프로필 업로드하기
@@ -344,6 +435,7 @@ function upload_profile() {
 								<th>강의명</th>
 								<th>타입</th>
 								<th>학생명</th>
+								<th>전화번호</th>
 								<th>수업시작일</th>
 								<th>상세보기바로가기</th>
 								<th>수업확인</th>
@@ -379,7 +471,31 @@ function upload_profile() {
 					</table>
 				</div>
 			</div>
-			
+				<br> <br>
+			<h1>세미나 신청 내역</h1>
+			<hr>
+			<div id="info"
+				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px;">
+				<div style="width:100%;">
+					<table class="table table-hover" >
+						<thead>
+							<tr>
+								<th>세미나명</th>
+								<th>진행자 연락처</th>
+								<th>세미나 상세보기</th>
+						
+								<th>세미나당일</th>
+								
+								<th>상태</th>
+								<th>취소하기</th>
+							</tr>
+						</thead>
+						<tbody id="ongoing_table4">
+							
+						</tbody>
+					</table>
+				</div>
+			</div>
 			
 		</div>
 	</div>   

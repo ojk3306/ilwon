@@ -176,9 +176,9 @@ public class LearnLogDao {
 				l.setUSER_NO1(rset.getInt("user_no1"));
 				l.setUSER_NO2(rset.getInt("user_no2"));
 				l.setLOG_STATE(rset.getInt("LOG_STATE"));
+				l.setLESSONTYPE(rset.getInt("LESSON_TYPE"));
 				l.setLESSON_TITLE(rset.getString("LESSON_TITLE"));
-				
-				
+				l.setUSER_PHONE(rset.getString("USER_PHONE"));
 				//l.setUserNo2(rset.getInt("user_no2"));
 				
 				System.out.println("getlessonLog :" +l.toString());
@@ -219,11 +219,11 @@ public class LearnLogDao {
 				l.setUSER_NO1(rset.getInt("user_no1"));
 				l.setLOG_STATE(rset.getInt("LOG_STATE"));
 				l.setLESSON_TITLE(rset.getString("LESSON_TITLE"));
-				
+				l.setLESSONTYPE(rset.getInt("LESSON_TYPE"));
 				
 				//l.setUserNo2(rset.getInt("user_no2"));
 				
-				System.out.println("getlessonLog :" +l.toString());
+				System.out.println("getlessonLog4 :" +l.toString());
 				onlesson.add(l);
 				
 			}
@@ -238,17 +238,17 @@ public class LearnLogDao {
 		return onlesson;
 	}
 
-	public int Comfirmlog(Connection conn, int parseInt, int parseInt2) {
+	public int Comfirmlog(Connection conn, int parseInt, int parseInt2, int i) {
 		
 		PreparedStatement pstmt=null;
 		int result=0;
 		
-		String sql="insert into LEARN_LOG values((select max(LOG_NO) from learn_log)+1,?,(select user_no2 from lesson where lesson_no = ? ),?,sysdate,3)";
+		String sql="insert into LEARN_LOG values((select max(LOG_NO) from learn_log)+1,?,?,?,sysdate,3)";
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, parseInt2);
-			pstmt.setInt(2, parseInt);
-			pstmt.setInt(3, parseInt);
+			pstmt.setInt(1, parseInt);
+			pstmt.setInt(2, parseInt2);
+			pstmt.setInt(3, i);
 			result=pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();			

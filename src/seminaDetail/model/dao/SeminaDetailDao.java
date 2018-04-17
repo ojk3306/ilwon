@@ -15,7 +15,7 @@ public class SeminaDetailDao {
 		PreparedStatement pstmt=null;
 		ResultSet rset=null;
 		SeminaDetail semideta=null;
-		String sql="select * from SEMINA_DETAIL where SEMINA_NO=? and USER_NO=?";
+		String sql="select * from SEMINA_DETAIL where SEMINA_NO=? and USER_NO=? order by SEMINA_DETAIL_DATE desc";
 		
 		System.out.println("세미나 디테일 DAO : "+i+"....."+j);
 		try {
@@ -33,7 +33,7 @@ public class SeminaDetailDao {
 			}
 			
 		} catch (Exception e) {
-	
+	e.printStackTrace();
 		}finally {
 			close(rset);
 			close(pstmt);
@@ -92,6 +92,7 @@ public class SeminaDetailDao {
 	public int sdcan(Connection con, int parseInt) {
 		int result=0;
 		PreparedStatement pstmt=null;
+	
 		String sql="update SEMINA_DETAIL set SEMINA_DETAIL_STATE = 2 where SEMINA_DETAIL_NO = ?";
 		try {
 			pstmt=con.prepareStatement(sql);
