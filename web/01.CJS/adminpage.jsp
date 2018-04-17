@@ -29,21 +29,59 @@ ArrayList<NewestLessonByAdmin> list2 = (ArrayList<NewestLessonByAdmin>)(request.
     <title>관리자 페이지</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="./css/bootstrap.min.css" rel="stylesheet">
-    <link href="./css/adminpage.css" rel="stylesheet" type="text/css" >
+    <link href="/prototype/01.CJS\css\bootstrap.min.css" rel="stylesheet">
+    <link href="/prototype/01.CJS\css\adminpage.css" rel="stylesheet" type="text/css" >
     
-    
+<script type="text/javascript">
+$(function(){
+	setInterval(function() {
+		$.ajax({
+			url:"/prototype/realtimelog",
+			data: {},
+			type: "get",
+			dataType: "json",
+			success: function(data) {
+	    var jsonStr = JSON.stringify(data);
+		var json = JSON.parse(jsonStr);
+	$("#realtime").html(
+	"<tr style='text-align:center; background-color:#337ab7'>"		
+	+"<th colspan='2' style='color:white; text-align:center;'>실시간 검색어 순위</th></tr>"
+	+"<tr><th>1.</th><td style='text-align:center;'><span>"+json.list[0]+"</span></td></tr>"
+	+"<tr><th>2.</th><td style='text-align:center;'><span>"+json.list[1]+"</span></td></tr>"
+	+"<tr><th>3.</th><td style='text-align:center;'><span>"+json.list[2]+"</span></td></tr>"
+	+"<tr><th>4.</th><td style='text-align:center;'><span>"+json.list[3]+"</span></td></tr>"
+	+"<tr><th>5.</th><td style='text-align:center;'><span>"+json.list[4]+"</span></td></tr>"
+	)
+		
+	}, error: function(a,b,c){
+				console.log(b+c);
+			}	
+		})	
+		
+	}, 5000);
+	
+	
+
+	
+	
+	
+	
+	
+	
+})
+</script>    
     
     
   </head>
   <body>
   <%@include file="/common\navbar.jsp" %>
+  
 <section id="main" style="margin-top:60px; margin-bottom:30px;">
   <div class="container">
     <div class="row">
       <div class="col-md-3">
         <div class="list-group">
-      <a href="index.html" class="list-group-item active main-color-bg"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+      <a class="list-group-item active main-color-bg"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
       설정관리<span class="badge">1</span>
       </a>
       <a href="/prototype/03.OHW/views/noticeList.jsp" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>공지사항관리</a>
@@ -53,18 +91,21 @@ ArrayList<NewestLessonByAdmin> list2 = (ArrayList<NewestLessonByAdmin>)(request.
       <a href="/prototype/adminseachuser" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true" ></span> 유저검색</a>
       <a href="/prototype/adminlessnolist" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>강의관리</a>
       <a href="/prototype/adminseminalist" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>세미나관리</a>
-      
     </div>
     
 <div class="list-group">
- <table style="border: 1px solid #ddd" name="realTimeSearch" class="table">
- <tr style="text-align:center; background-color:#337ab7"><th colspan="2" style="color:white; text-align:center;">실시간 검색어</th></tr>
- <tr><th>1</th><td style="text-align:center;"><span><%=one %></span></td></tr>
- <tr><th>2</th><td style="text-align:center;"><span><%=two %></span></td></tr>
- <tr><th>3</th><td style="text-align:center;"><span><%=three %></span></td></tr>
- <tr><th>4</th><td style="text-align:center;"><span><%=four %></span></td></tr>
- <tr><th>5</th><td style="text-align:center;"><span><%=five %></span></td></tr> 
- </table>
+<table style="border: 1px solid #ddd" name="realTimeSearch" class="table" >
+<tbody id="realtime">
+<tr style="text-align:center; background-color:#337ab7">
+<th colspan="2" style="color:white; text-align:center;">실시간 검색어 순위</th></tr>
+ <tr><th>1.</th><td style="text-align:center;"><span><%=one %></span></td></tr>
+ <tr><th>2.</th><td style="text-align:center;"><span><%=two %></span></td></tr>
+ <tr><th>3.</th><td style="text-align:center;"><span><%=three %></span></td></tr>
+ <tr><th>4.</th><td style="text-align:center;"><span><%=four %></span></td></tr>
+ <tr><th>5.</th><td style="text-align:center;"><span><%=five %></span></td></tr> 
+</tbody> 
+
+</table>
  
  
  </div>

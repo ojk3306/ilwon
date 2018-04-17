@@ -212,10 +212,9 @@
 			-->
 			
 		</div>
-		<hr>
-		
-	<nav aria-label="...">
-				<ul class="pager">	
+<nav aria-label="...">
+
+<ul class="pager">	
 <center>
 <% if(currentPage <= 1){ %>
 	

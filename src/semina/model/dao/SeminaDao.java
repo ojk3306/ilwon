@@ -745,8 +745,32 @@ try {
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+				
 			}
 			return semina;
+	}
+
+	public int seminaDownnow(Connection con, int parseInt) {
+		PreparedStatement pstmt=null;
+		int result=0;
+	
+		String sql="update SEMINA set SEMINA_NOW = SEMINA_NOW-1 where semina_no=(select SEMINA_NO from SEMINA_DETAIL where SEMINA_DETAIL_NO = ?)";
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, parseInt);
+	
+			result=pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}finally {
+			close(pstmt);
+		}
+		return result;
 	}
 
 }

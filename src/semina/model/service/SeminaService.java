@@ -184,6 +184,21 @@ public class SeminaService {
 		return semina;
 	}
 
+	public int seminaDownnow(int parseInt) {
+		Connection con = getConnection();
+		int result = new SeminaDao().seminaDownnow(con,parseInt);
+		
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+			System.out.println("수정실패!");
+		
+		}
+		close(con);
+		return result;
+	}
+
 
 
 }

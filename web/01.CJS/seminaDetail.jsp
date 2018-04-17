@@ -3,11 +3,11 @@
    <%@
    page import="users.model.vo.Users , semina.model.vo.* ,seminaDetail.model.vo.*"
     %> 
-    <%
+ <%
     Semina semi=(Semina)request.getAttribute("semina");
     Users user=(Users)request.getAttribute("user");
     SeminaDetail semideta=(SeminaDetail)request.getAttribute("semideta");
-    %>
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -300,10 +300,12 @@ section .section-title{
 						<li class=""><h3><%=semi.getSeminaTitle() %></h3></li>
 						<li class=""> 태그넣기</li>
 						<li class=""> 모집기간 :<%=semi.getSeminaStartDate()%> ~ <%=semi.getSeminaEndDate() %> </li>
+						<li class=""> 참가 비 :<%=semi.getSeminaPrice()%>원               </li> 
 						<li class=""> 강연 위치 :<%=semi.getSeminaLocation() %></li>
 						<li class=""> 
 						위치 확인하기.<button onclick="window.open('/prototype/01.CJS/seminamap.jsp?loc=<%=semi.getSeminaLocation()%>','window_name','width=790,height=790,location=no,status=no,scrollbars=yes');">button</button>
 						</li>
+						
 						
 					</ul>
 					</li>
@@ -372,7 +374,7 @@ section .section-title{
 <input type="hidden" id="now" value="<%=semi.getSeminaNow()%>">
 			
 <script>
-min= $("#min").val();
+min=$("#min").val();
 max=$("#max").val();
 now=$("#now").val();
 console.log(min);
@@ -383,19 +385,19 @@ $('#myGoal').stepProgressBar({
   currentValue: 0,
   steps: [
     { 
-    	topLabel: now+":now",
+    	topLabel: "now:"+now,
         value: now
     
     	},
     {
     	 topLabel: " ",
          value: min,
-         bottomLabel: min+":min"
+         bottomLabel: min
     },
     {  
     	 topLabel:" ",
          value: max,
-         bottomLabel: max+":max"
+         bottomLabel: max
     }
   ],
   unit: '$'
@@ -432,11 +434,11 @@ $('#myGoal').stepProgressBar({
 			<%}else{ %>
 			
 			<input type="hidden" value="<%=loginUser.getUserNo()%>" id="studentno">
-			
-			<% if(Integer.parseInt(semideta.getSeminaState()) != 1 ){ %>	 
-			     <!--  -->
-		    <button type="button" style="margin-top : 50px;" onclick="enrollsemina();"  class="btn btn-primary">세미나 신청하기!</button>
-					<%}else{ %>
+		
+			<!--1:신청완료, 2:취소됨, 3:숨김   -->	 
+			<% if(Integer.parseInt(semideta.getSeminaState()) == 2 || Integer.parseInt(semideta.getSeminaState()) == 4){ %>	 
+			<button type="button" style="margin-top : 50px;" onclick="enrollsemina();"  class="btn btn-primary">세미나 신청하기!</button>
+			<%}else{ %>
             <button type="button"  style="margin-top : 50px;"  class="btn btn-warning">신청된 상태입니다!</button>
 			
 			<%}}%>	
