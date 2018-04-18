@@ -131,7 +131,7 @@
 <body style="min-width : 800px; overflow : auto; display : absolute; background:#E9E9E9;">
 	<nav>
 		<%@ include file = "../../common/navbar.jsp" %>
-		<%@include file="/01.CJS\sidebar.jsp" %>
+		<%@ include file="/01.CJS\sidebar.jsp" %>
 	</nav>
 <div style="margin-top: -550px;">
 	<div id = "left_bar"></div>
