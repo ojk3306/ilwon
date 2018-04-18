@@ -36,7 +36,7 @@ public class LessonKeywordSearchServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("LessonKeywordSearchServlet Run : " + request.getParameter("keywordValue"));
-		
+	
 		String keywordValue = request.getParameter("keywordValue");		
 		
 		LessonSearch ls = new LessonSearch(keywordValue);			

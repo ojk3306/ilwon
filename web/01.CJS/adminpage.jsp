@@ -31,7 +31,56 @@ ArrayList<NewestLessonByAdmin> list2 = (ArrayList<NewestLessonByAdmin>)(request.
     <!-- Bootstrap core CSS -->
     <link href="/prototype/01.CJS\css\bootstrap.min.css" rel="stylesheet">
     <link href="/prototype/01.CJS\css\adminpage.css" rel="stylesheet" type="text/css" >
-    
+    <style>
+    body {
+  color: #DAD6D6;
+  background: #171A21;
+  text-align: center;
+}
+
+#start {
+  margin: 40px auto;
+  text-align: center;
+  color: #DAD6D6;
+  background: #48633B;
+  border:solid 2px #35492C;
+  border-radius:5px;
+  padding:16px 40px 16px;
+  letter-spacing: 2px;
+  cursor:pointer;
+}
+
+#stop {
+  margin: 40px 5px auto;
+  text-align: center;
+  color: #DAD6D6;
+  background: #721329;
+  border:solid 2px #590F20;
+  border-radius:5px;
+  padding:16px 40px 16px;
+  letter-spacing: 2px;
+  cursor:pointer;
+}
+
+#clear {
+  margin: 40px auto;
+  text-align: center;
+  color: #DAD6D6;
+  background: #564E58;
+  border:solid 2px #3E383F;
+  border-radius:5px;
+  padding:16px 40px 16px;
+  letter-spacing: 2px;
+  cursor:pointer;
+}
+
+h2
+{
+  font-size: 46px;
+  letter-spacing: 2px;
+  margin: 200px 0 0 ;
+}
+    </style>
 <script type="text/javascript">
 $(function(){
 	setInterval(function() {
@@ -61,7 +110,14 @@ $(function(){
 	}, 5000);
 	
 	
+	$('#myModal').modal("toggle");
+	// 반대로 모달상태를 전환함
 
+	$('#myModal').modal("hide");
+	// 모달창 열기
+
+	$('#myModal').modal("show");
+	// 모달창 닫음
 	
 	
 	
@@ -84,7 +140,7 @@ $(function(){
       <a class="list-group-item active main-color-bg"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
       설정관리<span class="badge">1</span>
       </a>
-      <a href="/prototype/03.OHW/views/noticeList.jsp" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>공지사항관리</a>
+      <a href="/prototype/03.OHW\views\noticeInsert.jsp" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>공지사항쓰기</a>
       <a href="/prototype/01.CJS/categorys.jsp" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>카테고리관리</a>
       <a href="/prototype/reportlist" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>신고관리</a>
       <a href="/prototype/03.OHW/views/noticeInsert.jsp" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>공지사항작성</a>
@@ -110,7 +166,12 @@ $(function(){
  
  </div>
 
-  
+<center><button onclick="bumm()">폭파하기</button> <br>
+
+<button class="btn btn-toggle" data-toggle="modal" data-target="#myModal">Show / Hide</button>
+
+</center>
+
       </div>
       <div class="col-md-9">
           <div class="panel panel-default">
@@ -206,7 +267,24 @@ $(function(){
   </div>
 </section>
 
-  <%@include file="/common\footer.jsp" %>
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header"></div>
+      <div class="modal-body">
+      
+      
+      
+<h2><time>00:00:00</time></h2>
+
+<button id="start">START</button>
+      </div>
+      <div class="modal-footer"></div>
+    </div>
+  </div>
+</div>
+
+  <%@include file="/common/footer.jsp" %>
 
   </body>
 </html>

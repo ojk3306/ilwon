@@ -13,7 +13,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<title>MenuBar</title>
+<title>메뉴바</title>
 
 <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> 반응형 메뉴 옵션-->
 
@@ -31,12 +31,31 @@
    
 <script type="text/javascript">
 
-	function search(){
-     
-		location.href="/prototype/insertlog?seachcontent="+$('#select2-chosen-1').text()+"&user="+$("#userno").val();    
+	$(function(){
+	$.ajax({
+	url:"/prototype/hidden",
+	date:{},
+	success:function(da){
+		console.log(da)
+	if(da>0){
+		}else{
+		window.location.href= "/";
+		}
+},
+	error:function(){
+		
+}
+	})	
+})
+	
+function search(){
    
+	location.href="/prototype/insertlog?seachcontent="+$('#select2-chosen-1').text()+"&user="+$('#userno').val(); 
     //후에 섹션의 로그인유저의 번호까지 넣기.
-	}
+
+}
+	
+
 	$(document).ready(function (){
 		
     	$.ajax({        
@@ -107,8 +126,7 @@
 //클릭후, 검색창에 갱신이 안되게하는 함수↓↓  삭제할것인지, 중요한 함수인지.?
 $("#menubar-searchbar").click(function(){
 $(".ohw-navbar-search-hidden").val($(".select2accessible").text());	
-})
-})  
+})})  
 </script>  
   
 <style type="text/css">
@@ -226,22 +244,24 @@ $(".ohw-navbar-search-hidden").val($(".select2accessible").text());
 				
 				 <li>
 					<form class="form-inline mt-2 mt-md-0 input-group ohw-searchbar" action = "/prototype/lnsearch" method="post">
-						<input type = "hidden" class = "ohw-navbar-search-hidden" name = "ohw-keyword">
+						
+					<input type = "hidden" class = "ohw-navbar-search-hidden" name = "ohw-keyword">
 					
 						<select id="menubar-searchbar" name="seachcontent" aria-label="Search" style="margin-top:7px;">    
 							<option>여기에 값을 입력하세요</option>
 						</select>
 						&nbsp;
-						<button class="btn btn-default ohw-primary" type = "submit" onclick="search();" style="margin-top:7px; padding-top:3px;">
+						<button class="btn btn-default ohw-primary" type = "button" onclick="search();" style="margin-top:7px; padding-top:3px;">
 							<span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search
 						</button>						
 						
 						<% if(loginUser != null) { %>
-							<input type = "hidden" name = "userno" value ="<%= loginUser.getUserNo() %>">
+							<input type = "hidden" name = "userno" id="userno" value ="<%= loginUser.getUserNo() %>">
 						<% } else { %>
 							
 						<% } %>						
 					</form>
+				
 				</li>
 			</ul>      
 		</div>

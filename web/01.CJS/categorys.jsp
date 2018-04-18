@@ -151,10 +151,15 @@ rehide();
 });
 
 </script>
+
 </head>
 <body>
 <%@ include file="/common\navbar.jsp" %>
-
+<style>
+.row{
+background :none;
+}
+</style>
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 <div id="container" STYLE="margin-bottom:30PX; ">
 <div class="panel panel-default" style="width: 850px; margin: auto">

@@ -29,12 +29,12 @@ public class LessonNavbarSearchServlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		request.setCharacterEncoding("utf-8");
 		System.out.println("LessonNavbarSearchServlet Run and getParameter : "+request.getParameter("ohw-keyword"));
 		RequestDispatcher view = null;				
 		
