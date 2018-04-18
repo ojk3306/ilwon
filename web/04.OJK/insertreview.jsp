@@ -39,7 +39,7 @@
 					<table>
 						<tr>
 							<th>성실성</th>
-								<td><input type="radio" name="s" value="1">1</td>
+								<td><input type="radio" name="s" value="1" checked>1</td>
 								<td><input type="radio" name="s" value="2">2</td>
 								<td><input type="radio" name="s" value="3">3</td>
 								<td><input type="radio" name="s" value="4">4</td>
@@ -47,7 +47,7 @@
 						</tr>
 						<tr>
 							<th>준비성</th>
-								<td><input type="radio" name="p" value="1">1</td>
+								<td><input type="radio" name="p" value="1" checked>1</td>
 								<td><input type="radio" name="p" value="2">2</td>
 								<td><input type="radio" name="p" value="3">3</td>
 								<td><input type="radio" name="p" value="4">4</td>
@@ -55,7 +55,7 @@
 						</tr>
 						<tr>
 							<th>정보전달력</th>
-								<td><input type="radio" name="d" value="1">1</td>
+								<td><input type="radio" name="d" value="1" checked>1</td>
 								<td><input type="radio" name="d" value="2">2</td>
 								<td><input type="radio" name="d" value="3">3</td>
 								<td><input type="radio" name="d" value="4">4</td>
@@ -66,7 +66,7 @@
 					<hr>
 				</div>
 					<div style="width: 600px; height: 200px;">
-					<textarea rows="20" cols="80" name="content" placeholder="솔직한 리뷰를 작성해주세요" style="margin-bottom: 15px"></textarea>
+					<textarea rows="20" cols="80" name="content" placeholder="솔직한 리뷰를 작성해주세요" style="margin-bottom: 15px" required></textarea>
 					
 					<input type="submit" value="등록하기">
 					<input type="hidden" value="<%= lesson_no%>" name="lesson_no">

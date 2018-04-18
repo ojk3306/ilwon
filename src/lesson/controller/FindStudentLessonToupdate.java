@@ -1,7 +1,6 @@
-package semina.controller;
+package lesson.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,21 +11,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import lesson.model.service.LessonService;
 import lesson.model.vo.Lesson;
-import semina.model.service.SeminaService;
-import semina.model.vo.Semina;
-import seminaDetail.model.service.*;
-import seminaDetail.model.vo.*;
+import lesson.model.vo.LessonSearch;
+
 /**
- * Servlet implementation class AdminSeminaView
+ * Servlet implementation class FindStudentLessonToupdate
  */
-@WebServlet("/auseminav")
-public class AdminSeminaView extends HttpServlet {
+@WebServlet("/findstules")
+public class FindStudentLessonToupdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminSeminaView() {
+    public FindStudentLessonToupdate() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,20 +32,17 @@ public class AdminSeminaView extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int semina_no = Integer.parseInt(request.getParameter("no"));
-		Semina semina = new SeminaService().auSemina(semina_no);
-		ArrayList<SeminaDetailAdmin> seminad = new SeminaDetailService().auSeminad(semina_no);
-		response.setContentType("text/html; charset=utf-8");
-		RequestDispatcher view=null;
-		if(semina != null) {
-			view = request.getRequestDispatcher("/04.OJK/adminSeminaUpdate.jsp");
-			request.setAttribute("semina", semina);
-			request.setAttribute("seminad", seminad);
-			view.forward(request, response);
-			
-		}else {
-			//error page
-		}
+
+	Lesson less=new LessonService().getLssoninfoByLessonNo(Integer.parseInt(request.getParameter("no")));
+	
+	RequestDispatcher view=null;
+	
+	if(less!=null) {
+		view=request.getRequestDispatcher("/04.OJK/lessonUpdate2.jsp");
+		request.setAttribute("list",less);
+		view.forward(request, response);
+	}
+	
 	}
 
 	/**

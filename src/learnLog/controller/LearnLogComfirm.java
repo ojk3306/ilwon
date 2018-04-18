@@ -29,9 +29,10 @@ public class LearnLogComfirm extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//학생,선생,레슨번호
 		String[] arr = request.getParameter("no").split("/");
-
-		int result=new LearnLogService().Comfirmlog(Integer.parseInt(arr[0]),Integer.parseInt(arr[1]));
+		
+		int result=new LearnLogService().Comfirmlog(Integer.parseInt(arr[0]),Integer.parseInt(arr[1]),Integer.parseInt(arr[2]));
 			
 		if(result>0) {
 		response.sendRedirect("/prototype/04.OJK/teacherinfo.jsp");			

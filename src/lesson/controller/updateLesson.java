@@ -208,7 +208,7 @@ public class updateLesson extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		
 		if(result > 0) {
-			response.sendRedirect("/prototype/04.OJK\\lessonSuccess.jsp");
+			response.sendRedirect("/prototype/04.OJK/lessonSuccess.jsp");
 		}else {
 			response.sendRedirect("index.jsp");
 		}

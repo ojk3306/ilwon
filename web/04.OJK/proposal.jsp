@@ -137,13 +137,7 @@ $(function(){
 
 					
 			</ul>	 
-					
-					
-					
-					
-					
-					
-							
+				
 	 		</div> 	
 	 	</div>	 
 	</div>
