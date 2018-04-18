@@ -88,7 +88,7 @@
 		}
 	}
 	
-	.ohw-row {
+	.ohw-footer-row {
 	background:#e9e9e9;  width: 100%;
 	}
 	
@@ -103,7 +103,7 @@
 <!-- Footer -->
 	<section id="footer" style="height: 100px; width:100%;" >
 		<div class="container">
-			<div class="row">
+			<div class="ohw-footer-row">
 				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5" style="background:#222222">
 					<ul class="list-unstyled list-inline social text-center">
 						<li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-facebook"></i></a></li>
@@ -114,7 +114,7 @@
 					</ul>
 				</div>			
 			</div>	
-			<div class="ohw-row">
+			<div class="ohw-footer-row">
 				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white" style="background:#222222; color:white;">
 					<p>National Transaction Corporation is a Registered MSP/ISO of Elavon, Inc. Georgia [a wholly owned subsidiary of U.S. Bancorp, Minneapolis, MN]</p>					
 				</div>				
