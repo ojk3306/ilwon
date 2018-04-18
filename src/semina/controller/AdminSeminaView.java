@@ -37,7 +37,9 @@ public class AdminSeminaView extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int semina_no = Integer.parseInt(request.getParameter("no"));
 		Semina semina = new SeminaService().auSemina(semina_no);
+
 		ArrayList<SeminaDetailAdmin> seminad = new SeminaDetailService().auSeminad(semina_no);
+
 		response.setContentType("text/html; charset=utf-8");
 		RequestDispatcher view=null;
 		if(semina != null) {

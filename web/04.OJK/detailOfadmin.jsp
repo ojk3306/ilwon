@@ -24,6 +24,21 @@
 						<img src="/prototype/resources/img/testimonials-1.jpg"
 							class="img-circle" alt="Cinque Terre" width="200px"
 							height="200px">
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
 					</div>
 					<div style="float: left; margin-top: 20px;">
 						<span style="font-weight: bold; font-size: 15pt;">userid 님</span>
