@@ -258,30 +258,18 @@ margin-left: 190px;
     <div class="box box-info" >
         
             <div class="box-body" >
-                     <div class="col-sm-6">
+<div class="col-sm-6">
  <div align="center"> 
-
-
-					<%if(user.getUserOriginalPhoto() != null) { %>
+    <%if(user.getUserOriginalPhoto() != null) { %>
 						<img alt="User Pic" style="width:200px; height: 180px; " src="/prototype/userTitleimg/<%=user.getUserOriginalPhoto()%>" class="img-circle img-responsive"> 
-					<% }else {%>
+					<% }else{%>
 							<img src="/prototype/userTitleimg/rakoon.jpg"
 							class="img-circle" alt="Cinque Terre" width="200px"
 							height="200px">
+
 					<%} %>
 
 
-
-
-
-
-
-
-
-
-
-
- 
    </div>
               
               <br>

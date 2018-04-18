@@ -1217,7 +1217,7 @@ public class LessonDao {
 			
 			String query = "select * "
 					+ "from lesson l, users u, lessonlev lv, lessontype lt, categorys c "
-					+ "where l.USER_NO1 = u.user_no "
+					+ "where l.USER_NO2 = u.user_no "
 					+ "and l.LEVEL_NO = lv.LESSONLEV_NO "
 					+ "and l.LESSON_TYPE = lt.TYPE_NO "
 					+ "and l.category_no = c.category_no "

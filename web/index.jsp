@@ -75,27 +75,43 @@
     	border-radius: 4px 4px 0 0;
 	}
 	
-	.ohw-main-teacher, .ohw-main-student {
+	.ohw-main-teacher, .ohw-main-student {		
 		width:100%;
-		margin:20px;
-		padding:0;
+		margin-top:20px;				
+	}
+	
+	.ohw-main-teacher-tr, .ohw-main-student-tr {	
+		width:100%;
+		height:110px;
+		text-align:center;				
+	}
+	.ohw-main-teacher-tr > th, .ohw-main-student-tr > th {			
+		text-align:center;			
 	}
 	
 	.ohw-man-teacher-conp, .ohw-man-student-conp {
-		width:5%;
+		width:5%;		
+		padding-top:5px;
+		padding-bottom:5px;
 	}
 	
 	.ohw-man-teacher-conw, .ohw-man-student-conw {
-		width:5%;
+		width:5%;		
+		padding-top:5px;
+		padding-bottom:5px;
 	}
 	
 	.ohw-man-teacher-conc, .ohw-man-student-conc {
-		width:5%;
+		width:5%;		
+		padding-top:5px;
+		padding-bottom:5px;
 	}
 	
 	.ohw-man-teacher-cond, .ohw-man-student-cond {
-		width:5%;
-	}
+		width:5%;		
+		padding-top:5px;
+		padding-bottom:5px;
+	}	
 	
 </style>
 </head>
@@ -164,7 +180,7 @@
 			<div id="menu1" class="tab-pane fade">
 				<div>
 					<table class = "ohw-main-teacher">
-						<tr class = "ohw-main-teacher-tr">
+						<tr class = "ohw-main-teacher-tr" style = "height:40px;">
 							<th class = "ohw-main-teacher-conp">사진</th>
 							<th class = "ohw-main-teacher-conw">작성자</th>
 							<th class = "ohw-main-teacher-conc">카테고리</th>
@@ -206,7 +222,7 @@
 			<div id="menu2" class="tab-pane fade">
 				<div>
 					<table class = "ohw-main-student">
-						<tr class = "ohw-main-student-tr">
+						<tr class = "ohw-main-student-tr" style = "height:40px;">
 							<th class = "ohw-main-student-cont">사진</th>
 							<th class = "ohw-main-student-conw">작성자</th>
 							<th class = "ohw-main-student-conc">카테고리</th>
