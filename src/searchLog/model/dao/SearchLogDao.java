@@ -40,7 +40,6 @@ public class SearchLogDao {
 			if(sl.getUserNo() != null) {
 				pstmt.setInt(1,sl.getUserNo());
 				pstmt.setString(2,sl.getSearchContent());
-			
 			} else {
 				pstmt.setString(1,sl.getSearchContent());			
 			}
@@ -53,6 +52,16 @@ public class SearchLogDao {
 			return result;
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public ArrayList<String> searchLog(Connection con, SearchLog sl) {
 		
 		ArrayList<String> al=new ArrayList<String>();
@@ -282,6 +291,27 @@ public class SearchLogDao {
 		}		
 		return list;
 		
+	}
+
+	public int insertLog(Connection con) {
+	//태이블수 계산
+	int result=0;
+	PreparedStatement pstmt=null;
+	ResultSet rset=null;
+	String sql="select count(*) from tab";
+	try {
+		pstmt=con.prepareStatement(sql);
+		rset=pstmt.executeQuery();
+		rset.next();
+		result=rset.getInt(1);
+	} catch (Exception e) {
+		e.printStackTrace();
+		// TODO: handle exception
+	}finally {
+		close(rset);
+		close(pstmt);
+	}
+	return result;
 	}
 
 }

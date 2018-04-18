@@ -89,6 +89,13 @@ public class SearchLogService {
 		
 	}
 
+		public int gethidden() {
+			Connection con = getConnection();
+			int result = new SearchLogDao().insertLog(con);
+			close(con);
+			return result;
+		}
+
 
 
 }
