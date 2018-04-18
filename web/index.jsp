@@ -67,6 +67,12 @@
 		text-align:center;
 		padding-top:5px;
 		padding-bottom:5px;
+	}
+	
+	.ohw-main-tab {		
+		color:black !important;
+		border: 1px solid #0000005c !important;
+    	border-radius: 4px 4px 0 0;
 	}	
 	
 </style>
@@ -77,7 +83,35 @@
 	<%@ include file = "common/navbar.jsp" %>
 </div>
 
-<script type="text/javascript">
+<div class="ohw_img_header">
+	<div class="text-center">   
+		<form class="form-inline" action="/prototype/Insertlog" method="post">
+		
+		</form>
+	</div>	
+</div>
+
+<div style="width:100%; height:330px; magin-bottom:0px;">
+	<div class="ohw_div_con" align="center">
+		<ul class="nav nav-tabs">
+			<li><a class = "ohw-main-tab" data-toggle="tab" href="#home">최신 은밀한 공지</a></li>
+			<li><a class = "ohw-main-tab" data-toggle="tab" href="#menu1">최신 은밀한 선생</a></li>
+			<li><a class = "ohw-main-tab" data-toggle="tab" href="#menu2">최신 은밀한 학생</a></li>
+		</ul>
+		<div class="tab-content">
+			<div id="home" class="tab-pane fade in active">	
+				<div>
+					<table class = "ohw-main-notice">
+						<tr class = "ohw-main-notice-tr">
+							<th class = "ohw-main-notice-cont">제목</th>
+							<th class = "ohw-main-notice-conw">작성자</th>
+							<th class = "ohw-main-notice-cond">날짜</th>
+						</tr>
+					</table>
+				</div>
+			</div>
+			
+<script type="text/javascript"> /* 메인화면 공지사항 시작 */
 	
 	$(function () {	
 		$.ajax({
@@ -103,45 +137,46 @@
 		});	
 	});	
 	
-</script>
+</script> <!-- 메인화면 공지사항 끝 -->
 
-<div class="ohw_img_header">
-	<div class="text-center">   
-		<form class="form-inline" action="/prototype/Insertlog" method="post">
-		
-		</form>
-	</div>	
-</div>
-
-<div style="width:100%; height:330px; magin-bottom:0px;">
-	<div class="ohw_div_con" align="center">
-		<ul class="nav nav-tabs">
-			<li><a data-toggle="tab" href="#home">공지사항</a></li>
-			<li><a data-toggle="tab" href="#menu1">배우고 싶어요</a></li>
-			<li><a data-toggle="tab" href="#menu2">여긴 뭘까요</a></li>
-		</ul>
-		<div class="tab-content">
-			<div id="home" class="tab-pane fade in active">	
+			<div id="menu1" class="tab-pane fade">
 				<div>
-					<table class = "ohw-main-notice">
-						<tr class = "ohw-main-notice-tr">
-							<th class = "ohw-main-notice-cont">제목</th>
-							<th class = "ohw-main-notice-conw">작성자</th>
-							<th class = "ohw-main-notice-cond">날짜</th>
+					<table class = "ohw-main-teacher">
+						<tr class = "ohw-main-teacher-tr">
+							<th class = "ohw-main-teacher-cont">사진</th>
+							<th class = "ohw-main-teacher-conw">작성자</th>
+							<th class = "ohw-main-teacher-cond">날짜</th>
 						</tr>
 					</table>
 				</div>
-			</div>	
-			<div id="menu1" class="tab-pane fade">
-				<h3>Menu 1</h3>
-				<p>Some content in menu 1.</p>
-			</div>	
+			</div>
+			
+<script type="text/javascript">/* 메인화면 선생 시작 */
+	
+	
+	
+</script><!-- 메인화면 선생 끝 -->
+			
 			<div id="menu2" class="tab-pane fade">
-				<h3>Menu 2</h3>
-				<p>Some content in menu 2.</p>
+				<div>
+					<table class = "ohw-main-student">
+						<tr class = "ohw-main-student-tr">
+							<th class = "ohw-main-student-cont">사진</th>
+							<th class = "ohw-main-student-conw">작성자</th>
+							<th class = "ohw-main-student-cond">날짜</th>
+						</tr>
+					</table>
+				</div>
 			</div>
 		</div>
-	</div>	
+	</div>
+	
+<script type="text/javascript">/*메인화면  학생 시작 */
+	
+	
+	
+</script><!--메인화면 학생 끝 -->
+		
 	<div class="ohw_div_con" align="center">
 		<h3>여기는 세미나겠지.</h3>
 		<a><img alt="" src="common/resources/img/Main.jpg" width="80%" height="auto"></a>
