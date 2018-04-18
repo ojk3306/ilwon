@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="users.model.vo.*"%>
-    
 <%
 String one=(String)request.getAttribute("first"); 
 String two=(String)request.getAttribute("second"); 
@@ -11,7 +10,6 @@ ArrayList<Users> list = (ArrayList<Users>)(request.getAttribute("newUserList"));
 ArrayList<NewestLessonByAdmin> list2 = (ArrayList<NewestLessonByAdmin>)(request.getAttribute("newestlist"));
 Users use=(Users)session.getAttribute("loginUser");    
 %> 
-   
 <!DOCTYPE html>
 
 <html>
@@ -200,7 +198,7 @@ function reset(){
 <center>
 
 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Launch demo modal
+ 개인정보 폭파
 </button>
 </center>
 
