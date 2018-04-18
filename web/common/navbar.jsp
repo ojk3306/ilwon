@@ -61,7 +61,7 @@ function search(){
     	$.ajax({        
     		url:"<%=request.getContextPath()%>/search",
     	    data:{
-    	    word:$("#s2id_autogen1_search").val(),
+    	    word:$("a").val(),
     	    user:$("#userno").val()
     	    },//추가로 유저 번호도 보낸다.
 			type:"get",

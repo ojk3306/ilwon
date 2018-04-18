@@ -247,9 +247,8 @@
 				for(var i in json.list) {				
 					$('.ohw-main-student').append(						
 					 	<% if(loginUser != null) { %>				 	
-							"<tr class = 'ohw-main-student-tr'><td class = 'ohw-main-student-conp'><a href = '<%= request.getContextPath() %>/studentdetail?no=" + json.list[i].lessonNo + "&page=1'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></a></td>" + 
-				
-					 	<% } else { %>					
+							"<tr class = 'ohw-main-student-tr'><td class = 'ohw-main-student-conp'><a href = '<%= request.getContextPath() %>/studentdetail?no=" + json.list[i].lessonNo + "&page=1'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></a></td>" +
+						<% } else { %>					
 							"<tr class = 'ohw-main-student-tr'><td class = 'ohw-main-student-conp'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></td>" + 
 					 	<% } %>						
 						"<td class = 'ohw-main-student-conw'>" + json.list[i].userName1 + "</td>" +				
