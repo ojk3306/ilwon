@@ -33,7 +33,9 @@ public class UpdateReviewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int review_no = Integer.parseInt(request.getParameter("review_no"));
 		Review review = new Review();
-		review.setReviewContent(request.getParameter("content"));
+		String content = request.getParameter("content");
+		content = content.replace("\r\n", "<br>");
+		review.setReviewContent(content);
 		review.setReviewSincerity(Integer.parseInt(request.getParameter("s")));
 		review.setReviewDelivery(Integer.parseInt(request.getParameter("d")));
 		review.setReviewPrepare(Integer.parseInt(request.getParameter("p")));
