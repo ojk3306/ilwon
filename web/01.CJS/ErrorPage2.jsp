@@ -27,7 +27,7 @@
       <div class="panel panel-danger">
         <div class="panel-heading">
           <h3 class="text-center">
-          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> 오류:404
+          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> 오류:500
           <small>가벼운 오류 발생 <b> </b></small>
           </h3>
         </div>

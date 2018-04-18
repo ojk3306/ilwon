@@ -156,7 +156,7 @@ message = (String)request.getAttribute("message");
 		<button class="btn btn-lg btn-primary btn-block ohw-btn" type="submit">LogIn</button>
 	</form>
 	<div class = "form-signin ohw-btn">
-	<a href = "../../04.OJK/join_start.jsp">
+	<a href = "/prototype/04.OJK/join_start.jsp">
 		<input type = "button" class = "btn btn-lg btn-success btn-block " value = "아직 회원이 아니시라면?">
 	</a>
 </div>

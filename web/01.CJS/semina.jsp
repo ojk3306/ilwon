@@ -45,7 +45,8 @@
 	<input type="hidden" id="usernono" value="<%=loginUser.getUserNo()%>">
 <% } %>
 <div class='container carousel'>
-	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+<center>
+	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="max-width:80%; max-height: 300px; ">
 		<!-- Indicators -->
 		<ol class="carousel-indicators">
 			<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -53,10 +54,32 @@
 			<li data-target="#carousel-example-generic" data-slide-to="2"></li>
 		</ol>
 		<!-- Wrapper for slides -->
-		<div class="carousel-inner text-center" role="listbox">
+		<div class="carousel-inner text-center" role="listbox"  ">
 			<div class="item active">
 				<div class="col-lg-8 pull-right">
-					<img src="http://lorempixel.com/g/750/350/transport">
+					<% if(toplist.get(0).getSeminaRenameFileName()!=null) { %>
+						<img src="<%=request.getContextPath()%>/seminaTitleimg/<%=toplist.get(0).getSeminaRenameFileName()%>" style="width: 450px; height: 240px;"">
+									<% } else { //지정된 이미지가 없으면 디폴트 랜덤사진을 넣는다.
+										String[] img = new String[11];
+										img[0]="https://images.pexels.com/photos/262508/pexels-photo-262508.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[1]="https://images.pexels.com/photos/34601/pexels-photo.jpg?h=350&auto=compress&cs=tinysrgb";
+										img[2]="https://images.pexels.com/photos/459688/pexels-photo-459688.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[3]="https://images.pexels.com/photos/273222/pexels-photo-273222.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[4]="https://images.pexels.com/photos/301930/pexels-photo-301930.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[5]="https://images.pexels.com/photos/392018/pexels-photo-392018.jpeg?h=350&auto=compress&cs=tinysrgb";
+										//img[6]=https://images.pexels.com/photos/35537/child-children-girl-happy.jpg?h=350&auto=compress&cs=tinysrgb; 어린이사진
+										img[6]="https://images.pexels.com/photos/301930/pexels-photo-301930.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[7]="https://images.pexels.com/photos/34601/pexels-photo.jpg?h=350&auto=compress&cs=tinysrgb.";
+										img[8]="https://images.pexels.com/photos/459688/pexels-photo-459688.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[9]="https://images.pexels.com/photos/273222/pexels-photo-273222.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[10]="https://images.pexels.com/photos/392018/pexels-photo-392018.jpeg?h=350&auto=compress&cs=tinysrgb";
+										Integer result = 333;
+										result=(int)(Math.random()*10)+0;
+    								%>
+										<img src="<%=img[result]%>" alt="" class="img-thumbnail img-responsive" style="width: 450px; height: 240px;">
+									<% } %>
+				
+					
 				</div>
 				<div class="col-lg-4">                            
 					<h2><%=toplist.get(0).getSeminaTitle()%><br>
@@ -75,7 +98,31 @@
 			</div>
 			<div class="item">                    
 				<div class="col-lg-8 pull-right">
-					<img src="http://lorempixel.com/g/750/350/nature">
+				
+				<% if(toplist.get(1).getSeminaRenameFileName()!=null) { %>
+										<img src="<%=request.getContextPath()%>/seminaTitleimg/<%=toplist.get(1).getSeminaRenameFileName()%>" style="width: 450px; height: 240px;"">
+									<% } else { //지정된 이미지가 없으면 디폴트 랜덤사진을 넣는다.
+										String[] img = new String[11];
+										img[0]="https://images.pexels.com/photos/262508/pexels-photo-262508.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[1]="https://images.pexels.com/photos/34601/pexels-photo.jpg?h=350&auto=compress&cs=tinysrgb";
+										img[2]="https://images.pexels.com/photos/459688/pexels-photo-459688.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[3]="https://images.pexels.com/photos/273222/pexels-photo-273222.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[4]="https://images.pexels.com/photos/301930/pexels-photo-301930.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[5]="https://images.pexels.com/photos/392018/pexels-photo-392018.jpeg?h=350&auto=compress&cs=tinysrgb";
+										//img[6]=https://images.pexels.com/photos/35537/child-children-girl-happy.jpg?h=350&auto=compress&cs=tinysrgb; 어린이사진
+										img[6]="https://images.pexels.com/photos/301930/pexels-photo-301930.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[7]="https://images.pexels.com/photos/34601/pexels-photo.jpg?h=350&auto=compress&cs=tinysrgb.";
+										img[8]="https://images.pexels.com/photos/459688/pexels-photo-459688.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[9]="https://images.pexels.com/photos/273222/pexels-photo-273222.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[10]="https://images.pexels.com/photos/392018/pexels-photo-392018.jpeg?h=350&auto=compress&cs=tinysrgb";
+										Integer result = 333;
+										result=(int)(Math.random()*10)+0;
+    								%>
+										<img src="<%=img[result]%>" alt="" class="img-thumbnail img-responsive" style="width: 450px; height: 240px;">
+									<% } %>
+				
+				
+		
 				</div>
 				<div class="col-lg-4">                            
 					<h2><%=toplist.get(1).getSeminaTitle()%><br>
@@ -94,7 +141,28 @@
 			</div> 
 			<div class="item">                    
 				<div class="col-lg-8 pull-right">
-					<img src="http://lorempixel.com/g/750/350/fashion">
+				<% if(toplist.get(2).getSeminaRenameFileName()!=null) { %>
+										<img src="<%=request.getContextPath()%>/seminaTitleimg/<%=toplist.get(2).getSeminaRenameFileName()%>" style="width: 450px; height: 240px;"">
+									<% } else { //지정된 이미지가 없으면 디폴트 랜덤사진을 넣는다.
+										String[] img = new String[11];
+										img[0]="https://images.pexels.com/photos/262508/pexels-photo-262508.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[1]="https://images.pexels.com/photos/34601/pexels-photo.jpg?h=350&auto=compress&cs=tinysrgb";
+										img[2]="https://images.pexels.com/photos/459688/pexels-photo-459688.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[3]="https://images.pexels.com/photos/273222/pexels-photo-273222.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[4]="https://images.pexels.com/photos/301930/pexels-photo-301930.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[5]="https://images.pexels.com/photos/392018/pexels-photo-392018.jpeg?h=350&auto=compress&cs=tinysrgb";
+										//img[6]=https://images.pexels.com/photos/35537/child-children-girl-happy.jpg?h=350&auto=compress&cs=tinysrgb; 어린이사진
+										img[6]="https://images.pexels.com/photos/301930/pexels-photo-301930.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[7]="https://images.pexels.com/photos/34601/pexels-photo.jpg?h=350&auto=compress&cs=tinysrgb.";
+										img[8]="https://images.pexels.com/photos/459688/pexels-photo-459688.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[9]="https://images.pexels.com/photos/273222/pexels-photo-273222.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[10]="https://images.pexels.com/photos/392018/pexels-photo-392018.jpeg?h=350&auto=compress&cs=tinysrgb";
+										Integer result = 333;
+										result=(int)(Math.random()*10)+0;
+    								%>
+										<img src="<%=img[result]%>" alt="" class="img-thumbnail img-responsive" style="width: 450px; height: 240px;">
+									<% } %>
+				
 				</div>
 				<div class="col-lg-4">                            
 					<h2><%=toplist.get(2).getSeminaTitle()%><br>
@@ -119,6 +187,10 @@
 			<span class="sr-only">Next</span>
 		</a>
 	</div>
+	</center>
+	
+	
+	
 </div>
 
 <br>
@@ -253,7 +325,7 @@
 				<font color="red" size="4"><b>[ <%= p %> ]</b></font>
 			<% } else { %>
 				<a href="/prototype/semilist?page=<%= p %>&search=<%=search%>"><%= p %></a>
-			<% }
+			<% }	
 		} %>
 		<% if((currentPage + 10) > endPage && (currentPage + 10) < maxPage) { %>
 			<a href="/prototype/semilist?page=<%= endPage + 10 %>&seach=<%=search%>"></a>	
