@@ -78,7 +78,7 @@ public class LessonDao {
 		
 		String query = "select * "
 				+ "from lesson l, users u, lessonlev lv, lessontype lt, categorys c "
-				+ "where l.USER_NO1 = u.user_no "
+				+ "where l.USER_NO2 = u.user_no "
 				+ "and l.LEVEL_NO = lv.LESSONLEV_NO "
 				+ "and l.LESSON_TYPE = lt.TYPE_NO "
 				+ "and l.category_no = c.category_no "
@@ -1204,11 +1204,121 @@ public class LessonDao {
 			return list;		
 	}
 
-	public Lesson getLssoninfoByLessonNo(Connection conn, int parseInt) {
-	
-		
-		
+	public Lesson getLssoninfoByLessonNo(Connection conn, int parseInt) {		
 		
 		return null;
+	}
+
+	public ArrayList<Lesson> selectMainTeacher(Connection con) {		
+			
+			ArrayList<Lesson> list = new ArrayList<Lesson>();
+			Statement stmt = null;
+			ResultSet rset = null;
+			
+			String query = "select * "
+					+ "from lesson l, users u, lessonlev lv, lessontype lt, categorys c "
+					+ "where l.USER_NO1 = u.user_no "
+					+ "and l.LEVEL_NO = lv.LESSONLEV_NO "
+					+ "and l.LESSON_TYPE = lt.TYPE_NO "
+					+ "and l.category_no = c.category_no "
+					+ "and l.LESSON_ENDDATE is null "
+					+ "and l.LESSON_TYPE = 7000 "
+					+ "and rownum <= 2 "
+					+ "order by lesson_startdate desc";
+			try {
+				stmt = con.createStatement();
+				rset = stmt.executeQuery(query);
+				
+				while(rset.next()) {
+					Lesson lesson = new Lesson();				
+					lesson.setLesson_no(rset.getInt("lesson_no"));
+					lesson.setLevel_no(rset.getInt("level_no"));
+					lesson.setLevel(rset.getString("lessonlev"));
+					lesson.setState_no(rset.getInt("state_no"));
+					lesson.setCategory_no(rset.getInt("category_no"));
+					lesson.setCategory_bigName(rset.getString("category_big"));
+					lesson.setCategory_smallName(rset.getString("category_small"));
+					lesson.setUser_no1(rset.getInt("user_no1"));
+					lesson.setUser_no2(rset.getInt("user_no2"));
+					lesson.setUser_name1(rset.getString("user_name"));
+					lesson.setUser_name2(rset.getString("user_name"));
+					lesson.setLesson_title(rset.getString("lesson_title"));
+					lesson.setLesson_loc(rset.getString("lesson_location"));
+					lesson.setLesson_rad(rset.getInt("lesson_radius"));
+					lesson.setLesson_price(rset.getInt("lesson_price"));
+					lesson.setLesson_count(rset.getInt("lesson_count"));
+					lesson.setLesson_startdate(rset.getDate("lesson_startdate"));				
+					lesson.setLesson_contop(rset.getString("lesson_contop"));
+					lesson.setLesson_conmid(rset.getString("lesson_conmid"));
+					lesson.setLesson_conbot(rset.getString("lesson_conbot"));
+					lesson.setLesson_keyword(rset.getString("lesson_keyword"));
+					lesson.setLesson_type(rset.getInt("lesson_type"));				
+					
+					list.add(lesson);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(stmt);
+			}
+			
+			return list;
+		}	
+
+	public ArrayList<Lesson> selectMainStudent(Connection con) {
+		ArrayList<Lesson> list = new ArrayList<Lesson>();
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String query = "select * "
+				+ "from lesson l, users u, lessonlev lv, lessontype lt, categorys c "
+				+ "where l.USER_NO1 = u.user_no "
+				+ "and l.LEVEL_NO = lv.LESSONLEV_NO "
+				+ "and l.LESSON_TYPE = lt.TYPE_NO "
+				+ "and l.category_no = c.category_no "
+				+ "and l.LESSON_ENDDATE is null "
+				+ "and l.LESSON_TYPE = 8000 "
+				+ "and rownum <= 2 "
+				+ "order by lesson_startdate desc";
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			while(rset.next()) {
+				Lesson lesson = new Lesson();				
+				lesson.setLesson_no(rset.getInt("lesson_no"));
+				lesson.setLevel_no(rset.getInt("level_no"));
+				lesson.setLevel(rset.getString("lessonlev"));
+				lesson.setState_no(rset.getInt("state_no"));
+				lesson.setCategory_no(rset.getInt("category_no"));
+				lesson.setCategory_bigName(rset.getString("category_big"));
+				lesson.setCategory_smallName(rset.getString("category_small"));
+				lesson.setUser_no1(rset.getInt("user_no1"));
+				lesson.setUser_no2(rset.getInt("user_no2"));
+				lesson.setUser_name1(rset.getString("user_name"));
+				lesson.setUser_name2(rset.getString("user_name"));
+				lesson.setLesson_title(rset.getString("lesson_title"));
+				lesson.setLesson_loc(rset.getString("lesson_location"));
+				lesson.setLesson_rad(rset.getInt("lesson_radius"));
+				lesson.setLesson_price(rset.getInt("lesson_price"));
+				lesson.setLesson_count(rset.getInt("lesson_count"));
+				lesson.setLesson_startdate(rset.getDate("lesson_startdate"));				
+				lesson.setLesson_contop(rset.getString("lesson_contop"));
+				lesson.setLesson_conmid(rset.getString("lesson_conmid"));
+				lesson.setLesson_conbot(rset.getString("lesson_conbot"));
+				lesson.setLesson_keyword(rset.getString("lesson_keyword"));
+				lesson.setLesson_type(rset.getInt("lesson_type"));				
+				
+				list.add(lesson);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return list;
 	}
 }
