@@ -207,11 +207,10 @@ public ArrayList<Notice> selectMainNotice(Connection con) {
 		ResultSet rset = null;
 		
 		String query = "select * "
-						+ "from (select * "
-								+ "from notice "
-								+ "order by notice_date desc) n, users u "
+						+ "from notice n, users u "
 						+ "where rownum <= 8 "
-						+ "and n.user_no = u.user_no";
+						+ "and n.user_no = u.user_no "
+						+ "order by notice_no desc";
 				
 		try {
 			stmt = con.createStatement();

@@ -77,6 +77,13 @@ public class LessonDao {
 		ResultSet rset = null;
 		
 		String query = "select * " + 
+				"from (select " + 
+				"l.LESSON_NO, l.LEVEL_NO, l.STATE_NO, l.CATEGORY_NO, l.USER_NO1, l.USER_NO2, l.LESSON_TITLE, l.LESSON_LOCATION, l.LESSON_RADIUS, l.LESSON_PRICE, l.LESSON_COUNT, " + 
+				"l.LESSON_STARTDATE, l.LESSON_ENDDATE, l.LESSON_CONTOP, l.LESSON_CONMID, l.LESSON_CONBOT, l.LESSON_KEYWORD, l.LESSON_TYPE, l.LESSON_ORIGINAL_PHOTO, " + 
+				"l.LESSON_RENAME_PHOTO, l.LESSON_ORIGINAL_PHOTO2, l.LESSON_RENAME_PHOTO2, l.LESSON_ORIGINAL_PHOTO3, l.LESSON_RENAME_PHOTO3, " + 
+				"c.CATEGORY_NO cn, c.CATEGORY_BIG, c.CATEGORY_SMALL, c.CATEGORY_HIT, " + 
+				"u.USER_NO, u.USER_TYPE, u.USER_EMAIL, u.USER_PWD, u.USER_NAME, u.USER_GENDER, u.USER_AGE, u.USER_LOC, u.USER_PHONE, u.USER_ORIGINAL_PHOTO, u.USER_RENAME_PHOTO, u.USER_KEYWORD_COUNT, " + 
+				"u.USER_LOGINABLE, u.USER_EXEABLE, u.USER_LESSONMAX, u.USER_ENROLLDATE, lv.LESSONLEV_NO, lv.LESSONLEV, lt.TYPE_NO, lt.LESSON_TYPE ltt, ut.USERTYPE_NO, ut.USER_TYPE utt, st.STATE_NO snn, st.STATE " + 
 				"from lesson l, categorys c, users u, LESSONLEV lv, LESSONTYPE lt, USER_TYPE ut, STATE st " + 
 				"where l.CATEGORY_NO = c.CATEGORY_NO " + 
 				"and l.USER_NO2 = u.USER_NO " + 
@@ -85,9 +92,9 @@ public class LessonDao {
 				"and u.USER_TYPE = ut.USERTYPE_NO " + 
 				"and l.STATE_NO = st.STATE_NO " + 
 				"and l.LESSON_ENDDATE is null " + 
-				"and l.LESSON_TYPE = 7000 " +
-				"and rownum <= 6 " +
-				"order by l.LESSON_NO desc";
+				"and l.LESSON_TYPE = 7000 " + 
+				"order by l.LESSON_NO desc) " + 
+				"where rownum <= 6";
 		try {
 			stmt = con.createStatement();
 			rset = stmt.executeQuery(query);
@@ -1034,16 +1041,25 @@ public class LessonDao {
 		Statement stmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * "
-				+ "from lesson l, users u, lessonlev lv, lessontype lt, categorys c "
-				+ "where l.USER_NO1 = u.user_no "
-				+ "and l.LEVEL_NO = lv.LESSONLEV_NO "
-				+ "and l.LESSON_TYPE = lt.TYPE_NO "
-				+ "and l.category_no = c.category_no "
-				+ "and l.LESSON_ENDDATE is null "
-				+ "and l.LESSON_TYPE = 8000 "
-				+ "and rownum <= 6 "
-				+ "order by lesson_startdate desc";
+		String query = "select * " + 
+				"from (select " + 
+				"l.LESSON_NO, l.LEVEL_NO, l.STATE_NO, l.CATEGORY_NO, l.USER_NO1, l.USER_NO2, l.LESSON_TITLE, l.LESSON_LOCATION, l.LESSON_RADIUS, l.LESSON_PRICE, l.LESSON_COUNT, " + 
+				"l.LESSON_STARTDATE, l.LESSON_ENDDATE, l.LESSON_CONTOP, l.LESSON_CONMID, l.LESSON_CONBOT, l.LESSON_KEYWORD, l.LESSON_TYPE, l.LESSON_ORIGINAL_PHOTO, " + 
+				"l.LESSON_RENAME_PHOTO, l.LESSON_ORIGINAL_PHOTO2, l.LESSON_RENAME_PHOTO2, l.LESSON_ORIGINAL_PHOTO3, l.LESSON_RENAME_PHOTO3, " + 
+				"c.CATEGORY_NO cn, c.CATEGORY_BIG, c.CATEGORY_SMALL, c.CATEGORY_HIT, " + 
+				"u.USER_NO, u.USER_TYPE, u.USER_EMAIL, u.USER_PWD, u.USER_NAME, u.USER_GENDER, u.USER_AGE, u.USER_LOC, u.USER_PHONE, u.USER_ORIGINAL_PHOTO, u.USER_RENAME_PHOTO, u.USER_KEYWORD_COUNT, " + 
+				"u.USER_LOGINABLE, u.USER_EXEABLE, u.USER_LESSONMAX, u.USER_ENROLLDATE, lv.LESSONLEV_NO, lv.LESSONLEV, lt.TYPE_NO, lt.LESSON_TYPE ltt, ut.USERTYPE_NO, ut.USER_TYPE utt, st.STATE_NO snn, st.STATE " + 
+				"from lesson l, categorys c, users u, LESSONLEV lv, LESSONTYPE lt, USER_TYPE ut, STATE st " + 
+				"where l.CATEGORY_NO = c.CATEGORY_NO " + 
+				"and l.USER_NO1 = u.USER_NO " + 
+				"and l.LEVEL_NO = lv.LESSONLEV_NO " + 
+				"and l.LESSON_TYPE = lt.TYPE_NO " + 
+				"and u.USER_TYPE = ut.USERTYPE_NO " + 
+				"and l.STATE_NO = st.STATE_NO " + 
+				"and l.LESSON_ENDDATE is null " + 
+				"and l.LESSON_TYPE = 8000 " + 
+				"order by l.LESSON_NO desc) " + 
+				"where rownum <= 6";
 		try {
 			stmt = con.createStatement();
 			rset = stmt.executeQuery(query);
@@ -1218,6 +1234,13 @@ public class LessonDao {
 			ResultSet rset = null;
 			
 			String query = "select * " + 
+					"from (select " + 
+					"l.LESSON_NO, l.LEVEL_NO, l.STATE_NO, l.CATEGORY_NO, l.USER_NO1, l.USER_NO2, l.LESSON_TITLE, l.LESSON_LOCATION, l.LESSON_RADIUS, l.LESSON_PRICE, l.LESSON_COUNT, " + 
+					"l.LESSON_STARTDATE, l.LESSON_ENDDATE, l.LESSON_CONTOP, l.LESSON_CONMID, l.LESSON_CONBOT, l.LESSON_KEYWORD, l.LESSON_TYPE, l.LESSON_ORIGINAL_PHOTO, " + 
+					"l.LESSON_RENAME_PHOTO, l.LESSON_ORIGINAL_PHOTO2, l.LESSON_RENAME_PHOTO2, l.LESSON_ORIGINAL_PHOTO3, l.LESSON_RENAME_PHOTO3, " + 
+					"c.CATEGORY_NO cn, c.CATEGORY_BIG, c.CATEGORY_SMALL, c.CATEGORY_HIT, " + 
+					"u.USER_NO, u.USER_TYPE, u.USER_EMAIL, u.USER_PWD, u.USER_NAME, u.USER_GENDER, u.USER_AGE, u.USER_LOC, u.USER_PHONE, u.USER_ORIGINAL_PHOTO, u.USER_RENAME_PHOTO, u.USER_KEYWORD_COUNT, " + 
+					"u.USER_LOGINABLE, u.USER_EXEABLE, u.USER_LESSONMAX, u.USER_ENROLLDATE, lv.LESSONLEV_NO, lv.LESSONLEV, lt.TYPE_NO, lt.LESSON_TYPE ltt, ut.USERTYPE_NO, ut.USER_TYPE utt, st.STATE_NO snn, st.STATE " + 
 					"from lesson l, categorys c, users u, LESSONLEV lv, LESSONTYPE lt, USER_TYPE ut, STATE st " + 
 					"where l.CATEGORY_NO = c.CATEGORY_NO " + 
 					"and l.USER_NO2 = u.USER_NO " + 
@@ -1226,9 +1249,9 @@ public class LessonDao {
 					"and u.USER_TYPE = ut.USERTYPE_NO " + 
 					"and l.STATE_NO = st.STATE_NO " + 
 					"and l.LESSON_ENDDATE is null " + 
-					"and l.LESSON_TYPE = 7000 " +
-					"and rownum <= 2 " +
-					"order by l.LESSON_NO desc";
+					"and l.LESSON_TYPE = 7000 " + 
+					"order by l.LESSON_NO desc) " + 
+					"where rownum <= 2";
 			try {
 				stmt = con.createStatement();
 				rset = stmt.executeQuery(query);
@@ -1276,6 +1299,13 @@ public class LessonDao {
 		ResultSet rset = null;
 		
 		String query = "select * " + 
+				"from (select " + 
+				"l.LESSON_NO, l.LEVEL_NO, l.STATE_NO, l.CATEGORY_NO, l.USER_NO1, l.USER_NO2, l.LESSON_TITLE, l.LESSON_LOCATION, l.LESSON_RADIUS, l.LESSON_PRICE, l.LESSON_COUNT, " + 
+				"l.LESSON_STARTDATE, l.LESSON_ENDDATE, l.LESSON_CONTOP, l.LESSON_CONMID, l.LESSON_CONBOT, l.LESSON_KEYWORD, l.LESSON_TYPE, l.LESSON_ORIGINAL_PHOTO, " + 
+				"l.LESSON_RENAME_PHOTO, l.LESSON_ORIGINAL_PHOTO2, l.LESSON_RENAME_PHOTO2, l.LESSON_ORIGINAL_PHOTO3, l.LESSON_RENAME_PHOTO3, " + 
+				"c.CATEGORY_NO cn, c.CATEGORY_BIG, c.CATEGORY_SMALL, c.CATEGORY_HIT, " + 
+				"u.USER_NO, u.USER_TYPE, u.USER_EMAIL, u.USER_PWD, u.USER_NAME, u.USER_GENDER, u.USER_AGE, u.USER_LOC, u.USER_PHONE, u.USER_ORIGINAL_PHOTO, u.USER_RENAME_PHOTO, u.USER_KEYWORD_COUNT, " + 
+				"u.USER_LOGINABLE, u.USER_EXEABLE, u.USER_LESSONMAX, u.USER_ENROLLDATE, lv.LESSONLEV_NO, lv.LESSONLEV, lt.TYPE_NO, lt.LESSON_TYPE ltt, ut.USERTYPE_NO, ut.USER_TYPE utt, st.STATE_NO snn, st.STATE " + 
 				"from lesson l, categorys c, users u, LESSONLEV lv, LESSONTYPE lt, USER_TYPE ut, STATE st " + 
 				"where l.CATEGORY_NO = c.CATEGORY_NO " + 
 				"and l.USER_NO1 = u.USER_NO " + 
@@ -1284,9 +1314,9 @@ public class LessonDao {
 				"and u.USER_TYPE = ut.USERTYPE_NO " + 
 				"and l.STATE_NO = st.STATE_NO " + 
 				"and l.LESSON_ENDDATE is null " + 
-				"and l.LESSON_TYPE = 8000 " +
-				"and rownum <= 2 " +
-				"order by l.LESSON_NO desc";
+				"and l.LESSON_TYPE = 8000 " + 
+				"order by l.LESSON_NO desc) " + 
+				"where rownum <= 2";
 		try {
 			stmt = con.createStatement();
 			rset = stmt.executeQuery(query);

@@ -31,25 +31,15 @@
 		height:350px;
 		margin-bottom:0px;
 		border:1px solid black;
-		background:gray;
+		background:#E9E9E9;
 	}
-	
-	.ohw_footer {
-		background:gray;
-		height:100px;
-		width:100%;
-		min-width:800px;
-		text-align:center;
-		margin-top:0px;
-		padding:0px;
-	}
-	
+		
 	.ohw-main-notice {
 		margin-top:20px;
 	}
 		
 	.ohw-main-notice-cont {
-		width:15%;
+		width:15%;		
 		text-align:center;
 		padding-top:5px;
 		padding-bottom:5px;
@@ -163,7 +153,7 @@
 					for(var i in json.list) {				
 						$('.ohw-main-notice').append(						
 							<% if(loginUser != null) { %>				
-								"<tr class = 'ohw-main-notice-tr'><td class = 'ohw-main-notice-cont'><a href = '<%= request.getContextPath() %>/ndetail?no=" + json.list[i].noticeNo + "&page=1'>" + json.list[i].noticeTitle + "</a></td>"
+								"<tr class = 'ohw-main-notice-tr'><td class = 'ohw-main-notice-cont'><a style = 'color:black !important;' href = '<%= request.getContextPath() %>/ndetail?no=" + json.list[i].noticeNo + "&page=1'>" + json.list[i].noticeTitle + "</a></td>"
 							<% } else { %>				
 								"<tr class = 'ohw-main-notice-tr'><td class = 'ohw-main-notice-cont'>" + json.list[i].noticeTitle + "</td>"			
 							<% } %>	+				
