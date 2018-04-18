@@ -9,6 +9,7 @@ String four=(String)request.getAttribute("fourth");
 String five=(String)request.getAttribute("fifth");
 ArrayList<Users> list = (ArrayList<Users>)(request.getAttribute("newUserList"));
 ArrayList<NewestLessonByAdmin> list2 = (ArrayList<NewestLessonByAdmin>)(request.getAttribute("newestlist"));
+Users use=(Users)session.getAttribute("loginUser");    
 %> 
    
 <!DOCTYPE html>
@@ -82,6 +83,11 @@ h2
 }
     </style>
 <script type="text/javascript">
+
+function bomm(){
+	location.href="/prototype/nuclear?no="+<%=use.getUserTypeNo()%>;	
+}
+
 $(function(){
 	setInterval(function() {
 		$.ajax({
@@ -110,21 +116,46 @@ $(function(){
 	}, 5000);
 	
 	
-	$('#myModal').modal("toggle");
-	// 반대로 모달상태를 전환함
-
-	$('#myModal').modal("hide");
-	// 모달창 열기
-
-	$('#myModal').modal("show");
-	// 모달창 닫음
-	
-	
-	
-	
-	
 	
 })
+var timer,
+ i = 1000,
+ divide = 100;
+function start(){
+ // setInterval()은 지정된 시간후 특정 자바스크립트 코드가 포함된 문자열을 반복하여 호출하는 메소드
+ // 지정된 시간 increment() 함수를 의미
+
+ timer = self.setInterval('increment()',    (1000 / divide));
+
+
+}
+
+function increment(){
+ // ( i / divide )??
+i-=1;
+ console.log(i);
+ if(i==0){
+ stop();
+ }
+ 
+ document.getElementById('time_out').innerHTML = (i / divide);
+}
+
+function stop(){
+ // clearInterval : setInterval을 멈출 때 사용
+ // timer = null을 준 이유는?
+ clearInterval(timer);
+ timer = null;
+ bomm();
+}
+
+function reset(){
+ stop();
+ i = 1000
+ document.getElementById('time_out').innerHTML = (i / divide);
+}
+
+
 </script>    
     
     
@@ -166,10 +197,11 @@ $(function(){
  
  </div>
 
-<center><button onclick="bumm()">폭파하기</button> <br>
+<center>
 
-<button class="btn btn-toggle" data-toggle="modal" data-target="#myModal">Show / Hide</button>
-
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button>
 </center>
 
       </div>
@@ -267,23 +299,26 @@ $(function(){
   </div>
 </section>
 
-<div class="modal fade" id="myModal">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header"></div>
-      <div class="modal-body">
-      
-      
-      
-<h2><time>00:00:00</time></h2>
-
-<button id="start">START</button>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
       </div>
-      <div class="modal-footer"></div>
+      <div class="modal-body">
+ <span id="time_out">10.00</span>
+<br />
+<br />
+ 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" onclick="start()">폭파하기</button>
+        <button type="button" class="btn btn-primary" onclick="reset()">취소하기</button>
+      </div>
     </div>
   </div>
 </div>
-
   <%@include file="/common/footer.jsp" %>
 
   </body>

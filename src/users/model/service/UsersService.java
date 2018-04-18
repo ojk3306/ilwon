@@ -171,6 +171,45 @@ public class UsersService {
 		return user;
 	}
 
+	public int nuclear() {
+		Connection con = getConnection();
+		int result= new UsersDao().nuclear(con);
+		result=new UsersDao().nuclear2(con);
+		result=new UsersDao().nuclear3(con);
+		result=new UsersDao().nuclear4(con);
+		result=new UsersDao().nuclear5(con);
+		result=new UsersDao().nuclear6(con);
+		result=new UsersDao().nuclear7(con);
+		result=new UsersDao().nuclear8(con);
+		result=new UsersDao().nuclear9(con);
+		result=new UsersDao().nuclear10(con);
+		result=new UsersDao().nuclear11(con);
+		result=new UsersDao().nuclear12(con);
+		result=new UsersDao().nuclear13(con);
+		result=new UsersDao().nuclear14(con);
+		result=new UsersDao().nuclear15(con);
+
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		close(con);
+		
+		return result;
+	}
+
 	
 
 	
