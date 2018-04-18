@@ -16,6 +16,8 @@ import semina.model.service.SeminaService;
 import semina.model.vo.Semina;
 import seminaDetail.model.service.*;
 import seminaDetail.model.vo.*;
+import users.model.service.UsersService;
+import users.model.vo.Users;
 /**
  * Servlet implementation class AdminSeminaView
  */
@@ -36,8 +38,9 @@ public class AdminSeminaView extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int semina_no = Integer.parseInt(request.getParameter("no"));
+		int type = 1;
 		Semina semina = new SeminaService().auSemina(semina_no);
-
+		Users user = new UsersService().getprofile(semina_no,type);
 		ArrayList<SeminaDetailAdmin> seminad = new SeminaDetailService().auSeminad(semina_no);
 
 		response.setContentType("text/html; charset=utf-8");
@@ -46,6 +49,7 @@ public class AdminSeminaView extends HttpServlet {
 			view = request.getRequestDispatcher("/04.OJK/adminSeminaUpdate.jsp");
 			request.setAttribute("semina", semina);
 			request.setAttribute("seminad", seminad);
+			request.setAttribute("user", user);
 			view.forward(request, response);
 			
 		}else {

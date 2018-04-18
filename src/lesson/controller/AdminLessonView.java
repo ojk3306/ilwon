@@ -14,6 +14,8 @@ import learnLog.model.service.LearnLogService;
 import learnLog.model.vo.LearnLogAdmin;
 import lesson.model.service.LessonService;
 import lesson.model.vo.Lesson;
+import users.model.service.UsersService;
+import users.model.vo.Users;
 
 /**
  * Servlet implementation class AdminLessonUpdate
@@ -37,12 +39,15 @@ public class AdminLessonView extends HttpServlet {
 		int lesson_no = Integer.parseInt(request.getParameter("no"));
 		Lesson lesson = new LessonService().auLesson(lesson_no);
 		ArrayList<LearnLogAdmin> lessona = new LearnLogService().auLessona(lesson_no); 
+		int type = 2;
+		Users user = new UsersService().getprofile(lesson_no,type);
 		response.setContentType("text/html; charset=utf-8");
 		RequestDispatcher view=null;
 		if(lesson != null) {
 			view = request.getRequestDispatcher("/04.OJK/adminLessonUpdate.jsp");
 			request.setAttribute("lesson", lesson);
 			request.setAttribute("lessona", lessona);
+			request.setAttribute("user", user);
 			view.forward(request, response);
 			
 		}else {

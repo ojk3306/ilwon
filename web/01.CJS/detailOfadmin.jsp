@@ -281,9 +281,7 @@ margin-left: 190px;
 
 
 
-   <input id="profile-image-upload" class="hidden" type="file">
-<div style="color:#999;" >click here to change profile image</div>
-                <!--Upload Image Js And Css-->
+ 
    </div>
               
               <br>
@@ -291,10 +289,7 @@ margin-left: 190px;
               <!-- /input-group -->
 </div>
 
- <div class="col-sm-6">
-<h4 style="color:#00b1b1;">Prasad Shankar Huddedar </h4>
-<span>Aspirant</span>            
-</div>
+ 
 
 <div class="clearfix" ></div>
 <hr style="margin:5px 0 5px 0;">

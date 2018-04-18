@@ -2,9 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ page  import="semina.model.vo.*"%>  
 <%@ page  import="seminaDetail.model.vo.*"%>  
+<%@ page  import="users.model.vo.*"%> 
 <% ArrayList<SeminaDetailAdmin> seminad = null;
 	Semina semina = (Semina)request.getAttribute("semina"); 
     seminad = (ArrayList<SeminaDetailAdmin>)request.getAttribute("seminad");
+    Users user = (Users)request.getAttribute("user");
 
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -156,11 +158,17 @@ margin-left: 190px;
         
             <div class="box-body" >
                      <div class="col-sm-6">
-                     <div align="center"> <img alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class="img-circle img-responsive"> 
+                     <div align="center"> 
+                     
+                     <%if(user.getUserRenamePhoto() != null) { %>
+						<img alt="User Pic" style="width:200px; height: 180px; " src="/prototype/userTitleimg/<%=user.getUserRenamePhoto()%>" class="img-circle img-responsive"> 
+					<% }else {%>
+							<img src="/prototype/userTitleimg/rakoon.jpg"
+							class="img-circle" alt="Cinque Terre" width="200px"
+							height="200px">
+					<%} %> 
                 
-                <input id="profile-image-upload" class="hidden" type="file">
-<div style="color:#999;" >click here to change profile image</div>
-                <!--Upload Image Js And Css-->
+              
    </div>
               
               <br>
@@ -168,10 +176,7 @@ margin-left: 190px;
               <!-- /input-group -->
 </div>
 
- <div class="col-sm-6">
-<h4 style="color:#00b1b1;">Prasad Shankar Huddedar </h4>
-<span>Aspirant</span>            
-</div>
+ 
 
 <div class="clearfix" ></div>
 <hr style="margin:5px 0 5px 0;">
