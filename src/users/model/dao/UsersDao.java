@@ -660,6 +660,41 @@ public class UsersDao {
 		}
 		return result;
 	}
+
+	public Users getprofile(Connection con, int semina_no, int type) {
+		Users user = new Users();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = "select u.* from users u, semina s where s.user_no = u.user_no and s.semina_no = ?";
+		
+		switch(type) {
+		
+		case 1 : sql = "select u.* from users u, semina s where s.user_no = u.user_no and s.semina_no = ?";break;
+		case 2 : sql = "select u.* from users u, lesson l where u.user_no = l.user_no2 and l.lesson_no = ?";break;
+		
+		}
+		try {
+			
+			
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, semina_no);
+					rset = pstmt.executeQuery();
+					
+				
+			
+			if(rset.next()) {
+				user.setUserRenamePhoto(rset.getString("USER_RENAME_PHOTO"));
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return user;
+	}
 	
 	
 }

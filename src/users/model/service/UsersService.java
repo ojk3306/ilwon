@@ -164,6 +164,13 @@ public class UsersService {
 		return result;
 	}
 
+	public Users getprofile(int semina_no, int type) {
+		Connection con = getConnection();
+		Users user = new UsersDao().getprofile(con,semina_no,type);
+		close(con);
+		return user;
+	}
+
 	
 
 	
