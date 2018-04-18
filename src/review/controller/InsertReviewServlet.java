@@ -33,12 +33,14 @@ public class InsertReviewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Review review = new Review();
+		String content = request.getParameter("content");
+		content = content.replace("\r\n", "<br>");
 		review.setLessonNo(Integer.parseInt(request.getParameter("lesson_no")));
 		review.setUserNO(Integer.parseInt(request.getParameter("user_no")));
 		review.setReviewSincerity(Integer.parseInt(request.getParameter("s")));
 		review.setReviewDelivery(Integer.parseInt(request.getParameter("d")));
 		review.setReviewPrepare(Integer.parseInt(request.getParameter("p")));
-		review.setReviewContent(request.getParameter("content"));
+		review.setReviewContent(content);
 		
 		int result = new ReviewService().insertReview(review);
 		
@@ -48,8 +50,8 @@ public class InsertReviewServlet extends HttpServlet {
 			 PrintWriter out = response.getWriter();
 			 String str="";
 			   str = "<script language='javascript'>";
-			   str += "opener.window.location.reload();";  //오프너 새로고침
-			   str += "self.close();";   // 창닫기
+			   str += "opener.window.location.reload();";  //�삤�봽�꼫 �깉濡쒓퀬移�
+			   str += "self.close();";   // 李쎈떕湲�
 			    str += "</script>";
 			   out.print(str);
 			

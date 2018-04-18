@@ -57,6 +57,13 @@ public class InsertLessonServlet extends HttpServlet {
 		MultipartRequest mrequest = new MultipartRequest(
 				request, savePath, maxSize, "utf-8",
 				new DefaultFileRenamePolicy());		
+		//개행처리하는 부분
+		String contop = mrequest.getParameter("contop");
+		contop = contop.replace("\r\n", "<br>");
+		String conmid = mrequest.getParameter("conmid");
+		conmid = conmid.replace("\r\n", "<br>");
+		String conbot = mrequest.getParameter("conbot");
+		conbot = conbot.replace("\r\n", "<br>");
 		
 		
 		Lesson lesson = new Lesson();
@@ -66,9 +73,9 @@ public class InsertLessonServlet extends HttpServlet {
 		lesson.setUser_no2(Integer.parseInt(mrequest.getParameter("userno")));
 		lesson.setLesson_price(Integer.parseInt(mrequest.getParameter("price")));
 		lesson.setLesson_count(Integer.parseInt(mrequest.getParameter("count")));
-		lesson.setLesson_contop(mrequest.getParameter("contop"));
-		lesson.setLesson_conmid(mrequest.getParameter("conmid"));
-		lesson.setLesson_conbot(mrequest.getParameter("conbot"));
+		lesson.setLesson_contop(contop);
+		lesson.setLesson_conmid(conmid);
+		lesson.setLesson_conbot(conbot);
 		lesson.setLesson_loc(mrequest.getParameter("loc"));
 		lesson.setLesson_rad(Integer.parseInt(mrequest.getParameter("rad")));
 		lesson.setLesson_keyword(mrequest.getParameter("keyword"));
