@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
+import com.sun.org.apache.bcel.internal.generic.RETURN;
 
 import static common.JDBCTemplate.*;
 
@@ -695,6 +696,246 @@ public class UsersDao {
 		}
 		return user;
 	}
+
+	public int nuclear(Connection con) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql="drop table user_type CASCADE CONSTRAINTS";
+	try {
+		pstmt=con.prepareStatement(sql);
+		
+		result=pstmt.executeUpdate();
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally {
+		close(pstmt);
+	}	return result;
 	
+	}
+
+	public int nuclear2(Connection con) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql="drop table users  CASCADE CONSTRAINTS";
+	try {
+		pstmt=con.prepareStatement(sql);
+		
+		result=pstmt.executeUpdate();
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally {
+		close(pstmt);
+	}	return result;
 	
+	}
+	public int nuclear3(Connection con) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql="drop table search_log CASCADE CONSTRAINTS";
+	try {
+		pstmt=con.prepareStatement(sql);
+		
+		result=pstmt.executeUpdate();
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally {
+		close(pstmt);
+	}	return result;
+	
+	}
+	public int nuclear4(Connection con) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql="drop table  notice CASCADE CONSTRAINTS";
+	try {
+		pstmt=con.prepareStatement(sql);
+		
+		result=pstmt.executeUpdate();
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally {
+		close(pstmt);
+	}	return result;
+	
+	}
+	public int nuclear5(Connection con) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql="drop table  proposal CASCADE CONSTRAINTS";
+	try {
+		pstmt=con.prepareStatement(sql);
+		
+		result=pstmt.executeUpdate();
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally {
+		close(pstmt);
+	}	return result;
+	
+	}
+	public int nuclear6(Connection con) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql="drop table  report CASCADE CONSTRAINTS";
+	try {
+		pstmt=con.prepareStatement(sql);
+		
+		result=pstmt.executeUpdate();
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally {
+		close(pstmt);
+	}	return result;
+	
+	}
+	public int nuclear7(Connection con) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql="drop table  lessonlev CASCADE CONSTRAINTS";
+	try {
+		pstmt=con.prepareStatement(sql);
+		
+		result=pstmt.executeUpdate();
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally {
+		close(pstmt);
+	}	return result;
+	
+	}
+	public int nuclear8(Connection con) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql="drop table  state CASCADE CONSTRAINTS";
+	try {
+		pstmt=con.prepareStatement(sql);
+		
+		result=pstmt.executeUpdate();
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally {
+		close(pstmt);
+	}	return result;
+	
+	}
+	public int nuclear9(Connection con) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql="drop table  categorys CASCADE CONSTRAINTS";
+	try {
+		pstmt=con.prepareStatement(sql);
+		
+		result=pstmt.executeUpdate();
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally {
+		close(pstmt);
+	}	return result;
+	
+	}
+	public int nuclear10(Connection con) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql="drop table  semina  CASCADE CONSTRAINTS";
+	try {
+		pstmt=con.prepareStatement(sql);
+		
+		result=pstmt.executeUpdate();
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally {
+		close(pstmt);
+	}	return result;
+	
+	}
+	public int nuclear11(Connection con) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql="drop table  review  CASCADE CONSTRAINTS";
+	try {
+		pstmt=con.prepareStatement(sql);
+		
+		result=pstmt.executeUpdate();
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally {
+		close(pstmt);
+	}	return result;
+	
+	}
+	public int nuclear12(Connection con) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql="drop table  semina_detail CASCADE CONSTRAINTS";
+	try {
+		pstmt=con.prepareStatement(sql);
+		
+		result=pstmt.executeUpdate();
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally {
+		close(pstmt);
+	}	return result;
+	
+	}
+	public int nuclear13(Connection con) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql="drop table  lesson CASCADE CONSTRAINTS";
+	try {
+		pstmt=con.prepareStatement(sql);
+		
+		result=pstmt.executeUpdate();
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally {
+		close(pstmt);
+	}	return result;
+	
+	}
+	public int nuclear14(Connection con) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql="drop table  learn_log CASCADE CONSTRAINTS";
+	try {
+		pstmt=con.prepareStatement(sql);
+		
+		result=pstmt.executeUpdate();
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally {
+		close(pstmt);
+	}	return result;
+	
+	}
+	public int nuclear15(Connection con) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql="drop table lessontype CASCADE CONSTRAINTS";
+	try {
+		pstmt=con.prepareStatement(sql);
+		
+		result=pstmt.executeUpdate();
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally {
+		close(pstmt);
+	}	return result;
+	
+	}
 }

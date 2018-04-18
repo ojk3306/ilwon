@@ -1086,12 +1086,12 @@ border-radius: 35px;
             </div>
             
             
-            <div class="panel-body">
+            <div class="panel-body" style="padding: 10px; width: auto; height: auto;">
             
             
-            <div class="tab-content">
+            <div class="tab-content" >
                     
-                    <div class="tab-pane fade in active" id="tab1info">
+                    <div class="tab-pane fade in active" id="tab1info" style="width: 770px; height: 300px;">
                       <div style="padding: 10px; width: 770px; height: 300px;" id="map">
           
           
@@ -1129,7 +1129,7 @@ border-radius: 35px;
         <div id="main_area">
                 <!-- Slider -->
                 <div class="row">
-                    <div class="span12" id="slider" style="width:765px; height:530px; margin-left: 12px;">
+                    <div class="span12" id="slider" style="width:765px; height:530px; margin-left : 2px">
                         <!-- Top part of the slider -->
                         <div class="row">
                             <div class="span8" id="carousel-bounding-box">
@@ -1139,15 +1139,15 @@ border-radius: 35px;
                                     <!-- 이미지 받기 -->
                                         <div class="active item" data-slide-number="0">
                                         <img src="/prototype/lesson_upload/<%= lessondetail.getLesson_rename() %>"
-                                        style="width:600px; height:500px"></div>
+                                        style="width:580px; height:500px"></div>
 
                                         <div class="item" data-slide-number="1">
                                         <img src="/prototype/lesson_upload/<%= lessondetail.getLesson_rename2() %>"
-                                         style="width:600px; height:500px"></div>
+                                         style="width:580px; height:500px"></div>
 
                                         <div class="item" data-slide-number="2">
                                         <img src="/prototype/lesson_upload/<%= lessondetail.getLesson_rename3() %>"
-                                         style="width:600px; height:500px"></div>
+                                         style="width:580px; height:500px"></div>
 
                                   
                                     
@@ -1156,7 +1156,7 @@ border-radius: 35px;
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> 
                 </div><!--/Slider-->      
 		</div>
 		
