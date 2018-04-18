@@ -126,7 +126,7 @@ min-height: 440px;
                   	 <option value="3">이메일로검색</option>
                   	 <option value="4">현상태로검색(Y,N)</option>
                   	 <option value="5">나이로 검색 (오차한계 2살)</option>
-                  	 <option value="6">성별로검색</option>
+                  	 <option value="6">성별로검색(F,M)</option>
                   	 <option value="7">주소로검색</option>
                   	 <option value="8">전화번호로검색</option>
                   	 

@@ -259,9 +259,9 @@ margin-left: 190px;
         
             <div class="box-body" >
                      <div class="col-sm-6">
-                     <div align="center"> <img alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class="img-circle img-responsive"> 
-                
-                <input id="profile-image-upload" class="hidden" type="file">
+ <div align="center"> <img alt="User Pic" style="width:200px; height: 180px; " src="/prototype/userTitleimg/<%=user.getUserOriginalPhoto()%>" class="img-circle img-responsive"> 
+
+   <input id="profile-image-upload" class="hidden" type="file">
 <div style="color:#999;" >click here to change profile image</div>
                 <!--Upload Image Js And Css-->
    </div>

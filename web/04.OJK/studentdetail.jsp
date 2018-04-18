@@ -288,7 +288,17 @@ LessonSearch lessondetail =(LessonSearch)request.getAttribute("lesson");
 		<ul>
 			<li class="topdiv">
 				<ul>
-					<li><img src="/prototype/userTitleimg/rakoon.jpg"></li>		
+				
+					<%if(loginUser.getUserRenamePhoto() != null) { %>
+					<Br><Br>
+						<img src="/prototype/userTitleimg/<%= loginUser.getUserRenamePhoto() %>"
+							class="img-circle" alt="Cinque Terre" width="200px"
+							height="200px">
+						<% }else {%>
+							<img src="/prototype/userTitleimg/rakoon.jpg"
+							class="img-circle" alt="Cinque Terre" width="200px"
+							height="200px">
+						<%} %>
 					<li class="underpic"></li>
 					<li></li>
 				</ul>	
