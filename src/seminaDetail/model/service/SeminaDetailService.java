@@ -2,6 +2,7 @@ package seminaDetail.model.service;
 
 import seminaDetail.model.dao.SeminaDetailDao;
 import seminaDetail.model.vo.SeminaDetail;
+import seminaDetail.model.vo.SeminaDetailAdmin;
 import seminaDetail.model.vo.SeminaDetailByInfo;
 
 import static common.JDBCTemplate.*;
@@ -34,6 +35,20 @@ public class SeminaDetailService {
 		close(con);
 		return result;
 	}
+
+
+	public ArrayList<SeminaDetailAdmin> auSeminad(int semina_no) {
+		Connection con = getConnection();
+		ArrayList<SeminaDetailAdmin> auSeminad = new SeminaDetailDao().auSeminad(con,semina_no);
+		
+		close(con);
+		
+		return auSeminad;
+	}
+
+
+	
+
 
 
 }

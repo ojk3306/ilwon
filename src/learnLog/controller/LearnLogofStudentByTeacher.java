@@ -35,7 +35,7 @@ public class LearnLogofStudentByTeacher extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		//선생의 입장에서 현재까지 가르친 학생들 내역
 		int user = Integer.parseInt(request.getParameter("user"));
 		System.out.println(user);
 		//현재 진행중인 수업.
@@ -55,7 +55,7 @@ public class LearnLogofStudentByTeacher extends HttpServlet {
 			job.put("lesson_title", l.getLESSON_TITLE());
 			job.put("log_no", l.getLOG_NO());
 			job.put("log_date", l.getLOG_DATE().toString());
-			
+			job.put("type",l.getLESSONTYPE());
 			//job.put("user2_no", l.getUserNo2());
 			
 		jarr.add(job);

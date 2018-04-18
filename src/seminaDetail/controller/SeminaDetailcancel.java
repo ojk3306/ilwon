@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import semina.model.service.SeminaService;
 import seminaDetail.model.service.SeminaDetailService;
 
 /**
@@ -29,16 +30,23 @@ public class SeminaDetailcancel extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		System.out.println("");
+		//세미나 디테일의 pk를 받음
 		int result= new SeminaDetailService().sdcan(Integer.parseInt(request.getParameter("no")));
-		if(result>0) {
+		int result1=0;
+		
+		if(result>0)
+		result1= new SeminaService().seminaDownnow(Integer.parseInt(request.getParameter("no")));
+		
+		
+		if(result1>0) {
+			System.out.println("취소 성공");
 			if(Integer.parseInt(request.getParameter("type"))==1001)
 			response.sendRedirect("/prototype/04.OJK/studentinfo.jsp");
 			else if(Integer.parseInt(request.getParameter("type"))==1002)
 			response.sendRedirect("/prototype/04.OJK/teacherinfo.jsp");
 		
 		}else {
-			
+			System.out.println("취소 실패");
 		}
 		
 	}

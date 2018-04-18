@@ -120,18 +120,23 @@
 </head>
 
 <body style="min-width : 800px; overflow : auto; display : absolute; background:#E9E9E9;">
-	<nav><%@ include file = "../../common/navbar.jsp" %>
-		<%@include file="/01.CJS\sidebar.jsp" %>
-	</nav>
+
+<nav>
+	<%@ include file = "../../common/navbar.jsp" %>
+	<%@include file="/01.CJS\sidebar.jsp" %>
+</nav>
+
 <div style="margin-top: -550px;">
 	<div id = "left_bar"></div>
 	<div id = "right_bar"></div>
-	<header style="text-align : center;"><h3 class="header_text">은밀한 학생</h3></header>
+</div>
+<header style="text-align : center;"><h3 class="header_text">은밀한 학생</h3></header>
 	
-	<hr>
-	<section class = "student_location">
-		<table>
-			<tr>
+<hr>
+	
+<section class = "student_location">
+	<table>
+		<tr>
 			<td style = "width : 100px; vertical-align : top;">
 				<h3 class="header_text">지역</h3>
 			</td>
@@ -157,166 +162,155 @@
 					<option value="제주">제주</option>
 				</select>
 			</td>
-			</tr>			
-		</table>
-		<table>
-			<tr>
-				<td>
-					<span id = "location_do"></span>
-				</td>
-			</tr>
-		</table>
-			
-	</section>
+		</tr>			
+	</table>
+	<table>
+		<tr>
+			<td>
+				<span id = "location_do"></span>
+			</td>
+		</tr>
+	</table>			
+</section>
 	
-	<hr>
+<hr>
 	
-	<section class = "student_class">
-	
-		<table class = "ohw-big-category">
-			<tr class = "ohw-big-category-tr">
-				<th style = "width : 100px;"><h3 class="header_text">수업</h3></th>				
-			</tr>			
-		</table>
-		
-		<table class = "ohw-small-category">
+<section class = "student_class">	
+	<table class = "ohw-big-category">
+		<tr class = "ohw-big-category-tr">
+			<th style = "width : 100px;"><h3 class="header_text">수업</h3></th>				
+		</tr>			
+	</table>		
+	<table class = "ohw-small-category">
 				
-		</table>		
-								
-	</section>	>	
-		
-	<script type="text/javascript">
+	</table>								
+</section>	
 	
+<script type="text/javascript">
+
 	$.ajax({
     	url:"<%= request.getContextPath() %>/tclist",
     	type:"get",
     	datatype:"json",
     	success:
-    		function(data) {
-    		
-    		console.log("CatgegoryList : ") + console.log(data);
-			var jsonStr = JSON.stringify(data);
-			var json = JSON.parse(jsonStr);
-			var bigCategory = "";
+    		function(data) {    		
+    			console.log("CatgegoryList : ") + console.log(data);
+				var jsonStr = JSON.stringify(data);
+				var json = JSON.parse(jsonStr);
+				var bigCategory = "";
 
-			for(var i in json.bigCategory){ //대분류 삽입				
-				bigCategory += '<td class = "ohw-big-category-td"><a onclick="changeClass(this.id);" id = "' + json.bigCategory[i].categoryBig + '">' + json.bigCategory[i].categoryBig + '</a></td>'						
-			}
+				for(var i in json.bigCategory){ //대분류 삽입				
+					bigCategory += '<td class = "ohw-big-category-td"><a onclick="changeClass(this.id);" id = "' + json.bigCategory[i].categoryBig + '">' + json.bigCategory[i].categoryBig + '</a></td>'						
+				}
 			
-			$('.ohw-big-category-tr').append(bigCategory);
+				$('.ohw-big-category-tr').append(bigCategory);
 
-			 for(var i in json.categoryInfo){ //소분류 삽입	
-				 $(".ohw-small-category").append($("#"+json.categoryInfo[i].categoryBig).html()+'<tr><td class = "sclass ohw-small-category-td ohw-' + json.categoryInfo[i].categoryBig + '" align = "left"><input type="radio" name="sclass-radio" value="' + json.categoryInfo[i].categorySmall + '">' + json.categoryInfo[i].categorySmall + '</td></tr>');
-			}
+				 for(var i in json.categoryInfo){ //소분류 삽입	
+					$(".ohw-small-category").append($("#"+json.categoryInfo[i].categoryBig).html()+'<tr><td class = "sclass ohw-small-category-td ohw-' + json.categoryInfo[i].categoryBig + '" align = "left"><input type="radio" name="sclass-radio" value="' + json.categoryInfo[i].categorySmall + '">' + json.categoryInfo[i].categorySmall + '</td></tr>');
+				}
 			 
-		}, error : function(a,b,c) {
+			}, 
+		error : function(a,b,c) {
 			console.log(b+c);
 		}
     });
 	
-	</script>
+</script>
 	
-	<hr>
+<hr>
 	
-	<section class = "student_info">
-		<table>
-			<tr>
-				<td style = "width : 200px;">
+<section class = "student_info">
+	<table>
+		<tr>
+			<td style = "width : 200px;">
 				<h3 class="header_text">기본정보</h3>
-				</td>
-				<td style="padding-top : 10px; width : 300px;">
+			</td>
+			<td style="padding-top : 10px; width : 300px;">
 				<a onclick="infoView(this.id);" id="ti"><h5>학생의 기본 정보로 검색해보세요.</h5></a>
-				</td>
-			</tr>
-		</table>
-			<div id = "person_info">					
-				<div>
-					<label>학생 성별</label>
-					<input type="radio" name="ohw-student-gender" value = "M">남  &nbsp; 
-					<input type="radio" name="ohw-student-gender" value = "F">여  &nbsp; 
-					<input type="radio" name="ohw-student-gender" value = null>무관
-				</div>
-					
-				<div>
-					<label>학생 연령대</label>
-					<select name = "ohw-student-age-pre">
-						<option value = "0">선택</option>
-						<option value = "20">20</option>
-						<option value = "30">30</option>
-						<option value = "40">40</option>
-						<option value = "50">50</option>
-					</select> ~
-				
-					<select name = "ohw-student-age-end">
-						<option value = "0">선택</option>
-						<option value = "20">20</option>
-						<option value = "30">30</option>
-						<option value = "40">40</option>
-						<option value = "50">50</option>
-					</select> 세
-				</div>								
-							
-			</div>
-		
-	</section>
+			</td>
+		</tr>
+	</table>
+	<div id = "person_info">					
+		<div>
+			<label>학생 성별</label>
+			<input type="radio" name="ohw-student-gender" value = "M">남  &nbsp; 
+			<input type="radio" name="ohw-student-gender" value = "F">여  &nbsp; 
+			<input type="radio" name="ohw-student-gender" value = null>무관
+		</div>
+		<div>
+			<label>학생 연령대</label>
+			<select name = "ohw-student-age-pre">
+				<option value = "0">선택</option>
+				<option value = "20">20</option>
+				<option value = "30">30</option>
+				<option value = "40">40</option>
+				<option value = "50">50</option>
+			</select> ~
+			<select name = "ohw-student-age-end">
+				<option value = "0">선택</option>
+				<option value = "20">20</option>
+				<option value = "30">30</option>
+				<option value = "40">40</option>
+				<option value = "50">50</option>
+			</select> 세
+		</div>								
+	</div>
+</section>
 	
-	<hr>
+<hr>
 	
-	<section class = "class_info">
-		<table>
-			<tr>
-				<td style = "width : 200px;">
-					<h3 class="header_text">수업정보</h3>
-				</td>
-				<td style="padding-top : 10px; width : 300px;">
-					<a onclick="infoView(this.id);" id="ci"><h5>학생이 원하는 수업을 알고 싶으신가요?</h5></a>
-				</td>
-			</tr>
-		</table>
-		
-		<div id = "class_dinfo">
-			<div>
-					<label>수업료</label>
-					<select name = "ohw-lesson-price-pre">
-						<option value = "0">선택</option>
-						<option value = "1">1</option>
-						<option value = "10">10</option>
-						<option value = "20">20</option>
-						<option value = "30">30</option>
-						<option value = "40">40</option>
-						<option value = "50">50</option>
-						<option value = "60">60</option>
-						<option value = "70">70</option>
-						<option value = "80">80</option>
-						<option value = "90">90</option>
-						<option value = "100">100</option>
-						<option value = "110">110</option>
-						<option value = "120">120</option>
-						<option value = "130">130</option>
-						<option value = "140">140</option>						
-					</select> ~
-				
-					<select name = "ohw-lesson-price-end">
-						<option value = "0">선택</option>
-						<option value = "10">10</option>
-						<option value = "20">20</option>
-						<option value = "30">30</option>
-						<option value = "40">40</option>
-						<option value = "50">50</option>
-						<option value = "60">60</option>
-						<option value = "70">70</option>
-						<option value = "80">80</option>
-						<option value = "90">90</option>
-						<option value = "100">100</option>
-						<option value = "110">110</option>
-						<option value = "120">120</option>
-						<option value = "130">130</option>
-						<option value = "140">140</option>
-						<option value = "150">150</option>
-					</select>
-				</div>		
-			
-			<div>			
+<section class = "class_info">
+	<table>
+		<tr>
+			<td style = "width : 200px;">
+				<h3 class="header_text">수업정보</h3>
+			</td>
+			<td style="padding-top : 10px; width : 300px;">
+				<a onclick="infoView(this.id);" id="ci"><h5>학생이 원하는 수업을 알고 싶으신가요?</h5></a>
+			</td>
+		</tr>
+	</table>		
+	<div id = "class_dinfo">
+		<div>
+			<label>수업료</label>
+			<select name = "ohw-lesson-price-pre">
+				<option value = "0">선택</option>
+				<option value = "1">1</option>
+				<option value = "10">10</option>
+				<option value = "20">20</option>
+				<option value = "30">30</option>
+				<option value = "40">40</option>
+				<option value = "50">50</option>
+				<option value = "60">60</option>
+				<option value = "70">70</option>
+				<option value = "80">80</option>
+				<option value = "90">90</option>
+				<option value = "100">100</option>
+				<option value = "110">110</option>
+				<option value = "120">120</option>
+				<option value = "130">130</option>
+				<option value = "140">140</option>						
+			</select> ~
+			<select name = "ohw-lesson-price-end">
+				<option value = "0">선택</option>
+				<option value = "10">10</option>
+				<option value = "20">20</option>
+				<option value = "30">30</option>
+				<option value = "40">40</option>
+				<option value = "50">50</option>
+				<option value = "60">60</option>
+				<option value = "70">70</option>
+				<option value = "80">80</option>
+				<option value = "90">90</option>
+				<option value = "100">100</option>
+				<option value = "110">110</option>
+				<option value = "120">120</option>
+				<option value = "130">130</option>
+				<option value = "140">140</option>
+				<option value = "150">150</option>
+			</select>
+		</div>		
+		<div>			
 			<table>
 				<tr>
 					<td><label>수업레벨</label></td>
@@ -331,15 +325,13 @@
 					</td>
 				</tr>				
 			</table>
-			</div>		
-			
-		</div>
-		
-	</section>
+		</div>			
+	</div>		
+</section>
 	
-	<hr>
+<hr>
 	
-	<section class="button_section">
+<section class="button_section">
 	<div align = "center">
 		<div style="width : 40%; overflow:hidden; margin-top : 30px; margin-bottom : 30px;">
 			<button type = "submit" class="btn btn-default" onclick="searchView(); searchStudent();">
@@ -350,54 +342,48 @@
 			</button>					
 		</div>
 	</div>	
-	</section>
+</section>
 	
-	<hr>
+<hr>
 	
 <script type="text/javascript">
 
-$(function () {
+	$(function () {
 	
-	$.ajax({
-		url:"<%= request.getContextPath() %>/llrlist",			
-		dataType:"json",
-		success:function(data) {			
+		$.ajax({
+			url:"<%= request.getContextPath() %>/llrlist",			
+			dataType:"json",
+			success:function(data) {			
 			
-			var jsonStr = JSON.stringify(data);
+				var jsonStr = JSON.stringify(data);
 			
-			var json = JSON.parse(jsonStr);		 
+				var json = JSON.parse(jsonStr);		 
 			
-			console.log("LessonReadyList : ") + console.log(data);
+				console.log("LessonReadyList : ") + console.log(data);
 			
-			for(var i in json.list) {
-				
-				$('.ohw-ready-table').append(
-						
-				 <% if(loginUser != null) { %>				 	
-					"<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><a href = '<%= request.getContextPath() %>/studentdetail?no=" + json.list[i].lessonNo + "&page=1'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></a></td>" +				
-				 <% } else { %>					
-					"<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></td>" + 
-				 <% } %>											
-						
-				"<td class = 'ohw-ready-name'>" + json.list[i].userName2 + "</td>" +					 
-				
-				"<td class = 'ohw-ready-category'>" + json.list[i].categoryBName + " / " + json.list[i].categorySName + "</td>" +
-				
-				"<td class = 'ohw-ready-comment'>" + json.list[i].lessonConmid + "</td></tr>"
-				
-				);				
-			}			
-		}	
-	});	
-});
+				for(var i in json.list) {				
+					$('.ohw-ready-table').append(						
+				 		<% if(loginUser != null) { %>				 	
+							"<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><a href = '<%= request.getContextPath() %>/studentdetail?no=" + json.list[i].lessonNo + "&page=1'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></a></td>" +				
+				 		<% } else { %>					
+				 			"<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></td>" + 				 	
+				 		<% } %>						
+						"<td class = 'ohw-ready-name'>" + json.list[i].userName2 + "</td>" +				
+						"<td class = 'ohw-ready-category'>" + json.list[i].categoryBName + " / " + json.list[i].categorySName + "</td>" +				
+						"<td class = 'ohw-ready-comment'>" + json.list[i].lessonConmid + "</td></tr>"				
+					);				
+				}			
+			}	
+		});	
+	});
 
 </script>	
 
-	<div align = "center">
+<div align = "center">
 	<div id="show_table" align = "center"> <!-- 평소에 펼쳐져 있는 테이블 -->	
 		<div class = "ohw-table-header"><h3>새로 올라온 강의</h3></div>	
 		<table class="table table-hover ohw-ready-table">
-		<tr></tr>
+			<tr></tr>
 		</table>
 	</div>
 	
@@ -446,8 +432,7 @@ $(function () {
 	    	type:"get",
 	    	datatype:"json",
 	    	success:
-	    		function(data) {
-	    			
+	    		function(data) {	    			
 	    			var jsonStr = JSON.stringify(data);
 	    			
 	    			var json = JSON.parse(jsonStr);		 
@@ -460,17 +445,17 @@ $(function () {
 	    				
 	    				$('.ohw-search-table').append(				
 	    				
-	    				<% if(loginUser != null) { %>				 	
-    						"<tr class = 'ohw-search-table-tr'><td class = 'ohw-search-photo'><a href = '<%= request.getContextPath() %>/studentdetail?no=" + json.list[i].lessonNo + "&page=1'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></a></td>" + 
-    					<% } else { %>					
-    						"<tr class = 'ohw-search-table-tr'><td class = 'ohw-search-photo'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></td>" + 
-    					<% } %>
+	    					<% if(loginUser != null) { %>				 	
+    							"<tr class = 'ohw-search-table-tr'><td class = 'ohw-search-photo'><a href = '<%= request.getContextPath() %>/studentdetail?no=" + json.list[i].lessonNo + "&page=1'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></a></td>" + 
+    						<% } else { %>					
+    							"<tr class = 'ohw-search-table-tr'><td class = 'ohw-search-photo'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></td>" + 
+    						<% } %>
     					
-	    				"<td class = 'ohw-search-name'>" + json.list[i].userName2 + "</td>" +					 
+	    					"<td class = 'ohw-search-name'>" + json.list[i].userName2 + "</td>" +					 
 	    				
-	    				"<td class = 'ohw-search-category'>" + json.list[i].categoryBName + " / " + json.list[i].categorySName + "</td>" +					 
+	    					"<td class = 'ohw-search-category'>" + json.list[i].categoryBName + " / " + json.list[i].categorySName + "</td>" +					 
 	    				
-	    				"<td class = 'ohw-search-comment'>" + json.list[i].lessonConmid + "</td></tr>"
+	    					"<td class = 'ohw-search-comment'>" + json.list[i].lessonConmid + "</td></tr>"
 	    				
 	    				);				
 	    			}			
@@ -478,21 +463,17 @@ $(function () {
 	    	error : function(a,b,c) {
 				console.log(b+c);
 			}
-	    });
-		
+	    });		
 	}
 	
-</script>
-	
+</script>	
 	<div id="search_table" align = "center"> <!-- 검색 결과 표시 테이블 -->
 		<div class = "ohw-table-header"><h3>검색 결과</h3></div>
 		<table class="table table-hover ohw-search-table">      
-		<tr></tr>	
+			<tr></tr>	
 		</table>
-	</div>	
-	
-</div>
-	
+	</div>		
+</div>	
 <div>
 	<%@ include file = "../../common/footer.jsp" %>
 </div>

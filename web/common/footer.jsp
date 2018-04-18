@@ -93,11 +93,11 @@
 </style>
 </head>
 
-<body style="  width: 100%;">
+<body style="  width: 100%; ">
 <!-- Footer -->
-	<section id="footer" style="  width: 100%;">
+	<section id="footer" style="height: 100px;" >
 		<div class="container" >
-			<div class="row">
+			<div class="row"  >
 				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5" style="background:#222222">
 					<ul class="list-unstyled list-inline social text-center">
 						<li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-facebook"></i></a></li>

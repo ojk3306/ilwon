@@ -400,7 +400,7 @@
                 step.stepElement.addClass('step-progressbar-firststep');
             if(index == this.settings.steps.length - 1)
                 step.stepElement.addClass('step-progressbar-laststep');
-            step.stepElement.css('left', step.progressValue + '%');
+            step.stepElement.css('left', 0 + '%');
         },
 
         // method that delete HTML elements for a step.
@@ -483,7 +483,7 @@
                 step.topLabelElement.addClass('step-progressbar-firststep');
             if(index == this.settings.steps.length - 1)
                 step.topLabelElement.addClass('step-progressbar-laststep');
-            step.topLabelElement.css('left', step.progressValue + '%');
+            step.topLabelElement.css('left', 0 + '%');
             var label = step.topLabel ? step.topLabel : (!isNullOrUndefined(step.value) ? (step.value + this.settings.unit) : '');
             step.topLabelElement.html(label);
         },
@@ -506,7 +506,7 @@
                 step.bottomLabelElement.addClass('step-progressbar-firststep');
             if(index == this.settings.steps.length - 1)
                 step.bottomLabelElement.addClass('step-progressbar-laststep');
-            step.bottomLabelElement.css('left', step.progressValue + '%');
+            step.bottomLabelElement.css('left', 0 + '%');
             step.bottomLabelElement.html(step.bottomLabel);
         }
     };

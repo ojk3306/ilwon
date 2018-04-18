@@ -1,25 +1,29 @@
-package learnLog.controller;
+package lesson.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import learnLog.model.service.LearnLogService;
+import lesson.model.service.LessonService;
+import lesson.model.vo.Lesson;
+import lesson.model.vo.LessonSearch;
 
 /**
- * Servlet implementation class LearnLogComfirm
+ * Servlet implementation class FindStudentLessonToupdate
  */
-@WebServlet("/confirmlesson")
-public class LearnLogComfirm extends HttpServlet {
+@WebServlet("/findstules")
+public class FindStudentLessonToupdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LearnLogComfirm() {
+    public FindStudentLessonToupdate() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,17 +32,17 @@ public class LearnLogComfirm extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		//학생,선생,레슨번호
-		String[] arr = request.getParameter("no").split("/");
-		
-		int result=new LearnLogService().Comfirmlog(Integer.parseInt(arr[0]),Integer.parseInt(arr[1]),Integer.parseInt(arr[2]));
-			
-		if(result>0) {
-		response.sendRedirect("/prototype/04.OJK/teacherinfo.jsp");			
-		}else {
-			
-		}
+
+	Lesson less=new LessonService().getLssoninfoByLessonNo(Integer.parseInt(request.getParameter("no")));
+	
+	RequestDispatcher view=null;
+	
+	if(less!=null) {
+		view=request.getRequestDispatcher("/04.OJK/lessonUpdate2.jsp");
+		request.setAttribute("list",less);
+		view.forward(request, response);
+	}
+	
 	}
 
 	/**
