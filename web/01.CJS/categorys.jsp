@@ -155,13 +155,9 @@ rehide();
 </head>
 <body>
 <%@ include file="/common\navbar.jsp" %>
-<style>
-.row{
-background :none;
-}
-</style>
+
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-<div id="container" STYLE="margin-bottom:30PX; ">
+<div id="container" STYLE="margin-bottom:30PX; height: 700px; "> 
 <div class="panel panel-default" style="width: 850px; margin: auto">
 <div class="panel-heading" style="height:35px;">
 	<center style="float: left;">
