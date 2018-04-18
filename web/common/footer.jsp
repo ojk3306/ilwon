@@ -88,7 +88,7 @@
 		}
 	}
 	
-	.row {
+	.ohw-row {
 	background:#e9e9e9;  width: 100%;
 	}
 	
@@ -114,7 +114,7 @@
 					</ul>
 				</div>			
 			</div>	
-			<div class="row">
+			<div class="ohw-row">
 				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white" style="background:#222222; color:white;">
 					<p>National Transaction Corporation is a Registered MSP/ISO of Elavon, Inc. Georgia [a wholly owned subsidiary of U.S. Bancorp, Minneapolis, MN]</p>					
 				</div>				
