@@ -259,7 +259,27 @@ margin-left: 190px;
         
             <div class="box-body" >
                      <div class="col-sm-6">
- <div align="center"> <img alt="User Pic" style="width:200px; height: 180px; " src="/prototype/userTitleimg/<%=user.getUserOriginalPhoto()%>" class="img-circle img-responsive"> 
+ <div align="center"> 
+
+
+					<%if(user.getUserOriginalPhoto() != null) { %>
+						<img alt="User Pic" style="width:200px; height: 180px; " src="/prototype/userTitleimg/<%=user.getUserOriginalPhoto()%>" class="img-circle img-responsive"> 
+					<% }else {%>
+							<img src="/prototype/userTitleimg/rakoon.jpg"
+							class="img-circle" alt="Cinque Terre" width="200px"
+							height="200px">
+					<%} %>
+
+
+
+
+
+
+
+
+
+
+
 
    <input id="profile-image-upload" class="hidden" type="file">
 <div style="color:#999;" >click here to change profile image</div>
