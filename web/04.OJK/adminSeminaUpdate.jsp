@@ -203,11 +203,11 @@ margin-left: 190px;
 <div class="bot-border"></div>
 
 <div class="col-sm-5 col-xs-6 tital">
-<strong>수강료:</strong>&nbsp;
+<strong>참가비:</strong>&nbsp;
 <label id="userage"></label>
 </div>
 <div class="col-sm-7 col-xs-6" style="font-size:medium;">
-<label><%=semina.getSeminaPrice() %>&nbsp;만원</label>
+<label><%=semina.getSeminaPrice() %>&nbsp;원</label>
 </div>
 <div class="clearfix"></div>
 <div class="bot-border"></div>

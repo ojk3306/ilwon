@@ -1129,7 +1129,7 @@ border-radius: 35px;
         <div id="main_area">
                 <!-- Slider -->
                 <div class="row">
-                    <div class="span12" id="slider">
+                    <div class="span12" id="slider" style="width:765px; height:530px; margin-left: 12px;">
                         <!-- Top part of the slider -->
                         <div class="row">
                             <div class="span8" id="carousel-bounding-box">
@@ -1139,15 +1139,15 @@ border-radius: 35px;
                                     <!-- 이미지 받기 -->
                                         <div class="active item" data-slide-number="0">
                                         <img src="/prototype/lesson_upload/<%= lessondetail.getLesson_rename() %>"
-                                        style="width:500px; height:500px"></div>
+                                        style="width:600px; height:500px"></div>
 
                                         <div class="item" data-slide-number="1">
                                         <img src="/prototype/lesson_upload/<%= lessondetail.getLesson_rename2() %>"
-                                         style="width:500px; height:500px"></div>
+                                         style="width:600px; height:500px"></div>
 
                                         <div class="item" data-slide-number="2">
                                         <img src="/prototype/lesson_upload/<%= lessondetail.getLesson_rename3() %>"
-                                         style="width:500px; height:500px"></div>
+                                         style="width:600px; height:500px"></div>
 
                                   
                                     

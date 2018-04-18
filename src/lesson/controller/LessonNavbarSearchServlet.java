@@ -49,7 +49,7 @@ public class LessonNavbarSearchServlet extends HttpServlet {
 		System.out.println("Result : " + result + " / (To.LessonNavbarSearchServlet)");
 		//4. 받은 결과를 가지고 성공/실패에 대한 뷰를 선택해서 내보냄
 		response.setContentType("text/html; charset=UTF-8");
-		if(result != null) {
+		if(result.size() > 0) {
 			//성공시 상세보기 페이지로 넘김
 			System.out.println("Result(0) : " + result.get(0).getLesson_keyword() + " / (To.LessonNavbarSearchServlet)");
 			view = request.getRequestDispatcher("03.OHW/views/find_teacher.jsp");
