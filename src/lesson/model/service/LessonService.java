@@ -278,5 +278,23 @@ public class LessonService {
 			close(conn);
 			return less;
 		}
+
+		public ArrayList<Lesson> selectMainTeacher() {
+			Connection con = getConnection();
+			
+			ArrayList<Lesson> list = new LessonDao().selectMainTeacher(con);
+			close(con);
+					
+			return list;
+		}
+
+		public ArrayList<Lesson> selectMainStudent() {
+			Connection con = getConnection();
+			
+			ArrayList<Lesson> list = new LessonDao().selectMainStudent(con);
+			close(con);
+					
+			return list;
+		}
 	
 }

@@ -73,6 +73,44 @@
 		color:black !important;
 		border: 1px solid #0000005c !important;
     	border-radius: 4px 4px 0 0;
+	}
+	
+	.ohw-main-teacher, .ohw-main-student {		
+		width:100%;
+		margin-top:20px;				
+	}
+	
+	.ohw-main-teacher-tr, .ohw-main-student-tr {	
+		width:100%;
+		height:110px;
+		text-align:center;				
+	}
+	.ohw-main-teacher-tr > th, .ohw-main-student-tr > th {			
+		text-align:center;			
+	}
+	
+	.ohw-man-teacher-conp, .ohw-man-student-conp {
+		width:5%;		
+		padding-top:5px;
+		padding-bottom:5px;
+	}
+	
+	.ohw-man-teacher-conw, .ohw-man-student-conw {
+		width:5%;		
+		padding-top:5px;
+		padding-bottom:5px;
+	}
+	
+	.ohw-man-teacher-conc, .ohw-man-student-conc {
+		width:5%;		
+		padding-top:5px;
+		padding-bottom:5px;
+	}
+	
+	.ohw-man-teacher-cond, .ohw-man-student-cond {
+		width:5%;		
+		padding-top:5px;
+		padding-bottom:5px;
 	}	
 	
 </style>
@@ -142,9 +180,10 @@
 			<div id="menu1" class="tab-pane fade">
 				<div>
 					<table class = "ohw-main-teacher">
-						<tr class = "ohw-main-teacher-tr">
-							<th class = "ohw-main-teacher-cont">사진</th>
+						<tr class = "ohw-main-teacher-tr" style = "height:40px;">
+							<th class = "ohw-main-teacher-conp">사진</th>
 							<th class = "ohw-main-teacher-conw">작성자</th>
+							<th class = "ohw-main-teacher-conc">카테고리</th>
 							<th class = "ohw-main-teacher-cond">날짜</th>
 						</tr>
 					</table>
@@ -153,16 +192,40 @@
 			
 <script type="text/javascript">/* 메인화면 선생 시작 */
 	
-	
+	$(document).ready(function readyList() {	
+		$.ajax({
+			url:"<%= request.getContextPath() %>/lmteacher",			
+			dataType:"json",
+			success:function(data) {			
+				var jsonStr = JSON.stringify(data);
+				var json = JSON.parse(jsonStr);		 
+				console.log("LessonMainTeacherList : ") + console.log(data);			
+				for(var i in json.list) {				
+					$('.ohw-main-teacher').append(						
+					 	<% if(loginUser != null) { %>				 	
+							"<tr class = 'ohw-main-teacher-tr'><td class = 'ohw-main-teacher-conp'><a href = '<%= request.getContextPath() %>/lessondetail?no=" + json.list[i].lessonNo + "&page=1'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></a></td>" + 
+				
+					 	<% } else { %>					
+							"<tr class = 'ohw-main-teacher-tr'><td class = 'ohw-main-teacher-conp'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></td>" + 
+					 	<% } %>						
+						"<td class = 'ohw-main-teacher-conw'>" + json.list[i].userName2 + "</td>" +				
+						"<td class = 'ohw-main-teacher-conc'>" + json.list[i].categoryBName + " / " + json.list[i].categorySName + "</td>" +				
+						"<td class = 'ohw-main-teacher-cond'>" + json.list[i].lessonStartDate + "</td></tr>"				
+					);				
+				}			
+			}		
+		});	
+	});
 	
 </script><!-- 메인화면 선생 끝 -->
 			
 			<div id="menu2" class="tab-pane fade">
 				<div>
 					<table class = "ohw-main-student">
-						<tr class = "ohw-main-student-tr">
+						<tr class = "ohw-main-student-tr" style = "height:40px;">
 							<th class = "ohw-main-student-cont">사진</th>
 							<th class = "ohw-main-student-conw">작성자</th>
+							<th class = "ohw-main-student-conc">카테고리</th>
 							<th class = "ohw-main-student-cond">날짜</th>
 						</tr>
 					</table>
@@ -173,7 +236,30 @@
 	
 <script type="text/javascript">/*메인화면  학생 시작 */
 	
-	
+	$(document).ready(function readyList() {	
+		$.ajax({
+			url:"<%= request.getContextPath() %>/lmstudent",			
+			dataType:"json",
+			success:function(data) {			
+				var jsonStr = JSON.stringify(data);
+				var json = JSON.parse(jsonStr);		 
+				console.log("LessonMainStudentList : ") + console.log(data);			
+				for(var i in json.list) {				
+					$('.ohw-main-student').append(						
+					 	<% if(loginUser != null) { %>				 	
+							"<tr class = 'ohw-main-student-tr'><td class = 'ohw-main-student-conp'><a href = '<%= request.getContextPath() %>/lessondetail?no=" + json.list[i].lessonNo + "&page=1'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></a></td>" + 
+				
+					 	<% } else { %>					
+							"<tr class = 'ohw-main-student-tr'><td class = 'ohw-main-student-conp'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></td>" + 
+					 	<% } %>						
+						"<td class = 'ohw-main-student-conw'>" + json.list[i].userName1 + "</td>" +				
+						"<td class = 'ohw-main-student-conc'>" + json.list[i].categoryBName + " / " + json.list[i].categorySName + "</td>" +				
+						"<td class = 'ohw-main-student-cond'>" + json.list[i].lessonStartDate + "</td></tr>"				
+					);				
+				}			
+			}		
+		});	
+	});
 	
 </script><!--메인화면 학생 끝 -->
 		
