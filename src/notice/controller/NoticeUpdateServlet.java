@@ -35,27 +35,28 @@ public class NoticeUpdateServlet extends HttpServlet {
 				
 				RequestDispatcher view = null;				
 				
-				/*//2. 전송온 값 꺼내서 변수 또는 객체에 저장하기 */
-								
+				/*//2. �쟾�넚�삩 媛� 爰쇰궡�꽌 蹂��닔 �삉�뒗 媛앹껜�뿉 ���옣�븯湲� */
+				String content = request.getParameter("ucontent");
+				content.replace("\r\n", "<br>");				
 				Notice notice = new Notice();
 				notice.setNoticeNo(Integer.parseInt(request.getParameter("no")));
 				notice.setUserNo(Integer.parseInt(request.getParameter("uwritern")));
 				notice.setUserName(request.getParameter("uwriter"));
 				notice.setNoticeTitle(request.getParameter("utitle"));
-				notice.setNoticeContent(request.getParameter("ucontent"));									
+				notice.setNoticeContent(content);									
 				notice.setNoticeDate(Date.valueOf(request.getParameter("udate")));								
 				
-				//3. 서비스 클래스 메소드로 값 전달하고, 결과 받기
+				//3. �꽌鍮꾩뒪 �겢�옒�뒪 硫붿냼�뱶濡� 媛� �쟾�떖�븯怨�, 寃곌낵 諛쏄린
 				int result = new NoticeService().updateNotice(notice);
 				
-				//4. 받은 결과를 가지고 성공/실패에 대한 뷰를 선택해서 내보냄
+				//4. 諛쏆� 寃곌낵瑜� 媛�吏�怨� �꽦怨�/�떎�뙣�뿉 ���븳 酉곕�� �꽑�깮�빐�꽌 �궡蹂대깂
 				response.setContentType("text/html; charset=UTF-8");
 				if(result > 0) {
-					//성공시 상세보기 페이지로 넘김
+					//�꽦怨듭떆 �긽�꽭蹂닿린 �럹�씠吏�濡� �꽆源�
 					response.sendRedirect( request.getContextPath() + "/ndetail?no=" + notice.getNoticeNo());
 				} else {
 					view = request.getRequestDispatcher("03.OHW/views/noticeError.jsp");
-					request.setAttribute("message", notice.getNoticeNo() + "번 게시글 수정 실패");
+					request.setAttribute("message", notice.getNoticeNo() + "踰� 寃뚯떆湲� �닔�젙 �떎�뙣");
 					view.forward(request, response);
 				}	
 			}

@@ -28,8 +28,11 @@ $(document).on('click', '#close-preview', function(){
 });
 
 $(function() {
-	if(<%=message%> != null)
+	var null2 = 'null';
+	var message2 = '<%=message%>';
+	if( message2 != null2) {
 		alert('<%=message%>');
+	}
     // Create the close button
     var closebtn = $('<button/>', {
         type:"button",

@@ -35,11 +35,11 @@
 
 <hr>
 <div align = "center">
-<form action="<%= request.getContextPath() %>/ninsert" method = "post">
+<form action="/prototype/ninsert" method = "post">
 <input type = "hidden" name = "nwriter" value = "<%= loginUser.getUserName() %>">
 <input type = "hidden" name = "nwritern" value = "<%= loginUser.getUserNo() %>">
 <div class = "ohw-div-textbox">
-	<input class = "form-control" type="text" name = "ntitle" placeholder = "제목" size = "98px">
+	<input class = "form-control" type="text" name = "ntitle" placeholder = "제목" size = "98px" required>
 </div>
 
 <hr>
