@@ -192,7 +192,9 @@
 								</span>
 							</div>
 						</div>
-					</form>				
+					</form>
+					<br>
+					<hr>			
 					<h4 class="text-center">Popular Semina!</h4>
 					<% for(Semina i: Popularlist) {	
 						String[] img = new String[11];
@@ -211,19 +213,20 @@
 						Integer result = 333;
 						result=(int)(Math.random()*10)+0;
 					%>				
-					<div class="ohw-semina-row">
-						<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-							<img src="<%=img[result] %>" alt="" class="img-thumbnail img-responsive">
-						</div>
-						<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-							<% if(loginUser==null) { %>
+					
+					<table style = "width:100%;">
+						<tr>
+							<td rowspan = "2" style = "width:110px; height:75px;"><img src="<%=img[result] %>" alt="" class="img-thumbnail img-responsive" style = "width:110px; height:75px;"></td>
+							<td style = "text-align:center;"><% if(loginUser==null) { %>
 								<a href="/prototype/sdetail?userno=<%=i.getSeminaNo()%>"><h5><%=i.getSeminaTitle() %></h5></a>
 							<% } else { %>						
 								<a href="/prototype/sdetail?userno=<%=i.getSeminaNo()%>&usernono=<%= loginUser.getUserNo()%>"><h5><%=i.getSeminaTitle() %></h5></a>
-							<% } %>
-							<p class="text-muted"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><%=i.getSeminaEndDate() %></p>
-							</div>
-						</div>					
+							<% } %></td>
+						</tr>
+						<tr>
+							<td style = "text-align:center;"><p class="text-muted"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><%=i.getSeminaEndDate() %></p></td>
+						</tr>
+					</table>
 					<hr>
 					<% } %>
 				</div>		
@@ -234,11 +237,11 @@
 <div align="center">
 	<ul class="pager" style = "width:50%;">
 		<% if(currentPage <= 1) { %>	
-			<li class="previous"><span aria-hidden="true">←Newer Posts</span></li>&nbsp;
+			<li class="previous"><span aria-hidden="true">←Newer Posts</span></li>
 		<% } else { %>
 			<li class="previous"><a href="/prototype/semilist?page=1"><span aria-hidden="true">←</span> Newer Posts</a></li>
 		<% } %>
-		<% if((currentPage - 10) < startPage && (currentPage - 10) > 1){ %>
+		<% if((currentPage - 10) < startPage && (currentPage - 10) > 1) { %>
 			<a href="/prototype/semilist?page=<%= startPage - 10 %>"></a>	
 		<% } else { %>	
 		
