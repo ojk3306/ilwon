@@ -30,7 +30,7 @@ public class LessonService {
 		} else {
 			rollback(conn);
 		}
-		
+		close(conn);
 		return result;
 	}
 	
@@ -295,6 +295,16 @@ public class LessonService {
 			close(con);
 					
 			return list;
+		}
+
+		public int getLessonNumByUserNO(int parseInt) {
+			Connection conn = getConnection();
+			
+			int result = new LessonDao().getLessonNumByUserNO(conn, parseInt);
+			
+		
+			close(conn);
+			return result;
 		}
 	
 }

@@ -47,7 +47,7 @@
 }
 	})
 	
-	setInterval(function() {
+/*	setInterval(function() {
 		$.ajax({
 			url:"/prototype/hidden",
 			date:{},
@@ -64,7 +64,7 @@
 		}
 			})	
 	},5000);
-	
+*/	
 	
 	
 	

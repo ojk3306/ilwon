@@ -210,6 +210,13 @@ public class UsersService {
 		return result;
 	}
 
+	public int getLessonMaxByUserNO(int parseInt) {
+		Connection con = getConnection();
+		int result = new UsersDao().getLessonMaxByUserNO(con,parseInt);
+		close(con);
+		return result;
+	}
+
 	
 
 	

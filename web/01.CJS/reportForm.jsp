@@ -28,10 +28,15 @@ $(document).on('click', '#close-preview', function(){
 });
 
 $(function() {
+	
+	
+	
 	var null2 = 'null';
 	var message2 = '<%=message%>';
 	if( message2 != null2) {
-		alert('<%=message%>');
+		
+		$('#myModal').modal('show');
+		
 	}
     // Create the close button
     var closebtn = $('<button/>', {
@@ -227,8 +232,8 @@ $(function() {
             </div>
             <div class="form-group">
 <label>내용</label>
-<textarea class="form-control" id="comment" maxlength="3000" rows="20" name="contents" placeholder="신고는 신중히" >
- 신고 유형: 
+<textarea class="form-control" id="comment" maxlength="3000" rows="20" name="contents" placeholder="" >
+신고 유형: 
 	ex)욕설, 사기, 선정성 ...
 	
 신고 내용:
@@ -286,6 +291,24 @@ $(function() {
 <div style="margin-top: 50px;">
 <%@include file="/common/footer.jsp" %>
    </div>
-   
+   <div class="modal fade"  id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="width:500px; height: 200px; margin-top: 200px;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">신고가 접수되었습니다</h4>
+      </div>
+      <div class="modal-body">
+고객님의 귀중한 시간을 투자해서 투고하신 신고는 제대로 접수되었습니다<Br>
+충분한 피드백을 드리기위해 많은 노력을 아끼지 않겠습니다.
+<br />
+<br />
+ 
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>

@@ -1357,4 +1357,31 @@ public class LessonDao {
 		
 		return list;
 	}
+
+	public int getLessonNumByUserNO(Connection conn, int parseInt) {
+		//현재 강의중인 강의수가 몇개인지 샘.
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		int result=0;
+		String sql=" select count(USER_NO2) from LESSON where STATE_No = 1 and USER_NO2= ? ";
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1,parseInt);
+			
+			rset=pstmt.executeQuery();
+			if(rset.next())
+				result=rset.getInt(1);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		
+		
+		
+		return result;
+	}
 }

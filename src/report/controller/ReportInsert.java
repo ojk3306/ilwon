@@ -116,12 +116,10 @@ public class ReportInsert extends HttpServlet {
 				int result=new ReportService().insertReport(repo);
 				
 				if(result>0) {
-
-					
 				view=request.getRequestDispatcher("/01.CJS/reportForm.jsp");
 				request.setAttribute("message","신고완료!!");
 				view.forward(request, response);
-				}else {
+					}else {
 				view=request.getRequestDispatcher("/01.CJS/reportForm.jsp");
 				request.setAttribute("message","오류입니다!!");
 				view.forward(request, response);

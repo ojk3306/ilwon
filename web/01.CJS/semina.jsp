@@ -231,7 +231,13 @@
 									<div style = "max-height:18px; overflow:hidden;">
 										<h4 style = "margin:0"><%=i.getSeminaTitle() %></h4>
 									</div>
+									
+									
+									<%if(i.getSeminaContent1().length()<25){%>
 									<p><%=i.getSeminaContent1()%></p>
+									<%}else{ %>
+									<p><%=i.getSeminaContent1().substring(0,20)%>......</p>
+									<%} %>
 									<% if(loginUser==null) { %>
 										<a href="/prototype/sdetail?userno=<%=i.getSeminaNo()%> " class="btn btn-default">자세히보기...</a>
 									<% } else { %>

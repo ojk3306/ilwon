@@ -67,7 +67,7 @@ public class SeminaDao {
 		PreparedStatement pstmt=null;
 		ResultSet rset=null;
 		ArrayList<Semina> al=new ArrayList<Semina>();
-		String sql="select * from (select ROWNUM AS RNUM, A.* FROM   (SELECT * FROM semina  where SEMINA_ENDDATE - sysdate > 0 and SEMINA_STATE = 1 ) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY SEMINA_STARTDATE DESC ";
+		String sql="select * from (select ROWNUM AS RNUM, A.* FROM   (SELECT * FROM semina  where SEMINA_ENDDATE - sysdate > 0 and SEMINA_STATE = 1  order by SEMINA_STARTDATE desc ) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY SEMINA_STARTDATE DESC ";
 		int startRow = (currentPage - 1) * limit + 1; 
 		int endRow = startRow + limit - 1;
 		
@@ -104,8 +104,7 @@ public class SeminaDao {
 			semi.setSeminaMax(rset.getInt("SEMINA_MAX"));
 			semi.setSeminaOriginalFileName(rset.getString("SEMINA_ORIGINALFILENAME"));
 			semi.setSeminaRenameFileName(rset.getString("SEMINA_RENAMEFILENAME"));
-			al.add(semi);
-			System.out.println(semi.toString());			
+			al.add(semi);		
 			}
 			
 		} catch (Exception e) {
@@ -121,7 +120,7 @@ public class SeminaDao {
 		PreparedStatement pstmt=null;
 		ResultSet rset=null;
 		ArrayList<Semina> al=new ArrayList<Semina>();
-		String sql="select * from Semina where SEMINA_ENDDATE - sysdate > 0 and SEMINA_STATE = 1 ";
+		String sql="select * from Semina where SEMINA_ENDDATE - sysdate > 0 and SEMINA_STATE = 1 order by SEMINA_STARTDATE desc ";
 		
 		try {
 			pstmt=con.prepareStatement(sql);
@@ -247,7 +246,7 @@ public class SeminaDao {
 		PreparedStatement pstmt=null;
 		ResultSet rset=null;
 		ArrayList<Semina> al=new ArrayList<Semina>();
-		String sql="select * from (select ROWNUM AS RNUM, A.* FROM   (select * from semina where (SEMINA_TITLE like ? or user_no in(select user_no from users where user_name like ? )) and  SEMINA_ENDDATE - sysdate > 0 and SEMINA_STATE = 1) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY SEMINA_STARTDATE DESC";
+		String sql="select * from (select ROWNUM AS RNUM, A.* FROM   (select * from semina where (SEMINA_TITLE like ? or user_no in(select user_no from users where user_name like ? )) and  SEMINA_ENDDATE - sysdate > 0 and SEMINA_STATE = 1  order by SEMINA_STARTDATE desc ) A WHERE ROWNUM < ? ) WHERE RNUM >= ? ORDER BY SEMINA_STARTDATE DESC";
 		int startRow = (currentPage - 1) * limit + 1; 
 		int endRow = startRow + limit - 1;
 		

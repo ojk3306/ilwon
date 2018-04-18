@@ -403,7 +403,7 @@
 		}		
 	});
 	
-	function searchKeyword(keyword) {			
+	function searchKeyword(keyword) {
 		<% System.out.println("SearchKeywordValue : " + request.getParameter("ohw-keyword")); %>
 		var lessonKeywordSearch = keyword;
 		/* alert(lessonKeywordSearch); */	

@@ -73,6 +73,12 @@ message = (String)request.getAttribute("message");
 	    )
 	    document.querySelector('head').appendChild(msViewportStyle)
 	  }
+	  $("#myModal").on('hide.bs.modal', function(){
+
+		location.href="/prototype/03.OHW/views/login.jsp";
+
+		});  
+	  
 	})
 	
 </script>
@@ -186,5 +192,7 @@ message = (String)request.getAttribute("message");
     </div>
   </div>
 </div>
+
+
 </body>
 </html>

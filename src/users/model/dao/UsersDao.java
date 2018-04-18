@@ -938,4 +938,26 @@ public class UsersDao {
 	}	return result;
 	
 	}
+
+	public int getLessonMaxByUserNO(Connection con, int parseInt) {
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		int result=0;
+	String sql="select * from USERS where USER_NO = ? and USER_EXEABLE = 'Y' ";
+	try {
+		pstmt=con.prepareStatement(sql);
+		pstmt.setInt(1,parseInt);
+		rset=pstmt.executeQuery();
+		
+		if(rset.next())
+		result=rset.getInt("USER_LESSONMAX");
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally {
+		close(rset);
+		close(pstmt);
+	}	
+	return result;
+	
+	}
 }

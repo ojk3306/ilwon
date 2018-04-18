@@ -55,10 +55,18 @@ public class LessonNavbarSearchServlet extends HttpServlet {
 			view = request.getRequestDispatcher("03.OHW/views/find_teacher.jsp");
 			request.setAttribute("ohw-keyword", result.get(0).getLesson_keyword());
 			view.forward(request, response);
+		
 		} else {
+			// 실패해도 find_teacher.jsp로 보내서 "결과값이 없습니다"를 출력해야 정상적인 로직
+			
+			/*
 			view = request.getRequestDispatcher("03.OHW/views/noticeError.jsp");
 			request.setAttribute("message", "키워드 검색 실패");
 			view.forward(request, response);
+			제대로된 에러페이지로 보내기.
+			*
+			*/
+			
 		}	
 	}	
 

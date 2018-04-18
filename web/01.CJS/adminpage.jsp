@@ -87,6 +87,12 @@ function bomm(){
 }
 
 $(function(){
+	if(<%=use.getUserTypeNo()%> != 1003 )
+		location.href="/prototype/index.jsp";
+	
+	
+	
+	
 	setInterval(function() {
 		$.ajax({
 			url:"/prototype/realtimelog",

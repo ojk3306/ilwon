@@ -39,7 +39,7 @@ public class InsertSearchLogServlet extends HttpServlet {
 
 		sl.setSearchContent(keyword);
 			
-		if(request.getParameter("user")==null  || request.getParameter("user").equals("undefined")) {
+		if(request.getParameter("user").equals("")  || request.getParameter("user").equals("undefined")) {
 		
 		}else {
 		sl.setUserNo(Integer.parseInt(request.getParameter("user")));	

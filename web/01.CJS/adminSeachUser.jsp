@@ -11,12 +11,8 @@
 	int seachOption =((Integer)request.getAttribute("seachOption")).intValue();
 	int seachtype =((Integer)request.getAttribute("seachtype")).intValue();
 	String seach = (String)request.getAttribute("seach");
-	String message=(String)request.getAttribute("message");
-	
-	
-	
-	
-	
+	String message=(String)request.getAttribute("message");	
+	Users use=(Users)session.getAttribute("loginUser");
 %>
 <!DOCTYPE html>
 <html>
@@ -26,6 +22,9 @@
 
 <script type="text/javascript">
 $(function(){
+	if(<%=use.getUserTypeNo()%> != 1003 )
+		location.href="/prototype/index.jsp";
+	
 	$("option[value="+<%=seachOption%>+"]").prop("selected", true);
 	$("option[value="+<%=seachtype%>+"]").prop("selected", true);
 })

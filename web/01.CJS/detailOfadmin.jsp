@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
     <%@ page import="users.model.vo.*" %>
     <%
+	
+	Users use=(Users)session.getAttribute("loginUser");
+	
     Users user=(Users)request.getAttribute("user");
     %>
 <!DOCTYPE html>
@@ -147,6 +150,8 @@ function updateexeable(){
 }
 
 $(function(){
+	if(<%=use.getUserTypeNo()%> != 1003 )
+		location.href="/prototype/index.jsp";
 	
 	if(<%=user.getUserGender()%>==M){
 		$("#M").attr("checked", true);
