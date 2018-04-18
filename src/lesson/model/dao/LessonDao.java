@@ -76,16 +76,17 @@ public class LessonDao {
 		Statement stmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * "
-				+ "from lesson l, users u, lessonlev lv, lessontype lt, categorys c "
-				+ "where l.USER_NO2 = u.user_no "
-				+ "and l.LEVEL_NO = lv.LESSONLEV_NO "
-				+ "and l.LESSON_TYPE = lt.TYPE_NO "
-				+ "and l.category_no = c.category_no "
-				+ "and l.LESSON_ENDDATE is null "
-				+ "and l.LESSON_TYPE = 7000 "
-				+ "and rownum <= 6 "
-				+ "order by lesson_startdate desc";
+		String query = "select * " + 
+				"from lesson l, categorys c, users u, LESSONLEV lv, LESSONTYPE lt, USER_TYPE ut, STATE st " + 
+				"where l.CATEGORY_NO = c.CATEGORY_NO " + 
+				"and l.USER_NO2 = u.USER_NO " + 
+				"and l.LEVEL_NO = lv.LESSONLEV_NO " + 
+				"and l.LESSON_TYPE = lt.TYPE_NO " + 
+				"and u.USER_TYPE = ut.USERTYPE_NO " + 
+				"and l.STATE_NO = st.STATE_NO " + 
+				"and l.LESSON_ENDDATE is null " + 
+				"and l.LESSON_TYPE = 7000 " + 
+				"order by l.LESSON_NO desc";
 		try {
 			stmt = con.createStatement();
 			rset = stmt.executeQuery(query);
