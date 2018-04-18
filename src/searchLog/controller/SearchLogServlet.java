@@ -39,8 +39,8 @@ public class SearchLogServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		SearchLog sl=new SearchLog();
-		sl.setSearchContent(request.getParameter("word"));
-		
+		sl.setSearchContent( request.getParameter("word") );
+		System.out.println("sl.getSearchContent()="+sl.getSearchContent());
 		if(request.getParameter("userno")!=null) {
 		sl.setUserNo(Integer.parseInt(request.getParameter("userno")));
 		}
@@ -77,7 +77,8 @@ public class SearchLogServlet extends HttpServlet {
 		}
 		//전송용 객체에 jarr 배열 담음
 		json.put("list", jarr);
-		/*System.out.println("json : " + json.toJSONString() + " / (To.SearchLogServlet)");*/
+		System.out.println("json : " + json.toJSONString() + " / (To.SearchLogServlet)");
+		
 		
 		response.setContentType("application/json; charset=utf-8");
 		PrintWriter out = response.getWriter();

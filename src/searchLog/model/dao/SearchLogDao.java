@@ -72,6 +72,7 @@ public class SearchLogDao {
 		int row=0;
 		
 		if(sl.getUserNo() == null) {
+			System.out.println(sl.getSearchContent());
 			query="select SEACH_CONTENT , count(SEACH_CONTENT) from SEARCH_LOG where SEACH_CONTENT like ? group by SEACH_CONTENT order by count(SEACH_CONTENT) desc";
 		} else {
 			query="select SEACH_CONTENT , count(SEACH_CONTENT) from SEARCH_LOG where SEACH_CONTENT like ? and user_no = ? group by SEACH_CONTENT order by count(SEACH_CONTENT) desc";
@@ -120,10 +121,11 @@ public class SearchLogDao {
 			close(rset);			
 			close(pstmt);		
 		}
-		/*System.out.println("al : " + al + " / (To.SearchLogDao)");*/
+		System.out.println("al : " + al + " / (To.SearchLogDao)");
 		return al;
 	}
 
+	
 	public ArrayList<String> searchLog2(Connection con, ArrayList<String> al, SearchLog sl) {
 		PreparedStatement pstmt = null;		
 		ResultSet rset=null;

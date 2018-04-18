@@ -61,7 +61,7 @@ function search(){
     	$.ajax({        
     		url:"<%=request.getContextPath()%>/search",
     	    data:{
-    	    word:$("a").val(),
+    	    word:$("#s2id_autogen1_search").val(),
     	    user:$("#userno").val()
     	    },//추가로 유저 번호도 보낸다.
 			type:"get",
@@ -90,11 +90,12 @@ function search(){
 		$("#menubar-searchbar").select2();     
 		
 		$("#s2id_autogen1_search").keyup(function(){
-		$.ajax({      
+	
+			$.ajax({      
 			url:"<%=request.getContextPath()%>/search",
 			data:{
-				word:$("a").val(),
-				user:$("#userno").val()
+				word: $("#s2id_autogen1_search").val(),
+				user: $("#userno").val()
 				},//추가로 유저 번호도 보낸다.
 			type:"get",
 			dataType:"json",
@@ -107,7 +108,9 @@ function search(){
             
 				for(var i in json.list) {
             		/* console.log(json.list[i]); */
-            		$("#menubar-searchbar").html($("#menubar-searchbar").html()+'<option>'+json.list[i]+'</option>')               
+            	
+            	$("#menubar-searchbar").html($("#menubar-searchbar").html()+'<option>'+json.list[i]+'</option>')               
+				
 				};
 			}, error:function(a,b,c) {
         		console.log(b+c)
