@@ -57,94 +57,147 @@
 	<input type="hidden" id="usernono" value="<%=loginUser.getUserNo()%>">
 <% } %>
 <div class='container carousel'>
-	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">		
+
+<center>
+	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="max-width:80%; max-height: 300px; ">
+		<!-- Indicators -->
+		<ol class="carousel-indicators">
+			<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+			<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+			<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+		</ol>
+
 		<!-- Wrapper for slides -->
-		<div class="carousel-inner" role="listbox">
+
+		<div class="carousel-inner text-center" role="listbox"  ">
+
 			<div class="item active">
-				<table>
-					<tr>
-						<td class = "ohw-car-td">
-							<div class="ohw-div-con">                            
-								<h2><%=toplist.get(0).getSeminaTitle()%><br>
-								<small> in <%=toplist.get(0).getSeminaEndDate()%></small></h2>
-								<p>
-									<%=toplist.get(0).getSeminaContent1()%>
-								</p>
-								<% if(loginUser==null) { %>
-									<a class='btn btn-default pull-right' href="/prototype/sdetail?userno=<%=toplist.get(0).getSeminaNo()%>">
-										<span class="glyphicon glyphicon-forward"></span>
-									</a> 
-								<% } else { %>   
-									<a class='btn btn-default pull-right' href="/prototype/sdetail?userno=<%=toplist.get(0).getSeminaNo()%>&usernono=<%=loginUser.getUserNo()%>">
-										<span class="glyphicon glyphicon-forward"></span>
-									</a> 
-								<%}%>
-							</div>
-						</td>
-						<td class = "ohw-car-img">
-							<div class="pull-right">
-								<img style = "width:600px;" src="http://lorempixel.com/g/750/350/transport">
-							</div>
-						</td>
-					</tr>
-				</table>
+
+				<div class="col-lg-8 pull-right">
+					<% if(toplist.get(0).getSeminaRenameFileName()!=null) { %>
+						<img src="<%=request.getContextPath()%>/seminaTitleimg/<%=toplist.get(0).getSeminaRenameFileName()%>" style="width: 450px; height: 240px;"">
+									<% } else { //지정된 이미지가 없으면 디폴트 랜덤사진을 넣는다.
+										String[] img = new String[11];
+										img[0]="https://images.pexels.com/photos/262508/pexels-photo-262508.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[1]="https://images.pexels.com/photos/34601/pexels-photo.jpg?h=350&auto=compress&cs=tinysrgb";
+										img[2]="https://images.pexels.com/photos/459688/pexels-photo-459688.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[3]="https://images.pexels.com/photos/273222/pexels-photo-273222.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[4]="https://images.pexels.com/photos/301930/pexels-photo-301930.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[5]="https://images.pexels.com/photos/392018/pexels-photo-392018.jpeg?h=350&auto=compress&cs=tinysrgb";
+										//img[6]=https://images.pexels.com/photos/35537/child-children-girl-happy.jpg?h=350&auto=compress&cs=tinysrgb; 어린이사진
+										img[6]="https://images.pexels.com/photos/301930/pexels-photo-301930.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[7]="https://images.pexels.com/photos/34601/pexels-photo.jpg?h=350&auto=compress&cs=tinysrgb.";
+										img[8]="https://images.pexels.com/photos/459688/pexels-photo-459688.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[9]="https://images.pexels.com/photos/273222/pexels-photo-273222.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[10]="https://images.pexels.com/photos/392018/pexels-photo-392018.jpeg?h=350&auto=compress&cs=tinysrgb";
+										Integer result = 333;
+										result=(int)(Math.random()*10)+0;
+    								%>
+										<img src="<%=img[result]%>" alt="" class="img-thumbnail img-responsive" style="width: 450px; height: 240px;">
+									<% } %>
+				
+					
+				</div>
+				<div class="col-lg-4">                            
+					<h2><%=toplist.get(0).getSeminaTitle()%><br>
+					<small> in <%=toplist.get(0).getSeminaEndDate()%></small></h2>
+					<p>
+						<%=toplist.get(0).getSeminaContent1()%>
+					</p>
+					<% if(loginUser==null) { %>
+						<a class='btn btn-info pull-right' href="/prototype/sdetail?userno=<%=toplist.get(0).getSeminaNo()%>">
+						<i class="fa fa-long-arrow-right"> </i></a> 
+					<% } else { %>   
+						<a class='btn btn-info pull-right' href="/prototype/sdetail?userno=<%=toplist.get(0).getSeminaNo()%>&usernono=<%=loginUser.getUserNo()%>">
+						<i class="fa fa-long-arrow-right"> </i></a> 
+					<%}%>
+				</div>
+
 			</div>
-			
-			<div class="item">
-			    
-			    <table>
-			    	<tr>
-			    		<td class = "ohw-car-td">
-			    			<div class="ohw-div-con">                            
-								<h2><%=toplist.get(1).getSeminaTitle()%><br>
-								<small>in <%=toplist.get(1).getSeminaEndDate()%></small></h2>
-								<p>
-									<%=toplist.get(1).getSeminaContent1()%>                          
-								</p>    
-								<% if(loginUser==null){ %>
-									<a class='btn btn-default pull-right' href="/prototype/sdetail?userno=<%=toplist.get(1).getSeminaNo()%>">
-									<span class="glyphicon glyphicon-forward"></span></a>  
-								<% } else { %>
-									<a class='btn btn-default pull-right' href="/prototype/sdetail?userno=<%=toplist.get(1).getSeminaNo()%>&usernono=<%=loginUser.getUserNo()%>">
-									<span class="glyphicon glyphicon-forward"></span></a>  
-								 <% } %>
-							</div> 
-			    		</td>			    		
-			    		<td class = "ohw-car-img">
-			    			<div class="pull-right">
-								<img style = "width:600px;" src="http://lorempixel.com/g/750/350/nature">
-							</div>
-						</td>
-			    	</tr>			    	
-			    </table>                
+
+			<div class="item">                    
+				<div class="col-lg-8 pull-right">
+				
+				<% if(toplist.get(1).getSeminaRenameFileName()!=null) { %>
+										<img src="<%=request.getContextPath()%>/seminaTitleimg/<%=toplist.get(1).getSeminaRenameFileName()%>" style="width: 450px; height: 240px;"">
+									<% } else { //지정된 이미지가 없으면 디폴트 랜덤사진을 넣는다.
+										String[] img = new String[11];
+										img[0]="https://images.pexels.com/photos/262508/pexels-photo-262508.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[1]="https://images.pexels.com/photos/34601/pexels-photo.jpg?h=350&auto=compress&cs=tinysrgb";
+										img[2]="https://images.pexels.com/photos/459688/pexels-photo-459688.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[3]="https://images.pexels.com/photos/273222/pexels-photo-273222.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[4]="https://images.pexels.com/photos/301930/pexels-photo-301930.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[5]="https://images.pexels.com/photos/392018/pexels-photo-392018.jpeg?h=350&auto=compress&cs=tinysrgb";
+										//img[6]=https://images.pexels.com/photos/35537/child-children-girl-happy.jpg?h=350&auto=compress&cs=tinysrgb; 어린이사진
+										img[6]="https://images.pexels.com/photos/301930/pexels-photo-301930.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[7]="https://images.pexels.com/photos/34601/pexels-photo.jpg?h=350&auto=compress&cs=tinysrgb.";
+										img[8]="https://images.pexels.com/photos/459688/pexels-photo-459688.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[9]="https://images.pexels.com/photos/273222/pexels-photo-273222.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[10]="https://images.pexels.com/photos/392018/pexels-photo-392018.jpeg?h=350&auto=compress&cs=tinysrgb";
+										Integer result = 333;
+										result=(int)(Math.random()*10)+0;
+    								%>
+										<img src="<%=img[result]%>" alt="" class="img-thumbnail img-responsive" style="width: 450px; height: 240px;">
+									<% } %>
+				
+				
+		
+				</div>
+				<div class="col-lg-4">                            
+					<h2><%=toplist.get(1).getSeminaTitle()%><br>
+					<small>in <%=toplist.get(1).getSeminaEndDate()%></small></h2>
+					<p>
+						<%=toplist.get(1).getSeminaContent1()%>                          
+					</p>    
+					<% if(loginUser==null){ %>
+						<a class='btn btn-info pull-right' href="/prototype/sdetail?userno=<%=toplist.get(1).getSeminaNo()%>">
+						<i class="fa fa-long-arrow-right"> </i></a>  
+					<% } else { %>
+						<a class='btn btn-info pull-right' href="/prototype/sdetail?userno=<%=toplist.get(1).getSeminaNo()%>&usernono=<%=loginUser.getUserNo()%>">
+						<i class="fa fa-long-arrow-right"> </i></a>  
+					 <% } %>
+				</div>                    
+
 			</div> 
-			
-			<div class="item">
-			
-				<table>
-					<tr>						
-						<td class = "ohw-car-td">
-							<div class="ohw-div-con">                            
-								<h2><%=toplist.get(2).getSeminaTitle()%><br>
-								<small>in <%=toplist.get(2).getSeminaEndDate()%></small></h2>
-								<p><%=toplist.get(2).getSeminaContent1()%></p>       
-								<% if(loginUser==null){ %>
-									<a class='btn btn-default pull-right' href="/prototype/sdetail?userno=<%=toplist.get(2).getSeminaNo()%>">
-									<span class="glyphicon glyphicon-forward"></span></a>                            
-								<% } else { %>
-									<a class='btn btn-default pull-right' href="/prototype/sdetail?userno=<%=toplist.get(2).getSeminaNo()%>&usernono=<%=loginUser.getUserNo()%>">
-									<span class="glyphicon glyphicon-forward"></span></a>  
-								<% } %>
-							</div>
-						</td>
-						<td class = "ohw-car-img">
-							<div class="pull-right">
-								<img style = "width:600px;" src="http://lorempixel.com/g/750/350/fashion">
-							</div>
-						</td>
-					</tr>
-				</table>
-							
+
+			<div class="item">                    
+				<div class="col-lg-8 pull-right">
+				<% if(toplist.get(2).getSeminaRenameFileName()!=null) { %>
+										<img src="<%=request.getContextPath()%>/seminaTitleimg/<%=toplist.get(2).getSeminaRenameFileName()%>" style="width: 450px; height: 240px;"">
+									<% } else { //지정된 이미지가 없으면 디폴트 랜덤사진을 넣는다.
+										String[] img = new String[11];
+										img[0]="https://images.pexels.com/photos/262508/pexels-photo-262508.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[1]="https://images.pexels.com/photos/34601/pexels-photo.jpg?h=350&auto=compress&cs=tinysrgb";
+										img[2]="https://images.pexels.com/photos/459688/pexels-photo-459688.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[3]="https://images.pexels.com/photos/273222/pexels-photo-273222.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[4]="https://images.pexels.com/photos/301930/pexels-photo-301930.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[5]="https://images.pexels.com/photos/392018/pexels-photo-392018.jpeg?h=350&auto=compress&cs=tinysrgb";
+										//img[6]=https://images.pexels.com/photos/35537/child-children-girl-happy.jpg?h=350&auto=compress&cs=tinysrgb; 어린이사진
+										img[6]="https://images.pexels.com/photos/301930/pexels-photo-301930.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[7]="https://images.pexels.com/photos/34601/pexels-photo.jpg?h=350&auto=compress&cs=tinysrgb.";
+										img[8]="https://images.pexels.com/photos/459688/pexels-photo-459688.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[9]="https://images.pexels.com/photos/273222/pexels-photo-273222.jpeg?h=350&auto=compress&cs=tinysrgb";
+										img[10]="https://images.pexels.com/photos/392018/pexels-photo-392018.jpeg?h=350&auto=compress&cs=tinysrgb";
+										Integer result = 333;
+										result=(int)(Math.random()*10)+0;
+    								%>
+										<img src="<%=img[result]%>" alt="" class="img-thumbnail img-responsive" style="width: 450px; height: 240px;">
+									<% } %>
+				
+				</div>
+				<div class="col-lg-4">                            
+					<h2><%=toplist.get(2).getSeminaTitle()%><br>
+					<small>in <%=toplist.get(2).getSeminaEndDate()%></small></h2>
+					<p><%=toplist.get(2).getSeminaContent1()%></p>       
+					<% if(loginUser==null){ %>
+						<a class='btn btn-info pull-right' href="/prototype/sdetail?userno=<%=toplist.get(2).getSeminaNo()%>">
+						<i class="fa fa-long-arrow-right"> </i></a>                            
+					<% } else { %>
+						<a class='btn btn-info pull-right' href="/prototype/sdetail?userno=<%=toplist.get(2).getSeminaNo()%>&usernono=<%=loginUser.getUserNo()%>">
+						<i class="fa fa-long-arrow-right"> </i></a>  
+					<% } %>
+				</div>                    
+
 			</div> 
 		</div>
 		<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
@@ -162,6 +215,10 @@
 			<span class="sr-only">Next</span>
 		</a>
 	</div>
+	</center>
+	
+	
+	
 </div>
 
 <br>
@@ -202,7 +259,13 @@
 									<div style = "max-height:18px; overflow:hidden;">
 										<h4 style = "margin:0"><%=i.getSeminaTitle() %></h4>
 									</div>
+									
+									
+									<%if(i.getSeminaContent1().length()<25){%>
 									<p><%=i.getSeminaContent1()%></p>
+									<%}else{ %>
+									<p><%=i.getSeminaContent1().substring(0,19)%>......</p>
+									<%} %>
 									<% if(loginUser==null) { %>
 										<a href="/prototype/sdetail?userno=<%=i.getSeminaNo()%> " class="btn btn-default">
 											<span class="glyphicon glyphicon-book" aria-hidden="true"></span> 자세히보기
@@ -304,8 +367,9 @@
 		%>					
 				<li class="page-item"><a style = "cursor:no-drop; color:red !important;" class="page-link" href="javascript:void(0)"><%= p %></a></li>	
 			<% } else { %>
-				<li class="page-item"><a style = "cursor:pointer;" class="page-link" href="/prototype/semilist?page=<%= p %>&search=<%=search%>"><%= p %></a></li>			
-			<% }
+				<a href="/prototype/semilist?page=<%= p %>&search=<%=search%>"><%= p %></a>
+			<% }	
+
 		} %>
 				
 		<!-- Next -->

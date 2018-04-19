@@ -65,7 +65,7 @@ public class SeminaList extends HttpServlet {
 		ArrayList<Semina> al=null;
 		
 		
-		if(search.equals("null")) {
+		if(search.equals(null)) {
 		System.out.println("이건대?");
 		al= new SeminaService().getseminalist(limit,currentPage);//최신 등록순으로
 		}else {

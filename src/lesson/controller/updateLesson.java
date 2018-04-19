@@ -45,9 +45,9 @@ public class updateLesson extends HttpServlet {
 		
 		RequestDispatcher view = null;
 		if(!ServletFileUpload.isMultipartContent(request)) {
-			//enctype �꽕�젙�씠 �릺吏� �븡�븯�떎硫�
+			//enctype 占쎄퐬占쎌젟占쎌뵠 占쎈┷筌욑옙 占쎈륫占쎈릭占쎈뼄筌롳옙
 			view = request.getRequestDispatcher("views/board/boardError.jsp");
-			request.setAttribute("message", "form �깭洹몄뿉 enctype �냽�꽦�씠 �꽕�젙�릺吏� �븡�븯�뒿�땲�떎.");
+			request.setAttribute("message", "form 占쎄묶域밸챷肉� enctype 占쎈꺗占쎄쉐占쎌뵠 占쎄퐬占쎌젟占쎈┷筌욑옙 占쎈륫占쎈릭占쎈뮸占쎈빍占쎈뼄.");
 			view.forward(request, response);
 		}
 		
@@ -57,7 +57,12 @@ public class updateLesson extends HttpServlet {
 		MultipartRequest mrequest = new MultipartRequest(
 				request, savePath, maxSize, "utf-8",
 				new DefaultFileRenamePolicy());		
-		
+		String contop = mrequest.getParameter("contop");
+		contop = contop.replace("\r\n", "<br>");
+		String conmid = mrequest.getParameter("conmid");
+		conmid = conmid.replace("\r\n", "<br>");
+		String conbot = mrequest.getParameter("conbot");
+		conbot = conbot.replace("\r\n", "<br>");
 		
 		Lesson lesson = new Lesson();
 		lesson.setLesson_title(mrequest.getParameter("title"));
@@ -65,9 +70,9 @@ public class updateLesson extends HttpServlet {
 		lesson.setUser_no2(Integer.parseInt(mrequest.getParameter("userno")));
 		lesson.setLesson_price(Integer.parseInt(mrequest.getParameter("price")));
 		lesson.setLesson_count(Integer.parseInt(mrequest.getParameter("count")));
-		lesson.setLesson_contop(mrequest.getParameter("contop"));
-		lesson.setLesson_conmid(mrequest.getParameter("conmid"));
-		lesson.setLesson_conbot(mrequest.getParameter("conbot"));
+		lesson.setLesson_contop(contop);
+		lesson.setLesson_conmid(conmid);
+		lesson.setLesson_conbot(conbot);
 		lesson.setLesson_loc(mrequest.getParameter("loc"));
 		lesson.setLesson_rad(Integer.parseInt(mrequest.getParameter("rad")));
 		lesson.setLesson_keyword(mrequest.getParameter("keyword"));
@@ -80,8 +85,8 @@ public class updateLesson extends HttpServlet {
 		lesson.setCategory_no(Integer.parseInt(mrequest.getParameter("category2")));
 		lesson.setLesson_no(Integer.parseInt(mrequest.getParameter("leno")));
 
-		System.out.println("파일1번"+mrequest.getFilesystemName("upfile"));
-		//키워드 합치기 부분
+		System.out.println("�뙆�씪1踰�"+mrequest.getFilesystemName("upfile"));
+		//�궎�썙�뱶 �빀移섍린 遺�遺�
 				String[] keywords = mrequest.getParameterValues("keyword");
 				StringBuilder sb = new StringBuilder();
 				for(int i = 0; i <  keywords.length; i++) {
@@ -94,13 +99,13 @@ public class updateLesson extends HttpServlet {
 				}
 				System.out.println(keywords);
 				
-				//String.join() 사용
+				//String.join() �궗�슜
 		
 		
 		
 		
 		
-		//업로드 파일 부분 1
+		//�뾽濡쒕뱶 �뙆�씪 遺�遺� 1
 		String original = lesson.getLesson_orginal();
 		if(original!=null) {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -134,7 +139,7 @@ public class updateLesson extends HttpServlet {
 			lesson.setLesson_rename(rename);
 		}
 		
-		//업로드 파일 부분 2
+		//�뾽濡쒕뱶 �뙆�씪 遺�遺� 2
 		String original2 = lesson.getLesson_orginal2();
 		if(original2!=null) {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -168,7 +173,7 @@ public class updateLesson extends HttpServlet {
 			lesson.setLesson_rename2(rename2);
 		}
 		
-		//업로드 파일 부분 3
+		//�뾽濡쒕뱶 �뙆�씪 遺�遺� 3
 		String original3 = lesson.getLesson_orginal3();
 		if(original3!=null) {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -201,7 +206,7 @@ public class updateLesson extends HttpServlet {
 			
 			lesson.setLesson_rename3(rename3);
 		}
-		System.out.println("업데이트에서 lesson"+lesson.toString());
+		System.out.println("�뾽�뜲�씠�듃�뿉�꽌 lesson"+lesson.toString());
 		
 		int result = new LessonService().updatelesson(lesson);
 		

@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+String message ="";
+if(request.getAttribute("message")!=null)
+message = (String)request.getAttribute("message");
 
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -10,14 +15,18 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="icon" href="../../favicon.ico">
-
+<script type="text/javascript" src="/prototype/03.OHW\resources\js\jquery-3.3.1.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <title>로그인</title>
 
 <script type="text/javascript">
 
-	(function () {
+	$(function () {
 		'use strict';
-
+	if(<%=message.length()%> > 7){
+		$('#myModal').modal('show');
+		}
 	function emulatedIEMajorVersion() {
 		var groups = /MSIE ([0-9.]+)/.exec(window.navigator.userAgent)
 		if (groups === null) {
@@ -51,9 +60,9 @@
 		if (emulated !== nonEmulated) {
 		window.alert('WARNING: You appear to be using IE' + nonEmulated + ' in IE' + emulated + ' emulation mode.\nIE emulation modes can behave significantly differently from ACTUAL older versions of IE.\nPLEASE DON\'T FILE BOOTSTRAP BUGS based on testing in IE emulation modes!')
 		}
-	})();	
+	})
 
-	(function () {
+	$(function () {
 	  'use strict';
 	  if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
 	    var msViewportStyle = document.createElement('style')
@@ -64,7 +73,13 @@
 	    )
 	    document.querySelector('head').appendChild(msViewportStyle)
 	  }
-	})();
+	  $("#myModal").on('hide.bs.modal', function(){
+
+		location.href="/prototype/03.OHW/views/login.jsp";
+
+		});  
+	  
+	})
 	
 </script>
     
@@ -147,7 +162,7 @@
 		<button class="btn btn-lg btn-primary btn-block ohw-btn" type="submit">LogIn</button>
 	</form>
 	<div class = "form-signin ohw-btn">
-	<a href = "../../04.OJK/join_start.jsp">
+	<a href = "/prototype/04.OJK/join_start.jsp">
 		<input type = "button" class = "btn btn-lg btn-success btn-block " value = "아직 회원이 아니시라면?">
 	</a>
 </div>
@@ -156,6 +171,28 @@
 <div style="margin-bottom: -200px; ">
 	<%@ include file = "../../common/footer.jsp" %>
 </div>
-	
+
+
+<div class="modal fade"  id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="width:500px; height: 200px; margin-top: 200px;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">로그인 실패</h4>
+      </div>
+      <div class="modal-body">
+ 이메일 및 패스워드가 잘못되었습니다!<br>
+ 확인후 다시 입력해주세요!
+<br />
+<br />
+ 
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+
 </body>
 </html>

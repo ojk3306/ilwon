@@ -45,9 +45,9 @@ public class InsertLessonServlet2 extends HttpServlet {
 		
 		RequestDispatcher view = null;
 		if(!ServletFileUpload.isMultipartContent(request)) {
-			//enctype �꽕�젙�씠 �릺吏� �븡�븯�떎硫�
+			//enctype 占쎄퐬占쎌젟占쎌뵠 占쎈┷筌욑옙 占쎈륫占쎈릭占쎈뼄筌롳옙
 			view = request.getRequestDispatcher("views/board/boardError.jsp");
-			request.setAttribute("message", "form �깭洹몄뿉 enctype �냽�꽦�씠 �꽕�젙�릺吏� �븡�븯�뒿�땲�떎.");
+			request.setAttribute("message", "form 占쎄묶域밸챷肉� enctype 占쎈꺗占쎄쉐占쎌뵠 占쎄퐬占쎌젟占쎈┷筌욑옙 占쎈륫占쎈릭占쎈뮸占쎈빍占쎈뼄.");
 			view.forward(request, response);
 		}
 		
@@ -58,6 +58,9 @@ public class InsertLessonServlet2 extends HttpServlet {
 				request, savePath, maxSize, "utf-8",
 				new DefaultFileRenamePolicy());		
 		
+		//개행 처리해주는 부분
+		String contop = mrequest.getParameter("contop");
+		contop = contop.replace("\r\n", "<br>");
 		
 		Lesson lesson = new Lesson();
 		
@@ -66,7 +69,7 @@ public class InsertLessonServlet2 extends HttpServlet {
 		lesson.setUser_no1(Integer.parseInt(mrequest.getParameter("userno")));
 		lesson.setLesson_price(Integer.parseInt(mrequest.getParameter("price")));
 		lesson.setLesson_count(Integer.parseInt(mrequest.getParameter("count")));
-		lesson.setLesson_contop(mrequest.getParameter("contop"));
+		lesson.setLesson_contop(contop);
 		lesson.setLesson_loc(mrequest.getParameter("loc"));
 		lesson.setLesson_rad(Integer.parseInt(mrequest.getParameter("rad")));
 		lesson.setCategory_no(Integer.parseInt(mrequest.getParameter("category2")));

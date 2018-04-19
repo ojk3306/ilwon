@@ -35,24 +35,25 @@ public class InsertNoticeServlet extends HttpServlet {
 		System.out.println("InsertNoticeServlet doGet Run");
 		
 		RequestDispatcher view = null;
-		
+		String content = request.getParameter("ncontent");
+		content.replace("\r\n", "<br>");
 		Notice notice = new Notice();
 		notice.setNoticeTitle(request.getParameter("ntitle"));
 		notice.setUserName(request.getParameter("nwriter"));
 		notice.setUserNo(Integer.parseInt(request.getParameter("nwritern")));
-		notice.setNoticeContent(request.getParameter("ncontent"));						
+		notice.setNoticeContent(content);						
 				
-		//3. 서비스 클래스 메소드로 값 전달하고, 결과 받기
+		//3. �꽌鍮꾩뒪 �겢�옒�뒪 硫붿냼�뱶濡� 媛� �쟾�떖�븯怨�, 寃곌낵 諛쏄린
 		int result = new NoticeService().insertNotice(notice);		
 		
-		//4. 받은 결과를 가지고 성공/실패에 대한 뷰를 선택해서 내보냄
+		//4. 諛쏆� 寃곌낵瑜� 媛�吏�怨� �꽦怨�/�떎�뙣�뿉 ���븳 酉곕�� �꽑�깮�빐�꽌 �궡蹂대깂
 		response.setContentType("text/html; charset=UTF-8");
 		
 		if(result > 0) {
-			response.sendRedirect(request.getContextPath()+"/03.OHW/views/noticeList.jsp");
+			response.sendRedirect(request.getContextPath()+"/nlist");
 		} else {
 			view = request.getRequestDispatcher("/03.OHW/views/noticeError.jsp");
-			request.setAttribute("message", "게시글 등록 실패");
+			request.setAttribute("message", "寃뚯떆湲� �벑濡� �떎�뙣");
 			view.forward(request, response);
 		}	
 	}

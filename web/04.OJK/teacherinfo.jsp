@@ -121,6 +121,42 @@ function updateLesson(a){ //레슨 수정.
 function updateUser(){ //개인 정보 수정
 	location.href="/prototype/04.OJK/userupdate.jsp";
 }
+function noexe(){
+
+	$('#myModal').modal('show');
+	
+}
+function maxlesson(){
+
+	$('#myModal1').modal('show');
+		
+}
+function ableless(){
+	
+	location.href = 'insertclass2.jsp';
+}
+
+function checklessonNum(a){//현재 강의수는 넘지않았는지, 강의등록금지에 걸렸는지.
+	 var id=a.id;
+	$.ajax({
+		url:"/prototype/checklessonNum",
+		data:{no:id},
+		success:function(da) {
+		console.log(da);
+		if(da==1)
+		noexe()
+		else if(da==2)
+		maxlesson()
+		else if(da==3) 	
+		ableless()	
+			
+		
+		},error:function(a,b,c){
+			console.log(b+c)
+		}
+			
+		})
+}
 //강의내역
 $(function(){
 	$.ajax({
@@ -375,7 +411,9 @@ function upload_profile() {
 			<hr>
 			<center>
 			<button type="button" class="btn btn-info" onclick="location.href = 'insertSemina.jsp' ">세미나 등록</button>
-			<button type="button" class="btn btn-info" onclick="location.href = 'insertclass2.jsp' ">강의 등록</button>
+		
+		  	 <button type="button" class="btn btn-info" id="<%=us.getUserNo() %>"  onclick="checklessonNum(this) ">강의 등록</button>		
+		
 			</center>
 			</div>
 			
@@ -476,5 +514,45 @@ function upload_profile() {
 	</nav>
 	<Br><Br>
 <%@ include file="/common/footer.jsp" %>
+
+   <div class="modal fade"  id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="width:500px; height: 200px; margin-top: 200px;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">글쓰기 권한이없습니다!</h4>
+      </div>
+      <div class="modal-body">
+관리자에 의해서 글쓰기 권한을 박탈당했습니다<Br>
+자세한건 연락주센
+<br />
+<br />
+ 
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+   <div class="modal fade"  id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="width:500px; height: 200px; margin-top: 200px;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">강의수 최대!</h4>
+      </div>
+      <div class="modal-body">
+회원님의 강의수가 최대수에 도달하였습니다!<Br>
+강의를 취소하시거나, 등급을 올려주세요!
+<br />
+<br />
+ 
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>

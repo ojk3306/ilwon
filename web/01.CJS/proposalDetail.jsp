@@ -46,14 +46,18 @@
                           </textarea>
                             </div>
                             <hr>
-                            <%if(loginUser==null){}else{ if(loginUser.getUserNo()==user.getUserNo()){%>
+                          
                             
                  <center>
+                  <%if(loginUser==null){}else{ if(loginUser.getUserNo()==user.getUserNo()){%>
 <a href="/prototype/uppro?prono=<%=pro.getProposalNo()%>" class="btn"><i class="icon-edit"></i> <strong>수정하기</strong></a>
 <a href="/prototype/delpro?prono=<%=pro.getProposalNo()%>" class="btn"><i class="icon-trash"></i> <strong>삭제하기</strong></a>
+                              <%} }%>
+     <a href="/prototype/plist" class="btn"><i class="icon-trash"></i> <strong>뒤로가기</strong></a>
+            
                          </center>   
+                        
                             
-                            <%} }%>
                         	</div>
                         </div>
                 </div>

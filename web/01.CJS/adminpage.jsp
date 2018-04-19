@@ -87,6 +87,12 @@ function bomm(){
 }
 
 $(function(){
+	if(<%=use.getUserTypeNo()%> != 1003 )
+		location.href="/prototype/index.jsp";
+	
+	
+	
+	
 	setInterval(function() {
 		$.ajax({
 			url:"/prototype/realtimelog",
@@ -144,7 +150,10 @@ function stop(){
  // timer = null을 준 이유는?
  clearInterval(timer);
  timer = null;
- bomm();
+ if(i==0)
+ 	bomm();
+ else
+	return false;
 }
 
 function reset(){
@@ -305,7 +314,7 @@ function reset(){
         <h4 class="modal-title" id="myModalLabel">모든 데이터 날리기</h4>
       </div>
       <div class="modal-body">
- <span id="time_out">10.00</span>
+	<h3> <span id="time_out">10.00</span></h3>
 <br />
 <br />
  

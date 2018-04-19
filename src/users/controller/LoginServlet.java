@@ -1,6 +1,8 @@
 package users.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -51,9 +53,11 @@ public class LoginServlet extends HttpServlet {
         	response.sendRedirect("/prototype/index.jsp");
         	
         } else {
-        	
-        	response.sendRedirect("/prototype/views/member/loginFail.html");
-        	
+        	RequestDispatcher view=request.getRequestDispatcher("/03.OHW/views/login.jsp");
+        	//response.sendRedirect("/prototype/03.OHW/views/login.jsp");
+        	request.setAttribute("message","이메일과 비밀번호가 일치하지않습니다!");
+        	view.forward(request, response);
+        
         }		
 	}
 

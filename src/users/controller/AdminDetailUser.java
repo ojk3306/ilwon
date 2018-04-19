@@ -17,7 +17,6 @@ import users.model.vo.Users;
 @WebServlet("/aDtail")
 public class AdminDetailUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -43,8 +42,9 @@ public class AdminDetailUser extends HttpServlet {
 	request.setAttribute("user",user);
 	view.forward(request, response);
 	}else {
-		
-		
+	view=request.getRequestDispatcher("/01.CJS/ErrorPage.jsp");
+	request.setAttribute("message","실패");
+	view.forward(request, response);
 	}
 }
 

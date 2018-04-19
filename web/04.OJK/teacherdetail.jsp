@@ -245,6 +245,7 @@ border:1px solid; #000000;
 padding: 20px;
 }
 .item{
+position: absolute; top: 0; left: 0; max-width: 100%; height: auto; -webkit-transform: translate(-50%,-50%); -ms-transform: translate(-50%,-50%); transform: translate(-50%,-50%); 
 }
 .item>img{
 width:600px;
@@ -253,7 +254,12 @@ margin-left: auto;
 margin-right: auto;
 border-radius: 35px;
 }
+ 
+.active item { 
+position: absolute; top: 0; left: 0; max-width: 100%; height: auto; -webkit-transform: translate(-50%,-50%); -ms-transform: translate(-50%,-50%); transform: translate(-50%,-50%); 
+}
 
+                                 
 </style>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -1129,27 +1135,27 @@ border-radius: 35px;
         <div id="main_area">
                 <!-- Slider -->
                 <div class="row">
-                    <div class="span12" id="slider" style="width:765px; height:530px; margin-left : 2px">
+                    <div class="span12" id="slider" style="width:765px; height:530px; margin-left : 2px; ">
                         <!-- Top part of the slider -->
-                        <div class="row">
-                            <div class="span8" id="carousel-bounding-box">
-                                <div class="carousel slide" id="myCarousel">
+                        <div class="row" style="width:765px; height:530px; margin-left : 2px; ">
+                            <div class="span8" id="carousel-bounding-box" style="width:765px; height:530px; margin-left : 2px; ">
+                                <div class="carousel slide" id="myCarousel" style="width:765px; height:530px; margin-left : 2px; ">
                                     <!-- Carousel items -->
-                                    <div class="carousel-inner"> 
+                                    <div class="carousel-inner" style="width:765px; height:auto; margin-left : 2px; "> 
                                     <!-- 이미지 받기 -->
-                                        <div class="active item" data-slide-number="0">
+                                        <div class="active item" data-slide-number="0" style="width:765px; height:auto; margin-left : 2px; ">
                                         <img src="/prototype/lesson_upload/<%= lessondetail.getLesson_rename() %>"
-                                        style="width:580px; height:500px"></div>
+                                        style="width:580px; height:auto; "></div>
 
-                                        <div class="item" data-slide-number="1">
+                                        <div class="item" data-slide-number="1" style="width:765px; height:auto; margin-left : 2px; ">
                                         <img src="/prototype/lesson_upload/<%= lessondetail.getLesson_rename2() %>"
-                                         style="width:580px; height:500px"></div>
+                                         style="width:580px; height:auto; "></div>
 
-                                        <div class="item" data-slide-number="2">
+                                        <div class="item" data-slide-number="2" style="width:765px; height:auto; margin-left : 2px; ">
                                         <img src="/prototype/lesson_upload/<%= lessondetail.getLesson_rename3() %>"
-                                         style="width:580px; height:500px"></div>
+                                         style="width:580px; height:auto; "></div>
 
-                                  
+                                 
                                     
                                     </div><!-- Carousel nav -->
                                     <a class="carousel-control left" data-slide="prev" href="#myCarousel">‹</a> <a class="carousel-control right" data-slide="next" href="#myCarousel">›</a>
