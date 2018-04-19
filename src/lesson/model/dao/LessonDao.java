@@ -999,7 +999,7 @@ public class LessonDao {
 		ArrayList<Onlesson> onlesson = new ArrayList<Onlesson>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql ="select * from lesson where USER_NO1 = ? and lesson_type = 8000 and state_no = 1";
+		String sql ="select * from lesson where USER_NO1 = ? and lesson_type = 8000 and state_no != 3";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			

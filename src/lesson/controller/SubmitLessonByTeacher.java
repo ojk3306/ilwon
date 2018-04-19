@@ -33,8 +33,11 @@ public class SubmitLessonByTeacher extends HttpServlet {
 		String[] arr = request.getParameter("no").split("/");
 		//학생,선생,강의
 		int result=new LearnLogService().summitLesson(Integer.parseInt(arr[0]),Integer.parseInt(arr[1]),Integer.parseInt(arr[2]));
+		//레슨로그를 인설트하고
 		
 		if(result>0) {
+			//레슨로그가 제대로 인설트되면 강의 상태를 매칭중으로 바꾼다.
+			int result1 = new LearnLogService().changeStatelesson(Integer.parseInt(arr[2]));
 			System.out.println("레슨신청 성공");
 			if(Integer.parseInt(arr[3]) == 1002)
 			response.sendRedirect("/prototype/04.OJK/teacherinfo.jsp");

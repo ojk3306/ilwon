@@ -453,4 +453,25 @@ public class LearnLogDao {
 		}
 		return lessona;
 	}
+
+	public int changeStatelesson(Connection conn, int parseInt) {
+		int result=0;
+		//
+		PreparedStatement pstmt=null;
+		String sql="update LESSON set STATE_NO = 2 where LESSON_NO=? and STATE_NO=1";
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1,parseInt);
+	
+			result=pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 }
