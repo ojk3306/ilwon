@@ -161,7 +161,7 @@ public class LearnLogDao {
 		ResultSet rset = null;
 
 		//�꽑�깮�쓽 �븰�깮濡쒓렇
-		String sql = "select * from  LEARN_LOG,users,lesson where LEARN_LOG.LESSON_NO=lesson.LESSON_NO and LEARN_LOG.USER_NO1=users.USER_NO and LEARN_LOG.USER_NO2= ? and LOG_STATE in 1 and STATE_NO in 1";		
+		String sql = "select * from  LEARN_LOG,users,lesson where LEARN_LOG.LESSON_NO=lesson.LESSON_NO and LEARN_LOG.USER_NO1=users.USER_NO and LEARN_LOG.USER_NO2= ? and LOG_STATE in 1 and STATE_NO != 3";		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, user);
@@ -269,7 +269,7 @@ public class LearnLogDao {
 		ResultSet rset = null;
 
 		//�꽑�깮�쓽 �븰�깮濡쒓렇
-		String sql = "select * from  LEARN_LOG,users,lesson where LEARN_LOG.LESSON_NO=lesson.LESSON_NO and LEARN_LOG.USER_NO2=users.USER_NO and LEARN_LOG.USER_NO1= ? and LOG_STATE in 1 and STATE_NO in 1";		
+		String sql = "select * from  LEARN_LOG,users,lesson where LEARN_LOG.LESSON_NO=lesson.LESSON_NO and LEARN_LOG.USER_NO2=users.USER_NO and LEARN_LOG.USER_NO1= ? and LOG_STATE in 1 and STATE_NO != 3";		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, user);

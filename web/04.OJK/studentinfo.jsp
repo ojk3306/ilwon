@@ -365,7 +365,7 @@ function ableless(){
 			</center>
 			</div>
 			<br> <br>
-			<h1>진행중인 강의</h1>
+			<h1>진행중인 매칭</h1>
 			<hr>
 			<div id="info"
 				style="width: 1100px; height: 300px; border: 1px solid #85adad; margin-top: 50px;background:#eff5f5;">
