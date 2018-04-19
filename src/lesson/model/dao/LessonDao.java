@@ -93,7 +93,7 @@ public class LessonDao {
 				"and l.STATE_NO = st.STATE_NO " + 
 				"and l.LESSON_ENDDATE is null " + 
 				"and l.LESSON_TYPE = 7000 "	+ 
-				"and l.LESSON_STATE_NO = 1 " + 
+				"and l.STATE_NO = 1 " + 
 				"order by l.LESSON_NO desc) " + 
 				"where rownum <= 6";
 		try {
@@ -154,7 +154,7 @@ public class LessonDao {
 						+ "and l.STATE_NO = st.STATE_NO "
 						+ "and l.LESSON_ENDDATE is null "
 						+ "and l.LESSON_TYPE = 7000 "
-						+ "and l.LESSON_STATE_NO = 1 "
+						+ "and l.STATE_NO = 1 "
 						+ "and l.LESSON_LOCATION like ? "
 						+ "and c.CATEGORY_SMALL like ? "
 						+ "and u.USER_GENDER like ? "
@@ -276,7 +276,7 @@ public class LessonDao {
 			 			+ "and u.USER_TYPE = ut.USERTYPE_NO "
 						+ "and l.STATE_NO = st.STATE_NO "
 						+ "and l.LESSON_ENDDATE is null "
-						+ "and l.LESSON_STATE_NO = 1 "
+						+ "and l.STATE_NO = 1 "
 						+ "and l.LESSON_TYPE = 7000 ) "
 						+ "and (l.LESSON_KEYWORD like ? "
 						+ "or l.lesson_title like ? "
@@ -1090,7 +1090,7 @@ public class LessonDao {
 				"and l.STATE_NO = st.STATE_NO " + 
 				"and l.LESSON_ENDDATE is null " + 
 				"and l.LESSON_TYPE = 8000 " + 
-				"and l.LESSON_STATE_NO = 1 " +
+				"and l.STATE_NO = 1 " +
 				"order by l.LESSON_NO desc) " + 
 				"where rownum <= 6";
 		try {
@@ -1149,7 +1149,7 @@ public class LessonDao {
 							+ "and l.STATE_NO = st.STATE_NO "
 							+ "and l.LESSON_ENDDATE is null "
 							+ "and l.LESSON_TYPE = 8000 "
-							+ "and l.LESSON_STATE_NO = 1 "
+							+ "and l.STATE_NO = 1 "
 							+ "and l.LESSON_LOCATION like ? "
 							+ "and c.CATEGORY_SMALL like ? "
 							+ "and u.USER_GENDER like ? "
@@ -1284,7 +1284,7 @@ public class LessonDao {
 					"and l.STATE_NO = st.STATE_NO " + 
 					"and l.LESSON_ENDDATE is null " + 
 					"and l.LESSON_TYPE = 7000 " + 
-					"and l.LESSON_STATE_NO = 1 " +
+					"and l.STATE_NO = 1 " +
 					"order by l.LESSON_NO desc) " + 
 					"where rownum <= 2";
 			try {
@@ -1350,7 +1350,7 @@ public class LessonDao {
 				"and l.STATE_NO = st.STATE_NO " + 
 				"and l.LESSON_ENDDATE is null " + 
 				"and l.LESSON_TYPE = 8000 " +
-				"and l.LESSON_STATE_NO = 1 " +
+				"and l.STATE_NO = 1 " +
 				"order by l.LESSON_NO desc) " + 
 				"where rownum <= 2";
 		try {
