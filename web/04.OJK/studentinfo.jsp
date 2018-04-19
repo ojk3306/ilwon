@@ -388,7 +388,7 @@ function ableless(){
 			<hr>
 
 			<div id="info"
-				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px;">
+				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px; overflow: auto;">
 				<div style="width:100%;">
 					<table class="table table-hover" >
 						<thead>
@@ -410,7 +410,7 @@ function ableless(){
 			<h1>세미나 신청 내역</h1>
 			<hr>
 			<div id="info"
-				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px;">
+				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px; ">
 				<div style="width:100%;">
 					<table class="table table-hover" >
 						<thead>
