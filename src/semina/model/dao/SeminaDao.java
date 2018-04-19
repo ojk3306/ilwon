@@ -772,4 +772,57 @@ try {
 		return result;
 	}
 
+	public ArrayList<Semina> selectMainSemina(Connection con) {
+		
+		ArrayList<Semina> semina = new ArrayList<Semina>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = "select * from "
+				+ "(select s.*, u.user_name, u.user_email from semina s, users u "
+				+ "where s.user_no = u.user_no "
+				+ "order by semina_no desc) "
+				+ "where rownum = 1";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+		while(rset.next()) {
+			
+			Semina semi= new Semina();
+			semi.setSeminaNo(rset.getInt("SEMINA_NO"));
+			semi.setUserNo(rset.getInt("USER_NO"));
+			semi.setSeminaTitle(rset.getString("SEMINA_TITLE"));
+			semi.setSeminaLocation(rset.getString("SEMINA_LOCATION"));
+			semi.setSeminaPrice(rset.getInt("SEMINA_PRICE"));
+			semi.setSeminaStartDate(rset.getDate("SEMINA_STARTDATE"));
+			semi.setSEMINA_STATE(rset.getInt("semina_state"));
+			semi.setSeminatitle1(rset.getString("SEMINA_TITLE1"));
+			semi.setSeminaContent1(rset.getString("SEMINA_CONTENT1"));			
+			semi.setSeminatitle2(rset.getString("SEMINA_TITLE2"));
+			semi.setSeminaContent2(rset.getString("SEMINA_CONTENT2"));			
+			semi.setSeminatitle3(rset.getString("SEMINA_TITLE3"));
+			semi.setSeminaContent3(rset.getString("SEMINA_CONTENT3"));			
+			semi.setSeminatitle4(rset.getString("SEMINA_TITLE4"));
+			semi.setSeminaContent4(rset.getString("SEMINA_CONTENT4"));
+			semi.setSeminaEndDate(rset.getDate("SEMINA_ENDDATE"));
+			semi.setSeminaMin(rset.getInt("SEMINA_MIN"));
+			semi.setSeminaNow(rset.getInt("SEMINA_NOW"));
+			semi.setSeminaMax(rset.getInt("SEMINA_MAX"));
+			semi.setSeminaOriginalFileName(rset.getString("SEMINA_ORIGINALFILENAME"));
+			semi.setSeminaRenameFileName(rset.getString("SEMINA_RENAMEFILENAME"));			
+			semi.setUser_name(rset.getString("user_name"));
+			semi.setUser_email(rset.getString("user_email"));
+			semina.add(semi);						
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("SeminaList : " + semina + " / (To.SeminaDao)");
+		return semina;
+	}
 }
+
+

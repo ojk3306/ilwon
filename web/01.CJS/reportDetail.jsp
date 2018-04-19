@@ -54,7 +54,7 @@ if(<%=use.getUserTypeNo()%> != 1003 )
                          
 						 </textarea>
                           <%if(pro.getReportRenameFileName() == null){}else{%>
-                          <img style="width:100%; background:#f3f4f5; border: 0" readonly="readonly" src="<%=request.getContextPath()%>/reportimg/<%=pro.getReportRenameFileName()%>">
+                          <img style="width:100%; height:300px; background:#f3f4f5; border: 0" readonly="readonly" src="<%=request.getContextPath()%>/reportimg/<%=pro.getReportRenameFileName()%>">
                            <%} %>
                            
                            
@@ -66,6 +66,8 @@ if(<%=use.getUserTypeNo()%> != 1003 )
                 </div>
 			</div>
         </div>
+<div style="margin-top: 400px;">
 <%@ include file="/common/footer.jsp"%>
+</div>
 </body>
 </html>

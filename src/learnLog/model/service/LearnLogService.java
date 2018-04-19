@@ -33,6 +33,7 @@ public class LearnLogService {
 		}else {
 			rollback(conn);
 		}
+		close(conn);
 		return result;
 	}
 

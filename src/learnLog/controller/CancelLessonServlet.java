@@ -37,7 +37,7 @@ public class CancelLessonServlet extends HttpServlet {
 		int result = new LearnLogService().cancleLesson(lesson_no,userno);
 		
 		if(result > 0) {
-			response.sendRedirect("/prototype/04.OJK\\studentinfo.jsp");
+			response.sendRedirect("/prototype/04.OJK/studentinfo.jsp");
 			
 		}else {
 			//에러ㅍㅔ이지 추가하자

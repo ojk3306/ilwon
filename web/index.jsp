@@ -253,9 +253,41 @@
 </script><!--메인화면 학생 끝 -->
 		
 	<div class="ohw_div_con" align="center">
-		<h3>여기는 세미나겠지.</h3>
-		<a><img alt="" src="common/resources/img/Main.jpg" width="80%" height="auto"></a>
+		<h3>최신 세미나</h3>
+		<table class = "ohw-main-semina">
+			
+		</table>
+		<div>
+			<a><img alt="" src="common/resources/img/Main.jpg" width="80%" height="auto"></a>
+		</div>		
 	</div>
+	
+<script type="text/javascript">/*메인화면  세미나 시작 */
+	
+	$(document).ready(function readyList() {	
+		$.ajax({
+			url:"<%= request.getContextPath() %>/smlist",			
+			dataType:"json",
+			success:function(data) {			
+				var jsonStr = JSON.stringify(data);
+				var json = JSON.parse(jsonStr);		 
+				console.log("SeminaMainList : ") + console.log(data);			
+				for(var i in json.list) {				
+					$('.ohw-main-semina').append(						
+					 	<% if(loginUser != null) { %>				 	
+							"<tr class = 'ohw-main-semina-tr'><td class = 'ohw-main-semina-conp'><a href = '<%= request.getContextPath() %>/sdetail?userno=" + json.list[i].seminaNo + "&page=1'><img src = '/prototype/userTitleimg/"+json.list[i].photo +" ' style = 'width:100px; height:100px;'></a></td></tr>" +
+						<% } else { %>					
+							"<tr class = 'ohw-main-semina-tr'><td class = 'ohw-main-semina-conp'><img src = '/prototype/userTitleimg/"+json.list[i].seminaRFN +" ' style = 'width:100px; height:100px;'></td></tr>" + 
+					 	<% } %>						
+						"<tr><td class = 'ohw-main-semina-cont'>" + json.list[i].seminaTitle + "</td></tr>" +										
+					);				
+				}			
+			}		
+		});	
+	});
+	
+</script><!-- 메인화면 세미나 끝 -->
+
 	<div class="ohw_div_con" align="center">
 		<h3>제휴 사이트 바로 가기</h3>	
 	</div>		
