@@ -261,6 +261,11 @@ border-radius: 35px;
 position: absolute; top: 0; left: 0; max-width: 100%; height: auto; -webkit-transform: translate(-50%,-50%); -ms-transform: translate(-50%,-50%); transform: translate(-50%,-50%); 
 }
 
+.ohw-background {
+	background:#dffdfb;
+	width:1100px;
+}
+
                                  
 </style>
 
@@ -285,7 +290,7 @@ position: absolute; top: 0; left: 0; max-width: 100%; height: auto; -webkit-tran
 	<nav class="topbend"> <!--최상단 띠.-->
 	
 	</nav>
-	<nav class="topdetail"><!--선생소개-->
+	<nav class="topdetail ohw-background"><!--선생소개-->
 	<ul>
 	<li class="topdiv" name="img">
 		<ul>
@@ -312,7 +317,7 @@ position: absolute; top: 0; left: 0; max-width: 100%; height: auto; -webkit-tran
 		</ul>
 		</li>
 		
-		<li class="topdiv" name="option">
+		<li class="topdiv ohw-background" name="option">
 	
 		등록일:<Br>
 		<%= lessondetail.getLESSON_STARTDATE() %>	
@@ -338,7 +343,7 @@ position: absolute; top: 0; left: 0; max-width: 100%; height: auto; -webkit-tran
 	</nav>
 	<!-- 강의료 부분 -->
 	<div align="center" style="margin-top:2px;">
-		<nav style="width:1100px; height:150px; border: 1px solid gray;">
+		<nav class = "ohw-background" style="width:1100px; height:150px; border: 1px solid gray;">
 			<div style="width:500px; height: 140px; float:left;">
 			<h2>수강료</h2><br>
 				<table>
@@ -359,7 +364,7 @@ position: absolute; top: 0; left: 0; max-width: 100%; height: auto; -webkit-tran
 			</div>
 		</nav>	
 	</div>	
-    <nav class="review"><!-- 리뷰란 -->
+    <nav class="review ohw-background"><!-- 리뷰란 -->
 	<table border="1" style="width:100%">
 	
 	<% if(review.size() > 3 || review.size() == 2) {%>
@@ -1062,7 +1067,7 @@ position: absolute; top: 0; left: 0; max-width: 100%; height: auto; -webkit-tran
 	</table>
 	</nav><!-- 리뷰란 종료 -->
 	
-	<nav class="howteach" style="padding-top:10px;"><!--커리큘럼란-->
+	<nav class="howteach ohw-background" style="padding-top:10px;"><!--커리큘럼란-->
 	
 <div class="container" >
 
