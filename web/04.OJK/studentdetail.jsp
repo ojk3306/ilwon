@@ -293,9 +293,9 @@ LessonSearch lessondetail =(LessonSearch)request.getAttribute("lesson");
 			<li class="topdiv">
 				<ul>
 				
-					<%if(loginUser.getUserRenamePhoto() != null) { %>
+					<%if(user.getUserRenamePhoto() != null) { %>
 					<Br><Br>
-						<img src="/prototype/userTitleimg/<%= loginUser.getUserRenamePhoto() %>"
+						<img src="/prototype/userTitleimg/<%= user.getUserRenamePhoto() %>"
 							class="img-circle" alt="Cinque Terre" width="200px"
 							height="200px" >
 						<% }else {%>
