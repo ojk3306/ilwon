@@ -37,7 +37,7 @@ public class SubmitLessonByTeacher extends HttpServlet {
 		
 		if(result>0) {
 			//레슨로그가 제대로 인설트되면 강의 상태를 매칭중으로 바꾼다.
-			int result1 = new LearnLogService().changeStatelesson(Integer.parseInt(arr[2]));
+			//int result1 = new LearnLogService().changeStatelesson(Integer.parseInt(arr[2]));
 			System.out.println("레슨신청 성공");
 			if(Integer.parseInt(arr[3]) == 1002)
 			response.sendRedirect("/prototype/04.OJK/teacherinfo.jsp");
