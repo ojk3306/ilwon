@@ -960,4 +960,28 @@ public class UsersDao {
 	return result;
 	
 	}
+
+	public String getUserimgReview(Connection con, int lesson_no) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String result = null;
+		String query = "select u.USER_RENAME_PHOTO from users u, lesson l where u.user_no= l.user_no2 and l.lesson_no = ?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, lesson_no);
+			rset= pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = rset.getString("USER_RENAME_PHOTO");
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
 }

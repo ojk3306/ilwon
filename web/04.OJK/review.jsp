@@ -6,6 +6,7 @@
 <%
 	LessonDetail lessondetail =(LessonDetail)request.getAttribute("lessondetail");
 	ArrayList<Review> review = (ArrayList<Review>)request.getAttribute("review");
+	String userimg = (String)request.getAttribute("userimg");
 	int user_no = ((Integer)request.getAttribute("userno")).intValue();
 	double avga =((Double)request.getAttribute("avga")).doubleValue();
 	int avgd = ((Integer)request.getAttribute("avgd")).intValue();
@@ -86,13 +87,13 @@ position: absolute;
 
 
 .topbend{
-background:#00ffff;
+background:#c1d7d7;
 margin:0px auto;
 width:900px;
 height:50px;
 text-align: center;
 padding:12px;
-border: 1px solid #00ffff;
+border: 1px solid #c1d7d7;
 border-radius:5px 5px 0px 0px;
 }
 
@@ -192,7 +193,7 @@ padding-top:30px;
 		<ul>
 		<li>
 		
-		<img src="/prototype/userTitleimg/rakoon.jpg">
+		<img src="/prototype/userTitleimg/<%=userimg%>">
 		</li>
 		
 		<li class="underpic">

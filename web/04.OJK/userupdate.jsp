@@ -116,13 +116,13 @@ margin-left: 190px;
 
 
 
-<div class="container" style="height: 900px" >
+<div class="container" style="height: 900px;  " >
 	<div class="row" >
   <div class="col-md-7" Style="overflow:hidden;">
 <div class="panel panel-default">
-  <div class="panel-heading" style="background:#00ffff;"> 
+  <div class="panel-heading" style="background:#c1d7d7;"> 
    <h4><%=loginUser.getUserName()%>의 프로필</h4></div>
-   <div class="panel-body" >
+   <div class="panel-body" style="background:#eff5f5">
        
     <div class="box box-info" >
         

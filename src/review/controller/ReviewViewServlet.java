@@ -14,6 +14,7 @@ import lesson.model.service.LessonService;
 import lesson.model.vo.LessonDetail;
 import review.model.service.ReviewService;
 import review.model.vo.Review;
+import users.model.service.UsersService;
 
 /**
  * Servlet implementation class ReviewViewServlet
@@ -37,6 +38,7 @@ public class ReviewViewServlet extends HttpServlet {
 		
 		int lesson_no = Integer.parseInt(request.getParameter("no"));
 		int user_no = Integer.parseInt(request.getParameter("userno"));
+		String userprofile = new UsersService().getUserimgReview(lesson_no);
 		LessonDetail lessondetail = new LessonService().lessonView(lesson_no);
 		ArrayList<Review> review = new ReviewService().previewReview(lesson_no);
 		System.out.println("유저넘버:"+user_no);
@@ -83,6 +85,11 @@ public class ReviewViewServlet extends HttpServlet {
 			request.setAttribute("avgs", avgs);
 			request.setAttribute("avga", avga);
 			request.setAttribute("userno", user_no);
+			if(userprofile != null) {
+			request.setAttribute("userimg", userprofile);
+			}else {
+				request.setAttribute("userimg", "rakoon.jpg");
+			}
 			view.forward(request, response);
 			
 		//강의 있고 리뷰 없을때	
@@ -99,6 +106,11 @@ public class ReviewViewServlet extends HttpServlet {
 			request.setAttribute("avgp", avgp);
 			request.setAttribute("avgs", avgs);
 			request.setAttribute("avga", avga);
+			if(userprofile != null) {
+				request.setAttribute("userimg", userprofile);
+				}else {
+					request.setAttribute("userimg", "rakoon.jpg");
+				}
 			view.forward(request, response);
 			
 		}

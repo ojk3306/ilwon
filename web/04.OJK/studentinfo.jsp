@@ -303,8 +303,8 @@ function ableless(){
 	<div id="wrapper">
 		<div align="center">
 			<div id="info"
-				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px;">
-				<div style="width: 100%; height: 230px; background: #f2f2f2;">
+				style="width: 1100px; height: 300px; border: 1px solid #85adad; margin-top: 50px;">
+				<div style="width: 100%; height: 230px; background: #eff5f5;">
 					<div
 						style="width: 250px; height: 230px; float: left; margin-top: 10px; padding: 5px;">
 						<%if(loginUser.getUserRenamePhoto() != null) { %>
@@ -323,7 +323,7 @@ function ableless(){
 
 
 				</div>
-				<div style="width: 100%; height: 70px; padding: 20px;">
+				<div style="width: 100%; height: 70px; padding: 20px; background : #c1d7d7">
 					<button type="button" class="btn btn-default" onclick="updateUser();">
 					<i class="fa fa-gear fa-spin" style="font-size:20px"></i> 개인정보 수정하기</button>
 					&nbsp;
@@ -339,9 +339,9 @@ function ableless(){
 			<br> <br>
 			<h1>배우고싶어요</h1>
 			<hr>
-			<div id="info" style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px;">
+			<div id="info" style="overflow:auto;width: 1100px; height: 300px; border: 1px solid #85adad; margin-top: 50px;background:#eff5f5;">
 				<div style="width:100%;">
-				<table class="table table-hover" id="ongoing_table">
+				<table class="table table-hover" id="ongoing_table" style="background:#eff5f5;">
 					<thead>
 						<tr>
 							<th>계시판명</th>
@@ -368,9 +368,9 @@ function ableless(){
 			<h1>진행중인 강의</h1>
 			<hr>
 			<div id="info"
-				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px;">
-				<div style="width:100%;">
-					<table class="table table-hover" >
+				style="width: 1100px; height: 300px; border: 1px solid #85adad; margin-top: 50px;background:#eff5f5;">
+				<div style="width:100%;background:#eff5f5;">
+					<table class="table table-hover" style="background:#eff5f5;">
 						<thead>
 							<tr>
 								<th>강의명</th>
@@ -390,9 +390,9 @@ function ableless(){
 			<hr>
 
 			<div id="info"
-				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px; overflow: auto;">
-				<div style="width:100%;">
-					<table class="table table-hover" >
+				style="width: 1100px; height: 300px; border: 1px solid #85adad; margin-top: 50px; overflow: auto;background:#eff5f5;">
+				<div style="width:100%;background:#eff5f5;">
+					<table class="table table-hover" style="background:#eff5f5;" >
 						<thead>
 							<tr>
 								<th>강의명</th>
@@ -412,9 +412,9 @@ function ableless(){
 			<h1>세미나 신청 내역</h1>
 			<hr>
 			<div id="info"
-				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px; ">
-				<div style="width:100%;">
-					<table class="table table-hover" >
+				style="overflow:auto; width: 1100px; height: 300px; border: 1px solid #85adad; margin-top: 50px; background:#eff5f5;">
+				<div style="width:100%;background:#eff5f5;">
+					<table class="table table-hover" style="background : #c1d7d7" >
 						<thead>
 							<tr>
 								<th>세미나명</th>

@@ -217,6 +217,14 @@ public class UsersService {
 		return result;
 	}
 
+	public String getUserimgReview(int lesson_no) {
+		Connection con = getConnection();
+		String userprofile = new UsersDao().getUserimgReview(con, lesson_no);
+		close(con);
+		return userprofile;
+	}
+
+	
 	
 
 	

@@ -367,8 +367,8 @@ function upload_profile() {
 	<div id="wrapper">
 		<div align="center">
 			<div id="info"
-				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px;">
-				<div style="width: 100%; height: 230px; background: #f2f2f2;">
+				style="width: 1100px; height: 300px; border: 1px solid #85adad; margin-top: 50px;">
+				<div style="width: 100%; height: 230px; background:#eff5f5;">
 					<div
 						style="width: 250px; height: 230px; float: left; margin-top: 10px; padding: 5px;">
 						<%if(loginUser.getUserRenamePhoto() != null) { %>
@@ -387,7 +387,7 @@ function upload_profile() {
 
 
 				</div>
-				<div style="width: 100%; height: 70px; padding: 20px;">
+				<div style="width: 100%; height: 70px; padding: 20px; background:#c1d7d7;">
 					<button type="button" class="btn btn-default" onclick="updateUser();" >
 					<i class="fa fa-gear fa-spin" style="font-size:20px"></i> 개인정보 수정하기</button>
 					&nbsp;
@@ -404,7 +404,7 @@ function upload_profile() {
 			<h1>운영중인 강좌</h1>
 			<hr>
 			<div id="info"
-				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px; overflow:auto;">
+				style="overflow:auto; background:#eff5f5; width: 1100px; height: 300px; border: 1px solid #85adad; margin-top: 50px; overflow:auto;">
 				<div style="width:100%;">
 					<table class="table table-hover" id="ongoing_table"> 
 						<thead>
@@ -434,7 +434,7 @@ function upload_profile() {
 			<h1>강의 게시판 내역</h1>
 			<hr>
 			<div id="info"
-				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px; overflow:auto;">
+				style="overflow:auto; background:#eff5f5;width: 1100px; height: 300px; border: 1px solid #85adad; margin-top: 50px; overflow:auto;">
 				<div style="width:100%;">
 					<table class="table table-hover" id="previous_table">
 						<thead>
@@ -452,7 +452,7 @@ function upload_profile() {
 			<h1>학생 신청 내역</h1>
 			<hr>
 			
-			<div id="info" style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px; overflow:auto;">
+			<div id="info" style="overflow:auto; background:#eff5f5;width: 1100px; height: 300px; border: 1px solid #85adad; margin-top: 50px; overflow:auto;">
 				<div style="width:100%;">
 					<table class="table table-hover">
 						<thead>
@@ -477,7 +477,7 @@ function upload_profile() {
 			<br> <br><br>
 			<h1>학생 교육 내역</h1>
 			<hr>
-			<div id="info" style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px; overflow:auto;">
+			<div id="info" style="overflow: auto; background:#eff5f5;width: 1100px; height: 300px; border: 1px solid #85adad; margin-top: 50px; overflow:auto;">
 				<div style="width:100%;">
 					<table class="table table-hover">
 						<thead>
@@ -500,7 +500,7 @@ function upload_profile() {
 			<h1>세미나 신청 내역</h1>
 			<hr>
 			<div id="info"
-				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px;">
+				style="overflow:auto; background:#eff5f5;width: 1100px; height: 300px; border: 1px solid #85adad; margin-top: 50px;">
 				<div style="width:100%;">
 					<table class="table table-hover" >
 						<thead>

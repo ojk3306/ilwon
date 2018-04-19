@@ -68,13 +68,13 @@ margin-top: -900px;
 	
 	} 
 	.topbend{
-	background:#00ffff;
+	background:#d0e1e1;
 	margin:0px auto;
 	width:900px;
 	height:50px;
 	text-align: center;
 	padding:12px;
-	border: 1px solid #00ffff;
+	border: 1px solid white;
 	border-radius:5px 5px 0px 0px;
 	}
 	.topdetail{
@@ -82,7 +82,7 @@ margin-top: -900px;
 	width:900px;
 	height:280px;
 	border: 1px solid #ffffff;
-	background:#ffffff;
+	background:#eff5f5;
 	border-radius: 0 0 5px 5px;
 	}
 	.topdiv{
@@ -140,7 +140,7 @@ section .section-title{
 	text-transform:uppercase;
 }
 #what-we-do{
-	background:#ffffff;
+	background:#eff5f5;
 	width:900px;
 	border-radius: 8px;
 }
@@ -283,7 +283,7 @@ section .section-title{
 					<li class="topdiv" name="title" > 
 					<ul style="list-style: none; margin-left: 10px; width: 500px; height: 75%">
 						<li class=""><h2><%=semi.getSeminaTitle() %></h2></li>
-						<li class=""><h3> Form :<%=semi.getSeminaStartDate()%> ~~  to:<%=semi.getSeminaEndDate() %></h3> </li>
+						<li class=""><h3> From :<%=semi.getSeminaStartDate()%> ~~  to:<%=semi.getSeminaEndDate() %></h3> </li>
 						<li class=""><h4> 참가 비 :<%=semi.getSeminaPrice()%>원  </h4>      </li> 
 						<li class=""> <h4>강연 위치 :<%=semi.getSeminaLocation() %></h4></li>
 						<li class=""> 
