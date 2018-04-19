@@ -363,7 +363,7 @@ LessonSearch lessondetail =(LessonSearch)request.getAttribute("lesson");
 		</ul>
 	</nav>
 	<!-- 강의료 부분 -->
-	<div align="center" style="margin-top:2px;">
+	<div align="center" style="margin-top:5px;">
 		<nav style="width:1100px; height:150px; border: 1px solid white; background: #eff5f5;">
 			<div style="width:500px; height: 140px; float:left;">
 				<h2>수강료</h2>
@@ -387,10 +387,10 @@ LessonSearch lessondetail =(LessonSearch)request.getAttribute("lesson");
 		</nav>	
 	</div>
 
-	<nav class="howteach" style="padding-top:10px;"><!--커리큘럼란-->	
-		<div class="container" >
-			<div class="col-md-6" Style="margin-left:150px; margin-top: 15px;">   
-				<div class="panel with-nav-tabs panel-info" Style="width:800px;">
+	<nav class="howteach" style="padding-top:5px;"><!--커리큘럼란-->	
+		<div class="container" style="background:#eff5f5; width:1100px;  border: 1px solid white; border-radius: 0 0 30px 30px" >
+			<div class="col-md-6" Style="margin-left:150px; margin-top: 15px; ">   
+				<div class="panel with-nav-tabs panel-info" Style="width:800px; " >
 					<div class="panel-heading">
 						<ul class="nav nav-tabs">
 							<li class="active"><a href="#tab1info" data-toggle="tab">위치와 반경</a></li>
