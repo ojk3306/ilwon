@@ -47,6 +47,13 @@ public class LessonSearch implements Serializable {
 	public LessonSearch() {
 		
 	}
+	
+	
+	public LessonSearch(String lesson_keyword) {
+		super();
+		this.lesson_keyword = lesson_keyword;
+	}
+
 
 	public LessonSearch(String locationValue, String lessonValue, int lessonPreValue, int lessonEndValue,
 			String teacherGenderValue, int teacherAgePreValue, int teacherAgeEndValue, int lessonPricePreValue,

@@ -259,21 +259,21 @@ $('#category1').click(function() {
 					<div class="form-group">
 						<label for="contop">강의 내용1</label>
 						<hr style="clear: both; margin-bottom: -10px;">
-						<textarea name="contop" id="contop" rows="10" cols="68pt" placeholder="이런분들 에게 추천해주세요 " required ></textarea>
+						<textarea name="contop" id="contop" rows="10" cols="68pt" placeholder="이런분들 에게 추천해주세요 " required style="width:100%; resize:none;"></textarea>
 						<span id="error_phone" class="text-danger"></span>
 					</div>
 					
 					<div class="form-group">
 						<label for="conmid">강의 내용2</label>
 							<hr style="clear: both; margin-bottom: -10px;">
-						<textarea rows="10" cols="68pt" name="conmid" id="conmid" placeholder="수업 커리큘럼과 진행방식을 작성해주세요!" required></textarea>
+						<textarea rows="10" cols="68pt" name="conmid" id="conmid" placeholder="수업 커리큘럼과 진행방식을 작성해주세요!" required style="width:100%; resize:none;"></textarea>
 						<span id="error_phone" class="text-danger"></span>
 					</div>
 					
 					<div class="form-group">
 						<label for="conbot">강의 내용3</label>
 							<hr style="clear: both; margin-bottom: -10px;">
-						<textarea rows="10" cols="68pt" name="conbot" id="conbot" placeholder="경력과 수업포부를 작성해주세요" required></textarea>
+						<textarea rows="10" cols="68pt" name="conbot" id="conbot" placeholder="경력과 수업포부를 작성해주세요" required style="width:100%; resize:none;"></textarea>
 						<span id="error_phone" class="text-danger"></span>
 					</div>
 					
@@ -293,7 +293,7 @@ $('#category1').click(function() {
 					
 					<div class="form-group">
 						<label for="loc">강의 지역</label>
-						<input type="text" id="loc" name="loc" class="form-control" onclick="juso()" readonly="readonly" placeholder="클릭 해서 지역을 선택해주세요!" required="required">
+						<input type="text" id="loc" name="loc" class="form-control" onclick="juso()" readonly="readonly" value="서울 시청" required="required">
 						<span id="locl" style="color:#e65c00;" ></span>
 					</div>
 					
@@ -318,7 +318,7 @@ $('#category1').click(function() {
 					</div>
 					</div>
 					<input type="hidden" name="userno" value="<%= loginUser.getUserNo() %>">
-					<input type="button" value="강의생성" class="btn btn-primary center" onclick="return check()">
+					<input type="submit" value="강의생성" class="btn btn-primary center" >
 					<input type="reset" value="초기화" class="btn btn-primary center">
 					<input type="button" onclick="history.back()" value="뒤로가기" class="btn btn-primary center">
 					</div>

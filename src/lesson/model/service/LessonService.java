@@ -90,10 +90,11 @@ public class LessonService {
 		
 		System.out.println("SendInfo : " + ls + " / (To.LessonService)");
 		ArrayList<LessonSearch> list = new LessonDao().selectSearchKeyword(con, ls);
-		
+		System.out.println("selectSearchKeyword 서비스 에서 list 사이즈="+ list.size());
 		close(con);
 		
 		System.out.println("SearchList : " + list + " / (To.LessonService)");
+		
 		return list;
 	}	
 	

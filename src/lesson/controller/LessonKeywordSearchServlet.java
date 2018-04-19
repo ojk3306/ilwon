@@ -39,8 +39,10 @@ public class LessonKeywordSearchServlet extends HttpServlet {
 	
 		String keywordValue = request.getParameter("keywordValue");		
 		
-		LessonSearch ls = new LessonSearch(keywordValue, keywordValue, 0, 0, keywordValue, 0, 0, 0, 0, 0, 0, 0, 0, keywordValue, 0, 0, keywordValue, keywordValue, 0, 0, keywordValue, keywordValue, keywordValue, keywordValue, 0, 0, 0, null, keywordValue, keywordValue, keywordValue, keywordValue, null, 0, keywordValue);			
+		LessonSearch ls = new LessonSearch(keywordValue);			
+		
 		System.out.println("SendInfo : " + ls + " / (To.LessonKeywordSearchServlet)");		
+		
 		ArrayList<LessonSearch> list = new LessonService().selectSearchKeyword(ls);
 					
 		//전송은 json 객체 한개만 전송할 수 있음
@@ -92,8 +94,13 @@ public class LessonKeywordSearchServlet extends HttpServlet {
 				job.put("userImg", lessonSearch.getUser_rename());
 			}else {
 				job.put("userImg", "rakoon.jpg");
+			}
 			jarr.add(job);			
-		}
+		
+			
+			
+			
+	}
 			
 			//전송용 객체에 jarr 배열 담음
 			json.put("list", jarr);
@@ -106,7 +113,7 @@ public class LessonKeywordSearchServlet extends HttpServlet {
 			out.close();
 			
 	}
-	}
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
