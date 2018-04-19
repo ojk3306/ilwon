@@ -374,7 +374,7 @@
 				 			"<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><img src = '/prototype/userTitleimg/"+json.list[i].userImg+"' style = 'width:100px; height:100px;'></td>" + 				 	
 				 		<% } %>						
 						"<td class = 'ohw-ready-name'>" + json.list[i].userName2 + "</td>" +				
-						"<td class = 'ohw-ready-category'>" + json.list[i].categoryBName + " / " + json.list[i].categorySName + "</td>" +				
+						"<td class = 'ohw-ready-category'>" + json.list[i].categoryBName + " / " + json.list[i].categorySName + "<br>" + json.list[i].lessonTitle + "<br>" + json.list[i].lessonPrice + " 만원" + "</td>" +				
 						"<td class = 'ohw-ready-comment'>" + json.list[i].lessonConmid + "</td></tr>");				
 				}			
 			}	
@@ -457,7 +457,7 @@
     					
 	    					"<td class = 'ohw-search-name'>" + json.list[i].userName2 + "</td>" +					 
 	    				
-	    					"<td class = 'ohw-search-category'>" + json.list[i].categoryBName + " / " + json.list[i].categorySName + "</td>" +					 
+	    					"<td class = 'ohw-search-category'>" + json.list[i].categoryBName + " / " + json.list[i].categorySName + "<br>" + json.list[i].lessonTitle + "<br>" + json.list[i].lessonPrice + " 만원" + "</td>" +					 
 	    				
 	    					"<td class = 'ohw-search-comment'>" + json.list[i].lessonConmid + "</td></tr>"
 	    				
