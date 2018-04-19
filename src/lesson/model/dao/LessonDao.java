@@ -262,30 +262,53 @@ public class LessonDao {
 	
 	public ArrayList<LessonSearch> selectSearchKeyword(Connection con, LessonSearch ls) {
 		
-		System.out.println("SendInfo : " + ls + " / (To.LessonDao)");
-		
+		System.out.println("ls.getLesson_keyword()="+ls.getLesson_keyword());
 		ArrayList<LessonSearch> list = new ArrayList<LessonSearch>();		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = "select * from LESSON l, CATEGORYS c, USERS u, LESSONLEV lv, LESSONTYPE lt, USER_TYPE ut, STATE st "
-						+ "where l.CATEGORY_NO = c.CATEGORY_NO "
+						+ "where ( l.CATEGORY_NO = c.CATEGORY_NO "
 						+ "and l.USER_NO2 = u.USER_NO "
 						+ "and l.LEVEL_NO = lv.LESSONLEV_NO "
 						+ "and l.LESSON_TYPE = lt.TYPE_NO "
-						+ "and u.USER_TYPE = ut.USERTYPE_NO "
+			 			+ "and u.USER_TYPE = ut.USERTYPE_NO "
 						+ "and l.STATE_NO = st.STATE_NO "
 						+ "and l.LESSON_ENDDATE is null "
-						+ "and l.LESSON_TYPE = 7000 "
-						+ "and l.LESSON_KEYWORD like ? ";	
+						+ "and l.LESSON_TYPE = 7000 ) "
+						+ "and (l.LESSON_KEYWORD like ? "
+						+ "or l.lesson_title like ? "
+						+ "or u.user_name like ? "
+						+ "or l.lesson_contop like ? "
+						+ "or l.lesson_conmid like ? "
+						+ "or l.lesson_conbot like ? "
+						+ "or l.lesson_location like ? "
+						+ "or c.category_small like ? "
+						+ "or c.category_big like ?) order by lesson_no desc" ;
 				
 		try {
 			pstmt = con.prepareStatement(query);
-			list = new ArrayList<LessonSearch>();
+	
 			
 			if(ls.getLesson_keyword() != null) {
 				pstmt.setString(1, "%"+ls.getLesson_keyword()+"%");
+				pstmt.setString(2, "%"+ls.getLesson_keyword()+"%");
+				pstmt.setString(3, "%"+ls.getLesson_keyword()+"%");
+				pstmt.setString(4, "%"+ls.getLesson_keyword()+"%");
+				pstmt.setString(5, "%"+ls.getLesson_keyword()+"%");
+				pstmt.setString(6, "%"+ls.getLesson_keyword()+"%");
+				pstmt.setString(7, "%"+ls.getLesson_keyword()+"%");
+				pstmt.setString(8, "%"+ls.getLesson_keyword()+"%");
+				pstmt.setString(9, "%"+ls.getLesson_keyword()+"%");
 			} else {
 				pstmt.setString(1, "%%");
+				pstmt.setString(2, "%%");
+				pstmt.setString(3, "%%");
+				pstmt.setString(4, "%%");
+				pstmt.setString(5, "%%");
+				pstmt.setString(6, "%%");
+				pstmt.setString(7, "%%");
+				pstmt.setString(8, "%%");
+				pstmt.setString(9, "%%");
 			}			
 			
 			rset = pstmt.executeQuery();
@@ -325,6 +348,7 @@ public class LessonDao {
 				search.setLesson_type(rset.getInt("lesson_type"));
 				search.setUser_rename(rset.getString("USER_RENAME_PHOTO"));
 				list.add(search);
+				
 			}
 			
 		} catch(Exception e) {

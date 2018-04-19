@@ -49,14 +49,18 @@ public class LessonNavbarSearchServlet extends HttpServlet {
 		System.out.println("Result : " + result + " / (To.LessonNavbarSearchServlet)");
 		//4. 받은 결과를 가지고 성공/실패에 대한 뷰를 선택해서 내보냄
 		response.setContentType("text/html; charset=UTF-8");
+	
 		if(result.size() > 0) {
 			//성공시 상세보기 페이지로 넘김
-			System.out.println("Result(0) : " + result.get(0).getLesson_keyword() + " / (To.LessonNavbarSearchServlet)");
+			
+			System.out.println("Result(0) : " + request.getParameter("ohw-keyword") + " / (To.LessonNavbarSearchServlet)");
 			view = request.getRequestDispatcher("03.OHW/views/find_teacher.jsp");
-			request.setAttribute("ohw-keyword", result.get(0).getLesson_keyword());
+			request.setAttribute("ohw-keyword", request.getParameter("ohw-keyword"));
 			view.forward(request, response);
 		
 		} else {
+		
+			System.out.println("검색이 실패함");
 			// 실패해도 find_teacher.jsp로 보내서 "결과값이 없습니다"를 출력해야 정상적인 로직
 			
 			/*
