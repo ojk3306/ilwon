@@ -30,6 +30,10 @@
 </style>
 
 <script>
+$(function(){
+	if(<%= use.getUserTypeNo()%> !=1001 )
+	location.href="/prototype/index.jsp";
+})
 	function juso() {
 
 		new daum.Postcode({

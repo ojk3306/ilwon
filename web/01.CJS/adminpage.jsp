@@ -81,6 +81,11 @@ h2
 }
     </style>
 <script type="text/javascript">
+$(function(){
+	if(<%=use.getUserTypeNo()%> !=1003 )
+	location.href="/prototype/index.jsp";
+})
+
 
 function bomm(){
 	location.href="/prototype/nuclear?no="+<%=use.getUserTypeNo()%>;	

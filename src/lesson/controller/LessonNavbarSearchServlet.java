@@ -60,17 +60,9 @@ public class LessonNavbarSearchServlet extends HttpServlet {
 		
 		} else {
 		
-			System.out.println("검색이 실패함");
-			// 실패해도 find_teacher.jsp로 보내서 "결과값이 없습니다"를 출력해야 정상적인 로직
-			
-			/*
-			view = request.getRequestDispatcher("03.OHW/views/noticeError.jsp");
+		response.sendRedirect("/prototype/01.CJS/ErrorPage3.jsp");
 			request.setAttribute("message", "키워드 검색 실패");
-			view.forward(request, response);
-			제대로된 에러페이지로 보내기.
-			*
-			*/
-			
+		
 		}	
 	}	
 

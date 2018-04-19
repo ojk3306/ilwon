@@ -360,7 +360,8 @@ function ableless(){
 			<center>
 
 			<button type="button" class="btn btn-success" onclick="location.href = 'insertclass3.jsp' ">
-			<i class="fa fa-handshake-o" style="font-size:20px"></i> 배우고 싶어요 등록하기</button>
+			<i class="fa fa-handshake-o" style="font-size:20px"></i> 배우고 싶어요 등록하기
+			</button>
 			
 			</center>
 			</div>

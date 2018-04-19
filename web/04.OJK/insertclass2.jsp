@@ -32,6 +32,12 @@ Users use= (Users)session.getAttribute("loginUser");
 </style>
 
 <script>
+$(function(){
+	$(function(){
+		if(<%= use.getUserTypeNo()%> !=1002 )
+		location.href="/prototype/index.jsp";
+	})
+})
 function juso(){ 
 
 	new daum.Postcode({
