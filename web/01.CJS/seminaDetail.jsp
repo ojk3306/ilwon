@@ -365,6 +365,15 @@ section .section-title{
 min=$("#min").val();
 max=$("#max").val();
 now=$("#now").val();
+
+if(now>min)
+	$("#pb1").attr("class","progress-bar progress-bar-warning");
+if(now<min)
+	$("#pb1").attr("class","progress-bar progress-bar-success");
+if(now>=max)
+	$("#pb1").attr("class","progress-bar progress-bar-danger");
+
+
 console.log(min);
 console.log(now);
 console.log(max);
