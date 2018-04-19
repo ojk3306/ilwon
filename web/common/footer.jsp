@@ -26,6 +26,7 @@
 	#footer {	
     background: #222222 !important;
       width: 100%;
+      
 	}
 	#footer h5{
 	padding-left: 10px;
@@ -94,6 +95,9 @@
 	
 	.container {
 		width:100%;
+	}
+	#footer{
+		
 	}
 	
 </style>

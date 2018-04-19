@@ -180,19 +180,19 @@ function removeDetail(a){
 						<hr style="clear:both; border: 0">
 					
 					<div class="form-group">
-						<label for="contop">강의 내용1</label>
+						<label for="contop">-이런분들 에게 추천해주세요</label>
 						<textarea name="contop" id="contop" rows="10" cols="68pt"></textarea>
 						<span id="error_phone" class="text-danger"></span>
 					</div>
 					
 					<div class="form-group">
-						<label for="conmid">강의 내용2</label>
+						<label for="conmid">-수업 커리큘럼과 진행방식을 작성해주세요</label>
 						<textarea rows="10" cols="68pt" name="conmid" id="conmid"></textarea>
 						<span id="error_phone" class="text-danger"></span>
 					</div>
 					
 					<div class="form-group">
-						<label for="conbot">강의 내용3</label>
+						<label for="conbot">-경력과 수업포부를 작성해주세요</label>
 						<textarea rows="10" cols="68pt" name="conbot" id="conbot"></textarea>
 						<span id="error_phone" class="text-danger"></span>
 					</div>

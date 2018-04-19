@@ -97,9 +97,9 @@ LessonSearch lessondetail =(LessonSearch)request.getAttribute("lesson");
 	}
 
 	.topbend{
-		background: #bdffff;
+		background: #d0e1e1;
 		border-radius:25px 25px 0 0 ;
-		border: 1px solid #bdffff;		
+		border: 1px solid white;		
 		margin:0px auto;
 		width:1100px;
 		height:50px;
@@ -111,13 +111,15 @@ LessonSearch lessondetail =(LessonSearch)request.getAttribute("lesson");
 		margin:0 auto;
 		width:1100px;
 		height:310px;
-		border: 1px solid gray;
+		border: 1px solid white;
+		background: #eff5f5;
 	}
 
 	.topdiv{
 		float: left;
 		list-style:none;
 		margin-left:10px;
+		
 	}
 
 	.topdiv[name=img]{
@@ -283,10 +285,11 @@ LessonSearch lessondetail =(LessonSearch)request.getAttribute("lesson");
 <hr> 
 <nav class="contents">
 	<nav class="topbend"> <!--최상단 띠.-->
-		<%=lessondetail.getLesson_title()%>
+		
 	</nav>
 	
 	<nav class="topdetail"><!--선생소개-->
+	<br><br><br>
 		<ul>
 			<li class="topdiv">
 				<ul>
@@ -295,21 +298,20 @@ LessonSearch lessondetail =(LessonSearch)request.getAttribute("lesson");
 					<Br><Br>
 						<img src="/prototype/userTitleimg/<%= loginUser.getUserRenamePhoto() %>"
 							class="img-circle" alt="Cinque Terre" width="200px"
-							height="200px">
+							height="200px" >
 						<% }else {%>
 							<img src="/prototype/userTitleimg/rakoon.jpg"
 							class="img-circle" alt="Cinque Terre" width="200px"
 							height="200px">
 						<%} %>
-					<li class="underpic"></li>
-					<li></li>
+				
 				</ul>	
 			</li>
-			<li class="topdiv">		
+			<li class="topdiv" style="width:540px;">		
 				<ul style="list-style: none;">			
 					<li class="">		
 						<br>		
-						<div align = "center">		
+						<div align = "center">		<h1><%=lessondetail.getLesson_title()%></h1>
 							<% System.out.print("유저 성별 : " + user.getUserGender() + " / (To.StudentDetail)");%>
 		
 							<% if( user.getUserGender().equals("M")) { %>
@@ -361,7 +363,7 @@ LessonSearch lessondetail =(LessonSearch)request.getAttribute("lesson");
 	</nav>
 	<!-- 강의료 부분 -->
 	<div align="center" style="margin-top:2px;">
-		<nav style="width:1100px; height:150px; border: 1px solid gray;">
+		<nav style="width:1100px; height:150px; border: 1px solid white; background: #eff5f5;">
 			<div style="width:500px; height: 140px; float:left;">
 				<h2>수강료</h2>
 				<br>

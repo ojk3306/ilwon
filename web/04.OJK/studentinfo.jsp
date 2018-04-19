@@ -14,6 +14,19 @@ Users us=(Users)session.getAttribute("loginUser");
 <script>
 //배우고싶어요
 $(function(){
+	
+	if('<%=us%>'== null){
+		alert("정상적인 경로를 이용해주세요");
+		location.href="/prototype/index.jsp";
+	}else{
+	 if(<%=us.getUserTypeNo()%>!=1001 ) {
+		 alert("정상적인 경로를 이용해주세요");
+	 	location.href="/prototype/index.jsp";
+	 }
+	}
+		
+	
+	
 	$.ajax({
 		url: "/prototype/onlessonteacher",
 		data: {user : $('#userno').val()},
@@ -205,7 +218,7 @@ function insertReview(val) {
 	var userno = $('#userno').val();
 	console.log(userno);
 	var popUrl = "/prototype/popreview?no="+val.id+"&userno="+userno;
-	var popOption = "width=700, height=920, resizable=no, scrollbars=no, status=no; left=600;";    //팝업창 옵션(optoin)
+	var popOption = "width=700, height=650, resizable=no, status=no; left=600;";    //팝업창 옵션(optoin)
 
 	window.open(popUrl,"a",popOption);
 }

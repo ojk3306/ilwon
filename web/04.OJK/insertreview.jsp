@@ -17,14 +17,14 @@
 
 <nav class="contents">
 	<div align="center">
-		<div id="wrapper" style="width: 600px; height: 800px;">
+		<div id="wrapper" style="width: 600px; height: 600px;">
 		
 			<h1 align="center">리뷰작성하기</h1>
 			<br>
 			<hr>
 
 
-			<div style="width: 600px; height: 200px; b">
+			<div style="width: 600px; height: 200px;">
 				<div style="width: 600px; height: 120px; ">
 					<h3 style="margin-top: 30px;"><%= lesson.getUser_name()%>&nbsp;선생님</h3>
 					<h2><%= lesson.getLesson_title() %></h2>
@@ -66,9 +66,9 @@
 					<hr>
 				</div>
 					<div style="width: 600px; height: 200px;">
-					<textarea rows="20" cols="80" name="content" placeholder="솔직한 리뷰를 작성해주세요" style="margin-bottom: 15px" required></textarea>
+					<textarea rows="15" cols="80" name="content" placeholder="솔직한 리뷰를 작성해주세요" style="margin-bottom: 15px" required></textarea>
 					
-					<input type="submit" value="등록하기">
+					<input type="submit" value="등록하기" style="margin-bottom:20px;">
 					<input type="hidden" value="<%= lesson_no%>" name="lesson_no">
 					<input type="hidden" value="<%= user_no%>" name="user_no">
 					</div>		

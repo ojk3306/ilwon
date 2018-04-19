@@ -219,7 +219,7 @@
 <div style="min-height: 600px; max-height: 600px; min-width:200px; max-width:200px; background:#e9e9e9;">
 
 <div class="float_sidebar" style=" width:200px; overflow:hidden; height:auto; left:20px;  border-radius:25px; padding:0px; background:#e9e9e9 ">
-<div style="background: #bdffff; border-radius:25px 25px 0 0 ; height:45px;">
+<div style="background: #d0e1e1; border-radius:25px 25px 0 0 ; height:45px;">
 <Br>
 <p align="center">이 선생은 어떤가요??</p>
 

@@ -34,10 +34,10 @@
                         <div class="col-md-9 cta-contents" border="1">
                             <h1 class="cta-title"><%=pro.getReportTitle() %></h1><BR>
 							<center>
-						    유저아이디: <%=user.getUserEmail()%>
-							등록일 : <%=pro.getReportDate()%>
-							
-							</center>
+ 유저아이디: <%=user.getUserEmail()%>
+등록일 : <%=pro.getReportDate()%>
+
+</center>
 							
 	                        <hr>
                             <div class="cta-desc">
