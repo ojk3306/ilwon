@@ -111,9 +111,9 @@ width:100%;
 }
 
 .topbend{
-	background: #bdffff;
+	background: #d0e1e1;
 	border-radius:25px 25px 0 0 ;
-	border: 1px solid #bdffff;		
+	border: 1px solid white;		
 	margin:0px auto;
 	width:1100px;
 	height:50px;
@@ -125,7 +125,7 @@ width:100%;
 margin:0 auto;
 width:1100px;
 height:310px;
-border: 1px solid gray;
+border: 1px solid white;
 }
 
 .topdiv{
@@ -199,7 +199,7 @@ margin:0 auto;
 margin-top:3px;
 width:1100px;
 height:200px;
-border: 1px solid #ffffff;
+border: 1px solid white;
 }
 .divOfreviewdetail{/*리뷰 내용이 들어감(nav) */
 width:930px;
@@ -218,7 +218,7 @@ width:225px;
 margin: 20px;
 height:140px;
 padding:20px;
-border : 1px solid gray;
+border : 1px solid white;
 }
 .howteachofbtn{
 
@@ -235,13 +235,13 @@ max-height:500px;
 width:100%;
 margin-top:2px; 
 min-height:70px;
-border:1px solid; #000000;
+border-bottom:1px solid gray;
 }
 #info10{
 width:100%;
 margin-top:2px; 
 min-height:200px;
-border:1px solid; #000000;
+border-bottom:1px solid gray;
 }
 .in3{
 padding: 20px;
@@ -250,8 +250,7 @@ padding: 20px;
 position: absolute; top: 0; left: 0; max-width: 100%; height: auto; -webkit-transform: translate(-50%,-50%); -ms-transform: translate(-50%,-50%); transform: translate(-50%,-50%); 
 }
 .item>img{
-width:600px;
-height:600px;
+width:500px;
 margin-left: auto; 
 margin-right: auto;
 border-radius: 35px;
@@ -262,7 +261,7 @@ position: absolute; top: 0; left: 0; max-width: 100%; height: auto; -webkit-tran
 }
 
 .ohw-background {
-	background:#dffdfb;
+	background: #eff5f5;   /* #dffdfb; */
 	width:1100px;
 }
 
@@ -343,7 +342,7 @@ position: absolute; top: 0; left: 0; max-width: 100%; height: auto; -webkit-tran
 	</nav>
 	<!-- 강의료 부분 -->
 	<div align="center" style="margin-top:2px;">
-		<nav class = "ohw-background" style="width:1100px; height:150px; border: 1px solid gray;">
+		<nav class = "ohw-background" style="width:1100px; height:150px; border: 1px solid white;">
 			<div style="width:500px; height: 140px; float:left;">
 			<h2>수강료</h2><br>
 				<table>
@@ -365,7 +364,7 @@ position: absolute; top: 0; left: 0; max-width: 100%; height: auto; -webkit-tran
 		</nav>	
 	</div>	
     <nav class="review ohw-background"><!-- 리뷰란 -->
-	<table border="1" style="width:100%">
+	<table border="0" style="width:100%">
 	
 	<% if(review.size() > 3 || review.size() == 2) {%>
 	
@@ -1069,7 +1068,7 @@ position: absolute; top: 0; left: 0; max-width: 100%; height: auto; -webkit-tran
 	
 	<nav class="howteach ohw-background" style="padding-top:10px;"><!--커리큘럼란-->
 	
-<div class="container" >
+<div class="container ohw-background" style = "width:1100px;" >
 
     <div class="col-md-6" Style="margin-left:150px; margin-top: 15px;">
    
@@ -1087,7 +1086,7 @@ position: absolute; top: 0; left: 0; max-width: 100%; height: auto; -webkit-tran
             </div>
             
             
-            <div class="panel-body" style="padding: 10px; width: auto; height: auto;">
+            <div class="panel-body" style="padding: 10px; width: auto; height: auto; overflow:auto;">
             
             
             <div class="tab-content" >
@@ -1102,14 +1101,13 @@ position: absolute; top: 0; left: 0; max-width: 100%; height: auto; -webkit-tran
           
                     </div>
                     
-                    <div class="tab-pane fade" id="tab2info">
-                   <nav class="in1">
-			<nav class="info1Oftop">
+                    <div class="tab-pane fade" id="tab2info" style="height:500px;">
+			<nav class="info1Oftop" >
 			<!-- 간단한소개 -->
 			<%= lessondetail.getLesson_contop() %>
 			
 			</nav>
-			<nav class="info1Oftop" id="info10">
+			<nav class="info1Oftop" id="info10" >
 			<!--  진행방식-->
 			<%= lessondetail.getLesson_conmid() %>
 			
@@ -1140,15 +1138,15 @@ position: absolute; top: 0; left: 0; max-width: 100%; height: auto; -webkit-tran
                                     <!-- 이미지 받기 -->
                                         <div class="active item" data-slide-number="0" style="width:765px; height: auto; margin-left : 2px; max-height: 532px;">
                                         <img src="/prototype/lesson_upload/<%= lessondetail.getLesson_rename() %>"
-                                        style="width:580px; height:auto; "></div>
+                                        style="width:500px; height:auto; "></div>
 
                                         <div class="item" data-slide-number="1" style="width:765px;  margin-left : 2px; height: auto; max-height: 532px;">
                                         <img src="/prototype/lesson_upload/<%= lessondetail.getLesson_rename2() %>"
-                                         style="width:580px; height:auto; "></div>
+                                         style="width:500px; height:auto; "></div>
 
                                         <div class="item" data-slide-number="2" style="width:765px;  margin-left : 2px; height: auto; max-height: 532px;">
                                         <img src="/prototype/lesson_upload/<%= lessondetail.getLesson_rename3() %>"
-                                         style="width:580px; height:auto; "></div>
+                                         style="width:500px; height:auto; "></div>
 
                                  
                                     
@@ -1222,7 +1220,7 @@ geocoder.addressSearch('<%=lessondetail.getLesson_loc()%>', function(result, sta
 </nav>
 
 <!--내용 끝-->
-<div align="center">
+<div align="center" style = "margin-top: 5%;">
 <button type="button" class = "btn btn-default" value="나가기" onclick="history.go(-1)">
 	<i class="fa fa-sign-out" style="font-size:24px"></i> 나가기
 </button>

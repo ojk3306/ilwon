@@ -46,11 +46,11 @@
 					console.log(json.list[0].username)	
 					
 					
-					$("#fi").html('<div class="active item"><img src="/prototype/userTitleimg/'+json.list[0].LESSON_RENAME_PHOTO+'" style="width:150px; height:100px" class="img-responsive" data-target="#carousel-main" data-slide-to="0"><center>이름:<a href="/prototype/lessondetail?no='+json.list[0].lesson_no+'">'+json.list[0].username+'</a><br>분야 :'+json.list[0].CATEGORY_SMALL+'</div><div class="item"></center><img src="/prototype/userTitleimg/'+json.list[1].LESSON_RENAME_PHOTO+'" style="width:150px; height:100px"class="img-responsive" data-target="#carousel-main" data-slide-to="1"><center>이름:<a href="/prototype/lessondetail?no='+json.list[1].lesson_no+'">'+json.list[1].username+'</a><br>분야 :'+json.list[1].CATEGORY_SMALL+'</div><div class="item"></center><img src="/prototype/userTitleimg/'+json.list[2].LESSON_RENAME_PHOTO+'" style="width:150px; height:100px" class="img-responsive" data-target="#carousel-main" data-slide-to="2"><center>이름:<a href="/prototype/lessondetail?no='+json.list[2].lesson_no+'">'+json.list[2].username+'</a><br>분야 :'+json.list[2].CATEGORY_SMALL+'</div></center>')
+		$("#fi").html('<div class="active item"><img src="/prototype/userTitleimg/'+json.list[0].LESSON_RENAME_PHOTO+'" style="width:150px; height:100px" class="img-responsive" data-target="#carousel-main" data-slide-to="0"><center><h4>'+json.list[0].title+'</h4>이름:<a href="/prototype/lessondetail?no='+json.list[0].lesson_no+'">'+json.list[0].username+'</a><br>분야 :'+json.list[0].CATEGORY_SMALL+'</div><div class="item"></center><img src="/prototype/userTitleimg/'+json.list[1].LESSON_RENAME_PHOTO+'" style="width:150px; height:100px"class="img-responsive" data-target="#carousel-main" data-slide-to="1"><center><h4>'+json.list[1].title+'</h4>이름:<a href="/prototype/lessondetail?no='+json.list[1].lesson_no+'">'+json.list[1].username+'</a><br>분야 :'+json.list[1].CATEGORY_SMALL+'</div><div class="item"></center><img src="/prototype/userTitleimg/'+json.list[2].LESSON_RENAME_PHOTO+'" style="width:150px; height:100px" class="img-responsive" data-target="#carousel-main" data-slide-to="2"><center><h4>'+json.list[2].title+'</h4>이름:<a href="/prototype/lessondetail?no='+json.list[2].lesson_no+'">'+json.list[2].username+'</a><br>분야 :'+json.list[2].CATEGORY_SMALL+'</div></center>')
 					
-					$("#se").html('<div class="active item"><img src="/prototype/userTitleimg/'+json.list[3].LESSON_RENAME_PHOTO+'" style="width:150px; height:100px" class="img-responsive" data-target="#carousel-main" data-slide-to="0"><center>이름:<a href="/prototype/lessondetail?no='+json.list[3].lesson_no+'">'+json.list[3].username+'</a><br>분야 :'+json.list[3].CATEGORY_SMALL+'</div><div class="item"></center><img src="/prototype/userTitleimg/'+json.list[4].LESSON_RENAME_PHOTO+'" style="width:150px; height:100px"class="img-responsive" data-target="#carousel-main" data-slide-to="1"><center>이름:<a href="/prototype/lessondetail?no='+json.list[4].lesson_no+'">'+json.list[4].username+'</a><br>분야 :'+json.list[4].CATEGORY_SMALL+'</div><div class="item"></center><img src="/prototype/userTitleimg/'+json.list[5].LESSON_RENAME_PHOTO+'" style="width:150px; height:100px" class="img-responsive" data-target="#carousel-main" data-slide-to="2"><center>이름:<a href="/prototype/lessondetail?no='+json.list[5].lesson_no+'">'+json.list[5].username+'</a><br>분야 :'+json.list[5].CATEGORY_SMALL+'</div></center>')
+					$("#se").html('<div class="active item"><img src="/prototype/userTitleimg/'+json.list[3].LESSON_RENAME_PHOTO+'" style="width:150px; height:100px" class="img-responsive" data-target="#carousel-main" data-slide-to="0"><center><h4>'+json.list[3].title+'</h4>이름:<a href="/prototype/lessondetail?no='+json.list[3].lesson_no+'">'+json.list[3].username+'</a><br>분야 :'+json.list[3].CATEGORY_SMALL+'</div><div class="item"></center><img src="/prototype/userTitleimg/'+json.list[4].LESSON_RENAME_PHOTO+'" style="width:150px; height:100px"class="img-responsive" data-target="#carousel-main" data-slide-to="1"><center><h4>'+json.list[4].title+'</h4>이름:<a href="/prototype/lessondetail?no='+json.list[4].lesson_no+'">'+json.list[4].username+'</a><br>분야 :'+json.list[4].CATEGORY_SMALL+'</div><div class="item"></center><img src="/prototype/userTitleimg/'+json.list[5].LESSON_RENAME_PHOTO+'" style="width:150px; height:100px" class="img-responsive" data-target="#carousel-main" data-slide-to="2"><center><h4>'+json.list[5].title+'</h4>이름:<a href="/prototype/lessondetail?no='+json.list[5].lesson_no+'">'+json.list[5].username+'</a><br>분야 :'+json.list[5].CATEGORY_SMALL+'</div></center>')
 					
-					$("#th").html('<div class="active item"><img src="/prototype/userTitleimg/'+json.list[6].LESSON_RENAME_PHOTO+'" style="width:150px; height:100px" class="img-responsive" data-target="#carousel-main" data-slide-to="0"><center>이름:<a href="/prototype/lessondetail?no='+json.list[6].lesson_no+'">'+json.list[6].username+'</a><br>분야 :'+json.list[6].CATEGORY_SMALL+'</div><div class="item"></center><img src="/prototype/userTitleimg/'+json.list[7].LESSON_RENAME_PHOTO+'" style="width:150px; height:100px"class="img-responsive" data-target="#carousel-main" data-slide-to="1"><center>이름:<a href="/prototype/lessondetail?no='+json.list[7].lesson_no+'">'+json.list[7].username+'</a><br>분야 :'+json.list[7].CATEGORY_SMALL+'</div><div class="item"></center><img src="/prototype/userTitleimg/'+json.list[8].LESSON_RENAME_PHOTO+'" style="width:150px; height:100px" class="img-responsive" data-target="#carousel-main" data-slide-to="2"><center>이름:<a href="/prototype/lessondetail?no='+json.list[8].lesson_no+'">'+json.list[8].username+'</a><br>분야 :'+json.list[8].CATEGORY_SMALL+'</div></center>')
+					$("#th").html('<div class="active item"><img src="/prototype/userTitleimg/'+json.list[6].LESSON_RENAME_PHOTO+'" style="width:150px; height:100px" class="img-responsive" data-target="#carousel-main" data-slide-to="0"><center><h4>'+json.list[6].title+'</h4>이름:<a href="/prototype/lessondetail?no='+json.list[6].lesson_no+'">'+json.list[6].username+'</a><br>분야 :'+json.list[6].CATEGORY_SMALL+'</div><div class="item"></center><img src="/prototype/userTitleimg/'+json.list[7].LESSON_RENAME_PHOTO+'" style="width:150px; height:100px"class="img-responsive" data-target="#carousel-main" data-slide-to="1"><center><h4>'+json.list[7].title+'</h4>이름:<a href="/prototype/lessondetail?no='+json.list[7].lesson_no+'">'+json.list[7].username+'</a><br>분야 :'+json.list[7].CATEGORY_SMALL+'</div><div class="item"></center><img src="/prototype/userTitleimg/'+json.list[8].LESSON_RENAME_PHOTO+'" style="width:150px; height:100px" class="img-responsive" data-target="#carousel-main" data-slide-to="2"><center><h4>'+json.list[8].title+'</h4>이름:<a href="/prototype/lessondetail?no='+json.list[8].lesson_no+'">'+json.list[8].username+'</a><br>분야 :'+json.list[8].CATEGORY_SMALL+'</div></center>')
 				
 				},
 				error:function(a,b,c){
@@ -219,7 +219,7 @@
 <div style="min-height: 600px; max-height: 600px; min-width:200px; max-width:200px; background:#e9e9e9;">
 
 <div class="float_sidebar" style=" width:200px; overflow:hidden; height:auto; left:20px;  border-radius:25px; padding:0px; background:#e9e9e9 ">
-<div style="background: #bdffff; border-radius:25px 25px 0 0 ; height:45px;">
+<div style="background: #d0e1e1; border-radius:25px 25px 0 0 ; height:45px;">
 <Br>
 <p align="center">이 선생은 어떤가요??</p>
 
@@ -229,7 +229,7 @@
 <div class="col-md-3" style="width: 100%; height: 80%;">
 
      <center>
-            <div id="carousel-pager" class="carousel slide " data-ride="carousel" data-interval="3000">
+            <div id="carousel-pager" class="carousel slide " data-ride="carousel" data-interval="6000">
                 <!-- Carousel items -->
          	  <div class="carousel-inner vertical" style="height:30%; "  id="fi">
                 
@@ -237,14 +237,14 @@
  			</div>
  			
  			
-              <div id="carousel-pager" class="carousel slide " data-ride="carousel" data-interval="3000" >
+              <div id="carousel-pager" class="carousel slide " data-ride="carousel" data-interval="6000" >
                 <!-- Carousel items -->
                 <div class="carousel-inner vertical" id="se">
                    
                 </div>
  			</div>
  			
-              <div id="carousel-pager" class="carousel slide " data-ride="carousel" data-interval="3000" >
+              <div id="carousel-pager" class="carousel slide " data-ride="carousel" data-interval="6000" >
                 <!-- Carousel items -->
                 <div class="carousel-inner vertical" id="th">
                   

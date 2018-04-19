@@ -17,6 +17,15 @@ Users us=(Users)session.getAttribute("loginUser");
 
 //운영중인 강좌
 $(function(){
+	if('<%=us%>'== null){
+		alert("정상적인 경로를 이용해주세요");
+		location.href="/prototype/index.jsp";
+	}else{
+	 if(<%=us.getUserTypeNo()%>!=1002 ){
+		 alert("정상적인 경로를 이용해주세요");
+	 location.href="/prototype/index.jsp";
+	 }
+	}
 	$.ajax({
 		url: "/prototype/onlesson",
 		data: {user : $('#userno').val()},
@@ -422,7 +431,7 @@ function upload_profile() {
 			</div>
 			
 			<br> <br>
-			<h1>강의 계시판 내역</h1>
+			<h1>강의 게시판 내역</h1>
 			<hr>
 			<div id="info"
 				style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px; overflow:auto;">

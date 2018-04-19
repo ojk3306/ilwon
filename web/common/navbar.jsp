@@ -169,7 +169,9 @@ $(".ohw-navbar-search-hidden").val($(".select2accessible").text());
 </script>  
   
 <style type="text/css">
-
+	@import url('http://fonts.googleapis.com/earlyaccess/nanumgothic.css');
+ 
+	body, table, div, p, h1,h2,h3,h4 {font-family:'Nanum Gothic';}
 	body {
 		width:100%;		
 		position:absolute;
