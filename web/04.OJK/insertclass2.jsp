@@ -252,19 +252,22 @@ $('#category1').click(function() {
 					
 					<div class="form-group">
 						<label for="contop">강의 내용1</label>
-						<textarea name="contop" id="contop" rows="10" cols="68pt" required></textarea>
+						<hr style="clear: both; margin-bottom: -10px;">
+						<textarea name="contop" id="contop" rows="10" cols="68pt" placeholder="이런분들 에게 추천해주세요 " required ></textarea>
 						<span id="error_phone" class="text-danger"></span>
 					</div>
 					
 					<div class="form-group">
 						<label for="conmid">강의 내용2</label>
-						<textarea rows="10" cols="68pt" name="conmid" id="conmid" required></textarea>
+							<hr style="clear: both; margin-bottom: -10px;">
+						<textarea rows="10" cols="68pt" name="conmid" id="conmid" placeholder="수업 커리큘럼과 진행방식을 작성해주세요!" required></textarea>
 						<span id="error_phone" class="text-danger"></span>
 					</div>
 					
 					<div class="form-group">
 						<label for="conbot">강의 내용3</label>
-						<textarea rows="10" cols="68pt" name="conbot" id="conbot" required></textarea>
+							<hr style="clear: both; margin-bottom: -10px;">
+						<textarea rows="10" cols="68pt" name="conbot" id="conbot" placeholder="경력과 수업포부를 작성해주세요" required></textarea>
 						<span id="error_phone" class="text-danger"></span>
 					</div>
 					

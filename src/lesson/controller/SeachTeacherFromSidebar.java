@@ -41,7 +41,8 @@ public class SeachTeacherFromSidebar extends HttpServlet {
 		//로그인이 아닐시 유저가 평소에 검색한 키워드를 추출해온다.
 		ArrayList<String> list=new SearchLogService().getSearchhistroy(Integer.parseInt(request.getParameter("userno")));
 		
-		if(list.size()!=0) {//로그인 유저가 평소에 검색한것이 있다면, 그 키워드를 토대로 강의를 가져온다.
+		if(list.size()!=0) {
+		//로그인 유저가 평소에 검색한것이 있다면, 그 키워드를 토대로 강의를 가져온다.
 		LessonList = new LessonService().seachlistByKeyword(list.get(0));
 					System.out.println( list.size());
 	    //첫번째 키워드값을 지닌 강의의 수가 적을수 있다. 그럴경우 2번째 꺼까지 간다.
@@ -66,11 +67,17 @@ public class SeachTeacherFromSidebar extends HttpServlet {
 		job.put("username", l.getUser_name());
 		job.put("lesson_no", l.getLesson_no());
 		job.put("CATEGORY_SMALL", l.getCategory_small());
+		
 		if(l.getLESSON_RENAME_PHOTO()!=null) {			
 		job.put("LESSON_RENAME_PHOTO", l.getLESSON_RENAME_PHOTO());
+		}else {
+		job.put("LESSON_RENAME_PHOTO","rakoon.jpg");
 		}
 		jarr.add(job);
 	}
+	
+	
+	
 	
 	json.put("list", jarr);
 

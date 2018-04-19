@@ -16,14 +16,12 @@
 <link href="/prototype/01.CJS\js\jquery.stepProgressBar.css" rel="stylesheet" type="text/css">
  
  <script type="text/javascript">
-
  function enrollsemina(){
 	 $.ajax({
 		url:"/prototype/enrollsemina",
 		data:{semino:<%=semi.getSeminaNo()%>,teacherno:<%=user.getUserNo()%>,studentno:$("#studentno").val()},
 		success:function(data){
 		$("#enrollstat").html('<button type="button"  style="margin-top : 50px;"  class="btn btn-warning">신청된 상태입니다!</button>');
-
 		history.go(0);
 		}		 	
 	 })
@@ -41,7 +39,6 @@
     -moz-box-shadow:    0px 3px 0px rgba(0, 0, 0, 0.3);
     box-shadow:         0px 3px 0px rgba(0, 0, 0, 0.3);
 }
-
 .btn-default:active,
 .btn-primary:active,
 .btn-success:active,
@@ -51,7 +48,6 @@
     margin-top: 3px;
     margin-bottom: -3px;
 }
-
 .contentbody{
 background:#eeeeee;
 width: 100%;
@@ -71,8 +67,6 @@ margin-top: -900px;
 	
 	
 	} 
-
-
 	.topbend{
 	background:#00ffff;
 	margin:0px auto;
@@ -83,7 +77,6 @@ margin-top: -900px;
 	border: 1px solid #00ffff;
 	border-radius:5px 5px 0px 0px;
 	}
-
 	.topdetail{
 	margin:0 auto;
 	width:900px;
@@ -92,28 +85,22 @@ margin-top: -900px;
 	background:#ffffff;
 	border-radius: 0 0 5px 5px;
 	}
-
 	.topdiv{
 	float: left;
 	list-style:none;
 	margin-left:10px;
-
 	}
-
 	.topdiv[name=img]{
 	width:230px;
 	height:300px;
 	}
-
 	.topdiv[name=title]{
 	width:400px;
 	height:300px;
 	}
-
 	.topdiv[name=option]{
 	width:90px;
 	height:300px;
-
 	}
 	.imticon{
 	margin-top:110px;
@@ -124,7 +111,6 @@ margin-top: -900px;
 	margin-top:20px;
 	margin-left: -30px;
 	}
-
 	.topdiv[name=img]>ul>li>img{/*사진의 크기 및 위치 백그라운드*/
 	width:200px;
 	height:200px;
@@ -246,7 +232,6 @@ section .section-title{
 })
 </style>
 <script type="text/javascript">
-
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>세미나 디테일</title>
@@ -295,15 +280,14 @@ section .section-title{
 					</li>
 				</ul>	
 				</li>
-					<li class="topdiv" name="title">
-					<ul style="list-style: none;">
-						<li class=""><h3><%=semi.getSeminaTitle() %></h3></li>
-						<li class=""> 태그넣기</li>
-						<li class=""> 모집기간 :<%=semi.getSeminaStartDate()%> ~ <%=semi.getSeminaEndDate() %> </li>
-						<li class=""> 참가 비 :<%=semi.getSeminaPrice()%>원               </li> 
-						<li class=""> 강연 위치 :<%=semi.getSeminaLocation() %></li>
+					<li class="topdiv" name="title" > 
+					<ul style="list-style: none; margin-left: 10px; width: 500px; height: 75%">
+						<li class=""><h2><%=semi.getSeminaTitle() %></h2></li>
+						<li class=""><h3> Form :<%=semi.getSeminaStartDate()%> ~~  to:<%=semi.getSeminaEndDate() %></h3> </li>
+						<li class=""><h4> 참가 비 :<%=semi.getSeminaPrice()%>원  </h4>      </li> 
+						<li class=""> <h4>강연 위치 :<%=semi.getSeminaLocation() %></h4></li>
 						<li class=""> 
-						위치 확인하기.<button onclick="window.open('/prototype/01.CJS/seminamap.jsp?loc=<%=semi.getSeminaLocation()%>','window_name','width=790,height=790,location=no,status=no,scrollbars=yes');">button</button>
+						<button class="btn btn-warning" onclick="window.open('/prototype/01.CJS/seminamap.jsp?loc=<%=semi.getSeminaLocation()%>','window_name','left=300px, top=100px, resizable=no, toolbar=no, menubar=no, width=790, height=790, location=no, status=no, scrollbars=yes');">약도 확인하기</button>
 						</li>
 						
 						
@@ -381,7 +365,6 @@ console.log(min);
 console.log(now);
 console.log(max);
 $('#myGoal').stepProgressBar({
-
   currentValue: 0,
   steps: [
     { 
@@ -402,22 +385,18 @@ $('#myGoal').stepProgressBar({
   ],
   unit: '$'
 });
-
         
 </script>
 <script type="text/javascript">
-
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-36251023-1']);
   _gaq.push(['_setDomainName', 'jqueryscript.net']);
   _gaq.push(['_trackPageview']);
-
   (function() {
     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-
 </script>
 		    
 			</div>

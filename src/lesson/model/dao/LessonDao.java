@@ -478,7 +478,7 @@ public class LessonDao {
 		ArrayList<Sidebar> list = new ArrayList<Sidebar>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql="select user_name, lesson_no , LESSON_RENAME_PHOTO, category_small from categorys , lesson , users where categorys.CATEGORY_NO=lesson.CATEGORY_NO and LESSON.user_no2=users.user_no and LESSON.LESSON_KEYWORD like  ?";
+		String sql="select user_name, lesson_no , USER_RENAME_PHOTO, category_small from categorys , lesson , users where categorys.CATEGORY_NO=lesson.CATEGORY_NO and LESSON.user_no2=users.user_no and LESSON.LESSON_KEYWORD like  ?";
 		
 		try {
 			pstmt=con.prepareStatement(sql);
@@ -489,7 +489,7 @@ public class LessonDao {
 				side.setLesson_no(rset.getInt("lesson_no"));
 				side.setUser_name(rset.getString("user_name"));
 				side.setCategory_small(rset.getString("category_small"));
-				side.setLESSON_RENAME_PHOTO(rset.getString("LESSON_RENAME_PHOTO"));
+				side.setLESSON_RENAME_PHOTO(rset.getString("USER_RENAME_PHOTO"));
 				
 
 				list.add(side);			
@@ -510,7 +510,7 @@ public class LessonDao {
 	public ArrayList<Sidebar> seachlistByKeyword2(Connection con, String string, ArrayList<Sidebar> lessonList) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql="select user_name, lesson_no ,LESSON_RENAME_PHOTO, category_small from categorys , lesson , users where categorys.CATEGORY_NO=lesson.CATEGORY_NO and LESSON.user_no2=users.user_no and LESSON.LESSON_KEYWORD like  ?";
+		String sql="select user_name, lesson_no ,USER_RENAME_PHOTO, category_small from categorys , lesson , users where categorys.CATEGORY_NO=lesson.CATEGORY_NO and LESSON.user_no2=users.user_no and LESSON.LESSON_KEYWORD like  ?";
 		
 		try {
 			pstmt=con.prepareStatement(sql);
@@ -527,7 +527,7 @@ public class LessonDao {
 				side.setLesson_no(rset.getInt("lesson_no"));
 				side.setUser_name(rset.getString("user_name"));
 				side.setCategory_small(rset.getString("category_small"));
-				side.setLESSON_RENAME_PHOTO(rset.getString("LESSON_RENAME_PHOTO"));
+				side.setLESSON_RENAME_PHOTO(rset.getString("USER_RENAME_PHOTO"));
 				
 
 				lessonList.add(side);			
@@ -546,7 +546,7 @@ public class LessonDao {
 	public ArrayList<Sidebar> seachlistByKeyword2(Connection con, ArrayList<Sidebar> Sidebar) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql="select user_name, lesson_no , category_small , LESSON_RENAME_PHOTO from categorys , lesson , users where categorys.CATEGORY_NO=lesson.CATEGORY_NO and LESSON.user_no2=users.user_no order by DBMS_RANDOM.RANDOM  ";
+		String sql="select user_name, lesson_no , category_small , USER_RENAME_PHOTO from categorys , lesson , users where categorys.CATEGORY_NO=lesson.CATEGORY_NO and LESSON.user_no2=users.user_no order by DBMS_RANDOM.RANDOM ";
 		try {
 			pstmt=con.prepareStatement(sql);
 			rset=pstmt.executeQuery();
@@ -560,7 +560,7 @@ public class LessonDao {
 				side.setLesson_no(rset.getInt("lesson_no"));
 				side.setUser_name(rset.getString("user_name"));
 				side.setCategory_small(rset.getString("category_small"));
-				side.setLESSON_RENAME_PHOTO(rset.getString("LESSON_RENAME_PHOTO"));
+				side.setLESSON_RENAME_PHOTO(rset.getString("USER_RENAME_PHOTO"));
 				
 				Sidebar.add(side);	
 			}		
