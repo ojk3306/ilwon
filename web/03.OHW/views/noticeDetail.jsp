@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>noticeDetail</title>
+<title>공지사항 상세보기</title>
 
 <style type="text/css">
 

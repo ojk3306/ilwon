@@ -67,7 +67,7 @@ public class SeachTeacherFromSidebar extends HttpServlet {
 		job.put("username", l.getUser_name());
 		job.put("lesson_no", l.getLesson_no());
 		job.put("CATEGORY_SMALL", l.getCategory_small());
-		
+		job.put("title",l.getLESSON_TITLE());
 		if(l.getLESSON_RENAME_PHOTO()!=null) {			
 		job.put("LESSON_RENAME_PHOTO", l.getLESSON_RENAME_PHOTO());
 		}else {

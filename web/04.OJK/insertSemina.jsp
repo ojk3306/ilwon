@@ -46,7 +46,7 @@ var detailCount=1;
 var detailmax=4;
 function addDetail(){
 if(detailmax>detailCount){
-$("#detail").append("<div id='"+detailCount+"'class='form-group'><label for='disc' style='padding:auto; width:100px;'>정보 제목</label>	<div style='width: 99%;'><input type='text' id='phone' name='detailtitle"+detailCount+"' class='form-control' style='width:150px; float:left'><input type='button' onclick='removeDetail(this)' id='"+detailCount+"' class='btn btn-primary center' value='정보삭제하기' style='margin-left:10px;'><input type='button' onclick='addDetail()' class='btn btn-primary center' value='정보 추가하기' style='margin-left:10px;'></div><label for='disc' style='margin-top:5px; width:100px;'>상세정보</label><textarea name='detailinfo"+detailCount+"' class='form-control' rows='3'></textarea></div>");
+$("#detail").append("<div id='"+detailCount+"'class='form-group'><label for='disc' style='padding:auto; width:100px;'>정보 제목</label>	<div style='width: 99%;'><input type='text' id='phone' name='detailtitle"+detailCount+"' class='form-control' style='width:150px; float:left'><input type='button' onclick='removeDetail(this)' id='"+detailCount+"' class='btn btn-primary center' value='정보삭제하기' style='margin-left:10px;'><input type='button' onclick='addDetail()' class='btn btn-primary center' value='정보 추가하기' style='margin-left:10px;'></div><hr><label for='disc' style='margin-top:5px; width:100px;'>상세정보</label><textarea name='detailinfo"+detailCount+"' class='form-control' rows='3'></textarea></div>");
  detailCount++;
  console.log(detailCount);
 	}else{
@@ -62,6 +62,15 @@ function removeDetail(a){
 }
 
 $(document).ready(function(){
+	$("#age1").change(function() {
+		 $("#age2").attr({
+		       "max" : 446565432,       
+		       "min" : $("#age1").val()      
+		    });
+	});
+	
+	
+	
 	if(<%=errormessage%>!=null)
 		alert(errormessage);
 	$flag=1;
@@ -198,9 +207,9 @@ $(document).ready(function(){
 						<label for="age">인원 설정 *</label>
 						<div style="width:95%; background: red">
 						<label for="age" style="width: 15%; float:left" >최소인원:</label>
-						<input id="age" name="min"  class="form-control" type="number" min="1" style="width: 30%; float:left" required>
+						<input id="age1" name="min"  class="form-control" type="number" min="1" style="width: 30%; float:left" required>
 						 <label for="age" style="margin-left:10px;    width: 15%; float:left" >최대인원:</label>
-						<input id="age" name="max"  class="form-control" type="number" min="1" style="width: 30%; float:left" required>
+						<input id="age2" name="max"  class="form-control" type="number" min="1" style="width: 30%; float:left" required>
 					 	
 						</div>
 						
@@ -236,6 +245,7 @@ $(document).ready(function(){
 						<input type="text" id="phone" name="detailtitle" class="form-control" style="width:150px; float:left" required>
 						<input type="button" onclick="addDetail()" class="btn btn-primary center" value="정보 추가하기" style="margin-left:140px;">						
 						</div>
+						<hr style="clear:both; margin-bottom: 5px;">
 						<label for="disc" style="margin-top:5px; width:300px;">검색목록에서 보여줄  상세정보 *</label>
 						<textarea class="form-control" name="detailinfo" rows="3" required></textarea>
 					</div>

@@ -44,7 +44,7 @@ public class NoticeListServlet extends HttpServlet {
 				}
 				
 				//한 페이지당 출력할 목록 갯수 지정
-				int limit = 10;
+				int limit = 8;
 				
 				NoticeService noticeService = new NoticeService();
 				//전체 목록 갯수 조회
@@ -81,9 +81,7 @@ public class NoticeListServlet extends HttpServlet {
 					request.setAttribute("listCount", listCount);			
 					view.forward(request, response);
 				} else {
-					view = request.getRequestDispatcher("03.OHW/views/noticeError.jsp");
-					request.setAttribute("message", currentPage + "에 대한 조회 실패");
-					view.forward(request, response);
+				response.sendRedirect("/prototype/01.CJS/ErrorPage2.jsp");
 				}		
 			}
 

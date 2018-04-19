@@ -1,11 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+    Users use=(Users)session.getAttribute("loginUser");    
+    %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>noticeDetail</title>
+<title>공지사항 작성</title>
 
+<script src="/prototype\common\resources\js\jquery-3.3.1.min.js"></script>
+
+<script type="text/javascript">
+$(function (){
+	if(<%=use.getUserTypeNo()%> !=1003)
+	location.href="/prototype/index.jsp"
+	
+})
+	
+</script>
 <style type="text/css">
 
 	body {
