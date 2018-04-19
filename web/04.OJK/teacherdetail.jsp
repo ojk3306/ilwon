@@ -279,13 +279,13 @@ position: absolute; top: 0; left: 0; max-width: 100%; height: auto; -webkit-tran
  <body>
 <!-- 헤더 시작-->
 <%@ include file="/common\navbar.jsp" %>
+<%@ include file="/01.CJS\sidebar.jsp" %>
 <!-- 헤더 종료-->
 
-<!--내용물-->
-	   <br>
-       <h1 align="center">상세보기</h1>
-       <hr>
-<nav class="contents">
+<!--내용물--> 
+	
+<nav class="contents" style="height: 1700px; margin-top: -650px; background: #e9e9e9">
+	   <br><br><br><br><br><br><br>  
 	<nav class="topbend"> <!--최상단 띠.-->
 	
 	</nav>
@@ -1220,16 +1220,16 @@ geocoder.addressSearch('<%=lessondetail.getLesson_loc()%>', function(result, sta
 </nav>
 
 <!--내용 끝-->
-<div align="center" style = "margin-top: 5%;">
+<div align="center" style = " background: #e9e9e9">
 <button type="button" class = "btn btn-default" value="나가기" onclick="history.go(-1)">
 	<i class="fa fa-sign-out" style="font-size:24px"></i> 나가기
-</button>
+
+</button>	<Br>
 </div>
 
-<br>
 
  <!-- 바닥 -->
- <div style="margin-top: 30px; bottom: 0">
+ <div style="  bottom: 0; background: #e9e9e9">
 <%@ include file="/common/footer.jsp" %>
 </div>
 <!--바닥종료-->

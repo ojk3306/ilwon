@@ -292,8 +292,10 @@ function ableless(){
 </head>
 <body>
 <%@include file="/common/navbar.jsp" %>
+<%@include file="/01.CJS\sidebar.jsp" %>
 
-<nav class="contents">
+<nav class="contents" style="margin-top: -650px; background:#e9e9e9">
+<br><br><br>
 	<input type="hidden" value="<%= loginUser.getUserNo() %>" id="userno">
 	<h1 align="center">학생 정보 보기</h1>
 	<hr>
@@ -442,8 +444,12 @@ function ableless(){
 
 
 	</nav>
-	<Br><Br><Br>
+<div style="background: #e9e9e9 ">
+<Br><Br>
 <%@include file="/common\footer.jsp" %>
+</div>
+
+
 <div class="modal fade"  id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content" style="width:500px; height: 200px; margin-top: 200px;">

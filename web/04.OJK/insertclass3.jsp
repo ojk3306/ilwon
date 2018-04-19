@@ -280,12 +280,18 @@
 						<div id="map" style="width: 500px; height: 350px; display: none;"></div>
 						<span id="error_phone" class="text-danger"></span> <br>
 						<br> <input type="hidden" name="userno"
-							value="<%=loginUser.getUserNo()%>"> <input
+							value="<%=loginUser.getUserNo()%>"> 
+							
+							<center>
+							<input
 							type="button" value="배움신청생성" class="btn btn-primary center"
 							onclick="return check()"> <input type="reset" value="초기화"
 							class="btn btn-primary center"> <input type="button"
 							onclick="history.back()" value="뒤로가기"
 							class="btn btn-primary center">
+			</center>
+			
+			
 				</div>
 
 				</form>

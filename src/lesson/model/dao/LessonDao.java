@@ -537,7 +537,7 @@ public class LessonDao {
 	public ArrayList<Sidebar> seachlistByKeyword2(Connection con, String string, ArrayList<Sidebar> lessonList) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql="select user_name, lesson_no ,USER_RENAME_PHOTO, category_small from categorys , lesson , users where categorys.CATEGORY_NO=lesson.CATEGORY_NO and LESSON.user_no2=users.user_no and LESSON.LESSON_KEYWORD like  ?";
+		String sql="select user_name, lesson_no ,USER_RENAME_PHOTO, LESSON_TITLE, category_small from categorys , lesson , users where categorys.CATEGORY_NO=lesson.CATEGORY_NO and LESSON.user_no2=users.user_no and LESSON.LESSON_KEYWORD like  ?";
 		
 		try {
 			pstmt=con.prepareStatement(sql);

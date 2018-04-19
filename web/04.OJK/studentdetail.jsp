@@ -274,6 +274,7 @@ LessonSearch lessondetail =(LessonSearch)request.getAttribute("lesson");
 
 	<!-- 헤더 시작-->
 <%@ include file="/common\navbar.jsp" %>
+
 <!-- 헤더 종료-->
 
 <!--내용물-->
