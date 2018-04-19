@@ -367,8 +367,9 @@
 		%>					
 				<li class="page-item"><a style = "cursor:no-drop; color:red !important;" class="page-link" href="javascript:void(0)"><%= p %></a></li>	
 			<% } else { %>
-				<a href="/prototype/semilist?page=<%= p %>&search=<%=search%>"><%= p %></a>
-			<% }	
+
+				<li class="page-item"><a style = "cursor:pointer;" class="page-link" href="/prototype/semilist?page=<%= p %>&search=<%=search%>"><%= p %></a></li>			
+			<% }
 
 		} %>
 				
