@@ -31,16 +31,16 @@ $(function(){
 			if(json.onlesson[i].state==1){	
 			values +=
 					"<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
-					+"</td><td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
-					+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"'>대기중</button></td>"			
-				    +"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='upstudentlesson(this)'>수정하기</button></td>"			
+					+"</td><td><button type='button' class='btn btn-info' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
+					+"<td><button type='button' class='btn btn-warning' id='"+json.onlesson[i].lesson_no+"'>대기중</button></td>"	
+				    +"<td><button type='button' class='btn btn-default' id='"+json.onlesson[i].lesson_no+"' onclick='upstudentlesson(this)'>수정하기</button></td>"			
 					+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='CancleLesson(this)'>취소</button></td></tr>"			
 			}else{	
 				values +=
 				"<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
-				+"</td><td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
-				+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"'>수업중</button></td>"			
-			    +"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='upstudentlesson(this)'>수정하기</button></td>"			
+				+"</td><td><button type='button' class='btn btn-info' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
+				+"<td><button type='button' class='btn btn-success' id='"+json.onlesson[i].lesson_no+"'>수업중</button></td>"			
+			    +"<td><button type='button' class='btn btn-default' id='"+json.onlesson[i].lesson_no+"' onclick='upstudentlesson(this)'>수정하기</button></td>"			
 				+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='CancleLesson(this)'>취소</button></td></tr>"		
 				
 			}		
@@ -69,7 +69,7 @@ $(function(){
 	//선생이 올린 계시판으로 가기
 	values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
 			+"</td><td>"+json.onlesson[i].username+"</td><td>"+json.onlesson[i].phone+"</td><td>"+json.onlesson[i].log_date+"</td>"
-			+"<td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson1(this)'>상세보기</button></td>"
+			+"<td><button type='button' class='btn btn-info' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson1(this)'>상세보기</button></td>"
 			+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='finishLesson(this)'>종료</button></td></tr>";			
 			
 	}
@@ -77,7 +77,7 @@ $(function(){
 		//학생이 올린 계시판으로 가기
 	values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
 		+"</td><td>"+json.onlesson[i].username+"</td><td>"+json.onlesson[i].phone+"</td><td>"+json.onlesson[i].log_date+"</td>"
-		+"<td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
+		+"<td><button type='button' class='btn btn-info' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
 		+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='finishLesson(this)'>종료</button></td></tr>";			
 		
 		
@@ -105,7 +105,7 @@ $(function(){
 		
 			values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
 			+"</td><td>"+json.onlesson[i].username+"</td><td>"+json.onlesson[i].phone+"</td><td>"+json.onlesson[i].log_date+"</td>"
-			+"<td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='insertReview(this)'>리뷰쓰기</button></td>"
+			+"<td><button type='button' class='btn btn-default' id='"+json.onlesson[i].lesson_no+"' onclick='insertReview(this)'><i class='fa fa-pencil-square-o' style='font-size:20px'></i>리뷰쓰기</button></td>"
 	}
 	$('#ongoing_table3').html(values);
 		}, error: function(a,b,c){
@@ -127,9 +127,9 @@ $(function(){
 	for(var i in json.semi) {
 		if(json.semi[i].SEMINA_DETAIL_STATE == 1){
 	values += "<tr><td>"+json.semi[i].SEMINA_TITLE+"</td><td>"+json.semi[i].USER_PHONE+"</td>"
-	+"<td><input type='button' id='"+json.semi[i].SEMINA_NO+"' onclick='detailsemina(this)' value='상세보기'></td><td>"+json.semi[i].SEMINA_ENDDATE+"</td>"
-	+"<td><button> 신청중 </button></td>"
-	+"<td><button type='button' class='btn' id='"+json.semi[i].SEMINA_DETAIL_NO+"' onclick='cans(this)'>취소하기</button></td>"
+	+"<td><input type='button' class='btn btn-info' id='"+json.semi[i].SEMINA_NO+"' onclick='detailsemina(this)' value='상세보기'></td><td>"+json.semi[i].SEMINA_ENDDATE+"</td>"
+	+"<td><button class='btn btn-warning'> 신청중 </button></td>"
+	+"<td><button type='button' class='btn btn-danger' id='"+json.semi[i].SEMINA_DETAIL_NO+"' onclick='cans(this)'>취소하기</button></td>"
 	
 		/*
 			<th>세미나명</th>
@@ -152,8 +152,8 @@ $(function(){
 			jarr.add(job);*/
 		}else if(json.semi[i].SEMINA_DETAIL_STATE == 2){
 		values += "<tr><td>"+json.semi[i].SEMINA_TITLE+"</td><td>"+json.semi[i].USER_PHONE+"</td>"
-		+"<td><input type='button' id='"+json.semi[i].SEMINA_NO+"' onclick='detailsemina(this)' value='상세보기'></td><td>"+json.semi[i].SEMINA_ENDDATE+"</td>"
-		+"<td><button> 취소됨 </button></td> <td>...</td></tr>"
+		+"<td><input type='button' class='btn btn-info' id='"+json.semi[i].SEMINA_NO+"' onclick='detailsemina(this)' value='상세보기'></td><td>"+json.semi[i].SEMINA_ENDDATE+"</td>"
+		+"<td><button class='btn btn-danger'> 취소됨 </button></td> <td>...</td></tr>"
 	}
 	}
 	
@@ -297,9 +297,11 @@ function ableless(){
 
 				</div>
 				<div style="width: 100%; height: 70px; padding: 20px;">
-					<button type="button" class="btn" onclick="updateUser();">개인정보 수정하기</button>
+					<button type="button" class="btn btn-default" onclick="updateUser();">
+					<i class="fa fa-gear fa-spin" style="font-size:20px"></i> 개인정보 수정하기</button>
 					&nbsp;
-					<button type="button" class="btn" onclick="upload_profile();">프로필 사진 수정</button>
+					<button type="button" class="btn btn-default" onclick="upload_profile();">
+					<i class="fa fa-gear fa-spin" style="font-size:20px"></i> 프로필 사진 수정</button>
 					&nbsp;
 
 
@@ -329,7 +331,10 @@ function ableless(){
 				</div>
 			<hr>
 			<center>
-			<button type="button" class="btn btn-info"  onclick="checklessonNum(this)"  id="<%=loginUser.getUserNo() %>"  >배우고 싶어요 등록하기</button>
+
+			<button type="button" class="btn btn-success" onclick="location.href = 'insertclass3.jsp' ">
+			<i class="fa fa-handshake-o" style="font-size:20px"></i> 배우고 싶어요 등록하기</button>
+			
 			</center>
 			</div>
 			<br> <br>
