@@ -48,7 +48,7 @@ $(function(){
 					+"<td><button type='button' class='btn btn-warning' id='"+json.onlesson[i].lesson_no+"'>대기중</button></td>"	
 				    +"<td><button type='button' class='btn btn-default' id='"+json.onlesson[i].lesson_no+"' onclick='upstudentlesson(this)'>수정하기</button></td>"			
 					+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='CancleLesson(this)'>취소</button></td></tr>"			
-			}else{	
+			}else if(json.onlesson[i].state==2) {	
 				values +=
 				"<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
 				+"</td><td><button type='button' class='btn btn-info' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"

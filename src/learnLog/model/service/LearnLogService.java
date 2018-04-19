@@ -147,5 +147,17 @@ public class LearnLogService {
 		
 		return lessona;
 	}
+
+	public int changeStatelesson(int parseInt) {
+	
+		Connection conn = getConnection();
+		int result=new LearnLogDao().changeStatelesson(conn,parseInt);
+		
+		close(conn);
+		
+		return result;
+		
+	
+	}
 	
 }
