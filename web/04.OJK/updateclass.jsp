@@ -315,7 +315,7 @@ $("#img2").change(function() {
 					
 					<div class="form-group">
 						<label for="contop">강의 내용1</label>
-						<textarea name="contop" id="contop" rows="10" cols="68pt">
+						<textarea name="contop" id="contop" rows="10" cols="68pt" style="width:100%; resize: none;">
 						<%=le.getLesson_contop() %>
 						</textarea>
 						<span id="error_phone" class="text-danger"></span>
@@ -323,7 +323,7 @@ $("#img2").change(function() {
 					
 					<div class="form-group">
 						<label for="conmid">강의 내용2</label>
-						<textarea rows="10" cols="68pt" name="conmid" id="conmid">
+						<textarea rows="10" cols="68pt" name="conmid" id="conmid" style="width:100%; resize: none;">
 						<%=le.getLesson_conmid() %>
 						</textarea>
 						<span id="error_phone" class="text-danger"></span>
@@ -331,7 +331,7 @@ $("#img2").change(function() {
 					
 					<div class="form-group">
 						<label for="conbot">강의 내용3</label>
-						<textarea rows="10" cols="68pt" name="conbot" id="conbot">
+						<textarea rows="10" cols="68pt" name="conbot" id="conbot" style="width:100%; resize: none;">
 						<%=le.getLesson_conbot() %>
 						</textarea>
 						<span id="error_phone" class="text-danger"></span>
@@ -350,9 +350,9 @@ $("#img2").change(function() {
 				    <Br> <Br>
 					<label class="btn btn-primary btn-file" id="i">
   					  파일수정 
-  					<input type="file" style="display: none;"  id="img"  name="upfile">
-					<%=le.getLesson_orginal() %>
-				   
+  					<input type="file" style="display: none;"  id="img"  name="upfile" value="<%=le.getLesson_orginal()%>">  
+  					<%=le.getLesson_orginal()%>
+  				
 					</label> 
 					
 					<%}else{ %>
@@ -370,7 +370,7 @@ $("#img2").change(function() {
 				   <%if(le.getLesson_orginal2()!=null){ %>
 					<Br> <Br>
 					<label class="btn btn-primary btn-file" id="i2">
-  					  파일수정 <input type="file" style="display: none;" name="upfile2" id="img2" >
+  					  파일수정 <input type="file" style="display: none;" name="upfile2" id="img2" value="<%=le.getLesson_orginal()%>">
 					<%=le.getLesson_orginal2() %>
 				 
 					</label> 
@@ -386,7 +386,7 @@ $("#img2").change(function() {
 				   <%if(le.getLesson_orginal3()!=null){ %>	
 			<Br> <Br>
 					<label class="btn btn-primary btn-file" id="i3">
-  					  파일수정 <input type="file" style="display: none;" name="upfile3" id="img3" >
+  					  파일수정 <input type="file" style="display: none;" name="upfile3" id="img3" value="<%=le.getLesson_orginal()%>">
 					<%=le.getLesson_orginal3()%>
 				 
 					</label> 

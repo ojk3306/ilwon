@@ -117,7 +117,8 @@ public class LessonService {
 		} else {
 			rollback(conn);
 		}
-		
+			
+		close(conn);
 		return result;
 	}
 
