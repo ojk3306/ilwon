@@ -72,7 +72,11 @@ public class LessonMainTeacherServlet extends HttpServlet {
 					job.put("lessonConbot",lesson.getLesson_conbot());
 					job.put("lessonKeyword",lesson.getLesson_keyword());
 					job.put("lessonType",lesson.getLesson_type());
-						
+					if(lesson.getLesson_rename()!=null)
+						job.put("photo",lesson.getLesson_rename());
+						else 
+						job.put("photo","rakoon.jpg");
+							
 					jarr.add(job);			
 				}
 					
