@@ -35,9 +35,9 @@ public class InsertSearchLogServlet extends HttpServlet {
 	
 		SearchLog sl = new SearchLog();
 		
-		String keyword=request.getParameter("seachcontent");
+		String keywordValue=request.getParameter("seachcontent");
 
-		sl.setSearchContent(keyword);
+		sl.setSearchContent(keywordValue);
 			
 		if(request.getParameter("user").equals("")  || request.getParameter("user").equals("undefined")) {
 		
@@ -52,11 +52,10 @@ public class InsertSearchLogServlet extends HttpServlet {
 		if(result>0) {
 			
 		System.out.println("삽입완료  / (To.InsertSearchLogServlet)");
-		System.out.println("keyword="+keyword);
-		RequestDispatcher view= request.getRequestDispatcher("/lnsearch?ohw-keyword="+keyword);
+		System.out.println("keyword="+keywordValue);
+		RequestDispatcher view= request.getRequestDispatcher("/lnsearch?ohw-keyword="+keywordValue);
 		view.forward(request, response);
-		
-		
+
 		} else {
 			System.out.println("삽입실패 / (To.InsertSearchLogServlet)");
 		}

@@ -390,8 +390,11 @@
 <script type="text/javascript"> /* 키워드 검색용 스크립트 */
 
 	$(function() {	
-		<% String keyword = request.getParameter("ohw-keyword"); %>
+		
+		<% String keyword = (String)request.getAttribute("ohw-keyword"); %>
+		
 		<% System.out.println("ReadyKeywordValue : " + keyword); %>		
+		
 		var keyword = "<%= keyword %>";
 	 	/* alert("ReadyKeyword : " + keyword) */
 		if(keyword != "null") {

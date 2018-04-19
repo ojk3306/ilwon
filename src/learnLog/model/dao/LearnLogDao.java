@@ -283,6 +283,8 @@ public class LearnLogDao {
 				l.setLOG_STATE(rset.getInt("log_state"));
 				l.setUSER_NAME(rset.getString("user_name"));
 				l.setUSER_NO2(rset.getInt("user_no2"));
+				l.setUSER_NO1(rset.getInt("user_no1"));
+				
 				l.setLOG_STATE(rset.getInt("LOG_STATE"));
 				l.setLESSON_TITLE(rset.getString("LESSON_TITLE"));
 				l.setUSER_PHONE(rset.getString("USER_PHONE"));

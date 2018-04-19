@@ -1,27 +1,25 @@
-package lesson.controller;
+package learnLog.controller;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import lesson.model.service.LessonService;
+import learnLog.model.service.LearnLogService;
 
 /**
- * Servlet implementation class StopLessonServlet
+ * Servlet implementation class LearnLogFinish
  */
-@WebServlet("/stoplesson")
-public class StopLessonServlet extends HttpServlet {
+@WebServlet("/finishstudent2")
+public class LearnLogFinish2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public StopLessonServlet() {
+    public LearnLogFinish2() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,19 +28,16 @@ public class StopLessonServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int lesson_no = Integer.parseInt(request.getParameter("no"));
-		
-		int result = new LessonService().stopLesson(lesson_no);
-		
-		if(result > 0) {
-			response.sendRedirect("/prototype/04.OJK/teacherinfo.jsp");
+	
+		String[] arr = request.getParameter("no").split("/");
+
+		int result=new LearnLogService().finishstudent(Integer.parseInt(arr[0]),Integer.parseInt(arr[1]),Integer.parseInt(arr[2]));
+			
+		if(result>0) {
+			response.sendRedirect("/prototype/04.OJK/studentinfo.jsp");
 		}else {
-		//에러ㅍㅔ이지 추가하자
-		RequestDispatcher view = request.getRequestDispatcher("/prototype/index.jsp");
-		request.setAttribute("message","");
-		view.forward(request, response);
+			
 		}
-		
 	}
 
 	/**

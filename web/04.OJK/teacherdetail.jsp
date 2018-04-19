@@ -92,7 +92,7 @@ height: 100%;
 }
 body {
 margin: 0;
-height: 100%;
+height: 1450px;
 }
 .contents{
 min-height: 100%;
@@ -1138,15 +1138,15 @@ position: absolute; top: 0; left: 0; max-width: 100%; height: auto; -webkit-tran
                                     <!-- Carousel items -->
                                     <div class="carousel-inner" style="width:765px; height:auto; margin-left : 2px; "> 
                                     <!-- 이미지 받기 -->
-                                        <div class="active item" data-slide-number="0" style="width:765px; height:auto; margin-left : 2px; ">
+                                        <div class="active item" data-slide-number="0" style="width:765px; height: auto; margin-left : 2px; max-height: 532px;">
                                         <img src="/prototype/lesson_upload/<%= lessondetail.getLesson_rename() %>"
                                         style="width:580px; height:auto; "></div>
 
-                                        <div class="item" data-slide-number="1" style="width:765px; height:auto; margin-left : 2px; ">
+                                        <div class="item" data-slide-number="1" style="width:765px;  margin-left : 2px; height: auto; max-height: 532px;">
                                         <img src="/prototype/lesson_upload/<%= lessondetail.getLesson_rename2() %>"
                                          style="width:580px; height:auto; "></div>
 
-                                        <div class="item" data-slide-number="2" style="width:765px; height:auto; margin-left : 2px; ">
+                                        <div class="item" data-slide-number="2" style="width:765px;  margin-left : 2px; height: auto; max-height: 532px;">
                                         <img src="/prototype/lesson_upload/<%= lessondetail.getLesson_rename3() %>"
                                          style="width:580px; height:auto; "></div>
 
@@ -1231,7 +1231,9 @@ geocoder.addressSearch('<%=lessondetail.getLesson_loc()%>', function(result, sta
 <br>
 
  <!-- 바닥 -->
+ <div style="margin-top: 30px; bottom: 0">
 <%@ include file="/common/footer.jsp" %>
+</div>
 <!--바닥종료-->
 
 

@@ -52,6 +52,11 @@ $(function(){
 			console.log(b+c);
 		}	
 	});
+	
+	
+	
+	
+	
 	//진행중인 강의
 	$.ajax({   //레슨로그에서 본인(학생)의 번호로 검색, 스테이스에 수업이 진행중인 것만 가져 가져옴.
 		url:"/prototype/llteaher2",
@@ -70,7 +75,7 @@ $(function(){
 	values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
 			+"</td><td>"+json.onlesson[i].username+"</td><td>"+json.onlesson[i].phone+"</td><td>"+json.onlesson[i].log_date+"</td>"
 			+"<td><button type='button' class='btn btn-info' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson1(this)'>상세보기</button></td>"
-			+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='finishLesson(this)'>종료</button></td></tr>";			
+			+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].stuno +"/"+json.onlesson[i].teano+"/"+json.onlesson[i].lesson_no+"' onclick='finishLesson(this)'>종료</button></td></tr>";			
 			
 	}
 	else if(json.onlesson[i].type == 8000 ){ 
@@ -78,9 +83,7 @@ $(function(){
 	values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
 		+"</td><td>"+json.onlesson[i].username+"</td><td>"+json.onlesson[i].phone+"</td><td>"+json.onlesson[i].log_date+"</td>"
 		+"<td><button type='button' class='btn btn-info' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
-		+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='finishLesson(this)'>종료</button></td></tr>";			
-		
-		
+		+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].stuno +"/"+json.onlesson[i].teano+"/"+json.onlesson[i].lesson_no+"' onclick='finishLesson(this)'>종료</button></td></tr>";			
 	}
 	
 	$('#ongoing_table2').html(values)}
@@ -186,7 +189,7 @@ function DetailLesson(val) {
 
 //강의 취소하기
 function CancleLesson(val) {
-	var result = confirm('삭제 하시겠습니까?'); 
+	var result = confirm('취소 하시겠습니까?'); 
 	console.log(val.id);
 	var userno = $('#userno').val();
 	console.log(userno);
@@ -247,6 +250,15 @@ function checklessonNum(a){
 			
 		})
 }
+function finishLesson(a){
+	var result = confirm('종료 하시겠습니까?'); 
+	console.log(a.id);
+	
+	if(result) 
+	location.href="/prototype/finishstudent2?no=" + a.id;
+		
+}
+
 
 function noexe(){
 
