@@ -363,10 +363,10 @@
 				for(var i in json.list) {				
 					$('.ohw-ready-table').append(						
 						 <% if(loginUser != null) { %>				 	
-							"<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><a href = '<%= request.getContextPath() %>/lessondetail?no=" + json.list[i].lessonNo + "&page=1'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></a></td>" + 
+							"<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><a href = '<%= request.getContextPath() %>/lessondetail?no=" + json.list[i].lessonNo + "&page=1'><img src = '/prototype/userTitleimg/"+json.list[i].userImg+"' style = 'width:100px; height:100px;'></a></td>" + 
 				
 						 <% } else { %>					
-							"<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></td>" + 
+							"<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><img src = '/prototype/userTitleimg/"+json.list[i].userImg+"' style = 'width:100px; height:100px;'></td>" + 
 						 <% } %>						
 						"<td class = 'ohw-ready-name'>" + json.list[i].userName2 + "</td>" +				
 						"<td class = 'ohw-ready-category'>" + json.list[i].categoryBName + " / " + json.list[i].categorySName + "</td>" +				
@@ -424,9 +424,9 @@
     				for(var i in json.list) {    				
     					$('.ohw-keyword-table').append(    				
     					<% if(loginUser != null) { %>				 	
-    						"<tr class = 'ohw-keyword-table-tr'><td class = 'ohw-keyword-photo'><a href = '<%= request.getContextPath() %>/lessondetail?no=" + json.list[i].lessonNo + "&page=1'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></a></td>" +     					
+    						"<tr class = 'ohw-keyword-table-tr'><td class = 'ohw-keyword-photo'><a href = '<%= request.getContextPath() %>/lessondetail?no=" + json.list[i].lessonNo + "&page=1'><img src = '/prototype/userTitleimg/"+json.list[i].userImg+"' style = 'width:100px; height:100px;'></a></td>" +     					
     					<% } else { %>					
-    						"<tr class = 'ohw-keyword-table-tr'><td class = 'ohw-keyword-photo'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></td>" + 
+    						"<tr class = 'ohw-keyword-table-tr'><td class = 'ohw-keyword-photo'><img src = '/prototype/userTitleimg/"+json.list[i].userImg+"' style = 'width:100px; height:100px;'></td>" + 
     					<% } %>    				
     					"<td class = 'ohw-keyword-name'>" + json.list[i].userName2 + "</td>" +    				
     					"<td class = 'ohw-keyword-category'>" + json.list[i].categoryBName + " / " + json.list[i].categorySName + "</td>" +	    				
@@ -502,9 +502,9 @@
 	    			for(var i in json.list) {	    				
 	    				$('.ohw-search-table').append(	    				
 	    					<% if(loginUser != null) { %>				 	
-    							"<tr class = 'ohw-search-table-tr'><td class = 'ohw-search-photo'><a href = '<%= request.getContextPath() %>/lessondetail?no=" + json.list[i].lessonNo + "&page=1'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></a></td>" + 
+    							"<tr class = 'ohw-search-table-tr'><td class = 'ohw-search-photo'><a href = '<%= request.getContextPath() %>/lessondetail?no=" + json.list[i].lessonNo + "&page=1'><img src = '/prototype/userTitleimg/"+json.list[i].userImg+"' style = 'width:100px; height:100px;'></a></td>" + 
     						<% } else { %>					
-    							"<tr class = 'ohw-search-table-tr'><td class = 'ohw-search-photo'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></td>" + 
+    							"<tr class = 'ohw-search-table-tr'><td class = 'ohw-search-photo'><img src = '/prototype/userTitleimg/"+json.list[i].userImg+"' style = 'width:100px; height:100px;'></td>" + 
     						<% } %>    					
 	    					"<td class = 'ohw-search-name'>" + json.list[i].userName2 + "</td>" +		    				
 	    					"<td class = 'ohw-search-category'>" + json.list[i].categoryBName + " / " + json.list[i].categorySName + "</td>" +	    				

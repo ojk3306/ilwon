@@ -35,6 +35,7 @@ public class Lesson implements Serializable{
 	private String lesson_rename;
 	private String lesson_rename2;
 	private String lesson_rename3;
+	private String user_rename;
 
 	
 
@@ -49,7 +50,8 @@ public class Lesson implements Serializable{
 			String lesson_title, String lesson_loc, int lesson_rad, int lesson_price, int lesson_count,
 			Date lesson_startdate, String lesson_contop, String lesson_conmid, String lesson_conbot,
 			String lesson_keyword, Date lesson_enddate, int lesson_type, String lesson_orginal, String lesson_orginal2,
-			String lesson_orginal3, String lesson_rename, String lesson_rename2, String lesson_rename3) {
+			String lesson_orginal3, String lesson_rename, String lesson_rename2, String lesson_rename3,
+			String user_rename) {
 		super();
 		this.lesson_no = lesson_no;
 		this.level_no = level_no;
@@ -80,6 +82,7 @@ public class Lesson implements Serializable{
 		this.lesson_rename = lesson_rename;
 		this.lesson_rename2 = lesson_rename2;
 		this.lesson_rename3 = lesson_rename3;
+		this.user_rename = user_rename;
 	}
 
 
@@ -432,6 +435,18 @@ public class Lesson implements Serializable{
 
 
 
+	public String getUser_rename() {
+		return user_rename;
+	}
+
+
+
+	public void setUser_rename(String user_rename) {
+		this.user_rename = user_rename;
+	}
+
+
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -450,12 +465,11 @@ public class Lesson implements Serializable{
 				+ ", lesson_keyword=" + lesson_keyword + ", lesson_enddate=" + lesson_enddate + ", lesson_type="
 				+ lesson_type + ", lesson_orginal=" + lesson_orginal + ", lesson_orginal2=" + lesson_orginal2
 				+ ", lesson_orginal3=" + lesson_orginal3 + ", lesson_rename=" + lesson_rename + ", lesson_rename2="
-				+ lesson_rename2 + ", lesson_rename3=" + lesson_rename3 + "]";
+				+ lesson_rename2 + ", lesson_rename3=" + lesson_rename3 + ", user_rename=" + user_rename + "]";
 	}
 
 
 	
-
 	
 	
 }

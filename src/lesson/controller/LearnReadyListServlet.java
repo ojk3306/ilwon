@@ -72,7 +72,10 @@ public class LearnReadyListServlet extends HttpServlet {
 					job.put("lessonConbot",lesson.getLesson_conbot());
 					job.put("lessonKeyword",lesson.getLesson_keyword());
 					job.put("lessonType",lesson.getLesson_type());
-						
+					if(lesson.getUser_rename() !=null)
+						job.put("userImg",lesson.getUser_rename());
+						else
+						job.put("userImg","rakoon.jpg");	
 					jarr.add(job);			
 				}
 					

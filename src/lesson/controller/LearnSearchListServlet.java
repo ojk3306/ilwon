@@ -49,8 +49,8 @@ public class LearnSearchListServlet extends HttpServlet {
 				int lessonLevelPreValue = Integer.parseInt(request.getParameter("lessonLevel"));
 				int lessonLevelEndValue = Integer.parseInt(request.getParameter("lessonLevel"));
 				
-				LearnSearch ls = new LearnSearch(locationValue, lessonValue, studentGenderValue, 
-						studentAgePreValue, studentAgeEndValue, lessonPricePreValue, lessonPriceEndValue, lessonLevelPreValue, lessonLevelEndValue);			
+				LearnSearch ls = new LearnSearch(locationValue, lessonValue, lessonLevelEndValue, lessonLevelEndValue, studentGenderValue, 
+						studentAgePreValue, studentAgeEndValue, lessonPricePreValue, lessonPriceEndValue, lessonLevelPreValue, lessonLevelEndValue, lessonLevelEndValue, lessonLevelEndValue, studentGenderValue, lessonLevelEndValue, lessonLevelEndValue, studentGenderValue, studentGenderValue, lessonLevelEndValue, lessonLevelEndValue, studentGenderValue, studentGenderValue, studentGenderValue, studentGenderValue, lessonLevelEndValue, lessonLevelEndValue, lessonLevelEndValue, null, studentGenderValue, studentGenderValue, studentGenderValue, studentGenderValue, null, lessonLevelEndValue, studentGenderValue);			
 				System.out.println("SendInfo : " + ls + " / (To.LearnSearchListServlet)");		
 				ArrayList<LearnSearch> list = new LessonService().selectLearnSearchList(ls);
 							
@@ -98,7 +98,10 @@ public class LearnSearchListServlet extends HttpServlet {
 					job.put("lessonConbot",lessonSearch.getLesson_conbot());
 					job.put("lessonKeyword",lessonSearch.getLesson_keyword());
 					job.put("lessonType",lessonSearch.getLesson_type());
-						
+					if(lessonSearch.getUser_rename() !=null)
+						job.put("userImg",lessonSearch.getUser_rename());
+						else
+						job.put("userImg","rakoon.jpg");		
 					jarr.add(job);			
 				}
 					

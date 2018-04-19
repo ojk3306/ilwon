@@ -123,7 +123,7 @@ public class LessonDao {
 				lesson.setLesson_conbot(rset.getString("lesson_conbot"));
 				lesson.setLesson_keyword(rset.getString("lesson_keyword"));
 				lesson.setLesson_type(rset.getInt("lesson_type"));				
-				
+				lesson.setUser_rename(rset.getString("USER_RENAME_PHOTO"));
 				list.add(lesson);
 			}
 		} catch (Exception e) {
@@ -242,7 +242,7 @@ public class LessonDao {
 				search.setLesson_conbot(rset.getString("lesson_conbot"));
 				search.setLesson_keyword(rset.getString("lesson_keyword"));
 				search.setLesson_type(rset.getInt("lesson_type"));
-				
+				search.setUser_rename(rset.getString("USER_RENAME_PHOTO"));
 				list.add(search);
 			}
 			
@@ -321,7 +321,7 @@ public class LessonDao {
 				search.setLesson_conbot(rset.getString("lesson_conbot"));
 				search.setLesson_keyword(rset.getString("lesson_keyword"));
 				search.setLesson_type(rset.getInt("lesson_type"));
-				
+				search.setUser_rename(rset.getString("USER_RENAME_PHOTO"));
 				list.add(search);
 			}
 			
@@ -1088,7 +1088,7 @@ public class LessonDao {
 				lesson.setLesson_conbot(rset.getString("lesson_conbot"));
 				lesson.setLesson_keyword(rset.getString("lesson_keyword"));
 				lesson.setLesson_type(rset.getInt("lesson_type"));				
-				
+				lesson.setUser_rename(rset.getString("USER_RENAME_PHOTO"));
 				list.add(lesson);
 			}
 		} catch (Exception e) {
@@ -1207,7 +1207,7 @@ public class LessonDao {
 					search.setLesson_conbot(rset.getString("lesson_conbot"));
 					search.setLesson_keyword(rset.getString("lesson_keyword"));
 					search.setLesson_type(rset.getInt("lesson_type"));
-					
+					search.setUser_rename(rset.getString("USER_RENAME_PHOTO"));
 					list.add(search);
 				}
 				

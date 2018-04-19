@@ -42,6 +42,7 @@ public class LessonSearch implements Serializable {
 	private String lesson_keyword;
 	private Date lesson_enddate;
 	private int lesson_type;
+	private String user_rename;
 	
 	public LessonSearch() {
 		
@@ -53,7 +54,8 @@ public class LessonSearch implements Serializable {
 			String level, int state_no, int category_no, String category_bigName, String category_smallName,
 			int user_no1, int user_no2, String user_name1, String user_name2, String lesson_title, String lesson_loc,
 			int lesson_rad, int lesson_price, int lesson_count, Date lesson_startdate, String lesson_contop,
-			String lesson_conmid, String lesson_conbot, String lesson_keyword, Date lesson_enddate, int lesson_type) {
+			String lesson_conmid, String lesson_conbot, String lesson_keyword, Date lesson_enddate, int lesson_type,
+			String user_rename) {
 		super();
 		this.locationValue = locationValue;
 		this.lessonValue = lessonValue;
@@ -89,26 +91,7 @@ public class LessonSearch implements Serializable {
 		this.lesson_keyword = lesson_keyword;
 		this.lesson_enddate = lesson_enddate;
 		this.lesson_type = lesson_type;
-	}	
-
-	public LessonSearch(String locationValue, String lessonValue, String teacherGenderValue, int teacherAgePreValue,
-			int teacherAgeEndValue, int lessonPricePreValue, int lessonPriceEndValue, int lessonLevelPreValue,
-			int lessonLevelEndValue) {
-		super();
-		this.locationValue = locationValue;
-		this.lessonValue = lessonValue;
-		this.teacherGenderValue = teacherGenderValue;
-		this.teacherAgePreValue = teacherAgePreValue;
-		this.teacherAgeEndValue = teacherAgeEndValue;
-		this.lessonPricePreValue = lessonPricePreValue;
-		this.lessonPriceEndValue = lessonPriceEndValue;
-		this.lessonLevelPreValue = lessonLevelPreValue;
-		this.lessonLevelEndValue = lessonLevelEndValue;
-	}
-
-	public LessonSearch(String lesson_keyword) {
-		super();
-		this.lesson_keyword = lesson_keyword;
+		this.user_rename = user_rename;
 	}
 
 	public String getLocationValue() {
@@ -383,6 +366,14 @@ public class LessonSearch implements Serializable {
 		this.lesson_type = lesson_type;
 	}
 
+	public String getUser_rename() {
+		return user_rename;
+	}
+
+	public void setUser_rename(String user_rename) {
+		this.user_rename = user_rename;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -401,7 +392,10 @@ public class LessonSearch implements Serializable {
 				+ lesson_loc + ", lesson_rad=" + lesson_rad + ", lesson_price=" + lesson_price + ", lesson_count="
 				+ lesson_count + ", lesson_startdate=" + lesson_startdate + ", lesson_contop=" + lesson_contop
 				+ ", lesson_conmid=" + lesson_conmid + ", lesson_conbot=" + lesson_conbot + ", lesson_keyword="
-				+ lesson_keyword + ", lesson_enddate=" + lesson_enddate + ", lesson_type=" + lesson_type + "]";
-	}	
+				+ lesson_keyword + ", lesson_enddate=" + lesson_enddate + ", lesson_type=" + lesson_type
+				+ ", user_rename=" + user_rename + "]";
+	}
+
+	
 					
 }

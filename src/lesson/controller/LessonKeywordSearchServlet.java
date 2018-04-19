@@ -39,7 +39,7 @@ public class LessonKeywordSearchServlet extends HttpServlet {
 	
 		String keywordValue = request.getParameter("keywordValue");		
 		
-		LessonSearch ls = new LessonSearch(keywordValue);			
+		LessonSearch ls = new LessonSearch(keywordValue, keywordValue, 0, 0, keywordValue, 0, 0, 0, 0, 0, 0, 0, 0, keywordValue, 0, 0, keywordValue, keywordValue, 0, 0, keywordValue, keywordValue, keywordValue, keywordValue, 0, 0, 0, null, keywordValue, keywordValue, keywordValue, keywordValue, null, 0, keywordValue);			
 		System.out.println("SendInfo : " + ls + " / (To.LessonKeywordSearchServlet)");		
 		ArrayList<LessonSearch> list = new LessonService().selectSearchKeyword(ls);
 					
@@ -88,7 +88,10 @@ public class LessonKeywordSearchServlet extends HttpServlet {
 			job.put("lessonConbot",lessonSearch.getLesson_conbot());
 			job.put("lessonKeyword",lessonSearch.getLesson_keyword());
 			job.put("lessonType",lessonSearch.getLesson_type());
-				
+			if(lessonSearch.getUser_rename() != null) {
+				job.put("userImg", lessonSearch.getUser_rename());
+			}else {
+				job.put("userImg", "rakoon.jpg");
 			jarr.add(job);			
 		}
 			
@@ -103,7 +106,7 @@ public class LessonKeywordSearchServlet extends HttpServlet {
 			out.close();
 			
 	}
-
+	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

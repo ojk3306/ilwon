@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ page  import="lesson.model.vo.*"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -356,22 +356,26 @@
 			success:function(data) {			
 			
 				var jsonStr = JSON.stringify(data);
-			
+				
 				var json = JSON.parse(jsonStr);		 
-			
 				console.log("LessonReadyList : ") + console.log(data);
 			
 				for(var i in json.list) {				
 					$('.ohw-ready-table').append(						
 				 		<% if(loginUser != null) { %>				 	
-							"<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><a href = '<%= request.getContextPath() %>/studentdetail?no=" + json.list[i].lessonNo + "&page=1'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></a></td>" +				
+							"<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><a href = '<%= request.getContextPath() %>/studentdetail?no=" + json.list[i].lessonNo + "&page=1'>" + 
+							
+										"<img src = '/prototype/userTitleimg/"+json.list[i].userImg+"' style = 'width:100px; height:100px;'></a></td>" +
+									
+									
+									
+								/* "<img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></a></td>" + */				
 				 		<% } else { %>					
-				 			"<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></td>" + 				 	
+				 			"<tr class = 'ohw-ready-table-tr'><td class = 'ohw-ready-photo'><img src = '/prototype/userTitleimg/"+json.list[i].userImg+"' style = 'width:100px; height:100px;'></td>" + 				 	
 				 		<% } %>						
 						"<td class = 'ohw-ready-name'>" + json.list[i].userName2 + "</td>" +				
 						"<td class = 'ohw-ready-category'>" + json.list[i].categoryBName + " / " + json.list[i].categorySName + "</td>" +				
-						"<td class = 'ohw-ready-comment'>" + json.list[i].lessonConmid + "</td></tr>"				
-					);				
+						"<td class = 'ohw-ready-comment'>" + json.list[i].lessonConmid + "</td></tr>");				
 				}			
 			}	
 		});	
@@ -446,9 +450,9 @@
 	    				$('.ohw-search-table').append(				
 	    				
 	    					<% if(loginUser != null) { %>				 	
-    							"<tr class = 'ohw-search-table-tr'><td class = 'ohw-search-photo'><a href = '<%= request.getContextPath() %>/studentdetail?no=" + json.list[i].lessonNo + "&page=1'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></a></td>" + 
+    							"<tr class = 'ohw-search-table-tr'><td class = 'ohw-search-photo'><a href = '<%= request.getContextPath() %>/studentdetail?no=" + json.list[i].lessonNo + "&page=1'><img src = '/prototype/userTitleimg/"+json.list[i].userImg+"' style = 'width:100px; height:100px;'></a></td>" + 
     						<% } else { %>					
-    							"<tr class = 'ohw-search-table-tr'><td class = 'ohw-search-photo'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></td>" + 
+    							"<tr class = 'ohw-search-table-tr'><td class = 'ohw-search-photo'><img src = '/prototype/userTitleimg/"+json.list[i].userImg+"' style = 'width:100px; height:100px;'></td>" + 
     						<% } %>
     					
 	    					"<td class = 'ohw-search-name'>" + json.list[i].userName2 + "</td>" +					 
