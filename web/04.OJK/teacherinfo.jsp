@@ -32,7 +32,7 @@ $(function(){
 			for(var i in json.onlesson) {
 				if(json.onlesson[i].state == "수강중") {
 					values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
-					+"</td><td>레슨</td><td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
+					+"</td><td>레슨</td><td><button type='button' class='btn btn-info' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
 					+"<td><button type='button' class='btn btn-primary'>"+json.onlesson[i].state+"</button></td>"
 					+"<td><button type='button' class='btn btn-warning' id='"+json.onlesson[i].lesson_no+"' onclick='updateLesson(this)'>수정</button></td>"
 					+"<td><button type='button' class='btn btn-danger' id='"+json.onlesson[i].lesson_no+"' onclick='finishLesson(this)'>종료</button></td></tr>"			
@@ -65,9 +65,9 @@ $(function(){
 		for(var i in json.semi) {
 			if(json.semi[i].SEMINA_DETAIL_STATE == 1){
 		values += "<tr><td>"+json.semi[i].SEMINA_TITLE+"</td><td>"+json.semi[i].USER_PHONE+"</td>"
-		+"<td><input type='button' id='"+json.semi[i].SEMINA_NO+"' onclick='detailsemina(this)' value='상세보기'></td><td>"+json.semi[i].SEMINA_ENDDATE+"</td>"
-		+"<td><button> 신청중 </button></td>"
-		+"<td><button type='button' class='btn' id='"+json.semi[i].SEMINA_DETAIL_NO+"' onclick='cans(this)'>취소하기</button></td>"
+		+"<td><input type='button' class = 'btn btn-info' id='"+json.semi[i].SEMINA_NO+"' onclick='detailsemina(this)' value='상세보기'></td><td>"+json.semi[i].SEMINA_ENDDATE+"</td>"
+		+"<td><button class = 'btn btn-primary' > 신청중 </button></td>"
+		+"<td><button type='button' class='btn btn-danger' id='"+json.semi[i].SEMINA_DETAIL_NO+"' onclick='cans(this)'>취소하기</button></td>"
 		
 			/*
 				<th>세미나명</th>
@@ -171,14 +171,14 @@ var json = JSON.parse(jsonStr);
 var values = $('#previous_table').html() + "<br>";
 for(var i in json.onlesson) {	
 if(json.onlesson[i].state == "숨김") {
-values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
-+"</td><td>레슨</td><td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
+values += "<tr><input type='hidden' class='btn btn-default' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
++"</td><td>레슨</td><td><button type='button' class='btn btn-default' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
 +"<td>"+json.onlesson[i].lesson_enddate+"</td></tr>"}}
 			
 for(var i in json.semi) {
 	if(json.semi[i].state==2){
 		values += "<tr><input type='hidden' class='btn btn' value='"+json.semi[i].semi_no+"'>"+"<td>"+json.semi[i].Title
-		+"</td><td>세미나</td><td><button type='button' class='btn' id='"+json.semi[i].semi_no+"' onclick='Detailsemina(this)'>상세보기</button></td>"
+		+"</td><td>세미나</td><td><button type='button' class='btn btn-default' id='"+json.semi[i].semi_no+"' onclick='Detailsemina(this)'>상세보기</button></td>"
 		+"<td>"+json.semi[i].end_date+"</td></tr>"			
 		}
 			}		
@@ -246,11 +246,11 @@ for(var i in json.onlesson) {
 	if(json.onlesson[i].type==7000){
 		values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
 		+"</td><td>레슨</td><td>"+json.onlesson[i].username+"</td><td>"+json.onlesson[i].log_date+"</td>"
-		+"<td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
+		+"<td><button type='button' class='btn btn-default' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson(this)'>상세보기</button></td>"
 	}else if(json.onlesson[i].type==8000){
 		values += "<tr><input type='hidden' class='btn btn' value='"+json.onlesson[i].lesson_no+"'>"+"<td>"+json.onlesson[i].lesson_title
 		+"</td><td>배우고싶어요</td><td>"+json.onlesson[i].username+"</td><td>"+json.onlesson[i].log_date+"</td>"
-		+"<td><button type='button' class='btn' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson1(this)'>상세보기</button></td>"
+		+"<td><button type='button' class='btn btn-default' id='"+json.onlesson[i].lesson_no+"' onclick='DetailLesson1(this)'>상세보기</button></td>"
 	}
 }
 $('#ongoing_table3').html(values);
@@ -379,9 +379,11 @@ function upload_profile() {
 
 				</div>
 				<div style="width: 100%; height: 70px; padding: 20px;">
-					<button type="button" class="btn" onclick="updateUser();" >개인정보 수정하기</button>
+					<button type="button" class="btn btn-default" onclick="updateUser();" >
+					<i class="fa fa-gear fa-spin" style="font-size:20px"></i> 개인정보 수정하기</button>
 					&nbsp;
-					<button type="button" class="btn" onclick="upload_profile();">프로필 사진 수정</button>
+					<button type="button" class="btn btn-default" onclick="upload_profile();">
+					<i class="fa fa-gear fa-spin" style="font-size:20px"></i> 프로필 사진 수정</button>
 					&nbsp;
 
 
@@ -410,9 +412,11 @@ function upload_profile() {
 				</div>
 			<hr>
 			<center>
-			<button type="button" class="btn btn-info" onclick="location.href = 'insertSemina.jsp' ">세미나 등록</button>
+			<button type="button" class="btn btn-default" onclick="location.href = 'insertSemina.jsp' ">
+			<i class="fa fa-mortar-board" style="font-size:20px"></i> 세미나 등록</button>
 		
-		  	 <button type="button" class="btn btn-info" id="<%=us.getUserNo() %>"  onclick="checklessonNum(this) ">강의 등록</button>		
+		  	 <button type="button" class="btn btn-default" id="<%=us.getUserNo() %>"  onclick="checklessonNum(this) ">
+		  	<i class="fa fa-pencil fa-spin" style="font-size:20px"></i>  강의 등록</button>		
 		
 			</center>
 			</div>
@@ -519,7 +523,7 @@ function upload_profile() {
   <div class="modal-dialog">
     <div class="modal-content" style="width:500px; height: 200px; margin-top: 200px;">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="btn btn-info close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">글쓰기 권한이없습니다!</h4>
       </div>
       <div class="modal-body">
@@ -539,7 +543,7 @@ function upload_profile() {
   <div class="modal-dialog">
     <div class="modal-content" style="width:500px; height: 200px; margin-top: 200px;">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="btn btn-info close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">강의수 최대!</h4>
       </div>
       <div class="modal-body">

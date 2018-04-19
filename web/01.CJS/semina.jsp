@@ -105,11 +105,11 @@
 						<%=toplist.get(0).getSeminaContent1()%>
 					</p>
 					<% if(loginUser==null) { %>
-						<a class='btn btn-info pull-right' href="/prototype/sdetail?userno=<%=toplist.get(0).getSeminaNo()%>">
-						<i class="fa fa-long-arrow-right"> </i></a> 
+						<a class='btn btn-defult pull-right' href="/prototype/sdetail?userno=<%=toplist.get(0).getSeminaNo()%>">
+						<i class="fa fa-long-arrow-right"></i>자세히</a> 
 					<% } else { %>   
-						<a class='btn btn-info pull-right' href="/prototype/sdetail?userno=<%=toplist.get(0).getSeminaNo()%>&usernono=<%=loginUser.getUserNo()%>">
-						<i class="fa fa-long-arrow-right"> </i></a> 
+						<a class='btn btn-defult pull-right' href="/prototype/sdetail?userno=<%=toplist.get(0).getSeminaNo()%>&usernono=<%=loginUser.getUserNo()%>">
+						<i class="fa fa-long-arrow-right"></i>자세히</a> 
 					<%}%>
 				</div>
 
@@ -150,11 +150,11 @@
 						<%=toplist.get(1).getSeminaContent1()%>                          
 					</p>    
 					<% if(loginUser==null){ %>
-						<a class='btn btn-info pull-right' href="/prototype/sdetail?userno=<%=toplist.get(1).getSeminaNo()%>">
-						<i class="fa fa-long-arrow-right"> </i></a>  
+						<a class='btn btn-defult pull-right' href="/prototype/sdetail?userno=<%=toplist.get(1).getSeminaNo()%>">
+						<i class="fa fa-long-arrow-right"></i>자세히</a>  
 					<% } else { %>
-						<a class='btn btn-info pull-right' href="/prototype/sdetail?userno=<%=toplist.get(1).getSeminaNo()%>&usernono=<%=loginUser.getUserNo()%>">
-						<i class="fa fa-long-arrow-right"> </i></a>  
+						<a class='btn btn-defult pull-right' href="/prototype/sdetail?userno=<%=toplist.get(1).getSeminaNo()%>&usernono=<%=loginUser.getUserNo()%>">
+						<i class="fa fa-long-arrow-right"></i>자세히</a>  
 					 <% } %>
 				</div>                    
 
@@ -190,11 +190,11 @@
 					<small>in <%=toplist.get(2).getSeminaEndDate()%></small></h2>
 					<p><%=toplist.get(2).getSeminaContent1()%></p>       
 					<% if(loginUser==null){ %>
-						<a class='btn btn-info pull-right' href="/prototype/sdetail?userno=<%=toplist.get(2).getSeminaNo()%>">
-						<i class="fa fa-long-arrow-right"> </i></a>                            
+						<a class='btn btn-defult pull-right' href="/prototype/sdetail?userno=<%=toplist.get(2).getSeminaNo()%>">
+						<i class="fa fa-long-arrow-right"></i>자세히</a>                            
 					<% } else { %>
-						<a class='btn btn-info pull-right' href="/prototype/sdetail?userno=<%=toplist.get(2).getSeminaNo()%>&usernono=<%=loginUser.getUserNo()%>">
-						<i class="fa fa-long-arrow-right"> </i></a>  
+						<a class='btn btn-defult pull-right' href="/prototype/sdetail?userno=<%=toplist.get(2).getSeminaNo()%>&usernono=<%=loginUser.getUserNo()%>">
+						<i class="fa fa-long-arrow-right"></i>자세히</a>  
 					<% } %>
 				</div>                    
 
