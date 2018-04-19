@@ -35,7 +35,7 @@ public class EncodingFilter implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// place your code here
-		System.out.println("EncodingFilter Run");
+		/*System.out.println("EncodingFilter Run");*/
 		
 		HttpServletRequest hRequest = (HttpServletRequest)request;
 		if(((HttpServletRequest)request).getMethod().equalsIgnoreCase("post") == true) {

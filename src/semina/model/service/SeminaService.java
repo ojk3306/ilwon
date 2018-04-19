@@ -199,6 +199,17 @@ public class SeminaService {
 		return result;
 	}
 
+	public ArrayList<Semina> selectMainSemina() {
+		
+		Connection con = getConnection();
+		
+		ArrayList<Semina> semina = new SeminaDao().selectMainSemina(con);
+		
+		close(con);
+		System.out.println("SeminaList : " + semina + " / (To.SeminaService)");
+		return semina;
+	}
+
 
 
 }
