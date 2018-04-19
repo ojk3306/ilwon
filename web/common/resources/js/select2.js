@@ -2141,7 +2141,7 @@ the specific language governing permissions and limitations under the Apache Lic
             }).html([
                 "<a href='javascript:void(0)' class='select2-choice' tabindex='-1'>",
                 "   <span class='select2-chosen' name = 'ohw-span-value'>&#160;</span><abbr class='select2-search-choice-close'></abbr>",
-                "   <span class='select2-arrow' role='presentation'><b role='presentation'></b></span>",
+                "   <span style = 'padding-top:5px;' class='select2-arrow glyphicon glyphicon-list-alt' role='presentation'><b role='presentation'></b></span>",
                 "</a>",
                 "<label for='' class='select2-offscreen'></label>",
                 "<input class='select2-focusser select2-offscreen' type='text' aria-haspopup='true' role='button' />",
