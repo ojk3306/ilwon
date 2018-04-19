@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html >
+<%
+Users use= (Users)session.getAttribute("loginUser");    
+%>
 <html>
 <head>
 <script type="text/javascript"
@@ -113,6 +116,9 @@ function removeDetail(a){
 	console.log(detailCount);
 }
 $(function(){
+	
+	if(<%=use.getUserTypeNo()%> !=1002)
+	location.href="/prototype/index.jsp";
 	
 	$.ajax({
 	url:"/prototype/clist",
@@ -287,7 +293,7 @@ $('#category1').click(function() {
 					
 					<div class="form-group">
 						<label for="loc">강의 지역</label>
-						<input type="text" id="loc" name="loc" class="form-control" onclick="juso()" readonly="readonly" placeholder="클릭 해서 지역을 선택해주세요!" required>
+						<input type="text" id="loc" name="loc" class="form-control" onclick="juso()" readonly="readonly" placeholder="클릭 해서 지역을 선택해주세요!" required="required">
 						<span id="locl" style="color:#e65c00;" ></span>
 					</div>
 					
@@ -315,20 +321,17 @@ $('#category1').click(function() {
 					<input type="button" value="강의생성" class="btn btn-primary center" onclick="return check()">
 					<input type="reset" value="초기화" class="btn btn-primary center">
 					<input type="button" onclick="history.back()" value="뒤로가기" class="btn btn-primary center">
-					
 					</div>
-					
 					</form>
 					
 					
 			<script>
-					function check() {
+				
+				function check() {
 						  
 					if($('#loc').val().length > 1){
-							//주소가 제대로 입력되었을경우.
-						
-						$("#formBy").submit();
-					
+						//주소가 제대로 입력되었을경우.
+						return true;
 					}else{
 						//주소가 공백일 경우.
 						$("#locl").text("주소를 입력하세요");						
