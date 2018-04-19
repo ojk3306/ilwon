@@ -269,7 +269,7 @@ position: absolute; top: 0; left: 0; max-width: 100%; height: auto; -webkit-tran
 </style>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>선생이름 님의 ...?</title>
+<title>은밀한 선생님</title>
 </head>
 <input type="hidden" value="<%=usernumber%>" id="teano"> 
 <input type="hidden" value="<%=lessondetail.getLesson_no()%>" id="leno">
@@ -364,7 +364,7 @@ position: absolute; top: 0; left: 0; max-width: 100%; height: auto; -webkit-tran
 		</nav>	
 	</div>	
     <nav class="review ohw-background"><!-- 리뷰란 -->
-	<table border="0" style="width:100%">
+	<table  style="width:100%; border: 1px solid white;">
 	
 	<% if(review.size() > 3 || review.size() == 2) {%>
 	
@@ -1025,7 +1025,7 @@ position: absolute; top: 0; left: 0; max-width: 100%; height: auto; -webkit-tran
 	
 	<tr>
 	<td style="padding: 10px;">
-	<div class="row">
+	<div class="row" >
 						<div class="col-sm-3">
 							<img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
 							<div class="review-block-name"><a href="#">작성자</a></div>
@@ -1066,9 +1066,9 @@ position: absolute; top: 0; left: 0; max-width: 100%; height: auto; -webkit-tran
 	</table>
 	</nav><!-- 리뷰란 종료 -->
 	
-	<nav class="howteach ohw-background" style="padding-top:10px;"><!--커리큘럼란-->
+	<nav class="howteach ohw-background" style="padding-top:10px; border: 1px solid white;  border-radius: 0 0 30px 30px"><!--커리큘럼란-->
 	
-<div class="container ohw-background" style = "width:1100px;" >
+<div class="container ohw-background" style = "width:1100px; border-radius: 0 0 30px 30px" >
 
     <div class="col-md-6" Style="margin-left:150px; margin-top: 15px;">
    

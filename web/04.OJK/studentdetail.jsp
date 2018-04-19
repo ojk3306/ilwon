@@ -281,8 +281,6 @@ LessonSearch lessondetail =(LessonSearch)request.getAttribute("lesson");
 
 <br>
 
-<h1 align="center">상세보기</h1>
-
 <hr> 
 <nav class="contents">
 	<nav class="topbend"> <!--최상단 띠.-->

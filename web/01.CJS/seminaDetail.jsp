@@ -243,7 +243,7 @@ section .section-title{
 <div class="contentbody">
 			<div class="contents">
 				<nav class="topbend"> <!--최상단 띠.-->
-				이사람은 이사람은이사람은 이사람은이사람은 이사람은
+			
 				</nav>
 				<nav class="topdetail"><!--선생소개-->
 				<ul>
@@ -347,12 +347,16 @@ section .section-title{
 			
 			
 			<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">	
-		    
-			<div id="myGoal"><center>현재인원현황</center></div>
-			
-			
-			
-<script src="/prototype/01.CJS\js\jquery.stepProgressBar.js"></script>
+		   <h4> 현재 인원 상태</h4>
+	
+		   <div class="progress" Style="height: 100%;"> 
+		   
+  <div id="pb1" class="progress-bar progress-bar-success" role="progressbar" style="width:100%">
+  현재 : <%=semi.getSeminaNow()%> <br>
+  최소:<%=semi.getSeminaMin()%> <br>
+  최대 : <%=semi.getSeminaMax()%>
+  </div>
+</div>
 <input type="hidden" id="max" value="<%=semi.getSeminaMax()%>">
 <input type="hidden" id="min" value="<%=semi.getSeminaMin()%>">
 <input type="hidden" id="now" value="<%=semi.getSeminaNow()%>">
@@ -364,28 +368,14 @@ now=$("#now").val();
 console.log(min);
 console.log(now);
 console.log(max);
-$('#myGoal').stepProgressBar({
-  currentValue: 0,
-  steps: [
-    { 
-    	topLabel: "now:"+now,
-        value: now
-    
-    	},
-    {
-    	 topLabel: " ",
-         value: min,
-         bottomLabel: min
-    },
-    {  
-    	 topLabel:" ",
-         value: max,
-         bottomLabel: max
-    }
-  ],
-  unit: '$'
-});
-        
+var percent= $("#now").val() / $("#max").val() * 100
+if(percent<40)
+percent=30;
+$("#pb1").width(percent+"%");
+
+
+
+
 </script>
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -429,7 +419,7 @@ $('#myGoal').stepProgressBar({
 	</section>
 			
 </div>
-	<div style="margin-top: -900px;">
+<div style="margin-top: -750px;">
 <%@include file="/common/footer.jsp"  %>
 </div>
 </body>
