@@ -59,7 +59,9 @@ $(function(){
 	<div align="center" width="500">
 	<div style="width: 900px; height: 650px;">
 		 	<div style="padding: 10px; padding-right: 0px; float:right;">
-		 		<button type="button" class="btn" onclick="location.href='/prototype/04.OJK/proposalForm.jsp'">글쓰기</button>
+		 		<button type="button" class="btn" onclick="location.href='/prototype/04.OJK/proposalForm.jsp'">
+		 		<i class="fa fa-pencil" style="font-size:18px"></i> 글쓰기
+		 		</button>
 		 		
 		 	</div>
 		 	 <!-- 게시판 몸통 -->	
@@ -92,11 +94,10 @@ $(function(){
 		 	
 		 	
 		 	<!-- 게시판 몸통끝 -->
-	 		<div>
+	 		<div>	 		
 	 		
-	 		
-	 		    <form action="/prototype/plist" method="post">
-	 			<select name="serchoption" id="select_id" style="height: 25px; margin-top:70px; ">
+	 		    <form class = "input-group" action="/prototype/plist" method="post">
+	 			<select name="serchoption" id="select_id" style="height: 25px; margin-top:60px; padding-bottom:2px;">
 				  <option value="1">제목</option>
 				  <option value="2">내용</option>
 				  <option value="3">작성자</option>
@@ -106,7 +107,9 @@ $(function(){
 	 			<% }else{ %>
 	 			<input type="text" name="search" placeholder="검색을해주세요">	 
 	 			<%} %>
-	 			<input type="submit" class="btn" value="검색">
+	 			<button type="submit" class="btn" value="검색" style="height:30px; padding-bottom:2px;">
+	 				<i class="fa fa-search fa-spin" style="font-size:15px"></i> 검색
+	 			</button>
 	 			</form>	
 	 		</div>
 	 		<div id="board_page">

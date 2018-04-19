@@ -52,7 +52,7 @@ public class ProposalDetail extends HttpServlet {
 	
 	RequestDispatcher view=null;
 	if(pro!=null) {
-	view=request.getRequestDispatcher("/01.CJS/proposalDetail.jsp");
+	view=request.getRequestDispatcher("/01.CJS/proposalDetail2.jsp");
 		request.setAttribute("pro",pro);
 		request.setAttribute("user",user);
 		view.forward(request, response);
