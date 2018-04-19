@@ -10,6 +10,7 @@ Users use= (Users)session.getAttribute("loginUser");
 	src="/prototype/common/resources/js/jquery-3.3.1.min.js"></script>
 	<script 
 	src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=120b01867e29e09658100681cf1d0604&libraries=services"></script>
 <style type="text/css">
 	.palel-primary
@@ -259,21 +260,21 @@ $('#category1').click(function() {
 					<div class="form-group">
 						<label for="contop">강의 내용1</label>
 						<hr style="clear: both; margin-bottom: -10px;">
-						<textarea name="contop" id="contop" rows="10" cols="68pt" placeholder="이런분들 에게 추천해주세요 " required style="width:100%; resize:none;"></textarea>
+						<textarea name="contop" id="contop" rows="10" cols="68pt" placeholder="이런분들 에게 추천해주세요 " required style="width:100%; resize:none;">..</textarea>
 						<span id="error_phone" class="text-danger"></span>
 					</div>
 					
 					<div class="form-group">
 						<label for="conmid">강의 내용2</label>
 							<hr style="clear: both; margin-bottom: -10px;">
-						<textarea rows="10" cols="68pt" name="conmid" id="conmid" placeholder="수업 커리큘럼과 진행방식을 작성해주세요!" required style="width:100%; resize:none;"></textarea>
+						<textarea rows="10" cols="68pt" name="conmid" id="conmid" placeholder="수업 커리큘럼과 진행방식을 작성해주세요!" required style="width:100%; resize:none;">..</textarea>
 						<span id="error_phone" class="text-danger"></span>
 					</div>
 					
 					<div class="form-group">
 						<label for="conbot">강의 내용3</label>
 							<hr style="clear: both; margin-bottom: -10px;">
-						<textarea rows="10" cols="68pt" name="conbot" id="conbot" placeholder="경력과 수업포부를 작성해주세요" required style="width:100%; resize:none;"></textarea>
+						<textarea rows="10" cols="68pt" name="conbot" id="conbot" placeholder="경력과 수업포부를 작성해주세요" required style="width:100%; resize:none;">..</textarea>
 						<span id="error_phone" class="text-danger"></span>
 					</div>
 					

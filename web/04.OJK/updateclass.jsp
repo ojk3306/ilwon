@@ -9,6 +9,22 @@
 <!DOCTYPE html >
 <html>
 <head>
+	<script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+  <script>
+          tinymce.init({
+              selector: "textarea",
+              menu: {
+                table: {title: 'Table', items: 'inserttable tableprops deletetable | cell row column'}
+              },
+              plugins: [
+                  "advlist autolink lists link image charmap preview anchor",
+                  "searchreplace visualblocks code fullscreen",
+                  "insertdatetime media table contextmenu paste"
+              ],
+              toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+          });
+  </script>
+  
 <script type="text/javascript"
 	src="/prototype/common/resources/js/jquery-3.3.1.min.js"></script>
 	<script 
@@ -315,10 +331,27 @@ $("#img2").change(function() {
 					
 					<div class="form-group">
 						<label for="contop">강의 내용1</label>
+						
 						<textarea name="contop" id="contop" rows="10" cols="68pt" style="width:100%; resize: none;">
 						<%=le.getLesson_contop() %>
 						</textarea>
 						<span id="error_phone" class="text-danger"></span>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 					</div>
 					
 					<div class="form-group">
