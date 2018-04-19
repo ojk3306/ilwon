@@ -370,7 +370,7 @@
 						 <% } %>						
 						"<td class = 'ohw-ready-name'>" + json.list[i].userName2 + "</td>" +				
 						"<td class = 'ohw-ready-category'>" + json.list[i].categoryBName + " / " + json.list[i].categorySName + "<br>" + json.list[i].lessonTitle + "<br>" + json.list[i].lessonPrice + " 만원" + "</td>" +				
-						"<td class = 'ohw-ready-comment'>" + json.list[i].lessonConmid + "</td></tr>"				
+						"<td class = 'ohw-ready-comment'><div style='overflow-y:scroll; height:100%; width:100%''>" + json.list[i].lessonConmid + "</div></td></tr>"				
 					);				
 				}			
 			}		
@@ -433,7 +433,7 @@
     					<% } %>    				
     					"<td class = 'ohw-keyword-name'>" + json.list[i].userName2 + "</td>" +    				
     					"<td class = 'ohw-keyword-category'>" + json.list[i].categoryBName + " / " + json.list[i].categorySName + "<br>" + json.list[i].lessonTitle + "<br>" + json.list[i].lessonPrice + " 만원" + "</td>" +	    				
-    					"<td class = 'ohw-keyword-comment'>" + json.list[i].lessonConmid + "</td></tr>"    				
+    					"<td class = 'ohw-keyword-comment'><div style='overflow-y:scroll; height:100%; width:100%''>" + json.list[i].lessonConmid + "</div></td></tr>"    				
     					);				
     				}			
     			}, 
@@ -511,7 +511,7 @@
     						<% } %>    					
 	    					"<td class = 'ohw-search-name'>" + json.list[i].userName2 + "</td>" +		    				
 	    					"<td class = 'ohw-search-category'>" + json.list[i].categoryBName + " / " + json.list[i].categorySName + "<br>" + json.list[i].lessonTitle + "<br>" + json.list[i].lessonPrice + " 만원" + "</td>" +	    				
-	    					"<td class = 'ohw-search-comment'>" + json.list[i].lessonConmid + "</td></tr>"	    				
+	    					"<td class = 'ohw-search-comment'><div style='overflow-y:scroll; height:100%; width:100%''>" + json.list[i].lessonConmid + "</div></td></tr>"	    				
 	    				);				
 	    			}			
 	    		}, 
