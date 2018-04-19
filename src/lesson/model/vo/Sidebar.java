@@ -11,6 +11,7 @@ public class Sidebar implements Serializable {
 	private String user_name;
 	private int lesson_no;
 	private String category_small;
+	private String LESSON_TITLE;
 	private String LESSON_RENAME_PHOTO;
 	public Sidebar() {
 		// TODO Auto-generated constructor stub
@@ -18,7 +19,7 @@ public class Sidebar implements Serializable {
 	@Override
 	public String toString() {
 		return "Sidebar [user_name=" + user_name + ", lesson_no=" + lesson_no + ", category_small=" + category_small
-				+ ", LESSON_RENAME_PHOTO=" + LESSON_RENAME_PHOTO + "]";
+				+ ", LESSON_TITLE=" + LESSON_TITLE + ", LESSON_RENAME_PHOTO=" + LESSON_RENAME_PHOTO + "]";
 	}
 	public String getUser_name() {
 		return user_name;
@@ -38,6 +39,12 @@ public class Sidebar implements Serializable {
 	public void setCategory_small(String category_small) {
 		this.category_small = category_small;
 	}
+	public String getLESSON_TITLE() {
+		return LESSON_TITLE;
+	}
+	public void setLESSON_TITLE(String lESSON_TITLE) {
+		LESSON_TITLE = lESSON_TITLE;
+	}
 	public String getLESSON_RENAME_PHOTO() {
 		return LESSON_RENAME_PHOTO;
 	}
@@ -47,4 +54,14 @@ public class Sidebar implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	public Sidebar(String user_name, int lesson_no, String category_small, String lESSON_TITLE,
+			String lESSON_RENAME_PHOTO) {
+		super();
+		this.user_name = user_name;
+		this.lesson_no = lesson_no;
+		this.category_small = category_small;
+		LESSON_TITLE = lESSON_TITLE;
+		LESSON_RENAME_PHOTO = lESSON_RENAME_PHOTO;
+	}
+	
 }

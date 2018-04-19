@@ -8,22 +8,15 @@ int startPage = ((Integer)request.getAttribute("startPage")).intValue();
 int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 int maxPage = ((Integer)request.getAttribute("maxPage")).intValue();			
 int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
-
-
 int seachOption =((Integer)request.getAttribute("seachoption")).intValue();
-
 String search = (String)request.getAttribute("search");
-
-
 String message=null;
 if((String)request.getAttribute("message")!=null)	
 	 message=(String)request.getAttribute("message");	
-
 String message1=null;
 if((String)request.getAttribute("message1")!=null)	
 message=(String)request.getAttribute("message1");	
-
-
+Users use=(Users)session.getAttribute("loginUser");  
 %>
 <!DOCTYPE html>
 <html>
@@ -36,7 +29,8 @@ message=(String)request.getAttribute("message1");
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 
 <script type="text/javascript">
-
+if(<%=use.getUserTypeNo()%> != 1003 )
+	location.href="/prototype/index.jsp";
 </script>	
 <style type="text/css">
 
@@ -125,11 +119,12 @@ th {
 
 <nav class="contents">
 	<br>
-	<h1 align="center">신고 계시판 게시판 형식은 어드민이 보는것, 누르면 바로 작성 폼으로 이동한다.</h1>
 	<hr>
+	
 	<section>
 <div id="wrapper">
 	<center>
+	<h3>누적 신고가 많이 접속된 유저는 필히 보고</h3>
 	<div style="width: 1100px; height: 1200px;">
 		 
 		 	 <!-- 게시판 몸통 -->	
@@ -137,23 +132,27 @@ th {
 		 	<div style="margin-top: 30px;">
 		 	<table class="table table-hover">
 		 		
-		 		<tr>
+		 		<tr>	
+		 			<th>신고번호</th>
+		 			<th>신고자 식별번호</th>
 		 			<th>제목</th>
-		 			<th>작성일</th>
+		 			<th>신고일</th>
 		 			<th>첨부파일여부</th>
 		 			
 		 		</tr>
 				<%if(re.size()!=0){ %>
 		 		<% for( Report  i : re) { %>
 		 		<tr>
-		 		
-		 			<td><a href="/prototype/redetail?pno=<%=i.getReportNo() %>"><%=i.getReportTitle() %></a></td>
+		 			<td><%=i.getReportNo() %></td>
+		 			<td><%=i.getUserNo() %> </td>
+		 			<td><a href="/prototype/redetail?pno=<%=i.getReportNo()%>"><%=i.getReportTitle() %></a></td>
 		 			<td><%=i.getReportDate()%></td>
-		 			<%if(i.getReportRenameFileName()==null){ %>
-		 			<td>사진이 없어</td>
+		 			
+		 			<%if(i.getReportRenameFileName()==null ){ %>
+		 			<td>X</td>
 		 			<%}else{ %>
 		 			
-		 			<td>사진있어
+		 			<td>O
 		 			</td>
 		 			<%} %>
 		 		</tr>
@@ -166,14 +165,7 @@ th {
 		 	
 		 	</div>
 		 	<!-- 게시판 몸통끝 -->
-	 		<div>
-	 			<select>
-				  <option>제목</option>
-				  <option>내용</option>
-				</select>
-	 			<input type="text">	 
-	 			<input type="submit" name="search_submit" class="btn" value="검색">	
-	 		</div>
+	 		
 	 		<div id="board_page">
 		 
 		 <ul class="pagination">

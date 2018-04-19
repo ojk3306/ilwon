@@ -264,7 +264,7 @@ $(".ohw-navbar-search-hidden").val($(".select2accessible").text());
                 					<a class = "active" href="<%= request.getContextPath() %>/04.OJK/teacherinfo.jsp">
 										<span class="glyphicon glyphicon-user ohw-btn"></span>My Info
 									</a> 
-                				<% } else { %>
+                				<% } else if( loginUser.getUserTypeNo() == 1001 ) { %>
                 					<a class = "active" href="<%= request.getContextPath() %>/04.OJK/studentinfo.jsp">
 										<span class="glyphicon glyphicon-user ohw-btn"></span>My Info
 									</a> 

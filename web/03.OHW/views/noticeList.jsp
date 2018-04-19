@@ -53,7 +53,7 @@
 </head>
 <body> 
 <%@ include file="/common/navbar.jsp" %>
-
+<%@ include file="/01.CJS\sidebar.jsp" %>
 <%-- <script type="text/javascript">
 	
 	$(function () {
@@ -98,8 +98,9 @@
 	
 </script> --%> <!-- ajax의 흔적 ㅜㅜ... -->
 
-<nav class="contents">
-<br>
+<nav class="contents" style="margin-top: -650px; background: #e9e9e9; height: 800px; ">
+<br><br><br><br><br>
+
 <h1 align="center">공지 사항</h1>
 <hr>	
 <div id="wrapper">	
@@ -203,5 +204,8 @@
 	</div>	
 </div>
 </nav>
+
+<%@ include file="/common/footer.jsp" %>
+
 </body>
 </html>
