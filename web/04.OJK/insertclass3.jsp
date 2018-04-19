@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+Users use= (Users)session.getAttribute("loginUser");    
+%>
 <html>
 <head>
 <script type="text/javascript"
@@ -113,6 +116,11 @@ function removeDetail(a){
 	console.log(detailCount);
 }
 $(function(){
+	if(<%=use.getUserTypeNo()%>!=1001)
+		location.href="/prototype/index.jsp";
+	
+	
+	
 	
 	$.ajax({
 	url:"/prototype/clist",
@@ -280,7 +288,7 @@ $('#category1').click(function() {
 					
 					</form>
 					
-					s
+					
 						<script>
 					function check() {
 						  

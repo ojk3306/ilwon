@@ -36,27 +36,31 @@
 	url:"/prototype/hidden",
 	date:{},
 	success:function(da){
-		console.log(da)
+		
 	if(da>0){
 		}else{
-		window.location.href= "/";
+			location.href="/prototype/rest"
+			
+			//window.location.href= "/nuclear";
+		
+		
 		}
 },
 	error:function(){
 		
 }
 	})
-	
-/*	setInterval(function() {
+	/*
+	setInterval(function() {
 		$.ajax({
 			url:"/prototype/hidden",
 			date:{},
 			success:function(da){
-				console.log(da)
+			
 			if(da>0){
-				console.log("건제");
+				
 				}else{
-				window.location.href= "/";
+				window.location.href= "/nuclear";
 				}
 		},
 			error:function(){
@@ -64,8 +68,7 @@
 		}
 			})	
 	},5000);
-*/	
-	
+*/
 	
 	
 	
