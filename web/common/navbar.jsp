@@ -64,7 +64,7 @@
 		
 }
 	})
-	
+/*	
 setInterval(function() {
 		$.ajax({
 			url:"/prototype/hidden",
@@ -81,6 +81,7 @@ setInterval(function() {
 		}
 			})	
 	},5000);
+	*/
 })
 
 function search(){
