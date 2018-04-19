@@ -111,12 +111,14 @@ width:100%;
 }
 
 .topbend{
-margin:0px auto;
-width:1100px;
-height:50px;
-text-align: center;
-padding:12px;
-border: 1px solid #00ffff;
+	background: #bdffff;
+	border-radius:25px 25px 0 0 ;
+	border: 1px solid #bdffff;		
+	margin:0px auto;
+	width:1100px;
+	height:50px;
+	text-align: center;
+	padding:12px;
 }
 
 .topdetail{
@@ -146,7 +148,7 @@ height:300px;
 width:180px;
 height:300px;
 margin-left:10px; 
-padding:45px;
+padding-top:45px;
 }
 .imticon{
 margin-top:110px;
@@ -182,7 +184,7 @@ min-height:250px;
 margin:0 auto;
 margin-top:3px;
 width:1100px;
-height:600px;
+height:430px;
 
 }
 .reviewtop{/*리뷰의 상위*/
@@ -281,7 +283,7 @@ position: absolute; top: 0; left: 0; max-width: 100%; height: auto; -webkit-tran
        <hr>
 <nav class="contents">
 	<nav class="topbend"> <!--최상단 띠.-->
-	이사람은 이사람은이사람은 이사람은이사람은 이사람은
+	
 	</nav>
 	<nav class="topdetail"><!--선생소개-->
 	<ul>
@@ -313,19 +315,19 @@ position: absolute; top: 0; left: 0; max-width: 100%; height: auto; -webkit-tran
 		<li class="topdiv" name="option">
 	
 		등록일:<Br>
-		<%=lessondetail.getLESSON_STARTDATE() %>	
+		<%= lessondetail.getLESSON_STARTDATE() %>	
 		<br>
 		<div id="lessonsubmit">
 		<br><br><br><br>
-		<% if(loginUser==null){%>
-		<button type='button' class='btn'>학생인가요? 지금로그인하세요</button>
-		<%}else{ %>
-			<%if( loginUser.getUserNo() == usernumber ){%>
-			<button type='button' class='btn'>본인의 레슨입니다</button>
-			<%}else if(loginUser.getUserNo()!= usernumber && loginUser.getUserTypeNo()!=1002 ){%>
-			<button type='button' id="<%=loginUser.getUserNo()%>/<%=usernumber%>/<%=lessondetail.getLesson_no()%>/<%=loginUser.getUserTypeNo()%>" onclick="summitbystu(this)" class='btn'>레슨 신청!</button>
-			<%}else if(loginUser.getUserTypeNo()==1002 ){ %>
-			<button type='button' class='btn'>다른 강사분의 강의입니다</button>
+		<% if(loginUser==null) { %>
+			<button type='button' class='btn'>학생인가요? 지금로그인하세요</button>
+		<% } else { %>
+			<% if( loginUser.getUserNo() == usernumber ) { %>
+				<button type='button' class='btn'>본인의 레슨입니다</button>
+			<% } else if(loginUser.getUserNo() != usernumber && loginUser.getUserTypeNo() != 1002 ) { %>
+				<button type='button' id="<%= loginUser.getUserNo() %>/<%= usernumber %>/<%= lessondetail.getLesson_no() %>/<%= loginUser.getUserTypeNo() %>" onclick="summitbystu(this)" class='btn'>레슨 신청!</button>
+			<% } else if(loginUser.getUserTypeNo() == 1002 ) { %>
+				<button type='button' class='btn'>다른 강사분의 강의입니다</button>
 			<%} %>
 		<%} %>
 		</div>
@@ -1059,19 +1061,7 @@ position: absolute; top: 0; left: 0; max-width: 100%; height: auto; -webkit-tran
 	<% } %>
 	</table>
 	</nav><!-- 리뷰란 종료 -->
-
-	<nav class="school"><!--학력란-->
 	
-	<ul class="schoolofdetail">
-		<li class="schoolOfdetailIOfli"><%=lessondetail.getLesson_loc()%></li>	
-		<li class="schoolOfdetailIOfli">공부 쫌 잘함.!</li>	
-		<li class="schoolOfdetailIOfli">집은 님근처로 이사감</li>
-		<li class="schoolOfdetailIOfli">월 30만원! 20회수업!</li>
-	</ul>
-	
-	</nav>
-
-
 	<nav class="howteach" style="padding-top:10px;"><!--커리큘럼란-->
 	
 <div class="container" >
@@ -1217,24 +1207,23 @@ geocoder.addressSearch('<%=lessondetail.getLesson_loc()%>', function(result, sta
 } 
 });    
 </script>
-          </div>
-          </div>          
-          </div>
-          </div>
-    
-    </div>
-
-
+						</div>
+					</div>          
+				</div>
+			</div>    
+		</div>    
 	</nav>
-
 	<!--커리큘럼란 종료-->
 </nav>
 
-
 <!--내용 끝-->
 <div align="center">
-<input type="button" value="나가기" onclick="history.go(-1)">
+<button type="button" class = "btn btn-default" value="나가기" onclick="history.go(-1)">
+	<i class="fa fa-sign-out" style="font-size:24px"></i> 나가기
+</button>
 </div>
+
+<br>
 
  <!-- 바닥 -->
 <%@ include file="/common/footer.jsp" %>

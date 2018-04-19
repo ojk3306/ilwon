@@ -97,12 +97,14 @@ LessonSearch lessondetail =(LessonSearch)request.getAttribute("lesson");
 	}
 
 	.topbend{
+		background: #bdffff;
+		border-radius:25px 25px 0 0 ;
+		border: 1px solid #bdffff;		
 		margin:0px auto;
 		width:1100px;
 		height:50px;
 		text-align: center;
 		padding:12px;
-		border: 1px solid #00ffff;
 	}
 
 	.topdetail{
