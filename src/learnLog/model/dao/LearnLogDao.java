@@ -56,7 +56,7 @@ public class LearnLogDao {
 	public int cancleLesson(Connection conn, int userno, int lesson_no) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = "update LEARN_LOG set log_state = 2 where lesson_no = ? and user_no1 = ?";
+		String sql = "update LESSON set STATE_NO = 3 where lesson_no = ? and user_no1 = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
