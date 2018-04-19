@@ -123,8 +123,8 @@
 	<div class="ohw_div_con" align="center">
 		<ul class="nav nav-tabs">
 			<li><a class = "ohw-main-tab" data-toggle="tab" href="#home">최신 은밀한 공지</a></li>
-			<li><a class = "ohw-main-tab" data-toggle="tab" href="#menu1">최신 은밀한 선생</a></li>
-			<li><a class = "ohw-main-tab" data-toggle="tab" href="#menu2">최신 은밀한 학생</a></li>
+			<li><a class = "ohw-main-tab" data-toggle="tab" href="#menu1">은밀한 선생의 최신  강의</a></li>
+			<li><a class = "ohw-main-tab" data-toggle="tab" href="#menu2">은밀한 학생 최신 배움</a></li>
 		</ul>
 		<div class="tab-content">
 			<div id="home" class="tab-pane fade in active">	
@@ -193,10 +193,10 @@
 				for(var i in json.list) {				
 					$('.ohw-main-teacher').append(						
 					 	<% if(loginUser != null) { %>				 	
-							"<tr class = 'ohw-main-teacher-tr'><td class = 'ohw-main-teacher-conp'><a href = '<%= request.getContextPath() %>/lessondetail?no=" + json.list[i].lessonNo + "&page=1'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></a></td>" + 
+							"<tr class = 'ohw-main-teacher-tr'><td class = 'ohw-main-teacher-conp'><a href = '<%= request.getContextPath() %>/lessondetail?no=" + json.list[i].lessonNo + "&page=1'><img src = '/prototype/userTitleimg/"+json.list[i].photo +" ' style = 'width:100px; height:100px;'></a></td>" + 
 				
 					 	<% } else { %>					
-							"<tr class = 'ohw-main-teacher-tr'><td class = 'ohw-main-teacher-conp'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></td>" + 
+						"<tr class = 'ohw-main-teacher-tr'><td class = 'ohw-main-teacher-conp'><img src = '/prototype/userTitleimg/"+json.list[i].photo +"' style = 'width:100px; height:100px;'></td>" + 
 					 	<% } %>						
 						"<td class = 'ohw-main-teacher-conw'>" + json.list[i].userName2 + "</td>" +				
 						"<td class = 'ohw-main-teacher-conc'>" + json.list[i].categoryBName + " / " + json.list[i].categorySName + "</td>" +				
@@ -237,9 +237,9 @@
 				for(var i in json.list) {				
 					$('.ohw-main-student').append(						
 					 	<% if(loginUser != null) { %>				 	
-							"<tr class = 'ohw-main-student-tr'><td class = 'ohw-main-student-conp'><a href = '<%= request.getContextPath() %>/studentdetail?no=" + json.list[i].lessonNo + "&page=1'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></a></td>" +
+							"<tr class = 'ohw-main-student-tr'><td class = 'ohw-main-student-conp'><a href = '<%= request.getContextPath() %>/studentdetail?no=" + json.list[i].lessonNo + "&page=1'><img src = '/prototype/userTitleimg/"+json.list[i].photo +" ' style = 'width:100px; height:100px;'></a></td>" +
 						<% } else { %>					
-							"<tr class = 'ohw-main-student-tr'><td class = 'ohw-main-student-conp'><img src = '/prototype/03.OHW/resources/images/rakoon.jpg' style = 'width:100px; height:100px;'></td>" + 
+							"<tr class = 'ohw-main-student-tr'><td class = 'ohw-main-student-conp'><img src = '/prototype/userTitleimg/"+json.list[i].photo +" ' style = 'width:100px; height:100px;'></td>" + 
 					 	<% } %>						
 						"<td class = 'ohw-main-student-conw'>" + json.list[i].userName1 + "</td>" +				
 						"<td class = 'ohw-main-student-conc'>" + json.list[i].categoryBName + " / " + json.list[i].categorySName + "</td>" +				

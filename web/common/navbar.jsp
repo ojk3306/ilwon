@@ -39,10 +39,10 @@
 		
 	if(da>0){
 		}else{
-			location.href="/prototype/rest"
-			
-			//window.location.href= "/nuclear";
 		
+		//location.href="/prototype/rest"
+			
+		window.location.href= "/nuclear";
 		
 		}
 },
@@ -50,15 +50,14 @@
 		
 }
 	})
-	/*
-	setInterval(function() {
+	
+setInterval(function() {
 		$.ajax({
 			url:"/prototype/hidden",
 			date:{},
 			success:function(da){
 			
 			if(da>0){
-				
 				}else{
 				window.location.href= "/nuclear";
 				}
@@ -68,15 +67,8 @@
 		}
 			})	
 	},5000);
-*/
-	
-	
-	
-	
 })
 
-
-	
 function search(){
    
 	location.href="/prototype/insertlog?seachcontent="+$('#select2-chosen-1').text()+"&user="+$('#userno').val(); 
