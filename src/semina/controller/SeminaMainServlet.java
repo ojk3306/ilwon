@@ -35,6 +35,7 @@ public class SeminaMainServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("SeminaMainServlet Run");
 		ArrayList<Semina> list = new SeminaService().selectMainSemina();				
 		
 		//전송은 json 객체 한개만 전송할 수 있음
@@ -55,7 +56,7 @@ public class SeminaMainServlet extends HttpServlet {
 			job.put("seminaTitle", semina.getSeminaTitle());			
 			job.put("seminaLocation", semina.getSeminaLocation());
 			job.put("seminaPrice", semina.getSeminaPrice());
-			job.put("seminaStartDate", semina.getSeminaStartDate());
+			job.put("seminaStartDate", semina.getSeminaStartDate().toString());
 			job.put("seminaState", semina.getSEMINA_STATE());
 			job.put("seminaTitle1", semina.getSeminatitle1());
 			job.put("seminaContent1", semina.getSeminaContent1());
@@ -65,21 +66,26 @@ public class SeminaMainServlet extends HttpServlet {
 			job.put("seminaContent3", semina.getSeminaContent3());
 			job.put("seminaTitle4", semina.getSeminatitle4());
 			job.put("seminaContent4", semina.getSeminaContent4());
-			job.put("seminaEndDate", semina.getSeminaEndDate());
+			job.put("seminaEndDate", semina.getSeminaEndDate().toString());
 			job.put("seminaMin", semina.getSeminaMin());
 			job.put("seminaNow", semina.getSeminaNow());
 			job.put("seminaMax", semina.getSeminaMax());
 			job.put("seminaOFN", semina.getSeminaOriginalFileName());
-			job.put("seminaRFN", semina.getSeminaRenameFileName());
 			job.put("userName", semina.getUser_name());
 			job.put("userEmail", semina.getUser_email());
+			job.put("seminaRFN", semina.getSeminaRenameFileName());
+			if(semina.getSeminaRenameFileName() != null) {
+				job.put("seminaRFN", semina.getSeminaRenameFileName());						
+			} else {
+				job.put("seminaRFN","rakoon.jpg");						
+			}
 				
-			jarr.add(job);			
+			jarr.add(job);		
 		}
 			
 			//전송용 객체에 jarr 배열 담음
 			json.put("list", jarr);
-			System.out.println("MainNoticeJson : " + json.toJSONString());
+			System.out.println("MainNoticeJson : " + json.toJSONString() + " / (To.SeminaMainServlet)");
 			
 			response.setContentType("application/json; charset=UTF-8");
 			PrintWriter out = response.getWriter();
