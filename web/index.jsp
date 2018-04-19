@@ -101,7 +101,36 @@
 		width:5%;		
 		padding-top:5px;
 		padding-bottom:5px;
-	}	
+	}
+	
+	.ohw-main-semina{
+		width:405px;
+		height:280px;
+		margin-left:1%;
+		padding:0px;
+	}
+	
+	ohw-main-semina-tr {
+		height:210px;
+	}
+	
+	ohw-main-semina-tr-t {
+		
+	}
+	
+	ohw-main-semina-conp {
+		height:210px;
+		padding:0px;
+	}
+	
+	ohw-main-semina-conp {		
+		padding:0px;
+	}
+	
+	.ohw-semina-img {
+		width:405px;
+		height:200px;
+	}
 	
 </style>
 </head>
@@ -256,10 +285,7 @@
 		<h3>최신 세미나</h3>
 		<table class = "ohw-main-semina">
 			
-		</table>
-		<div>
-			<a><img alt="" src="common/resources/img/Main.jpg" width="80%" height="auto"></a>
-		</div>		
+		</table>			
 	</div>
 	
 <script type="text/javascript">/*메인화면  세미나 시작 */
@@ -273,17 +299,20 @@
 				var json = JSON.parse(jsonStr);		 
 				console.log("SeminaMainList : ") + console.log(data);			
 				for(var i in json.list) {				
-					$('.ohw-main-semina').append(						
+					$('.ohw-main-semina').append (							
 					 	<% if(loginUser != null) { %>				 	
-							"<tr class = 'ohw-main-semina-tr'><td class = 'ohw-main-semina-conp'><a href = '<%= request.getContextPath() %>/sdetail?userno=" + json.list[i].seminaNo + "&page=1'><img src = '/prototype/userTitleimg/"+json.list[i].photo +" ' style = 'width:100px; height:100px;'></a></td></tr>" +
+							"<tr class = 'ohw-main-semina-tr'><td class = 'ohw-main-semina-conp'><a href = '<%= request.getContextPath() %>/sdetail?userno=" + json.list[i].seminaNo + "&page=1'><img class = 'ohw-semina-img' src = '/prototype/seminaTitleimg/" + json.list[i].seminaRFN + "'></a></td></tr>" +
 						<% } else { %>					
-							"<tr class = 'ohw-main-semina-tr'><td class = 'ohw-main-semina-conp'><img src = '/prototype/userTitleimg/"+json.list[i].seminaRFN +" ' style = 'width:100px; height:100px;'></td></tr>" + 
+							"<tr class = 'ohw-main-semina-tr'><td class = 'ohw-main-semina-conp'><img class = 'ohw-semina-img' src = '/prototype/seminaTitleimg/" + json.list[i].seminaRFN + "'></td></tr>" + 
 					 	<% } %>						
-						"<tr><td class = 'ohw-main-semina-cont'>" + json.list[i].seminaTitle + "</td></tr>" +										
-					);				
+						"<tr class = 'ohw-main-semina-tr-t'><td class = 'ohw-main-semina-cont'>" + json.list[i].seminaTitle + "</td></tr>"										
+					)			
 				}			
-			}		
-		});	
+			}, 
+			error : function(a,b,c) {
+				console.log(b+c);
+			}	
+		})	
 	});
 	
 </script><!-- 메인화면 세미나 끝 -->
