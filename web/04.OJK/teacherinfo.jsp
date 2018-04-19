@@ -449,7 +449,7 @@ function upload_profile() {
 				</div>
 			</div>
 			<br> <br> <br> <br><br>
-			<h1>학생 신청 내역</h1>
+			<h1>학생 매칭 내역</h1>
 			<hr>
 			
 			<div id="info" style="width: 1100px; height: 300px; border: 1px solid gray; margin-top: 50px; overflow:auto;">
