@@ -211,11 +211,14 @@ public ArrayList<Notice> selectMainNotice(Connection con) {
 		Statement stmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * "
-						+ "from notice n, users u "
-						+ "where rownum <= 8 "
-						+ "and n.user_no = u.user_no "
-						+ "order by notice_no desc";
+		String query = "select * from (select n.*, u.USER_NO un, u.USER_TYPE, u.USER_EMAIL, u.USER_PWD, u.USER_NAME, u.USER_GENDER, u.USER_AGE, " + 
+					"u.USER_LOC, u.USER_PHONE, u.USER_ORIGINAL_PHOTO, u.USER_RENAME_PHOTO, u.USER_KEYWORD_COUNT, u.USER_LOGINABLE, u.USER_EXEABLE, " + 
+					"u.USER_LESSONMAX, u.USER_ENROLLDATE, rownum " + 
+					"from notice n, users u " + 
+					"where n.user_no = u.user_no " + 
+					"order by n.notice_no desc) " + 
+					"where rownum <= 8 "; 
+					
 				
 		try {
 			stmt = con.createStatement();
