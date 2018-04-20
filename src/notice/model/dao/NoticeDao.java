@@ -17,14 +17,19 @@ public NoticeDao() {
 	public ArrayList<Notice> selectList(Connection con, int currentPage, int limit) {
 			
 		ArrayList<Notice> list = new ArrayList<Notice>();
+		System.out.println("SendcurrentPage : " + currentPage + " / (To.NoticeDao)");
+		System.out.println("Sendlimit : " + limit + " / (To.NoticeDao)");
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * from notice n, users u "
-						+ "where n.user_no = u.user_no "
-						+ "and rownum >= ? "
-						+ "and rownum <= ? "
-						+ "order by n.notice_no desc";
+		String query = "select * from (select n.*, u.USER_NO un, u.USER_TYPE, u.USER_EMAIL, u.USER_PWD, u.USER_NAME, u.USER_GENDER, u.USER_AGE, " + 
+						"u.USER_LOC, u.USER_PHONE, u.USER_ORIGINAL_PHOTO, u.USER_RENAME_PHOTO, u.USER_KEYWORD_COUNT, u.USER_LOGINABLE, u.USER_EXEABLE, " + 
+						"u.USER_LESSONMAX, u.USER_ENROLLDATE, rownum " + 
+						"from notice n, users u " + 
+						"where n.user_no = u.user_no " + 
+						"order by n.notice_no desc) " + 
+						"where rownum >= ? " + 
+						"and rownum <= ?";
 		
 		int startRow = (currentPage - 1) * limit + 1;
 		int endRow = startRow + limit - 1;

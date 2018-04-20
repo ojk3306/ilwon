@@ -44,7 +44,7 @@ public class NoticeListServlet extends HttpServlet {
 				}
 				
 				//한 페이지당 출력할 목록 갯수 지정
-				int limit = 8;
+				int limit = 10;
 				
 				NoticeService noticeService = new NoticeService();
 				//전체 목록 갯수 조회
@@ -67,7 +67,14 @@ public class NoticeListServlet extends HttpServlet {
 					endPage = maxPage;
 				} else {
 					
-				}				
+				}	
+				
+				System.out.println("list : "+ list);
+				System.out.println("currentPage : "+ currentPage);
+				System.out.println("maxPage : "+ maxPage);
+				System.out.println("startPage : "+ startPage);
+				System.out.println("endPage : "+ endPage);
+				System.out.println("listCount : "+ listCount);
 				
 				response.setContentType("text/html; charset=UTF-8");
 				RequestDispatcher view = null;

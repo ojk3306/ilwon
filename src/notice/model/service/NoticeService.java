@@ -18,6 +18,8 @@ public NoticeService() {
 	public ArrayList<Notice> selectList(int currentPage, int limit) {	
 		
 		Connection con = getConnection();
+		System.out.println("SendcurrentPage : " + currentPage + " / (To.NoticeServlet)");
+		System.out.println("Sendlimit : " + limit + " / (To.NoticeServlet)");
 		ArrayList<Notice> list = new NoticeDao().selectList(con, currentPage, limit);
 		
 		close(con);
